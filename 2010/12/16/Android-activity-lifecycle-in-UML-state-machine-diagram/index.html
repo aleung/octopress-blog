@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android activity lifecycle in UML state machine diagram - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="Lifecycle of Android activity is always confusing beginners. The Activity class has defined dozens of callback functions, all begin with “on”. Some &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.com/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android Activity Lifecycle in UML State Machine Diagram</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-16T06:25:00+08:00" pubdate data-updated="true">2010-12-16</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Lifecycle of Android activity is always confusing beginners. The <code>Activity</code> class has defined dozens of callback functions, all begin with “on”. Some of them are triggered by UI events, some are lifecycle related. It isn’t easy for developer to remember the usage of them.</p>
+
+<p>An activity has essentially four states, when some event happens, like user navigates between different activities, state transites. There are lots of callback functions which will be called by framework when an activity transites between states. So the activity lifecyle is ideally modeled in state machine. However in <a href="http://developer.android.com/reference/android/app/Activity.html#ActivityLifecycle">Android SDK document</a>, the Activity Lifecycle is descripted by a diagram and table of callback functions. It explains the order of the callback functions being called, but a developer can’t clearly understand in whatcircumstance each callback function will be called.</p>
+
+<p>I tried to draw an UML state machine diagram for Android activity lifecycle:</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5264062473/"><img src="http://farm6.static.flickr.com/5241/5264062473_22989eacb7_b.jpg" alt="Android Activity Lifecycle" /></a></p>
+
+<p>If you aren’t familiar with UML state machine diagram, read the <a href="http://en.wikipedia.org/wiki/UML_state_machine">introduction</a> on Wikipedia.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-16T06:25:00+08:00" pubdate data-updated="true">2010-12-16</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/" data-via="acette" data-counturl="http://aleung.github.com/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/" title="Previous Post: Tiny HTTP Server by Java">&laquo; Tiny HTTP Server by Java</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/12/21/Tracking-lost-cell-phone/" title="Next Post: 追踪丢失了的手机">追踪丢失了的手机 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
+<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 108%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
+<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
+<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
+<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
+<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
+<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
+<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
+<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
+<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
+<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
+<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
+<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.com/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/';
+        var disqus_url = 'http://aleung.github.com/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

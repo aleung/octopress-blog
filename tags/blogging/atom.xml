@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Blogging | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/blogging/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[试验 Octopress 的各种特性]]></title>
+    <link href="http://aleung.github.com/blog/2012/06/24/try-octopress-markdown-features/"/>
+    <updated>2012-06-24T23:08:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/06/24/try-octopress-markdown-features</id>
+    <content type="html"><![CDATA[<p>这个blog使用的markdown解释器是<a href="http://kramdown.rubyforge.org/quickref.html">kramdown</a>，比起标准markdown有所增强。再加上Jekyll的一些插件特供的特殊功能。</p>
+
+<h2 id="markdown">Markdown基本语法</h2>
+
+<h3 id="section">标题</h3>
+
+<p>标题用<code>#</code>开头，一个井号是一级标题，两个井号是二级标题，井号越多字体越小。</p>
+
+<p>一级标题也可以通过在标题的下一行用<code>========</code>来标注，二级标题就是<code>---------</code>。更小的标题就不能用这种方式了。</p>
+
+<h3 id="section-1">链接</h3>
+
+<p>格式：</p>
+
+<pre><code>[text](link)
+</code></pre>
+
+<h3 id="section-2">图片</h3>
+
+<p>与链接类似，区别是前面增加叹号<code>!</code>：</p>
+
+<pre><code>![text](link)
+</code></pre>
+
+<h3 id="blockquote">引用 (blockquote)</h3>
+
+<p>用<code>&gt;</code>开头的一个段落：</p>
+
+<blockquote>
+  <p>Stay hungry…
+stay foolish.</p>
+</blockquote>
+
+<p>用四个空格缩进的段落，会按原始格式显示，相当于HTML的<code>&lt;pre&gt;</code>的效果：</p>
+
+<pre><code>+----+
+|    |
++----+
+</code></pre>
+
+<p>也可以通过在原始格式引用段落的前后各加一行波浪号<code>~~~~~~</code>来实现。(这是kramdown特有的语法)</p>
+
+<h3 id="section-3">显示效果</h3>
+
+<p>用<code>*</code>或<code>_</code>包围的文字会用斜体显示：</p>
+
+<p>Some of these words <em>are emphasized</em>.</p>
+
+<p>如果双重符号<code>**</code>或<code>__</code>则会用粗体显示：</p>
+
+<p>Use two asterisks for <strong>strong emphasis</strong>.</p>
+
+<p>用<code>`</code>包围的文字按代码格式显示。</p>
+
+<h3 id="section-4">列表</h3>
+
+<p>用<code>*</code>, <code>+</code>, <code>-</code>开头的行都会作为列表项。子项缩进两个空格。</p>
+
+<ul>
+  <li>加号开头的段落
+    <ul>
+      <li>缩进两个空格，加号开头
+        <ul>
+          <li>再缩进两个空格，三级项目</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>其次</li>
+</ul>
+
+<h2 id="section-5">表格</h2>
+
+<p>注意第二行的分割线的冒号位置，决定了这一列的对齐方式。</p>
+
+<pre><code>No.   | Name    | Status  |
+-----:|:--------|:-------:|
+1     | Alaph   | done    |
+2     | Beta    | ongoing |
+10000 | Release | n/a     | 
+</code></pre>
+
+<p>效果：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">No.</th>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: center">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">Alaph</td>
+      <td style="text-align: center">done</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Beta</td>
+      <td style="text-align: center">ongoing</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">10000</td>
+      <td style="text-align: left">Release</td>
+      <td style="text-align: center">n/a</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-6">脚注</h3>
+
+<p>增加脚注<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>很简单，就是这样：<code>[^1]</code></p>
+
+<p>脚注定义的写法是以<code>[^1]: </code>开头，后面跟着定义。</p>
+
+<h2 id="section-7">嵌入代码</h2>
+
+<p>下面的嵌入代码的方式都是由插件提供的，并非markdown语法。</p>
+
+<h3 id="section-8">代码高亮</h3>
+
+<pre><code> ``` [language] [title] [url] [link text]
+ code snippet
+ ```
+</code></pre>
+
+<p>效果：</p>
+
+<p><code>java HelloWorld.java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World");
+    }
+}
+</code></p>
+
+<h3 id="gist">嵌入Gist</h3>
+
+<p><div><script src='https://gist.github.com/2934603.js?file='></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
+
+<p>方法是写一个用<code>{</code> <code>%</code>包围的gist标签，后面带上id。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>脚注一定会显示在最末尾。<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+</feed>

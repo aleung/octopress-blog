@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Outdoor | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/outdoor/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[复旦学生黄山被困事件的感想]]></title>
+    <link href="http://aleung.github.com/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling/"/>
+    <updated>2010-12-23T19:08:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling</id>
+    <content type="html"><![CDATA[<p>很久没有玩户外了，对相关的新闻不再关注。复旦大学生黄山遇险的事情网上流传很广，但我一直也没有点进去看过。今天在Google Reader上看到朋友转发的文章，终于知道是怎么回事了。</p>
+
+<p>关于救援技术和道德层面的东西就不说了。磨房有个<a href="http://www.doyouhike.net/forum/shrescue/476142,0,0,1.html">帖子</a>，从队伍被困就开始讨论了，可以从中了解一些细节。说说我的几个感想：</p>
+
+<ul>
+  <li>户外救援这事情上，警方的技术水平和装备水平都非常差。对于他们，应该少些政治学习，多些专业训练；少些吃喝嫖赌，买些专业装备。但明显他们是做不到的，所以还是别指望他们了。</li>
+  <li>这类事情由警方（或者政府部门）包办并不是好办法，很多民间的户外爱好者和从业人员组织起来都能够做得比他们好。但是政府视民间组织为洪水猛兽，生怕造他们的反。</li>
+  <li>被困队伍虽然说GPS落水怀疑故障，但他们其实还是定位出自己坐标的。如果配合小比例尺地图，无论是自救还是他救都会比较容易。但是我们在自欺欺人的将这个当国家机密。网上倒是有驴友根据Google Earth卫星图和美国公开的SRTM数据制作等高线图辅助分析了。 （BTW，在<a href="http://goo.gl/maps/bGmE">maps.google.com</a>和<a href="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;geocode=&amp;q=N30+07.663+E118+11.892&amp;sll=35.86166,104.195397&amp;sspn=69.767299,135.087891&amp;ie=UTF8&amp;ll=30.126087,118.203707&amp;spn=0.037712,0.065961&amp;t=h&amp;z=15&amp;brcurrent=3,0x3435b9bdd80e3bef:0x40d4f885edcbae5e,0,0x3435c43623481ccb:0x4f313f2031517549%3B5,0,0">ditu.google.cn</a>上分别输入这个坐标：N30 07.663 E118 11.892，仔细看看，标出的地点是不同的，偏差五六百米。只不过恰好在同一条沟里）</li>
+</ul>
+
+<p>贴两张Google Maps的截图，绿色箭头处是被困地点。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5284797781/"><img src="http://farm6.static.flickr.com/5006/5284797781_e71c32744a_b.jpg" alt="fudan_huangshan_1" /></a></p>
+
+<p>这张从另外一个角度看的，放大一些，都勉强可以看到山谷里面的大石了。不过这种模拟地势的精度不高，一些陡峭的局部地形都被柔和了，实际会险要得多。不要看着这张图就骂那些学生，以为小跑都可以下山。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5284797851/"><img src="http://farm6.static.flickr.com/5123/5284797851_dec842f909_b.jpg" alt="fudan_huangshan_2" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>

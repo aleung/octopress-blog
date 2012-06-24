@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>‘I Love’ audio player - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="下载的mp3越来越多之后，总想怎样才能将喜欢的与不太喜欢的区分出来呢。渐渐的有一个想法，就是在播放的时候统计自己的喜好。基本思路其实跟以前想过的”什么时候电视机可以变得聪明一些”差不多。 下面就设想一下这个音乐播放器应该是怎样的：如果觉得一首歌不好听/不想听，就跳过它放下一首。如果觉得特别喜欢， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.com/blog/2006/08/23/-/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">‘I Love’ Audio Player</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2006-08-23T15:06:00+08:00" pubdate data-updated="true">2006-08-23</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>下载的mp3越来越多之后，总想怎样才能将喜欢的与不太喜欢的区分出来呢。渐渐的有一个想法，就是在播放的时候统计自己的喜好。基本思路其实跟以前想过的”什么时候电视机可以变得聪明一些”差不多。</p>
+
+<p>下面就设想一下这个音乐播放器应该是怎样的：如果觉得一首歌不好听/不想听，就跳过它放下一首。如果觉得特别喜欢，可以投一票。根据用户的动作，可以统计出对歌曲的喜爱程度。歌曲全都是随机播放，越是喜欢的歌曲播放出来的机会会越大，但是其它歌曲也会偶然播放出来，不会永远埋没起来。原本喜欢的听多了后也许会有点腻，没关系，不想听就跳过好了，播放器会不断”学习”你的喜好。只要曲库里有足够多的歌曲，总能保证听到的大部分都是喜欢的歌曲。</p>
+
+<p>假设要开发这样一个软件，就叫它”I love”吧，将它的功能用user story描述出来，应该有这些（还可能增加好多）：</p>
+
+<p><strong>title</strong>
+<strong>description</strong>
+<strong>priority</strong></p>
+
+<p>播放MP3
+能够播放mp3格式的音频文件
+最高</p>
+
+<p>播放WMV
+能够播放wmv格式的音频文件
+最低</p>
+
+<p>Copy profile
+将现有的profile copy成一个新的profile
+低</p>
+
+<p>Switch profile
+在软件中可以存在很多个profile，但只能有一个profile生效。所有对喜爱值的操作都是对当前profile进行的。用户选择一个profile，将这个profile设置成为当前active的profile。切换profile时不停止当前歌曲的播放。
+中</p>
+
+<p>I like it
+当歌曲正在播放时，用户按下”I love”按钮，将这首歌的喜爱度增加一个数值，如果同一首歌，用户再次按下，忽略这个操作
+中</p>
+
+<p>Don’t like it, next
+当歌曲正在播放时，用户按下”I don’t like it”按钮，停止播放这首歌，并且将这首歌的喜爱度减少一个数值。然后 随机播放下一首歌
+高</p>
+
+<p>歌曲播放结束
+如果歌曲播放到结尾，并且在这个过程中用户没有按下过”I like it”按钮，将这首歌的喜爱度增加一个数值。然后 随机播放下一首歌
+高</p>
+
+<p>随机播放一首歌(shuffle)
+profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个喜爱度的值。从profile中按照喜爱度加权来随机的挑选一首歌来播放，歌曲的喜爱度越高，被选中的概率越大。
+最高</p>
+
+<p>暂停/继续
+当用户按下”暂停/播放”按钮，暂停当前歌曲的播放；再按一次，从上次暂停的地方继续播放。
+中</p>
+
+<p>Rename profile
+中</p>
+
+<p>程序启动
+选择最后一次使用的profile，如果配置为”启动立即播放”，随机播放一首歌
+低</p>
+
+<p>显示歌曲信息
+显示当前播放歌曲的信息，包括歌名、专辑、艺人等
+中</p>
+
+<p>off-line media library
+将off-line媒体库（例如光盘）的曲目也加入profile中，同步的时候按照喜爱度加权的原则随机copy一部分曲目到硬盘中，换掉旧的一些。
+最低</p>
+
+<p>只要把播放mp3、shuffle、don’t like it、播放结束这四个user story实现了，基本就能用了；再将优先级为”中”也实现了，设想的目标就基本都能达到。</p>
+
+<p>整个播放器的界面将会非常简洁：三个按钮：喜欢/不喜欢/暂停或继续，不喜欢（下一首）的按钮应该是最大的；音量控制；正在播放的歌曲显示。切换profile放在菜单里面。这些按钮都必须能够用键盘快捷键控制。</p>
+
+<p>不过，我只是想想而已，真的去写这样一个软件的可能性微乎其微。媒体播放、用户界面这些都是我不熟悉的东西。不知道是不是已经有类似功能的软件？如果有就太好了。</p>
+
+<p>这样的播放器其实更适合用硬件实现，上面这些user story可以完完全全在随身听上实现。不过，软件还有可能自己写，要自己做硬件的门槛就高多了。现在市面的mp3品种多得眼花缭乱，大部分功能都是一个样，有创意的厂商非常少。写下自己的想法后，上网查了一下，发现apple ipod shuffle和sony的walkman A系列有类似的功能，但从介绍来看都没有完全满足我的要求，不知道用起来怎样。在我看来，以下两点是最重要的：</p>
+
+<p>第一是歌曲的喜爱度必须是在播放过程中日积月累的更新，而不是通过什么操作界面来评级。对于用户，只有最简单直接的操作：喜欢，按一下（可别要进什么菜单）；不喜欢，跳下一首。我认为甚至不应该提供任何机会给用户直接更改喜爱度。</p>
+
+<p>第二是需要有profile切换，在不同环境、不同心情下喜欢的音乐是不一样的，有了profile功能就可以独立累计喜爱度。Profile也可以用来区分不同的使用者。</p>
+
+<p>也许过不了多久就会有这样的产品出现了，到时是不是要考虑买一个呢？ :)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2012-06-23T19:14:00+08:00" class="updated">Updated 2012-06-23</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2006/08/23/-/" data-via="acette" data-counturl="http://aleung.github.com/blog/2006/08/23/-/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2006/08/20/Anger-green-and-the-collapse-of-a-generation/" title="Previous Post: 愤青与垮掉的一代">&laquo; 愤青与垮掉的一代</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2006/08/27/Read-excerpts-city/" title="Next Post: 读书摘录 - 城市">读书摘录 - 城市 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
+<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 108%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
+<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
+<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
+<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
+<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
+<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
+<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
+<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
+<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
+<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
+<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
+<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.com/blog/2006/08/23/-/';
+        var disqus_url = 'http://aleung.github.com/blog/2006/08/23/-/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

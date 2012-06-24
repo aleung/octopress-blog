@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Sys_Admin | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/sys-admin/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to allow remote application setting display to the SUSE linux desktop]]></title>
+    <link href="http://aleung.github.com/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/"/>
+    <updated>2008-06-17T20:59:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop</id>
+    <content type="html"><![CDATA[<ol>
+  <li>Allow remote TCP connection to the X server. You need root privilege to config it. </li>
+</ol>
+
+<p>Just run gdmsetup. This will open a window with multiple tabs. In the Security tab, disabled the line that says “Deny TCP connections to the X server”. Close the window and then log out of your current X session. You need to restart gdm for this to work.  The easiest way to do that is to go to a console login, login as root, change to run level 3 (just type “init 3”) and then return to run level 5 (“init 5”) to restart gdm. <br />
+Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.org/wp/?p=69</a></p>
+
+<ol>
+  <li>Add remote host into X server access control</li>
+</ol>
+
+<p>Run xhost <em>remote_host_ip</em></p>
+
+<ol>
+  <li>Set DISPLAY environment variable in remote host before execute the application</li>
+</ol>
+
+<p>setenv DISPLAY <em>display_host_ip</em>:0.0</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux的cut命令]]></title>
+    <link href="http://aleung.github.com/blog/2008/04/15/Linux-cut-/"/>
+    <updated>2008-04-15T20:54:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2008/04/15/Linux-cut-</id>
+    <content type="html"><![CDATA[<p>原来有个这么好用的命令：cut</p>
+
+<p>经常都需要分析一个字符串或者文本文件，根据一些规则提取出其中某部分的内容。以前都是用awk来做，但awk太复杂了，每次都要拿手册查半天。今天才知道原来GNU有个叫cut的命令，就可以做这个事情。</p>
+
+<p>例如，获取当前机器的IP地址：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>/sbin/ifconfig</td>
+      <td>grep ‘inet addr’</td>
+      <td>grep -v ‘127.0.0.1’</td>
+      <td>cut -d: -f2</td>
+      <td>cut -d’ ‘ -f1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个命令在linux和windows的unixutils里都有。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[两个linux小工具：whichcd, checkinstall]]></title>
+    <link href="http://aleung.github.com/blog/2004/12/03/Two-Linux-small-tools-whichcd-checkinstall/"/>
+    <updated>2004-12-03T19:02:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2004/12/03/Two-Linux-small-tools-whichcd-checkinstall</id>
+    <content type="html"><![CDATA[<p>现在的linux安装盘通常都有几张，要找一个rpm包在哪张盘就很麻烦了，要一张张放进光驱里面看。在sourceforge.net上面找到whichcd这个小工具，能够告诉你某个rpm在第几张光盘，也能告诉你当需要某个文件/命令时应该安装哪个rpm。</p>
+
+<p>估计它是预先将主要linux发行版的包的资料都保存起来了，支持的linux发行版本有限，RedHat的最齐。</p>
+
+<p>另外一个工具叫做CheckInstall，通过记录软件make install过程中新建和拷贝了什么文件目录，自动生成rpm。（以前有个工具叫做installwatch，现在已经被包含到CheckInstall软件包里面了）。这就大大简化了rpm的制作过程，一个软件只有源码和makefile的，也能够直接制作出rpm，不需要写spec了。当然，这工具只能生成简单的rpm，不能做到检测依赖性、运行pre/post script。不过，大部分情况下，能做到这样也就够了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows系统错误的查找]]></title>
+    <link href="http://aleung.github.com/blog/2004/07/07/Windows-/"/>
+    <updated>2004-07-07T17:17:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2004/07/07/Windows-</id>
+    <content type="html"><![CDATA[<p>最近两次启动windows 2000, 启动时间莫名其妙的长, 居然要5分钟, 我还以为死机了:(</p>
+
+<p>实在忍受不了, 查看”事件管理器”, 发现有几个错误. 在网上搜索一下, 发现了一个好网站<a href="http://www.eventid.net">eventid.net</a>, 可以查找到事件的详细解释和解决办法.</p>
+
+<p>一查才知道, 原来好几个错误都是由于DNS没有正确设置引起的, 晕:( 昨天改过IP, 把DNS设错了, 居然会造成启动慢的问题.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[系统性能监控工具]]></title>
+    <link href="http://aleung.github.com/blog/2003/09/19/The-system-performance-monitoring-tool/"/>
+    <updated>2003-09-19T22:39:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2003/09/19/The-system-performance-monitoring-tool</id>
+    <content type="html"><![CDATA[<p>有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等:  </p>
+
+<ul>
+  <li>
+    <p>MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/<br />
+这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, 可以通过调用其他程序来采集数据并生成曲线图. 但由于原来设计是流量监测, 故此配置灵活性不如RRDtool.<br />
+这里是各种扩展: <a href="http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html">http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html</a>  </p>
+  </li>
+  <li>
+    <p>RRDTool http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/<br />
+RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并且按照一定的周期生成曲线图. 很象MRTG, 不过它不包含数据采集功能, 而且灵活性高适应面更广.  </p>
+  </li>
+  <li>
+    <p>ORCA(http://www.orcaware.com/orca/docs/orcallator.html), 一个主机性能采集的工具, 利用RRDTool生成很多种性能曲线. 它只能在solaris上运行. 但它采集的数据和生成的曲线可以参考, 部分在linux上用RRDTool配合其他的采集程序应该也可以生成的.  </p>
+  </li>
+  <li>
+    <p>BGraphs(http://www.ag0ny.com/graphs/) 利用RRDtool和shell script做的linux性能采集工具。我在它的基础上修改，安装到公司的上网服务器上，还不错。  </p>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: mobile | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/mobile/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[追踪丢失了的手机]]></title>
+    <link href="http://aleung.github.com/blog/2010/12/21/Tracking-lost-cell-phone/"/>
+    <updated>2010-12-21T17:21:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2010/12/21/Tracking-lost-cell-phone</id>
+    <content type="html"><![CDATA[<p>现在已经有好些智能手机应用可以用来帮助追踪丢失了的手机。有些是当插入不同的SIM卡时触发跟踪，有些是在网络上触发跟踪。我想到另外一个方法：每当手机打开屏幕离开休眠状态时，前置摄像头自动拍摄一幅图像，对画面中的人面进行识别，如果判断不是机主，就将图像上传服务器，并且开启定位跟踪，不断将轨迹上传。这样，不但可以知道手机在哪里，还获得了拿着手机的人的相貌，因为一般人打开手机的时候都是拿在手上，正好前置摄像头就可以拍下面部照片了。</p>
+
+<p>Answer to questions:</p>
+
+<ul>
+  <li><em>只有前面有摄像头的手机才能支持这个功能？</em></li>
+</ul>
+
+<p>没有前置摄像头的手机不能用，这也是这个idea区别于已有应用的唯一区别。有前置摄像头的智能手机会越来越多的，iPhone推facetime， Android下个版本也会在GTalk里支持视频聊天，硬件肯定要跟上。</p>
+
+<ul>
+  <li><em>朋友用了这个功能的手机怎么办？</em></li>
+</ul>
+
+<p>机主看到是认识的人，忽略就是啦；如果想做得更少打扰用户，可以让应用在重新”见到”机主时关闭跟踪，见下。</p>
+
+<ul>
+  <li><em>检测到其他人用手机之后，这个人是否可以关闭定位功能？</em></li>
+</ul>
+
+<p>手机上不能手动关闭，否则就没用了；机主可以通过远程手段关闭；也可以通过面部识别，在重新识别到机主使用手机的时候自动关闭。</p>
+
+<ul>
+  <li><em>即使定位到一定范围了，但还不能确认是谁。是否可以与”其他人”打电话协商？</em></li>
+</ul>
+
+<p>这个应用是可以控制手机上的所有功能的（如果手机OS允许），因此可以加很多东西，除了定位之外，可以记录通话信息、短信记录、自动发送短信、后台录音等等。但具体还要看OS，例如iOS在不越狱的情况下能做的事情就非常少，Android上有些操作也需要取得root权限才能做。如果这个应用由手机厂商内置进系统里，权限就不是问题了。</p>
+
+<ul>
+  <li><em>调用摄像头拍照，通常是没办法影藏的吧，也就是拿着手机的人会知道这种动作</em></li>
+</ul>
+
+<p>我不知道现在常用的手机OS是否支持拍照时不在屏幕上显示，摄像头拍照与屏幕显示并没有联系，只是一般情况下都需要实时将摄像头的输入在屏幕上输出，给用户反馈而已。记得Android上有个应用就是用来偷拍的。况且这只是一个idea，真想做或许要对系统做一些调整的。</p>
+
+<ul>
+  <li><em>拍得图像亮度，对比度，分辨率差异巨大，在手持设备上进行人脸识别，判断机主，这个实现难度很大。</em></li>
+</ul>
+
+<p>拍摄的时候，亮度、对比度是能够调节的，在环境光线不太恶劣的情况下（大逆光、光线暗就没办法了），获得合适对比度的影像是很简单的事情。人脸识别的算法我没有了解，但有<a href="http://hubpages.com/hub/Kodak-Z981-can-automatically-recognize-the-faces-of-20-specific-individuals">数码相机都内置这个功能</a>了，已经不是很难实现的东西了吧？要说处理能力，现在手机的CPU都上1GHz了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HereIm 1.4.2 beta]]></title>
+    <link href="http://aleung.github.com/blog/2009/06/07/HereIm-1-4-2-beta/"/>
+    <updated>2009-06-07T09:46:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/06/07/HereIm-1-4-2-beta</id>
+    <content type="html"><![CDATA[<p>在为共享校准数据做准备: </p>
+
+<p>这个版本会将手工校准的数据上传到google app engine, 不过还仅仅是上传。我现在还没有决定是做成在线获取校准参数还是将新校准参数固化到新版本中。</p>
+
+<p>也不需要在菜单中选择采用那个地方的预设校准数据了，会自动选择距离最近的一个。</p>
+
+<p><a href="https://sites.google.com/site/hereimapp/">https://sites.google.com/site/hereimapp/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[无意插柳]]></title>
+    <link href="http://aleung.github.com/blog/2009/04/20/Inserted-liu-had-no-intention-of/"/>
+    <updated>2009-04-20T08:05:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/04/20/Inserted-liu-had-no-intention-of</id>
+    <content type="html"><![CDATA[<p>春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为<a href="http://aleung.blogbus.com/logs/37558170.html">用得不爽一时兴起而写</a>的校正中国地图偏移的软件不断添加新功能发布新版本。</p>
+
+<p>今天把软件改了个名字，由 Better My Location 改为 Here I’m!，应该会更顺口和好记一些。不过，这个名字不好的地方就是太常用了，肯定无法出现在搜索引擎的开头几页。另外也把软件介绍的文案更新了一部分，目的是要把软件的功能更清晰的表达出来（不知道是否达到效果了，欢迎提意见）。还花了几个小时弄了个漂亮一些的logo，不是搞设计的，真是赶鸭子上架啊。</p>
+
+<p>考虑到blog的形式不是太合适做软件的发布，到Google Sites上为它做个了site：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a>。HereIm这个名字不能注册，只好用HereImApp。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Better My Location, 准确定位当前位置]]></title>
+    <link href="http://aleung.github.com/blog/2009/04/19/Better-My-Location-/"/>
+    <updated>2009-04-19T07:45:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/04/19/Better-My-Location-</id>
+    <content type="html"><![CDATA[<p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>
+
+<p><a href="http://www.bababian.com/phoinfo/65636492EAE6C21016E8E45740CD66DFDT"><img src="http://photo1.bababian.com/upload15/20090418/65636492EAE6C21016E8E45740CD66DF.jpg" alt="" /></a></p>
+
+<p><strong>下载 / 版本更新记录</strong></p>
+
+<p>安装：在Android Market搜索 “HereIm”</p>
+
+<p>软件网站：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a> （需要翻墙）</p>
+
+<p><strong>使用说明</strong>  </p>
+
+<p>地图校准  </p>
+
+<p>地图有多种校准模式：Manually Calibrate为手工校准模式，需要用户先自行校准地图再使用。其他为中国几大城市的预设校准数据，在它们附近的地域也大致适用，可以选择最接近的一个。<br />
+手 工校准，在菜单中选Calibrate，然后现在卫星图上找到一个你知道的标志性地点（路口是一个好的选择），拖动地图使这个地点位于十字光标正中下，接 下来切到地图模式，同样也找到这个地点，拖到光标中心。最好开始先将地图缩小一点来校准，初步找到位置后再放大地图微调位置，可能需要反复几次才能准确校 准。最后点Done。<br />
+目前软件只会保存最后一次校准的参数。<br />
+注意：模式切换或手工校准后，需要手机收到位置更新之后，新校准才会生效。如果打开了GPS，位置会更新得很快，但若没有打开GPS，也许要移动相当一段距离后才能看出效果。  </p>
+
+<p>定位  </p>
+
+<p>菜单中选择 My Location，就会在地图中标记出当前所处位置，并且显示街道地址（不一定很准确，可作为参考）。<br />
+如 果定位不成功，请检查你是否已经打开了手机的定位功能。方法是：home按钮 - menu按钮 - settings - security &amp; location，将use wireless networks选上，enable GPS satellites按你自己需要决定选不选。<br />
+wirelessnetworks在任何地方只有有手机信号基本都能立即定位，但不够准确，有可能 差一两条街；GPS定位很准，能到几十米，但要在天空开阔的地方才能收到足够数量的卫星，而且也要等比较久才能锁定卫星信号，屏幕顶上的绿色卫星天线图标 长亮不闪烁时才表示GPS定位成功。  </p>
+
+<p>用手机自带地图显示当前位置  </p>
+
+<p>菜单选择”open in map app”，会切换到手机自带的地图软件，这时屏幕正中间就是当前位置。要注意，它的蓝点位置还是偏的。校准仅仅在 Better My Location 中有效。</p>
+
+<p><strong>相关文章</strong></p>
+
+<ul>
+  <li><a href="http://aleung.blogbus.com/logs/37558170.html">BetterMyLocation开发手记</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android手机G1入手感受]]></title>
+    <link href="http://aleung.github.com/blog/2009/04/05/Android-G1-/"/>
+    <updated>2009-04-05T08:51:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/04/05/Android-G1-</id>
+    <content type="html"><![CDATA[<p>一直关注Google Android系统的手机，自从去年10月底首款机型HTC G1正式发售，就有购买的意欲。今年春节后开始学习Android软件的开发，本来打算坚持到首个程序开发完成后再买手机的，可最后还是没有忍住，提前买了回来。</p>
+
+<p>淘宝网购，包邮包解锁价2770，美版黑色。虽然很多人说G1这款机的硬件不太好，例如外形不够漂亮、做工不够精致、性能不够好、电池不耐用，但我觉得这个价位还算是可以接受的。</p>
+
+<p>这台G1已经玩了三天，同时也借了一个iPhone 3G回来做对比，现在大致有些了解，可以说说感受了。</p>
+
+<p>Update 2009-6-14：G1 手机已经用了差不多三个月，期间系统升了一次级，软件应用也不断更新，现在是时候对当初写的入手感受做些补充了。</p>
+
+<h4 id="g1">G1满足我的需求</h4>
+
+<p>先从我自己关注的几个方面说起。</p>
+
+<p>上网浏览：</p>
+
+<p>Android的browser完全支持HTML和JavaScript，对于网页的浏览效果与PC的浏览器基本相同，体验相当好。我一般要用手机上网站都是要查资料，浏览器的兼容性好就意味着减少了要看某个网站却不能正常显示的问题。</p>
+
+<p>另一方面，我用手机上网用得最多的就是看GoogleReader，GoogleReader在Android浏览器中的使用体验跟PC上差不了太多，不过我嫌它字体太小了，另外装了一个软件NewsRob。NewsRob是专门用于阅读GoogleReader的工具，我喜欢它可以缩放字体，另外感觉它打开feed的速度也比浏览器中快一些。</p>
+
+<p>Update：[](http://www.kolbysoft.com)NewsRob会耗用大量的网络流量，作者说是Google Reader API的限制造成的。所以只好忍受Google Reader的小字体了，给Google提了意见，但也没有得到反馈。  </p>
+
+<p>但我对Android的浏览器不满意的地方是切换窗口麻烦了一点，需要先按menu键，再从弹出的菜单中选择Window，不如iPhone直接显示在屏幕最底的工具条方便。</p>
+
+<p>Update：<a href="http://www.kolbysoft.com">Steel</a>是第三方开发的浏览器，据说用的是相同的内核，但提供了不同的用户操作界面，使用起来方便一些。我已经用它代替了自带的浏览器。  </p>
+
+<p>定位：</p>
+
+<p>在Google Map中，支持通过GPS定位和通过移动网络定位。G1的GPS定位精度一般般，大概差一两栋楼左右吧，对于城市中的导航是足够了。我说的一般般是与用惯的Garmin GPS来对比的，手持机的效果当然要比手机内置的要好得多了。我很喜欢的倒是它的移动网络定位功能（包括手机网络和wifi，但在广州，wifi热点太少，用不上），在城市中什么地方都能得到一个大概靠谱的位置，例如室内、地下、四周全是高楼的地方，这些靠GPS卫星是无法定位的。所谓靠谱，就是你可以至少知道现在是在广州图书馆附近，或者东山口附近。这对于自己熟悉的地方意义不大，但对于一个外地人来说就会很有用了。</p>
+
+<p>Update：升级1.5（Cupcake）之后，A-GPS的效果大大改善，在只能看到狭窄天空的环境下，都能在几秒钟内定位，如果是使用普通GPS等几分钟都不一定能锁定位置。当然，这种环境下的定位准确度不高，但对于城市应用来说，一般能确定到在哪条街道上都足够了，而能够定位和快速定位才是更重要的。（什么是A-GPS，可看<a href="http://aleung.blogbus.com/logs/40220815.html">这篇文章</a>）</p>
+
+<p>不过，无论是GPS定位还是网络定位，都一定要用卫星图模式，不要用地图模式，因为地图加入了人为的位置误差，那个误差大到足以使定位功能变得毫无意义。网上很多人埋怨G1定位不准，Google和HTC也真冤枉，给你一张地图，但是不能让你知道自己在地图上的准确位置，这样的规定也只有中国sb政府做得出来。</p>
+
+<p>Update：为了解决这个问题，我专门写了一个应用软件<a href="https://sites.google.com/site/hereimapp">HereIm!</a></p>
+
+<p>应用软件：</p>
+
+<p>Android是基于Linux的操作系统，软件开发使用的是Java语言，不过运行平台不是JVM而是Google自己搞的Dalvik。Java语言加上差不多全套JDK API，使得Android软件开发的门槛很低。从硬件上看，一台手机基本上就是一台小电脑了，运算能力、输入、显示、网络，都不缺。再加上market的商业模式，应用软件方面应该不成问题，能有的软件都会有的，最多是时间问题。</p>
+
+<p>我关心的PIM应用中，Android内置的联系人、邮件、日历，分别与Google Contact、Gmail、Google Calendar完全同步，对于Google用户方便得不得了。Task(todo)管理我原来用的是RememberTheMilk(RTM)，在Android上我选择了Astrid，能够与RTM同步，初步感觉效果还行。Notes方面的软件还没有装，暂时还没有需要，我始终担心在手机上输入的便利性还是不够，可能还是要靠纸和笔。</p>
+
+<p>Update：我觉得任务管理用手机还是不够方便，所以大部分时候还是在PC上用RememberTheMilk（RTM），反正我基本是PC不离身，RTM通过Google Gear支持离线使用，用起来跟本地软件差不多了。手机上通常还是查看任务为主，Astrid用了一阵子，老是在半夜(0:00)作任务提醒很恼火，又无法disable，于是放弃了。现在用RTM Tasks，需要在线才能用的，无所谓了，手机随时可以上网，用了G1之后深刻感受到移动之中永远在线是多么的方便。  </p>
+
+<p>另外一个很有用的软件就是字典了，装了WordMate，支持StarDict的词库格式。还有个超级强大的计算器handyCalc，从单位换算、四则运算、科学计算到解方程都无所不能。</p>
+
+<p>到目前为止，我安装的所有软件都是从Market上直接下载的free软件。我觉得这种方式非常方便，如果日后Android能够进入中国市场，开放收费软件的下载，如果价钱不贵，我想合适的我也会买。</p>
+
+<p>Update：不时查看Market，看着各种类型的软件不断增加，装上的软件也在不断更新，功能完善。我对现在Android的应用已经很满意，基本上想要的软件都有了。</p>
+
+<h4 id="iphone">与iPhone的对比</h4>
+
+<p>作为两个有比较高相似度的产品，iPhone往往会用来与G1作对比。两款机我都只是玩了两三天，我能说的只是一个初步印象。</p>
+
+<p>显示</p>
+
+<p>两者的像素都是480*320，G1的面积稍小一点，本来应该画面更加精细才对，但是跟iPhone一对比，iPhone的就是抢眼很多。我也说不出来是因为硬件差别造成的色彩更艳丽？还是因为图标的设计更cool？总之，Apple产品的cool是骨子里散发出来的，不服不行。G1的显示效果大概就是中规中矩吧。</p>
+
+<p>触摸屏</p>
+
+<p>两者都是电容式的触摸屏，不是压力感应的，因此笔或者指甲是感应不到的，需要用手指肚来触摸。G1的触摸灵敏度和准确性不怎么理想，对于小的按钮很容易会按不准，而iPhone的触摸位置感应得比较精确。再加上G1的屏幕比iPhone小，如果同样的界面布局，G1的按钮就会显示得小一些，因此而这方面iPhone的使用体验比G1好很多。</p>
+
+<p>Update：升级1.5（Cupcake）之后，触控的敏感度和准确度大为改善。1.5也提供了屏幕键盘，使用的效果很好，我感觉差不多赶上iPhone的水平了。</p>
+
+<p>另一方面就是iPhone的招牌本领多点触摸，在某些场景中控制起来很方便，例如缩放用两个指头就能搞掂。这是Apple的专利，Android没法增加这项功能，虽然有些非官方发布的包已经的带有多点触摸的支持。</p>
+
+<p>重力感应</p>
+
+<p>这个估计以后会变成手机的必备功能了。G1也支持重力感应，就看程序怎么用。现在G1的大部分软件都不会根据重力感应来切换横竖屏的，那是因为G1有侧滑打开的键盘，它是当打开键盘时横屏显示。</p>
+
+<p>Update：1.5（Cupcake）增加了重力感应切换横竖屏的功能，不过我不喜欢用，把它disable了。打开键盘横屏，关上键盘竖屏，很符合使用习惯。（我不在手机上看video，所以没必要横屏）</p>
+
+<p>控制界面以及风格</p>
+
+<p>iPhone的面板非常简洁，物理按钮只有一个，大部分情况是作为home键，软件的功能都要靠屏幕显示的按钮来触摸控制。这应该是Apple一贯简洁的设计哲学了，当年Mac的单键鼠标我就根本不会用。相比之下Android的控制方式要丰富好多：物理按键有home、back、可按压的滚轮、menu，屏幕上有通过menu按键打开的菜单、通过长按屏幕触发的菜单。使用物理按键还是屏幕按钮只是设计风格问题，各有长短，iPhone的屏幕大，触控精确，在界面上多显示一点按钮也问题不大。不过我觉得长按屏幕触发菜单是很方便的控制手段，不知道为什么iPhone没有提供。</p>
+
+<p>我不太喜欢的其实还是在于iPhone软件的可控制性不足，我知道这也是受它简洁的设计哲学所指导的，有些不常用的功能、大部分人不需要更改的设置，就不提供出来。但我觉得这简洁得有点太过分了，Google做的东西界面也是比较简洁的，但需要的东西还是能找到。</p>
+
+<p>具些例子：iPhone的呼叫转移只能设置无条件转移，无法设置遇忙转移、未应答转移。如果想设，就只能通过**61…之类的服务代码来设，谁能记得？iPhone 3G跟G1一样支持GPS定位、移动网络定位，但用户无法选择采用哪种方式，似乎也不能知道目前的位置是通过哪种方式取得的。iPhone的浏览器中对于链接，没有新窗口打开、保存之类的功能。</p>
+
+<p>应用及游戏</p>
+
+<p>For iPhone的应用软件和游戏非常非常多，而且很多都很有创意。目前for Android的软件数量比起iPhone来说少很多，游戏更是没有多少特别出彩的。不过Android正式发布的时间还不算长，目前也已经见到一些很有创意的for Android应用了，相信以后会越来越多。</p>
+
+<h4 id="section">目前发现的缺点</h4>
+
+<p>目前使用下来，G1主要的问题有下面几个。</p>
+
+<p>网络流量消耗大</p>
+
+<p>如果套餐是无限数据流量的就不用考虑这个问题了，但运营商可没有这么大方。网上很多人都说使用G1几天下来就用掉了几百元的GPRS流量，我今早也发现昨天一天的流量居然已经超过80M。因为Android内置的mail、contact、calendar会自动网络同步数据，系统会自动检查更新，自己安装的一些软件也会与网络同步，因此除了正常使用产生的流量外，还会有好多莫名其妙的流量。需要安装NetMeter、NetCounter软件来监控流量大小，不过现在好像也还没有办法能够确定具体哪个程序消耗了多少流量，所以也还是只能猜。例如我通过NetMeter的流量曲线发现每个小时就有一次一个尖峰，后来发现我把GoogleReader阅读工具NewsRob设置为每小时自动同步了，把这个取消之后似乎就没有耗那么多流量了。</p>
+
+<p>我现在的经验就是不需要自动同步的就不要设置自动同步，例如阅读器、任务管理之类的，用的时候手工同步一下也很快，我一般不需要用手机收邮件，也无需自动同步了。如果还是找不出什么软件”偷走”了流量，就用APNdroid或者DroidSans Tweak Lite软件，在不需要用网络时将APN取消掉，这样数据网络就不通了。</p>
+
+<p>Update：后来确认耗流量的罪魁祸首就是NewsRob。我一般上下班坐车看GoogleReader一个多小时，打开各种同步，偶然用maps，软件也是手机直接下载，大概每天流量4～8M，这样一个月下来200M左右，还可以接受。毕竟移动在线所带来的方便是巨大的。</p>
+
+<p>电量不耐用</p>
+
+<p>据说充一次电一般情况下只能用一天，我没有测试过最长可用时间，反正看到电量显示下降得很快。我都是一有机会就充电，反正USB线也方便。</p>
+
+<p>没有系统级中文输入法</p>
+
+<p>Android的输入法框架还没有正式发布（测试版本已经有了，估计不用等太久），因此无法输入中文。目前的解决方法是另外安装一个内置中文输入法的发短信的软件，例如aPowerSms。其他软件的中文输入也可以通过从aPowerSms中copy-paste过来。</p>
+
+<p>Update：1.5（Cupcake）提供输入法框架了，也有了Google拼音输入和其他一些中文输入法，中文输入不再是问题。另外，屏幕键盘也很好用，输入的东西不多时都不需要推开物理键盘了。因此，G2不带物理键盘用起来应该也没有什么问题。</p>
+
+<p>新发现问题：</p>
+
+<p>内存不够大</p>
+
+<p>装了系统后剩下的可用内存70～80M左右，装了各种软件后现在就只剩10M了。软件狂人就不能无限制的安装软件。有hack可以将软件装到sd卡，但需要刷机。而且卡也必须是高速卡，我用的是买机附带的普通卡，就没有搞app2sd。</p>
+
+<h4 id="section-1">结论</h4>
+
+<p>从目前的使用来看，我相当满意这台手机。对于一个G粉，兼网络依赖者，这是一台值得拥有的手机。但若用户本身并没有使用Google的服务的习惯，或者很少使用网络应用，那Android手机就没有太多优势了。</p>
+]]></content>
+  </entry>
+  
+</feed>

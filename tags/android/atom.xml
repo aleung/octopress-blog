@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/android/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[跑步步频训练软件 RunningCadence 开发小记]]></title>
+    <link href="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/"/>
+    <updated>2011-12-24T00:16:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency</id>
+    <content type="html"><![CDATA[<p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
+
+<p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
+
+<p>有了想法后，就考虑怎样实现。先要知道跑步时加速度传感器得到的数据会是怎样的，在market上找到软件Accelero-meter Log，能显出加速度传感器三轴数据的曲线。拿着手机跑了几步看看曲线，发现完全不是想象中那么简单：从曲线可以看出每跑一步的加速度变化，但并不是一步一个脉冲那么理想，而是大脉冲中包含着小脉冲，波形很不规则；更要命的是不同轴测量到的数据频率会不一样，软件应该按那个轴的数据计算？后来才想到不同轴测量数据频率不同的原因是手摆动的频率与身体重心上下移动的频率不一致，只是一半，再加上手的活动太自如了，跑动过程中会有不同的动作，都会引起加速度变化。</p>
+
+<p>上网找到一个开源的Android计步器的代码，看看它怎么做，发现它只是将三个轴的数值加在一起，然后判断变化量。根据前面看得的数据波形，我感觉这样的算法太不靠谱了，再看看这个软件的用户评价，果然不佳。</p>
+
+<p>这时想到Nike的配合iPhone使用的计步器，是藏在鞋里面的。它应该是感应脚的每次着地，而且计步器是固定在鞋里的，有特定的安装方向，因此它可以只检测垂直地面的加速度。想到这里就豁然开朗了，原来测量摆臂的想法是错误的，应该测量脚着地的冲击，也就是垂直方向的加速度。但那个轴才是垂直地面的呢？我不能规定用户使用这个软件时手机摆放的方向啊，他可以绑在臂上，拿在手里，放裤袋中。。。因此首先要解决的问题是如何判断手机的姿态，找出垂直于地面的轴。</p>
+
+<p>人在运动的时候加速度不断变化，但加速度矢量一段时间的累计应该为零，而重力加速度是恒定的，并且垂直于地面，检测出重力加速度的方向就ok了。具体实现的方法也比较简单：对传感器三个轴的数据分别做截止频率为0.25Hz的低通滤波后，数值最大的那个轴应该就是最接近于垂直地面的。</p>
+
+<p>还有个问题是手机加速度传感器的采样频率能到多高？是否能满足要求？长跑理想的着地次数是每分钟180次，相当于3Hz，一般人都只会比这个慢。实测我的Nexus One使用最短采样间隔时大约30~50ms能获取到一组数据，也就是采样频率大于20Hz，对于检测3Hz的信号完全足够。</p>
+
+<p>对于复杂波形的处理方法，同样是简单的一阶低通滤波，截止频率取了3.5Hz，相当于每分钟210次着地。高频干扰通过滤波削弱后，相邻波峰的时间间隔就是两次着地的时间间隔了。具体实现时，波峰判断会比较麻烦，采样检查是否超过阈值来代替。本来想按振幅比例来设定阈值的，但算振幅也比较麻烦，之前检测重力加速度时已经得到重力加速度在测量轴上的分量，直接拿它的1/2做阈值就好了。这样做还带来了一个没有预料到的副作用：走路时脚步比较轻，超不过阈值，因此软件还能知道当前是否处于跑步状态。</p>
+
+<p>步频数据算出来以后其他的就好办了。跑步时不方便看屏幕，通过语音合成播放出来。设定目标步频，语音提示应该加快还是减慢。还打算过增加个目标步频的节拍音，当实际步频与目标不一致时播放出来，不过软件用了这段时间，感觉有语音播报步频基本上已经足够了，暂时不做以后再说吧。</p>
+
+<p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
+
+<p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Drag and drop list view on Android]]></title>
+    <link href="http://aleung.github.com/blog/2011/04/10/Drag-and-drop-list-view-on-Android/"/>
+    <updated>2011-04-10T06:05:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/04/10/Drag-and-drop-list-view-on-Android</id>
+    <content type="html"><![CDATA[<p>I didn’t expect that implementing a drag and drop list view on Android is so difficult. It took me more than one week to get it work.</p>
+
+<p>Android SDK doesn’t provide too much support on drag and drop, at least there is no out of box API that can be used till Android 3.0 Honeycomb. It’s said that drag and drop support is improved in Android 3.0 SDK, I didn’t learn it yet because Android 3.0 hasn’t come to mobile device.</p>
+
+<p>At first I looked for open source implementation of drag and drop list view. After searching on Internet I did find some examples and library, e.g. <a href="https://github.com/commonsguy/cwac-touchlist">CWAC TouchListView</a> , they all derives from source code of Android music application. However they don’t fit for my application: First, they require to specify the height of item view in code or in layout file, that also implicitly force all item views in the same height. In my application the list view has two item view types, which differ in height. Even if item views are in same height, I don’t like the way that specifying exact value of height, I perfer to set <code>layout_height</code> to <code>wrap_content</code> and let it automatically calculates the value. Second, by those implementation, on each list item view there must be a “grabber” element. User moves an item by putting finger on the grabber then drag. I want to keep UI of my application as clean as it can, I would like to active item dragging by long press on an item, instead of drag a grabber. So I implement my version of drag and drop list view, the source code is at GitHub: <code>[DraggableListView](https://github.com/aleung/tasks365/blob/master/tasks365/src/leoliang/tasks365/DraggableListView.java)</code>. It isn’t perfect yet, still has large room for improvement.</p>
+
+<p>A ListView shows items in a vertically scrolling list. The items can be refered by their position in the list. When there are a lot of items, only portion of them are visible. A visible item view can be retrieved by calling <code>ListView.getChildAt()</code>. Please be noticed that child view index is different to item position. In the code you will find these two values need to be converted between each other.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5603506949/"><img src="http://farm6.static.flickr.com/5267/5603506949_627d31073c.jpg" alt="listview" /></a></p>
+
+<p>Long press on an item is detected by<code>GestureDetector</code>, then a dragging object is created. The dragging object represents on UI by an ImageView, which is a copy of the view of the item to be moved. The dragging object moves on screen following user’s finger. Untill user’s finger leave touch screen, the list items do not change their order, they just expand or shrink to simulate item dragging.</p>
+
+<p>In below diagram, dragging object is in green. Item at position 3 is being dragged in this example. When dragging starts, the view of item 3 shrinks its height to 1 to make it invisible (I didn’t investigate why height should be 1 instead of 0). User sees item 3 is dragged, actually it’s the dragging object – clone of the item 3 view. When dragging object is hovering at a position, the item view at that position expands to make an empty space, so looks like that it is being pushed aside by the dragging object.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5604090272/"><img src="http://farm6.static.flickr.com/5101/5604090272_641594fa57_m.jpg" alt="listview-dnp-1" /></a><a href="http://www.flickr.com/photos/leoliang/5603507715/"><img src="http://farm6.static.flickr.com/5188/5603507715_d47cb49532_m.jpg" alt="listview-dnp-2" /></a></p>
+
+<p>Here is a screenshot of demo:</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5603811095/"><img src="http://farm5.static.flickr.com/4099/5603811095_f2f7c52c79.jpg" alt="DraggableListView" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[我的任务管理工具功能原型已经完成]]></title>
+    <link href="http://aleung.github.com/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/"/>
+    <updated>2011-03-24T05:13:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed</id>
+    <content type="html"><![CDATA[<p>在<a href="http://good-good-study.appspot.com/blog/posts/119001">上一篇blog</a>里面列出了我个人对任务管理工具的需求以及对比较热门的工具的分析。由于现有工具没有那款能够满足我的几点主要需求，于是就产生了自己做一个的想法。前几天，功能性原型完成，已经正式用了起来，下一步要做的工作是界面设计和交互设计。</p>
+
+<p>目前做的是Android手机应用，web端还没有考虑。一方面是手机几乎不离身，保证了随时可用，另一方面是web端使用现有的服务已经勉强可以满足要求，下面我会说明。</p>
+
+<p>从功能定位上，主要是受了<a href="http://stayuseful.com/">StayUseful</a>和<a href="http://teuxdeux.com">TeuxDeux</a>的影响，目标是要做成简洁、轻量级的任务列表，强调对任务进行计划安排，专注于当天以及最近几天的任务。</p>
+
+<ul>
+  <li>单日任务列表：在一个页面里列出一天的所有任务。只显示计划在此一天执行的任务，保证专注性。缺省的页面是当天，可快速导航到最近几天。</li>
+  <li>用简单的操作可更改任务的执行日期。</li>
+  <li>过去没有完成的任务自动放到”今天”，要么马上去完成它，要么重新安排执行日期。</li>
+  <li>任务可设置due date，对于有due date的任务，会显示出剩余天数或者过期天数。</li>
+  <li>任务不设优先级，但可以加星。单日任务列表中，任务可以拖放排序。</li>
+  <li>数据与云端同步。</li>
+</ul>
+
+<p>因为目标要做到数据与云端同步，这自己从零开始实现工作量太大了，所以一开始就计划基于网上现有的服务基础之上开发。最初物色的对象是Google Tasks，但发现Google Tasks尚未开放API，虽然已经有Android应用可以做到与Google Tasks同步，但它们是靠hack Google的网页前端与后端通信接口来实现的，实现起来既麻烦也不可靠。接下来发现Google Calendar是一个更好的选择：</p>
+
+<ul>
+  <li>Android Calendar与云端的Google Calendar之间几乎是实时同步，无论在哪边做修改，几秒钟之后另外一边就能看到变动。</li>
+  <li>Android Calendar提供Provider接口供其他Android应用调用，开发简便，并且Android Calendar是open source的，有问题可以直接看代码。</li>
+  <li>Web端可使用Google Calendar，虽然不能实现我需要的全部功能，但基本的都可以做到。</li>
+  <li>为实现日程表跟任务列表的整合提供了可能。Google Calendar还能与其他系统同步，提高扩展性。</li>
+</ul>
+
+<p>具体做起来其实不难，就是将一些task专有的数据放进Calendar的Event里面。Google Calendar的event数据对象没有供存放扩展数据的字段，我就将task数据用JSON格式放进description里面了。</p>
+
+<p>好了，下一步怎样做出简洁、易用、高效的交互界面才是困难所在。另外，给它起个好名字也很难，有什么建议么？</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android用户的好消息：用ssh翻墙]]></title>
+    <link href="http://aleung.github.com/blog/2011/02/11/Android-ssh-/"/>
+    <updated>2011-02-11T20:41:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/02/11/Android-ssh-</id>
+    <content type="html"><![CDATA[<p>之前我写过一系列<a href="http://good-good-study.appspot.com/blog/posts/90001">文章</a>介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：<a href="http://madeye.me/2011/02/10/ssh-tunnel-on-the-android-application-puff-android-edition/">sshtunnel</a></p>
+
+<p>与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流，不同的是它还使用了trilead-ssh2代码（作者说来自于ConnectBot）来做SSH client，因此这一个程序就可以完成整个过程，操作简单。根据文档说明和大致浏览代码，貌似没有使用SSH dynamic port forwarding，而是要求SSH server端安装了HTTP代理服务器，SSH连接纯粹是tunnel了到服务端HTTP proxy的连接。</p>
+
+<p>Update: <a href="https://twitter.com/#!/ofmax/status/36717058762739712">作者说</a>，不使用SSH dynamic port forwarding是因为受限于Android手机的机能。我之前测试用ConnectBot做SOCKS proxy的时候就总是遇到CPU占用100%的问题，估计作者说的就是这个。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GQueuesInbox : Send item to your GQueues inbox with Android device anywhere anytime]]></title>
+    <link href="http://aleung.github.com/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/"/>
+    <updated>2011-01-14T05:15:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime</id>
+    <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/leoliang/5360976023/"><img src="http://farm6.static.flickr.com/5285/5360976023_928916d839_m.jpg" alt="GQueuesInbox" /></a> 去年底<a href="https://www.rememberthemilk.com/">RememberTheMilk</a>的pro帐号到期了，于是又折腾了一下看看有没有好用的类似工具，发现了一个在线任务管理的新秀：<a href="http://www.gqueues.com">GQueues</a>。GQueues的功能和界面都不错，我比较喜欢它的一点是没有用高中低的任务优先级，而是让你在列表中拖放任务改变顺序，排在最顶的就是需要优先处理的。有些事情你很难界定应该是属于重要性高还是重要性中等，但是如果几件事情放在一起，就很容易分出哪个相对更重要一些。</p>
+
+<p>但是，GQueues没有开发手机本地应用，在手机上只能通过浏览器访问。虽然它的网站有专门为移动设备优化，但还是不如本地应用便捷。而且很重要一点，不是任何时候都能访问到网络的，想起一件要做的事情，却因为连不上网而无法记录下来，只能留在脑子里或者要记录到别的地方，这样不符合GTD的原则。</p>
+
+<p>为此，我写了一个简单的Android应用，做的唯一事情就是往GQueues inbox里面添加新任务，并且允许离线使用：如果没有网络，任务会暂存起来，在有网络的时候后台自动发送出去。软件介绍：<a href="http://www.appbrain.com/app/gqueuesinbox/leoliang.gqueuesinbox">http://www.appbrain.com/app/gqueuesinbox/leoliang.gqueuesinbox</a></p>
+
+<p>不过，因为GQueues部署在Google App Engine上的，IP地址被GFW屏蔽，在国内无法直接访问。解决办法是自己将可以访问的IP配置到hosts文件里面，无论是PC还是手机都要如此处理。</p>
+]]></content>
+  </entry>
+  
+</feed>

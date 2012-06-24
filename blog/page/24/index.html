@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等: MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/
+这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.com/blog/blog/page/24/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/19/The-system-performance-monitoring-tool/">系统性能监控工具</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-19T22:39:00+08:00" pubdate data-updated="true">2003-09-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等:  </p>
+
+<ul>
+  <li>
+    <p>MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/<br />
+这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, 可以通过调用其他程序来采集数据并生成曲线图. 但由于原来设计是流量监测, 故此配置灵活性不如RRDtool.<br />
+这里是各种扩展: <a href="http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html">http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html</a>  </p>
+  </li>
+  <li>
+    <p>RRDTool http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/<br />
+RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并且按照一定的周期生成曲线图. 很象MRTG, 不过它不包含数据采集功能, 而且灵活性高适应面更广.  </p>
+  </li>
+  <li>
+    <p>ORCA(http://www.orcaware.com/orca/docs/orcallator.html), 一个主机性能采集的工具, 利用RRDTool生成很多种性能曲线. 它只能在solaris上运行. 但它采集的数据和生成的曲线可以参考, 部分在linux上用RRDTool配合其他的采集程序应该也可以生成的.  </p>
+  </li>
+  <li>
+    <p>BGraphs(http://www.ag0ny.com/graphs/) 利用RRDtool和shell script做的linux性能采集工具。我在它的基础上修改，安装到公司的上网服务器上，还不错。  </p>
+  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/19/The-system-performance-monitoring-tool/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/">Invalid XML Character, msxml.dll的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-11T22:35:00+08:00" pubdate data-updated="true">2003-09-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java程序测试中发现parse一个XML文件时出现exception, 错误信息为invalid XML character. 但这个XML文件用XMLSpy检查却没有问题.  </p>
+
+<p>经过查找资料, 发现是XML文件中包含了一些不允许在XML中使用的字符(控制符). XML规范中规定了允许的字符范围(<a href="http://www.w3.org/TR/REC-xml#dt-character">http://www.w3.org/TR/REC-xml#dt-character</a>):  </p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Char ::= #x9</td>
+      <td>#xA</td>
+      <td>#xD</td>
+      <td>[#x20-#xD7FF]</td>
+      <td>[#xE000-#xFFFD]</td>
+      <td>[#x10000-#x10FFFF]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>包含illegal字符的XML文件不是well-formedness的, 为什么这样的文件能够生成, 并且XMLSpy不报错? 是Microsoft XML parser的问题. 这个XML文件是使用msxml.dll生成的, 估计XMLSpy用的也是msxml.dll, 这个parser的其中一个缺陷是允许某些非常字符的存在. 而Java程序中用的parser估计是sun的crimson, 这个parser严格检查XML character range, 包含非法字符就会报错.   </p>
+
+<p>msxml.dll的问题看来还有不少, 这里专门有谈到: <a href="http://www.xml.com/pub/a/1999/11/parser/index.html?page=2">http://www.xml.com/pub/a/1999/11/parser/index.html?page=2</a>   </p>
+
+<p>为了解决此问题, 需要在生成XML前先对字符串检查, 把非法字符过滤掉. 这里提供了java的过滤函数: <a href="http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html">http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html</a>   </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/08/MySQL-/">MySQL的表名大小写问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-08T22:44:00+08:00" pubdate data-updated="true">2003-09-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在SQL标准中, 标识符是不区分大小写的. 可是在MySQL中, 情况有所不同, 表名有可能是大小写敏感的:  </p>
+
+<blockquote>
+  <p>在 MySQL 中，数据库和表对就于那些目录下的目录和文件。因而，操作系统的敏感性决定数据库和表命名的大小写敏感。这就意味着数据库和表名在 Windows 中是大小写不敏感的，而在大多数类型的 Unix 系统中是大小写敏感的。  </p>
+</blockquote>
+
+<p>尽管在 Windows 中数据库与表名是忽略大小写的，你不应该在同一个查询中使用不同的大小写来引用一个给定的数据库和表。  </p>
+
+<p>表的别名是区分大小写的。  </p>
+
+<p>详细信息在MySQL参考手册中有说明. 查看: <em>MySQL语言参考</em> - <em>语言结构</em>  </p>
+
+<p>从兼容性和可移植性考虑, 在涉及到数据库表名的时候, 均应该<strong>严格区分大小写</strong>, 无论使用的是什么类型的数据库和什么类型的平台.  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/08/MySQL-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/08/Java-XML-API/">Java的几种XML语法分析API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-08T22:42:00+08:00" pubdate data-updated="true">2003-09-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>_用Java对XML进行处理, 有好多种方案, 如不了解相互的关系让人很头晕. 这里介绍的都是XML processing/parsing的范畴, XML的应用还有其他的许多方面, 也有好多令人眼花缭乱的缩写.  </p>
+
+<p>_XML语法分析的方案有两种, 分别为DOM和SAX.  </p>
+
+<p><strong><em>DOM</em></strong>: Document Object Model (<a href="http://www.w3.org/DOM/">http://www.w3.org/DOM/</a>)<br />
+DOM 由 W3C 创建，并且是该协会的正式建议.<br />
+解析器读入整个文档，然后构建一个驻留内存的树结构，然后您的代码就可以使用 DOM 接口来操作这个树结构。您可以遍历树以了解原始文档包含了什么，您可以删除树的几个部分，还可以重新排列树和添加新的分支，等等。<br />
+DOM 构建整个文档驻留内存的树。如果文档很大，就会要求有极大的内存。 <br />
+DOM 创建表示原始文档中每个东西的对象，包括元素、文本、属性和空格。如果您只需关注原始文档的一小部分，那么创建那些永远不被使用的对象是极其浪费的。 <br />
+DOM 解析器必须在您的代码取得控制权之前读取整个文档。对于非常大的文档，这会引起显著的延迟。   </p>
+
+<p><em><strong>SAX</strong></em> API for XML (<a href="http://www.saxproject.org/">http://www.saxproject.org/</a>) <br />
+SAX 采用事件驱动的模式, 解释器读入XML文档, 进行扫描, 当发现符合指定条件的数据时, 向您的代码发送一个事件。SAX 不能修改 XML 文档.<br />
+SAX 事件是无状态的。当 SAX 解析器在 XML 文档中发现文本时，它就向您的代码发送一个事件。该事件仅仅给您发现的文本；它不告诉您什么元素包含那个文本。如果您想知道这一点，则必须自己编写状态管理代码。 <br />
+SAX 事件不是持久的。如果应用程序需要一个数据结构来对 XML 文档建模，则必须自己编写那样的代码。如果您需要从 SAX 事件访问数据，并且没有把那个数据存储在代码中，那么您不得不再次解析该文档。 <br />
+SAX 的速度相当快, 而且节省内存, 因为它不会保存数据在内存之中.   </p>
+
+<p>DOM/SAX 是两种不同的解析方法, 各有侧重点, 用于不同用途. 它们都可以用不同的编程语言来实现, 不同的供应商会提供各自的解释器版本. 例如Microsoft提供了DOM分析器msxml.dll, Apache的xerces, SUN的crimson等.   </p>
+
+<p>DOM与SAX, 如何选择?   </p>
+
+<ul>
+  <li>
+    <p>应用程序将如何部署？<br />
+如果您的应用程序将要作为 Java applet 部署，那么您会希望使要下载的代码数量最小，SAX 解析器比 DOM 解析器小。   </p>
+  </li>
+  <li>
+    <p>一旦解析了 XML 文档，还需要多次访问那些数据吗？<br />
+如果您需要回过头来访问 XML 文件的已解析版本，DOM 可能是正确的选择。而 SAX 事件被触发时，如果您以后需要它，则由您（开发人员）自己决定以某种方式保存它。如果您需要访问不曾保存的事件，则必须再次解析该文件。而 DOM 自动保存所有的数据。   </p>
+  </li>
+  <li>
+    <p>只需要 XML 源文件的少量内容吗？<br />
+如果您只需要 XML 源文件的少量内容，那么 SAX 可能是正确的选择。SAX 不会为源文件中的每个东西创建对象；您要确定什么是重要的。使用 SAX，您要检查每个事件以了解它是否与您的需要有关，然后相应地处理它。更妙的是，一旦找到您正在寻找的东西，您的代码就会抛出一个异常来完全停止 SAX 解析器。   </p>
+  </li>
+  <li>
+    <p>您正在一台内存很少的机器上工作吗？<br />
+若是的话，不管您可能考虑到的其它因素是什么，SAX 是您的最佳选择。  </p>
+  </li>
+</ul>
+
+<p>在Java语言中, 要处理XML, 除了直接使用DOM/SAX, 还有高层次一点的API可以使用, 比较常见的是JAXP和JDOM.   </p>
+
+<p><em><strong>JAXP</strong></em>: Java API for XML Processing<br />
+是 Sun 提供的标准API, 包含在JDK中. <br />
+但它更多的是一套接口, 将DOM和SAX的接口规范起来, 并没有在易操作性方面提供太多的方便.  </p>
+
+<p><em><strong>JDOM</strong></em>: 由Brett McLaughlin, Jason Hunter两人创立的open source项目 (<a href="http://www.jdom.org">http://www.jdom.org</a>)<br />
+JDOM的设计目的不是要做万能的解析器, 而是能提供常用的大部分的功能. 它的使用相对简单, 容易理解, 使用它开发代码量会比较少.<br />
+JDOM 的速度也比较高, 仅仅比SAX慢一点. 它主要是使用SAX来实现功能, 当需要用到DOM的时候才使用DOM.   </p>
+
+<p>还有不少类似的API, 某些甚至已经比JDOM更好, 不过都不如JDOM使用范围广.  </p>
+
+<p>JAXP/JDOM 都是建立在 DOM/SAX 之上的API, 也可认为是抽象层, 需要通过具体供应商提供 DOM/SAX 实现来完成 XML 解析工作. 作为一个相对高层的接口, 隐藏了具体厂商实现, 减低复杂性, 降低开发的工作量.   </p>
+
+<p>一般来说, 在我们开发程序的时候, 从开发效率,兼容性,移植性等方面考虑, 都是选择使用高层的API更好些. JAXP已经附带在JDK中, 由SUN所支持, 应该标准化/延续性方面会比较好; 而根据网上开发者反映, 普遍都喜欢用JDOM, 因为使用简单方便.  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/08/Java-XML-API/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/04/How-to-let-JTextArea-automatic-scroll-to-the-bottom-/">如何让JTextArea自动滚动到最底?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2003-09-04T22:52:00+08:00" pubdate data-updated="true">2003-09-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>如果用JTextArea来做信息窗口，不断用append()显示新信息，通常会希望内容能自动滚动，保持最后增加的信息能够显示出来。利用setCaretPosition()可以实现，这个方法是设置输入光标的位置，如果光标位置超出目前可视范围，会自动滚动以保正光标可以显示出来。</p>
+
+<pre><code>int length = textArea.getText().length();
+textArea.setCaretPosition(length);
+</code></pre>
+
+<p>如果还希望限制JTextArea中的文本长度，不让它无限制的增长，可以加上以下两行，当长度超出预订的maxTextLength后将开头的字符截除。不过美中不足的是截除无法按行进行。</p>
+
+<pre><code>if ( length &gt; maxTextLength ) { 
+    textArea.replaceRange("", 0, length - maxTextLength); 
+}
+</code></pre>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/04/How-to-let-JTextArea-automatic-scroll-to-the-bottom-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/02/Unicode-/">Unicode与字符编码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-02T22:55:00+08:00" pubdate data-updated="true">2003-09-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>**Unicode:   </p>
+
+<p>**unicode.org制定的编码机制, 要将全世界常用文字都函括进去.<br />
+在1.0中是16位编码, 由U+0000到U+FFFF. 每个2byte码对应一个字符; 在2.0开始抛弃了16位限制, 原来的16位作为基本位平面, 另外增加了16个位平面, 相当于20位编码, 编码范围0到0x10FFFF.  </p>
+
+<p>**UCS: **  </p>
+
+<p>ISO制定的ISO10646标准所定义的 Universal Character Set, 采用4byte编码.  </p>
+
+<p><strong>Unicode与UCS的关系:</strong>  </p>
+
+<p>ISO与unicode.org是两个不同的组织, 因此最初制定了不同的标准; 但自从unicode2.0开始, unicode采用了与ISO 10646-1相同的字库和字码, ISO也承诺ISO10646将不会给超出0x10FFFF的UCS-4编码赋值, 使得两者保持一致.  </p>
+
+<p><strong>UCS的编码方式:</strong>  </p>
+
+<ul>
+  <li>
+    <p>UCS-2, 与unicode的2byte编码基本一样.   </p>
+  </li>
+  <li>
+    <p>UCS-4, 4byte编码, 目前是在UCS-2前加上2个全零的byte.  </p>
+  </li>
+</ul>
+
+<p>**UTF: **Unicode/UCS Transformation Format  </p>
+
+<ul>
+  <li>UTF-8, 8bit编码, ASCII不作变换, 其他字符做变长编码, 每个字符1-3 byte. 通常作为外码. 有以下优点:  </li>
+  <li>与CPU字节顺序无关, 可以在不同平台之间交流  </li>
+  <li>
+    <p>容错能力高, 任何一个字节损坏后, 最多只会导致一个编码码位损失, 不会链锁错误(如GB码错一个字节就会整行乱码)   </p>
+  </li>
+  <li>
+    <p>UTF-16, 16bit编码, 是变长码, 大致相当于20位编码, 值在0到0x10FFFF之间, 基本上就是unicode编码的实现. 它是变长码, 与CPU字序有关, 但因为最省空间, 常作为网络传输的外码.<br />
+UTF-16是unicode的preferred encoding.   </p>
+  </li>
+  <li>UTF-32, 仅使用了unicode范围(0到0x10FFFF)的32位编码, 相当于UCS-4的子集.  </li>
+</ul>
+
+<p><strong>UTF与unicode的关系:</strong>  </p>
+
+<p>Unicode是一个字符集, 可以看作为内码.<br />
+而UTF是一种编码方式, 它的出现是因为unicode不适宜在某些场合直接传输和处理. UTF-16直接就是unicode编码, 没有变换, 但它包含了0x00在编码内, 头256字节码的第一个byte都是0x00, 在操作系统(C语言)中有特殊意义, 会引起问题. 采用UTF-8编码对unicode的直接编码作些变换可以避免这问题, 并带来一些优点.  </p>
+
+<p><strong>中国国标编码:</strong>  </p>
+
+<ul>
+  <li>
+    <p>GB 13000: 完全等同于ISO 10646-1/Unicode 2.1, 今后也将随ISO 10646/Unicode的标准更改而同步更改.  </p>
+  </li>
+  <li>
+    <p>GBK: 对GB2312的扩充, 以容纳GB2312字符集范围以外的Unicode 2.1的统一汉字部分, 并且增加了部分unicode中没有的字符.   </p>
+  </li>
+  <li>
+    <p>GB 18030-2000: 基于GB 13000, 作为Unicode 3.0的GBK扩展版本, 覆盖了所有unicode编码, 地位等同于UTF-8, UTF-16, 是一种unicode编码形式. 变长编码, 用单字节/双字节/4字节对字符编码. GB18030向下兼容GB2312/GBK. <br />
+GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准.  </p>
+  </li>
+</ul>
+
+<p><em>2001-11-14 (2003-9-2 补充)</em>  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/02/Unicode-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/29/java-library/">Java开发辅助工具,library</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-29T20:24:00+08:00" pubdate data-updated="true">2003-08-29</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.zaval.org/">http://www.zaval.org/</a> 这个网站有好几个java开发辅助工具,library. 包括了:  </p>
+
+<ul>
+  <li>Java Resource Editor: 用于i18n/l10n的翻译 </li>
+  <li>Light-Weight Visual Components Library (LwVCL): 一组基于AWT的可视控件, 估计目标是可以移植到PDA等小型设备上 </li>
+  <li>Proxy Suite: an easy-to-use solution that allows monitoring TCP-based protocols, such as HTTP, NNTP and others. It is extremely useful in software development and can be used as a debug tool. </li>
+  <li>轻型数据库工具 </li>
+  <li>其他的一些东西, 如Java Charts Package等, 只有介绍没有下载  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/29/java-library/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/28/SWT-Swing-/">SWT与Swing之争</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-28T20:19:00+08:00" pubdate data-updated="true">2003-08-28</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>SWT(in Eclipse)与Swing之争, 似乎争议注意在这几方面:  </p>
+
+<ul>
+  <li>SWT是否比Swing更快? SWT使用OS native构件, 理论上更快. 但实际比较如何, 争议很大. </li>
+  <li>SWT与Swing比较, 是否更符合平台传统外观? SWT使用OS native构件,而不是象Swing一样重新写代码模拟出来. Swing支持者说用Look&amp;Feel灵活, 也可以做得不错. </li>
+  <li>Swing的结构过于复杂. Swing的事件模型设计得不好. 但是swing扩展性强. </li>
+  <li>Swing采用JVM的垃圾收集来回收资源, SWT提供可控的资源销毁而不采用垃圾收集.  </li>
+</ul>
+
+<p>这个Java英文讨论组, <a href="http://www.javalobby.org">http://www.javalobby.org</a> , 内容还可以, search功能也比较好用.<br />
+看老外的论坛也是老骂架的:)  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/28/SWT-Swing-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/27/Some-GPS-related-software-and-project/">一些与GPS相关的软件项目</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-27T01:11:00+08:00" pubdate data-updated="true">2003-08-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>想写个GPS有关的软件，网上找到一些相关的项目: </p>
+
+<ul>
+  <li>Java framework for GPS <a href="http://www.aasted.org/gps/">http://www.aasted.org/gps/</a><br />
+这个项目的目标是为各种应用程序加入GPS功能提供framework. 目前提供的是与Garmin GPS通讯的功能. </li>
+  <li>Chaeron GPS library <a href="http://www.chaeron.com/gps.html">http://www.chaeron.com/gps.html</a><br />
+类似的项目,也是作为支持库，但功能更强/完善. 支持多种平台, 包括多种PDA. 而且这看来是一个active的项目, 由一个公司支持. </li>
+  <li>JavaGPS <a href="http://javagps.sourceforge.net/">http://javagps.sourceforge.net/</a><br />
+这个项目的范围似乎比前两个窄一些, 局限于从GPS中取得当前位置数据. 从代码看来，设计也不如前两个项目规范。</li>
+</ul>
+
+<p>但是，这些项目看来都是只支持从GPS取数据，而不支持传送数据给GPS。</p>
+
+<ul>
+  <li>EPS <a href="http://eps.sourceforge.net/">http://eps.sourceforge.net/</a><br />
+这是一个小应用程序，能够下载GPS数据并显示。这个程序能与Garmin GPS通讯，有上传/下载功能, 不过代码风格很差。</li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/27/Some-GPS-related-software-and-project/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/26/Super-toy-car/">超级玩具小车</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-26T20:17:00+08:00" pubdate data-updated="true">2003-08-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一个神奇的project, 使用了各种流行的前沿技术, 令人炫目的技术列表:  </p>
+
+<p><a href="http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html">http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html</a>  </p>
+
+<p>Mobile GPS Demonstration Platform, 演示了移动通讯/GPS/WebService/XML技术的结合, 一辆装备了GPS、GPRS mobile、Java Embeded Board的玩具小车。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/26/Super-toy-car/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/blog/page/25/">&larr; Older</a>
+    
+    <a href="/blog/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/blog/page/23/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
+<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 108%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
+<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
+<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
+<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
+<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
+<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
+<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
+<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
+<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
+<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
+<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
+<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>跑步步频训练软件 RunningCadence 开发小记 - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="在10km跑总结里提到：这次10km跑成绩的提高最重要因素是步频的提高。 在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">跑步步频训练软件 RunningCadence 开发小记</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-24T00:16:00+08:00" pubdate data-updated="true">2011-12-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/running/'>Running</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
+
+<p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
+
+<p>有了想法后，就考虑怎样实现。先要知道跑步时加速度传感器得到的数据会是怎样的，在market上找到软件Accelero-meter Log，能显出加速度传感器三轴数据的曲线。拿着手机跑了几步看看曲线，发现完全不是想象中那么简单：从曲线可以看出每跑一步的加速度变化，但并不是一步一个脉冲那么理想，而是大脉冲中包含着小脉冲，波形很不规则；更要命的是不同轴测量到的数据频率会不一样，软件应该按那个轴的数据计算？后来才想到不同轴测量数据频率不同的原因是手摆动的频率与身体重心上下移动的频率不一致，只是一半，再加上手的活动太自如了，跑动过程中会有不同的动作，都会引起加速度变化。</p>
+
+<p>上网找到一个开源的Android计步器的代码，看看它怎么做，发现它只是将三个轴的数值加在一起，然后判断变化量。根据前面看得的数据波形，我感觉这样的算法太不靠谱了，再看看这个软件的用户评价，果然不佳。</p>
+
+<p>这时想到Nike的配合iPhone使用的计步器，是藏在鞋里面的。它应该是感应脚的每次着地，而且计步器是固定在鞋里的，有特定的安装方向，因此它可以只检测垂直地面的加速度。想到这里就豁然开朗了，原来测量摆臂的想法是错误的，应该测量脚着地的冲击，也就是垂直方向的加速度。但那个轴才是垂直地面的呢？我不能规定用户使用这个软件时手机摆放的方向啊，他可以绑在臂上，拿在手里，放裤袋中。。。因此首先要解决的问题是如何判断手机的姿态，找出垂直于地面的轴。</p>
+
+<p>人在运动的时候加速度不断变化，但加速度矢量一段时间的累计应该为零，而重力加速度是恒定的，并且垂直于地面，检测出重力加速度的方向就ok了。具体实现的方法也比较简单：对传感器三个轴的数据分别做截止频率为0.25Hz的低通滤波后，数值最大的那个轴应该就是最接近于垂直地面的。</p>
+
+<p>还有个问题是手机加速度传感器的采样频率能到多高？是否能满足要求？长跑理想的着地次数是每分钟180次，相当于3Hz，一般人都只会比这个慢。实测我的Nexus One使用最短采样间隔时大约30~50ms能获取到一组数据，也就是采样频率大于20Hz，对于检测3Hz的信号完全足够。</p>
+
+<p>对于复杂波形的处理方法，同样是简单的一阶低通滤波，截止频率取了3.5Hz，相当于每分钟210次着地。高频干扰通过滤波削弱后，相邻波峰的时间间隔就是两次着地的时间间隔了。具体实现时，波峰判断会比较麻烦，采样检查是否超过阈值来代替。本来想按振幅比例来设定阈值的，但算振幅也比较麻烦，之前检测重力加速度时已经得到重力加速度在测量轴上的分量，直接拿它的1/2做阈值就好了。这样做还带来了一个没有预料到的副作用：走路时脚步比较轻，超不过阈值，因此软件还能知道当前是否处于跑步状态。</p>
+
+<p>步频数据算出来以后其他的就好办了。跑步时不方便看屏幕，通过语音合成播放出来。设定目标步频，语音提示应该加快还是减慢。还打算过增加个目标步频的节拍音，当实际步频与目标不一致时播放出来，不过软件用了这段时间，感觉有语音播报步频基本上已经足够了，暂时不做以后再说吧。</p>
+
+<p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
+
+<p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-24T00:16:00+08:00" pubdate data-updated="true">2011-12-24</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/running/'>Running</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/" data-via="acette" data-counturl="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/24/NoClassDefFoundError/" title="Previous Post: NoClassDefFoundError">&laquo; NoClassDefFoundError</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/26/Baiyun-mountain-running/" title="Next Post: 白云山跑步">白云山跑步 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
+<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 108%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
+<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
+<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
+<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
+<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
+<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
+<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
+<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
+<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
+<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
+<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
+<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/';
+        var disqus_url = 'http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

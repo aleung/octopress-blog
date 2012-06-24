@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/softwaredev/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[一些读书记录]]></title>
+    <link href="http://aleung.github.com/blog/2012/06/09/Some-reading-record/"/>
+    <updated>2012-06-09T11:56:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/06/09/Some-reading-record</id>
+    <content type="html"><![CDATA[<p>前几个月看了些软件开发相关的书，读的时候有时有感悟就发条tweet，在这里备份一下。  </p>
+
+<h3 id="httpbookdoubancomsubject6526454"><a href="http://book.douban.com/subject/6526454/">梦断代码</a></h3>
+
+<p>开始阅读《梦断代码》，一个历时多年的软件项目惨败的故事。其实类似的案例很多很多，不过大家都不愿意承认失败，或者将失败轻描淡写而已。</p>
+
+<p>可复用软件之梦有一悖论：几乎总能找到一段满足大部分需要的代码，但这些拿来的代码所不能做到的部分，恰是本项目与众不同的创新之处。</p>
+
+<p>软件开发的时间估算始终是恒久难题，敏捷方法能做到的只是对于短期估算有改善：通过任务切分和开发团队亲自估算让数值看起来可靠些，通过计算迭代速率等手段让估算值反映团队近期状态；但对于长期估算，答案依然是：你丫别问了，到时自然就知道。</p>
+
+<p>《梦断代码》讲了一帮聪明人是怎么把事情搞砸的。因此我非常感兴趣Linux项目是怎么运作的，Linus怎么把这么多聪明人弄到一起合作，而且似乎成效相当不错。</p>
+
+<p>在周五下班的地铁上看完了《梦断代码》，没有做计划也没有刻意定目标，但已经是在周五读完的第三本书，每周一本。就像连续三个叠代都准时交付。</p>
+
+<h3 id="httpbookdoubancomsubject5406042"><a href="http://book.douban.com/subject/5406042/">设计原本</a></h3>
+
+<p>一个设计，一个人能完成就不要让其他人参与，增加的人手会削弱设计的一致性，概念的完整性。一个职责，一个部门负责就好，多部门合作带来各自的利益考虑和冲突。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用手机遥控Linux后台播放豆瓣电台]]></title>
+    <link href="http://aleung.github.com/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/"/>
+    <updated>2012-03-10T00:35:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements</id>
+    <content type="html"><![CDATA[<p>最近买了一个<a href="http://en.wikipedia.org/wiki/Asus_EeeBox_PC">EeeBox</a>来做home server，装Ubuntu操作系统，有不少东西可以玩。</p>
+
+<p>其中一个用途是连接到音响播放音乐。我比较喜欢听豆瓣电台，于是找一个豆瓣电台的客户端。Home server平常不接显示器，也不启动图形界面，常见的浏览器客户端、桌面客户端都不能用，要找命令行的。在github上找到Johnny Huang开发的<a href="https://github.com/hzqtc/fmd">fmd</a>（Douban FM daemon），启动后在后台运行，正合我意。Fork下来给它增加了个安装脚本，能够安装为服务，开机就自动运行了。但fmd只是个后台进程，只有telnet命令接口，没法对它进行直接控制的，作者另外做了个命令行工具，叫做fmc（FMD client），用来控制fmd。但命令行工具在我这里也还是不能用—-没有显示器没有键盘—-必须能遥控才行。于是我在fmc基础上给它增加了一个web UI，称为<a href="https://github.com/aleung/fmweb">fmweb</a>，通过手机浏览器访问，就可以控制播放了。于是，我现在在家里任何地方，都可以控制我的豆瓣电台的播放，不喜欢听，跳下一首歌。</p>
+
+<p>这是在Android浏览器上的截图，在iPhone、iPad上也可以用。</p>
+
+<p><img src="https://lh6.googleusercontent.com/-ishGby7lpTk/T1ove7Z0-rI/AAAAAAAAAoU/94_iFdmfSKw/s400/Screenshot_2012-03-09-23-41-13.png" alt="" /><img src="https://lh5.googleusercontent.com/-zXp_XdbbgNk/T1ovfpnkxbI/AAAAAAAAAoc/CN-7dV4U4Xg/s400/Screenshot_2012-03-09-23-55-39.png" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[跑步步频训练软件 RunningCadence 开发小记]]></title>
+    <link href="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/"/>
+    <updated>2011-12-24T00:16:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency</id>
+    <content type="html"><![CDATA[<p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
+
+<p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
+
+<p>有了想法后，就考虑怎样实现。先要知道跑步时加速度传感器得到的数据会是怎样的，在market上找到软件Accelero-meter Log，能显出加速度传感器三轴数据的曲线。拿着手机跑了几步看看曲线，发现完全不是想象中那么简单：从曲线可以看出每跑一步的加速度变化，但并不是一步一个脉冲那么理想，而是大脉冲中包含着小脉冲，波形很不规则；更要命的是不同轴测量到的数据频率会不一样，软件应该按那个轴的数据计算？后来才想到不同轴测量数据频率不同的原因是手摆动的频率与身体重心上下移动的频率不一致，只是一半，再加上手的活动太自如了，跑动过程中会有不同的动作，都会引起加速度变化。</p>
+
+<p>上网找到一个开源的Android计步器的代码，看看它怎么做，发现它只是将三个轴的数值加在一起，然后判断变化量。根据前面看得的数据波形，我感觉这样的算法太不靠谱了，再看看这个软件的用户评价，果然不佳。</p>
+
+<p>这时想到Nike的配合iPhone使用的计步器，是藏在鞋里面的。它应该是感应脚的每次着地，而且计步器是固定在鞋里的，有特定的安装方向，因此它可以只检测垂直地面的加速度。想到这里就豁然开朗了，原来测量摆臂的想法是错误的，应该测量脚着地的冲击，也就是垂直方向的加速度。但那个轴才是垂直地面的呢？我不能规定用户使用这个软件时手机摆放的方向啊，他可以绑在臂上，拿在手里，放裤袋中。。。因此首先要解决的问题是如何判断手机的姿态，找出垂直于地面的轴。</p>
+
+<p>人在运动的时候加速度不断变化，但加速度矢量一段时间的累计应该为零，而重力加速度是恒定的，并且垂直于地面，检测出重力加速度的方向就ok了。具体实现的方法也比较简单：对传感器三个轴的数据分别做截止频率为0.25Hz的低通滤波后，数值最大的那个轴应该就是最接近于垂直地面的。</p>
+
+<p>还有个问题是手机加速度传感器的采样频率能到多高？是否能满足要求？长跑理想的着地次数是每分钟180次，相当于3Hz，一般人都只会比这个慢。实测我的Nexus One使用最短采样间隔时大约30~50ms能获取到一组数据，也就是采样频率大于20Hz，对于检测3Hz的信号完全足够。</p>
+
+<p>对于复杂波形的处理方法，同样是简单的一阶低通滤波，截止频率取了3.5Hz，相当于每分钟210次着地。高频干扰通过滤波削弱后，相邻波峰的时间间隔就是两次着地的时间间隔了。具体实现时，波峰判断会比较麻烦，采样检查是否超过阈值来代替。本来想按振幅比例来设定阈值的，但算振幅也比较麻烦，之前检测重力加速度时已经得到重力加速度在测量轴上的分量，直接拿它的1/2做阈值就好了。这样做还带来了一个没有预料到的副作用：走路时脚步比较轻，超不过阈值，因此软件还能知道当前是否处于跑步状态。</p>
+
+<p>步频数据算出来以后其他的就好办了。跑步时不方便看屏幕，通过语音合成播放出来。设定目标步频，语音提示应该加快还是减慢。还打算过增加个目标步频的节拍音，当实际步频与目标不一致时播放出来，不过软件用了这段时间，感觉有语音播报步频基本上已经足够了，暂时不做以后再说吧。</p>
+
+<p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
+
+<p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NoClassDefFoundError]]></title>
+    <link href="http://aleung.github.com/blog/2011/11/24/NoClassDefFoundError/"/>
+    <updated>2011-11-24T17:35:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/11/24/NoClassDefFoundError</id>
+    <content type="html"><![CDATA[<p>java.lang.NoClassDefFoundError 是个很讨厌的错误，你会发现明明它报告的class已经打包进应用里，没可能在classpath中找不到，然后百思不得其解。其实这个exception跟 ClassNotFoundException 不同，后者报告的类是真的找不到，而这个NoClassDefFoundError 的错误原因是：class loader无法加载这个类，因为它依赖的另外某些类无法找到。到底是什么类找不到？它不告诉你。</p>
+
+<p>例如，看这个exception stack trace:</p>
+
+<pre><code>Caused By: java.lang.NoClassDefFoundError: net/sf/cglib/proxy/Enhancer
+        at org.springframework.aop.framework.Cglib2AopProxy.createEnhancer(Cglib2AopProxy.java:228)
+        at org.springframework.aop.framework.Cglib2AopProxy.getProxy(Cglib2AopProxy.java:170)
+        at org.springframework.aop.framework.ProxyFactory.getProxy(ProxyFactory.java:112)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.createProxy(AbstractAutoProxyCreator.java:476)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:362)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:322)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:407)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1426)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+</code></pre>
+
+<p>cglib.jar是在classpath里的，真正错误原因是CGLIB所依赖的asm.jar不存在。</p>
+
+<p>有什么好方法查出NoClassDefFoundError的root cause吗？我不知道。不用Maven管理依赖的后果啊。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dump beans information from live Spring application context]]></title>
+    <link href="http://aleung.github.com/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context/"/>
+    <updated>2011-11-08T18:42:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context</id>
+    <content type="html"><![CDATA[<p>To maintain the Spring application context in a large application is not an easy job. There may be dozens of beans, whenever you want to make changes, you have to be very clear on there dependency. After serveral rounds of update, some beans might be orphan, they’re unused any more but you don’t know.</p>
+
+<p>Spring IDE provides bean cross reference view and bean graph view that can help to analysis the bean relationship. But what Spring IDE has is a static view of the beans. In our project the application context is complicated: it scans classpath for all bean definition XML files and load them; application context created in WAR package inherits parent application context which is defines in EJB classpath; some beans are marked with annotation and loaded by <context:component-scan>, rather than define in XML file. I doubt Spring IDE can show the dynamic bean view as it is in runtime. What's more, Spring IDE isn't available at our standard development environment.</context:component-scan></p>
+
+<p>Inspired by a StackOverflow <a href="http://stackoverflow.com/questions/5850639/how-to-keep-track-of-all-the-autowired-stuff-while-using-spring-ioc/5851872#5851872">answer</a>, I created an ApplicationContextDumper. Add it into application context, it will dump all beans and their dependencies in the current context and parent contexts (if any) into log file when the application context initialization finishes. It also lists the beans which aren’t referenced.</p>
+
+<p><div><script src='https://gist.github.com/1347171.js?file=ApplicationContextDumper.java'></script>
+<noscript><pre><code>package leoliang.springtest;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.support.AbstractRefreshableApplicationContext;
+
+public class ApplicationContextDumper implements ApplicationContextAware {
+
+    private Map&lt;String, Integer&gt; beanReferenceCounter = new HashMap&lt;String, Integer&gt;();
+    private StringBuilder outputMessage;
+
+    @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        outputMessage = new StringBuilder();
+        beanReferenceCounter.clear();
+        outputMessage.append(&quot;--- ApplicationContextDumper begin ---\n&quot;);
+        dumpApplicationContext(context);
+        dumpBeansWithoutReference();
+        outputMessage.append(&quot;--- ApplicationContextDumper end ---\n&quot;);
+        System.out.print(outputMessage);
+    }
+
+    private void dumpBeansWithoutReference() {
+        outputMessage.append(&quot;Beans without reference:\n&quot;);
+        for (String bean : beanReferenceCounter.keySet()) {
+            if (beanReferenceCounter.get(bean) == 0) {
+                outputMessage.append(&quot;  &quot;).append(bean).append('\n');
+            }
+        }
+    }
+
+    private void initBeanReferenceIfNotExist(String beanName) {
+        Integer count = beanReferenceCounter.get(beanName);
+        if (count == null) {
+            beanReferenceCounter.put(beanName, 0);
+        }
+    }
+
+    private void increaseBeanReference(String beanName) {
+        Integer count = beanReferenceCounter.get(beanName);
+        if (count == null) {
+            count = new Integer(0);
+        }
+        beanReferenceCounter.put(beanName, ++count);
+    }
+
+    private void dumpApplicationContext(ApplicationContext context) {
+        // Read context id isn't available. https://jira.springsource.org/browse/SPR-8816
+        String appContextInfo = String.format(&quot;ApplicationContext %s : %s&quot;, context.getId(), context.getClass()
+                .getName());
+        ApplicationContext parent = context.getParent();
+        if (parent != null) {
+            appContextInfo += String.format(&quot; -&gt; %s&quot;, parent.getId());
+        }
+        outputMessage.append(appContextInfo).append('\n');
+
+        ConfigurableListableBeanFactory factory = ((AbstractRefreshableApplicationContext) context).getBeanFactory();
+        for (String beanName : factory.getBeanDefinitionNames()) {
+            if (factory.getBeanDefinition(beanName).isAbstract()) {
+                continue;
+            }
+            initBeanReferenceIfNotExist(beanName);
+            Object bean = factory.getBean(beanName);
+            outputMessage.append(String.format(&quot;  %s : %s\n&quot;, beanName, bean.getClass().getName()));
+            for (String dependency : factory.getDependenciesForBean(beanName)) {
+                outputMessage.append(String.format(&quot;    -&gt; %s\n&quot;, dependency));
+                increaseBeanReference(dependency);
+            }
+        }
+
+        if (parent != null) {
+            outputMessage.append(&quot;Parent:\n&quot;);
+            dumpApplicationContext(parent);
+        }
+    }
+
+}</code></pre></noscript></div>
+</p>
+
+<p>Here is an example. We have two application contexts. Please be noticed that the ApplicationContextDumper has been added into applicationContext.xml.</p>
+
+<p><div><script src='https://gist.github.com/1347171.js?file=applicationContext.xml'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;
+    default-lazy-init=&quot;false&quot; default-autowire=&quot;byName&quot;&gt;
+
+    &lt;!-- Enable @Autowired --&gt;
+    &lt;context:annotation-config/&gt;
+    
+    &lt;!-- Load all beans with @Repository --&gt;
+    &lt;context:component-scan base-package=&quot;leoliang.springtest&quot;/&gt;
+
+    &lt;bean id=&quot;aNormalBean&quot; class=&quot;leoliang.springtest.NormalBean&quot;&gt;
+        &lt;property name=&quot;anotherBean&quot; ref=&quot;anotherBean&quot;/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean class=&quot;leoliang.springtest.ApplicationContextDumper&quot; /&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1347171.js?file=parentContext.xml'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+    &lt;bean id=&quot;abstractBean&quot;  abstract=&quot;true&quot; /&gt;
+    &lt;bean id=&quot;anotherBean&quot; class=&quot;leoliang.springtest.AnotherBean&quot; parent=&quot;abstractBean&quot; /&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
+
+<p>parentBeanFactory is the parent of myBeanFactory:</p>
+
+<p><div><script src='https://gist.github.com/1347171.js?file=beanRefContext.xml'></script>
+<noscript><pre><code>&lt;beans&gt;
+    &lt;bean id=&quot;parentBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
+        &lt;constructor-arg&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:**/parentContext.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+    &lt;bean id=&quot;myBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
+        &lt;constructor-arg&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:**/applicationContext.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/constructor-arg&gt;
+        &lt;constructor-arg&gt;
+            &lt;ref bean=&quot;parentBeanFactory&quot; /&gt;
+        &lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
+
+<p>In main, loads application context from beanRefContext.xml. </p>
+
+<p><div><script src='https://gist.github.com/1347171.js?file=main.java'></script>
+<noscript><pre><code>    public static void main(String[] args) {
+        String[] paths = { &quot;classpath:**/beanRefContext.xml&quot; };
+        new ClassPathXmlApplicationContext(paths);
+    }
+</code></pre></noscript></div>
+</p>
+
+<p>The application context is dumped in log:</p>
+
+<p><div><script src='https://gist.github.com/1347171.js?file=output'></script>
+<noscript><pre><code>--- ApplicationContextDumper begin ---
+ApplicationContext org.springframework.context.support.ClassPathXmlApplicationContext@e1d5ea : org.springframework.context.support.ClassPathXmlApplicationContext -&gt; parentBeanFactory
+  org.springframework.context.annotation.internalConfigurationAnnotationProcessor : org.springframework.context.annotation.ConfigurationClassPostProcessor
+  org.springframework.context.annotation.internalAutowiredAnnotationProcessor : org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+  org.springframework.context.annotation.internalRequiredAnnotationProcessor : org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
+  org.springframework.context.annotation.internalCommonAnnotationProcessor : org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
+  repositoryBean : leoliang.springtest.RepositoryBean
+    -&gt; aNormalBean
+  aNormalBean : leoliang.springtest.NormalBean
+    -&gt; anotherBean
+  leoliang.springtest.ApplicationContextDumper#0 : leoliang.springtest.ApplicationContextDumper
+Parent:
+ApplicationContext parentBeanFactory : org.springframework.context.support.ClassPathXmlApplicationContext
+  anotherBean : leoliang.springtest.AnotherBean
+Beans without reference:
+  repositoryBean
+  org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+  org.springframework.context.annotation.internalCommonAnnotationProcessor
+  org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+  org.springframework.context.annotation.internalRequiredAnnotationProcessor
+  leoliang.springtest.ApplicationContextDumper#0
+--- ApplicationContextDumper end ---</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+</feed>

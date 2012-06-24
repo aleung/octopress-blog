@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Build | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/build/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Maven Lifecycle Concepts]]></title>
+    <link href="http://aleung.github.com/blog/2011/08/26/Maven-Lifecycle-Concepts/"/>
+    <updated>2011-08-26T11:51:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/08/26/Maven-Lifecycle-Concepts</id>
+    <content type="html"><![CDATA[<p><img src="https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png" alt="" /></p>
+
+<p>(<a href="https://picasaweb.google.com/lh/photo/D_sskYHvn6CgEruCxN6lMdBJO7epb5AqjiUnD_coqoo?feat=directlink">大图链接</a>)</p>
+
+<p>一年前画的，把它电子化方便日后查看。看看有没有空补充些文字说明吧。</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li>DZone Refcardz: <a href="http://refcardz.dzone.com/refcardz/apache-maven-2">Apache Maven 2</a></li>
+  <li><a href="http://gavin-chen.iteye.com/blog/336607">Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

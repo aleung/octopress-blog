@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: 环保 | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/环保/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[楼宇废水再用系统]]></title>
+    <link href="http://aleung.github.com/blog/2009/04/24/Building-wastewater-with-system-again/"/>
+    <updated>2009-04-24T21:35:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/04/24/Building-wastewater-with-system-again</id>
+    <content type="html"><![CDATA[<p>我一直都觉得用干净的水冲厕所很耗费水资源，但用过的水又很难收集起来，即使想重用也没办法或者很不方便。</p>
+
+<p>有些城市是专门铺设了另一套水网，用海水来冲厕所。但这受地理条件限制，另外管网铺设、加压等等的建设维护成本都不低。</p>
+
+<p>网上看到一个<a href="http://sites.google.com/site/simonspagesproject/Home/grey-water-system">Home Made Grey Water System</a>方案，将住宅内的废水收集再用。但它需要用水泵将废水抽上屋顶水箱，需要额外的能源。受到这个方案的启发，我想到了用于高层（多层）楼宇的废水再用方案。</p>
+
+<p>在高层楼宇中，每层在天花板位置都设置一个废水收集箱，可重用的废水进入专门的排水管道，这些水会注入下一层的收集箱，当下一层的收集箱满了之后，注入再下一层的收集箱，直到最底层的收集箱都满了之后，才会排入市政排污管道。楼宇顶层的收集箱可以收集天台的雨水。有了这套系统后，每个楼层的洗手间都使用本层的收集箱的水来冲马桶，如果收集箱中没有水了，才会使用自来水。由于是楼上的水流到楼下，无需水泵等额外耗能的设备。</p>
+
+<p>比起现有的废水重用方案，这套系统的建造和维护成本都不高，相当于增设一套下水系统。出于卫生的考虑，系统只收集洗衣机的排水和雨水。除了楼宇最顶的几层不能保证有足够的废水供应，下面的楼层应该在大部分情况下都有足够的废水而无需使用自来水来冲马桶。因此，楼层越多，节水效果越显著。现今水资源越来越珍贵，这套系统可以带来很大的经济效益和社会效益。</p>
+
+<p>（写完后没有立即发出来，回头再想了一下，最大的问题应该是卫生安全，因为这些废水会流入每家的马桶，如何保证进入再用系统的水没有受到生物污染？是否要先消毒过滤？）</p>
+]]></content>
+  </entry>
+  
+</feed>

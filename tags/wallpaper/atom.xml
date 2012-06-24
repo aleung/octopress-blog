@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: wallpaper | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/wallpaper/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[星战墙纸]]></title>
+    <link href="http://aleung.github.com/blog/2005/06/11/Star-Wars-wall-paper/"/>
+    <updated>2005-06-11T20:45:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2005/06/11/Star-Wars-wall-paper</id>
+    <content type="html"><![CDATA[<p>我的显示器是竖起来放的(1024*1280), 没有合适的墙纸, 所以自己做了一些. 贴出来给星战迷共享: <a href="http://www.flickr.com/photos/aleung/18632984/"><img src="http://photos12.flickr.com/18632984_908f1e85cd.jpg" alt="vader_wallpaper" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>

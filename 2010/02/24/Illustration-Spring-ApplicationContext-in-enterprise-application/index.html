@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>图解：Spring ApplicationContext in enterprise application - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="在一个比较复杂的enterprise application (EAR)里面，往往有多个war和ejb，如果希望使用Springframework通过IoC方式来管理及装配POJO beans，就要面对如何初始化application context，由谁来初始化， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">图解：Spring ApplicationContext in Enterprise Application</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2010-02-24T21:46:00+08:00" pubdate data-updated="true">2010-02-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/spring/'>Spring</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>在一个比较复杂的enterprise application (EAR)里面，往往有多个war和ejb，如果希望使用Springframework通过IoC方式来管理及装配POJO beans，就要面对如何初始化application context，由谁来初始化，如何让这些war和ejb共享application context等问题。</p>
+
+<p>关于多个war、ejb共享application context的方法，在下面这两篇文章里解释得比较清楚：</p>
+
+<ul>
+  <li><a href="http://blog.springsource.com/2007/06/11/using-a-shared-parent-application-context-in-a-multi-war-spring-application/">Using a shared parent application context in a multi-war Spring application</a></li>
+  <li><a href="http://springtips.blogspot.com/2007/09/using-shared-context-from-ejbs.html">Using a Shared Context from EJBs</a></li>
+</ul>
+
+<p>在这里，我不再详细叙述上面文章中的内容，通过图解的方式希望能让它更易理解，需要对照阅读。</p>
+
+<p>图中的方块、圆圈都表示实例，形状的嵌套表示它们的包含关系。在例子里，缺省值都显式写出来，方便查找。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4384915548/"><img src="http://farm5.static.flickr.com/4037/4384915548_2ec7d610e6_o.png" alt="share-context-1" /></a></p>
+
+<p>先看图中靛蓝色的box，是ContextSingletonBeanFactoryLocator实例，application context的共享是依靠它来实现的：对于每个locatorFactorSelector，在一个classloader的范围内只会存在一个ContextSingletonBeanFactoryLocator的实例。ContextSingletonBeanFactoryLocator内部有一个ApplicationContext（图中的天蓝色box），它的bean是由locatorFactorSelector所指向的xml文件所定义的。例如locatorFactorSelector为classpath*:beanRefContext.xml，就会寻找classpath中所有的beanRefContext.xml文件并根据它们去创建内部ApplicationContext。这个内部ApplicationContext只是其它ApplicationContext的容器，不存放application的bean。一个beanRefContext.xml文件应该像下面那样，里面是一个ApplicationContext，它才是真正的业务bean的容器。如果需要可以设置它的parent context。如果有多个beanRefContext.xml文件，就会创建多个ApplicationContext，它们通过id来标识。</p>
+
+<pre><code>&lt;beans&gt;
+    &lt;bean id="a" class="org.springframework.context.support.ClassPathXmlApplicationContext"&gt;
+        &lt;constructor-arg&gt;
+            &lt;list&gt;
+                &lt;value&gt;context_a.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/constructor-arg&gt;
+        &lt;constructor-arg&gt;
+            &lt;ref bean="b" /&gt;
+        &lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>EJB应该在onCreate()过程中通过下面的代码来获得application context，需要通过factoryKey（例子里是”a”）来指定具体是哪个context：</p>
+
+<pre><code>beanFactory= ContextSingletonBeanFactoryLocator.getInstance("classpath*:beanRefContext.xml").useBeanFactory("a").getFactory();
+</code></pre>
+
+<p>在war里是依靠ContextLoaderListener来启动ApplicationContext的。在web.xml里加入：</p>
+
+<pre><code>    &lt;listener&gt;
+        &lt;listener-class&gt;
+            org.springframework.web.context.ContextLoaderListener
+        &lt;/listener-class&gt;
+    &lt;/listener&gt;
+</code></pre>
+
+<p>这个application context包含的是/WEB-INF/applicationContext.xml中定义的beans。在Servlet中通过下面的代码可以获得这个context：</p>
+
+<pre><code>beanFactory = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+</code></pre>
+
+<p>但这样创建出来的是一个独立的application context，仅仅在war内部可以访问，无法做到多个war和ejb之间共享。</p>
+
+<p>要实现共享，就要在web.xml中再加入：</p>
+
+<pre><code>    &lt;context-param&gt;
+        &lt;param-name&gt;parentContextKey&lt;/param-name&gt;
+        &lt;param-value&gt;b&lt;/param-value&gt;
+    &lt;/context-param&gt;
+    &lt;context-param&gt;
+        &lt;param-name&gt;locatorFactorySelector&lt;/param-name&gt;
+        &lt;param-value&gt;classpath*:beanRefContext.xml&lt;/param-value&gt; &lt;!-- this is the default value --&gt;
+    &lt;/context-param&gt;
+</code></pre>
+
+<p>这样，当ContextLoaderListener创建war的application context时，会根据locatorFactorySelector去取相应的ContextSingletonBeanFactoryLocator实例，并且从locator中根据parentContextKey拿到具体的context，将这个context作为war的application context的parent。在图中，war 1的servlet可以访问到key为’b’的context，因为它是当前context的parent。</p>
+
+<p>最后的效果就是：哪个war或者ejb先初始化，它就会去初始化ContextSingletonBeanFactoryLocator实例，由于是singleton，只会有一个实例存在，所有的war和ejb都从这个locator里面拿到具体存放业务bean的context，实现了context的共享。</p>
+
+<p>在这里需要留意的是classloader，必须很清楚的知道哪些类是由哪个层次的classloader加载的：所有共享的bean，以及相关的spring jar都必须由EJB classloader加载。关于EAR的classloader及层次关系请参看 <a href="http://good-good-study.appspot.com/blog/posts/4218">WebLogic的classloading</a>。</p>
+
+<p>在实际应用中，往往不需要对application context作隔离，整个ear里面所有ejb、war共享一个application context是最简便的。这时war里不需要定义任何context和context loader，与EJB一样直接使用ContextSingletonBeanFactoryLocator就可以获取到context。</p>
+
+<pre><code>beanFactory= ContextSingletonBeanFactoryLocator.getInstance("classpath*:beanRefContext.xml").useBeanFactory("share-context").getFactory();
+</code></pre>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5370082919/"><img src="http://farm6.static.flickr.com/5245/5370082919_6dfc7f7b1d_z.jpg" alt="sping_shared_context" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2011-01-20T02:29:00+08:00" class="updated">Updated 2011-01-20</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/spring/'>Spring</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/" data-via="acette" data-counturl="http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/" title="Previous Post: 推荐一个介绍翻墙知识的邮件列表">&laquo; 推荐一个介绍翻墙知识的邮件列表</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/02/26/Two-questions-about-SIP-message-transport/" title="Next Post: Two questions about SIP message transport">Two questions about SIP message transport &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
+<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 108%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
+<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
+<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
+<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
+<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
+<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
+<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
+<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
+<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
+<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
+<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
+<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/';
+        var disqus_url = 'http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

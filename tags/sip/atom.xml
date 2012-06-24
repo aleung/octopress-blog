@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SIP | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/sip/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-06-25T02:18:08+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Two questions about SIP message transport]]></title>
+    <link href="http://aleung.github.com/blog/2010/02/26/Two-questions-about-SIP-message-transport/"/>
+    <updated>2010-02-26T12:30:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2010/02/26/Two-questions-about-SIP-message-transport</id>
+    <content type="html"><![CDATA[<h3 id="sip-messages-are-sent-in-mix-of-udp-and-tcp">SIP messages are sent in mix of UDP and TCP</h3>
+
+<p>In our test we found that our client first sent SIP messages in UDP but later on it changed to TCP. Is it an issue?</p>
+
+<p>In RFC 3261 (SIP) chapter 18.1.1 and 18.2.1, it says:</p>
+
+<blockquote>
+  <p>If a request is within 200 bytes of the path MTU, or if it is larger than 1300 bytes and the path MTU is unknown, the request MUST be sent using an RFC 2914 congestion controlled transport protocol, such as TCP. … This prevents fragmentation of messages over UDP and provides congestion control for larger messages.</p>
+
+  <p>For any port and interface that a server listens on for UDP, it MUST listen on that same port and interface for TCP. This is because a message may need to be sent using TCP, rather than UDP, if it is too large.</p>
+</blockquote>
+
+<p>So, whether send a SIP message in UDP or TCP is decided bytransport layer. When the initial SIP message of a transaction is sent in UDP it’s possible that the consequent messages are sent in TCP.</p>
+
+<h3 id="sip-message-is-resent-in-05-second">SIP MESSAGE is resent in 0.5 second</h3>
+
+<p>In another test case we found that the client resends the SIP MESSAGE request in 0.5 second if it doesn’t receive the response. We know that SIP message should be resent in a specific time if no response is received. But why the interval is 0.5 second? Is it configurable in Sailfin?</p>
+
+<p>Also go to RFC 3261, find the answer in chapter 17.1.1.2 and 17.1.2.2:</p>
+
+<blockquote>
+  <p>If an unreliable transport is in use, the client transaction MUST set timer E to fire in T1 seconds. If timer E fires while still in this state, the timer is reset, but this time with a value of MIN(2<em>T1, T2). When the timer fires again, it is reset to a MIN(4</em>T1, T2). … For the default values of T1 and T2, this results in intervals of 500 ms, 1 s, 2 s, 4 s, 4 s, 4 s, etc.</p>
+
+  <p>The default value for T1 is 500 ms. T1 is an estimate of the RTT between the client and server transactions. … T1 MAY be chosen larger, and this is RECOMMENDED if it is known in advance (such as on high latency access links) that the RTT is larger.</p>
+</blockquote>
+
+<p>In SailFin(GlassFish) the value of T1 and T2 can be configured in admin console under: Configuration - SIP Service - SIP Protocol.</p>
+]]></content>
+  </entry>
+  
+</feed>
