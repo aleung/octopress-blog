@@ -1,0 +1,65 @@
+---
+layout: post
+title: "RAW照片后期处理的常用操作"
+comments: true
+date: 2011-09-27 22:33
+tags:
+- ImageProcessing
+---
+这里讲的是 Apple Aperture 3 的操作，但其他RAW处理软件（如Photoshop Lightroom）的功能和效果也都类似，可以参考。
+
+##  Exposure
+
+###  Exposure
+
+黑位固定，直方图右侧拉伸。相当于相机的曝光量调整。
+
+![](https://lh6.googleusercontent.com/-fnAGXvmnFJE/ToHQKWlruvI/AAAAAAAAAZ0/O4pdxnS64yY/s800/exposure-1.jpg)》![](https://lh5.googleusercontent.com/-FP6Vg1nAOWI/ToHQKRFOhtI/AAAAAAAAAZ4/0lESY5sW318/s800/exposure-2.jpg)
+
+###  Recovery
+
+利用RAW记录的额外信息恢复高光溢出部分。
+
+###  Black Point
+
+利用RAW记录的额外信息恢复丢失的暗部细节。
+
+###  Brightness
+
+黑位与白位均固定，直方图中间色调左右移动。用于调整图像的整体明暗。与level工具的亮度调节功能类似，但level工具中若只拖动一个锚点时对直方图的影响更加局部，只改变特定色调范围。
+
+![](https://lh5.googleusercontent.com/-mKyUGov3PCc/ToHQJ9LMS-I/AAAAAAAAAZs/Z7XqqxDgQJk/s800/brightness-1.jpg)》![](https://lh4.googleusercontent.com/-MWAZLV47es8/ToHQKHGqVNI/AAAAAAAAAZw/B4GjHYLSF_A/s800/brightness-2.jpg)
+
+##  Enhance
+
+###  Contrast
+
+中灰不变，直方图向两侧拉伸。（不建议使用，用level工具控制更准确）
+
+![](https://lh6.googleusercontent.com/-lZY-AgmwRcU/ToHQJ3eBQMI/AAAAAAAAAZo/1lTWE0LHHoA/s800/contrast.jpg)
+
+###  Definition
+
+增强图像局部的对比度，但不影响整体图像的对比度，直方图无整体性变化。可提高图像明暗交界的细节，例如让云朵更加立体。
+
+###  Saturation
+
+让RGB三原色的直方图趋于重合或者更加离散。用于减弱色彩或者增强色彩(变鲜艳)。饱和度增加时图像细节会丢失。
+
+![](https://lh6.googleusercontent.com/-EKHur68d4-A/ToHQKvYuHQI/AAAAAAAAAZ8/LRPgisNijDM/s800/saturation-1.jpg)》![](https://lh3.googleusercontent.com/-NGeEU2MWZwg/ToHQLOXNoBI/AAAAAAAAAaE/hwsr11w3eS0/s800/saturation-2.jpg)
+
+###  Vibrancy
+
+与saturation类似，但不影响肤色。用于人像照片中的色彩调整，但保持肤色不变。
+
+##  Highlights & Shadows
+
+降低高光部分亮度，但不影响中间调和暗部；提高暗部亮度，但不影响中间调和亮部。直方图上的效果是高光部分和/或暗部扩展，移向中间调位置，但实际处理并非单纯的直方图映射，运算时会考虑到周边像素的色调的影响。用于对图像中过亮或者过暗的部分进行补偿，增加色调变化细节。
+
+##  Levels
+
+将直方图进行映射变换，下横轴是输入，上横轴是输出。Aperture的levels工具可以调节四分之一色调的映射，可以完成部分本来需要使用曲线工具的调节。
+
+Levels调整是在上面几种调整的基础之上进行的，可能会抵消了前面所做的调整的效果。若非必要不应该将它与前面提到的工具混合使用。
+
+![](https://lh3.googleusercontent.com/-Af7kvdJq3pU/ToHQKit_TwI/AAAAAAAAAaA/1x5cdJ1hZrE/s800/level-1.jpg)》![](https://lh3.googleusercontent.com/-f0jePRCWRAI/ToHQQCnp4qI/AAAAAAAAAaI/qW_bMiOvGZw/s800/level-2.jpg)
