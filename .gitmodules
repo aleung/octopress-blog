@@ -1,0 +1,6 @@
+[submodule "submodules/octopress-tag-pages"]
+	path = submodules/octopress-tag-pages
+	url = https://github.com/robbyedwards/octopress-tag-pages.git
+[submodule "submodules/octopress-tag-cloud"]
+	path = submodules/octopress-tag-cloud
+	url = https://github.com/robbyedwards/octopress-tag-cloud.git
