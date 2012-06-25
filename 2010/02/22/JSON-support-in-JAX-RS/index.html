@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -166,27 +178,47 @@
 
 <p>In Jersey, developer should implement a JAXB ContextResolver which creates JSONJAXBContext with JSONConfiguration.Different configurations can be set bybuilder pattern.</p>
 
-<pre><code>   @Provider
-   public class MyJAXBContextResolver implements ContextResolver&lt;JAXBContext&gt; {
-
-       private JAXBContext context;
-       private Class[] types = {StatusInfoBean.class, JobInfoBean.class};
-
-       public MyJAXBContextResolver() throws Exception {
-           this.context = new JSONJAXBContext(
-                   JSONConfiguration.mapped()
-                                      .rootUnwrapping(true)
-                                      .arrays("jobs")
-                                      .nonStrings("pages", "tonerRemaining")
-                                      .build(),
-                   types);
-       }
-
-       public JAXBContext getContext(Class&lt;?&gt; objectType) {
-           return (types[0].equals(objectType)) ? context : null;
-       }
-   }
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">   <span class="nd">@Provider</span>
+</span><span class="line">   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyJAXBContextResolver</span> <span class="kd">implements</span> <span class="n">ContextResolver</span><span class="o">&lt;</span><span class="n">JAXBContext</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class="line">
+</span><span class="line">       <span class="kd">private</span> <span class="n">JAXBContext</span> <span class="n">context</span><span class="o">;</span>
+</span><span class="line">       <span class="kd">private</span> <span class="n">Class</span><span class="o">[]</span> <span class="n">types</span> <span class="o">=</span> <span class="o">{</span><span class="n">StatusInfoBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">JobInfoBean</span><span class="o">.</span><span class="na">class</span><span class="o">};</span>
+</span><span class="line">
+</span><span class="line">       <span class="kd">public</span> <span class="nf">MyJAXBContextResolver</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class="line">           <span class="k">this</span><span class="o">.</span><span class="na">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONJAXBContext</span><span class="o">(</span>
+</span><span class="line">                   <span class="n">JSONConfiguration</span><span class="o">.</span><span class="na">mapped</span><span class="o">()</span>
+</span><span class="line">                                      <span class="o">.</span><span class="na">rootUnwrapping</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span><span class="line">                                      <span class="o">.</span><span class="na">arrays</span><span class="o">(</span><span class="s">&quot;jobs&quot;</span><span class="o">)</span>
+</span><span class="line">                                      <span class="o">.</span><span class="na">nonStrings</span><span class="o">(</span><span class="s">&quot;pages&quot;</span><span class="o">,</span> <span class="s">&quot;tonerRemaining&quot;</span><span class="o">)</span>
+</span><span class="line">                                      <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">                   <span class="n">types</span><span class="o">);</span>
+</span><span class="line">       <span class="o">}</span>
+</span><span class="line">
+</span><span class="line">       <span class="kd">public</span> <span class="n">JAXBContext</span> <span class="nf">getContext</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">objectType</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">           <span class="k">return</span> <span class="o">(</span><span class="n">types</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="n">objectType</span><span class="o">))</span> <span class="o">?</span> <span class="n">context</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class="line">       <span class="o">}</span>
+</span><span class="line">   <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Further simplificationway can be found in <a href="http://blogs.sun.com/japod/entry/configuring_json_for_restful_web">http://blogs.sun.com/japod/entry/configuring_json_for_restful_web</a></p>
 
@@ -194,33 +226,53 @@
 
 <p>Custom provider is registered by Spring configuration:</p>
 
-<pre><code>&lt;beans&gt;
-&lt;jaxrs:server id="customerService" address="/"&gt;
-    &lt;jaxrs:serviceBeans&gt;
-      &lt;bean class="org.CustomerService" /&gt;
-    &lt;/jaxrs:serviceBeans&gt;
-
-    &lt;jaxrs:providers&gt;
-      &lt;ref bean="jsonProvider" /&gt;
-    &lt;/jaxrs:providers&gt;
-
-    &lt;bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.JSONProvider"&gt;
-      &lt;property name="dropRootName" value="true"/&gt;
-      &lt;property name="serializeAsArray" value="true"/&gt;
-      &lt;property name="arrayKeys" value="true"&gt;
-        &lt;list&gt;&lt;value&gt;jobs&lt;/value&gt;&lt;/list&gt;
-      &lt;/property&gt;
-    &lt;/bean&gt;
-&lt;/jaxrs:server&gt;
-&lt;/beans&gt;
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;beans&gt;</span>
+</span><span class="line">    <span class="nt">&lt;jaxrs:server</span> <span class="na">id=</span><span class="s">&quot;customerService&quot;</span> <span class="na">address=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;jaxrs:serviceBeans&gt;</span>
+</span><span class="line">          <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.CustomerService&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/jaxrs:serviceBeans&gt;</span>
+</span><span class="line">
+</span><span class="line">        <span class="nt">&lt;jaxrs:providers&gt;</span>
+</span><span class="line">          <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&quot;jsonProvider&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/jaxrs:providers&gt;</span>
+</span><span class="line">
+</span><span class="line">        <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;jsonProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;org.apache.cxf.jaxrs.provider.JSONProvider&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dropRootName&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line">          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;serializeAsArray&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line">          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;arrayKeys&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">            <span class="nt">&lt;list&gt;&lt;value&gt;</span>jobs<span class="nt">&lt;/value&gt;&lt;/list&gt;</span>
+</span><span class="line">          <span class="nt">&lt;/property&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/bean&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/jaxrs:server&gt;</span>
+</span><span class="line"><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="drop-root-element--root-unwrapping">Drop root element / Root unwrapping</h3>
 
 <p>Drop root element means strip out the root element from JSON. In the following example the StatusInfoBean element is dropped.</p>
 
-<pre><code>{"status":"Idle","tonerRemaining":"25","jobs":{"name":"sample.doc","status":"printing...","pages":"13"}}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Idle&quot;</span><span class="p">,</span><span class="nt">&quot;tonerRemaining&quot;</span><span class="p">:</span><span class="s2">&quot;25&quot;</span><span class="p">,</span><span class="nt">&quot;jobs&quot;</span><span class="p">:{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;sample.doc&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;printing...&quot;</span><span class="p">,</span><span class="nt">&quot;pages&quot;</span><span class="p">:</span><span class="s2">&quot;13&quot;</span><span class="p">}}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>In Jersey whether dropping root element is configured by JSONConfiguration.rootUnwrapping(). In CXF it is by JSONProvider.setDropRootElement().</p>
 
@@ -228,9 +280,11 @@
 
 <p>Single value List object can be serialized as array or non-array. See example:</p>
 
-<pre><code>{"rows":{"userid":"1621","name":"Grotefend"}}
-{"rows":[{"userid":"1621","name":"Grotefend"}]}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span><span class="nt">&quot;rows&quot;</span><span class="p">:{</span><span class="nt">&quot;userid&quot;</span><span class="p">:</span><span class="s2">&quot;1621&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Grotefend&quot;</span><span class="p">}}</span>
+</span><span class="line"><span class="p">{</span><span class="nt">&quot;rows&quot;</span><span class="p">:[{</span><span class="nt">&quot;userid&quot;</span><span class="p">:</span><span class="s2">&quot;1621&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Grotefend&quot;</span><span class="p">}]}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>In CXF it’s controlled by JSONProvider properties “serializeAsArray” and “arrayKeys”.</p>
 
@@ -321,8 +375,16 @@
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -340,59 +402,52 @@
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

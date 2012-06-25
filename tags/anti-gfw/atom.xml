@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Anti-GFW | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/anti-gfw/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-06-25T02:18:08+08:00</updated>
+  <updated>2012-06-26T01:10:48+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -31,12 +31,11 @@
     <link href="http://aleung.github.com/blog/2010/09/28/Andriod-TransProxy/"/>
     <updated>2010-09-28T06:13:00+08:00</updated>
     <id>http://aleung.github.com/blog/2010/09/28/Andriod-TransProxy</id>
-    <content type="html"><![CDATA[<p>关注我之前写的Android翻墙系列文章[<a href="http://good-good-study.appspot.com/blog/posts/20001">1</a>,<a href="http://good-good-study.appspot.com/blog/posts/25001">2</a>,<a href="http://good-good-study.appspot.com/blog/posts/39001">3</a>]的朋友请留意一下这个应用：<a href="http://forum.xda-developers.com/showthread.php?t=766569">TransProxy</a>。这个应用的v3版本集成了HTTP transparent proxy (使用<a href="http://transproxy.sourceforge.net/">Transproxy</a>)、HTTPS/SOCKS redirector (使用<a href="http://darkk.net.ru/redsocks/">redsocks</a>) 、iptables script 并提供了配置、控制的界面。理论上，结合TransProxy和ConnectBot就可以实现Android上通过SSH tunnel翻墙，请参考<a href="http://good-good-study.appspot.com/blog/posts/20001">这里</a>的第二张图片：ConnectBot实现了SSH client，TransProxy提供了transparent socks proxy并且设置iptables。</p>
+    <content type="html"><![CDATA[<p>关注我之前写的Android翻墙系列文章<a href="/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">1</a>, <a href="/2010/06/07/Android-SSH-tunnel-2010-06-06-">2</a>, <a href="/2010/07/31/Android-SSH-tunnel-prototype">3</a>的朋友请留意一下这个应用：<a href="http://forum.xda-developers.com/showthread.php?t=766569">TransProxy</a>。这个应用的v3版本集成了HTTP transparent proxy (使用<a href="http://transproxy.sourceforge.net/">Transproxy</a>)、HTTPS/SOCKS redirector (使用<a href="http://darkk.net.ru/redsocks/">redsocks</a>) 、iptables script 并提供了配置、控制的界面。理论上，结合TransProxy和ConnectBot就可以实现Android上通过SSH tunnel翻墙，请参考<a href="/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">这里</a>的第二张图片：ConnectBot实现了SSH client，TransProxy提供了transparent socks proxy并且设置iptables。</p>
 
 <p>不过，我刚刚将TransProxy和ConnectBot配合运行起来试了一下，并没有成功，并且手机又遇到了100% CPU占用的问题，只能手工将ConnectBot kill了。ConnectBot当前最新的snapshot版本都还是没有解决这个<a href="http://code.google.com/p/connectbot/issues/detail?id=299">bug</a>，大家快去给这个bug加星，促使开发者优先解决吧。</p>
 
 <p>鉴于我目前暂时处于肉身翻墙状态，没有积极性去进一步实验了，各位动手试试吧，有结果记得共享出来。另外，目前TransProxy的作者还在相当勤快的改进这个应用，不妨到xda-developers论坛与他交流。  </p>
-
 ]]></content>
   </entry>
   
@@ -45,39 +44,40 @@
     <link href="http://aleung.github.com/blog/2010/07/31/Android-SSH-tunnel-prototype/"/>
     <updated>2010-07-31T00:17:00+08:00</updated>
     <id>http://aleung.github.com/blog/2010/07/31/Android-SSH-tunnel-prototype</id>
-    <content type="html"><![CDATA[<p>在上次写下<a href="http://good-good-study.appspot.com/blog/posts/25001">进展</a>之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。</p>
+    <content type="html"><![CDATA[<p>在上次写下<a href="/2010/06/07/Android-SSH-tunnel-2010-06-06-">进展</a>之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。</p>
 
 <ol>
   <li>首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行</li>
   <li>将transocks_ev放到Android系统中，目录随你喜欢。这里<a href="http://cid-e1c6bc07e3f505a3.office.live.com/self.aspx/.Public/transocks%5E_ev-android.zip">下载</a>已编译的transocks_ev for Android可执行文件，解压后文件的MD5：6a0c3500bcd24ab7b706c8caf34f15ba</li>
   <li>从Android Market下载ConnectBot，配置好你的ssh帐号，记得设置port forwarding，端口为9050</li>
   <li>在ConnectBot中连接ssh</li>
-  <li>
-    <p>在shell中运行transocks_ev:  </p>
+  <li>在shell中运行transocks_ev:  </li>
+</ol>
 
-    <pre><code>		transocks_ev -S 127.0.0.1 -s 9050
+<pre><code>transocks_ev -S 127.0.0.1 -s 9050
 </code></pre>
-  </li>
-  <li>
-    <p>在shell中执行iptables命令： </p>
 
-    <pre><code>		iptables -t nat -F 
+<ol>
+  <li>在shell中执行iptables命令： </li>
+</ol>
+
+<pre><code>iptables -t nat -F 
 iptables -t nat -A OUTPUT -m owner --cmd-owner transocks_ev -j RETURN 
 iptables -t nat -A OUTPUT -m owner --cmd-owner org.connectbot -j RETURN 
 iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-ports 1211 
 iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 </code></pre>
-  </li>
+
+<ol>
   <li>这时所有的HTTP/HTTPS流量都会通过ssh tunnel了，但DNS查询不会，所以依然无法访问被DNS污染的网站</li>
   <li>断开ConnectBot连接</li>
   <li>在shell中kill掉transocks_ev进程</li>
-  <li>
-    <p>在shell中执行iptables命令： </p>
-
-    <pre><code>		iptables -t nat -F 
-</code></pre>
-  </li>
+  <li>在shell中执行iptables命令：</li>
 </ol>
+
+<pre><code>iptables -t nat -F
+</code></pre>
+
 ]]></content>
   </entry>
   

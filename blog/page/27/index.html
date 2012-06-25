@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常. 检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时. 解决办法: 确认邮件服务器使用本机作为DNS ( /etc &hellip;">
+  <meta name="description" content="我们在表达非常非常短的时间的时候，经常会用“刹那”这个词，例如：刹那间的感动。如果有人偏偏要跟你较劲，问你“刹那之间”，那到底是多长时间啊？你肯定会骂他太无聊、钻牛角尖。 那就来钻钻牛角尖吧： “刹那”来自梵文 ksana， 120 刹那 = 1坦刹那（tatksana) 60 坦刹那 = 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -70,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/">邮件系统发信缓慢问题的解决</a></h1>
+      <h1 class="entry-title"><a href="/blog/2006/07/22/What-is-a-moment-how-long-/">一刹那到底是多久？</a></h1>
     
     
       <p class="meta">
@@ -86,13 +98,13 @@
   
 
 
-<time datetime="2002-03-13T00:13:00+08:00" pubdate data-updated="true">2002-03-13</time>
+<time datetime="2006-07-22T04:17:00+08:00" pubdate data-updated="true">2006-07-22</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
   
 </span>
 
@@ -103,27 +115,31 @@
   </header>
 
 
-  <div class="entry-content"><p>公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常.  </p>
+  <div class="entry-content"><p>我们在表达非常非常短的时间的时候，经常会用“刹那”这个词，例如：刹那间的感动。如果有人偏偏要跟你较劲，问你“刹那之间”，那到底是多长时间啊？你肯定会骂他太无聊、钻牛角尖。</p>
 
-<p>检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时.  </p>
+<p>那就来钻钻牛角尖吧：</p>
 
-<p>解决办法:  </p>
+<p>“刹那”来自梵文 ksana，</p>
 
 <ul>
-  <li>
-    <p>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </p>
-  </li>
-  <li>
-    <p>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </p>
-  </li>
+  <li>120 刹那 = 1坦刹那（tatksana) </li>
+  <li>60 坦刹那 = 1 腊缚(lava) </li>
+  <li>30 腊缚 = 1 牟呼栗多 (murhutar) </li>
+  <li>5 牟呼栗多 = 1 时 (大时，kala) </li>
+  <li>6 时 = 1 昼夜 (即1日)。</li>
 </ul>
 
+<p>据此，可以推算出：1 刹那 = 1/75 秒 = 13.33 毫秒</p>
+
+<p>看来刹那间的感动确实没有感动多久啊。</p>
+
+<p>呵呵，不是我这么无聊去研究这些东西，是在<a href="http://zh.wikipedia.org/">维基百科</a>无意中<a href="http://zh.wikipedia.org/wiki/%E5%88%B9%E9%82%A3">看到</a>的。现在维基百科已经成为我除了google以外的另外一个重要的学习工具了，遇到不了解的概念，先去维基百科看看(包括<a href="http://zh.wikipedia.org/">中文</a>、<a href="http://en.wikipedia.org/">英文</a>)，再在<a href="http://www.google.com/">google</a>搜索。还有就是每天去看看维基首页的新闻动态、特色条目，可真了解不少东西。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/#disqus_thread">Comments</a>
+        <a href="/blog/2006/07/22/What-is-a-moment-how-long-/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -135,7 +151,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2002/01/19/Samba-configuration-file-sharing/">配置samba文件共享</a></h1>
+      <h1 class="entry-title"><a href="/blog/2006/07/15/Embedded-script-/">Embedded Script 初接触</a></h1>
     
     
       <p class="meta">
@@ -151,13 +167,13 @@
   
 
 
-<time datetime="2002-01-19T00:14:00+08:00" pubdate data-updated="true">2002-01-19</time>
+<time datetime="2006-07-15T08:00:00+08:00" pubdate data-updated="true">2006-07-15</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -168,69 +184,34 @@
   </header>
 
 
-  <div class="entry-content"><p>根据实践的经验，基本了解了samba配置方法，将它记录下来。   </p>
+  <div class="entry-content"><p>近年来各种编程语言如雨后春笋一般涌现出来，令人眼花缭乱。有些是已经有相当历史的近来得到了广泛关注，有些则是新创的但风头不弱于前辈。它们的名字虽然我很多都听说过，大概知道是什么样的语言，但也是仅此而已了。</p>
 
-<p>一个基本的配置文件：   </p>
+<p>这些新兴语言大都是动态语言，运行于虚拟机之中。而我一直都是使用C++/Java这些静态语言，这些新语言让我觉得很新鲜。在具有动态特性的语言中，我唯一熟悉的也就是PHP了，但是php给我的印象是方便灵活，但是显得零乱，缺乏OO特性，难以承担大规模应用。也因此我对这些语言就带有一点偏见，觉得“不够严谨”、有点“小儿科”。</p>
 
-<blockquote>
+<p>由于所开发系统的业务逻辑的复杂和多变，让我们吃尽了苦头，寻找解决方案的一个思路是将业务逻辑控制分离出来，降低这部分修改的难度。如果要再进一步，就是要采用script来描述业务逻辑了，那么是设计这样一种script，还是有什么现有的架构可以重用？</p>
 
-  <p>[global]<br />
-netbios name = SERVERNAME<br />
-workgroup = GROUPNAME<br />
-null passwords = yes (是否允许用户设置空密码,default=no)<br />
-log file = /var/log/samba/log.%m<br />
-max log size = 500<br />
-dns proxy = No (default=yes,一般情况下没有必要)<br />
-security = user (相当于WinNT/2000的文件共享)<br />
-encrypt passwords = yes<br />
-guest ok = yes (default=no,是否允许guest访问,即不需要输入密码)<br />
-(在global节中的这个设定会作为各共享资源设定的缺省值)  </p>
-</blockquote>
+<p>将视野放开，可以看到动态语言在这方面得到了越来越广泛的应用，有好多新兴语言就是用来做embedded script的。在嵌入的脚本和宿主语言之间，数据可以传递，函数可以相互调用。因为我做的应用使用C++开发，因此我这几天看了<a href="http://www.lua.org/">Lua</a>和<a href="http://www.squirrel-lang.org/">Squirrel</a>这两种用于C/C++的嵌入语言的资料，这两种语言目前主要都是在游戏开发领域使用，Lua比较出名因为魔兽争霸使用了它，Squirrel是从Lua派生出来的。先不考虑怎样应用于具体业务，单从语言本身来说，这些简单的语言给我印象不错，一些语言特征能够给编码带来很多方便，如function作为first-class value，table数据结构(关联数组)，而我特别关心的是它们对coroutine(协程)的支持。</p>
 
-<p>[homes] (每个用户会看到各自的home目录)<br />
-comment = Your Home Directories<br />
-read only = No<br />
-browseable = No  </p>
+<p>使用通用的script还是自己开发引擎，自定义script格式，这就看怎么权衡了。动态语言的语言机制强大而灵活，其描述能力是自定义的script难以到达的；但是通用、灵活往往也意味着复杂，自定义script专注于要实现的业务功能，往往比较简单，学习难度要低；自己定义script虽然要开发解释器，但是针对性很强，与业务紧密相关，使用通用script还是要考虑怎样来描述业务操作，宿主程序如何提供接口来结合起来，其实要做的事情并不少。</p>
 
-<p>[share] (share to all, read only)<br />
-comment = Share Folder<br />
-path = /home/samba<br />
-guest ok = yes (在global中设定了,这里可以不写)<br />
-writeable = no  </p>
+<p>不过我现在对它们的了解还只是很表面，仅仅走马观花而已，观点一定是片面的，还需要进一步的学习。就目前来说，我对使用嵌入语言存在着这些疑问：</p>
 
-<p>[source] (leo,frank可读写;james只读;其余用户无权访问)<br />
-path = /home/source<br />
-valid users = james,leo,frank(可访问此资源的用户的列表,如果不指定,任何用户都可以访问)<br />
-write list = leo,frank (有写权限的用户的列表)<br />
-writeable = no (其他用户不可写)<br />
-create mode = 666 (保证新建的文件目录可以其他用户读写)<br />
-directory mode = 777<br />
-force group = nobody (无论用户以什么身份login,强制为此user/group;不一定需要)<br />
-force user = nobody  </p>
+<ul>
+  <li>缺乏OO特性，如果是宿主程序是采用OOD的话，不容易结合起来，我现在已经很难想象一个大型系统如何能够不采用面向对象来实现了。（不过这个还是因语言而异，据介绍某些语言是具有很完善的OO特性的）。Lua支持基于原型的面向对象编程模型(prototype-based OO Modal)，我对这种对象模型是持怀疑态度的，它并不完善，好多OO设计方法都无法实现出来。不过我必须承认我并没有深入研究过，也许还需要多些了解。[见附注] </li>
+  <li>与宿主语言的binding太复杂。不使用class应该还是挺简单的，但使用了class之后就比较麻烦了。使用嵌入脚本，就是希望让开发更简单快捷，如果因此又引入另外一种复杂性，那么优势就被抵消了。 </li>
+  <li>怎样将通用的script用于针对性的业务？是不是宿主程序需要以例如API的形式提供一套接口？我现在还没有看到这部分，如果找到一些开源应用的代码来看看应该可以解答这个疑问。 </li>
+  <li>性能始终是一个需要关心的问题</li>
+</ul>
 
-<p>在samba的权限控制中, 关键的是以下一些参数. <br />
-invalid users <br />
-valid users <br />
-guest ok / public (两种写法都可以) <br />
-这三个参数, 优先级从高到低, 控制用户是否可以/是否需要login到一个服务. <br />
-write list <br />
-read list <br />
-readonly / writeable (两种写法都可以) <br />
-这三个参数, 优先级从高到低, 控制用户是否有写权限.   </p>
+<hr />
 
-<p>用户要访问一个服务(共享目录),<br />
-首先要成功login到这个服务(或者这个服务是public, 不需要login),<br />
-然后再根据配置决定他是否有写的权限. 只要login进入了,就起码有读权限了.   </p>
-
-<p>另外, unix文件系统的权限设置是个前提, 无论samba的访问权限怎么设置,<br />
-用户在unix中无权访问的文件在samba中也肯定是不能访问的.   </p>
-
+<p>PS. 刚才网上花了不少时间读了关于面向对象的讨论和文章，看来我对于面向对象的了解还是相当片面的，只是局限在C++/Java语言对于OO的实现，而C++/Java是属于<a href="http://en.wikipedia.org/wiki/Class-based_OOP">class-based OOP</a>，单纯的用class-based的思维去套用<a href="http://en.wikipedia.org/wiki/Prototype-based_programming">prototype-based OOP</a>得到的结论当然不合理。另外一个错误就是我将prototype-based和object-based混为一谈了，其实完全两码事，object-based model则一般不认为是OO。花点时间去了解一下prototype-based OOP和动态编成语言应该是值得的，起码可以开拓思路。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2002/01/19/Samba-configuration-file-sharing/#disqus_thread">Comments</a>
+        <a href="/blog/2006/07/15/Embedded-script-/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -242,7 +223,7 @@ readonly / writeable (两种写法都可以) <br />
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2001/12/08/Solaris-/">Solaris中指定动态链接库路径的方法</a></h1>
+      <h1 class="entry-title"><a href="/blog/2006/07/14/Or-blogline-works-better/">还是blogline好用</a></h1>
     
     
       <p class="meta">
@@ -258,13 +239,13 @@ readonly / writeable (两种写法都可以) <br />
   
 
 
-<time datetime="2001-12-08T18:43:00+08:00" pubdate data-updated="true">2001-12-08</time>
+<time datetime="2006-07-14T08:00:00+08:00" pubdate data-updated="true">2006-07-14</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/software/'>Software</a>
   
 </span>
 
@@ -275,27 +256,122 @@ readonly / writeable (两种写法都可以) <br />
   </header>
 
 
-  <div class="entry-content"><p>使用crle命令, 例如:<br />
-crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/libthread.so.1 -o /usr/lib/lwp  </p>
+  <div class="entry-content"><p>试过了好几种RSS阅读器，换来换去都感觉总是差那么一点点不够好用。最终还是用回了<a href="http://www.bloglines.com/">blogline</a>,简单、方便，这就够了。不过前提是网络的速度够快，好像在国内访问的速度不怎么样，也许又得换了。</p>
 
-<p>以上命令的作用  </p>
+<p>2009-5-31 Updated: 现在应该改为”还是Google Reader好用” <img src="http://public.blogbus.com/biaoqing/163/11.gif" alt="" /></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/07/14/Or-blogline-works-better/#disqus_thread">Comments</a>
+    </footer>
+  
 
-<ul>
-  <li>设置library路径为 /usr/lib 和 /usr/local/lib </li>
-  <li>在这些目录建立cached list of libaries </li>
-  <li>指定用 /usr/lib/lwp 中的 libthread.so 代替 /usr/lib 中的版本.  </li>
-</ul>
 
-<p>然后执行<br />
-crle -u<br />
-更新/var/ld/ld.config文件  </p>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/07/14/DIY-/">DIY交流网站</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-07-14T08:00:00+08:00" pubdate data-updated="true">2006-07-14</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/diy/'>Diy</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>喜欢DIY的人不应该错过这个网站，<a href="http://www.instructables.com">instructables</a> ，在这里分享DIY的创意，可以看看人家做了些什么好玩的东西，是怎么做的，也可以将自己的经验发布出来。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/07/14/DIY-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/07/03/Everyone-can-edit-Geocaching-of-Chinese-guide/">人人可编辑的Geocaching中文指南</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-07-03T08:00:00+08:00" pubdate data-updated="true">2006-07-03</time>
+        
+         | 
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近一年，随着GPS使用者的增加，geocaching开始在国内媒体上有所介绍，也出现了一些相关的网站。但是因为大家都没有多少玩的经验，很多人都只是找过一两个cache，甚至还没有找过，就开始自己藏cache了，对规则的理解也出现了偏差。例如将cache埋藏在地下，找的时候居然要带铲子去挖；为了能让寻宝者知道往哪里挖，就将藏宝地点的照片贴出来。这样，寻宝过程完全变成了单纯的GPS定位，寻找的乐趣都没有了。  </p>
+
+<p>我以前也只是找到过一个cache，对geocaching的了解都是在网上看回来的，纸上谈兵居多。在Stockholm玩了一段时间的geocaching后，经验增长了不少。在这儿寻宝很有乐趣，一方面是很多cache都放在有意思的地方，有景色或者有历史背景，找cache的过程中随之了解这个城市，发现这个城市；另一方面是cache藏匿的方法花样繁多(应该是我以前了解得少)，寻找起来很有乐趣，找到后特别有成功感。  </p>
+
+<p>感觉有必要将学到的经验总结一下，让国内玩家多了解人家是怎么玩的，开拓思路。先是写了一篇“藏宝指南”，原本打算发到论坛上的，但是想到别人也会有自己的经验可以分享出来，如果贴论坛，就只能发新的帖子，信息就零散了。论坛不太适合用作知识的系统整理，这方面还是wiki比较合适，于是我的计划又扩大了一层：建立一个介绍geocaching知识的中文wiki。  </p>
+
+<p>尝试、比较了几个免费的wiki服务，最后选定了使用schtuff.com，wiki的网址是 <a href="http://geocaching.schtuff.com">http://geocaching.schtuff.com</a> 。仿照维基百科，编辑策略也是“人人可编辑”，不过schtuff.com是不允许匿名编辑的，必须先注册用户。License方面也是考虑了一阵子，在CC与GFDL之间拿不定主意，其实关键就是要不要SA(相同方式分享)，最后选定了最宽松的CC-BY。  </p>
+
+<p>目前几个主要的条目都已经有了基本的内容，好意思拿出来说了:) 目前为止大部分条目都还是我写的，<a href="http://www.geocaching.cn">geocaching.cn</a>的网友贡献了一些内容，期待会有越来越的参与者。不过，我也不抱多大希望，国内网友对wiki的接受程度比较低，参与度就更加低。  </p>
+
+<p>如果对geocaching有兴趣，就来看看，了解一下吧。如果认同这个wiki的，帮忙宣传一下：人人可编辑的Geocaching中文指南，<a href="http://geocaching.schtuff.com/">http://geocaching.schtuff.com</a>   </p>
 
 </div>
   
   
   
     <footer>
-        <a href="/blog/2001/12/08/Solaris-/#disqus_thread">Comments</a>
+        <a href="/blog/2006/07/03/Everyone-can-edit-Geocaching-of-Chinese-guide/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -303,6 +379,8 @@ crle -u<br />
     </article>
   
   <div class="pagination">
+    
+      <a class="prev" href="/blog/blog/page/28/">&larr; Older</a>
     
     <a href="/blog/blog/archives">Blog Archives</a>
     
@@ -313,8 +391,16 @@ crle -u<br />
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -332,59 +418,52 @@ crle -u<br />
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

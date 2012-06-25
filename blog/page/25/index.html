@@ -9,9 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。
-对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。
-选择文件，右键菜单 &hellip;">
+  <meta name="description" content="统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。 使用Excel的FREQUENCY函数，可以很简单的实现这个目标： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -32,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -72,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2003/08/22/Eclipse-i18n-l10n-/">Eclipse的i18n/l10n辅助功能</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/">利用Excel进行分组统计及生成直方图</a></h1>
     
     
       <p class="meta">
@@ -88,13 +98,15 @@
   
 
 
-<time datetime="2003-08-22T20:15:00+08:00" pubdate data-updated="true">2003-08-22</time>
+
+  
+<time datetime="2007-03-17T02:19:00+08:00" pubdate data-updated="true">2007-03-17</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/excel/'>Excel</a>, <a class='tag' href='/blog/tags/software/'>Software</a>
   
 </span>
 
@@ -105,16 +117,29 @@
   </header>
 
 
-  <div class="entry-content"><p>Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。<br />
-对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。<br />
-选择文件，右键菜单 source-&gt;Extenalize Strings 打开工具，能够找出源文件中的所有字符串，选择那些需要翻译，自动替换并生成properties文件。  </p>
+  <div class="entry-content"><p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
 
+<p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>
+
+<p>先把要处理的目标数据准备好：一列是输入数据A3:A66（在例子中为了清晰，已经排序，实际没有必要），另外一列是分组间隔D3:D21，在这里每个区间的大小是10。</p>
+
+<p>对于每个区间的频率，我希望输出在E3:E21区域。用鼠标将这个区域框起来，然后输入公式 =FREQUENCY(A3:A66,D3:D21)。FREQUENCY函数有两个参数，第一个是要分析的目标数据，第二个是分组间隔值，都需要是数组。输出也是一个数组，因此需要按 Ctrl-Shift-Enter 来结束公式的输入，表明这是数组公式。(数组公式会显示为有个花括号括起来)</p>
+
+<p>公式输入后，马上就能看到计算的结果了，如果希望更清晰些，可以做一张图。依然是选中E3:E21区域，菜单中选中插入图表，照着向导操作。在第二步选择DataSource中，需要在”Serials”中指定X轴区域为C3:C21(或D3:D21)，否则X轴数据会变成1、2、3…</p>
+
+<p><img src="http://farm1.static.flickr.com/162/422940441_9279aaa292_o.jpg" alt="" /></p>
+
+<p>从图中，可以明显看出大部分数据范围在50-120之间，峰值为90-100。</p>
+
+<p><a href="http://soft.yesky.com/office/283/2639283.shtml">这个网页</a>介绍了另外一种方法，通过Excel数据分析功能来实现上面做的事情，更加简单。但是Excel缺省安装中没有数据分析功能。</p>
+
+<p>Reference：<a href="http://www0.ccidnet.com/school/office//2001/06/26/70_4531.html">Excel统计函数</a></p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2003/08/22/Eclipse-i18n-l10n-/#disqus_thread">Comments</a>
+        <a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -126,7 +151,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2003/08/20/Java-/">Java“错误模式”</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/03/15/Windows-symbolic-link-/">Windows的symbolic Link支持</a></h1>
     
     
       <p class="meta">
@@ -142,453 +167,7 @@
   
 
 
-<time datetime="2003-08-20T19:01:00+08:00" pubdate data-updated="true">2003-08-20</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>《诊断 Java 代码》这组文章提到了很多种“错误模式”，有时间值得看看。<br />
-<a href="http://www-900.ibm.com/developerWorks/cn/java/j-diag/index.shtml">http://www-900.ibm.com/developerWorks/cn/java/j-diag/index.shtml</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/20/Java-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/19/Swing-components-refresh/">Swing Components Refresh</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-19T19:30:00+08:00" pubdate data-updated="true">2003-08-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Java swing编程，更改了一个JPanel的内部components后，需要改变一下窗口大小，新内容才能显示出来。<br />
-解决方法：调用panel.validate()。<br />
-对于container，添加或者改变了对象后，需要调用validate()才能重新布局并显示。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/19/Swing-components-refresh/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/18/MySQL-NOT-NULL-/">MySQL是不会理会字段的NOT NULL标记的!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-18T22:58:00+08:00" pubdate data-updated="true">2003-08-18</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>原来MySQL是不会理会字段的NOT NULL标记的!<br />
-按照MySQL manual中1.8.5.2节的说法: 当插入的字段的值不符号要求的时候, 不会出错, 而是用一个最接近的”合理”值来替代. 对于NOT NULL的varchar字段, 替换的值是空字符串’’. 这不是等于没有设定NOT NULL吗? 真是莫名其妙.<br />
-只好在程序里面来控制了</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/18/MySQL-NOT-NULL-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/18/Java-/">Java字符转换问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-18T22:57:00+08:00" pubdate data-updated="true">2003-08-18</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>字符编码问题一直都是令人头痛，查阅资料，写下了《java 字符转换问题的学习笔记》。</p>
-
-<ul>
-  <li>
-    <p>什么是字节流与字符流的转换? 什么时候会做转换?<br />
-字符就是char类型, 是双字节的, 用unicode, 一个char就是实际上的一个字符；字节就是byte类型, 是单字节的，实际的字符串根据编码不同，用单字节或者双字节来表示。<br />
-常用的String类型核心就是char[]，String.length()就是char[]数组的大小，因此当encoding没有转换错误时，String长度是字符的个数，不管是中文还是英文。做字符处理的时候也从来不会出现截断半个字符的问题。<br />
-Java内部都是用char的，但是很多时候做输入输出就要用byte stream，例如文件、数据库、网络。<br />
-当数据要从char变为byte，或者byte变成char时，就要做转换。<br />
-同样的内容，用不同的编码方式(encoding)，byte stream是不同的，转换的时候需要指定使用的encoding。<br />
-JVM的file.encoding属性确定了JVM的缺省的编码/解码方式：从而影响应用中所有字节流==&gt;字符流的解码方式 字符流==&gt;字节流的编码方式。在不同OS平台上，这是由locale决定的，缺省encoding在中文平台为GBK，英文平台为8859_1。  </p>
-  </li>
-  <li>
-    <p>UTF8与unicode<br />
-准确的说，UTF8不是unicode，它也只是一种编码方式，不过它的编码空间可以容纳unicode的所有字符。因此UTF8是一种很适合于存储unicode的外码。UTF8是变长编码，中文3字节。  </p>
-  </li>
-  <li>
-    <p>Java I/O<br />
-Reader和Writer核心是char，InputStream和OutputStream核心是byte。<br />
-专门有bridge类做Reader/Writer与InputStream/OutputStream的转换：InputStreamReader/OutputStreamWriter。  </p>
-  </li>
-  <li>
-    <p>什么地方会发生转换？  </p>
-  </li>
-  <li>
-    <p>从数据库到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从java程序到数据库 char——〉byte  </p>
-  </li>
-  <li>
-    <p>从文件到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从java程序到文件 char——〉byte  </p>
-  </li>
-  <li>
-    <p>从java程序到页面显示 char——〉byte  </p>
-  </li>
-  <li>
-    <p>从页面form提交数据到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从流到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从java程序到流 char——〉byte  </p>
-  </li>
-  <li>
-    <p>源程序中的字符串<br />
-最早的字节流解码过程从javac的代码编译就开始了，写在源文件中的字符串是按照一定的编码方式的（如gbk），java编译器根据缺省的encoding来对源代码中的字符串做解码，在java bytecode中存储为unicode char。  </p>
-  </li>
-  <li>
-    <p>数据库中的字符编码方式<br />
-数据库中的东西都是二进制存放的，支持任何数据，理论上说，与编码并没有关系。不过，如果没有指定字符集，在排序、匹配的时候有问题，接口的地方也会出现问题。<br />
-因此就涉及到以什么编码方式来保存到数据库中了。平常我们用数据库工具或者其他程序写数据库时，都是直接用系统编码方式，也就是gbk。但是，JDBC在访问数据库时，缺省是用数据库的字符集，通常为8859<em>1的，本来应该是gbk-&gt;unicode却变成了8859</em>1-&gt;unicode,就会出现乱码。连接串中加上参数可以强制jdbc按照gbk做转换。<br />
-jdbc:mysql://localhost/test?useUnicode=true&amp;characterEncoding=GBK<br />
-不过这样数据库还是只能支持gbk，如果写入big5码，同样会出现转换错误的问题。最佳方案还是用UTF8来编码，这样可以容纳unicode所有字符，覆盖了gbk、big5等各个字符集的范围。<br />
-MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持，但目前4.1版本还在alpha阶段。  </p>
-  </li>
-  <li>
-    <p>Swing的字符集问题<br />
-从目前的试验看来，swing的组件会自动根据系统encoding做转换，并不需要干预。  </p>
-  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/18/Java-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/13/Landsat7-/">Landsat7卫星及遥感图象处理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-13T02:49:00+08:00" pubdate data-updated="true">2003-08-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>LANDSAT是美国陆地探测卫星系统。从1972年开始发射第一颗卫星LANDSAT 1，到目前最新的LANDSAT 7。</p>
-
-<p>LANDSAT 7 卫星于99年发射，装备有Enhanced Thematic Mapper Plus(ETM+)设备，ETM+被动感应地表反射的太阳辐射和散发的热辐射，有8个波段的感应器，覆盖了从红外到可见光的不同波长范围。</p>
-
-<p>ETM+比起在LANDSAT 4、5上面装备的Thematic Mapper(TM)设备在红外波段的分辨率更高，因此有更高的准确性。</p>
-
-<p>LANDSAT 7 的一些总体数据：</p>
-
-<ul>
-  <li>7个光谱波段和一个全色波段 </li>
-  <li>观察宽度达185km </li>
-  <li>15、30、60、80米精度 </li>
-  <li>离地705km太阳同步轨道 </li>
-  <li>16天运行周期 </li>
-  <li>覆盖范围为南北纬81度之间区域</li>
-</ul>
-
-<p>ETM+的波段：</p>
-
-<ol>
-  <li>0.45-0.52微米蓝绿波段, 用于水体穿透, 土壤植被分辨 </li>
-  <li>0.52-0.60微米绿色波段, 用于植被分辨 </li>
-  <li>0.63-0.69微米红色波段, 处于叶绿素吸收区域, 用于观测道路/裸露土壤/植被种类效果很好 </li>
-  <li>0.76-0.90微米近红外波段, 用于估算生物数量, 尽管这个波段可以从植被中区分出水体，分辨潮湿土壤，但是对于道路辨认效果不如TM3。 </li>
-  <li>1.55-1.75微米中红外波段, 这被认为是所有波段中最佳的一个, 用于分辨道路/裸露土壤/水, 它还能在不同植被之间有好的对比度, 并且有较好的穿透大气、云雾的能力。 </li>
-  <li>10.5-12.5微米热红外波段, 感应发出热辐射的目标. 分辨率为60m. </li>
-  <li>2.08-2.35微米中红外波段, 对于岩石/矿物的分辨很有用, 也可用于辨识植被覆盖和湿润土壤. </li>
-  <li>0.52-0.90微米全色波段, 得到的是黑白图象, 分辨率为15m, 用于增强分辨率, 提供分辨能力. (ETM+增加了这个波段，TM没有)</li>
-</ol>
-
-<p>以上波段除6、8外分辨率均为30m。</p>
-
-<p>Landsat7 ETM+ 数据又分为多种，例如L0Rp, L1R和L1G.</p>
-
-<ul>
-  <li>L1R: radiometrically corrected but not geometrically resampled. </li>
-  <li>L1G: radiometrically corrected and resampled for geometric correction and registration to geographic map projections.</li>
-</ul>
-
-<p>在使用这些卫星图象的时候，要先进行处理。通常是用多个波段的图象进行彩色合成，得到伪彩色图象。在合成前，各波段图象还要先做图象增强处理。</p>
-
-<p>例如：MrSid卫星图象是用band7作为红色, band4作为绿色，band2作为蓝色合成的，简称为742。（MrSid用的是Landsat TM, 1987-1993拍摄数据，当时未有Landsat 7）；GeoGratis Landsat7 合成卫星图象是用743(RGB)。Terra为绿野做到北京图用的是542。</p>
-
-<p>常用的合成方法：</p>
-
-<ul>
-  <li>321：真彩合成。与肉眼所见接近；仅使用反射的可见光，受大气、云雾、阴影、散射的影响较大，通常对比度不高，感觉模糊（蓝色光散射严重）；对于海岸区域研究特别有用，因为可见光可穿透水面，观察到海底。 </li>
-  <li>432：近红外合成。颜色与肉眼所见完全不同；植被在近红外波段反射率特别高，因为叶绿素在此波段反射的能量大，因此在432图象中植被会明显表现为深浅不同的红色，不同类型植物有不同的红色色调；水会吸收差不多所有的近红外光，因此水面颜色很深近乎黑色。 </li>
-  <li>743/742：短波红外合成。包含至少一个短波红外波段，短波红外波段的反射率主要取决于物体表面的含水量，因此这类图象可用于植被保护和土地研究。</li>
-</ul>
-
-<p>图象合成可以用Photoshop之类的图象编辑软件来做，缺点是不能做出带地理信息的GeoTiff图象。<a href="http://www.geogr.ku.dk/chips/">Chips</a>（哥本哈根图象处理系统）是一个专门用于遥感图象处理的软件，标准版是免费的。用它来制作3波段合成图象很容易。以下为简单使用方法：</p>
-
-<p>Open WinChips, and from the <em>File</em> menu, select <em>New Project</em>. From the <em>File</em> menu, select <em>Add Object(s)</em>, and select the three images for the three bands you want to use in your composite image, and add them as <em>Chips Image_s. From the _File</em> menu, select <em>New Object</em>, then <em>Lookup Table</em>, then save the new Lookup Table file. From the <em>View</em> menu, select <em>New Image View</em>. In the <em>Image View Configuration</em> dialog, on the <em>Image</em> tab, select <em>Display Mode</em> as RGB. For each of the <em>(Red, Green, Blue)</em> choices, select the image for the band you want to use for the respective color. For <em>Lookup Table</em> select the Lookup Table you added earlier, then click <em>OK</em>. </p>
-
-<p>You should now have a <em>Default Image View</em> window open, showing your 3-band color composite image. From the <em>Image View</em> menu, select <em>Lookup Table</em>, then <em>Enhance using Statistics for Entire Image</em>. Once the statistics are calculated for each of the colors, a <em>Modify Lookup Table</em> dialog will be presented. To see the effect of some basic image enhancement, click on <em>Hist. Equal.</em>. You can use <em>Reset</em> to undo the enhancement. Click on <em>Cancel</em> to close the dialog window. </p>
-
-<p>To save the 3-band color composite image, from the <em>Image View</em> menu select <em>Export View To Standard Format</em>. Once you have saved the image file, you have the option of saving geocoding for the image. </p>
-
-<p>参考：<br />
-<a href="http://imaging.geocomm.com/features/sensor/landsat7/">http://imaging.geocomm.com/features/sensor/landsat7/</a><br />
-<a href="http://members.shaw.ca/davepatton/landsat7.html">http://members.shaw.ca/davepatton/landsat7.html</a><br />
-<a href="http://chesapeake.towson.edu/data/composite.asp">http://chesapeake.towson.edu/data/composite.asp</a><br />
-<a href="http://chesapeake.towson.edu/data/raw_data.asp">http://chesapeake.towson.edu/data/raw_data.asp</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/13/Landsat7-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/05/Robocode-/">Robocode的线程与执行次序</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-05T22:59:00+08:00" pubdate data-updated="true">2003-08-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Robocode的每个机器人都是一个线程，线程调度为非强占式，由战斗管理线程依次调度运行。每个线程执行到一个阻塞函数的时候，交出cpu占用权。对于AdvancedRobot，阻塞函数是excute()。  </p>
-
-<p>从这个角度而言，可以把robocode看作是回合制的游戏，每个回合各个robot设定要做些什么操作，即调用setXXX()，调用excute()完成本回合的操作设定。各个robot都设定完后，战斗模拟模块模拟执行各个robot的动作，并且在屏幕显示结果。下个回合，robot线程在excute()下面继续执行，直到再次调用excute()为止。  </p>
-
-<p>不过，setXXX()设定的操作，往往是在一个回合中执行不完的。在robocode中，一个回合是游戏中的一个时间单位，各个元素的运动都有一定的速度，需要一定单位的时间才能完成。如果上回合中设置的动作还没有完成，本回合又重新设定了，就会把新动作覆盖旧动作。  </p>
-
-<p>事件处理函数onXXX()，看起来是在事件发生的时候立即执行的，其实不然，还是要在回合中轮到这个robot的时候才能执行。而且若在队列中有多个事件，而某个事件处理函数调用了excute()结束了本回合的动作，那么剩下的事件就要等到下个回合才能处理了。因此，onXXX()改变的只是某个线程内部的执行次序，并不改变robot线程之间的执行次序。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/05/Robocode-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/07/22/PHP-/">PHP代码的格式化工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-07-22T23:00:00+08:00" pubdate data-updated="true">2003-07-22</time>
+<time datetime="2007-03-15T21:32:00+08:00" pubdate data-updated="true">2007-03-15</time>
         
          | 
 
@@ -605,21 +184,31 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
   </header>
 
 
-  <div class="entry-content"><p>寻找一个PHP代码的格式化工具, chedong的主页上介绍了phpCodeBeautify, 下载试用一下, 还是开发版, 效果不是很满意.  </p>
+  <div class="entry-content"><p>UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。</p>
 
-<p>以前我用过astyle,并且自己改成phpstyle, 但它毕竟只是为C++/Java设计, 对PHP处理不是很全面.<br />
-在google上搜索, 有些是要付钱买的, 不感兴趣.<br />
-BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.org/beautify/</a>)有个online demo, 感觉还不错. 而且它直接就是php写的!<br />
-另一个是PHPIndent(<a href="http://www.palfrader.org/phpindent/">http://www.palfrader.org/phpindent/</a>), 用perl写的, 没有试, 因为BeautifyPHP感觉可以了.  </p>
+<p>虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西，因为OS并没有管理它，要靠应用程序来处理。在DOS窗口里面dir看看一个shortcut是什么样子的，就知道有什么不同了。</p>
 
-<p>顺便还发现了一个工具GNU Source-highlight <a href="http://www.gnu.org/software/src-highlite/">http://www.gnu.org/software/src-highlite/</a>, 能够将多种源程序生成HTML文件,并且语法加亮.  </p>
+<p>其实，windows在NTFS 3.0开始支持一种叫做 junction point 的特性[3]，可以看作为目录的symbolic link。可是微软总是喜欢把一些东西藏起来，比如这种junction point，你就无法直接通过windows自带工具来建立、管理。我是使用<a href="http://www.zabkat.com/">xplorer2</a>这个explorer替代工具的时候，才发现有”Folder Junction”的功能(Edit - Paste Special - Folder junction)。在[1]中介绍了很多可以管理junction point的工具。不过，使用时还是要小心，它跟UNIX的symbolic link还是不完全相同，特别是删除的时候，junction point的行为有点怪异的[1][3]。据说Vista会提供与UNIX兼容的symbolic link支持。</p>
 
+<p>利用junction point，可以在D盘建立一个目录，link到C盘来使用；也可以将分布在不同地方的多个子目录link到同一个目录底下，方便备份。</p>
+
+<p>另外，Windows NTFS也支持hard link的[5]，但实际使用中symbolic link的作用更大。</p>
+
+<p>Reference:</p>
+
+<ol>
+  <li>Windows Symbolic and Hard Links: <a href="http://www.shell-shocked.org/article.php?id=284">http://www.shell-shocked.org/article.php?id=284</a></li>
+  <li>Symbolic Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>NTFS Junction Point: <a href="http://en.wikipedia.org/wiki/NTFS_junction_point">http://en.wikipedia.org/wiki/NTFS_junction_point</a></li>
+  <li>Hard Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>Hard Link in Windows: <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true">http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true</a></li>
+</ol>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2003/07/22/PHP-/#disqus_thread">Comments</a>
+        <a href="/blog/2007/03/15/Windows-symbolic-link-/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -631,7 +220,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2003/07/21/What-is-FXP-/">What Is FXP?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/03/08/Understand-the-JVM-memory-management-and-garbage-collection/">了解JVM的内存管理与垃圾回收</a></h1>
     
     
       <p class="meta">
@@ -647,7 +236,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   
 
 
-<time datetime="2003-07-21T23:02:00+08:00" pubdate data-updated="true">2003-07-21</time>
+<time datetime="2007-03-08T04:31:00+08:00" pubdate data-updated="true">2007-03-08</time>
         
          | 
 
@@ -664,15 +253,82 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   </header>
 
 
-  <div class="entry-content"><p>什么是FXP？以前就听说FlashFXP这个软件可以在两台ftp之间直接传输文件，不需要中转。  </p>
+  <div class="entry-content"><p>Java语言具备GC(垃圾回收)的能力，内存管理不需要应用程序去过问，这很方便。但是，GC是怎么进行的，JVM的内存参数应该怎么调整，如何优化，往往我们不是太清楚。看过一些资料后，对Sun JVM的内存管理以及垃圾回收的机制大概有了一个概念，这里将这些资料归纳和翻译出来。本文内容主要基于Sun JVM 1.3.1，在后续版本中有不少优化措施，但是这些基本概念还是不变的。</p>
 
-<p>在网上查了一下资料，好像fxp并不是一种新的协议，而是对ftp中的proxy命令的巧妙运用。</p>
+<p>这里假设大家对GC的概念和基本原理都已经了解，不详细叙述了。</p>
+
+<p>当JVM进行GC的时候，是要消耗CPU资源和需要一定时间的，这会影响到程序的正常运行，因此需要尽可能减少GC消耗的时间。Java程序运行过程中，对象的生命周期有长有短，其中相当大部分是都是比较短命的，例如局部的对象一用完就可以回收了。在大多数情况下，只要能够及时回收这些短命对象的内存，就能够确保JVM有足够内存来分配给新的对象。因此JVM采用一种分代回收(<em>generational collection</em>) 的策略，用较高的频率对年轻的对象(young generation)进行扫描和回收，这种叫做minor collection，而对老对象(old generation)的检查回收频率要低很多，称为major collection。这样就不需要每次GC都将内存中所有对象都检查一遍。</p>
+
+<p>Sun JVM 1.3 有两种最基本的内存收集方式：一种称为copying或scavenge，将所有仍然生存的对象搬到另外一块内存后，整块内存就可回收。这种方法有效率，但需要有一定的空闲内存，拷贝也有开销。这种方法用于minor collection。另外一种称为mark-compact，将活着的对象标记出来，然后搬迁到一起连成大块的内存，其他内存就可以回收了。这种方法不需要占用额外的空间，但速度相对慢一些。这种方法用于major collection.</p>
+
+<p>在JVM 1.3及以后的版本中，还有其他可选的内存收集方法，通过特定的参数来设定。例如：增量式回收，每次只处理一小部分；替代单线程copying的多线程并行回收；替代mark-compact的concurrent mark-sweep回收等等。参考资料[4][5]中有更多描述。</p>
+
+<p>JVM管理的内存，通常叫做堆(heap)，可以用下面的图来描述。</p>
+
+<p>JVM启动后，保留一段地址空间，这个空间的大小由-Xmx指定。这块空间的大小就是heap可能的最大值，但一开始不一定全都分配了物理内存，初始分配的heap大小由-Xms指定，如果-Xms小于-Xmx，剩余部分是virtual的，当需要的时候，再向OS申请。</p>
+
+<p>绿色部分是young generation的内存，由一块Eden(伊甸园，有意思)和两块Survivor Space(1.4文档中称为semi-space)构成。新创建的对象的内存都分配自eden。两块Survivor Space总有会一块是空闲的，用作copying collection的目标空间。Minor collection的过程就是将eden和在用survivor space中的活对象copy到空闲survivor space中。所谓survivor，也就是大部分对象在伊甸园出生后，根本活不过一次GC。对象在young generation里经历了一定次数的minor collection后，年纪大了，就会被移到old generation中，称为tenuring。(是否仅当survivor space不足的时候才会将老对象tenuring? 目前资料中没有找到描述)</p>
+
+<p>浅蓝色部分是old generation的内存。</p>
+
+<p>深蓝色部分称为_permanent generation_，是JVM用来保存class object和meta data，大小由-XX:PermSize和-XX:MaxPermSize指定。大量动态生成(编译)和加载class会增加这部分内存的耗用。</p>
+
+<p>剩余内存空间不足会触发GC，如eden空间不够了就要进行minor collection，old generation空间不够要进行major collection，permanent generation空间不足会引发full GC。</p>
+
+<p>很多参数会影响里面各部分空间的分配。-XX:MinHeapFreeRatio与-XX:MaxHeapFreeRatio设定空闲内存占总内存的比例范围，这两个参数会影响GC的频率和单次GC的耗时。-XX:NewRatio决定young与old generation的比例。Young generation空间越大，minor collection频率越低，但是old generation空间小了，又可能导致major collection频率增加。-XX:NewSize和-XX:MaxNewSize直接指定了young generation的缺省大小和最大大小。</p>
+
+<p><a href="http://java.sun.com/docs/hotspot/gc/fig4.gif"><img src="http://java.sun.com/docs/hotspot/gc/fig4.gif" alt="fig4.gif" /></a></p>
+
+<p>-Xmx<br />
+set maximum Java heap size</p>
+
+<p>-Xms<br />
+set initial Java heap size</p>
+
+<p>-XX:MinHeapFreeRatio=40<br />
+Minimum percentage of heap free after GC to avoid expansion.</p>
+
+<p>-XX:MaxHeapFreeRatio=70<br />
+Maximum percentage of heap free after GC to avoid shrinking.</p>
+
+<p>-XX:NewRatio=2<br />
+Ratio of new/old generation sizes. [Sparc -client:8; x86 -server:8; x86 -client:12.]-client:8 (1.3.1+), x86:12]</p>
+
+<p>-XX:NewSize=2.125m<br />
+Default size of new generation (in bytes) [5.0 and newer: 64 bit VMs are scaled 30% larger; x86:1m; x86, 5.0 and older: 640k]</p>
+
+<p>-XX:MaxNewSize=<br />
+Maximum size of new generation (in bytes). Since 1.4, MaxNewSize is computed as a function of NewRatio.</p>
+
+<p>-XX:SurvivorRatio=25<br />
+Ratio of eden/survivor space size [Solaris amd64: 6; Sparc in 1.3.1: 25; other Solaris platforms in 5.0 and earlier: 32]</p>
+
+<p>-XX:PermSize=<br />
+Initial size of permanent generation</p>
+
+<p>-XX:MaxPermSize=64m<br />
+Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larger; 1.4 amd64: 96m; 1.3.1 -client: 32m.]</p>
+
+<p>(上面给出的缺省值不一定准确，不同JVM版本和不同OS环境下会有不同)</p>
+
+<p>这里给出的只是基本的介绍，下面reference中的文章都很不错，对进一步了解或者查找性能优化参数都有帮助。</p>
+
+<p>Reference</p>
+
+<ol>
+  <li><a href="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</a></li>
+  <li><a href="http://java.sun.com/docs/hotspot/gc/">http://java.sun.com/docs/hotspot/gc/</a></li>
+  <li><a href="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</a></li>
+  <li><a href="http://builder.zdnet.com.cn/2003/0415/85798.shtml">http://builder.zdnet.com.cn/2003/0415/85798.shtml</a></li>
+  <li><a href="http://java.sun.com/developer/technicalArticles/Programming/turbo/">http://java.sun.com/developer/technicalArticles/Programming/turbo/</a></li>
+  <li><a href="http://developers.sun.com/techtopics/mobility/midp/articles/garbagecollection2/">http://developers.sun.com/techtopics/mobility/midp/articles/garbagecollection2/</a></li>
+</ol>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2003/07/21/What-is-FXP-/#disqus_thread">Comments</a>
+        <a href="/blog/2007/03/08/Understand-the-JVM-memory-management-and-garbage-collection/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -684,7 +340,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2003/07/17/cyrus-imapd-/">Cyrus Imapd的邮件目录修复</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/02/03/Web-2-0-/">Web 2.0 渐入佳境</a></h1>
     
     
       <p class="meta">
@@ -700,13 +356,13 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   
 
 
-<time datetime="2003-07-17T23:02:00+08:00" pubdate data-updated="true">2003-07-17</time>
+<time datetime="2007-02-03T23:21:00+08:00" pubdate data-updated="true">2007-02-03</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/software/'>Software</a>
   
 </span>
 
@@ -717,20 +373,74 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   </header>
 
 
-  <div class="entry-content"><p>cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。<em>注意：该命令必须以cyrus用户身份才能运行<br />
-且此quota不同于/usr/bin/quota命令</em>  </p>
+  <div class="entry-content"><p>刚刚上豆瓣去找书的时候，发现豆瓣新增了一个叫做”九点”的栏目，还是与”我看”“我读”“我听”并列的。好奇的打开来看看，原来是blog的聚合，将原来”我上”的功能扩展了，通过RSS将各个blog的内容直接聚合过来。<br />
+试了一下，相当喜欢，虽然这个功能上线才几天，但做到很不错了。可以看到大众推荐的blog文章，也可以看自己订阅的bolg。结合了豆瓣原有的自动推荐，不时会发现到一些符合自己口味的blog/文章。<br />
+它还稀奇古怪的弄出了”二套”“三套”等等的分类，还没有搞清楚什么意思，大概是什么算法计算出来的自动分类。我开始还以为是中央台的第几套节目呢。</p>
 
-<p>/var/imap/quota/[a-z]/user.* 文件是用户的quota信息，第一行是当前占用的quota，第二行是quota limit。  </p>
+<p>前段时间尝试的音乐网站”友播”和last.fm，也是给我不少惊喜，两个都是音乐推荐和在线播放网站。相比起前者的基于音乐特征分析的自动推荐，我更看好的是后者的根据相似口味的用户的喜好而给出的推荐。</p>
 
-<p>当用户有d权限时，才会在quota达到特定值时发送warrning信件。不过，正常使用的用户都是有d权限的。  </p>
+<p>Web 2.0 发展到现在，已经不再是刚开始玩那些什么n度人际关系的东东了，而是切入到人们生活、娱乐、工作当中，实实在在的带来方便和新的体验。社会化、个性化的网络正在改变着信息传播的方式，也许到了某一天，传统的报纸、广播和电视都会被按个人喜好定制的新媒体取代。</p>
 
-<p><a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">http://asg.web.cmu.edu/cyrus/cyrus-overview.html</a></p>
+<p>BTW，豆瓣是目前国内的web 2.0网站当中，我最看好的一个。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2003/07/17/cyrus-imapd-/#disqus_thread">Comments</a>
+        <a href="/blog/2007/02/03/Web-2-0-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/01/27/No-update-for-a-long-long-time/">很久很久没有更新了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-27T03:41:00+08:00" pubdate data-updated="true">2007-01-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>好像没有什么好写的，贴张照片吧<br />
+<img src="http://farm1.static.flickr.com/136/369778069_a78a5ac873.jpg" alt="" />  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/01/27/No-update-for-a-long-long-time/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -750,8 +460,16 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -769,59 +487,52 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

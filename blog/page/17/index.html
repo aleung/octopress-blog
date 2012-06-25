@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="现在做的项目，忙得一塌糊涂，几乎都没有什么时间上网浏览了。很久没有看blog，今天打开rss reader来看看有什么新东西，好让自己不要太out。 知道了google现在也有open source项目贡献出来，code.google.com，都是一些工具类型的东西， &hellip;">
+  <meta name="description" content="这两天用着G1的my location功能，发现真是很爽，即使不开GPS，单独依靠移动网络来定位在很多地方都已经相当准确，往往已经到了一个住宅小区的精度。但是地图模式的人为偏移就令人非常懊恼，在广州区域内偏差600多米，明明在天河公园东面它显示到西门那边。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -70,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2005/05/10/code-google-com/">code.google.com</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/07/To-write-software-expected-to-solve-the-problem-of-migration-in-Android-map/">写了个软件，期望可解决Android中地图偏移的问题</a></h1>
     
     
       <p class="meta">
@@ -86,13 +98,13 @@
   
 
 
-<time datetime="2005-05-10T06:11:00+08:00" pubdate data-updated="true">2005-05-10</time>
+<time datetime="2009-04-07T08:08:00+08:00" pubdate data-updated="true">2009-04-07</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
   
 </span>
 
@@ -103,15 +115,29 @@
   </header>
 
 
-  <div class="entry-content"><p>现在做的项目，忙得一塌糊涂，几乎都没有什么时间上网浏览了。很久没有看blog，今天打开rss reader来看看有什么新东西，好让自己不要太out。 </p>
+  <div class="entry-content"><p>这两天用着G1的my location功能，发现真是很爽，即使不开GPS，单独依靠移动网络来定位在很多地方都已经相当准确，往往已经到了一个住宅小区的精度。但是地图模式的人为偏移就令人非常懊恼，在广州区域内偏差600多米，明明在天河公园东面它显示到西门那边。</p>
 
-<p>知道了google现在也有open source项目贡献出来，code.google.com，都是一些工具类型的东西，应该是他们开发过程的一些副产品吧。有些东西应该是可以参考一下的，例如coredumper，让程序运行时主动dump一个core文件出来而不停止运行，这样可以得到一个运行时的snapshot，用来调试多线程程序应该会有用——在unix上跟踪调试程序太痛苦了，特别是多线程。</p>
+<p>Google地图加入的人为偏移是由于中国测绘法规的限制而加入的，这样造成my location定出来的位置在地图上偏差太远，已经失去使用价值了。而卫星图是没有偏差的，这就是为什么大家发现地图(map)模式误差大，卫星模式误差小的原因。  </p>
+
+<p>在电脑上打开Google Map，对于一个标志性地方，在地图与卫星图上各标一个waypoint，比较两个坐标，就可以知道地图的偏差有多大。经过试验，发现在一个区域内（例如整个广州市），偏差基本上是固定的，而不同城市的偏差就不同了。  </p>
+
+<p>利用这个特性，对一个区域的偏差进行测量校准后，整个区域的定位都能够根据这个校准值来校准。如果能够将各人在不同地方测得的校准值共享在网络上，这个手机的定位功能就会有实用价值了。  </p>
+
+<p>今天先写了个程序实现了my location的校准显示，将广州市的校准值（初步测试发现对广东省范围都适用）内置在程序里了。后面我会继续改进这个程序，让校准值可以设置，期望最后能做到在网络上同步。</p>
+
+<p><a href="http://www.bababian.com/phoinfo/9D46C0897B7336EFC463728A844EDBDFDT"><img src="http://photo1.bababian.com/upload15/20090407/9D46C0897B7336EFC463728A844EDBDF.jpg" alt="" /></a></p>
+
+<p>程序的功能很简单，就是显示地图，并且将校准后的my location蓝点显示在地图上，也可以打开系统Map软件，打开后校准后的my location在屏幕正中心。</p>
+
+<p>Update 2009-4-20：</p>
+
+<p>软件改名为Here I’m!，并已建立专门的网站。下载和更新请到 <a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a>[](http://aleung.blogbus.com/logs/38092084.html)</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2005/05/10/code-google-com/#disqus_thread">Comments</a>
+        <a href="/blog/2009/04/07/To-write-software-expected-to-solve-the-problem-of-migration-in-Android-map/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -123,7 +149,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2005/04/30/How-to-use-OziExplorer-slope-process-analysis/">如何使用OziExplorer进行路线坡度分析</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/05/Android-G1-/">Android手机G1入手感受</a></h1>
     
     
       <p class="meta">
@@ -139,13 +165,13 @@
   
 
 
-<time datetime="2005-04-30T01:04:00+08:00" pubdate data-updated="true">2005-04-30</time>
+<time datetime="2009-04-05T08:51:00+08:00" pubdate data-updated="true">2009-04-05</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+    <a class='tag' href='/blog/tags/android/'>Android</a>
   
 </span>
 
@@ -156,22 +182,125 @@
   </header>
 
 
-  <div class="entry-content"><p> 1.用oziexplorer加载地图，并确保相应的SRTM数据已经加载<br />
-2.选择菜单 view-tracks-Track Control, 打开 track control 对话框<br />
-3.按下第二排第一个按钮(Manually create Track Points)，进入手工创建track模式<br />
-4.在地图上用鼠标点击，创建track；为了得到更好分析效果，点越密越好<br />
-5.选择菜单 view-tracks-Track Profile, 查看track的剖面图<br />
-6.选择X Axis:Distance, Profile Type:Altitude, 看到track的距离-海拔剖面图，从中可以看出各段的坡度大小<br />
-7.在Track Profile曲线上点击，会在地图上显示出曲线点对应的位置<br />
-8.Track Profile同样适合于分析GPS实际采集得到的track </p>
+  <div class="entry-content"><p>一直关注Google Android系统的手机，自从去年10月底首款机型HTC G1正式发售，就有购买的意欲。今年春节后开始学习Android软件的开发，本来打算坚持到首个程序开发完成后再买手机的，可最后还是没有忍住，提前买了回来。</p>
 
-<p><a href="http://www.flickr.com/photos/aleung/11446580/"><img src="http://photos8.flickr.com/11446580_3a7f18faae_o.jpg" alt="ozi track profile" /></a></p>
+<p>淘宝网购，包邮包解锁价2770，美版黑色。虽然很多人说G1这款机的硬件不太好，例如外形不够漂亮、做工不够精致、性能不够好、电池不耐用，但我觉得这个价位还算是可以接受的。</p>
+
+<p>这台G1已经玩了三天，同时也借了一个iPhone 3G回来做对比，现在大致有些了解，可以说说感受了。</p>
+
+<p><em>Update 2009-6-14：</em> G1 手机已经用了差不多三个月，期间系统升了一次级，软件应用也不断更新，现在是时候对当初写的入手感受做些补充了。</p>
+
+<h2 id="g1">G1满足我的需求</h2>
+
+<p>先从我自己关注的几个方面说起。</p>
+
+<h3 id="section">上网浏览：</h3>
+
+<p>Android的browser完全支持HTML和JavaScript，对于网页的浏览效果与PC的浏览器基本相同，体验相当好。我一般要用手机上网站都是要查资料，浏览器的兼容性好就意味着减少了要看某个网站却不能正常显示的问题。</p>
+
+<p>另一方面，我用手机上网用得最多的就是看GoogleReader，GoogleReader在Android浏览器中的使用体验跟PC上差不了太多，不过我嫌它字体太小了，另外装了一个软件NewsRob。NewsRob是专门用于阅读GoogleReader的工具，我喜欢它可以缩放字体，另外感觉它打开feed的速度也比浏览器中快一些。</p>
+
+<p><em>Update：</em> NewsRob会耗用大量的网络流量，作者说是Google Reader API的限制造成的。所以只好忍受Google Reader的小字体了，给Google提了意见，但也没有得到反馈。  </p>
+
+<p>但我对Android的浏览器不满意的地方是切换窗口麻烦了一点，需要先按menu键，再从弹出的菜单中选择Window，不如iPhone直接显示在屏幕最底的工具条方便。</p>
+
+<p><em>Update：</em> <a href="http://www.kolbysoft.com">Steel</a>是第三方开发的浏览器，据说用的是相同的内核，但提供了不同的用户操作界面，使用起来方便一些。我已经用它代替了自带的浏览器。  </p>
+
+<h3 id="section-1">定位：</h3>
+
+<p>在Google Map中，支持通过GPS定位和通过移动网络定位。G1的GPS定位精度一般般，大概差一两栋楼左右吧，对于城市中的导航是足够了。我说的一般般是与用惯的Garmin GPS来对比的，手持机的效果当然要比手机内置的要好得多了。我很喜欢的倒是它的移动网络定位功能（包括手机网络和wifi，但在广州，wifi热点太少，用不上），在城市中什么地方都能得到一个大概靠谱的位置，例如室内、地下、四周全是高楼的地方，这些靠GPS卫星是无法定位的。所谓靠谱，就是你可以至少知道现在是在广州图书馆附近，或者东山口附近。这对于自己熟悉的地方意义不大，但对于一个外地人来说就会很有用了。</p>
+
+<p><em>Update：</em> 升级1.5（Cupcake）之后，A-GPS的效果大大改善，在只能看到狭窄天空的环境下，都能在几秒钟内定位，如果是使用普通GPS等几分钟都不一定能锁定位置。当然，这种环境下的定位准确度不高，但对于城市应用来说，一般能确定到在哪条街道上都足够了，而能够定位和快速定位才是更重要的。（什么是A-GPS，可看<a href="http://aleung.blogbus.com/logs/40220815.html">这篇文章</a>）</p>
+
+<p>不过，无论是GPS定位还是网络定位，都一定要用卫星图模式，不要用地图模式，因为地图加入了人为的位置误差，那个误差大到足以使定位功能变得毫无意义。网上很多人埋怨G1定位不准，Google和HTC也真冤枉，给你一张地图，但是不能让你知道自己在地图上的准确位置，这样的规定也只有中国sb政府做得出来。</p>
+
+<p><em>Update：</em> 为了解决这个问题，我专门写了一个应用软件<a href="https://sites.google.com/site/hereimapp">HereIm!</a></p>
+
+<h3 id="section-2">应用软件：</h3>
+
+<p>Android是基于Linux的操作系统，软件开发使用的是Java语言，不过运行平台不是JVM而是Google自己搞的Dalvik。Java语言加上差不多全套JDK API，使得Android软件开发的门槛很低。从硬件上看，一台手机基本上就是一台小电脑了，运算能力、输入、显示、网络，都不缺。再加上market的商业模式，应用软件方面应该不成问题，能有的软件都会有的，最多是时间问题。</p>
+
+<p>我关心的PIM应用中，Android内置的联系人、邮件、日历，分别与Google Contact、Gmail、Google Calendar完全同步，对于Google用户方便得不得了。Task(todo)管理我原来用的是RememberTheMilk(RTM)，在Android上我选择了Astrid，能够与RTM同步，初步感觉效果还行。Notes方面的软件还没有装，暂时还没有需要，我始终担心在手机上输入的便利性还是不够，可能还是要靠纸和笔。</p>
+
+<p><em>Update：</em> 我觉得任务管理用手机还是不够方便，所以大部分时候还是在PC上用RememberTheMilk（RTM），反正我基本是PC不离身，RTM通过Google Gear支持离线使用，用起来跟本地软件差不多了。手机上通常还是查看任务为主，Astrid用了一阵子，老是在半夜(0:00)作任务提醒很恼火，又无法disable，于是放弃了。现在用RTM Tasks，需要在线才能用的，无所谓了，手机随时可以上网，用了G1之后深刻感受到移动之中永远在线是多么的方便。  </p>
+
+<p>另外一个很有用的软件就是字典了，装了WordMate，支持StarDict的词库格式。还有个超级强大的计算器handyCalc，从单位换算、四则运算、科学计算到解方程都无所不能。</p>
+
+<p>到目前为止，我安装的所有软件都是从Market上直接下载的free软件。我觉得这种方式非常方便，如果日后Android能够进入中国市场，开放收费软件的下载，如果价钱不贵，我想合适的我也会买。</p>
+
+<p><em>Update：</em> 不时查看Market，看着各种类型的软件不断增加，装上的软件也在不断更新，功能完善。我对现在Android的应用已经很满意，基本上想要的软件都有了。</p>
+
+<h2 id="iphone">与iPhone的对比</h2>
+
+<p>作为两个有比较高相似度的产品，iPhone往往会用来与G1作对比。两款机我都只是玩了两三天，我能说的只是一个初步印象。</p>
+
+<h3 id="section-3">显示</h3>
+
+<p>两者的像素都是480*320，G1的面积稍小一点，本来应该画面更加精细才对，但是跟iPhone一对比，iPhone的就是抢眼很多。我也说不出来是因为硬件差别造成的色彩更艳丽？还是因为图标的设计更cool？总之，Apple产品的cool是骨子里散发出来的，不服不行。G1的显示效果大概就是中规中矩吧。</p>
+
+<h3 id="section-4">触摸屏</h3>
+
+<p>两者都是电容式的触摸屏，不是压力感应的，因此笔或者指甲是感应不到的，需要用手指肚来触摸。G1的触摸灵敏度和准确性不怎么理想，对于小的按钮很容易会按不准，而iPhone的触摸位置感应得比较精确。再加上G1的屏幕比iPhone小，如果同样的界面布局，G1的按钮就会显示得小一些，因此而这方面iPhone的使用体验比G1好很多。</p>
+
+<p><em>Update：</em> 升级1.5（Cupcake）之后，触控的敏感度和准确度大为改善。1.5也提供了屏幕键盘，使用的效果很好，我感觉差不多赶上iPhone的水平了。</p>
+
+<p>另一方面就是iPhone的招牌本领多点触摸，在某些场景中控制起来很方便，例如缩放用两个指头就能搞掂。这是Apple的专利，Android没法增加这项功能，虽然有些非官方发布的包已经的带有多点触摸的支持。</p>
+
+<h3 id="section-5">重力感应</h3>
+
+<p>这个估计以后会变成手机的必备功能了。G1也支持重力感应，就看程序怎么用。现在G1的大部分软件都不会根据重力感应来切换横竖屏的，那是因为G1有侧滑打开的键盘，它是当打开键盘时横屏显示。</p>
+
+<p><em>Update：</em> 1.5（Cupcake）增加了重力感应切换横竖屏的功能，不过我不喜欢用，把它disable了。打开键盘横屏，关上键盘竖屏，很符合使用习惯。（我不在手机上看video，所以没必要横屏）</p>
+
+<h3 id="section-6">控制界面以及风格</h3>
+
+<p>iPhone的面板非常简洁，物理按钮只有一个，大部分情况是作为home键，软件的功能都要靠屏幕显示的按钮来触摸控制。这应该是Apple一贯简洁的设计哲学了，当年Mac的单键鼠标我就根本不会用。相比之下Android的控制方式要丰富好多：物理按键有home、back、可按压的滚轮、menu，屏幕上有通过menu按键打开的菜单、通过长按屏幕触发的菜单。使用物理按键还是屏幕按钮只是设计风格问题，各有长短，iPhone的屏幕大，触控精确，在界面上多显示一点按钮也问题不大。不过我觉得长按屏幕触发菜单是很方便的控制手段，不知道为什么iPhone没有提供。</p>
+
+<p>我不太喜欢的其实还是在于iPhone软件的可控制性不足，我知道这也是受它简洁的设计哲学所指导的，有些不常用的功能、大部分人不需要更改的设置，就不提供出来。但我觉得这简洁得有点太过分了，Google做的东西界面也是比较简洁的，但需要的东西还是能找到。</p>
+
+<p>具些例子：iPhone的呼叫转移只能设置无条件转移，无法设置遇忙转移、未应答转移。如果想设，就只能通过**61…之类的服务代码来设，谁能记得？iPhone 3G跟G1一样支持GPS定位、移动网络定位，但用户无法选择采用哪种方式，似乎也不能知道目前的位置是通过哪种方式取得的。iPhone的浏览器中对于链接，没有新窗口打开、保存之类的功能。</p>
+
+<h3 id="section-7">应用及游戏</h3>
+
+<p>For iPhone的应用软件和游戏非常非常多，而且很多都很有创意。目前for Android的软件数量比起iPhone来说少很多，游戏更是没有多少特别出彩的。不过Android正式发布的时间还不算长，目前也已经见到一些很有创意的for Android应用了，相信以后会越来越多。</p>
+
+<h2 id="section-8">目前发现的缺点</h2>
+
+<p>目前使用下来，G1主要的问题有下面几个。</p>
+
+<h3 id="section-9">网络流量消耗大</h3>
+
+<p>如果套餐是无限数据流量的就不用考虑这个问题了，但运营商可没有这么大方。网上很多人都说使用G1几天下来就用掉了几百元的GPRS流量，我今早也发现昨天一天的流量居然已经超过80M。因为Android内置的mail、contact、calendar会自动网络同步数据，系统会自动检查更新，自己安装的一些软件也会与网络同步，因此除了正常使用产生的流量外，还会有好多莫名其妙的流量。需要安装NetMeter、NetCounter软件来监控流量大小，不过现在好像也还没有办法能够确定具体哪个程序消耗了多少流量，所以也还是只能猜。例如我通过NetMeter的流量曲线发现每个小时就有一次一个尖峰，后来发现我把GoogleReader阅读工具NewsRob设置为每小时自动同步了，把这个取消之后似乎就没有耗那么多流量了。</p>
+
+<p>我现在的经验就是不需要自动同步的就不要设置自动同步，例如阅读器、任务管理之类的，用的时候手工同步一下也很快，我一般不需要用手机收邮件，也无需自动同步了。如果还是找不出什么软件”偷走”了流量，就用APNdroid或者DroidSans Tweak Lite软件，在不需要用网络时将APN取消掉，这样数据网络就不通了。</p>
+
+<p><em>Update：</em> 后来确认耗流量的罪魁祸首就是NewsRob。我一般上下班坐车看GoogleReader一个多小时，打开各种同步，偶然用maps，软件也是手机直接下载，大概每天流量4～8M，这样一个月下来200M左右，还可以接受。毕竟移动在线所带来的方便是巨大的。</p>
+
+<h3 id="section-10">电量不耐用</h3>
+
+<p>据说充一次电一般情况下只能用一天，我没有测试过最长可用时间，反正看到电量显示下降得很快。我都是一有机会就充电，反正USB线也方便。</p>
+
+<h3 id="section-11">没有系统级中文输入法</h3>
+
+<p>Android的输入法框架还没有正式发布（测试版本已经有了，估计不用等太久），因此无法输入中文。目前的解决方法是另外安装一个内置中文输入法的发短信的软件，例如aPowerSms。其他软件的中文输入也可以通过从aPowerSms中copy-paste过来。</p>
+
+<p><em>Update：</em> 1.5（Cupcake）提供输入法框架了，也有了Google拼音输入和其他一些中文输入法，中文输入不再是问题。另外，屏幕键盘也很好用，输入的东西不多时都不需要推开物理键盘了。因此，G2不带物理键盘用起来应该也没有什么问题。</p>
+
+<p><em>Update：</em> 新发现问题：</p>
+
+<h3 id="section-12">内存不够大</h3>
+
+<p>装了系统后剩下的可用内存70～80M左右，装了各种软件后现在就只剩10M了。软件狂人就不能无限制的安装软件。有hack可以将软件装到sd卡，但需要刷机。而且卡也必须是高速卡，我用的是买机附带的普通卡，就没有搞app2sd。</p>
+
+<h2 id="section-13">结论</h2>
+
+<p>从目前的使用来看，我相当满意这台手机。对于一个G粉，兼网络依赖者，这是一台值得拥有的手机。但若用户本身并没有使用Google的服务的习惯，或者很少使用网络应用，那Android手机就没有太多优势了。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2005/04/30/How-to-use-OziExplorer-slope-process-analysis/#disqus_thread">Comments</a>
+        <a href="/blog/2009/04/05/Android-G1-/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -183,7 +312,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2005/03/31/SRTM-/">SRTM的精度</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/03/17/Why-can-t-together/">为什么不能合在一起</a></h1>
     
     
       <p class="meta">
@@ -199,13 +328,13 @@
   
 
 
-<time datetime="2005-03-31T22:15:00+08:00" pubdate data-updated="true">2005-03-31</time>
+<time datetime="2009-03-17T08:20:00+08:00" pubdate data-updated="true">2009-03-17</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
   
 </span>
 
@@ -216,17 +345,78 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://srtm.csi.cgiar.org/PDF/Jarvis4.pdf">http://srtm.csi.cgiar.org/PDF/Jarvis4.pdf</a></p>
+  <div class="entry-content"><p>白鸦在他的<a href="http://uicom.net/blog/?p=818">blog</a>上说，日历(calendar)和任务(task, todo)这两样东西为什么要分成两个独立功能，而不能合到一起？ 对此，我是有同感的。</p>
 
-<p>一篇论文，研究SRTM DEM的精度，与GTOPO30 DEM和几种比例的topo图比较。文章很长，没有仔细看，反正关心的是最后的overall conclusions部分。研究表明，3-arc SRTM DEM的精度优于1:25,000以上（如1:50,000和1:100,000）的topo图，不如1:25,000以下（如1:10,000）的topo图。看来，我们已经可以心满意足了:)</p>
+<p>在我的日常事务管理流程中，会将所有要做的事情都记录在todo list中，然后每天会做时间规划，根据todo list里面任务的优先级、due date决定当天需要做的事情，并且在日历中计划出处理这些事情的时间。当然，如果是会议请求，outlook就已经自动把它放在日历里面了。事情完成后，到todo list中将相应任务设置为completed。实际的执行过程中，时间安排可能会做出改变，我把日历里的项目调整为实际耗用的时间。这样，事务的管理、时间安排、时间耗用的跟踪都在todo list和日历这两个系统中完成了。</p>
 
-<p><strong><a href="http://srtm.csi.cgiar.org">CGIAR-CSI</a></strong>（空间信息联盟）网站上可以下载修补了空洞的SRTM-3数据。</p>
+<p>但是，分为两个系统，还是有麻烦之处：我必须同时查看todo list和日历，才能进行时间的安排；需要将todo list里面已经存在的任务手工填写到日历中。实际上，可以认为任务和日历中的事件(event)本质上是相同的东西：都是需要完成的一些事情。任务安排了具体时间之后就变成了日历中的事件。如果要将两者合并，属性上可以做这样一些设计：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>统一后的属性</th>
+      <th>原Todo中的属性</th>
+      <th>原Calendar中的属性</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Subject / Description</td>
+      <td>Subject / Description</td>
+      <td>Subject / Description</td>
+    </tr>
+    <tr>
+      <td>Due date</td>
+      <td>Due date</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Start date</td>
+      <td>Start date</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Complete status</td>
+      <td>Complete status</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Estimation</td>
+      <td>Estimation</td>
+      <td>作为缺省的duration</td>
+    </tr>
+    <tr>
+      <td>Repeat</td>
+      <td>Repeat</td>
+      <td>Repeat</td>
+    </tr>
+    <tr>
+      <td>Start time / End time</td>
+      <td>Start time / End time</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Where</td>
+      <td>Where (不是所有todo软件都有此属性)</td>
+      <td>Where</td>
+    </tr>
+    <tr>
+      <td>Priority</td>
+      <td>Priority</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>还有其他的一些属性就不一一列出了，但已经可见两者其实大部分都是重叠的。</p>
+
+<p>两者合并后，在展现上，能够将一天里已经安排好具体时间的事件，和没有安排具体时间，但是需要在这天内做（根据Start date和Due date）的任务显示在同一界面上，什么时候该做什么就一目了然了。在操作上，将一个任务拖放到日历中，或者输入开始结束时间，就能为任务安排计划的执行时间，并且显示在日历中。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2005/03/31/SRTM-/#disqus_thread">Comments</a>
+        <a href="/blog/2009/03/17/Why-can-t-together/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -238,7 +428,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2005/03/13/Our-earth-what-can-hold-how-many-people-/">我们的地球，到底能容纳多少人？</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/03/17/How-to-solve-the-conflict/">如何解决冲突</a></h1>
     
     
       <p class="meta">
@@ -254,13 +444,15 @@
   
 
 
-<time datetime="2005-03-13T07:28:00+08:00" pubdate data-updated="true">2005-03-13</time>
+
+  
+<time datetime="2009-03-17T05:57:00+08:00" pubdate data-updated="true">2009-03-17</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+    <a class='tag' href='/blog/tags/personaldevelopment/'>PersonalDevelopment</a>
   
 </span>
 
@@ -271,21 +463,53 @@
   </header>
 
 
-  <div class="entry-content"><p>今天看香港电台的一个节目，有关河流的生态环境的，提到一个例子，泰国一条河流，下游的耕地是依靠河水灌溉的，可是自从上游山区的居民将山坡的林地开垦种植荔枝树后，引走了大量的河水，下游就没有足够的水量灌溉耕地了。为了争夺水资源，上下游的居民发生了冲突，后来在环保人士的协调下，双方进行对话商议水资源的利用，上游居民换了口径细一点的引水管，避免了水的浪费，保证了有足够的水供给下游。一时的矛盾解决了，但后来河流中游兴建起一个个度假村，这些度假村更是大肆抽取河水，随着旅游业的发展，预期会兴建更多的旅游设施，这些旅游设施将会大量耗用水资源和影响水质，下游又出现缺水。本来流域的水资源争夺已经够严重的了，政府又要在河流上兴建水坝，在他们看来，建水坝可以方便灌溉、发电、防洪、发展淡水养殖，好处很多，但是对于水坝会给流域环境生态平衡带来的破坏，对水资源消耗和分配带来的影响却视而不见。</p>
+  <div class="entry-content"><p>今天参加了一个名为《有效率的会议管理》的培训课程，其中关于如何解决冲突的问题，比较有意义，记录下来。</p>
 
-<p>看完节目，想起最近《中国国家地理》杂志的一个河流专辑，里面说到河流的生态系统随着人类经济活动而遭到破坏，使得河流逐渐失去其功能，最终带给人类的是种种恶果。</p>
+<p>面临冲突时，一般人有以下几种行为反应的模式：</p>
 
-<p>从这些想开去，我们不断的面对着经济发展、经济利益与自然环境的冲突，例如水利工程是否该上马，是否可以开垦更多的经济用地，工业带来的污染等等。持不同立场者，都有自己的道理，虽然环保主义者从保护自然环境的角度出发，总是希望对自然带来影响的人类活动越少越好，但是想想某些贫困地区的处境，他们希望经济改善的要求是迫切的，如果只是单单否定了一个方案，而又没有提出合适的替代方案，反对声音的影响力自然是大打折扣。</p>
+<ul>
+  <li>回避型：回避问题，避免与对方发生冲突。但是这并不能解决问题，因为并不接受对方的观点，只是将问题拖延。</li>
+  <li>竞争型：竭力坚持自己的立场和观点，力图说服对方。</li>
+  <li>迁就型：放弃自己的立场，迁就对方的意见。与回避的区别在于，迁就是接受对方的观点。</li>
+  <li>妥协型：求同存异，力求寻找双方观点中一致之处，得到折中的解决方案，而对于不一致的地方双方共同让步。</li>
+  <li>协作型：开诚布公的阐述自己的观点和担忧的同时，也用心聆听对方的观点，同时考虑自己和对方关切的全部事情；力图通过共同探讨来解决双方的差异，通过合作得到满足各方意愿的解决方法。</li>
+</ul>
 
-<p>上升一个层面来考虑，应该还是这个自然环境的承托能力的问题。想想我们的先民，他们与自然和谐相处，并没有太多的冲突。至今的一些较为原始的部落，他们依然有着保持人与自然的和谐关系的一套准则。而当今，随着人口的急速增长，经济的迅猛发展，自然环境也在不断的恶化。当代人类社会的经济发展进步，几乎都是来自于对自然资源的预支。例如一条河流的水量，它最多也就是那么多：上游灌溉耗用多了，下游的水量就会少；生活用水、工业用水多了，灌溉用水就少。无论资源怎么分配，它能支承的人口数量、经济总量都是有一个限额的。而且这个限额的最大值还是要在分配、使用得当的前提之下，而实际上自然资源的分配使用要得当可是难之又难，人们总是会为了局部、短期利益，或者无知妄为干出很多蠢事。</p>
+<p>行为模式没有绝对的好坏之分，但在不同场合下选择不同的行为模式会更合适。将事情的重要性与冲突双方人际关系的重要性作为坐标轴，可以将这5种行为模式的适合情形放在不同的区域。例如，对于工作上的事情，往往重要性比较高，应该采取协作，妥协，竞争几种行为模式；对于家庭的问题，人际关系的保持更加重要，应该采取协作，妥协，迁就几种行为模式。从图中可以看出，协作是最理想的行为模式，如果能够通过协作而解决问题，结果往往可以达到双赢；而回避这种行为模式通常都是需要避免的，因为事情不重要人际关系也不重要的情况实际上不多。(我想到网上交流时，也许可以选择回避型的行为模式，看网上的骂架有多少是有意义的？)</p>
 
-<p>我们的地球，到底能容纳多少人？能支撑多大的经济总量？</p>
+<p><a href="http://www.flickr.com/photos/leoliang/4897373666/"><img src="http://farm5.static.flickr.com/4140/4897373666_2c531317eb_z.jpg" alt="conflict" /></a></p>
+
+<p>每个人通常会同时具备多种行为模式，但以其中的一种或几种占优势。例如有人遇到冲突总是很强势，一般会表现出竞争型模式，有些人面临冲突会倾向于妥协或迁就。虽然有上面的适合情形的分析，但冲突发生时，人们往往会以固有的优势模式来做出反应。</p>
+
+<p>对于领导人才，最理想的模式是”协作-妥协-竞争”，最长于通过协作方式来解决问题，如果协作不能生效，转而寻找妥协的解决方案，依然未果则采取竞争性行为模式，强势压倒对方。</p>
+
+<p>要以协作的方式解决冲突，在冲突发生时就需要停下来问问自己：</p>
+
+<ul>
+  <li>Why is he/she acting like this way?</li>
+  <li>What are our common interests?</li>
+  <li>What would be the consequences if we come to an agreement?</li>
+</ul>
+
+<p>其实关键就在于尽可能寻找一个满足双方interest的双赢的方案。</p>
+
+<p>另外，协作型的人在冲突发生时往往会充当一个有耐心的教育者。</p>
+
+<p>根据测试的结果，我最强的模式是竞争型，然后表现出一定的协作型和回避型，而迁就和妥协就很弱。有些同事对我是竞争型的感到有点奇怪，确实，我很多时候表现得都不强势。自己分析了一下，我如果在对自己的观点十分有把握的时候，我会非常的坚持自己的观点，丝毫都不让步。但是，我对自己的观点的把握不够大的时候，就不是这样了，我希望自己坚持的东西是100%正确的。特别是在我不熟悉的领域，会没有什么观点。采取竞争型的行为模式，虽然过去的经验中大多数最终都证明我是正确的，但这样会对人际关系带来一定的影响。</p>
+
+<p>分析下来，自己需要在这些方面做出改进：</p>
+
+<ol>
+  <li>多尝试使用协作的方式解决问题，提高这方面的能力。主要是要倾听对方的观点，了解对方观点背后所关切的东西，通过换位思考来寻找对双方都有利的解决方案。</li>
+  <li>在事情的重要性不是那么高的时候，可以妥协，得到折中的解决方法，而不一定非要对方完全接受自己的观点。</li>
+  <li>即使在没有十足把握的情况下，也应该积极的表达出自己的观点。自己不一定完全正确，但这时候对方往往也不见得就正确。这样才有助于共同找到最优的解决方案。</li>
+</ol>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2005/03/13/Our-earth-what-can-hold-how-many-people-/#disqus_thread">Comments</a>
+        <a href="/blog/2009/03/17/How-to-solve-the-conflict/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -297,7 +521,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2005/03/11/Vision-of-the-transportation/">幻想中的交通工具</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/03/07/The-subway-security-know-more-D/">地铁安全知多D</a></h1>
     
     
       <p class="meta">
@@ -313,60 +537,7 @@
   
 
 
-<time datetime="2005-03-11T22:00:00+08:00" pubdate data-updated="true">2005-03-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Dolphinie 在她的blog<a href="http://dolphinie.blogbus.com/logs/2005/03/1052765.html">想发明的东西</a>中提到了对未来交通工具的设想，其实我也经常会有些奇怪想法:)</p>
-
-<p>我幻想中的交通工具应该是公共的，独占使用的，端到端的传输，像package在网络上传输一样。出门坐上一个小座舱，座舱在某种轨道上运行，然后经过一些交换节点，最终到达你要去的目的地。不像固定的公交路线，不用转车；不会因为私车太多而引起停车难。不过，交换节点的效率是个大问题，座舱的靠站也是问题。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/03/11/Vision-of-the-transportation/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/03/07/CashFlow-202-e-game/">CashFlow 202 E-game</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-03-07T17:14:00+08:00" pubdate data-updated="true">2005-03-07</time>
+<time datetime="2009-03-07T21:12:00+08:00" pubdate data-updated="true">2009-03-07</time>
         
          | 
 
@@ -383,449 +554,46 @@
   </header>
 
 
-  <div class="entry-content"><p>现金流游戏是《穷爸爸富爸爸》的作者推出的一个游戏，学习理财观念，寓教于乐。以前跟<a href="http://flyisland.blogbus.com/">flyisland</a>玩过一次，纸牌的，挺有意思的，一直都想再玩一下。看了<a href="http://rene.blogbus.com/">rene的blog</a>，知道已经有可下载的电子版游戏，昨天下载了一个来玩。</p>
+  <div class="entry-content"><p>今天发现广州地铁在站内广告牌上宣传地铁安全知识，介绍了在危急情况下如何撤离。广州地铁通车这么多年了，我还是第一次看到这方面的信息。重视安全知识的宣传，是件好事。</p>
 
-<p>试玩了一盘，还不错，比纸牌的方便多了，玩纸牌最麻烦就是每轮都要交钱和找钱（代币），若没有专门的玩家做“银行家”角色就更加麻烦了。不过，这毕竟不是纯粹的游戏，如果对理财没有什么兴趣的话，玩久了就会觉得闷。</p>
+<p>在地铁列车在隧道内发生事故，特别是火灾之类的，乘客如何快速撤离，是件非常重要的事情，因为火势很容易顺着隧道蔓延，高温和有毒气体无法向四周扩散，更是很快就会包围整个隧道。</p>
 
-<p>跟两个电脑对手玩的，大概玩了一个小时我就输了。这次给我的经验是要注意控制风险。开始我在stock option和stock上都赚了些钱，但后来一次买股票期货，我预料它下跌的谁知确狂涨，我没有及时止损，结果股价从60多上涨到90多，被银行强制平仓（以90多元购入我购买的期股份额），结果一下子我的balance就接近0了。屋漏偏逢连夜雨，后面几轮抽到的不是失业就是购买奢侈品，不但要向银行贷款，现金流也变成负数了。</p>
+<p>地铁一、二号线都是在列车两头司机室前端可以打开一个逃生门，乘客需要走到列车尽头通过司机室再由逃生门离开列车下到隧道地面。需要从两头下车，是因为车厢门打开后就是面向着隧道壁，并没有足够空间供乘客行走。列车车厢地板距离轨道有大概半个人的高差，因此一号线列车打开逃生门后会伸出一块板搭到地面上，形成一个斜坡，并且有扶手（如果我没有看错照片）。正常人应该可以跑下去，行动不便的人也应该还是勉强能够走下去。可是二号线列车的设计就有很大问题了，斜坡变成了一个梯子，从照片上看人还要反过身来面向梯子才能下去。在危急情况下时间就是一切，按照这样爬梯子一车乘客需要多少时间才能疏散完？一列车才两个逃生口啊，事故发生时往往只有一个能用（一头发生事故，当然只能从另外一头离开）。而且，行动不便的人很可能就无法自己下去了，正常的乘客也有可能在忙乱之间摔倒，那将是人踩人的惨剧。一号线列车是西门子的，二号线列车是长春客车厂与庞巴迪合作，都不知道是否国产化设计搞出来的问题。</p>
 
-<p>有机会应该还是跟人玩比跟电脑玩好些，昨天在论坛上看到，深圳还专门有cashflow的俱乐部:)</p>
+<p>相比之下，三、四号线就好多了，隧道左侧设置了与车厢地板同高的疏散平台，打开侧面车门就可以沿平台行走。不过平台还是很窄的，一大车的人要沿着这窄窄的平台走到附近的地铁站，要保持好秩序也不容易。要注意的是，特别是四号线，不能跳下轨道。其他的几条已使用地铁线都是架空线供电，但四号线是<a href="http://zh.wikipedia.org/w/index.php?title=%E7%AC%AC%E4%B8%89%E8%BD%A8%E4%BE%9B%E7%94%B5">第三轨供电</a>，在轮轨的外侧有一条供电轨，可是1500V的电压。</p>
+
+<p>从<a href="http://news.dayoo.com/gov/200902/26/36198_5370659.htm">新闻</a>上看，即将开通的五号线也会安装疏散平台。一、二号线估计是因为隧道没有预留宽度，所以无法安装。</p>
+
+<p>顺便show几张照片，是前段时间去参观海瑞克隧道设备公司时拍的，广州地铁的大部分隧道盾构工程所用的盾构机都是由海瑞克提供的。</p>
+
+<p>盾构机前部盾体的结构图：  </p>
+
+<p><a href="http://www.bababian.com/phoinfo/43A01E7DAE866663E26E1BC60D9320BBDT"><img src="http://photo1.bababian.com/upload13/20090307/43A01E7DAE866663E26E1BC60D9320BB.jpg" alt="" /></a></p>
+
+<p>整个盾构机像火车一样很长，一节节台车组成。车间里这台盾构机才刚开始组装，提供给云南的一个水利工程用的，工程师介绍说共有三十多节：</p>
+
+<p><a href="http://www.bababian.com/phoinfo/7E7CF1BB8624098EA74350F864E84C60DT"><img src="http://photo1.bababian.com/upload13/20090307/7E7CF1BB8624098EA74350F864E84C60.jpg" alt="" /></a></p>
+
+<p>准备组装的刀盘驱动部分：</p>
+
+<p><a href="http://www.bababian.com/phoinfo/E1B146EC1B4A66CEE70F6499AF065967DT"><img src="http://photo1.bababian.com/upload13/20090307/E1B146EC1B4A66CEE70F6499AF065967.jpg" alt="" /></a></p>
+
+<p>左面是回收回来的旧滚刀，右面是展台上的滚刀，和适合不同地质条件的刀体。岩石就是靠这些滚刀压碎的：</p>
+
+<p><a href="http://www.bababian.com/phoinfo/F187EB3304F1CAF4B64AFAE6BA8C9898DT"><img src="http://photo1.bababian.com/upload13/20090307/F187EB3304F1CAF4B64AFAE6BA8C9898.jpg" alt="" /></a></p>
+
+<p>我参观的时候厂房里没有组装好的机器，从网上找来两张照片。上图看到的是盾构机的前部，红色的刀盘，上面镶嵌的黑色的就是刀具。从照片看似乎就是在我参观的那个车间。下图是一台硬岩掘进机的侧面。</p>
+
+<p><a href="http://www.bababian.com/phoinfo/90C173B6332E72DF0433F1567DA90E67DT"><img src="http://photo1.bababian.com/upload13/20090307/90C173B6332E72DF0433F1567DA90E67.jpg" alt="" /></a></p>
+
+<p><a href="http://www.bababian.com/phoinfo/7AEFC3A647EAF99A3FF7EBE654DE9C27DT"><img src="http://photo1.bababian.com/upload13/20090307/7AEFC3A647EAF99A3FF7EBE654DE9C27.jpg" alt="" /></a></p>
+
 </div>
   
   
   
     <footer>
-        <a href="/blog/2005/03/07/CashFlow-202-e-game/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/03/04/15th-Jolt-Awards-finalists/">15th Jolt Awards Finalists</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-03-04T17:02:00+08:00" pubdate data-updated="true">2005-03-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Keep tracking the trend in the realm of software development, know what’s the leading product and technology. Let’s read the finalists list of the Jolt Award.</p>
-
-<p><strong>15th Annual <em>Software Development</em><br />
-Jolt Product Excellence Awards</strong></p>
-
-<p><strong>Finalists</strong></p>
-
-<p><strong>Books: General</strong></p>
-
-<ul>
-  <li><em>Agile Project Management: Creating Innovative Products</em> by Jim Highsmith (Addison-Wesley Professional) </li>
-  <li><em>Crystal Clear: A Human-Powered Methodology for Small Teams</em> by Alistair Cockburn (Addison-Wesley Professional) </li>
-  <li><em>Exploiting Software: How to Break Code</em> by Greg Hoglund and Gary McGraw (Addison-Wesley Professional ) </li>
-  <li><em>Head First Design Patterns</em> by Elisabeth Freeman, Eric Freeman, Bert Bates and Kathy Sierra (O’Reilly) </li>
-  <li><em>Hiring the Best Knowledge Workers, Techies &amp; Nerds: The Secrets &amp; Science of Hiring Technical People</em> by Johanna Rothman and Gerald M. Weinberg (Dorset House) </li>
-  <li><em>Joel on Software</em> by Joel Spolsky (Apress) </li>
-  <li><em>Refactoring to Patterns</em> by Joshua Kerievsky (Addison-Wesley Professional) </li>
-  <li><em>Software Factories: Assembling Applications with Patterns, Models, Frameworks and Tools</em> by Jack Greenfield, Keith Short, Steve Cook, Stuart Kent, John Crupi (Wiley)</li>
-</ul>
-
-<p><strong>Books: Technical</strong></p>
-
-<ul>
-  <li><em>Better, Faster, Lighter Java</em> by Bruce A. Tate and Justin Gehtland (O’Reilly) </li>
-  <li><em>C++ Coding Standards: 101 Rules, Guidelines, and Best Practices</em> by Herb Sutter and Andrei Alexandrescu (Addison-Wesley Professional ) </li>
-  <li><em>Head First Servlets &amp; JSP</em> by Bert Bates, Kathy Sierra and Bryan Basham (O’Reilly) </li>
-  <li><em>Hibernate: A Developer’s Notebook</em> by James Elliott (O’Reilly) </li>
-  <li><em>Java Developer’s Guide to Eclipse, Second Edition</em> by Jim D’Anjou, Scott Fairbrother, Dan Kehn, John Kellerman, Pat McCarthy (Addison-Wesley Professional) </li>
-  <li><em>Mono: A Developer’s Notebook</em> by Edd Dumbill and Niel M. Bornstein (O’Reilly) </li>
-  <li><em>Perl Medic: Transforming Legacy Code</em> by Peter J. Scott (Addison-Wesley Professional) </li>
-  <li><em>Physically Based Rendering: Theory to Implementation (The Interactive 3d Technology Series)</em> by Matt Pharr and Greg Humphreys (Morgan Kaufmann)</li>
-</ul>
-
-<p><strong>Business Integration and Data Tools</strong></p>
-
-<ul>
-  <li>Compiere 5.1 (Compiere/open source) </li>
-  <li>DT/Studio 2.3 (Embarcadero Technologies) </li>
-  <li>EnterpriseTenFold (TenFold) </li>
-  <li>ILOG Rules for .NET (ILOG) </li>
-  <li>MapForce 2005 Enterprise Edition (Altova) </li>
-  <li>sforce 5.0 (salesforce.com) </li>
-  <li>Speech Server (Microsoft) </li>
-  <li>Toad for Oracle8.0 (Quest Software)</li>
-</ul>
-
-<p><strong>Change and Configuration Management Tools</strong></p>
-
-<ul>
-  <li>AccuRev 3.5 (AccuRev) </li>
-  <li>CodeBeamer 3.5 (Intland Software) </li>
-  <li>Dimensions 9.0 (Serena Software) </li>
-  <li>Perforce SCM (Perforce) </li>
-  <li>SourceForge Enterprise Edition 4.2 (VA Software) </li>
-  <li>Subversion 2004 (CollabNet) </li>
-</ul>
-
-<p><strong>Design Tools</strong></p>
-
-<ul>
-  <li>MagicDraw UML 9.0 (No Magic) </li>
-  <li>MetaEdit+ 4.0 (MetaCase) </li>
-  <li>Rational Software Architect (IBM) </li>
-  <li>Smart Development Environment 2.0 (Visual Paradigm International) </li>
-  <li>SmartDraw 2.0 (SmartDraw.com) </li>
-  <li>Together Designer 2005 (Borland) </li>
-  <li>Visual UML 4.1 (Visual Object Modelers) </li>
-  <li>WayPointer Highlighter 4.0 (Jaczone AB) </li>
-</ul>
-
-<p><strong>Languages and Development Environments</strong></p>
-
-<ul>
-  <li>Borland Delphi 2005 (Borland) </li>
-  <li>CodeRush 1.1 for Visual Studio (Developer Express) </li>
-  <li>Eclipse 3.0 (Eclipse Foundation) </li>
-  <li>IntelliJ IDEA4.5 (JetBrains) </li>
-  <li>JBoss AOP 1.0 (JBoss) </li>
-  <li>Python2.4 (Python.org) </li>
-  <li>REALbasic 5.5 for Windows Professional Edition (REAL Software) </li>
-  <li>Sun Java Studio Enterprise 7 (Sun Microsystems)</li>
-</ul>
-
-<p><strong>Libraries, Frameworks and Components</strong></p>
-
-<ul>
-  <li>Big Faceless Java PDF Library 2.0 (Big Faceless Organization) </li>
-  <li>ComponentOne Studio Enterprise 4.0 (ComponentOne) </li>
-  <li>Hibernate 2.1 (JBoss) </li>
-  <li>ImageGear Professional 14 (AccuSoft) </li>
-  <li>LEIF 2.2 (Rogue Wave) </li>
-  <li>Sun Java 2 Platform Standard Edition 5.0 (Sun Microsystems) </li>
-  <li>Xtreme Toolkit 9.51 Professional Edition (Codejock) </li>
-</ul>
-
-<p><strong>Management Tools</strong></p>
-
-<ul>
-  <li>Active! Focus 2.0 (Xapware Technologies) </li>
-  <li>Autotask 10.0 (Autotask) </li>
-  <li>CaliberRM2005 (Borland) </li>
-  <li>Cost Xpert 3.3 (Cost Xpert Group) </li>
-  <li>Rational Portfolio Manager (IBM) </li>
-  <li>Primavera IT Project Office 4.1 (Primavera Systems) </li>
-  <li>SpeeDEV 4.0 - LME (Lifecycle Management Enterprise) (SpeeDEV) </li>
-  <li>V1: Scrum1.5 (VersionOne)</li>
-</ul>
-
-<p><strong>Mobile Development Tools</strong></p>
-
-<ul>
-  <li>CodeWarrior for Symbian 3.0 Professional (Nokia) </li>
-  <li>ComponentOne 4.0 Studio Enterprise (ComponentOne) </li>
-  <li>Crossfire 5.5 (AppForge) </li>
-  <li>Flash Lite 1.1 (Macromedia) </li>
-  <li>J2ME Wireless Toolkit 2.2 (Sun Microsystems)</li>
-</ul>
-
-<p><strong>Security Tools</strong></p>
-
-<ul>
-  <li>Aladdin eSafe4 (Aladdin Knowledge Systems) </li>
-  <li>Aladdin eToken (Aladdin Knowledge Systems) </li>
-  <li>CounterPoint 1.0 (Mirage Networks) </li>
-  <li>Source Code Analysis 3.0 (Fortify Software) </li>
-  <li>Internet Security &amp; Acceleration (ISA) Server2004 (Microsoft Corporation) </li>
-  <li>POPFile .22.2 (The POPFile Project; open source) </li>
-</ul>
-
-<p><strong>Test: Automated Test Tools</strong></p>
-
-<ul>
-  <li>Agitar Agitator and Dashboard 2.0 (Agitar) </li>
-  <li>Eclipse Test &amp; Performance Tools Platform (TPTP) and Testing Tool 3.0 (the Eclipse Foundation) </li>
-  <li>Jmeter 2.0 (The Apache Foundation; open source) </li>
-  <li>LISA 2.5 (iTKO Inc.) </li>
-  <li>Parasoft Jtest 5.1 (Parasoft) </li>
-  <li>QA Wizard 2.4(Seapine) </li>
-  <li>TestComplete 3.0 (AutomatedQA)</li>
-</ul>
-
-<p><strong>Test – Defect Tracking Tools</strong></p>
-
-<ul>
-  <li>Census 6.0 (MetaQuest Software) </li>
-  <li>FogBugz 3.1 (Fog Creek Software) </li>
-  <li>JIRA 3.0 (Atlassian Software Systems) </li>
-  <li>OnTime 2004 for Web and Windows (Axosoft) </li>
-  <li>PowerTrack 2004 Add-In for Visual Studio (Axosoft) </li>
-  <li>TestTrack Pro 7.0 (Seapine) </li>
-</ul>
-
-<p><strong>Utilities</strong></p>
-
-<ul>
-  <li>AppExpress 2.5 (Endeavors Technology) </li>
-  <li>Captivate 2004 (Macromedia) </li>
-  <li>devAdvantage 2.1 (Anticipating Minds) </li>
-  <li>InstallShield 10.5 (Macrovision) </li>
-  <li>Omea Pro 1.0 (JetBrains) </li>
-  <li>Quest JProbe 5.2 (Quest Software) </li>
-  <li>Windows Installer XML 2.0 (WiX) (Microsoft) </li>
-</ul>
-
-<p><strong>Web Development Tools</strong></p>
-
-<ul>
-  <li>CollabNet Enterprise Edition (CollabNet) </li>
-  <li>Contribute 3.0 (Macromedia) </li>
-  <li>FlexWiki 1.8 (Microsoft Shared Source Initiative) </li>
-  <li>Macromedia Flex 1.5 (Macromedia) </li>
-  <li>NitroX 2.0 (M7 Corporation) </li>
-  <li>Sun Java Studio Creator (Sun Microsystems) </li>
-  <li>Tomcat 5.0 (The Apache Jakarta Project and leading Tomcat contributor JBoss) </li>
-  <li>Zend Studio 4.0 (Zend Technologies)</li>
-</ul>
-
-<p><strong>Websites and Developer Networks</strong></p>
-
-<ul>
-  <li>Agile Modeling Home Page (Ambysoft Inc.) </li>
-  <li>developer.* (DeveloperDotStar.com) (Daniel Read) </li>
-  <li>eBay Developers Program (eBay) </li>
-  <li>gantthead.com (gantthead.com) </li>
-  <li>IBM developerWorks (IBM) </li>
-  <li>Java.net (Sun Microsystems) </li>
-  <li>The O’Reilly Network (O’Reilly)</li>
-</ul>
-
-<p><em>source: _<a href="http://www.sdmagazine.com/jolts/15th_jolt_finalists.html">_http://www.sdmagazine.com/jolts/15th_jolt_finalists.html_</a></em> _</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/03/04/15th-Jolt-Awards-finalists/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/03/02/The-pearl-river-delta-shortage-regional-economic-outlook-is-not-optimistic-/">珠三角民工荒，区域经济前景不容乐观？</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-03-02T17:14:00+08:00" pubdate data-updated="true">2005-03-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近来珠三角民工短缺的消息不断见于报端，特别是春节过后，没有再象往年一样出现南下民工大潮，许多企业都招不到工。虽然一些政府部门不时出来解释，珠三角并没有民工荒，只是结构性不均而已，只要工资给得高的企业不愁招不到工。这显然是废话，谁不知道钱多了人自然会来，明显的事实就是本区域内的企业对其所需层次劳工的吸引力不足，造成劳工流向其他地区。这不是个别个体的问题，在宏观上出现这样的情况，显然是经济出现问题了。希望那只是政府部门的公关和宣传的说法而已，如果他们真的是抱着这样的态度，而不积极应对，就更加堪忧了。</p>
-
-<p>珠三角的产业结构依然是以加工制造业为主，劳动密集型结构。在这里，无论是制造业还是服务业，都需要大量的外来劳工，珠三角的经济可以说很大程度上是靠外来劳工托起来的。民工荒将影响企业成本，限制企业运作规模，进一步降低竞争力。看来珠三角经济前景直不容乐观。</p>
-
-<p>劳工不足，只是我这些外行人能看到的一个经济的表面现象而已，相信内在隐忧更多。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/03/02/The-pearl-river-delta-shortage-regional-economic-outlook-is-not-optimistic-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/03/01/In-the-life-of-the-physics-problem/">生活中的物理学问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-03-01T21:44:00+08:00" pubdate data-updated="true">2005-03-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近日广州的天气甚为潮湿，家里到处都是湿漉漉的，特别是镜子、砖地板和瓷砖，上面都是一滴滴的水珠，晾的衣服多少天都不会干。烦恼之余，想想怎么可以少受潮湿之苦，很容易就想到的，就是两种方法：加热烘干或者抽湿机抽湿。</p>
-
-<p>抽湿的原理很明显就是将空气中的水分变为液态水收集起来，从而降低空气的湿度。但是，加热的原理又是什么呢？直觉告诉我们，加热会降低空气湿度，例如有暖气的室内会特别干燥。但加热后，水分到哪里去了？假设有一个密闭的系统，里面的空气有一定量的水分，无论怎么加热，系统里面的水都不会减少的，也就是说，加热并不会降低湿度。</p>
-
-<p>实际环境中，房子不是一个密闭系统，它与外界总是有连通的，就算把门窗关闭，也还有缝隙。但是，即使与外界连通，又怎么解释为什么只有水分会被“有选择的”被排出室外呢。外界环境的湿度可以认为是恒定的，如果加热能够让室内变干燥，那应该是水分被排出去了，这样在内外之间就存在湿度差，屋内的湿度比外边低，在这种情况下水分依然能够自动跑出去，似乎也是不可能的。</p>
-
-<p>设计一个实验情景来说明：一根很长的密闭管子，里面充满了含有一定水分的空气，将管子水平放置，一端置于低温环境，一端置于高温环境，（温度均在日常范围，不考虑接近0度和100度这些特殊情况），模拟室外与有暖气室内的温差。并且，管子足够细，以避免在管内出现对流现象。那么，当这个系统最终达到平衡状态后，内部气体的湿度分布将会如何？难道会出现湿度的梯度变化？假如会形成湿度差，又是什么原因造成的？</p>
-
-<p>这肯定是非常简单的物理原理，说不定一个高中生马上就能回答出来。但可惜我的物理知识已经全部忘记了:( </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/03/01/In-the-life-of-the-physics-problem/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/02/25/Choose-RSS-reader/">Choose RSS Reader</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-02-25T03:04:00+08:00" pubdate data-updated="true">2005-02-25</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>RSS readers, which is the best? which one is fit for me?</p>
-
-<ul>
-  <li>RssReader - <a href="http://www.rssreader.com/">http://www.rssreader.com/</a></li>
-  <li>SharpReader - <a href="http://www.sharpreader.net/">http://www.sharpreader.net/</a></li>
-  <li>FeedReader - <a href="http://www.feedreader.com/">http://www.feedreader.com/</a></li>
-  <li>RSSowl - <a href="http://www.rssowl.org/">http://www.rssowl.org/</a></li>
-  <li>GreateNews - <a href="http://www.curiostudio.com/">http://www.curiostudio.com/</a></li>
-  <li>周博通 - <a href="http://home.hnwh.com/">http://home.hnwh.com/</a></li>
-</ul>
-
-<p>I only list the opensource/free software here.</p>
-
-<ul>
-  <li>RSS reader info - <a href="http://blogspace.com/rss/readers">http://blogspace.com/rss/readers</a></li>
-</ul>
-
-<p>Just now I try SharpReader and GreateNews. SharpReader is too simply, not as beautiful as others and occupies too many memory. So it’s out first:) GreateNews looks nice, but it fails to update some feeds, I don’t find the reason yet.</p>
-
-<p>FeedReader, can’t import my OPML file.</p>
-
-<p><em>2005-2-25 9:04 append:</em></p>
-
-<p>……</p>
-
-<p>选来选去，最后还是觉得Firefox浏览器加上Sage扩展用来看RSS最方便。与浏览器一体化是一大优点，另外就是简洁实用。如果选择独立程序，也许我会选择GreateNews。FeedDemon其实是很好的软件，我以前也用它，但这个是商业软件，试用期过了让我不得不另外选择。不管怎么说，有别的选择的时候还是不要用破解软件。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/02/25/Choose-RSS-reader/#disqus_thread">Comments</a>
+        <a href="/blog/2009/03/07/The-subway-security-know-more-D/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -845,8 +613,16 @@ Jolt Product Excellence Awards</strong></p>
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -864,59 +640,52 @@ Jolt Product Excellence Awards</strong></p>
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

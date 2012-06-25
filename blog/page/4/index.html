@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法， &hellip;">
+  <meta name="description" content=" (大图链接) 一年前画的，把它电子化方便日后查看。看看有没有空补充些文字说明吧。 Reference: DZone Refcardz: Apache Maven 2 Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -70,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/">Tiny HTTP Server by Java</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/08/26/Maven-Lifecycle-Concepts/">Maven Lifecycle Concepts</a></h1>
     
     
       <p class="meta">
@@ -86,15 +98,13 @@
   
 
 
-
-  
-<time datetime="2010-12-10T06:56:00+08:00" pubdate data-updated="true">2010-12-10</time>
+<time datetime="2011-08-26T11:51:00+08:00" pubdate data-updated="true">2011-08-26</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/http/'>HTTP</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/build/'>Build</a>, <a class='tag' href='/blog/tags/maven/'>Maven</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -105,22 +115,24 @@
   </header>
 
 
-  <div class="entry-content"><p>前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法，URL必须指向一个文件。我顺手修改了一下，让它可以列出目录，这样用起来更加方便一些。</p>
+  <div class="entry-content"><p><img src="https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png" alt="" /></p>
 
-<p>代码： </p>
+<p>(<a href="https://picasaweb.google.com/lh/photo/D_sskYHvn6CgEruCxN6lMdBJO7epb5AqjiUnD_coqoo?feat=directlink">大图链接</a>)</p>
 
-<p>运行时可带两个参数：port, http root directory。例如:</p>
+<p>一年前画的，把它电子化方便日后查看。看看有没有空补充些文字说明吧。</p>
 
-<pre><code>$JAVA_HOME/bin/java httpServer 8080 /tmp/test-report
-</code></pre>
+<p>Reference:</p>
 
-<p>P.S. 网上搜索一下，我的同事应该是从这里找到这段代码的：<a href="http://www.java2s.com/Code/Java/Tiny-Application/HttpServer.htm">http://www.java2s.com/Code/Java/Tiny-Application/HttpServer.htm</a></p>
+<ul>
+  <li>DZone Refcardz: <a href="http://refcardz.dzone.com/refcardz/apache-maven-2">Apache Maven 2</a></li>
+  <li><a href="http://gavin-chen.iteye.com/blog/336607">Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解</a></li>
+</ul>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/#disqus_thread">Comments</a>
+        <a href="/blog/2011/08/26/Maven-Lifecycle-Concepts/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -132,7 +144,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/11/13/right/">路权</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team/">Maven Artifact Repository Setup for Multiple Sites Team</a></h1>
     
     
       <p class="meta">
@@ -148,13 +160,15 @@
   
 
 
-<time datetime="2010-11-13T07:01:00+08:00" pubdate data-updated="true">2010-11-13</time>
+
+  
+<time datetime="2011-08-08T18:20:00+08:00" pubdate data-updated="true">2011-08-08</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+    <a class='tag' href='/blog/tags/maven/'>Maven</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -165,27 +179,29 @@
   </header>
 
 
-  <div class="entry-content"><p>第一次到荷兰的时候，同行同事就说，荷兰人开车怎么都不让行人啊。住的酒店附近几条路都不宽，也就是广州小区里的道路的宽度，车也不多，路口没有交通灯也没有斑马线，但是我们过马路的时候汽车都不让我们，跟在瑞典受到的礼遇差远了。当时我们就说，看来荷兰人不如瑞典人谦让啊。</p>
+  <div class="entry-content"><p>A typical way of adopting Maven to manage artifacts in an organization is to setup a repository manager locally. The repository manager proxies opensource repositories like Maven central from Internet, and hosts release and snapshot repositories for internal artifacts. It works fine in most cases, but when the team locales geographically in more than one site, and the bandwitdth between the sites is limited, or the artifacts are huge in size, the build performance will decrease, because uploading and downloading artifacts to/from the remove repository takes time.</p>
 
-<p>但后来呆的时间长了，发现也不全是这样，当在斑马线上要过马路时，即使我们习惯的站在路边等待，即使汽车以很快的速度飙过来，大多数司机都会将车停在斑马线前让我们过去。我就想，也许是刚来的时候定论下得太早了，其实多数荷兰司机也让行人的。</p>
+<h2 id="solution-1-pubish-to-master-repository-download-from-local-repository">Solution 1: Pubish to master repository, download from local repository</h2>
 
-<p>抱着这种”在路口过马路时汽车会让行人”的心态，在一些路口又碰了麻烦。住处的附近有个丁字路口，准备右转的车会停在路口前，我经常趁这个机会就过马路，以为他们是故意让我的。但有时我刚要过马路的时候它又起步了。</p>
+<p>Suppose on site A there is already a repository manager A, now site B is setup, what we need is a repository manager on site B that proxies both external repositories and internal repositories. Sonatype Nexus has the capability to aggregate serveral repositories / mirrories and provides download access from a single URL.</p>
 
-<p>后来，我才发现了区别：那个丁字路口虽然用横穿马路的线标示行人自行车横过的路线，但却没有画斑马线。在有斑马线的地方，即使你只是站在路边，多数汽车都会完全停下让你先过；而想在没斑马线的地方过马路就得非常小心，一定要完全没车才能过，汽车不会作丝毫减速避让。这与道路的宽度没有关系，与车辆多少行人多少也没有关系，一切按照标识。习惯了之后就发现这非常好，行人车辆都守规矩，行人不怕被车撞，车辆不担心撞到人，相互都不会影响到对方。</p>
+<p><img src="https://lh6.googleusercontent.com/-kQ4SwY2UV2s/Tj905hhUlJI/AAAAAAAAASc/hj_0Kxt6CQ0/s800/maven-repo-2sites-solution1.png" alt="" /></p>
 
-<p>类似的情况也体现在车辆行驶上。在欧洲，坐车离开城市范围后，公路往往都不宽，甚至只有两车道，不时会有分叉路口或者十字路口，都没有交通灯的，但是司机一路都开得很快，不会在路口前减速，仿佛他从来不担心路口会有车驶出来。仔细观察后发现路口前都会有交通标志，用粗线和细线标出交会的道路，我们走的路是粗线，司机是不会减速的，但如果我们走的路是细线，司机就会在路口前减速或者停下来。</p>
+<p>By this solution, pom.xml of existing projects aren’t required to be modified. Simply add a <mirror> section with <mirrorof> value set to * into Maven setting.xml for all developers who work in site B. But the publishing of artifacts from site B is still cross sites over slow connection, so mvn deploy is not fully optimized though the download of dependencies is speeded up by cache on local repository manager.</mirrorof></mirror></p>
 
-<p>在这里面有一个路权（Right of way）的概念非常重要，路权是使用道路的权利。斑马线标志着在这个区域中行人拥有比车辆优先的路权，因此车辆要停下来等行人通行；而在没有斑马线的地方，行人过马路不能影响汽车的通行，因为车辆有优先路权（对此，不同地方的交通法规可能不一样）。在没有交通灯的路口，主要道路上的车辆有优先路权，因此岔道上的车只能在完全不会影响主要道路上车辆通行的时候才能驶出来。有交通灯的路口，绿灯表示得到路权。在路口，直行车辆比左转车辆路权优先，因此左转车不能强行挡住对面来车而左转。</p>
+<h2 id="solution-2-publish-to-local-repository-cross-caching">Solution 2: Publish to local repository, cross caching</h2>
 
-<p>在发达国家（也包括香港、澳门），虽然多数道路都狭窄，平交路口密集且大都不设交通灯，交通依然相当顺畅，道路通行效率很高。这其实并不是什么礼让不礼让的问题，关键是明确每个参与者所拥有的权利，大家相互尊重对方的权利，依照规则行事。我没有考车牌，不知道中国的交通法规里有没有与西方国家相同的路权的概念，不过就算有，在每个人的心中和实际执行中都是不存在的。</p>
+<p>This solution comes from <a href="http://www.sonatype.com/people/2011/07/video-multi-master-configuration-for-nexus/">Sonatype Blog</a>. Artifacts are always publish to repository on local site, each repository is cached by other site’s repository manager.</p>
 
-<p>由这个路权想开，我觉得西方国家发达，其中一个因素是他们能够很好的将社会中各个个体的关系及利益冲突通过权利（right）来明晰、规范和协调，保障了整个社会运作的效率。而中国人向来缺乏权利意识，也没有对权利的尊重，我们认的只是权力（power）。</p>
+<p><img src="https://lh4.googleusercontent.com/-XJdyMrSafCM/Tj905psGecI/AAAAAAAAASg/lGJsgsjir7I/s800/maven-repo-2sites-solution2.png" alt="" /></p>
+
+<p>This solution looks good if one artifact is owned by one site. But I’m wondering if it works in the situation that both sites publish the same SNAPSHOT artifact to its local repository manager. For example, foo-1.0.0-SNAPSHOT.jar was already deployed on Repository Manger A, and then on Repository Manager B a newer edition of the jar is deployed, how can site A get the later one?</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/11/13/right/#disqus_thread">Comments</a>
+        <a href="/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -197,7 +213,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/">WebLogic在非Resource Adapter里直接使用JCA WorkManager的失败尝试</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/06/26/Determine-priority/">确定优先级</a></h1>
     
     
       <p class="meta">
@@ -213,13 +229,13 @@
   
 
 
-<time datetime="2010-11-02T05:43:00+08:00" pubdate data-updated="true">2010-11-02</time>
+<time datetime="2011-06-26T15:38:00+08:00" pubdate data-updated="true">2011-06-26</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -230,31 +246,128 @@
   </header>
 
 
-  <div class="entry-content"><p>JCA 1.5 规范定义了WorkManager API，能方便的进行任务的(多线程)并行处理。按照JCA规范的原意，WorkManager是仅提供给Resource Adapter使用的，容器会提供WorkManager实例并通过BootstrapContext注入到adapter中。可是，有时在其他场合，例如EJB、Servlet中，也希望能将请求拆分，使用WorkManager并行处理，但JEE规范中并没有提供这样的机制。</p>
+  <div class="entry-content"><p>在我们的工作中，不时需要评估工作任务的优先级：例如下个版本的软件应该加入的功能，又或者对之前工作回顾列出的一大堆改进项目，在一轮头脑风暴之后，发现需要做的事情是如此之多，而能投入的资源显得如此至少，怎么挑选出最有价值的事情来做就成了头痛的事。</p>
 
-<p>WebLogic提供了CommonJ WorkManager API，可用于任意应用中，但这个API不在JEE规范之中，因此GlassFish是不支持的。而且，使用WebLogic CommonJ WorkManager时需要在ejb-jar.xml中加入一个类型为commonj.work.WorkManager的resource reference，这样同一个ejb包就不能在不同application server间通用了，因此我还是希望能找到一种通用的方法。</p>
+<p>过往，我们常做的方法是，召集一个会议，大家一起来为每个任务评分：分别评估出任务的工作量级和重要性（1、2、3… 最重要为1），然后将两者相乘得到一个分数，根据这个分数对任务排序。这种做法是期望能找出重要性比较高，但是又不太难完成的任务。但很不幸，越是重要的任务往往工作量越大—-如果有重要而简单的任务，我们早就把它做了，不需要等到这个会议的召开—-得到的分数差距不大。印象中，我参加过的评估会，都没有得出什么有用的结论，最终做的决策似乎跟评估没有太多的关系。</p>
 
-<p>SpringFramework的org.springframework.jca.work包为GlassFish和JBoss提供了在Resource Adapter外部使用JCA 1.5 WorkManager的简便方法。看了for GlassFish的源代码，发现它其实是调用了GlassFish内部的factory去直接创建WorkManager，那么对GlassFish是否也可以这样做呢？</p>
+<p>你可能会指出，这个评估模型根本就是不对的，工作量和重要性两者相乘得不出有意义的数字。但我们都不够聪明，没有想到一个足够简单而直观的方法。（回过头来看，应该是我们谁都没有花心思去想过。为什么？为什么？为什么？！）</p>
 
-<p>反编译WebLogic的jar包，发现commonj WorkManager和connector WorkManager实际上都是delegate到一个weblogic.work.WorkManager实现的，也就是说在WebLogic里，CommonJ和JCA的WorkManager的底层实现其实都是同样的。接下来找到了weblogic.work.WorkManagerFactory，它有find和findOrCreate方法可返回weblogic.work.WorkManager实例，也许就是可以拿到weblogic-ejb-jar.xml里面定义的weblogic WorkManager。拿到了内部的weblogic.work.WorkManager实例后，再调用weblogic.connector.work.WorkManager的create方法，将这个内部WorkManger包裹到JCA WorkManager中，那么我们的应用就可以使用这个JCA WorkManager了，通过Spring的WorkManagerTaskExecutor来很方便的调度任务，上层的逻辑就可以做到与应用服务器无关。看起来很美。</p>
+<p>今天读”<a href="http://book.douban.com/subject/4163938/">More Joel on Software</a>“，第36节介绍了他们用的方法，值得借鉴。</p>
 
-<p><a href="http://www.flickr.com/photos/leoliang/5137622842/"><img src="http://farm2.static.flickr.com/1208/5137622842_a9b4e5fda8_b.jpg" alt="WLS-WorkManager" /></a></p>
+<p>首先评估每项任务的工作量（成本），得到一个数字，其实这个数字是什么单位无所谓，story point也好，$也好，在例子里用的是$，金额。</p>
 
-<p>可是结果是残酷的。写了一个测试程序，结果是通过这个WorkManagerFactory可以成功的获取到weblogic.work.WorkManager实例，也能够创建出包裹的JCA WorkManager，可是真正要使用它来执行work时，它很坚定的拒绝了，抛出异常信息：Attempt to create Work outside the context of the Connector container。</p>
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>查看代码，发现weblogic.connector.work.WorkManager及WorkImpl内部会寻找相应的RAInstanceManager，并且WorkImpl需要用到rarClassloader，看来它设计上还是与resource adapter相关的。一涉及到classloader，我无心恋战了，算了，就此打住。</p>
+<p>然后规定每人手上只有限量的资金，例如$20，可以用来购买这些功能。每个人根据自己对功能的重要性判断来决定应该为每个功能分配多少钱。例如：我觉得追踪资金到账时间是没有用的功能，一分钱也不分给它；安排软件开发过程很重要，我愿意出两倍的钱；而允许对bug分叉更重要，出4倍的钱；而个性化首页不是那么重要，所以我只愿意出80%的钱。故此，我的资金这样分配：</p>
 
-<p>P.S. 既然说到WorkManager，就推荐一下我的同事写的相关的一篇blog：<a href="http://www.javaeye.com/topic/623825">application server 下的任务异步/并行执行方案</a></p>
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+      <th style="text-align: right">销售额</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+      <td style="text-align: right">$8</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+      <td style="text-align: right">$8</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+      <td style="text-align: right">$0</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+      <td style="text-align: right">$4</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>P.P.S. 我后来采用的解决方案是让build system可以根据需要为不同的 target application server 选择不同的 deployment descriptor 来build相应的artifacts。</p>
+<p>这个过程其实就是一个已经按照成本加权的优先级评估。每个人在评估时已经综合考虑了成本和重要性。</p>
 
-<p>P.P.P.S. 回头再读一下，发现文章里中文英文混杂得很厉害。没办法了，那些专业术语都是看惯英文了，用中文翻译了反而别扭。</p>
+<p>将每个功能从各人手中获得的资金累加起来，再除以成本，就得到一个投资收益率，很明显，投资收益率最高的功能就是应该最优先做的。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+      <th style="text-align: right">总销售额</th>
+      <th style="text-align: right">投资收益率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+      <td style="text-align: right">$45</td>
+      <td style="text-align: right">4.5</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+      <td style="text-align: right">$36</td>
+      <td style="text-align: right">9</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+      <td style="text-align: right">$12</td>
+      <td style="text-align: right">2.4</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+      <td style="text-align: right">$7</td>
+      <td style="text-align: right">7</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下次排任务优先级的时候，我们应该尝试一下这种方法。</p>
+
+<p>P.S. 回头再想一下，这个方法其实跟我们以前用的工作量乘以重要性级别的方法本质上是一样的，但是我们过去用的重要性级别1、2、3、4、5没有定量关系，说不出不同级别之间的重要性相差多少倍，因此相乘出来的数字就没有比较价值了。另外，每人手上持有有限量资金进行分配这种方式更接近我们日常的思维模式，调动起人的直觉，类似于planning game。</p>
+
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/#disqus_thread">Comments</a>
+        <a href="/blog/2011/06/26/Determine-priority/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -266,7 +379,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/09/28/Andriod-TransProxy/">Andriod TransProxy</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/04/10/Drag-and-drop-list-view-on-Android/">Drag and Drop List View on Android</a></h1>
     
     
       <p class="meta">
@@ -282,13 +395,13 @@
   
 
 
-<time datetime="2010-09-28T06:13:00+08:00" pubdate data-updated="true">2010-09-28</time>
+<time datetime="2011-04-10T06:05:00+08:00" pubdate data-updated="true">2011-04-10</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -299,18 +412,31 @@
   </header>
 
 
-  <div class="entry-content"><p>关注我之前写的Android翻墙系列文章[<a href="http://good-good-study.appspot.com/blog/posts/20001">1</a>,<a href="http://good-good-study.appspot.com/blog/posts/25001">2</a>,<a href="http://good-good-study.appspot.com/blog/posts/39001">3</a>]的朋友请留意一下这个应用：<a href="http://forum.xda-developers.com/showthread.php?t=766569">TransProxy</a>。这个应用的v3版本集成了HTTP transparent proxy (使用<a href="http://transproxy.sourceforge.net/">Transproxy</a>)、HTTPS/SOCKS redirector (使用<a href="http://darkk.net.ru/redsocks/">redsocks</a>) 、iptables script 并提供了配置、控制的界面。理论上，结合TransProxy和ConnectBot就可以实现Android上通过SSH tunnel翻墙，请参考<a href="http://good-good-study.appspot.com/blog/posts/20001">这里</a>的第二张图片：ConnectBot实现了SSH client，TransProxy提供了transparent socks proxy并且设置iptables。</p>
+  <div class="entry-content"><p>I didn’t expect that implementing a drag and drop list view on Android is so difficult. It took me more than one week to get it work.</p>
 
-<p>不过，我刚刚将TransProxy和ConnectBot配合运行起来试了一下，并没有成功，并且手机又遇到了100% CPU占用的问题，只能手工将ConnectBot kill了。ConnectBot当前最新的snapshot版本都还是没有解决这个<a href="http://code.google.com/p/connectbot/issues/detail?id=299">bug</a>，大家快去给这个bug加星，促使开发者优先解决吧。</p>
+<p>Android SDK doesn’t provide too much support on drag and drop, at least there is no out of box API that can be used till Android 3.0 Honeycomb. It’s said that drag and drop support is improved in Android 3.0 SDK, I didn’t learn it yet because Android 3.0 hasn’t come to mobile device.</p>
 
-<p>鉴于我目前暂时处于肉身翻墙状态，没有积极性去进一步实验了，各位动手试试吧，有结果记得共享出来。另外，目前TransProxy的作者还在相当勤快的改进这个应用，不妨到xda-developers论坛与他交流。  </p>
+<p>At first I looked for open source implementation of drag and drop list view. After searching on Internet I did find some examples and library, e.g. <a href="https://github.com/commonsguy/cwac-touchlist">CWAC TouchListView</a> , they all derives from source code of Android music application. However they don’t fit for my application: First, they require to specify the height of item view in code or in layout file, that also implicitly force all item views in the same height. In my application the list view has two item view types, which differ in height. Even if item views are in same height, I don’t like the way that specifying exact value of height, I perfer to set <code>layout_height</code> to <code>wrap_content</code> and let it automatically calculates the value. Second, by those implementation, on each list item view there must be a “grabber” element. User moves an item by putting finger on the grabber then drag. I want to keep UI of my application as clean as it can, I would like to active item dragging by long press on an item, instead of drag a grabber. So I implement my version of drag and drop list view, the source code is at GitHub: <a href="https://github.com/aleung/tasks365/blob/master/tasks365/src/leoliang/tasks365/DraggableListView.java">DraggableListView</a>. It isn’t perfect yet, still has large room for improvement.</p>
 
+<p>A ListView shows items in a vertically scrolling list. The items can be refered by their position in the list. When there are a lot of items, only portion of them are visible. A visible item view can be retrieved by calling <code>ListView.getChildAt()</code>. Please be noticed that child view index is different to item position. In the code you will find these two values need to be converted between each other.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5603506949/"><img src="http://farm6.static.flickr.com/5267/5603506949_627d31073c.jpg" alt="listview" /></a></p>
+
+<p>Long press on an item is detected by<code>GestureDetector</code>, then a dragging object is created. The dragging object represents on UI by an ImageView, which is a copy of the view of the item to be moved. The dragging object moves on screen following user’s finger. Untill user’s finger leave touch screen, the list items do not change their order, they just expand or shrink to simulate item dragging.</p>
+
+<p>In below diagram, dragging object is in green. Item at position 3 is being dragged in this example. When dragging starts, the view of item 3 shrinks its height to 1 to make it invisible (I didn’t investigate why height should be 1 instead of 0). User sees item 3 is dragged, actually it’s the dragging object – clone of the item 3 view. When dragging object is hovering at a position, the item view at that position expands to make an empty space, so looks like that it is being pushed aside by the dragging object.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5604090272/"><img src="http://farm6.static.flickr.com/5101/5604090272_641594fa57_m.jpg" alt="listview-dnp-1" /></a><a href="http://www.flickr.com/photos/leoliang/5603507715/"><img src="http://farm6.static.flickr.com/5188/5603507715_d47cb49532_m.jpg" alt="listview-dnp-2" /></a></p>
+
+<p>Here is a screenshot of demo:</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5603811095/"><img src="http://farm5.static.flickr.com/4099/5603811095_f2f7c52c79.jpg" alt="DraggableListView" /></a></p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/09/28/Andriod-TransProxy/#disqus_thread">Comments</a>
+        <a href="/blog/2011/04/10/Drag-and-drop-list-view-on-Android/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -322,7 +448,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/">Android手机上使用SSH Tunnel：prototype</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/">我的任务管理工具功能原型已经完成</a></h1>
     
     
       <p class="meta">
@@ -338,15 +464,13 @@
   
 
 
-
-  
-<time datetime="2010-07-31T00:17:00+08:00" pubdate data-updated="true">2010-07-31</time>
+<time datetime="2011-03-24T05:13:00+08:00" pubdate data-updated="true">2011-03-24</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
   
 </span>
 
@@ -357,369 +481,39 @@
   </header>
 
 
-  <div class="entry-content"><p>在上次写下<a href="http://good-good-study.appspot.com/blog/posts/25001">进展</a>之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。</p>
+  <div class="entry-content"><p>在<a href="http://good-good-study.appspot.com/blog/posts/119001">上一篇blog</a>里面列出了我个人对任务管理工具的需求以及对比较热门的工具的分析。由于现有工具没有那款能够满足我的几点主要需求，于是就产生了自己做一个的想法。前几天，功能性原型完成，已经正式用了起来，下一步要做的工作是界面设计和交互设计。</p>
 
-<ol>
-  <li>首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行</li>
-  <li>将transocks_ev放到Android系统中，目录随你喜欢。这里<a href="http://cid-e1c6bc07e3f505a3.office.live.com/self.aspx/.Public/transocks%5E_ev-android.zip">下载</a>已编译的transocks_ev for Android可执行文件，解压后文件的MD5：6a0c3500bcd24ab7b706c8caf34f15ba</li>
-  <li>从Android Market下载ConnectBot，配置好你的ssh帐号，记得设置port forwarding，端口为9050</li>
-  <li>在ConnectBot中连接ssh</li>
-  <li>
-    <p>在shell中运行transocks_ev:  </p>
+<p>目前做的是Android手机应用，web端还没有考虑。一方面是手机几乎不离身，保证了随时可用，另一方面是web端使用现有的服务已经勉强可以满足要求，下面我会说明。</p>
 
-    <pre><code>		transocks_ev -S 127.0.0.1 -s 9050
-</code></pre>
-  </li>
-  <li>
-    <p>在shell中执行iptables命令： </p>
+<p>从功能定位上，主要是受了<a href="http://stayuseful.com/">StayUseful</a>和<a href="http://teuxdeux.com">TeuxDeux</a>的影响，目标是要做成简洁、轻量级的任务列表，强调对任务进行计划安排，专注于当天以及最近几天的任务。</p>
 
-    <pre><code>		iptables -t nat -F 
-iptables -t nat -A OUTPUT -m owner --cmd-owner transocks_ev -j RETURN 
-iptables -t nat -A OUTPUT -m owner --cmd-owner org.connectbot -j RETURN 
-iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-ports 1211 
-iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
-</code></pre>
-  </li>
-  <li>这时所有的HTTP/HTTPS流量都会通过ssh tunnel了，但DNS查询不会，所以依然无法访问被DNS污染的网站</li>
-  <li>断开ConnectBot连接</li>
-  <li>在shell中kill掉transocks_ev进程</li>
-  <li>
-    <p>在shell中执行iptables命令： </p>
+<ul>
+  <li>单日任务列表：在一个页面里列出一天的所有任务。只显示计划在此一天执行的任务，保证专注性。缺省的页面是当天，可快速导航到最近几天。</li>
+  <li>用简单的操作可更改任务的执行日期。</li>
+  <li>过去没有完成的任务自动放到”今天”，要么马上去完成它，要么重新安排执行日期。</li>
+  <li>任务可设置due date，对于有due date的任务，会显示出剩余天数或者过期天数。</li>
+  <li>任务不设优先级，但可以加星。单日任务列表中，任务可以拖放排序。</li>
+  <li>数据与云端同步。</li>
+</ul>
 
-    <pre><code>		iptables -t nat -F 
-</code></pre>
-  </li>
-</ol>
+<p>因为目标要做到数据与云端同步，这自己从零开始实现工作量太大了，所以一开始就计划基于网上现有的服务基础之上开发。最初物色的对象是Google Tasks，但发现Google Tasks尚未开放API，虽然已经有Android应用可以做到与Google Tasks同步，但它们是靠hack Google的网页前端与后端通信接口来实现的，实现起来既麻烦也不可靠。接下来发现Google Calendar是一个更好的选择：</p>
+
+<ul>
+  <li>Android Calendar与云端的Google Calendar之间几乎是实时同步，无论在哪边做修改，几秒钟之后另外一边就能看到变动。</li>
+  <li>Android Calendar提供Provider接口供其他Android应用调用，开发简便，并且Android Calendar是open source的，有问题可以直接看代码。</li>
+  <li>Web端可使用Google Calendar，虽然不能实现我需要的全部功能，但基本的都可以做到。</li>
+  <li>为实现日程表跟任务列表的整合提供了可能。Google Calendar还能与其他系统同步，提高扩展性。</li>
+</ul>
+
+<p>具体做起来其实不难，就是将一些task专有的数据放进Calendar的Event里面。Google Calendar的event数据对象没有供存放扩展数据的字段，我就将task数据用JSON格式放进description里面了。</p>
+
+<p>好了，下一步怎样做出简洁、易用、高效的交互界面才是困难所在。另外，给它起个好名字也很难，有什么建议么？</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/07/30/Swimming-feeling/">游泳感想</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-30T22:49:00+08:00" pubdate data-updated="true">2010-07-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。</p>
-
-<p>首先是想为什么没有音乐听听呢？跑步的时候可以戴着耳机听音乐，游泳也应该可以才对。做防水的播放器和防水的耳机，难度应该不大，说不定已经有这样的产品了，只是没有普及。</p>
-
-<p>第二个想法有意思些。我在海里看过珊瑚，离岸不远的浅水，只要把头沉入水中，就能见到海底犹如大花园一般的珊瑚世界。如果整个游泳池底铺上大显示屏，游泳池也可以变身为虚拟海底世界。五彩斑斓的珊瑚随着水波微微摇曳，鱼群在其中穿梭。假若结合电脑控制的虚拟现实系统，加上感应器，还可让鱼群在你游近时飞快逃开，而海豚就伴在你左右。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/07/30/Swimming-feeling/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws/">松下H540U洗衣机的设计缺陷</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-28T18:35:00+08:00" pubdate data-updated="true">2010-06-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/家电/'>家电</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>家里的松下H540U波轮洗衣机，使用了大概一年半左右开始出现撞桶现象，就是在洗衣的过程中，每次波轮起动（或反转）时，洗衣桶会碰撞到箱体。因为箱体相应位置贴了防撞海绵，摩擦时发出很大很难听的”吱吱”的声音。打开上盖检查过，发现是箱体吊挂系统变形所致，我觉得这属于设计上的缺陷。</p>
-
-<p>如果不清楚波轮洗衣机吊挂系统的结构，可以看看<a href="http://wenku.baidu.com/view/b996ea335a8102d276a22ff5.html">全自动波轮洗衣机培训手册</a>的3.1节。洗衣机的桶体是靠四根吊杆悬挂在箱体的四个角上的，如果吊杆的长度不一致就会造成桶体不平衡。</p>
-
-<p>从照片中可以看出，箱体前面两个角用来悬挂吊杆的角铁都已经变形下沉，而后面的两个角则正常，这样就造成桶体前倾，在洗衣的时候不平衡自然就频频撞击箱体了。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4741375101/"><img src="http://farm5.static.flickr.com/4143/4741375101_8ae3ce01eb.jpg" alt="H540U front-right" /></a> <a href="http://www.flickr.com/photos/leoliang/4741375099/"><img src="http://farm5.static.flickr.com/4093/4741375099_9191b131d3.jpg" alt="H540U front-left" /></a> <a href="http://www.flickr.com/photos/leoliang/4741375103/"><img src="http://farm5.static.flickr.com/4143/4741375103_3675a8e073.jpg" alt="H540U rear-left" /></a></p>
-
-<p>为了外形美观，箱体前面的两条边做成了大圆弧，也许是为了加工方便的缘故，悬挂吊杆的角铁在圆弧部分并没有与箱体接触，是悬空的，起到支撑作用的只有侧面的一部分，由于强度不足在使用一段时间后就变形了。这款洗衣机在最高水位时桶内的重量超过50公斤，平常洗衣就算不满也有30～40公斤。箱体后侧两条边是直角，箱体支持角铁的的长度足够长，就没有发生变形。</p>
-
-<p>如果箱体前边不要做这么大的圆弧，像后面两角一样，就不会有问题；如果圆弧不能放弃，那就应该在圆弧处也翻出一条边，与角铁焊接在一起不让其悬空，不过这样的加工难度会大很多。但无论如何，设计的时候应该要考虑到其强度是否足够支持正常使用负荷，因此我说这是设计的缺陷。</p>
-
-<p>因为箱体只保修一年，出现问题时已经过保了，不能更换。师傅给我的建议是将洗衣机前面两脚垫高，以补偿桶身的倾斜。比较奇怪的是，挂杆的长度居然是无法调节的，不知道是师傅嫌麻烦还是真的不能调。如果不能调，怎么控制生产装配过程出现的误差？</p>
-
-<p>我怀疑其他型号乃止其他厂家的洗衣机都可能会有同样问题—-如果它们的箱体做成大圆弧，选购的时候要留意一下该处的支撑结构。对于H540U，把头伸进桶口处勉强可以看到悬挂角铁，如果看不到或者光线不足，可以用相机拍摄。</p>
-
-<p>我对这款洗衣机的功能还是比较满意的，但是一些非关键性的地方的设计和质量还是有不足。除了这个变形问题，还出现过上盖连接处塑料件断开和进水盒开裂漏水，幸好都属于保修范围更换了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/28/Amazing-I-got-the-geocoin-which-was-sent-to-me-from-Italy-two-years-ago-/">Amazing, I Got the Geocoin Which Was Sent to Me From Italy Two Years Ago!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-28T16:35:00+08:00" pubdate data-updated="true">2010-06-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/geocaching/'>Geocaching</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/leoliang/4741853682/"><img src="http://farm5.static.flickr.com/4121/4741853682_e9e93e2010.jpg" alt="Geocoin ALEUNG 1" /></a></p>
-
-<p>This picture was taken at 18:44 18-Jun-2010, when I picked up the geocoin <a href="http://www.geocaching.com/track/details.aspx?id=1007428">ALEUNG 1</a> from the cache <a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f4f03572-94c5-440a-ae7e-ce1f755a069b">Golden Triangle</a>. The coin has traveled for two and a half years and over 21 thousand kilometers fromVeneto, Italy before it came to Guangzhou, China.</p>
-
-<p>If you don’t know what is Geocaching, please refer to the definition on <a href="http://en.wikipedia.org/wiki/Geocaching">Wikipedia</a>. In simple saying, it’s a game that someone hide something (a cache) and publish the coordinate (latitude and longitude) on Internet and then other players seek it with help of a GPS receiver. <a href="http://en.wikipedia.org/wiki/Geocoin">Geocoin</a> is a special kind of coin each has an unique number that can be traced on geocaching website. Geocaching players pick up a coin from one cache and drop it into another cache, so that the coin can travel from cache to cache, even around the world.</p>
-
-<p>The story began from Oct 2006, Italian geocacher <a href="http://www.geocaching.com/profile/?guid=b160e421-bca1-4b08-9c48-7944b4f019dc">i5fzi</a> came to Guangzhou for the Canton Fair. He contacted me on <a href="http://www.geocaching.com/">geocaching.com</a>.He didn’t know me before, but I was almost the only cacher in Guangzhou at that time. So it was geocaching that make us know each other. He kindly invited me for dinner and I suggested him some caches to find.</p>
-
-<p>After i5fzi came back to Italy, he sent out several geocoins as present to me and Cherrie, who was his translator in Guangzhou. The goal of these coins are to reach my caches in Guangzhou. But unfortunately most of the geocoins were missed in there trip, this one I got is the only survival – I am so lucky to get it.</p>
-
-<p>From this <a href="http://www.geocaching.com/track/map_gm.aspx?ID=1007428">map</a> you can see where the coin has been in. It visited some places in Europe then flied to HongKong, and then held by AirQ for a long time, until it was put in Guangzhou. I also thank AirQ, if AirQ didn’t hold and take it to Guangzhou, I guess this coin would have been lost as its friends. The last hotel the coin slept was KowloonW’s <a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f4f03572-94c5-440a-ae7e-ce1f755a069b">Golden Triangle</a>, but it isn’t shown on the map because not recorded on the website. KowloonW was very nice to keep the coin to avoid loss until I have time to fetch it.</p>
-
-<p>Geocaching is so an amazing game. Thank you, all my friends in this game!</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/28/Amazing-I-got-the-geocoin-which-was-sent-to-me-from-Italy-two-years-ago-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/">时间管理工具的设计：任务计划时间的逐步精确</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-23T23:27:00+08:00" pubdate data-updated="true">2010-06-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>, <a class='tag' href='/blog/tags/idea/'>idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">为什么不能合在一起</a>一文。后来，也发现<a href="http://good-good-study.appspot.com/blog/posts/3212">Outlook 2007已经将两者做了一定程度的整合</a>。</p>
-
-<p>今天又再思考了一下：任务管理就是一个逐步细化的过程，包括执行时间的具体化和操作步骤的细化（拆分子任务）。理想的工具应该对整个过程都提供支持。</p>
-
-<p>当新增一个任务时，外界往往并没有指定执行任务的具体时间，可能会有一个deadline，只要在deadline之前完成都是可以的，这时就是传统时间管理工具说称的 task。为了完成此任务，需要安排一个具体的时间段去执行它，在传统的时间管理工具上，就是要为此任务创建一个日程安排 (event)。但在实际操作中，你往往不能一下子就确定在哪个明确的时间去执行任务，而是先确定一个大概的时间范围，再逐步的精确。目前我还没有见到哪个工具能够为这个过程提供支持。</p>
-
-<p>我设想的时间管理系统应该用一个统一的模型来存储任务与日程，因为它们本质上是同样的东西。任务有一个属性，是计划执行的时间。计划执行时间可以为空，说明还没有为此任务指定执行时间。计划执行时间不一定是精确时间类型，可以有不同精度级别的时间类型，包括：年 / 季度 / 月份 / 周 / 天 / 时间段 / 时 / 分。随着计划的逐步细化，赋予任务计划执行时间越来越高精度的时间。</p>
-
-<p>例如，我和Bob很久没见，想一起吃午饭聚聚旧，于是电话联络。Bob刚好出差了，要下个月中旬才回来，所以我们初定时间在下个月的第四周（Week 29），我在时间管理系统中添加了 Dinner with Bob 这一项，并设计划时间为 W29。到了week 28的周末，我review任务时看到了这项，就跟Bob再确认时间，发现周一中午大家都有时间，但是具体几点钟要看周一早上与餐厅订座时才能确认，于是我把这项任务的计划时间更新为周一，但这还不是最精确的时间。周一早上，订座确认了，再把任务的具体时间12:00～13:00设置上去。</p>
-
-<p>我也大概设想了一下用户界面，应该有一个可缩放的时间视图，就像电子地图的缩放一样，既可以查看大时间范围内的任务安排，也可以查看具体精确的时间计划。用Excel画了界面原型，比较粗糙，实际做时当然需要细致的考虑用户体验了。左右拖动进行时间的缩放，具体某个时间列的上下滚动进行时间的选择。要为某个任务安排或者修改执行时间，可以通过拖拽到时间视图相应的位置来做到。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145212/"><img src="http://farm2.static.flickr.com/1387/4727145212_e90a483c0b_m.jpg" alt="scheduler-day" /></a></p>
-
-<p>为任务安排大概的时间（Week 29）：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145218/"><img src="http://farm2.static.flickr.com/1253/4727145218_5a3c9cb27e.jpg" alt="scheduler-week" /></a></p>
-
-<p>为任务安排具体精确的时间：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145214/"><img src="http://farm2.static.flickr.com/1010/4727145214_0175c6f578.jpg" alt="scheduler-minute" /></a></p>
-
-<p><em>（我并没有开发这样一个时间管理工具的计划，不过如果你有这样的打算，并且也认同我的这种思路，不妨与我联系）</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/">Android手机上使用SSH Tunnel的进展 (2010-06-06)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-07T13:22:00+08:00" pubdate data-updated="true">2010-06-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在上一篇博客中，我提出了<a href="http://good-good-study.appspot.com/blog/posts/20001">在Android手机上使用SSH tunnel的想法</a>。几天下来有了一些进展。</p>
-
-<p>首先，非常感谢<a href="http://sunner.cn/">Sunner</a>，他帮忙编译出Android平台的transocks_ev binary，并且解决了一些在Android平台上运行的问题。</p>
-
-<p>在实验中，用ConnectBot + transocks_ev + iptables，HTTP和HTTPS请求都能重定向到SSH tunnel了，测试了浏览器和其他一些应用，无需任何额外设置就可正常访问网络。不过目前没有考虑使用非HTTP/HTTPS的应用。但现在还有两个问题：</p>
-
-<ol>
-  <li>DNS查询还是直接出去，不能避免DNS污染</li>
-  <li>现在用ConnectBot作为ssh client，并不合适： 
-    * 在port forwarding时ConnectBot CPU占用非常高，达到99%，估计是有bug。
-    * ConnectBot的连接和断开需要手动控制，密码也要在界面输入，无法做到整个翻墙过程单击执行。</li>
-</ol>
-
-<p>对于第一个问题，transocks_ev 不支持UDP，因此无法tunnel DNS查询请求。我在考虑参考<a href="http://code.google.com/p/cmwrap/">CMWrap</a>的方案，做一个DNS proxy，转成TCP请求发出去。  </p>
-
-<p>对于第二个问题，想用一个命令行ssh来代替ConnectBot。目前在Android上常用的是dropbear，但dropbear不支持SOCKS。查了linux上支持SOCKS的ssh client有OpenSSH和lsh（还有没有其他？），但是Sunner尝试了编译OpenSSH和lsh都不成功，因为它俩都太依赖gnu的一些东西了，比如glibc、glib等，而android上所有的对应的库都是从简的。因此暂时还是先用着ConnectBot，并将CPU高的问题反馈给开发者，看看有没有什么回应。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/#disqus_thread">Comments</a>
+        <a href="/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -739,8 +533,16 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -758,59 +560,52 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

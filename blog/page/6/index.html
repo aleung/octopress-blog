@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="订阅bypassgfw邮件列表后，可通过email定期会收到翻墙软件更新版本。订阅方法有两种： 访问https://groups.google.de/group/bypassgfw?hl=zh-CN(此地址已被墙)，用Google/GMail账号登录，点击右侧”加入此论坛” 发邮件至 jsmith &hellip;">
+  <meta name="description" content="之前我写过一系列文章介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：sshtunnel 与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -70,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/">推荐一个介绍翻墙知识的邮件列表</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/02/11/Android-ssh-/">Android用户的好消息：用ssh翻墙</a></h1>
     
     
       <p class="meta">
@@ -86,13 +98,15 @@
   
 
 
-<time datetime="2010-02-24T00:59:00+08:00" pubdate data-updated="true">2010-02-24</time>
+
+  
+<time datetime="2011-02-11T20:41:00+08:00" pubdate data-updated="true">2011-02-11</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
   
 </span>
 
@@ -103,231 +117,99 @@
   </header>
 
 
-  <div class="entry-content"><p>订阅bypassgfw邮件列表后，可通过email定期会收到翻墙软件更新版本。订阅方法有两种：</p>
+  <div class="entry-content"><p>之前我写过一系列<a href="http://good-good-study.appspot.com/blog/posts/90001">文章</a>介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：<a href="http://madeye.me/2011/02/10/ssh-tunnel-on-the-android-application-puff-android-edition/">sshtunnel</a></p>
+
+<p>与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流，不同的是它还使用了trilead-ssh2代码（作者说来自于ConnectBot）来做SSH client，因此这一个程序就可以完成整个过程，操作简单。根据文档说明和大致浏览代码，貌似没有使用SSH dynamic port forwarding，而是要求SSH server端安装了HTTP代理服务器，SSH连接纯粹是tunnel了到服务端HTTP proxy的连接。</p>
+
+<p>Update: <a href="https://twitter.com/#!/ofmax/status/36717058762739712">作者说</a>，不使用SSH dynamic port forwarding是因为受限于Android手机的机能。我之前测试用ConnectBot做SOCKS proxy的时候就总是遇到CPU占用100%的问题，估计作者说的就是这个。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/02/11/Android-ssh-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/TwitterSinaSync-Twitter-/">TwitterSinaSync，自动同步Twitter信息到新浪微博</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2011-02-11T05:31:00+08:00" pubdate data-updated="true">2011-02-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前寻找同步twitter到新浪微博的方法，没有尝试到满意的。@cutemic<a href="http://cutemic.posterous.com/twitter">介绍说</a>他是在GAE上跑一个叫twitter2sina的python程序，周期性读取自己的tweets，再调用API发送到新浪微博。</p>
+
+<p>程序员的基本素质是懒惰，因此我问@cutemic他安装的程序是否支持多用户，如果支持，我就懒得自己折腾，让他给我加个用户好了。很可惜，他的程序是要将新浪微博用户名密码hard code到程序里的，那我只能自力更生了。</p>
+
+<p>装起来之后，本着助人为乐的精神，考虑把这个服务也提供给别人使用。看看代码，调用新浪微博API是用Basic HTTP认证的，需要提供用户名和密码，这样太没有安全感了，别人不敢用的。如果改成OAuth，用户就不需要提供密码了。</p>
+
+<p>动手尝试修改，于是，就有了这个<a href="https://github.com/aleung/TwitterSinaSync">TwitterSinaSync</a>。</p>
+
+<p>代码大概的历史：</p>
 
 <ol>
-  <li>访问<a href="https://groups.google.de/group/bypassgfw?hl=zh-CN">https://groups.google.de/group/bypassgfw?hl=zh-CN</a>(此地址已被墙)，用Google/GMail账号登录，点击右侧”加入此论坛”</li>
-  <li>发邮件至 jsmith.email2009@googlemail.com 申请加入(请在标题中标明”申请加入Bypass GFW Google Group)</li>
+  <li>原始版本是<a href="http://code.google.com/p/twitter2sina/">twitter2sina</a>，没有使用新浪微博API，已经失效</li>
+  <li>@cutemic的<a href="http://cutemic.posterous.com/twitter">修改版本</a>，改成使用新浪微博API</li>
+  <li>我修改的<a href="">TwitterSinaSync</a></li>
 </ol>
 
-<p>以下内容摘自bypassgfw的介绍：</p>
-
-<blockquote>
-  <p>更多翻墙软件和翻墙技巧 <a href="http://twitbrowser.net/blog">http://twitbrowser.net/blog</a>墙内镜像：<a href="http://tbm001.mooo.com/">http://tbm001.mooo.com/</a></p>
-
-  <p>加入小组需Google/GMail账号，没有Google/GMail账号也可以直接发邮件至jsmith.email2009@googlemail.com申请加入(请在标题中标明”申请加入Bypass GFW Google Group)，我会手动添加到邮件列表中</p>
-
-  <p>163和Hotmail会将小组邮件标为垃圾邮件，请尽量不要使用这两个邮箱订阅小组邮件</p>
-
-  <p>本小组仅为发送邮件所创建，每周会发送两封附件包含有效翻墙软件的邮件至所有组员邮箱，问题讨论请到<a href="http://groups.google.com/group/bypassgfwdiscussions">http://groups.google.com/group/bypassgfwdiscussions</a></p>
-
-  <p>如果您有任何问题或无法收到邮件，请发送邮件到 jsmith.email2009@googlemail.com</p>
-</blockquote>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/02/22/JSON-support-in-JAX-RS/">JSON Support in JAX-RS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-22T23:33:00+08:00" pubdate data-updated="true">2010-02-22</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>JAX-RS is the Java API for RESTful web services. JSON is the most popular data binding of RESTful web service. In JAX-RS, Entity Providers supply mapping services between representations and their associated Java types. To support JSON representation, JSON provider is needed.</p>
-
-<h2 id="json-support-in-jersey-and-cxf">JSON support in Jersey and CXF</h2>
-
-<p>Both Jersey and Apache CXF support JSON data generated out of JAXB beans. Developer can generate JavatypefromXML schema (xsd) by JAXB ormanually write Java bean with annotations. Then the resource can support JSON representatons.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">   <span class="nd">@XmlRootElement</span>
-</span><span class="line">   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">StatusInfoBean</span> <span class="o">{</span>
-</span><span class="line">       <span class="kd">public</span> <span class="n">String</span> <span class="n">status</span> <span class="o">=</span> <span class="s">&quot;Idle&quot;</span><span class="o">;</span>
-</span><span class="line">       <span class="kd">public</span> <span class="kt">int</span> <span class="n">tonerRemaining</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
-</span><span class="line">       <span class="kd">public</span> <span class="kd">final</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">JobInfoBean</span><span class="o">&gt;</span> <span class="n">jobs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">JobInfoBean</span><span class="o">&gt;();</span>
-</span><span class="line">   <span class="o">}</span>
-</span><span class="line">   <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/status&quot;</span><span class="o">)</span>
-</span><span class="line">   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyResource</span> <span class="o">{</span>
-</span><span class="line">       <span class="n">StatusInfoBean</span> <span class="n">statusInfoBean</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StatusInfoBean</span><span class="o">();</span>
-</span><span class="line">       <span class="o">{{</span>
-</span><span class="line">            <span class="n">statusInfoBean</span><span class="o">.</span><span class="na">jobs</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">JobInfoBean</span><span class="o">(</span><span class="s">&quot;sample.doc&quot;</span><span class="o">,</span> <span class="s">&quot;printing...&quot;</span><span class="o">,</span> <span class="mi">13</span><span class="o">));</span>
-</span><span class="line">       <span class="o">}}</span>
-</span><span class="line">
-</span><span class="line">       <span class="nd">@GET</span>
-</span><span class="line">       <span class="nd">@Produces</span><span class="o">(</span><span class="s">&quot;application/json&quot;</span><span class="o">)</span>
-</span><span class="line">       <span class="kd">public</span> <span class="n">StatusInfoBean</span> <span class="nf">getStatus</span><span class="o">()</span> <span class="o">{</span>
-</span><span class="line">           <span class="k">return</span> <span class="n">statusInfoBean</span><span class="o">;</span>
-</span><span class="line">       <span class="o">}</span>
-</span><span class="line">
-</span><span class="line">       <span class="nd">@PUT</span>
-</span><span class="line">       <span class="nd">@Consumes</span><span class="o">(</span><span class="s">&quot;application/json&quot;</span><span class="o">)</span>
-</span><span class="line">       <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">setStatus</span><span class="o">(</span><span class="n">StatusInfoBean</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">           <span class="k">this</span><span class="o">.</span><span class="na">statusInfoBean</span> <span class="o">=</span> <span class="n">status</span><span class="o">;</span>
-</span><span class="line">       <span class="o">}</span>
-</span><span class="line">   <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="cusomize-the-json-provider">Cusomize the JSON provider</h2>
-
-<p>The behavior of the JSON provider can be customized. But the way of customization is different in Jersey and CXF.</p>
-
-<p>The configuration described in this article targets on Jersey 1.0.2 or higher, CXF 2.2 or higher.</p>
-
-<p>In Jersey, developer should implement a JAXB ContextResolver which creates JSONJAXBContext with JSONConfiguration.Different configurations can be set bybuilder pattern.</p>
-
-<pre><code>   @Provider
-   public class MyJAXBContextResolver implements ContextResolver&lt;JAXBContext&gt; {
-
-       private JAXBContext context;
-       private Class[] types = {StatusInfoBean.class, JobInfoBean.class};
-
-       public MyJAXBContextResolver() throws Exception {
-           this.context = new JSONJAXBContext(
-                   JSONConfiguration.mapped()
-                                      .rootUnwrapping(true)
-                                      .arrays("jobs")
-                                      .nonStrings("pages", "tonerRemaining")
-                                      .build(),
-                   types);
-       }
-
-       public JAXBContext getContext(Class&lt;?&gt; objectType) {
-           return (types[0].equals(objectType)) ? context : null;
-       }
-   }
-</code></pre>
-
-<p>Further simplificationway can be found in <a href="http://blogs.sun.com/japod/entry/configuring_json_for_restful_web">http://blogs.sun.com/japod/entry/configuring_json_for_restful_web</a></p>
-
-<p>In Apache CXF, to customize the JSON provider, developer can implement a new provider or configure the properties of org.apache.cxf.jaxrs.provider.JSONProvider.</p>
-
-<p>Custom provider is registered by Spring configuration:</p>
-
-<pre><code>&lt;beans&gt;
-&lt;jaxrs:server id="customerService" address="/"&gt;
-    &lt;jaxrs:serviceBeans&gt;
-      &lt;bean class="org.CustomerService" /&gt;
-    &lt;/jaxrs:serviceBeans&gt;
-
-    &lt;jaxrs:providers&gt;
-      &lt;ref bean="jsonProvider" /&gt;
-    &lt;/jaxrs:providers&gt;
-
-    &lt;bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.JSONProvider"&gt;
-      &lt;property name="dropRootName" value="true"/&gt;
-      &lt;property name="serializeAsArray" value="true"/&gt;
-      &lt;property name="arrayKeys" value="true"&gt;
-        &lt;list&gt;&lt;value&gt;jobs&lt;/value&gt;&lt;/list&gt;
-      &lt;/property&gt;
-    &lt;/bean&gt;
-&lt;/jaxrs:server&gt;
-&lt;/beans&gt;
-</code></pre>
-
-<h3 id="drop-root-element--root-unwrapping">Drop root element / Root unwrapping</h3>
-
-<p>Drop root element means strip out the root element from JSON. In the following example the StatusInfoBean element is dropped.</p>
-
-<pre><code>{"status":"Idle","tonerRemaining":"25","jobs":{"name":"sample.doc","status":"printing...","pages":"13"}}
-</code></pre>
-
-<p>In Jersey whether dropping root element is configured by JSONConfiguration.rootUnwrapping(). In CXF it is by JSONProvider.setDropRootElement().</p>
-
-<h3 id="single-value-array">Single value array</h3>
-
-<p>Single value List object can be serialized as array or non-array. See example:</p>
-
-<pre><code>{"rows":{"userid":"1621","name":"Grotefend"}}
-{"rows":[{"userid":"1621","name":"Grotefend"}]}
-</code></pre>
-
-<p>In CXF it’s controlled by JSONProvider properties “serializeAsArray” and “arrayKeys”.</p>
-
-<h3 id="namespace">Namespace</h3>
-
-<p>If the JAXB bean has namespace, whether to include namespace in JSON can be controlled in CXF by JSONProvider properties “ignoreNamespaces”.</p>
-
-<h2 id="nature-json-notation">Nature JSON notation</h2>
-
-<p>Nature JSON notation is:</p>
+<p>主要特性：</p>
 
 <ul>
-  <li>root unwrapping</li>
-  <li>single value List object serialized as array</li>
-  <li>???</li>
+  <li>部署于Google App Engine，免费、可靠、方便的云计算环境</li>
+  <li>使用新浪微博API OAuth认证，用户不需要提供密码，保证安全</li>
+  <li>支持多用户：多组twitter-微博同步绑定</li>
+  <li>新用户凭管理员提供的邀请链接才能加入，方便私人分享</li>
 </ul>
 
-<p>See com.sun.jersey.api.json.JSONConfiguration.Notation</p>
+<p><a href="https://github.com/aleung/TwitterSinaSync">代码</a>托管在GitHub，bug report 和 feature request可以往<a href="">这里</a>提交。</p>
+
+<p><em><strong>Updated 2011-7-7:</strong></em></p>
+
+<p>由于新浪微博对API使用过滤异常的严格，这个应用基本上用处不大了，普通内容的tweet，大概十条里只有两三条能够成功同步，见<a href="http://good-good-study.appspot.com/blog/posts/124001">新浪微博API黑名单威武</a>。如果应用能够通过审核，也许过滤会放宽一些，但是根据新浪微博API的用户协议，是不能用于从其他微博系统同步信息的，更何况是Twitter，通过审核的可能性微乎其微。故此我不再维护这个软件了，也不再提供邀请码，请谅解。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/02/22/JSON-support-in-JAX-RS/#disqus_thread">Comments</a>
+        <a href="/blog/2011/02/11/TwitterSinaSync-Twitter-/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -339,7 +221,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/02/14/This-blog-now-support-feed-output/">这个blog现在支持feed输出了</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/">GQueuesInbox : Send Item to Your GQueues Inbox With Android Device Anywhere Anytime</a></h1>
     
     
       <p class="meta">
@@ -355,66 +237,15 @@
   
 
 
-<time datetime="2010-02-14T18:16:00+08:00" pubdate data-updated="true">2010-02-14</time>
-        
-         | 
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>支持atom比我想象中简单很多，根本用不着什么library，多加一个xml template就行了。</p>
-
-<p>如果你的浏览器支持，就能在地址栏右边看到feed的图标，点击就可以选择阅读器进行订阅。或者在阅读器（例如Google Reader）里面输入这个网站的地址，也可以订阅。</p>
-
-<p><img src="http://farm5.static.flickr.com/4058/4353315450_7d1914e9ab_o.png" alt="" /></p>
-
-<p>PS. 这个blog的页面使用了一些HTML5标签，因此需要使用新的浏览器才能正常浏览，例如使用 Firefox 3, Chrome。如果你看到的页面不是上图的样子，说明你的浏览器 out date 啦。</p>
-
-<p>PPS. 我会一如既往的使用flickr来存放照片，如果你看不到照片，或者有一天你连这个blog的页面都看不到，那说明你上的只是局域网，根本不是Internet。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/02/14/This-blog-now-support-feed-output/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/02/14/Basic-function-complete-can-open/">基本功能完备，可以公开了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
 
   
-
-
-<time datetime="2010-02-14T18:16:00+08:00" pubdate data-updated="true">2010-02-14</time>
+<time datetime="2011-01-14T05:15:00+08:00" pubdate data-updated="true">2011-01-14</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
   
 </span>
 
@@ -425,23 +256,87 @@
   </header>
 
 
-  <div class="entry-content"><p>一个blog所需要的功能的最小集合已经完备了，可以投入使用，再边用边改进了：</p>
+  <div class="entry-content"><p><img class="right" src="http://farm6.static.flickr.com/5285/5360976023_928916d839_m.jpg" title="GQueueInbox" />
+去年底<a href="https://www.rememberthemilk.com/">RememberTheMilk</a>的pro帐号到期了，于是又折腾了一下看看有没有好用的类似工具，发现了一个在线任务管理的新秀：<a href="http://www.gqueues.com">GQueues</a>。GQueues的功能和界面都不错，我比较喜欢它的一点是没有用高中低的任务优先级，而是让你在列表中拖放任务改变顺序，排在最顶的就是需要优先处理的。有些事情你很难界定应该是属于重要性高还是重要性中等，但是如果几件事情放在一起，就很容易分出哪个相对更重要一些。</p>
+
+<p>但是，GQueues没有开发手机本地应用，在手机上只能通过浏览器访问。虽然它的网站有专门为移动设备优化，但还是不如本地应用便捷。而且很重要一点，不是任何时候都能访问到网络的，想起一件要做的事情，却因为连不上网而无法记录下来，只能留在脑子里或者要记录到别的地方，这样不符合GTD的原则。</p>
+
+<p>为此，我写了一个简单的Android应用，做的唯一事情就是往GQueues inbox里面添加新任务，并且允许离线使用：如果没有网络，任务会暂存起来，在有网络的时候后台自动发送出去。软件介绍：<a href="http://www.appbrain.com/app/gqueuesinbox/leoliang.gqueuesinbox">http://www.appbrain.com/app/gqueuesinbox/leoliang.gqueuesinbox</a></p>
+
+<p>不过，因为GQueues部署在Google App Engine上的，IP地址被GFW屏蔽，在国内无法直接访问。解决办法是自己将可以访问的IP配置到hosts文件里面，无论是PC还是手机都要如此处理。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling/">复旦学生黄山被困事件的感想</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-23T19:08:00+08:00" pubdate data-updated="true">2010-12-23</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/outdoor/'>Outdoor</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>很久没有玩户外了，对相关的新闻不再关注。复旦大学生黄山遇险的事情网上流传很广，但我一直也没有点进去看过。今天在Google Reader上看到朋友转发的文章，终于知道是怎么回事了。</p>
+
+<p>关于救援技术和道德层面的东西就不说了。磨房有个<a href="http://www.doyouhike.net/forum/shrescue/476142,0,0,1.html">帖子</a>，从队伍被困就开始讨论了，可以从中了解一些细节。说说我的几个感想：</p>
 
 <ul>
-  <li>发文章</li>
-  <li>文章分页显示</li>
-  <li>Tag</li>
-  <li>评论</li>
-  <li>用户认证通过Google account进行</li>
+  <li>户外救援这事情上，警方的技术水平和装备水平都非常差。对于他们，应该少些政治学习，多些专业训练；少些吃喝嫖赌，买些专业装备。但明显他们是做不到的，所以还是别指望他们了。</li>
+  <li>这类事情由警方（或者政府部门）包办并不是好办法，很多民间的户外爱好者和从业人员组织起来都能够做得比他们好。但是政府视民间组织为洪水猛兽，生怕造他们的反。</li>
+  <li>被困队伍虽然说GPS落水怀疑故障，但他们其实还是定位出自己坐标的。如果配合小比例尺地图，无论是自救还是他救都会比较容易。但是我们在自欺欺人的将这个当国家机密。网上倒是有驴友根据Google Earth卫星图和美国公开的SRTM数据制作等高线图辅助分析了。 （BTW，在<a href="http://goo.gl/maps/bGmE">maps.google.com</a>和<a href="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;geocode=&amp;q=N30+07.663+E118+11.892&amp;sll=35.86166,104.195397&amp;sspn=69.767299,135.087891&amp;ie=UTF8&amp;ll=30.126087,118.203707&amp;spn=0.037712,0.065961&amp;t=h&amp;z=15&amp;brcurrent=3,0x3435b9bdd80e3bef:0x40d4f885edcbae5e,0,0x3435c43623481ccb:0x4f313f2031517549%3B5,0,0">ditu.google.cn</a>上分别输入这个坐标：N30 07.663 E118 11.892，仔细看看，标出的地点是不同的，偏差五六百米。只不过恰好在同一条沟里）</li>
 </ul>
 
-<p><a href="https://appengine.google.com/">Google Application Engine</a> 提供了强大的平台，<a href="http://www.playframework.org">Play Framework</a>使得Java web开发变得很简便。开发这个应用用了几天时间，不算快，但作为第一次，学习、查资料花的时间不少，上手之后的工作效率将会提高很多。另外，对我来说，HTML+CSS才是最困难的部分，基本没有做前端的经验。现在的界面是从sample里面copy出来改的，每改一点就要看看效果，边试边改。</p>
+<p>贴两张Google Maps的截图，绿色箭头处是被困地点。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5284797781/"><img src="http://farm6.static.flickr.com/5006/5284797781_e71c32744a_b.jpg" alt="fudan_huangshan_1" /></a></p>
+
+<p>这张从另外一个角度看的，放大一些，都勉强可以看到山谷里面的大石了。不过这种模拟地势的精度不高，一些陡峭的局部地形都被柔和了，实际会险要得多。不要看着这张图就骂那些学生，以为小跑都可以下山。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5284797851/"><img src="http://farm6.static.flickr.com/5123/5284797851_dec842f909_b.jpg" alt="fudan_huangshan_2" /></a></p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2010/02/14/Basic-function-complete-can-open/#disqus_thread">Comments</a>
+        <a href="/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -453,7 +348,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/01/24/Seems-to-have-to-get-off-here/">看来还是得下车了</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/12/21/Tracking-lost-cell-phone/">追踪丢失了的手机</a></h1>
     
     
       <p class="meta">
@@ -469,15 +364,13 @@
   
 
 
-
-  
-<time datetime="2010-01-24T06:41:00+08:00" pubdate data-updated="true">2010-01-24</time>
+<time datetime="2010-12-21T17:21:00+08:00" pubdate data-updated="true">2010-12-21</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
   
 </span>
 
@@ -488,337 +381,51 @@
   </header>
 
 
-  <div class="entry-content"><p>Update 2010-2-15:</p>
+  <div class="entry-content"><p>现在已经有好些智能手机应用可以用来帮助追踪丢失了的手机。有些是当插入不同的SIM卡时触发跟踪，有些是在网络上触发跟踪。我想到另外一个方法：每当手机打开屏幕离开休眠状态时，前置摄像头自动拍摄一幅图像，对画面中的人面进行识别，如果判断不是机主，就将图像上传服务器，并且开启定位跟踪，不断将轨迹上传。这样，不但可以知道手机在哪里，还获得了拿着手机的人的相貌，因为一般人打开手机的时候都是拿在手上，正好前置摄像头就可以拍下面部照片了。</p>
 
-<p>今天将BlogBus的数据导入到这里后，进BlogBus后台核对一下文章是否有缺失，一看又有好几篇文章被隐藏了。那些都是纯正的技术文章，并不像下面截屏的那样故意加入特殊字眼，有一篇还是全英文的，我真看不出有什么敏感词。</p>
-
-<p>下面的原文发在<a href="http://aleung.blogbus.com">BlogBus</a>。</p>
-
-<hr />
-
-<p>去向未定，但想继续看我的blog，估计都得学几招翻墙功夫了</p>
-
-<p>请bookmark这个地址：<a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp">http://feeds.feedburner.com/GoodGoodStudyDayDayUp</a></p>
-
-<p><img src="http://farm5.static.flickr.com/4030/4356716336_bd25956bc6_o.jpg" alt="" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/01/24/Seems-to-have-to-get-off-here/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/01/The-reason-for-explorer-crash-tools/">查找explorer Crash原因的工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-01T06:59:00+08:00" pubdate data-updated="true">2010-01-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>不知道装了什么软件之后，只要在文件管理器中点击鼠标右键，Windows Explorer就会崩溃，重新启动依然如是。</p>
-
-<p>找到<a href="http://www.nirsoft.net/">Nir Sofer</a>出品的小工具 ShellExView，这个工具分析注册表，列出所有注册到explorer的shell extension及相关信息，并能够enable/disable选定的extension。找到可疑的extension，将它disable，然后再进行一次右键操作，看看还会不会crash。如此排除法很快就定位出什么软件是罪魁祸首，将它卸载或者将extension disable，问题就解决了。</p>
-
-<p>比较有用的信息是extension type，file extensions，file created time。首先关注文件创建时间，找出最近新增的extension，因为以前正常，最近才出问题，那引起问题通常是新装的软件。不过也不能一概而论，也有可能是以前安装的软件，因为最近的环境更改而出现了问题。另外可以根据extension type和file extensions进行过滤，例如我遇到的问题是右键菜单引发崩溃，那重点关注extension type为Context Menu的那些项。还有，在任何类型文件上按右键菜单都会引发崩溃，所以不大可能是由只针对特定文件类型的extension引发的。虽然系统注册的shell extension很多，例如我这个新装没多久的Vista系统就已经有三百多项，但是大部分都是Microsoft出品的，一般来说还是比较可靠的，只要关注非Microsoft的就可以了，找起问题来还是很快的。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/01/01/The-reason-for-explorer-crash-tools/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/27/Google-/">Google中国地图偏移 (续)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-12-27T22:04:00+08:00" pubdate data-updated="true">2009-12-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>接着昨天的分析：<a href="http://good-good-study.appspot.com/blog/posts/3224">http://good-good-study.appspot.com/blog/posts/3224</a></p>
-
-<p>已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线：</p>
-
-<p><img src="http://farm5.static.flickr.com/4009/4382498800_1bc9e586dd_o.jpg" alt="" /></p>
-
-<p>看起来相当完美。那在看看将它应用到大尺度上效果如何：</p>
-
-<p><img src="http://farm3.static.flickr.com/2795/4381740587_73cd1113fd_o.jpg" alt="" /></p>
-
-<p>有微小的抖动，看来参数细节还需要微调一下，不过要求不高的话其实已经可以接受了。</p>
-
-<p>接下来，在这张图上又发现了规律…… 嗯，我不能继续写下去了。</p>
-
-<p>其实对于离线应用，进一步的分析不做也没有关系了，并不需要将整个函数拟合出来，剩余的工作可以通过查表法来做，然后插值再加回高频扰动。因为知道了高频扰动的函数后，就能够用较低的采样频率来记录偏移量，即使将整个表放内存里，占用的空间大小也可以接受。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/12/27/Google-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/">比价易：逛超市的好帮手</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-12-12T08:33:00+08:00" pubdate data-updated="true">2009-12-12</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/leoliang/4987380901/"><img src="http://farm5.static.flickr.com/4104/4987380901_97030e8f03_m.jpg" alt="Unit Price Compare - logo" /></a></p>
-
-<p>逛超市，看到两款酸奶：</p>
+<p>Answer to questions:</p>
 
 <ul>
-  <li>一种是100克装8杯，9.6元；</li>
-  <li>另一种是150克6杯加送1杯100克，10.5元。</li>
+  <li><em>只有前面有摄像头的手机才能支持这个功能？</em></li>
 </ul>
 
-<p>那个价钱更划算？</p>
-
-<p>如果单位不同，就更难比较了，例如纯净水：</p>
+<p>没有前置摄像头的手机不能用，这也是这个idea区别于已有应用的唯一区别。有前置摄像头的智能手机会越来越多的，iPhone推facetime， Android下个版本也会在GTalk里支持视频聊天，硬件肯定要跟上。</p>
 
 <ul>
-  <li>550ml一打，10元；</li>
-  <li>10L，12元；</li>
-  <li>5 gal（加仑），18元。</li>
+  <li><em>朋友用了这个功能的手机怎么办？</em></li>
 </ul>
 
-<p>比价易（Unit Price Compare）就是专门解决这种问题的，它是运行在Android手机上的应用，能够比较不同包装的商品单价哪个更便宜。</p>
+<p>机主看到是认识的人，忽略就是啦；如果想做得更少打扰用户，可以让应用在重新”见到”机主时关闭跟踪，见下。</p>
 
-<p>比价易支持不同单位的自动换算，对于”150克6杯加送1杯100克”这样的情况，直接输入为 150*6+100 就可以了。看看截图：</p>
+<ul>
+  <li><em>检测到其他人用手机之后，这个人是否可以关闭定位功能？</em></li>
+</ul>
 
-<p><a href="http://www.flickr.com/photos/leoliang/4987380823/"><img src="http://farm5.static.flickr.com/4111/4987380823_cfb55b6633.jpg" alt="Unit Price Compare - list" /></a> <a href="http://www.flickr.com/photos/leoliang/4987981690/"><img src="http://farm5.static.flickr.com/4109/4987981690_1fae2f0784.jpg" alt="Unit Price Compare - item" /></a></p>
+<p>手机上不能手动关闭，否则就没用了；机主可以通过远程手段关闭；也可以通过面部识别，在重新识别到机主使用手机的时候自动关闭。</p>
 
-<p>安装：在Android Market中搜索”Unit Price Compare”</p>
+<ul>
+  <li><em>即使定位到一定范围了，但还不能确认是谁。是否可以与”其他人”打电话协商？</em></li>
+</ul>
 
-<p><a href="http://www.flickr.com/photos/leoliang/4987981626/"><img src="http://farm5.static.flickr.com/4112/4987981626_c5cfbd0307_m.jpg" alt="Unit Price Compare - download" /></a></p>
+<p>这个应用是可以控制手机上的所有功能的（如果手机OS允许），因此可以加很多东西，除了定位之外，可以记录通话信息、短信记录、自动发送短信、后台录音等等。但具体还要看OS，例如iOS在不越狱的情况下能做的事情就非常少，Android上有些操作也需要取得root权限才能做。如果这个应用由手机厂商内置进系统里，权限就不是问题了。</p>
+
+<ul>
+  <li><em>调用摄像头拍照，通常是没办法影藏的吧，也就是拿着手机的人会知道这种动作</em></li>
+</ul>
+
+<p>我不知道现在常用的手机OS是否支持拍照时不在屏幕上显示，摄像头拍照与屏幕显示并没有联系，只是一般情况下都需要实时将摄像头的输入在屏幕上输出，给用户反馈而已。记得Android上有个应用就是用来偷拍的。况且这只是一个idea，真想做或许要对系统做一些调整的。</p>
+
+<ul>
+  <li><em>拍得图像亮度，对比度，分辨率差异巨大，在手持设备上进行人脸识别，判断机主，这个实现难度很大。</em></li>
+</ul>
+
+<p>拍摄的时候，亮度、对比度是能够调节的，在环境光线不太恶劣的情况下（大逆光、光线暗就没办法了），获得合适对比度的影像是很简单的事情。人脸识别的算法我没有了解，但有<a href="http://hubpages.com/hub/Kodak-Z981-can-automatically-recognize-the-faces-of-20-specific-individuals">数码相机都内置这个功能</a>了，已经不是很难实现的东西了吧？要说处理能力，现在手机的CPU都上1GHz了。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/11/Introduction-of-Android-slides/">介绍Android的slides</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-11T05:55:00+08:00" pubdate data-updated="true">2009-12-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.slideshare.net/aleung/android-2689852">Android</a></p>
-
-<p>View more <a href="http://www.slideshare.net/">documents</a> from <a href="http://www.slideshare.net/aleung">aleung</a>.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/12/11/Introduction-of-Android-slides/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/03/Restore-the-wind-baiyun-sunny-days-blog/">重拾 “清风白云艳阳天” Blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-03T08:05:00+08:00" pubdate data-updated="true">2009-12-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/life/'>Life</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>“清风白云艳阳天: 摄影-旅行-生活” 是我的第一个blog，大概是在2000/2001年左右开始的吧，搬过好多次家，最初放在公司的服务器上，又放过在绿野上，后来放在朋友的服务器。2006年朋友的服务器关了，这个blog就没有着落了。随着对摄影的兴趣减淡，也一直没有提起心情来把它重新建起来。反倒是后来的 “Goog good study day day up” 断断续续的一直坚持了下来。</p>
-
-<p>Blogbus用了这么久，感觉还不错，就在这里再安一个家吧。不一定会更新得多勤快，反正想写就写，想贴就贴。及时性是肯定不能保证的了，我好多照片都是等一年后才扫描出来，再不知道等多久才会处理好。</p>
-
-<p>下面是链接，建议用RSS订阅，免得每次打开都看不到新内容 :)</p>
-
-<h1 id="sunnyday--feelingwindhttpsunnywindblogbuscom"><a href="http://sunnywind.blogbus.com/">SunnyDay &amp; FeelingWind</a></h1>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/12/03/Restore-the-wind-baiyun-sunny-days-blog/#disqus_thread">Comments</a>
+        <a href="/blog/2010/12/21/Tracking-lost-cell-phone/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -838,8 +445,16 @@
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -857,59 +472,52 @@
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

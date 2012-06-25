@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="这个blog使用的markdown解释器是kramdown，比起标准markdown有所增强。再加上Jekyll的一些插件特供的特殊功能。 Markdown基本语法 标题 标题用#开头，一个井号是一级标题，两个井号是二级标题，井号越多字体越小。 一级标题也可以通过在标题的下一行用======== &hellip;">
+  <meta name="description" content="个人blog再一次搬家，从 Google Application Engine (GAE) 搬到 github 上来。原来的地址依然能够访问，但是不会再更新了，新文章都发到这里。Feed订阅地址不变，建议使用Google Reader订阅本站。 搬迁原因 上一次从blogbus搬到GAE， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -64,6 +76,111 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/25/migrate-my-blog-to-github/">Migrate My Blog to Github</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-25T23:40:00+08:00" pubdate data-updated="true">2012-06-25</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>个人blog再一次搬家，从 Google Application Engine (GAE) 搬到 github 上来。原来的<a href="http://good-good-study.appspot.com/">地址</a>依然能够访问，但是不会再更新了，新文章都发到这里。Feed订阅地址不变，建议使用Google Reader订阅本站。</p>
+
+<h2 id="section">搬迁原因</h2>
+
+<p>上一次从blogbus搬到GAE，是因为忍受不了审查制度。GAE后来也被墙了，但是即使如此，我也不会为了读者数量而再使用国内的blog服务，在被审查的状态下写东西。</p>
+
+<p>这次搬到github，最主要的动机是为了使用<a href="http://octopress.org/">Octopress</a>这个blog framework。</p>
+
+<h3 id="section-1">好玩</h3>
+
+<p>这个是最重要的原因。写blog不是什么正事，本来就是兴趣而已。之前搬离blogbus，选择了GAE的原因就是尝试一下GAE和PlayFramework编程。这次就是为了尝试Octopress。</p>
+
+<h3 id="markdown">使用markdown写作</h3>
+
+<p>Octopress使用markdown语法。接触markdown语法是在github项目的README页面上，还有<a href="http://stackoverflow.com">StackOverflow</a>里发帖用的也是markdown。刚开始觉得又是另一种wiki语法，但慢慢习惯了发现很好用：语法不太复杂，常用的格式不难记住；基本上常用的格式都覆盖了，实在不行还可以直接写HTML；原始文本的阅读性很好，不像HTML没法直接看；排版容易，文本编辑器就可以，而HTML的WYSIWYG编辑器生成的内容经常格式错乱需要手工再编辑。</p>
+
+<h3 id="section-2">访问速度提高</h3>
+
+<p>原来在GAE上的blog因为访问量少，服务进程闲置一段时间就会关闭，新请求进来要实例化新服务进程。我用的是PlayFramework，每次初始化都要等上十来秒左右，因此打开首个页面一定要等，体验很不好。</p>
+
+<p>Octopress是在本地生成HTML页面后静态发布，速度自然不慢。不过缺省页面模版有些引用的资源下载速度不快，也有些可能被墙了，影响页面加载时间，下一步需要优化一下。</p>
+
+<h3 id="section-3">版本管理与备份</h3>
+
+<p>Octopress最好用的特性就是跟github集成，发布到github上。整个blog就是一个git project，天然就有版本管理了。放在github上，我也不需要考虑备份问题了。</p>
+
+<h3 id="section-4">目前没有被墙</h3>
+
+<p>目前github是可以直接访问的，因此可以方便大陆读者。不过这个是最次要的原因了，因为作为一个优秀的网络服务，github说不定哪天就被GFW给认证了。另外，前面说过页面里面嵌入的某些资源是被墙的，我还没有测试过对访问会带来什么影响。</p>
+
+<h2 id="section-5">搬迁过程</h2>
+
+<p>Octopress的搭建不算难，需要安装ruby和一些gem，按照文档指导，再Google一下就能搞掂。按照文档做了一些配置，也没什么问题。缺省不支持tag，找了两个<a href="https://github.com/robbyedwards/octopress-tag-pages">插件</a>装上去。模版和theme都用缺省的，稍微改了一点点，反正不在乎有没有个性了，我自己做也不一定好看，以后再说吧。缺省style显示不出表格，也需要改一点css。网上的资料不少，遇到问题Google一下大都能找到答案。</p>
+
+<p>然后就是旧文章的迁移了，我原来的blog能够将所有数据用json格式导出，现在就要将它转换成新系统的文件格式；原来的文章正文是HTML，需要转换成markdown语法。不懂ruby，于是找了个python写的转换工具<a href="http://www.aaronsw.com/2002/html2text/">html2txt</a>，自己再写点脚本就好了。</p>
+
+<p>问题还是有一些的：</p>
+
+<p>Post的时间很奇怪：如果精确到秒，Octopress(其实是Jekyll)会认为这是UTC时间，在generate的时候变换为本地时区，页面里的帖子时间就加了8个小时；如果不精确到秒，只是分钟，那它就会当做本地时间而不做变换。我都不知道这是by design还是bug，不懂ruby看了下代码不得要领。后来我就把时间全部都改成只保留到分钟，绕开这个问题算了。</p>
+
+<p>Ruby不支持中文URL，因此有几个问题：</p>
+
+<ol>
+  <li>文章URL不能是中文</li>
+  <li>tag URL不能是中文</li>
+  <li>文章中不能带有中文URL的链接。</li>
+</ol>
+
+<p>对于1，可以不用标题而只是用id来做post URL，但我觉得permalink还是用标题更cool一些，将中文翻译成英文好了。Google translate的API不公开了，本来想用Bing translate的API，但它要用OAuth2认证，我嫌要写太多代码了，后来找到有道翻译的API，效果还行。</p>
+
+<p>对于2，因为tag的URL与显示是一致的，不能象post permalink那样做。网上的一些解决方法都比较复杂，不能保证日后升级兼容性，我干脆全部用英文做tag算了。</p>
+
+<p>对于3，搜索了一遍旧文章，只有一个链接是中文的，而且已经失效了，故此也不需要花功夫了。</p>
+
+<p>最后，就是还需要人工去check一遍老文章，看看自动转换的格式有没有问题，顺便回顾一下以前写的东西，有需要修改补充的就更新一下。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -126,6 +243,8 @@
 
 <pre><code>![text](link)
 </code></pre>
+
+<p>另一种图片语法是由插件支持的，用<code>{</code> <code>%</code>包围的img标签，后面跟着图片URL，在URL前可以加入可选的css class名称，如：<code>left</code>, <code>right</code>，得到文字环绕效果。</p>
 
 <h3 id="blockquote">引用 (blockquote)</h3>
 
@@ -510,387 +629,6 @@ stay foolish.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-25T19:58:00+08:00" pubdate data-updated="true">2012-02-25</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>为了给老台式电脑升级，在Amazon买了主板、CPU、内存，但装起来加电后不亮。根据现象分析，主板故障的可能性最大，主板是华擎H61M-HVS。拿去华擎网站上列出的本地特约维修中心检查。那里的人说亚马逊网上买的他们不管，跟他沟通了一下，他才勉为其难的测试了一下，查出是主板故障，贴了张故障标签就算了。问他是否能出检测报告之类，我好退货，他说不行，本来检测都不是他们的责任。</p>
-
-<p>想找Amazon客服咨询，才发现根本没有客服热线，只能上网。幸好智能手机能上网，在订单退货的页面里能够呼叫客服。客服回电话倒是非常快，说了情况后她让我保留好维修中心的故障标签，给我办理了退货申请。我现在就等着退货了。</p>
-
-<p>就这次经历总结一下：</p>
-
-<ol>
-  <li>买回来的新主板就有故障，让我对华擎的质量失去信心。后来我就买了华硕的主板，一线品牌可能可以放心些。</li>
-  <li>华擎（好多其他电脑配件厂商也一样）的售后服务是要求通过原销售店家进行的，但亚马逊并不负责售后，因此出现故障后能否得到有效的服务很难说。我这次幸好还在7天退货期内，可以找亚马逊退货，假如超过7天，我都不知道该如何送修。这点的责任我觉得更多在厂商，他们还没有重视网络电子商务市场。因此消费者在购买这类商品的时候要慎重考虑，要么在实体店买，要么选择明确支持直接全国联保无需通过经销商的品牌。</li>
-  <li>亚马逊的客服态度和处理都令我满意。结合以前网购的经历，亚马逊在网站、送货、支付、退货各环节都做得不错，是体验最好的。当然，这次我还要等到退货完成，退款成功后才能下最后结论。</li>
-</ol>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/19/Extend-the-toilet-bowl-cleaning-treasure-blue-bubble-use-of-the-time-small-skills/">延长洁厕宝(蓝泡泡)使用时间的小技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-19T23:33:00+08:00" pubdate data-updated="true">2012-02-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/life/'>Life</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前马桶放的洁厕宝（蓝泡泡）总是不耐用，声称普通使用可达一个月，但实际上头几天冲的水颜色很深，一个星期后颜色就非常淡了，根本用不到一个月，原因是溶解速度控制不了，太快了。</p>
-
-<p>为了防止过快溶解，给洁厕宝增加一个”外套”。我选的是大开口的口香糖盒子，大小比较合适，能把整块洁厕宝放进去，瓶口合上比较严实。在瓶身开上几个直径3～5mm左右的洞，洞不能太小也不能太大。开始可以先开三四个，如果实验发现洁厕宝溶解不出来再加开几个。怎么开洞就看你手上有什么工具了，我试过几种工具，发现用美工刀最容易，三刀开出一个三角形的洞。做好后把洁厕宝放进去，盖上盖子，扔马桶水箱里就行了。因为盒子里有空气，可能它不会自己沉下去，需要把它按进水里，把空气排出来。水箱里有水垢，不是那么好看，就不把照片贴出来了。</p>
-
-<p><img src="https://lh4.googleusercontent.com/-c5HKYk_j34o/T0EL4Y6tMcI/AAAAAAAAAnY/YnGOTSAfDBY/s800/toilet_%201%20%281%29.jpg" alt="" /><img src="https://lh4.googleusercontent.com/-xujCGkefLQY/T0EL5g-crrI/AAAAAAAAAng/aVK2tmecsC0/s800/toilet_%202%20%281%29.jpg" alt="" /><img src="https://lh3.googleusercontent.com/-lDnmsRQFEiQ/T0EL7i1DpCI/AAAAAAAAAno/GCn5dEHM9dc/s800/toilet_%203%20%281%29.jpg" alt="" /></p>
-
-<p>加了”外套”后，效果相当显著，一颗洁厕宝大概能用三个月。去年家人出差多，竟然用了半年！</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/02/19/Extend-the-toilet-bowl-cleaning-treasure-blue-bubble-use-of-the-time-small-skills/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/26/Baiyun-mountain-running/">白云山跑步</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-26T00:50:00+08:00" pubdate data-updated="true">2011-12-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近几个周末都跑超过10公里的长距离，但珠江边跑多了已经没有新鲜感。另外最近一段时间空气污染情况又偏高了，虽然头顶阳光灿烂，看远眺整个城市低空都笼罩在一层灰霾之中。于是就把目光投向了白云山：一方面离开市中心，也有高度，空气会好些；另外跑有坡度的路线，可以起到不一样的锻炼效果。</p>
-
-<p>以往去珠江边跑，我都是从住处附近就开始跑，最后跑回家，因此可以穿短衣短裤。但去白云山跑来回都得坐车，穿衣就是个问题。为此专门去迪卡侬买了长袖跑步上衣和紧身7分跑步裤。本来还想买跑步背包的，没得卖，登山背包不适合跑步，只好算了。回来在网上查一下，似乎全国的店都没有卖跑步背包，看了现在玩户外hiking的人多了，但跑步得还是少数。这次背了自行车包，效果还行，没有腰带有点左右晃动，但只是放一件衣服重量不大，对跑步没什么影响。</p>
-
-<p>从外语学院附近的西门进白云山，已经下午4点多，周末到白云山的人真多，路上游客络绎不绝。新买的衣裤很显眼，引来不少注目，所以很多人都建议买点貌似专业的装备，可以有助于坚持锻炼。</p>
-
-<p>路线记录在<a href="http://runkeeper.com/user/aleung/activity/63723897">RunKeeper</a>，有地图和海拔、速度曲线。</p>
-
-<p>西门上山的路是最平缓的，至明珠楼前的2km没有多少上升，正好作为热身。过了明珠楼，就是正式上山路了，2公里上升了150米，上坡时的步速在每公里6分钟多到7分钟多左右，步频大概坚持在160～170，但步幅缩得很小了。绕摩星岭有东西两条路，我先是选择了东面的路，在接近6km处经过了这段路的最高点275米，接下来的路就比较平缓了，上下坡交替，坡度没有前面大，下坡路我跑得很欢。这段路视野开阔，先是看到京溪、梅花园一带的楼房，然后拐过弯，就看到了天河的中信等高楼。看着笼罩在一片灰蒙蒙之中的高楼已经在脚下，感觉很爽。跑了45分钟，7.6km，到达山顶公园。我原计划就是跑到这里为止的，本来以为起码要一个多小时才能到，一停下来，觉得好像不累，还没跑够（其实前面上坡的时候挺吃力的）。从这里如果往南走，就一直是下山路，到云台花园出山，坡度要更大，我不敢跑这样的下坡路，于是回头，还是回外语学院那边好了。接下来的岔路，选择了摩星岭西侧的路，这样走的就是环线，不用全走回头路。没想到后面这一公里多的路真是要命，一路都是上坡，一点平缓都没有。后面有一段我都坚持不了走直线，只能之字形迂回。幸好这段路不长，锦绣南天（雷达站）处到达最高点340米，这一公里上升了90米，上坡步速每公里8～9分钟，比走路快不了多少。接下来就是一路下坡了，跑了一公里多，一直都要控制速度，想着到山底路还长，怕膝盖受不了，不敢继续跑了，就此结束。全程10.64km，耗时1:06:55，平均6.17min/km。</p>
-
-<p>西门这条路跑步上山比较合适，但走路下去就太长了。结束跑的时候差不多6点，太阳下山了，穿回抓绒衣也不冷，但裤子只盖住膝盖，小腿就有点凉。走到明珠楼，看后面的路坡度不大了，又跑了差不多两公里一段。但这段就跑得不算太好，不算累，但小腿偶尔有点要抽筋的感觉，不知道是因为之前上坡时累了还是因为太凉。下次还是走云台花园下山好了，时间短一些。但那边又没有直接回家的公交车，麻烦。今天跑这趟步一共花了4个多小时，如果能够将总时间控制到3小时内就比较好。</p>
-
-<p>今天还戴了心率记录器来跑的，早上迪卡侬买的，配合我已有的心率胸带，USB电脑读数据。谁知回来才发现只能接Windows上，不支持Mac OSX，在虚拟机里也认不到设备。而且RunKeeper也只支持Polar心率表的数据格式，这个就算能连也没用。要拿回去退货了。</p>
-
-<p>第一次跑上山，感觉不错。以后说不定可以尝试一下越野跑，据说龙凤线也可以跑的。不过不敢跑大下坡，膝盖伤过后就承受不了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/12/26/Baiyun-mountain-running/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/">跑步步频训练软件 RunningCadence 开发小记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-24T00:16:00+08:00" pubdate data-updated="true">2011-12-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/running/'>Running</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
-
-<p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
-
-<p>有了想法后，就考虑怎样实现。先要知道跑步时加速度传感器得到的数据会是怎样的，在market上找到软件Accelero-meter Log，能显出加速度传感器三轴数据的曲线。拿着手机跑了几步看看曲线，发现完全不是想象中那么简单：从曲线可以看出每跑一步的加速度变化，但并不是一步一个脉冲那么理想，而是大脉冲中包含着小脉冲，波形很不规则；更要命的是不同轴测量到的数据频率会不一样，软件应该按那个轴的数据计算？后来才想到不同轴测量数据频率不同的原因是手摆动的频率与身体重心上下移动的频率不一致，只是一半，再加上手的活动太自如了，跑动过程中会有不同的动作，都会引起加速度变化。</p>
-
-<p>上网找到一个开源的Android计步器的代码，看看它怎么做，发现它只是将三个轴的数值加在一起，然后判断变化量。根据前面看得的数据波形，我感觉这样的算法太不靠谱了，再看看这个软件的用户评价，果然不佳。</p>
-
-<p>这时想到Nike的配合iPhone使用的计步器，是藏在鞋里面的。它应该是感应脚的每次着地，而且计步器是固定在鞋里的，有特定的安装方向，因此它可以只检测垂直地面的加速度。想到这里就豁然开朗了，原来测量摆臂的想法是错误的，应该测量脚着地的冲击，也就是垂直方向的加速度。但那个轴才是垂直地面的呢？我不能规定用户使用这个软件时手机摆放的方向啊，他可以绑在臂上，拿在手里，放裤袋中。。。因此首先要解决的问题是如何判断手机的姿态，找出垂直于地面的轴。</p>
-
-<p>人在运动的时候加速度不断变化，但加速度矢量一段时间的累计应该为零，而重力加速度是恒定的，并且垂直于地面，检测出重力加速度的方向就ok了。具体实现的方法也比较简单：对传感器三个轴的数据分别做截止频率为0.25Hz的低通滤波后，数值最大的那个轴应该就是最接近于垂直地面的。</p>
-
-<p>还有个问题是手机加速度传感器的采样频率能到多高？是否能满足要求？长跑理想的着地次数是每分钟180次，相当于3Hz，一般人都只会比这个慢。实测我的Nexus One使用最短采样间隔时大约30~50ms能获取到一组数据，也就是采样频率大于20Hz，对于检测3Hz的信号完全足够。</p>
-
-<p>对于复杂波形的处理方法，同样是简单的一阶低通滤波，截止频率取了3.5Hz，相当于每分钟210次着地。高频干扰通过滤波削弱后，相邻波峰的时间间隔就是两次着地的时间间隔了。具体实现时，波峰判断会比较麻烦，采样检查是否超过阈值来代替。本来想按振幅比例来设定阈值的，但算振幅也比较麻烦，之前检测重力加速度时已经得到重力加速度在测量轴上的分量，直接拿它的1/2做阈值就好了。这样做还带来了一个没有预料到的副作用：走路时脚步比较轻，超不过阈值，因此软件还能知道当前是否处于跑步状态。</p>
-
-<p>步频数据算出来以后其他的就好办了。跑步时不方便看屏幕，通过语音合成播放出来。设定目标步频，语音提示应该加快还是减慢。还打算过增加个目标步频的节拍音，当实际步频与目标不一致时播放出来，不过软件用了这段时间，感觉有语音播报步频基本上已经足够了，暂时不做以后再说吧。</p>
-
-<p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
-
-<p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/24/NoClassDefFoundError/">NoClassDefFoundError</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-24T17:35:00+08:00" pubdate data-updated="true">2011-11-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>java.lang.NoClassDefFoundError 是个很讨厌的错误，你会发现明明它报告的class已经打包进应用里，没可能在classpath中找不到，然后百思不得其解。其实这个exception跟 ClassNotFoundException 不同，后者报告的类是真的找不到，而这个NoClassDefFoundError 的错误原因是：class loader无法加载这个类，因为它依赖的另外某些类无法找到。到底是什么类找不到？它不告诉你。</p>
-
-<p>例如，看这个exception stack trace:</p>
-
-<pre><code>Caused By: java.lang.NoClassDefFoundError: net/sf/cglib/proxy/Enhancer
-        at org.springframework.aop.framework.Cglib2AopProxy.createEnhancer(Cglib2AopProxy.java:228)
-        at org.springframework.aop.framework.Cglib2AopProxy.getProxy(Cglib2AopProxy.java:170)
-        at org.springframework.aop.framework.ProxyFactory.getProxy(ProxyFactory.java:112)
-        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.createProxy(AbstractAutoProxyCreator.java:476)
-        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:362)
-        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:322)
-        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:407)
-        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1426)
-        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
-        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-</code></pre>
-
-<p>cglib.jar是在classpath里的，真正错误原因是CGLIB所依赖的asm.jar不存在。</p>
-
-<p>有什么好方法查出NoClassDefFoundError的root cause吗？我不知道。不用Maven管理依赖的后果啊。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/11/24/NoClassDefFoundError/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/15/Nike-Lunar-Run-10-/">Nike Lunar Run 10公里跑总结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-15T21:34:00+08:00" pubdate data-updated="true">2011-11-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>11月12日，完成了Nike Lunar Run 10公里跑，这是我第二次参加计时的跑步活动。其实准确的说，只是9.5km跑，因为赛道长度不足10km，多人的GPS测量结果和在Google Maps上面量度距离都证明了这点，但是官方公布的成绩又比实际冲线时计时显示的时间多了大约两分钟，大概是换算出10km的时间。</p>
-
-<p>上一次参加10公里跑是2009年，成绩为58:30，当时定下了目标要提高到55:00（看<a href="http://good-good-study.appspot.com/blog/posts/4216">这篇博客</a>），也就是每公里5分30秒的步速。这次出来的成绩却是意想不到的好，官方公布的成绩是48:29，可能还需要减去过起跑线之前的10来秒，我自己的GPS只记录到8公里处就停止了（<a href="http://runkeeper.com/user/aleung/activity/59561069">RunKeeper</a>），总之步速大约是每公里4分50秒的样子。我之前从来没有想过步速可以迈进5分钟每公里大关的，对这个速度已经非常满意，下次再跑也没有速度目标了，保持这个水平并且不要受伤就好，希望能够尝试一下更长的距离。</p>
-
-<p>虽然名字叫做Lunar Run，比赛是在早上9点进行的。前半程自己感觉状态并不好，步频提不到每分钟170～180步的目标，还不如平常晚上训练的感觉好。也许是早上活动不开，应该热身多一些才行。但跟两年前比较，整个过程跑下来轻松很多，09年那次到最后2公里有点拖着腿熬下来的感觉，最后看着终点在前面都完全没有办法加速了。因为怕最后会跑不动，这次一路上都有点留力，跑到最后一两公里时感觉有余力，还想最后500米可以加速冲一下的，结果一个不留神发现终点已经到了。</p>
-
-<p>成绩提高首先是因为平常的训练增加了，最近一个多月基本保持每周跑两到三次。最重要的因素应该是提高步频的训练，以前习惯低步频大步幅，特别是跑到累的时候脚步沉了更是想靠增大步幅来弥补，最近知道这样不对后才有意识的提高步频，特别是前两个星期做了个Android应用来测量步频，按照180的目标来训练，速度明显提升，膝盖也基本不会怎么痛。我现在还是没办法达到180的步频，一般只能在160～170左右，但已经比以前好不少了。现在跑步的时候基本上就是默念着一件事情：保持步频。只要步频不降下去，速度就不会太慢，也能够压抑着增大步幅的欲望。另外还有些技巧性的因素：上次排在比较后的位置起跑，跑道上人太拥挤了，只能用比走路快不了太多的速度挪动，这次有经验就尽量往起跑区的前面靠，本来在第二区的，后来跟着人穿进了第一区，排在第一区的较前位置起跑，起跑跑出一两百米后就不会受人阻挡了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/11/15/Nike-Lunar-Run-10-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -902,8 +640,16 @@ stay foolish.</p>
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -921,59 +667,52 @@ stay foolish.</p>
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

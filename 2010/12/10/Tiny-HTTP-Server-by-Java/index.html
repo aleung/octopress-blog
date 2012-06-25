@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -91,7 +103,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/http/'>HTTP</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -104,7 +116,214 @@
 
 <div class="entry-content"><p>前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法，URL必须指向一个文件。我顺手修改了一下，让它可以列出目录，这样用起来更加方便一些。</p>
 
-<p>代码： </p>
+<div><script src="https://gist.github.com/1347769.js?file="></script>
+<noscript><pre><code>import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.StringTokenizer;
+
+public class HttpServer {
+  public static void main(String args[]) {
+    int port;
+    try {
+      port = Integer.parseInt(args[0]);
+    } catch (Exception e) {
+      port = 80;
+    }
+
+    String root;
+    try {
+      root = args[1];
+    } catch (Exception e) {
+      root = &quot;../&quot;;
+    }
+    
+    try {
+
+      ServerSocket server_socket = new ServerSocket(port);
+      System.out.println(&quot;HttpServer running on port &quot;
+          + server_socket.getLocalPort() + &quot;, root directory is &quot; + root);
+
+      // server infinite loop
+      while (true) {
+        Socket socket = server_socket.accept();
+        System.out.println(&quot;New connection accepted &quot;
+            + socket.getInetAddress() + &quot;:&quot; + socket.getPort());
+
+        // Construct handler to process the HTTP request message.
+        try {
+          HttpRequestHandler request = new HttpRequestHandler(socket, root);
+          // Create a new thread to process the request.
+          Thread thread = new Thread(request);
+          thread.start();
+        } catch (Exception e) {
+          System.out.println(e);
+        }
+      }
+    } catch (IOException e) {
+      System.out.println(e);
+    }
+  }
+}
+
+class HttpRequestHandler implements Runnable {
+  final static String CRLF = &quot;\r\n&quot;;
+
+  Socket socket;
+  InputStream input;
+  OutputStream output;
+  BufferedReader br;
+  private String root;
+
+  public HttpRequestHandler(Socket socket, String root) throws Exception {
+    this.root = root;
+    this.socket = socket;
+    this.input = socket.getInputStream();
+    this.output = socket.getOutputStream();
+    this.br = new BufferedReader(new InputStreamReader(socket
+        .getInputStream()));
+  }
+
+  public void run() {
+    try {
+      processRequest();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void processRequest() throws Exception {
+    while (true) {
+      String headerLine = br.readLine();
+      System.out.println(&quot;&gt;&gt;&gt;Request&quot;);
+      System.out.println(headerLine);
+      if (headerLine.equals(CRLF) || headerLine.equals(&quot;&quot;))
+        break;
+
+      StringTokenizer s = new StringTokenizer(headerLine);
+      String temp = s.nextToken();
+
+      if (temp.equals(&quot;GET&quot;)) {
+
+        String serverLine = &quot;Server: Simple Java Http Server&quot;;
+        String statusLine = null;
+        String contentTypeLine = &quot;text/html&quot;;
+        String entityBody = null;
+        String contentLengthLine = &quot;&quot;;
+        FileInputStream fis = null;
+        boolean fileExists = false;
+      
+        String requestedPath = s.nextToken();
+        if (requestedPath.equals(&quot;/&quot;)) {
+          requestedPath = &quot;&quot;;
+        }
+        String fileName = root + requestedPath;
+        System.out.println(&quot;===Debug&quot;);
+        System.out.println(fileName);
+        File file = new File(fileName);
+        if (!file.exists()) {
+          statusLine = &quot;HTTP/1.0 404 Not Found&quot; + CRLF;
+          entityBody = &quot;&lt;HTML&gt;&quot;
+              + &quot;&lt;HEAD&gt;&lt;TITLE&gt;404 Not Found&lt;/TITLE&gt;&lt;/HEAD&gt;&quot;
+              + &quot;&lt;BODY&gt;404 Not Found&quot;
+              + &quot;&lt;br&gt;usage:http://yourHostName:port/&quot;
+              + &quot;fileName.html&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
+        } else {
+          statusLine = &quot;HTTP/1.0 200 OK&quot; + CRLF;
+
+          if (file.isDirectory()) {
+            String[] files = file.list();
+            entityBody = &quot;&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;&quot; + file.getPath() 
+                + &quot;&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;&lt;UL&gt;&quot;;
+            for (String entry : files) {
+              entityBody += &quot;&lt;LI&gt;&lt;a href='&quot; + requestedPath + &quot;/&quot; + entry + &quot;'&gt;&quot; 
+                + entry +&quot;&lt;/a&gt;&lt;/LI&gt;&quot;;
+            }
+            entityBody += &quot;&lt;/UL&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
+          } else {
+            try {
+              fis = new FileInputStream(file);
+              fileExists = true;
+            } catch (FileNotFoundException e) {
+              e.printStackTrace();
+            }
+            contentTypeLine = &quot;Content-type: &quot; + contentType(fileName) + CRLF;
+            contentLengthLine = &quot;Content-Length: &quot;
+              + (new Integer(fis.available())).toString() + CRLF;
+          }
+        }
+
+        if (!fileExists) {
+            contentLengthLine = &quot;Content-Length: &quot;
+              + (new Integer(entityBody.getBytes().length)).toString() + CRLF;
+        }
+        
+        System.out.println(&quot;&lt;&lt;&lt;Response&quot;);
+
+        output.write(statusLine.getBytes());
+        System.out.println(statusLine);
+        output.write(serverLine.getBytes());
+        System.out.println(serverLine);
+        output.write(contentTypeLine.getBytes());
+        System.out.println(contentTypeLine);
+        output.write(contentLengthLine.getBytes());
+        System.out.println(contentLengthLine);
+
+        // Send a blank line to indicate the end of the header lines.
+        output.write(CRLF.getBytes());
+        System.out.println(CRLF);
+
+        // Send the entity body.
+        if (fileExists) {
+          sendBytes(fis, output);
+          fis.close();
+        } else {
+          output.write(entityBody.getBytes());
+          System.out.println(entityBody);
+        }
+
+      }
+    }
+
+    try {
+      output.close();
+      br.close();
+      socket.close();
+    } catch (Exception e) {
+    }
+  }
+
+  private static void sendBytes(FileInputStream fis, OutputStream os)
+      throws Exception {
+
+    byte[] buffer = new byte[1024];
+    int bytes = 0;
+
+    while ((bytes = fis.read(buffer)) != -1) {
+      os.write(buffer, 0, bytes);
+    }
+  }
+
+  private static String contentType(String fileName) {
+    if (fileName.endsWith(&quot;.htm&quot;) || fileName.endsWith(&quot;.html&quot;)
+        || fileName.endsWith(&quot;.txt&quot;)) {
+      return &quot;text/html&quot;;
+    } else if (fileName.endsWith(&quot;.jpg&quot;) || fileName.endsWith(&quot;.jpeg&quot;)) {
+      return &quot;image/jpeg&quot;;
+    } else if (fileName.endsWith(&quot;.gif&quot;)) {
+      return &quot;image/gif&quot;;
+    } else {
+      return &quot;application/octet-stream&quot;;
+    }
+  }
+}</code></pre></noscript></div>
 
 <p>运行时可带两个参数：port, http root directory。例如:</p>
 
@@ -145,7 +364,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/http/'>HTTP</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -166,7 +385,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2010/11/13/right/" title="Previous Post: 路权">&laquo; 路权</a>
+        <a class="basic-alignment left" href="/blog/2010/11/13/right-of-way/" title="Previous Post: 路权">&laquo; 路权</a>
       
       
         <a class="basic-alignment right" href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/" title="Next Post: Android activity lifecycle in UML state machine diagram">Android activity lifecycle in UML state machine diagram &raquo;</a>
@@ -186,8 +405,16 @@
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -205,59 +432,52 @@
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

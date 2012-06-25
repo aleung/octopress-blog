@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -110,69 +122,112 @@
 
 <p>首先评估每项任务的工作量（成本），得到一个数字，其实这个数字是什么单位无所谓，story point也好，$也好，在例子里用的是$，金额。</p>
 
-<p>功能 成本</p>
-
-<p>个性化首页
-$10</p>
-
-<p>轻松安排软件开放进程
-$4</p>
-
-<p>追踪资金到账时间
-$5</p>
-
-<p>允许对bug分叉(fork)
-$1</p>
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>然后规定每人手上只有限量的资金，例如$20，可以用来购买这些功能。每个人根据自己对功能的重要性判断来决定应该为每个功能分配多少钱。例如：我觉得追踪资金到账时间是没有用的功能，一分钱也不分给它；安排软件开发过程很重要，我愿意出两倍的钱；而允许对bug分叉更重要，出4倍的钱；而个性化首页不是那么重要，所以我只愿意出80%的钱。故此，我的资金这样分配：</p>
 
-<p>功能 成本 销售额</p>
-
-<p>个性化首页
-$10
-$8</p>
-
-<p>轻松安排软件开放进程
-$4
-$8</p>
-
-<p>追踪资金到账时间
-$5
-$0</p>
-
-<p>允许对bug分叉(fork)
-$1
-$4</p>
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+      <th style="text-align: right">销售额</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+      <td style="text-align: right">$8</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+      <td style="text-align: right">$8</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+      <td style="text-align: right">$0</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+      <td style="text-align: right">$4</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>这个过程其实就是一个已经按照成本加权的优先级评估。每个人在评估时已经综合考虑了成本和重要性。</p>
 
 <p>将每个功能从各人手中获得的资金累加起来，再除以成本，就得到一个投资收益率，很明显，投资收益率最高的功能就是应该最优先做的。</p>
 
-<p>功能 成本 总销售额 投资收益率</p>
-
-<p>个性化首页
-$10
-$45
-4.5</p>
-
-<p>轻松安排软件开放进程
-$4
-$36
-9</p>
-
-<p>追踪资金到账时间
-$5
-$12
-2.4</p>
-
-<p>允许对bug分叉(fork)
-$1
-$7
-7</p>
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+      <th style="text-align: right">总销售额</th>
+      <th style="text-align: right">投资收益率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+      <td style="text-align: right">$45</td>
+      <td style="text-align: right">4.5</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+      <td style="text-align: right">$36</td>
+      <td style="text-align: right">9</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+      <td style="text-align: right">$12</td>
+      <td style="text-align: right">2.4</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+      <td style="text-align: right">$7</td>
+      <td style="text-align: right">7</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>下次排任务优先级的时候，我们应该尝试一下这种方法。</p>
 
 <p>P.S. 回头再想一下，这个方法其实跟我们以前用的工作量乘以重要性级别的方法本质上是一样的，但是我们过去用的重要性级别1、2、3、4、5没有定量关系，说不出不同级别之间的重要性相差多少倍，因此相乘出来的数字就没有比较价值了。另外，每人手上持有有限量资金进行分配这种方式更接近我们日常的思维模式，调动起人的直觉，类似于planning game。</p>
+
 </div>
 
 
@@ -245,8 +300,16 @@ $7
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -264,59 +327,52 @@ $7
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 

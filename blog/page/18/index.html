@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Blogbus怎么啦？先是大半年的访问困难，然后现在又来了个莫名其妙的改版，弄出一大堆bug，今天又发觉原来现在连rss都不会更新了，看到都是旧的内容。 是否应该搬个家了？ 2005-2-24 19:27 append: 好像错怪了blogbus？我换了另外一个RSS reader， &hellip;">
+  <meta name="description" content="做日常管理，传统用纸质记事本，电脑化之后是PC，便携设备出现后是PDA和现在流行的智能手机。但其实还有一个很好的途径一直被忽略了，那就是： 这是一个很有创意的设计，相信戴起来也很cool，但恐怕实用价值不大：表盘上标的是”a breakdown of what average people do &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -70,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2005/02/25/Blogbus-say-goodbay-/">Blogbus, 难道真要跟你say Goodbay?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/02/19/Schedule-management-for-where-notepad-PC-PDA-Mobile-phone-Watch-/">日程管理适合做在哪里：记事本？PC?PDA?手机？手表！</a></h1>
     
     
       <p class="meta">
@@ -86,332 +98,7 @@
   
 
 
-<time datetime="2005-02-25T02:21:00+08:00" pubdate data-updated="true">2005-02-25</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Blogbus怎么啦？先是大半年的访问困难，然后现在又来了个莫名其妙的改版，弄出一大堆bug，今天又发觉原来现在连rss都不会更新了，看到都是旧的内容。</p>
-
-<p>是否应该搬个家了？</p>
-
-<p><em>2005-2-24 19:27 append:</em></p>
-
-<p>好像错怪了blogbus？我换了另外一个RSS reader，发现还是可以看到新的内容的，但是为什么直接用浏览器打开xml文件反而看不到呢？</p>
-
-<p>不过，blogbus还是问题多多，包括在firefox里不能正常使用。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/02/25/Blogbus-say-goodbay-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/02/24/Use-MPC-to-generate-makefile-for-you/">Use MPC to Generate Makefile for You</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-02-24T04:15:00+08:00" pubdate data-updated="true">2005-02-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>MPC - The Makefile, Project and workspace Creator (<a href="http://www.ociweb.com/product/mpc/">http://www.ociweb.com/product/mpc/</a>) is comes with ACE, ACE use it to create its makefile.</p>
-
-<p>Now it’s no need to write makefile anymore, MPC can do it for you.</p>
-
-<ol>
-  <li>Write the workspace file (mwc) and project file (mpc)  </li>
-  <li>Generate makefile <br />
-   $ACE_ROOT/bin/mwc.pl -type make ismap.mwc</li>
-</ol>
-
-<p>Let’s study on an example.</p>
-
-<p>Our ismap_server have 4 sub-projects. Directories ismap, oblc, rtbp each contains a sub project, they will build libraries for later use. The main project builds 3 libraries together and generates the executable file.</p>
-
-<p>The directory structure is like this:</p>
-
-<p>src/{ismap_server files (main project)}<br />
-src/ismap/{ismap_frontend files (sub project)}<br />
-src/oblc/{oblc files (sub project)}<br />
-src/rtbp/{rtbp_backend files (sub project)}</p>
-
-<p>First, write the workspace file <strong>ismap.mwc</strong>. In the workspace block, each line defines a project(mpc file) or directory.</p>
-
-<p>workspace {<br />
- ismap<br />
- oblc<br />
- rtbp<br />
- ismap_server.mpc<br />
-}</p>
-
-<p>Actually, this mwc file can be omitted. The default behavior of MPC is recursing into directories and adding all mpc files into workspace.</p>
-
-<p>Then write the project files for each project. The ismap, oblc and rtbp projects are the same, they generates a library file. Put a mpc file with content as following in each project directory, named as the project’s name (<strong>ismap.mpc</strong>, <strong>oblc.mpc</strong> and <strong>rtbp.mpc</strong>).</p>
-
-<p>project : aceexe {<br />
- libout = ../<br />
-}</p>
-
-<p>The mpc file is very simple. The first lines means that the project inherits setting from base project aceexe, which is defined in $ACE_ROOT/bin/MakeProjectCreator/config/aceexe.mpb. The second line defines where to put the output library. I set it to the upper directory so that all 3 libraries are put together. (It seems that static library target won’t be put into the specified directory. )</p>
-
-<p>Project can have tree kinds of output: executable, dynamic library and static library. The output filename is defined by keywork <em>exename</em>, <em>sharedname</em> and <em>staticname</em>. MPC will search the source files to see whether the main function exists. If main exists, set target as executable, library otherwise. If mwc.pl/mpc.pl is called with the <em>-static</em> parameter, generates static library. The default is dynamic library.</p>
-
-<p>I omit the keywork staticname here. The output file name will be the same as the mpc file.</p>
-
-<p>It’s no need to specify any source file name or header file name. MPC will generate a makefile compiling all the sources in the directory.</p>
-
-<p>The main project’s mpc file <strong>ismap_server.mpc</strong> is a bit different than sub project’s. </p>
-
-<p>project : aceexe {<br />
- exename = ismap_server<br />
- libs += ismap oblc rtbp<br />
- libpaths += .<br />
- after += ismap oblc rtbp<br />
-}</p>
-
-<p>The keyword <em>libs</em> specifies the library(s) to link into the target. “+=” means no overwrite but append. The keyword <em>after</em> specifies the dependance between projects.</p>
-
-<p>From the example, you will find that write mpc file and use MPC to generate makefile is easier than write makefile by hand.</p>
-
-<p>ps. To make project successfully on solaris system, need to set the following directory into PATH environment variable:</p>
-
-<ul>
-  <li>/usr/ccs/bin  (for ar) </li>
-  <li>/usr/openwin/bin  (for makedepend) </li>
-  <li>/usr/local/bin  (for make, gcc)</li>
-</ul>
-
-<p> </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/02/24/Use-MPC-to-generate-makefile-for-you/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/02/18/Member-function-call-delete-this-legal-/">成员函数调用delete This合法吗？</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-02-18T21:18:00+08:00" pubdate data-updated="true">2005-02-18</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Yesterday, I discussed with Alex whether “delete this” in C++ is legal code.</p>
-
-<p>In some case, only the object itself knows when its life is to the end and should be destroyed, the owner of object doesn’t know it, or the object has no explicit owner. The most easy way to manger the life time of this kind of object is let it delete itself.</p>
-
-<p>But we doubted that “delete this” isn’t legal in C++: after the object is released, how does the execution continue?</p>
-
-<p>class A {<br />
-public:<br />
-  void foo();<br />
-};</p>
-
-<p>void A::foo()<br />
-{<br />
-  // do something<br />
-  delete this;<br />
-  cout « “I commit suicide!” « endl;<br />
-}</p>
-
-<p>int main()<br />
-{<br />
-  A* a = new A;<br />
-  a-&gt;foo();<br />
-}</p>
-
-<p>I find the answer now, it’s legal, but must be careful when using it. </p>
-
-<p>The following <a href="http://www.sunistudio.com/cppfaq/freestore-mgmt.html#[16.14]">faq</a> explain it clearly:</p>
-
-<p><em>只要你小心，一个对象请求自杀(<code>delete</code> <code>this</code>).是可以的。</em></p>
-
-<p>_以下是我对“小心”的定义： _</p>
-
-<ol>
-  <li><em>你必须100%的确定，<code>this</code>对象是用 <code>new</code>分配的（不是用<code>new[]</code>，也不是用</em><a href="http://www.sunistudio.com/cppfaq/dtors.html#[11.10]"><em>定位放置 <code>new</code></em></a><em>，也不是一个栈上的局部对象，也不是全局的，也不是另一个对象的成员，而是明白的普通的<code>new</code>）。</em></li>
-  <li><em>你必须100%的确定，该成员函数是<code>this</code>对象最后调用的的成员函数。</em></li>
-  <li><em>你必须100%的确定，剩下的成员函数（<code>delete</code> <code>this</code>之后的）不接触到 <code>this</code>对象任何一块（包括调用任何其他成员函数或访问任何数据成员）。</em></li>
-  <li><em>你必须 100%的确定，在<code>delete</code> <code>this</code>之后不再去访问<code>this</code>指针。换句话说，你不能去检查它，将它和其他指针比较，和 <code>NULL</code>比较，打印它，转换它，对它做任何事。</em></li>
-</ol>
-
-<p><em>自然，对于这种情况还要习惯性地告诫：当你的指针是一个指向基类类型的指针，而没有</em><a href="http://www.sunistudio.com/cppfaq/virtual-functions.html#[20.4]"><em>虚析构函数</em></a>_时（也不可以 <code>delete</code> <code>this</code>）。 _</p>
-
-<p>And these ariticles also take about “delete this”:</p>
-
-<p><a href="http://info.tlw.cn/6079.htm">http://info.tlw.cn/6079.htm</a><br />
-<a href="http://blog.csdn.net/foxmail/archive/2004/09/22/113060.aspx">http://blog.csdn.net/foxmail/archive/2004/09/22/113060.aspx</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/02/18/Member-function-call-delete-this-legal-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/22/Updated-the-RSS/">更新了RSS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-22T22:05:00+08:00" pubdate data-updated="true">2004-12-22</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>将blog的rss feed改了一下，使用了<a href="http://www.feedburner.com/">FeedBurner</a>提供的rss扩展服务。大家可以留意页面右下角的rss图标。<strong><em>如果是用RSS Reader阅读我的blog的朋友，麻烦更换一下地址吧</em></strong>。</p>
-
-<p>FeedBurner提供的功能不错的，我只使用了其中的一部分，其中比较特别的就是自动将del.icio.us的书签加入到blog rss中。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/22/Updated-the-RSS/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/22/The-era-of-network-reading/">网络时代的阅读</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-22T21:32:00+08:00" pubdate data-updated="true">2004-12-22</time>
+<time datetime="2009-02-19T20:17:00+08:00" pubdate data-updated="true">2009-02-19</time>
         
          | 
 
@@ -428,17 +115,21 @@ public:<br />
   </header>
 
 
-  <div class="entry-content"><p>跟同事聊天，说起学生时代读过的书，个个都如数家珍，罗列出一大堆印象深刻的。可那都是很久以前的事情了，要说到近年来看了什么书，几乎都想不起来。报纸上也报道说，根据调查现在的青年的读书比起以前少了多少个百分点。是啊，捧一本书，安坐一角，细细品味，这样的情景已经很久没有出现了。这并不能完全归咎于工作忙碌，没有时间，而是很多空余时间已经被网络占有了。</p>
+  <div class="entry-content"><p>做日常管理，传统用纸质记事本，电脑化之后是PC，便携设备出现后是PDA和现在流行的智能手机。但其实还有一个很好的途径一直被忽略了，那就是：</p>
 
-<p>要说阅读量，现今比起以前倒不见得真的少了，每天在网上浏览，一两个月下来，累计数量估计也比得上一本大部头。只不过，在网上的阅读是很零散的，不如读书一般系统连贯。网上阅读的优势是信息及时，查找方便，可以进行充分的交互沟通；但是网上阅读不足之处是，信息量太大，需要耗费不少时间进行过滤，往往有广度而缺乏深度，可信度也需要靠自己辨别。</p>
+<p><a href="http://www.mrjoneswatches.com/avg-index.html"><img src="http://photo1.bababian.com/upload14/20090219/BEB5C21686C5BAE7863856C565E51405_800.jpg" alt="" /></a></p>
 
-<p>看来，网络阅读适合于用来开拓知识面，快速入门，交流讨论；但要想好好学点东西，还是要心平气和，少上网，多读书。</p>
+<p>这是一个很有创意的设计，相信戴起来也很cool，但恐怕实用价值不大：表盘上标的是”a breakdown of what average people do on an average day”，但每个人都有自己的行事方式，没有多少人是一个average的人吧？</p>
+
+<p>除非—-表盘是可以个性化定制的。但是，一个人的时间安排还是会变化的啊。好，扩展一下思路，引入高科技吧：想象一下，上图的表盘并不是印制出来的，而是高分辨率的电子显示屏，将一天的日程安排显示出来；日程安排是通过无线网络与服务器同步的（例如Google Calendar）。</p>
+
+<p>再想象一下使用的场景：你正在休息室喝咖啡，同事冲进去说：”啊，你躲在这里啊，我有个新idea想跟你讨论一下，有空吗？”，你抬起手一看表，”现在九点二十五分，我喝完这杯咖啡九点半要开会，下午也已经有安排了，呃，十一点到十二点是有空的，可以吗？”</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2004/12/22/The-era-of-network-reading/#disqus_thread">Comments</a>
+        <a href="/blog/2009/02/19/Schedule-management-for-where-notepad-PC-PDA-Mobile-phone-Watch-/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -450,7 +141,7 @@ public:<br />
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2004/12/13/String-fuzzy-matching/">字符串模糊匹配</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/02/11/Self-defense-self-defense-was/">防身自卫术</a></h1>
     
     
       <p class="meta">
@@ -466,13 +157,13 @@ public:<br />
   
 
 
-<time datetime="2004-12-13T17:35:00+08:00" pubdate data-updated="true">2004-12-13</time>
+<time datetime="2009-02-11T05:37:00+08:00" pubdate data-updated="true">2009-02-11</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/life/'>Life</a>
   
 </span>
 
@@ -483,15 +174,20 @@ public:<br />
   </header>
 
 
-  <div class="entry-content"><p>字符串匹配最常用的是正则表达式，但是正则表达式的匹配非常严格，某些场合下，希望的匹配算法是模糊的，只要求找出相似的字符串而不是完全匹配的字符串，例如拼写错误、插入空格等情况。<a href="http://www.codeproject.com/aspnet/intelligent404page.asp">http://www.codeproject.com/aspnet/intelligent404page.asp</a>这篇文章介绍了如何生成智能的404页面，当URL不存在时可提示出拼写近似的网页。其中使用Levenshtein的算法来计算两个字符串的‘edit distance’,也就是一个字符串要经过多少步修改（增加、改变、删除字符），才能变成另外一个字符串。根据计算出的相似的分值，据此来给出建议结果。</p>
+  <div class="entry-content"><p>无意中在CCTV看到女子防身自卫术的介绍，没太多技巧，不需要太强体力，不难记，不只是对女子，对文弱书生也有用吧，记录下关键，以备不时之需。</p>
 
-<p>这个算法看来在处理用户输入的时候会很有用，能够增加用户界面的人性化程度。一个友善的提示，比起冷冰冰的“输入错误”友好多了，降低了用户使用软件时的心理阻碍。另外，这个算法应该也是可以适用于中文的，采用unicode处理就可以了。</p>
+<ul>
+  <li>头部弱点在眼睛，用两指插眼睛。</li>
+  <li>躯干弱点在裆部，招式可以用抓/顶/踢。（应该是只针对男性吧，不过需要对付的应该都是男性）</li>
+  <li>被对方用手抓/捂住时，向外掰其尾指。松手后用上面两招攻击。</li>
+  <li>出招要快、狠；可声东击西，引开注意力时出击；趁对方短暂失去攻击能力时抓紧时间逃走。</li>
+</ul>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2004/12/13/String-fuzzy-matching/#disqus_thread">Comments</a>
+        <a href="/blog/2009/02/11/Self-defense-self-defense-was/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -503,7 +199,7 @@ public:<br />
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2004/12/11/Relaxed-and-desktop/">清爽的桌面</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/02/05/Do-you-have-a-boring-/">有没有更无聊的？</a></h1>
     
     
       <p class="meta">
@@ -519,7 +215,64 @@ public:<br />
   
 
 
-<time datetime="2004-12-11T02:37:00+08:00" pubdate data-updated="true">2004-12-11</time>
+<time datetime="2009-02-05T21:22:00+08:00" pubdate data-updated="true">2009-02-05</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在<a href="http://aleung.blogbus.com/logs/34064067.html">摄像头做自动监控</a>一文中，我提到了”我从来不用摄像头来視頻窷兲”，发布出来的那几天还是正常的，今天flyisland问我”从来不×××”是什么意思，一看原来是”視頻窷兲”这四个字被屏蔽了。</p>
+
+<p>真是无语，有比这更无聊的吗？我说的又不是琺耣功，又不是㈥④亊件这些有专门含义的敏感词，video chatting只是一种网络通信应用，咱们中国所谓有自主知识产权的3G标准，TD-SCDMA，就可以实现video chatting啊，干嘛不把它禁掉？只能说，在低俗的人眼中什么都是低俗的。</p>
+
+<p>类似的事情比比皆是：在淘宝网收藏了洗车用的水管和喷头，给的tag名字是”水枪”，结果显示出来就变成了”水×××”；在一些论坛里，”靠近”、”依靠”、”操作”、”体操”等单词是显示不出来的，看到的只是”x近”，”依x”，”x作”，”体x”。还有，最近广州发生的手机爆炸致死事件，查出真正原因不是手机爆炸，而是”不锈钢击发装置__“造成的。</p>
+
+<p>文化就是这样被摧残的。台湾打算将正体（我们称为繁体）汉字申请世界遗产，大陆这边不乐意，有专家说要申请也应该是所有汉字作为整体来申请。确实，简体汉字更应该申请做遗产，照这样的趋势下去，汉字都要被消灭了，大家都用<a href="http://www.qccu.cn/">火星文</a>吧。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/02/05/Do-you-have-a-boring-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/03/Robocopy/">Robocopy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T00:57:00+08:00" pubdate data-updated="true">2009-02-03</time>
         
          | 
 
@@ -536,17 +289,17 @@ public:<br />
   </header>
 
 
-  <div class="entry-content"><p>一直以为explorer是与windows结合得很紧密的程序，不可缺少。因为它是windows的shell，桌面、菜单、文件浏览窗口都是由它拥有的，如果explorer没有运行，整个屏幕就是空空如也，什么都控制不了。</p>
+  <div class="entry-content"><p>自从使用Windows Vista之后，通过共享网络copy大文件时就经常会出现错误。以前的错误信息是什么没有留意，今天出错后上网搜索了一下错误代码0x800705aa，看到有人说用xcopy的/Z参数可以解决。</p>
 
-<p>没有想到，explorer也是可以替换的，<a href="www.geoshell.com">GeoShell</a>就是这样一个explorer的替代品。而且，它是open source的。安装geoshell替换了explorer之后，屏幕界面清爽了很多，可以替换skin，可以安装plugin，最适合那些疯狂的DIYer了，例如可以把系统装扮成MacOS。据说，geoshell占用内存比起explorer要小，稳定性也很不错。我装起来用了半天，确实占内存比explorer少，不过还要用的时间长一点才能确认。</p>
+<p>在Vista中，xcopy被robocopy代替了，两者都是命令行工具。看了一下robocopy的功能挺强，参数很多，不过太不好记了。再找一下，有<a href="http://www.softpedia.com/get/System/OS-Enhancements/RoboCopy-GUI.shtml">Robocopy GUI</a>，将参数按功能归类了，鼠标指上去还有简要说明，这就方便多了。</p>
 
-<p><a href="http://www.flickr.com/photos/aleung/2075928/"><img src="http://photos2.flickr.com/2075928_d0c94036cb.jpg" alt="geoshell" /></a></p>
+<p>使用robocopy来copy原来出错那些文件，果然就没有问题了。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2004/12/11/Relaxed-and-desktop/#disqus_thread">Comments</a>
+        <a href="/blog/2009/02/03/Robocopy/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -558,7 +311,7 @@ public:<br />
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2004/12/09/Eye-control-the-mouse/">眼控鼠标</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/02/01/The-life-of-the-building-and-destroyed/">建筑的生与灭</a></h1>
     
     
       <p class="meta">
@@ -574,13 +327,13 @@ public:<br />
   
 
 
-<time datetime="2004-12-09T08:44:00+08:00" pubdate data-updated="true">2004-12-09</time>
+<time datetime="2009-02-01T23:02:00+08:00" pubdate data-updated="true">2009-02-01</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+    <a class='tag' href='/blog/tags/阅读/'>阅读</a>
   
 </span>
 
@@ -591,130 +344,21 @@ public:<br />
   </header>
 
 
-  <div class="entry-content"><p>近日看了报道，说长期使用鼠标，很容易导致手腕疾病。以前一直右手用鼠标的，于是换了左手，避免老是一只手过于劳累。不过刚开始还真不习惯，左手总是笨笨的。</p>
+  <div class="entry-content"><p>不知道从什么时候开始，喜欢上阅读关于建筑、城市规划之类的书。</p>
 
-<p>鼠标的功能是为了给用户提供一个全屏幕定位的手段，但是，要能准确地选定屏幕的位置，还是需要一个反馈的过程：手移动鼠标，屏幕鼠标指针反映出当前的位置，手调整鼠标移动的方向和速度，直到鼠标指针移动到期望的位置。在这个过程中，要选择的地方就是目光集中所在的地方，故此，如果能够监测到眼球注视的位置，就能获取到用户需要定位的地方，这将是一种最为直观的手段——看哪指哪。这样带来好处，一方面是定位直观快速，另一方面是能将手从鼠标上解放出来，不需要在键盘与鼠标之间来回移动，减少疲劳了。</p>
+<p>但市面上的建筑类的普及性读物基本上都是从美学方面进行介绍的，例如建筑的历史、流派，著名建筑的形态、立面的特色等等。至于建筑的结构、工程、材料、工艺方面的知识就说得甚少。也许是著书者觉得这些知识太过于专业了，外行人不感兴趣，又或者是没有办法将专业知识讲得让外行人也能够明白。</p>
 
-<p>我想，这“眼控鼠标”应该不算什么天方夜谭的想法吧，canon单反相机的眼控对焦技术已经商用化很多年了，起码说明在技术原理上是可行的。当然，相机取景时眼睛是紧贴取景框的，而使用电脑时距离会远很多，而且头部会移动，所以实现难度可能不小。但是，在这个技术飞速发展的年代，只要能想到，有什么不可能？</p>
+<p>其实，这些工程方面的知识，普通人也会感兴趣的。例如从建筑欣赏方面，结构、材料对建筑美学的影响，为什么有些建筑的形态可以做得那么夸张；地震灾害的时候什么位置是比较安全的，为什么有些房子会倒塌有些没事；甚至具体到自家房子的装修，那些是结构性的不能改动，那些可以做改动而不影响安全，这些有了了解都是很有好处的。在电视上，也看过BBC、Discovery的一些很好的科学节目关于建筑工程的，例如摩天大楼，超级桥梁怎么建造的。</p>
+
+<p>最近终于发现关于建筑技术方面的非常好的普及书籍：《建筑的生与灭》。在图书馆找到的时候发现是一套两册厚厚的书，有点害怕是否能够读得下去。当我翻开第一章开始阅读时，就发现这担心完全是多余的。作者将概念讲得清晰易懂，没有用任何晦涩的专业语汇，对基本概念都作了专门解释，贯穿以大量的经典建筑例子、插图，读起来非常轻松。虽然行文通俗，但是对知识的表达还是非常准确和严谨。能够写出这样的水平的科普文章的作者可是很难得。</p>
+
+<p>书分为两册，分别是《<a href="http://www.douban.com/subject/2066550/">建筑物怎么站起来</a>》和《<a href="http://www.douban.com/subject/2066529/">建筑物怎么倒下去</a>》，我刚刚看完第一册，书从金字塔，大教堂到摩天大楼，大桥，介绍了建筑的结构（通俗的说就是建筑的骨架）的基本知识以及常见的结构类型，兼有对建筑材料（结构用的）和建造方法的介绍。接下来准备看的第二册要讲的就是建筑史上轰动的事故背后的原因。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2004/12/09/Eye-control-the-mouse/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/07/ozi-/">Ozi提供了地图拼合的工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-07T09:03:00+08:00" pubdate data-updated="true">2004-12-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ozi提供了一个地图合并的工具ozimapmerge, 能够将不同区域、不同比例、不同投影方式的多个地图合并生成新的地图。使用很简单，输入可以是所有ozi支持的地图，带有map文件就可以了；选取一定的区域，指定生成地图的线数，就能输出合并后的地图，格式为ozi专用的ozfx3，并且会生成配套的map文件。如果地图重叠，生成图会选择最精细那幅。</p>
-
-<p>根据我现在的摸索，这个工具有两个用途：</p>
-
-<ul>
-  <li>我拥有低精度的大区域地图和高精度的局部地图，利用ozimapmerge，可以把高精度地图镶嵌到低精度地图中。 </li>
-  <li>多幅相邻的地图拼合成一张大图。</li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/07/ozi-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/03/Two-Linux-small-tools-whichcd-checkinstall/">两个linux小工具：whichcd, Checkinstall</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-03T19:02:00+08:00" pubdate data-updated="true">2004-12-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>现在的linux安装盘通常都有几张，要找一个rpm包在哪张盘就很麻烦了，要一张张放进光驱里面看。在sourceforge.net上面找到whichcd这个小工具，能够告诉你某个rpm在第几张光盘，也能告诉你当需要某个文件/命令时应该安装哪个rpm。</p>
-
-<p>估计它是预先将主要linux发行版的包的资料都保存起来了，支持的linux发行版本有限，RedHat的最齐。</p>
-
-<p>另外一个工具叫做CheckInstall，通过记录软件make install过程中新建和拷贝了什么文件目录，自动生成rpm。（以前有个工具叫做installwatch，现在已经被包含到CheckInstall软件包里面了）。这就大大简化了rpm的制作过程，一个软件只有源码和makefile的，也能够直接制作出rpm，不需要写spec了。当然，这工具只能生成简单的rpm，不能做到检测依赖性、运行pre/post script。不过，大部分情况下，能做到这样也就够了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/03/Two-Linux-small-tools-whichcd-checkinstall/#disqus_thread">Comments</a>
+        <a href="/blog/2009/02/01/The-life-of-the-building-and-destroyed/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -734,8 +378,16 @@ public:<br />
 <aside class="sidebar">
   
     <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
@@ -753,59 +405,52 @@ public:<br />
         <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/">在亚马逊买电脑主板，故障退货的经历及总结</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 108%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 70%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
+<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 139%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/http/">HTTP</a>
-<a style="font-size: 144%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 146%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 93%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 142%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 99%" href="/blog/tags/sports/">Sports</a>
-<a style="font-size: 85%" href="/blog/tags/spring/">Spring</a>
+<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 104%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 85%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
-<a style="font-size: 93%" href="/blog/tags/idea/">idea</a>
-<a style="font-size: 104%" href="/blog/tags/mobile/">mobile</a>
+<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
 <a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
 <a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
-<a style="font-size: 70%" href="/blog/tags/交通/">交通</a>
-<a style="font-size: 70%" href="/blog/tags/公民与社会/">公民与社会</a>
-<a style="font-size: 70%" href="/blog/tags/家电/">家电</a>
-<a style="font-size: 70%" href="/blog/tags/建筑/">建筑</a>
-<a style="font-size: 70%" href="/blog/tags/文化艺术/">文化艺术</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/环保/">环保</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
 <a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 
