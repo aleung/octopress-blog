@@ -30,6 +30,8 @@ Markdown基本语法
 
     ![text](link)
 
+另一种图片语法是由插件支持的，用`{` `%`包围的img标签，后面跟着图片URL，在URL前可以加入可选的css class名称，如：`left`, `right`，得到文字环绕效果。
+
 ### 引用 (blockquote)
 
 用`>`开头的一个段落：

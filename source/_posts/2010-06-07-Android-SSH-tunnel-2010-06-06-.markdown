@@ -1,0 +1,24 @@
+---
+layout: post
+title: "Android手机上使用SSH tunnel的进展 (2010-06-06)"
+comments: true
+date: 2010-06-07 13:22
+tags:
+- Anti-GFW
+- Android
+---
+在上一篇博客中，我提出了[在Android手机上使用SSH tunnel的想法](http://good-good-study.appspot.com/blog/posts/20001)。几天下来有了一些进展。
+
+首先，非常感谢[Sunner](http://sunner.cn/)，他帮忙编译出Android平台的transocks_ev binary，并且解决了一些在Android平台上运行的问题。
+
+在实验中，用ConnectBot + transocks_ev + iptables，HTTP和HTTPS请求都能重定向到SSH tunnel了，测试了浏览器和其他一些应用，无需任何额外设置就可正常访问网络。不过目前没有考虑使用非HTTP/HTTPS的应用。但现在还有两个问题：
+
+  1. DNS查询还是直接出去，不能避免DNS污染
+  2. 现在用ConnectBot作为ssh client，并不合适： 
+    * 在port forwarding时ConnectBot CPU占用非常高，达到99%，估计是有bug。
+    * ConnectBot的连接和断开需要手动控制，密码也要在界面输入，无法做到整个翻墙过程单击执行。
+
+对于第一个问题，transocks_ev 不支持UDP，因此无法tunnel DNS查询请求。我在考虑参考[CMWrap](http://code.google.com/p/cmwrap/)的方案，做一个DNS proxy，转成TCP请求发出去。  
+
+
+对于第二个问题，想用一个命令行ssh来代替ConnectBot。目前在Android上常用的是dropbear，但dropbear不支持SOCKS。查了linux上支持SOCKS的ssh client有OpenSSH和lsh（还有没有其他？），但是Sunner尝试了编译OpenSSH和lsh都不成功，因为它俩都太依赖gnu的一些东西了，比如glibc、glib等，而android上所有的对应的库都是从简的。因此暂时还是先用着ConnectBot，并将CPU高的问题反馈给开发者，看看有没有什么回应。

@@ -6,7 +6,7 @@ date: 2011-09-27 22:04
 tags:
 - ImageProcessing
 ---
-![](https://lh5.googleusercontent.com/-MGOVmxQlebs/ToHSOBbvsCI/AAAAAAAAAaQ/ZgUEHwlGelk/s800/aperture3.jpg)
+{% img right https://lh5.googleusercontent.com/-MGOVmxQlebs/ToHSOBbvsCI/AAAAAAAAAaQ/ZgUEHwlGelk/s800/aperture3.jpg %}
 
 以前都用Photoshop来处理照片，刚开始用Aperture，还真不太适应，用了几天兼阅读了help，慢慢有些了解了。对于照片的后期处理，其实用什么工具都大同小异，基本上就是几板斧。没拍好的照片也没有必要费心去调，直接删除就得了。
 

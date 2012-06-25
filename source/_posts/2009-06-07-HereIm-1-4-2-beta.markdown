@@ -1,0 +1,17 @@
+---
+layout: post
+title: "HereIm 1.4.2 beta"
+comments: true
+date: 2009-06-07 09:46
+tags:
+- Android
+- mobile
+- GPS
+---
+在为共享校准数据做准备: 
+
+这个版本会将手工校准的数据上传到google app engine, 不过还仅仅是上传。我现在还没有决定是做成在线获取校准参数还是将新校准参数固化到新版本中。
+
+也不需要在菜单中选择采用那个地方的预设校准数据了，会自动选择距离最近的一个。
+
+[https://sites.google.com/site/hereimapp/](https://sites.google.com/site/hereimapp/)

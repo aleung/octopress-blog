@@ -4,7 +4,7 @@ title: "Dump beans information from live Spring application context"
 comments: true
 date: 2011-11-08 18:42
 tags:
-- Spring
+- SpringFramework
 - SoftwareDev
 ---
 To maintain the Spring application context in a large application is not an easy job. There may be dozens of beans, whenever you want to make changes, you have to be very clear on there dependency. After serveral rounds of update, some beans might be orphan, they're unused any more but you don't know.
