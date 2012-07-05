@@ -1,0 +1,9 @@
+---
+layout: post
+title: "MeeSoft的软件"
+comments: true
+date: 2004-03-01 03:11
+tags:
+- Software
+---
+MeeSoft([http://meesoft.logicnet.dk/](http://meesoft.logicnet.dk/))这个网站有不少有意思的免费软件，包括Command(还记得DOS时代的NC吗？)、SmartMorph、图象增强(可以修复对焦不准的照片啊!)、图表制作、mp3管理、HTML优化等等。

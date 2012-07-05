@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Picasa, 适合家用的图片管理软件"
+comments: true
+date: 2004-09-14 07:05
+tags:
+- Software
+---
+Google出品，必属精品。我发现我对google已经产生了一种不由自主的崇拜，从google search到gmail，blogger（可惜在国内被封），和这个picasa。也许，google是另外一个apple——拥有自己一群忠实的fans，形成了独特的文化。
+
+[Picasa](http://www.picasa.com/picasa/)是最近google收购回来的一个图片管理软件。过去，图片浏览管理大多都是用ACDSee，picasa有什么不同？新的用户体验，就像gmail不同于其他webmail，不是拥有同样功能的仿制品，而是带来了一种新的资料管理（整理）模式。图片按照album组织，根据timeline显示，操作界面简单、舒服。据说，picase与mac的iPhoto类似，不过我没有iMac无缘试用iPhoto。
+
+Picasa还有很多缺点，例如不能显示中文，无法显示EXIF信息，不能添加注释，不提供zoom... 目前它看来还不能替代ACDSee，但这个软件看来挺有前途，值得期待。

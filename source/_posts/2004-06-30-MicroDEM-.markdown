@@ -1,0 +1,11 @@
+---
+layout: post
+title: "MicroDEM制图所需地理数据转换方法"
+comments: true
+date: 2004-06-30 01:23
+tags:
+- GPS_GIS
+---
+MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。
+
+其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector data为shapefile, 会生成3个文件, 其中一个是dbf, MicroDEM可读取的格式.

@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Robocopy"
+comments: true
+date: 2009-02-03 00:57
+tags:
+- Software
+---
+自从使用Windows Vista之后，通过共享网络copy大文件时就经常会出现错误。以前的错误信息是什么没有留意，今天出错后上网搜索了一下错误代码0x800705aa，看到有人说用xcopy的/Z参数可以解决。
+
+在Vista中，xcopy被robocopy代替了，两者都是命令行工具。看了一下robocopy的功能挺强，参数很多，不过太不好记了。再找一下，有[Robocopy GUI](http://www.softpedia.com/get/System/OS-Enhancements/RoboCopy-GUI.shtml)，将参数按功能归类了，鼠标指上去还有简要说明，这就方便多了。
+
+使用robocopy来copy原来出错那些文件，果然就没有问题了。

@@ -1,0 +1,13 @@
+---
+layout: post
+title: "SRTM的精度"
+comments: true
+date: 2005-03-31 22:15
+tags:
+- GPS_GIS
+---
+[http://srtm.csi.cgiar.org/PDF/Jarvis4.pdf](http://srtm.csi.cgiar.org/PDF/Jarvis4.pdf)
+
+一篇论文，研究SRTM DEM的精度，与GTOPO30 DEM和几种比例的topo图比较。文章很长，没有仔细看，反正关心的是最后的overall conclusions部分。研究表明，3-arc SRTM DEM的精度优于1:25,000以上（如1:50,000和1:100,000）的topo图，不如1:25,000以下（如1:10,000）的topo图。看来，我们已经可以心满意足了:)
+
+**[CGIAR-CSI](http://srtm.csi.cgiar.org)**（空间信息联盟）网站上可以下载修补了空洞的SRTM-3数据。

@@ -1,0 +1,14 @@
+---
+layout: post
+title: "SRTM数据中国部分终于可以下载了"
+comments: true
+date: 2003-12-12 23:43
+tags:
+- GPS_GIS
+---
+SRTM数据中国部分终于可以下载了，盼望了几年啊。精度比GTOPO30的高多了。
+
+[ftp://edcsgs9.cr.usgs.gov/pub/data/srtm](ftp://edcsgs9.cr.usgs.gov/pub/data/srtm)   
+Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米。
+
+在OZI的DEM数据格式中选择GLOBE（ARCVIEW）格式就可以打开；用MicroDEM可以对多种DEM数据进行处理。

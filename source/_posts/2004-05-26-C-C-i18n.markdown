@@ -1,0 +1,23 @@
+---
+layout: post
+title: "C/C++中的i18n"
+comments: true
+date: 2004-05-26 21:44
+tags:
+- SoftwareDev
+---
+mbs: multi byte string, 用char作为存储类型, 一个字符可能对应1个或者多个char, 不能直接确定字符边界. charset不确定. 过去的程序都是采用mbs的.
+
+wcs: wide character string, 用wchar_t作为存储类型, 一个字符对于一个wchar_t. 使用unicode编码, charset与OS相关, 在windows平台中为UTF16(UCS-2), 在大多数unix平台中为UTF32(UCS-4). 
+
+国际化的程序都应该在内部使用wcs, 在输入输出时做mbs与wcs的转换.
+
+mbs与wcs的转换函数: 
+
+wcstombs/mbstowcs是实现转换的一对函数. wcs的charset是固定不可变的, 但是mbs的charset是可变的, 可能是ASCII, 可能是gb2312, 也可能是big5. wcstombs/mbstowcs是根据locale环境设置来决定mbs采用的charset的, 在程序中可以用setlocale来设定locale, 例如 setlocale(LC_ALL, "chinese")
+
+程序启动时, locale设定为 LC_ALL="C", 用 setlocale(LC_ALL, "") 就可以设置成操作系统的locale设定.
+
+Locale决定了当前程序运行的本地化设置方式, 但是在程序中可能需要作其他charset的转换, 例如程序本身语言设定为简体中文, 需要做big5与unicode的转换, 或者是其他两种charset的mbstombs转换, 这时wcstombs/mbstowcs就不能胜任了. 在unix平台中可以使用iconv来做这个转换(iconv lib也有windows版本), 在windows平台可以用MultiByteToWideChar/WideCharToMultiByte 函数.
+
+参考资料: [http://xcin.linux.org.tw/i18n/pc2000/p3/chinese-3.html](http://xcin.linux.org.tw/i18n/pc2000/p3/chinese-3.html)
