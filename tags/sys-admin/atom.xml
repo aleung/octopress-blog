@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Sys_Admin | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/sys-admin/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-06-26T01:10:48+08:00</updated>
+  <updated>2012-07-05T23:08:52+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -14,108 +14,137 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How to allow remote application setting display to the SUSE linux desktop]]></title>
-    <link href="http://aleung.github.com/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/"/>
-    <updated>2008-06-17T20:59:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop</id>
-    <content type="html"><![CDATA[<ol>
-  <li>Allow remote TCP connection to the X server. You need root privilege to config it. </li>
-</ol>
+    <title type="html"><![CDATA[cyrus imapd的邮件目录修复]]></title>
+    <link href="http://aleung.github.com/blog/2003/07/17/cyrus-imapd-/"/>
+    <updated>2003-07-17T23:02:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2003/07/17/cyrus-imapd-</id>
+    <content type="html"><![CDATA[<p>cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。<em>注意：该命令必须以cyrus用户身份才能运行<br />
+且此quota不同于/usr/bin/quota命令</em>  </p>
 
-<p>Just run gdmsetup. This will open a window with multiple tabs. In the Security tab, disabled the line that says “Deny TCP connections to the X server”. Close the window and then log out of your current X session. You need to restart gdm for this to work.  The easiest way to do that is to go to a console login, login as root, change to run level 3 (just type “init 3”) and then return to run level 5 (“init 5”) to restart gdm. <br />
-Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.org/wp/?p=69</a></p>
+<p>/var/imap/quota/[a-z]/user.* 文件是用户的quota信息，第一行是当前占用的quota，第二行是quota limit。  </p>
 
-<ol>
-  <li>Add remote host into X server access control</li>
-</ol>
+<p>当用户有d权限时，才会在quota达到特定值时发送warrning信件。不过，正常使用的用户都是有d权限的。  </p>
 
-<p>Run xhost <em>remote_host_ip</em></p>
-
-<ol>
-  <li>Set DISPLAY environment variable in remote host before execute the application</li>
-</ol>
-
-<p>setenv DISPLAY <em>display_host_ip</em>:0.0</p>
+<p><a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">http://asg.web.cmu.edu/cyrus/cyrus-overview.html</a></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Linux的cut命令]]></title>
-    <link href="http://aleung.github.com/blog/2008/04/15/Linux-cut-/"/>
-    <updated>2008-04-15T20:54:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2008/04/15/Linux-cut-</id>
-    <content type="html"><![CDATA[<p>原来有个这么好用的命令：cut</p>
-
-<p>经常都需要分析一个字符串或者文本文件，根据一些规则提取出其中某部分的内容。以前都是用awk来做，但awk太复杂了，每次都要拿手册查半天。今天才知道原来GNU有个叫cut的命令，就可以做这个事情。</p>
-
-<p>例如，获取当前机器的IP地址：</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>/sbin/ifconfig</td>
-      <td>grep ‘inet addr’</td>
-      <td>grep -v ‘127.0.0.1’</td>
-      <td>cut -d: -f2</td>
-      <td>cut -d’ ‘ -f1</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>这个命令在linux和windows的unixutils里都有。</p>
+    <title type="html"><![CDATA[解决Solaris中sendmail不断报错的方法]]></title>
+    <link href="http://aleung.github.com/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/"/>
+    <updated>2003-04-05T00:12:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error</id>
+    <content type="html"><![CDATA[<p>为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名，另一个是主机名加域名（在这里没有域名，只是加个点）。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[两个linux小工具：whichcd, checkinstall]]></title>
-    <link href="http://aleung.github.com/blog/2004/12/03/Two-Linux-small-tools-whichcd-checkinstall/"/>
-    <updated>2004-12-03T19:02:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2004/12/03/Two-Linux-small-tools-whichcd-checkinstall</id>
-    <content type="html"><![CDATA[<p>现在的linux安装盘通常都有几张，要找一个rpm包在哪张盘就很麻烦了，要一张张放进光驱里面看。在sourceforge.net上面找到whichcd这个小工具，能够告诉你某个rpm在第几张光盘，也能告诉你当需要某个文件/命令时应该安装哪个rpm。</p>
+    <title type="html"><![CDATA[邮件系统发信缓慢问题的解决]]></title>
+    <link href="http://aleung.github.com/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/"/>
+    <updated>2002-03-13T00:13:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems</id>
+    <content type="html"><![CDATA[<p>公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常.  </p>
 
-<p>估计它是预先将主要linux发行版的包的资料都保存起来了，支持的linux发行版本有限，RedHat的最齐。</p>
+<p>检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时.  </p>
 
-<p>另外一个工具叫做CheckInstall，通过记录软件make install过程中新建和拷贝了什么文件目录，自动生成rpm。（以前有个工具叫做installwatch，现在已经被包含到CheckInstall软件包里面了）。这就大大简化了rpm的制作过程，一个软件只有源码和makefile的，也能够直接制作出rpm，不需要写spec了。当然，这工具只能生成简单的rpm，不能做到检测依赖性、运行pre/post script。不过，大部分情况下，能做到这样也就够了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Windows系统错误的查找]]></title>
-    <link href="http://aleung.github.com/blog/2004/07/07/Windows-/"/>
-    <updated>2004-07-07T17:17:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2004/07/07/Windows-</id>
-    <content type="html"><![CDATA[<p>最近两次启动windows 2000, 启动时间莫名其妙的长, 居然要5分钟, 我还以为死机了:(</p>
-
-<p>实在忍受不了, 查看”事件管理器”, 发现有几个错误. 在网上搜索一下, 发现了一个好网站<a href="http://www.eventid.net">eventid.net</a>, 可以查找到事件的详细解释和解决办法.</p>
-
-<p>一查才知道, 原来好几个错误都是由于DNS没有正确设置引起的, 晕:( 昨天改过IP, 把DNS设错了, 居然会造成启动慢的问题.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[系统性能监控工具]]></title>
-    <link href="http://aleung.github.com/blog/2003/09/19/The-system-performance-monitoring-tool/"/>
-    <updated>2003-09-19T22:39:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2003/09/19/The-system-performance-monitoring-tool</id>
-    <content type="html"><![CDATA[<p>有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等:  </p>
+<p>解决办法:  </p>
 
 <ul>
   <li>
-    <p>MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/<br />
-这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, 可以通过调用其他程序来采集数据并生成曲线图. 但由于原来设计是流量监测, 故此配置灵活性不如RRDtool.<br />
-这里是各种扩展: <a href="http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html">http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html</a>  </p>
+    <p>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </p>
   </li>
   <li>
-    <p>RRDTool http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/<br />
-RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并且按照一定的周期生成曲线图. 很象MRTG, 不过它不包含数据采集功能, 而且灵活性高适应面更广.  </p>
-  </li>
-  <li>
-    <p>ORCA(http://www.orcaware.com/orca/docs/orcallator.html), 一个主机性能采集的工具, 利用RRDTool生成很多种性能曲线. 它只能在solaris上运行. 但它采集的数据和生成的曲线可以参考, 部分在linux上用RRDTool配合其他的采集程序应该也可以生成的.  </p>
-  </li>
-  <li>
-    <p>BGraphs(http://www.ag0ny.com/graphs/) 利用RRDtool和shell script做的linux性能采集工具。我在它的基础上修改，安装到公司的上网服务器上，还不错。  </p>
+    <p>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </p>
   </li>
 </ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[配置samba文件共享]]></title>
+    <link href="http://aleung.github.com/blog/2002/01/19/Samba-configuration-file-sharing/"/>
+    <updated>2002-01-19T00:14:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2002/01/19/Samba-configuration-file-sharing</id>
+    <content type="html"><![CDATA[<p>根据实践的经验，基本了解了samba配置方法，将它记录下来。   </p>
+
+<p>一个基本的配置文件：   </p>
+
+<blockquote>
+
+  <p>[global]<br />
+netbios name = SERVERNAME<br />
+workgroup = GROUPNAME<br />
+null passwords = yes (是否允许用户设置空密码,default=no)<br />
+log file = /var/log/samba/log.%m<br />
+max log size = 500<br />
+dns proxy = No (default=yes,一般情况下没有必要)<br />
+security = user (相当于WinNT/2000的文件共享)<br />
+encrypt passwords = yes<br />
+guest ok = yes (default=no,是否允许guest访问,即不需要输入密码)<br />
+(在global节中的这个设定会作为各共享资源设定的缺省值)  </p>
+</blockquote>
+
+<p>[homes] (每个用户会看到各自的home目录)<br />
+comment = Your Home Directories<br />
+read only = No<br />
+browseable = No  </p>
+
+<p>[share] (share to all, read only)<br />
+comment = Share Folder<br />
+path = /home/samba<br />
+guest ok = yes (在global中设定了,这里可以不写)<br />
+writeable = no  </p>
+
+<p>[source] (leo,frank可读写;james只读;其余用户无权访问)<br />
+path = /home/source<br />
+valid users = james,leo,frank(可访问此资源的用户的列表,如果不指定,任何用户都可以访问)<br />
+write list = leo,frank (有写权限的用户的列表)<br />
+writeable = no (其他用户不可写)<br />
+create mode = 666 (保证新建的文件目录可以其他用户读写)<br />
+directory mode = 777<br />
+force group = nobody (无论用户以什么身份login,强制为此user/group;不一定需要)<br />
+force user = nobody  </p>
+
+<p>在samba的权限控制中, 关键的是以下一些参数. <br />
+invalid users <br />
+valid users <br />
+guest ok / public (两种写法都可以) <br />
+这三个参数, 优先级从高到低, 控制用户是否可以/是否需要login到一个服务. <br />
+write list <br />
+read list <br />
+readonly / writeable (两种写法都可以) <br />
+这三个参数, 优先级从高到低, 控制用户是否有写权限.   </p>
+
+<p>用户要访问一个服务(共享目录),<br />
+首先要成功login到这个服务(或者这个服务是public, 不需要login),<br />
+然后再根据配置决定他是否有写的权限. 只要login进入了,就起码有读权限了.   </p>
+
+<p>另外, unix文件系统的权限设置是个前提, 无论samba的访问权限怎么设置,<br />
+用户在unix中无权访问的文件在samba中也肯定是不能访问的.   </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solaris中指定动态链接库路径的方法]]></title>
+    <link href="http://aleung.github.com/blog/2001/12/08/Solaris-/"/>
+    <updated>2001-12-08T18:43:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2001/12/08/Solaris-</id>
+    <content type="html"><![CDATA[<p>使用crle命令, 例如:<br />
+crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/libthread.so.1 -o /usr/lib/lwp  </p>
+
+<p>以上命令的作用  </p>
+
+<ul>
+  <li>设置library路径为 /usr/lib 和 /usr/local/lib </li>
+  <li>在这些目录建立cached list of libaries </li>
+  <li>指定用 /usr/lib/lwp 中的 libthread.so 代替 /usr/lib 中的版本.  </li>
+</ul>
+
+<p>然后执行<br />
+crle -u<br />
+更新/var/ld/ld.config文件  </p>
 
 ]]></content>
   </entry>

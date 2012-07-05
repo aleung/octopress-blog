@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="字符编码问题一直都是令人头痛，查阅资料，写下了《java 字符转换问题的学习笔记》。 什么是字节流与字符流的转换? 什么时候会做转换?
-字符就是char类型, 是双字节的, 用unicode, 一个char就是实际上的一个字符；字节就是byte类型, 是单字节的，实际的字符串根据编码不同， &hellip;">
+  <meta name="description" content="LANDSAT是美国陆地探测卫星系统。从1972年开始发射第一颗卫星LANDSAT 1，到目前最新的LANDSAT 7。 LANDSAT 7 卫星于99年发射，装备有Enhanced Thematic Mapper Plus(ETM+)设备，ETM+被动感应地表反射的太阳辐射和散发的热辐射， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,122 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/18/Java-/">Java字符转换问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-18T22:57:00+08:00" pubdate data-updated="true">2003-08-18</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>字符编码问题一直都是令人头痛，查阅资料，写下了《java 字符转换问题的学习笔记》。</p>
-
-<ul>
-  <li>
-    <p>什么是字节流与字符流的转换? 什么时候会做转换?<br />
-字符就是char类型, 是双字节的, 用unicode, 一个char就是实际上的一个字符；字节就是byte类型, 是单字节的，实际的字符串根据编码不同，用单字节或者双字节来表示。<br />
-常用的String类型核心就是char[]，String.length()就是char[]数组的大小，因此当encoding没有转换错误时，String长度是字符的个数，不管是中文还是英文。做字符处理的时候也从来不会出现截断半个字符的问题。<br />
-Java内部都是用char的，但是很多时候做输入输出就要用byte stream，例如文件、数据库、网络。<br />
-当数据要从char变为byte，或者byte变成char时，就要做转换。<br />
-同样的内容，用不同的编码方式(encoding)，byte stream是不同的，转换的时候需要指定使用的encoding。<br />
-JVM的file.encoding属性确定了JVM的缺省的编码/解码方式：从而影响应用中所有字节流==&gt;字符流的解码方式 字符流==&gt;字节流的编码方式。在不同OS平台上，这是由locale决定的，缺省encoding在中文平台为GBK，英文平台为8859_1。  </p>
-  </li>
-  <li>
-    <p>UTF8与unicode<br />
-准确的说，UTF8不是unicode，它也只是一种编码方式，不过它的编码空间可以容纳unicode的所有字符。因此UTF8是一种很适合于存储unicode的外码。UTF8是变长编码，中文3字节。  </p>
-  </li>
-  <li>
-    <p>Java I/O<br />
-Reader和Writer核心是char，InputStream和OutputStream核心是byte。<br />
-专门有bridge类做Reader/Writer与InputStream/OutputStream的转换：InputStreamReader/OutputStreamWriter。  </p>
-  </li>
-  <li>
-    <p>什么地方会发生转换？  </p>
-  </li>
-  <li>
-    <p>从数据库到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从java程序到数据库 char——〉byte  </p>
-  </li>
-  <li>
-    <p>从文件到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从java程序到文件 char——〉byte  </p>
-  </li>
-  <li>
-    <p>从java程序到页面显示 char——〉byte  </p>
-  </li>
-  <li>
-    <p>从页面form提交数据到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从流到java程序 byte——〉char  </p>
-  </li>
-  <li>
-    <p>从java程序到流 char——〉byte  </p>
-  </li>
-  <li>
-    <p>源程序中的字符串<br />
-最早的字节流解码过程从javac的代码编译就开始了，写在源文件中的字符串是按照一定的编码方式的（如gbk），java编译器根据缺省的encoding来对源代码中的字符串做解码，在java bytecode中存储为unicode char。  </p>
-  </li>
-  <li>
-    <p>数据库中的字符编码方式<br />
-数据库中的东西都是二进制存放的，支持任何数据，理论上说，与编码并没有关系。不过，如果没有指定字符集，在排序、匹配的时候有问题，接口的地方也会出现问题。<br />
-因此就涉及到以什么编码方式来保存到数据库中了。平常我们用数据库工具或者其他程序写数据库时，都是直接用系统编码方式，也就是gbk。但是，JDBC在访问数据库时，缺省是用数据库的字符集，通常为8859<em>1的，本来应该是gbk-&gt;unicode却变成了8859</em>1-&gt;unicode,就会出现乱码。连接串中加上参数可以强制jdbc按照gbk做转换。<br />
-jdbc:mysql://localhost/test?useUnicode=true&amp;characterEncoding=GBK<br />
-不过这样数据库还是只能支持gbk，如果写入big5码，同样会出现转换错误的问题。最佳方案还是用UTF8来编码，这样可以容纳unicode所有字符，覆盖了gbk、big5等各个字符集的范围。<br />
-MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持，但目前4.1版本还在alpha阶段。  </p>
-  </li>
-  <li>
-    <p>Swing的字符集问题<br />
-从目前的试验看来，swing的组件会自动根据系统encoding做转换，并不需要干预。  </p>
-  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/18/Java-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -478,6 +361,64 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/17/cyrus-imapd-/">Cyrus Imapd的邮件目录修复</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-17T23:02:00+08:00" pubdate data-updated="true">2003-07-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。<em>注意：该命令必须以cyrus用户身份才能运行<br />
+且此quota不同于/usr/bin/quota命令</em>  </p>
+
+<p>/var/imap/quota/[a-z]/user.* 文件是用户的quota信息，第一行是当前占用的quota，第二行是quota limit。  </p>
+
+<p>当用户有d权限时，才会在quota达到特定值时发送warrning信件。不过，正常使用的用户都是有d权限的。  </p>
+
+<p><a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">http://asg.web.cmu.edu/cyrus/cyrus-overview.html</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/17/cyrus-imapd-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/51/">&larr; Older</a>
@@ -499,6 +440,10 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">redesign-of-software-development-workspace</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
       </li>
     
@@ -514,58 +459,52 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
         <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 133%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 93%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
-<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 117%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
 <a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
-<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/software/">software</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
-<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 
   </ul>
 </section>

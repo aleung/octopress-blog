@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="It isn’t a full diagram that presents all WebLogic MBeans. Only the MBeans I’m interesting in are shown. Reference:The WebLogic Server® MBean &hellip;">
+  <meta name="description" content="在上一篇blog里面列出了我个人对任务管理工具的需求以及对比较热门的工具的分析。由于现有工具没有那款能够满足我的几点主要需求，于是就产生了自己做一个的想法。前几天，功能性原型完成，已经正式用了起来，下一步要做的工作是界面设计和交互设计。 目前做的是Android手机应用，web端还没有考虑。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,83 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/">我的任务管理工具功能原型已经完成</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-24T05:13:00+08:00" pubdate data-updated="true">2011-03-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在<a href="http://good-good-study.appspot.com/blog/posts/119001">上一篇blog</a>里面列出了我个人对任务管理工具的需求以及对比较热门的工具的分析。由于现有工具没有那款能够满足我的几点主要需求，于是就产生了自己做一个的想法。前几天，功能性原型完成，已经正式用了起来，下一步要做的工作是界面设计和交互设计。</p>
+
+<p>目前做的是Android手机应用，web端还没有考虑。一方面是手机几乎不离身，保证了随时可用，另一方面是web端使用现有的服务已经勉强可以满足要求，下面我会说明。</p>
+
+<p>从功能定位上，主要是受了<a href="http://stayuseful.com/">StayUseful</a>和<a href="http://teuxdeux.com">TeuxDeux</a>的影响，目标是要做成简洁、轻量级的任务列表，强调对任务进行计划安排，专注于当天以及最近几天的任务。</p>
+
+<ul>
+  <li>单日任务列表：在一个页面里列出一天的所有任务。只显示计划在此一天执行的任务，保证专注性。缺省的页面是当天，可快速导航到最近几天。</li>
+  <li>用简单的操作可更改任务的执行日期。</li>
+  <li>过去没有完成的任务自动放到”今天”，要么马上去完成它，要么重新安排执行日期。</li>
+  <li>任务可设置due date，对于有due date的任务，会显示出剩余天数或者过期天数。</li>
+  <li>任务不设优先级，但可以加星。单日任务列表中，任务可以拖放排序。</li>
+  <li>数据与云端同步。</li>
+</ul>
+
+<p>因为目标要做到数据与云端同步，这自己从零开始实现工作量太大了，所以一开始就计划基于网上现有的服务基础之上开发。最初物色的对象是Google Tasks，但发现Google Tasks尚未开放API，虽然已经有Android应用可以做到与Google Tasks同步，但它们是靠hack Google的网页前端与后端通信接口来实现的，实现起来既麻烦也不可靠。接下来发现Google Calendar是一个更好的选择：</p>
+
+<ul>
+  <li>Android Calendar与云端的Google Calendar之间几乎是实时同步，无论在哪边做修改，几秒钟之后另外一边就能看到变动。</li>
+  <li>Android Calendar提供Provider接口供其他Android应用调用，开发简便，并且Android Calendar是open source的，有问题可以直接看代码。</li>
+  <li>Web端可使用Google Calendar，虽然不能实现我需要的全部功能，但基本的都可以做到。</li>
+  <li>为实现日程表跟任务列表的整合提供了可能。Google Calendar还能与其他系统同步，提高扩展性。</li>
+</ul>
+
+<p>具体做起来其实不难，就是将一些task专有的数据放进Calendar的Event里面。Google Calendar的event数据对象没有供存放扩展数据的字段，我就将task数据用JSON格式放进description里面了。</p>
+
+<p>好了，下一步怎样做出简洁、易用、高效的交互界面才是困难所在。另外，给它起个好名字也很难，有什么建议么？</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -496,67 +573,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/14/Independent-blog-of-a-week/">独立博客一周年纪念</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-14T01:34:00+08:00" pubdate data-updated="true">2011-02-14</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Good good study, day day up 这个博客从2001年就开始写，正如副标题所说，定位为记录学习心得和一些想法（之前我还有另外一个摄影、旅行主题的博客），基本上谈的就是理科生的话题。原来一直是放在BlogBus上的，直到去年初，实在忍受不了BlogBus疯狂的内容审查，搬出来做独立博客。</p>
-
-<p>查看历史记录，在这个搭建于Google App Engine上的新blog上发的<a href="http://good-good-study.appspot.com/blog/posts/1001">第一篇文章</a>是在去年的2月14日，居然是在情人节！今天是2月13日，也就是这个独立博客已经一周岁了。</p>
-
-<p>统计一下新blog这一年里发布的文章有30篇（不包括更新的旧文章），平均两周一篇，比我自己印象中的多了。希望自己今后能够继续保持这样一个习惯。最热门的文章是”<a href="http://good-good-study.appspot.com/blog/posts/20001">在Android手机上使用SSH tunnel翻墙</a>“，其次是”<a href="http://good-good-study.appspot.com/blog/posts/3224">Google中国地图偏移</a>“。</p>
-
-<p>新的blog留言需要用Google帐号登录，spam是全没有了，但是留言也冷清了好多。没想到什么办法既方便又能杜绝spam的。不知道有没有方法通过Google Buzz或者Twitter来留言呢。另外一个问题是搬家之后搜索引擎的收录不理想，一些关键字的搜索结果还是指向我原来的blog。</p>
-
-<p>搬到GAE上，就已经准备好要被墙，一年下来appspot.com被封被解封反复多次，似乎到目前为止这个blog还能直接访问（不知道不同地区的情况）。但是，即使被封也不会再搬回墙内，作为一个软件开发者，受困于信息封锁就意味着被技术发展所抛弃，我的博客读者不应该是这样的人。有人说翻墙太麻烦，老想找免费的方法当然麻烦，还是花点钱买个ssh帐号吧，便宜的就是一年几美元。每个月上百的ADSL费用都舍得花了，就不要吝啬这一年几十块钱了，无障碍获取信息的价值就远远值回来了。</p>
-
-<p>就写到这里吧。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/02/14/Independent-blog-of-a-week/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/6/">&larr; Older</a>
@@ -578,6 +594,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">redesign-of-software-development-workspace</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
       </li>
     
@@ -593,58 +613,52 @@
         <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 133%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 93%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
-<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 117%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
 <a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
-<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/software/">software</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
-<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 
   </ul>
 </section>

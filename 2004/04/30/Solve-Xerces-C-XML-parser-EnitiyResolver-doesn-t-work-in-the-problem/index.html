@@ -118,44 +118,81 @@
 
 <p>在我们的程序中，parse VXML文件时需要使用外部的schema，而这些schema又会间接引用其他的schema或者DTD，这些外部实体都是通过URL形式的system id来指定的（基本上都是在<a href="http://www.w3c.org">www.w3c.org</a>上）。考虑到程序运行环境不一定与internet连接，还有远程网络的效率也不高，我们在程序中实现了自己的EntityResolver，把所有对这些schemas、DTDs的访问都截取下来，返回程序中内置的拷贝。</p>
 
-<pre><code>class DTDResolver : public EntityResolver {
-public:
-    virtual InputSource * resolveEntity(const XMLCh * const publicId,
-        const XMLCh * const systemId)
-    {
-        if (Compare(systemId, L"http://www.w3.org/TR/voicexml20/vxml.xsd")) {
-            VXIcharToXMLCh name(L"http://www.w3.org/TR/voicexml20/vxml.xsd (SB)");
-            return new MemBufInputSource(VALIDATOR_DATA + VALIDATOR_VXML,
-                VALIDATOR_VXML_SIZE,
-                name.c_str(), false);
-        }
-
-        if (Compare(systemId, L"http://www.w3.org/2001/xml.xsd")) {
-            VXIcharToXMLCh name(L"http://www.w3.org/2001/xml.xsd");
-            return new MemBufInputSource(VALIDATOR_DATA + VALIDATOR_XML,
-                VALIDATOR_XML_SIZE,
-                name.c_str(), false);
-        }
-
-        if (Compare(systemId, L"XMLSchema.dtd")) {
-            VXIcharToXMLCh name(L"XMLSchema.dtd");
-            return new MemBufInputSource(VALIDATOR_DATA + VALIDATOR_SCHEMA_DTD,
-                VALIDATOR_SCHEMA_DTD_SIZE,
-                name.c_str(), false);
-        }
-
-        // ......
-
-        return NULL;
-    }
-};
-
-// ......
-
-parser = XMLReaderFactory::createXMLReader();
-DTDResolver * dtd = new DTDResolver();
-parser-&gt;setEntityResolver(dtd);
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">class</span> <span class="nc">DTDResolver</span> <span class="o">:</span> <span class="k">public</span> <span class="n">EntityResolver</span> <span class="p">{</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line">    <span class="k">virtual</span> <span class="n">InputSource</span> <span class="o">*</span> <span class="n">resolveEntity</span><span class="p">(</span><span class="k">const</span> <span class="n">XMLCh</span> <span class="o">*</span> <span class="k">const</span> <span class="n">publicId</span><span class="p">,</span>
+</span><span class="line">        <span class="k">const</span> <span class="n">XMLCh</span> <span class="o">*</span> <span class="k">const</span> <span class="n">systemId</span><span class="p">)</span>
+</span><span class="line">    <span class="p">{</span>
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">Compare</span><span class="p">(</span><span class="n">systemId</span><span class="p">,</span> <span class="s">L&quot;http://www.w3.org/TR/voicexml20/vxml.xsd&quot;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class="line">            <span class="n">VXIcharToXMLCh</span> <span class="n">name</span><span class="p">(</span><span class="s">L&quot;http://www.w3.org/TR/voicexml20/vxml.xsd (SB)&quot;</span><span class="p">);</span>
+</span><span class="line">            <span class="k">return</span> <span class="k">new</span> <span class="n">MemBufInputSource</span><span class="p">(</span><span class="n">VALIDATOR_DATA</span> <span class="o">+</span> <span class="n">VALIDATOR_VXML</span><span class="p">,</span>
+</span><span class="line">                <span class="n">VALIDATOR_VXML_SIZE</span><span class="p">,</span>
+</span><span class="line">                <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">Compare</span><span class="p">(</span><span class="n">systemId</span><span class="p">,</span> <span class="s">L&quot;http://www.w3.org/2001/xml.xsd&quot;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class="line">            <span class="n">VXIcharToXMLCh</span> <span class="n">name</span><span class="p">(</span><span class="s">L&quot;http://www.w3.org/2001/xml.xsd&quot;</span><span class="p">);</span>
+</span><span class="line">            <span class="k">return</span> <span class="k">new</span> <span class="n">MemBufInputSource</span><span class="p">(</span><span class="n">VALIDATOR_DATA</span> <span class="o">+</span> <span class="n">VALIDATOR_XML</span><span class="p">,</span>
+</span><span class="line">                <span class="n">VALIDATOR_XML_SIZE</span><span class="p">,</span>
+</span><span class="line">                <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">Compare</span><span class="p">(</span><span class="n">systemId</span><span class="p">,</span> <span class="s">L&quot;XMLSchema.dtd&quot;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class="line">            <span class="n">VXIcharToXMLCh</span> <span class="n">name</span><span class="p">(</span><span class="s">L&quot;XMLSchema.dtd&quot;</span><span class="p">);</span>
+</span><span class="line">            <span class="k">return</span> <span class="k">new</span> <span class="n">MemBufInputSource</span><span class="p">(</span><span class="n">VALIDATOR_DATA</span> <span class="o">+</span> <span class="n">VALIDATOR_SCHEMA_DTD</span><span class="p">,</span>
+</span><span class="line">                <span class="n">VALIDATOR_SCHEMA_DTD_SIZE</span><span class="p">,</span>
+</span><span class="line">                <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">        <span class="c1">// ......</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">// ......</span>
+</span><span class="line">
+</span><span class="line"><span class="n">parser</span> <span class="o">=</span> <span class="n">XMLReaderFactory</span><span class="o">::</span><span class="n">createXMLReader</span><span class="p">();</span>
+</span><span class="line"><span class="n">DTDResolver</span> <span class="o">*</span> <span class="n">dtd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DTDResolver</span><span class="p">();</span>
+</span><span class="line"><span class="n">parser</span><span class="o">-&gt;</span><span class="n">setEntityResolver</span><span class="p">(</span><span class="n">dtd</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>在测试中发现，对某些外部实体的访问成功截取了，但是另外一些却不成功，parser依然尝试通过网络访问，然后由于网络不通而访问失败，造成xml文件无法parse。</p>
 
@@ -165,52 +202,85 @@ parser-&gt;setEntityResolver(dtd);
 
 <p>XercesDOMParser类有两个resolveEnitiy方法：</p>
 
-<pre><code>InputSource* XercesDOMParser::resolveEntity(const XMLCh* const publicId,
-                                            const XMLCh* const systemId,
-                                            const XMLCh* const baseURI)
-{
-    if (fEntityResolver)
-        return fEntityResolver-&gt;resolveEntity(publicId, systemId);
-    return 0;
-}
-InputSource* XercesDOMParser::resolveEntity(XMLResourceIdentifier* resourceIdentifier)
-{
-    if (fEntityResolver)
-        return fEntityResolver-&gt;resolveEntity(resourceIdentifier-&gt;getPublicId(),
-                                                resourceIdentifier-&gt;getSystemId());
-    if (fXMLEntityResolver)
-        return fXMLEntityResolver-&gt;resolveEntity(resourceIdentifier);
-    return 0;
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XercesDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">publicId</span><span class="p">,</span>
+</span><span class="line">                                            <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">systemId</span><span class="p">,</span>
+</span><span class="line">                                            <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">baseURI</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fEntityResolver</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">fEntityResolver</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XercesDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">XMLResourceIdentifier</span><span class="o">*</span> <span class="n">resourceIdentifier</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fEntityResolver</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">fEntityResolver</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">resourceIdentifier</span><span class="o">-&gt;</span><span class="n">getPublicId</span><span class="p">(),</span>
+</span><span class="line">                                                <span class="n">resourceIdentifier</span><span class="o">-&gt;</span><span class="n">getSystemId</span><span class="p">());</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fXMLEntityResolver</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">fXMLEntityResolver</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">resourceIdentifier</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>根据代码注释，前者是deprecated的，被后者代替。</p>
 
 <p>由XercesDOMParser派生出XSDDOMParser类，这个类是专门用来parser xsd文件（也就是schema）的。这个类重载了XercesDOMParser的三个参数的resolveEntity方法，用fUserEntityHandler代替fEntityResolver的方法调用。</p>
 
-<pre><code>InputSource* XSDDOMParser::resolveEntity(const XMLCh* const publicId,
-                                         const XMLCh* const systemId,
-                                         const XMLCh* const baseURI)
-{
-    if (fUserEntityHandler)
-        return fUserEntityHandler-&gt;resolveEntity(publicId, systemId, baseURI);
-
-    return 0;
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XSDDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">publicId</span><span class="p">,</span>
+</span><span class="line">                                         <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">systemId</span><span class="p">,</span>
+</span><span class="line">                                         <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">baseURI</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fUserEntityHandler</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">fUserEntityHandler</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">,</span> <span class="n">baseURI</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>但是XSDDOMParser没有重载第二个resolveEntity方法，估计是第二个方法是后来才加入XercesDOMParser的，在XSDDOMParser中没有同步修改。因此，依然是使用fEntityResolver，而不是fUserEntityHandler，就造成了没有调用到我们定义的resolveEntity方法，依然按照原来的system id去访问网络了。</p>
 
 <p>问题找出来，解决就简单了，在XSDDOMParser中把另外一个resolveEntity方法也重载了，改为使用fUserEntityHandler。修改之后，测试通过。</p>
 
-<pre><code>InputSource* XSDDOMParser::resolveEntity(XMLResourceIdentifier* resourceIdentifier)
-{
-    if (fUserEntityHandler)
-        return fUserEntityHandler-&gt;resolveEntity(resourceIdentifier);
-
-    return 0;
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XSDDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">XMLResourceIdentifier</span><span class="o">*</span> <span class="n">resourceIdentifier</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fUserEntityHandler</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">fUserEntityHandler</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">resourceIdentifier</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>这个问题在Xerces-C 2.4和2.5版本都存在，IBM的XML4C与Xerces-C是影子项目，也有同样的问题。</p>
 </div>
@@ -295,6 +365,10 @@ InputSource* XercesDOMParser::resolveEntity(XMLResourceIdentifier* resourceIdent
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">redesign-of-software-development-workspace</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
       </li>
     
@@ -310,58 +384,52 @@ InputSource* XercesDOMParser::resolveEntity(XMLResourceIdentifier* resourceIdent
         <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 133%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 93%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
-<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 117%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
 <a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
-<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/software/">software</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
-<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 
   </ul>
 </section>

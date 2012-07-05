@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aleung.github.com/blog/2006/08/23/-/">
+  <link rel="canonical" href="http://aleung.github.com/blog/2006/08/23/I-Love-Audio-Player/">
   <link href="/blog/favicon.png" rel="icon">
   <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/blog/javascripts/modernizr-2.0.js"></script>
@@ -120,60 +120,82 @@
 
 <p>假设要开发这样一个软件，就叫它”I love”吧，将它的功能用user story描述出来，应该有这些（还可能增加好多）：</p>
 
-<p><strong>title</strong>
-<strong>description</strong>
-<strong>priority</strong></p>
-
-<p>播放MP3
-能够播放mp3格式的音频文件
-最高</p>
-
-<p>播放WMV
-能够播放wmv格式的音频文件
-最低</p>
-
-<p>Copy profile
-将现有的profile copy成一个新的profile
-低</p>
-
-<p>Switch profile
-在软件中可以存在很多个profile，但只能有一个profile生效。所有对喜爱值的操作都是对当前profile进行的。用户选择一个profile，将这个profile设置成为当前active的profile。切换profile时不停止当前歌曲的播放。
-中</p>
-
-<p>I like it
-当歌曲正在播放时，用户按下”I love”按钮，将这首歌的喜爱度增加一个数值，如果同一首歌，用户再次按下，忽略这个操作
-中</p>
-
-<p>Don’t like it, next
-当歌曲正在播放时，用户按下”I don’t like it”按钮，停止播放这首歌，并且将这首歌的喜爱度减少一个数值。然后 随机播放下一首歌
-高</p>
-
-<p>歌曲播放结束
-如果歌曲播放到结尾，并且在这个过程中用户没有按下过”I like it”按钮，将这首歌的喜爱度增加一个数值。然后 随机播放下一首歌
-高</p>
-
-<p>随机播放一首歌(shuffle)
-profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个喜爱度的值。从profile中按照喜爱度加权来随机的挑选一首歌来播放，歌曲的喜爱度越高，被选中的概率越大。
-最高</p>
-
-<p>暂停/继续
-当用户按下”暂停/播放”按钮，暂停当前歌曲的播放；再按一次，从上次暂停的地方继续播放。
-中</p>
-
-<p>Rename profile
-中</p>
-
-<p>程序启动
-选择最后一次使用的profile，如果配置为”启动立即播放”，随机播放一首歌
-低</p>
-
-<p>显示歌曲信息
-显示当前播放歌曲的信息，包括歌名、专辑、艺人等
-中</p>
-
-<p>off-line media library
-将off-line媒体库（例如光盘）的曲目也加入profile中，同步的时候按照喜爱度加权的原则随机copy一部分曲目到硬盘中，换掉旧的一些。
-最低</p>
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>description</th>
+      <th>priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>播放MP3</td>
+      <td>能够播放mp3格式的音频文件</td>
+      <td>最高</td>
+    </tr>
+    <tr>
+      <td>播放WMV</td>
+      <td>能够播放wmv格式的音频文件</td>
+      <td>最低</td>
+    </tr>
+    <tr>
+      <td>Copy profile</td>
+      <td>将现有的profile copy成一个新的profile</td>
+      <td>低</td>
+    </tr>
+    <tr>
+      <td>Switch profile</td>
+      <td>在软件中可以存在很多个profile，但只能有一个profile生效。所有对喜爱值的操作都是对当前profile进行的。用户选择一个profile，将这个profile设置成为当前active的profile。切换profile时不停止当前歌曲的播放。</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>I like it</td>
+      <td>当歌曲正在播放时，用户按下”I love”按钮，将这首歌的喜爱度增加一个数值，如果同一首歌，用户再次按下，忽略这个操作</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>Don’t like it, next</td>
+      <td>当歌曲正在播放时，用户按下”I don’t like it”按钮，停止播放这首歌，并且将这首歌的喜爱度减少一个数值。然后 随机播放下一首歌</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td>歌曲播放结束</td>
+      <td>如果歌曲播放到结尾，并且在这个过程中用户没有按下过”I like it”按钮，将这首歌的喜爱度增加一个数值。然后 随机播放下一首歌</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td>随机播放一首歌(shuffle)</td>
+      <td>profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个喜爱度的值。从profile中按照喜爱度加权来随机的挑选一首歌来播放，歌曲的喜爱度越高，被选中的概率越大。</td>
+      <td>最高</td>
+    </tr>
+    <tr>
+      <td>暂停/继续</td>
+      <td>当用户按下”暂停/播放”按钮，暂停当前歌曲的播放；再按一次，从上次暂停的地方继续播放。</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>Rename profile</td>
+      <td> </td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>程序启动</td>
+      <td>选择最后一次使用的profile，如果配置为”启动立即播放”，随机播放一首歌</td>
+      <td>低</td>
+    </tr>
+    <tr>
+      <td>显示歌曲信息</td>
+      <td>显示当前播放歌曲的信息，包括歌名、专辑、艺人等</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>off-line media library</td>
+      <td>将off-line媒体库（例如光盘）的曲目也加入profile中，同步的时候按照喜爱度加权的原则随机copy一部分曲目到硬盘中，换掉旧的一些。</td>
+      <td>最低</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>只要把播放mp3、shuffle、don’t like it、播放结束这四个user story实现了，基本就能用了；再将优先级为”中”也实现了，设想的目标就基本都能达到。</p>
 
@@ -188,6 +210,8 @@ profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个�
 <p>第二是需要有profile切换，在不同环境、不同心情下喜欢的音乐是不一样的，有了profile功能就可以独立累计喜爱度。Profile也可以用来区分不同的使用者。</p>
 
 <p>也许过不了多久就会有这样的产品出现了，到时是不是要考虑买一个呢？ :)</p>
+
+<p><strong>Update 2012-7-5:</strong> 这样的产品真的有了，不过不是本地播放器，而是在线播放，就是<a href="http://douban.fm">豆瓣电台</a>。</p>
 </div>
 
 
@@ -231,7 +255,7 @@ profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个�
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2006/08/23/-/" data-via="acette" data-counturl="http://aleung.github.com/blog/2006/08/23/-/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2006/08/23/I-Love-Audio-Player/" data-via="acette" data-counturl="http://aleung.github.com/blog/2006/08/23/I-Love-Audio-Player/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -270,6 +294,10 @@ profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">redesign-of-software-development-workspace</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
       </li>
     
@@ -285,58 +313,52 @@ profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个�
         <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 133%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 93%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
-<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 117%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
 <a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
-<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/software/">software</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
-<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 
   </ul>
 </section>
@@ -360,8 +382,8 @@ profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个�
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://aleung.github.com/blog/2006/08/23/-/';
-        var disqus_url = 'http://aleung.github.com/blog/2006/08/23/-/';
+        var disqus_identifier = 'http://aleung.github.com/blog/2006/08/23/I-Love-Audio-Player/';
+        var disqus_url = 'http://aleung.github.com/blog/2006/08/23/I-Love-Audio-Player/';
         var disqus_script = 'embed.js';
       
     (function () {

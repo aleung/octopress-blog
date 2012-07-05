@@ -138,82 +138,131 @@
 
 <p>VoiceXML是一种独立的语言，不能内嵌到现有的web语言中（如HTML，WML）。</p>
 
-<?xml version="1.0"?>
-<vxml version="2.0">
-
-<catch event="event.exit">  
-<exit />   
-</catch>
-
-<menu id="choose_menu_option">  
-<prompt>  
-You are in a demo for content services.  
-To obtain stock quotes, say stocks or say 1.   
-For weather information, say weather or press 2.  
-For news, say news or press 3.  
-</prompt>  
-<choice dtmf="1" next="#stocks_menu_option">stocks</choice>  
-<choice dtmf="2" next="#weather_menu_option">weather</choice>  
-<choice dtmf="3" next="#news_menu_option">news</choice>  
-<nomatch>  
-<prompt>I could not understand what you said, please try again</prompt>   
-<reprompt />  
-</nomatch>  
-<noinput>  
-<reprompt />  
-</noinput>  
-</menu>
-
-<form id="stocks_menu_option">  
-<block>  
-&#8230;  
-</block>  
-</form>
-
-<form id="weather_menu_option">  
-<field name="city">  
-<grammar type="application/srgs+xml" src="cities.grxml" />  
-<prompt>Pleasesaythe city&#8217;s name</prompt>  
-</field>  
-&#8230;  
-<filled>  
-<submit next="http://host/weather.do" />  
-</filled>  
-</form>
-
-<form id="news_menu_option">  
-<block>  
-&#8230;  
-</block>  
-</form>  
-</vxml>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;vxml</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;catch</span> <span class="na">event=</span><span class="s">&quot;event.exit&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;exit</span> <span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/catch&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;choose_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>
+</span><span class="line">You are in a demo for content services.
+</span><span class="line">To obtain stock quotes, say stocks or say 1.
+</span><span class="line">For weather information, say weather or press 2.
+</span><span class="line">For news, say news or press 3.
+</span><span class="line"><span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;1&quot;</span> <span class="na">next=</span><span class="s">&quot;#stocks_menu_option&quot;</span><span class="nt">&gt;</span>stocks<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;2&quot;</span> <span class="na">next=</span><span class="s">&quot;#weather_menu_option&quot;</span><span class="nt">&gt;</span>weather<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;3&quot;</span> <span class="na">next=</span><span class="s">&quot;#news_menu_option&quot;</span><span class="nt">&gt;</span>news<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;nomatch&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>I could not understand what you said, please try again<span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/nomatch&gt;</span>
+</span><span class="line"><span class="nt">&lt;noinput&gt;</span>
+</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/noinput&gt;</span>
+</span><span class="line"><span class="nt">&lt;/menu&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;stocks_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;block&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;/block&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;weather_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;field</span> <span class="na">name=</span><span class="s">&quot;city&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;grammar</span> <span class="na">type=</span><span class="s">&quot;application/srgs+xml&quot;</span> <span class="na">src=</span><span class="s">&quot;cities.grxml&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>Pleasesaythe city&#39;s name<span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;/field&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;filled&gt;</span>
+</span><span class="line"><span class="nt">&lt;submit</span> <span class="na">next=</span><span class="s">&quot;http://host/weather.do&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/filled&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;news_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;block&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;/block&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line"><span class="nt">&lt;/vxml&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>从例子可以看出，VoiceXML描述的是一个个对话，menu和form是对话的两种形式。menu是列出选择项，供用户选择；form是播放提示语言，接受用户输入。</p>
 
-<prompt>、<audio>控制语音输出，输出有两种方式，一种是利用TTS将文本合成为语音，另一种是播放预先录制好的语音文件（如vox，wav）。为了控制合成语音的过程，提供丰富的语音表现形式，要求VoiceXML解释器支持SSML（Speech Synthesis Markup Language）语言，SSML可以控制TTS如何合成语音，例如重音、停顿、声调、数字播报方式等。
+<p>&lt;prompt&gt;、&lt;audio&gt;控制语音输出，输出有两种方式，一种是利用TTS将文本合成为语音，另一种是播放预先录制好的语音文件（如vox，wav）。为了控制合成语音的过程，提供丰富的语音表现形式，要求VoiceXML解释器支持SSML（Speech Synthesis Markup Language）语言，SSML可以控制TTS如何合成语音，例如重音、停顿、声调、数字播报方式等。</p>
 
-语音输入的识别是通过语法规则控制的，<grammar>指定输入项采用什么语法规则进行识别，语法规则要求使用SRGS(Speech Recognition Grammar Specification)规范的格式来描述。
+<p>语音输入的识别是通过语法规则控制的，&lt;grammar&gt;指定输入项采用什么语法规则进行识别，语法规则要求使用SRGS(Speech Recognition Grammar Specification)规范的格式来描述。</p>
 
-VoiceXML的执行顺序是有内置的规则的，称为FIA（Form Interpretation Algorithm），解释器根据FIA选择对话，执行对话中的输入、输出操作。为了提供对例外情况的控制手段，改变执行流程，VoiceXML具备事件机制，通过<throw>, <catch>, <noinput>, <error>,<help>, <nomatch>等元素可以抛出事件和捕获事件。
+<p>VoiceXML的执行顺序是有内置的规则的，称为FIA（Form Interpretation Algorithm），解释器根据FIA选择对话，执行对话中的输入、输出操作。为了提供对例外情况的控制手段，改变执行流程，VoiceXML具备事件机制，通过&lt;throw&gt;, &lt;catch&gt;, &lt;noinput&gt;, &lt;error&gt;,&lt;help&gt;, &lt;nomatch&gt;等元素可以抛出事件和捕获事件。</p>
 
-通过<goto>、<submit>等控制元素，能实现对话之间或者文档之间的转移。
+<p>通过&lt;goto&gt;、&lt;submit&gt;等控制元素，能实现对话之间或者文档之间的转移。</p>
 
-在VoiceXML中，可以嵌入ECMAScript(即通常说的JavaScript）代码，实现客户端的运算功能。
+<p>在VoiceXML中，可以嵌入ECMAScript(即通常说的JavaScript）代码，实现客户端的运算功能。</p>
 
-VoiceXML提供了一些机制实现扩展和重用，<object>元素供实现平台定义的功能，<subdialog>可以实现语音组件的重用。
+<p>VoiceXML提供了一些机制实现扩展和重用，&lt;object&gt;元素供实现平台定义的功能，&lt;subdialog&gt;可以实现语音组件的重用。</p>
 
-VoiceXML的目的是用来控制语音方式的人机交互过程的，因而它缺乏对呼叫的控制能力。例如会议、呼叫控制、建立呼叫、拒绝呼叫等等都无法实现。
+<p>VoiceXML的目的是用来控制语音方式的人机交互过程的，因而它缺乏对呼叫的控制能力。例如会议、呼叫控制、建立呼叫、拒绝呼叫等等都无法实现。</p>
 
-#### CCXML
+<h4 id="ccxml">CCXML</h4>
 
-针对VoiceXML在呼叫控制方面的不足，CCXML补充了这部分的功能。它能够发起呼叫、过滤和路由进入的呼叫、处理外部的异步事件。并且它能支持多方会议，可以将VoiceXML实例作为参与者加入会议，并控制VoiceXML的执行和停止。与VoiceXML类似，由CCXML浏览器负责解释执行CCXML文档。
+<p>针对VoiceXML在呼叫控制方面的不足，CCXML补充了这部分的功能。它能够发起呼叫、过滤和路由进入的呼叫、处理外部的异步事件。并且它能支持多方会议，可以将VoiceXML实例作为参与者加入会议，并控制VoiceXML的执行和停止。与VoiceXML类似，由CCXML浏览器负责解释执行CCXML文档。</p>
 
-CCXML可以独立使用，但很多情况下是与VoiceXML配合使用，CCXML控制整个呼叫模型，VoiceXML控制每个呼叫中的用户交互。单纯的VoiceXML是无法实现电话QQ之类的涉及到多方通话的业务的，利用CCXML就有可能实现了。
+<p>CCXML可以独立使用，但很多情况下是与VoiceXML配合使用，CCXML控制整个呼叫模型，VoiceXML控制每个呼叫中的用户交互。单纯的VoiceXML是无法实现电话QQ之类的涉及到多方通话的业务的，利用CCXML就有可能实现了。</p>
 
-_（未完成）_
+<p><em>（未完成）</em></p>
 
-_原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点的文章的，后来因为工作安排的原因半途而废了。CCXML日后如果需要，可能会进一步研究，到时也许会补上；SALT在我的工作中不会涉及，不打算在上面花时间了。_
-</subdialog></object></submit></goto></nomatch></help></error></noinput></catch></throw></grammar></audio></prompt>
+<p><em>原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点的文章的，后来因为工作安排的原因半途而废了。CCXML日后如果需要，可能会进一步研究，到时也许会补上；SALT在我的工作中不会涉及，不打算在上面花时间了。</em></p>
 </div>
 
 
@@ -294,6 +343,10 @@ _原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">redesign-of-software-development-workspace</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
       </li>
     
@@ -309,58 +362,52 @@ _原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点�
         <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 111%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 133%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 70%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 93%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 111%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 99%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 93%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 70%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 140%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 146%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 99%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 142%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
-<a style="font-size: 70%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 85%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 93%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 142%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 70%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 108%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 117%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/backup/">backup</a>
 <a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/wallpaper/">wallpaper</a>
-<a style="font-size: 70%" href="/blog/tags/书摘/">书摘</a>
+<a style="font-size: 70%" href="/blog/tags/software/">software</a>
 <a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
 <a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
-<a style="font-size: 70%" href="/blog/tags/阅读/">阅读</a>
 
   </ul>
 </section>
