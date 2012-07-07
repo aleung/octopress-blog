@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: MyWork | Good good study, day day up]]></title>
+  <link href="http://aleung.github.com/blog/tags/mywork/atom.xml" rel="self"/>
+  <link href="http://aleung.github.com/blog/"/>
+  <updated>2012-07-07T21:47:55+08:00</updated>
+  <id>http://aleung.github.com/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[跑步步频训练软件 RunningCadence 开发小记]]></title>
+    <link href="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/"/>
+    <updated>2011-12-24T00:16:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency</id>
+    <content type="html"><![CDATA[<p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
+
+<p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
+
+<p>有了想法后，就考虑怎样实现。先要知道跑步时加速度传感器得到的数据会是怎样的，在market上找到软件Accelero-meter Log，能显出加速度传感器三轴数据的曲线。拿着手机跑了几步看看曲线，发现完全不是想象中那么简单：从曲线可以看出每跑一步的加速度变化，但并不是一步一个脉冲那么理想，而是大脉冲中包含着小脉冲，波形很不规则；更要命的是不同轴测量到的数据频率会不一样，软件应该按那个轴的数据计算？后来才想到不同轴测量数据频率不同的原因是手摆动的频率与身体重心上下移动的频率不一致，只是一半，再加上手的活动太自如了，跑动过程中会有不同的动作，都会引起加速度变化。</p>
+
+<p>上网找到一个开源的Android计步器的代码，看看它怎么做，发现它只是将三个轴的数值加在一起，然后判断变化量。根据前面看得的数据波形，我感觉这样的算法太不靠谱了，再看看这个软件的用户评价，果然不佳。</p>
+
+<p>这时想到Nike的配合iPhone使用的计步器，是藏在鞋里面的。它应该是感应脚的每次着地，而且计步器是固定在鞋里的，有特定的安装方向，因此它可以只检测垂直地面的加速度。想到这里就豁然开朗了，原来测量摆臂的想法是错误的，应该测量脚着地的冲击，也就是垂直方向的加速度。但那个轴才是垂直地面的呢？我不能规定用户使用这个软件时手机摆放的方向啊，他可以绑在臂上，拿在手里，放裤袋中。。。因此首先要解决的问题是如何判断手机的姿态，找出垂直于地面的轴。</p>
+
+<p>人在运动的时候加速度不断变化，但加速度矢量一段时间的累计应该为零，而重力加速度是恒定的，并且垂直于地面，检测出重力加速度的方向就ok了。具体实现的方法也比较简单：对传感器三个轴的数据分别做截止频率为0.25Hz的低通滤波后，数值最大的那个轴应该就是最接近于垂直地面的。</p>
+
+<p>还有个问题是手机加速度传感器的采样频率能到多高？是否能满足要求？长跑理想的着地次数是每分钟180次，相当于3Hz，一般人都只会比这个慢。实测我的Nexus One使用最短采样间隔时大约30~50ms能获取到一组数据，也就是采样频率大于20Hz，对于检测3Hz的信号完全足够。</p>
+
+<p>对于复杂波形的处理方法，同样是简单的一阶低通滤波，截止频率取了3.5Hz，相当于每分钟210次着地。高频干扰通过滤波削弱后，相邻波峰的时间间隔就是两次着地的时间间隔了。具体实现时，波峰判断会比较麻烦，采样检查是否超过阈值来代替。本来想按振幅比例来设定阈值的，但算振幅也比较麻烦，之前检测重力加速度时已经得到重力加速度在测量轴上的分量，直接拿它的1/2做阈值就好了。这样做还带来了一个没有预料到的副作用：走路时脚步比较轻，超不过阈值，因此软件还能知道当前是否处于跑步状态。</p>
+
+<p>步频数据算出来以后其他的就好办了。跑步时不方便看屏幕，通过语音合成播放出来。设定目标步频，语音提示应该加快还是减慢。还打算过增加个目标步频的节拍音，当实际步频与目标不一致时播放出来，不过软件用了这段时间，感觉有语音播报步频基本上已经足够了，暂时不做以后再说吧。</p>
+
+<p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
+
+<p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TwitterSinaSync，自动同步Twitter信息到新浪微博]]></title>
+    <link href="http://aleung.github.com/blog/2011/02/11/TwitterSinaSync-Twitter-/"/>
+    <updated>2011-02-11T05:31:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2011/02/11/TwitterSinaSync-Twitter-</id>
+    <content type="html"><![CDATA[<p>之前寻找同步twitter到新浪微博的方法，没有尝试到满意的。@cutemic<a href="http://cutemic.posterous.com/twitter">介绍说</a>他是在GAE上跑一个叫twitter2sina的python程序，周期性读取自己的tweets，再调用API发送到新浪微博。</p>
+
+<p>程序员的基本素质是懒惰，因此我问@cutemic他安装的程序是否支持多用户，如果支持，我就懒得自己折腾，让他给我加个用户好了。很可惜，他的程序是要将新浪微博用户名密码hard code到程序里的，那我只能自力更生了。</p>
+
+<p>装起来之后，本着助人为乐的精神，考虑把这个服务也提供给别人使用。看看代码，调用新浪微博API是用Basic HTTP认证的，需要提供用户名和密码，这样太没有安全感了，别人不敢用的。如果改成OAuth，用户就不需要提供密码了。</p>
+
+<p>动手尝试修改，于是，就有了这个<a href="https://github.com/aleung/TwitterSinaSync">TwitterSinaSync</a>。</p>
+
+<p>代码大概的历史：</p>
+
+<ol>
+  <li>原始版本是<a href="http://code.google.com/p/twitter2sina/">twitter2sina</a>，没有使用新浪微博API，已经失效</li>
+  <li>@cutemic的<a href="http://cutemic.posterous.com/twitter">修改版本</a>，改成使用新浪微博API</li>
+  <li>我修改的<a href="">TwitterSinaSync</a></li>
+</ol>
+
+<p>主要特性：</p>
+
+<ul>
+  <li>部署于Google App Engine，免费、可靠、方便的云计算环境</li>
+  <li>使用新浪微博API OAuth认证，用户不需要提供密码，保证安全</li>
+  <li>支持多用户：多组twitter-微博同步绑定</li>
+  <li>新用户凭管理员提供的邀请链接才能加入，方便私人分享</li>
+</ul>
+
+<p><a href="https://github.com/aleung/TwitterSinaSync">代码</a>托管在GitHub，bug report 和 feature request可以往<a href="">这里</a>提交。</p>
+
+<p><em><strong>Updated 2011-7-7:</strong></em></p>
+
+<p>由于新浪微博对API使用过滤异常的严格，这个应用基本上用处不大了，普通内容的tweet，大概十条里只有两三条能够成功同步，见<a href="http://good-good-study.appspot.com/blog/posts/124001">新浪微博API黑名单威武</a>。如果应用能够通过审核，也许过滤会放宽一些，但是根据新浪微博API的用户协议，是不能用于从其他微博系统同步信息的，更何况是Twitter，通过审核的可能性微乎其微。故此我不再维护这个软件了，也不再提供邀请码，请谅解。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android软件：Wallpaper Label]]></title>
+    <link href="http://aleung.github.com/blog/2009/10/31/Android-Wallpaper-Label/"/>
+    <updated>2009-10-31T09:14:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/10/31/Android-Wallpaper-Label</id>
+    <content type="html"><![CDATA[<p><img class="right" src="/attachments/2009/10/wallpaperlabel1.jpg"></p>
+
+<p>Android与IPhone类似，都是有多个桌面屏幕，用手指划一下就可以左右切换屏幕。Android缺省设置只有3屏，但一些mod可以修改屏幕个数，例如设置为5屏。</p>
+
+<p>在IPhone上，屏幕的数量以及当前处于第几个屏幕是通过界面中下方的小圆点来指示的。但在Android上就没有类似的指示，有时候用户不知道现在正显示的是哪一屏，应该往左还是往右翻屏。</p>
+
+<p><img class="left" src="/attachments/2009/10/wallpaperlabel2.jpg"></p>
+
+<p>我开发的这个软件 Wallpaper Label 可以为Android手机的桌面每个屏幕添加一个文字标签，这样就很清晰的知道当前打开的是哪一屏了。标签位于在屏幕下方的正中位置，并不会影响图标的显示。</p>
+
+<p>Wallpaper Label 软件的另外一个作用是设置Android手机的桌面墙纸。Android系统自带的墙纸设置工具需要把图片剪切为4:3比例，无法设置其他比例的墙纸。4:3比例对于缺省的3屏是比较合适的，但当桌面屏幕数量更多的时候，这个比例就显得太窄了，左右切换屏幕时墙纸的画面基本没有多少移动。用 Home Screen Label 来设置墙纸没有4:3比例的限制，可以设置宽屏墙纸。</p>
+
+<p>用作墙纸的图片文件需要存放在SD卡的wallpapers目录中。软件也提供了保存当前墙纸的功能，可将现在正使用的墙纸保存到SD卡上。</p>
+
+<p>这是5个屏幕合成的效果图，可以看出宽屏墙纸画面效果：</p>
+
+<p><img src="/attachments/2009/10/wallpaperlabel3.jpg" alt="" /></p>
+
+<p>软件在Android Market上下载安装，搜索”Wallpaper Label”就可以找到。
+(2012-7 update: Android自身功能不断增强，这个软件已经没什么用处，早已下架)</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[无意插柳]]></title>
+    <link href="http://aleung.github.com/blog/2009/04/20/Inserted-liu-had-no-intention-of/"/>
+    <updated>2009-04-20T08:05:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/04/20/Inserted-liu-had-no-intention-of</id>
+    <content type="html"><![CDATA[<p>春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为<a href="http://aleung.blogbus.com/logs/37558170.html">用得不爽一时兴起而写</a>的校正中国地图偏移的软件不断添加新功能发布新版本。</p>
+
+<p>今天把软件改了个名字，由 Better My Location 改为 Here I’m!，应该会更顺口和好记一些。不过，这个名字不好的地方就是太常用了，肯定无法出现在搜索引擎的开头几页。另外也把软件介绍的文案更新了一部分，目的是要把软件的功能更清晰的表达出来（不知道是否达到效果了，欢迎提意见）。还花了几个小时弄了个漂亮一些的logo，不是搞设计的，真是赶鸭子上架啊。</p>
+
+<p>考虑到blog的形式不是太合适做软件的发布，到Google Sites上为它做个了site：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a>。HereIm这个名字不能注册，只好用HereImApp。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Better My Location, 准确定位当前位置]]></title>
+    <link href="http://aleung.github.com/blog/2009/04/19/Better-My-Location-/"/>
+    <updated>2009-04-19T07:45:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/04/19/Better-My-Location-</id>
+    <content type="html"><![CDATA[<p><img class="right" src="/attachments/2009/4/HereIm.jpg"></p>
+
+<p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>
+
+<h2 id="section">下载 / 版本更新记录</h2>
+
+<p>安装：在Android Market搜索 “HereIm”</p>
+
+<p>软件网站：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a> （需要翻墙）</p>
+
+<h2 id="section-1">使用说明</h2>
+
+<h3 id="section-2">地图校准</h3>
+
+<p>地图有多种校准模式：Manually Calibrate为手工校准模式，需要用户先自行校准地图再使用。其他为中国几大城市的预设校准数据，在它们附近的地域也大致适用，可以选择最接近的一个。<br />
+手 工校准，在菜单中选Calibrate，然后现在卫星图上找到一个你知道的标志性地点（路口是一个好的选择），拖动地图使这个地点位于十字光标正中下，接 下来切到地图模式，同样也找到这个地点，拖到光标中心。最好开始先将地图缩小一点来校准，初步找到位置后再放大地图微调位置，可能需要反复几次才能准确校 准。最后点Done。<br />
+目前软件只会保存最后一次校准的参数。<br />
+注意：模式切换或手工校准后，需要手机收到位置更新之后，新校准才会生效。如果打开了GPS，位置会更新得很快，但若没有打开GPS，也许要移动相当一段距离后才能看出效果。  </p>
+
+<h3 id="section-3">定位</h3>
+
+<p>菜单中选择 My Location，就会在地图中标记出当前所处位置，并且显示街道地址（不一定很准确，可作为参考）。<br />
+如 果定位不成功，请检查你是否已经打开了手机的定位功能。方法是：home按钮 - menu按钮 - settings - security &amp; location，将use wireless networks选上，enable GPS satellites按你自己需要决定选不选。<br />
+wirelessnetworks在任何地方只有有手机信号基本都能立即定位，但不够准确，有可能 差一两条街；GPS定位很准，能到几十米，但要在天空开阔的地方才能收到足够数量的卫星，而且也要等比较久才能锁定卫星信号，屏幕顶上的绿色卫星天线图标 长亮不闪烁时才表示GPS定位成功。  </p>
+
+<h3 id="section-4">用手机自带地图显示当前位置</h3>
+
+<p>菜单选择”open in map app”，会切换到手机自带的地图软件，这时屏幕正中间就是当前位置。要注意，它的蓝点位置还是偏的。校准仅仅在 Better My Location 中有效。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常. 检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时. 解决办法: 确认邮件服务器使用本机作为DNS ( /etc &hellip;">
+  <meta name="description" content="为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,57 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/">解决Solaris中sendmail不断报错的方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-04-05T00:12:00+08:00" pubdate data-updated="true">2003-04-05</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名，另一个是主机名加域名（在这里没有域名，只是加个点）。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/">邮件系统发信缓慢问题的解决</a></h1>
     
     
@@ -104,7 +155,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
   
 </span>
 
@@ -122,12 +173,8 @@
 <p>解决办法:  </p>
 
 <ul>
-  <li>
-    <p>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </p>
-  </li>
-  <li>
-    <p>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </p>
-  </li>
+  <li>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </li>
+  <li>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </li>
 </ul>
 
 </div>
@@ -169,7 +216,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
   
 </span>
 
@@ -184,41 +231,71 @@
 
 <p>一个基本的配置文件：   </p>
 
-<blockquote>
-
-  <p>[global]<br />
-netbios name = SERVERNAME<br />
-workgroup = GROUPNAME<br />
-null passwords = yes (是否允许用户设置空密码,default=no)<br />
-log file = /var/log/samba/log.%m<br />
-max log size = 500<br />
-dns proxy = No (default=yes,一般情况下没有必要)<br />
-security = user (相当于WinNT/2000的文件共享)<br />
-encrypt passwords = yes<br />
-guest ok = yes (default=no,是否允许guest访问,即不需要输入密码)<br />
-(在global节中的这个设定会作为各共享资源设定的缺省值)  </p>
-</blockquote>
-
-<p>[homes] (每个用户会看到各自的home目录)<br />
-comment = Your Home Directories<br />
-read only = No<br />
-browseable = No  </p>
-
-<p>[share] (share to all, read only)<br />
-comment = Share Folder<br />
-path = /home/samba<br />
-guest ok = yes (在global中设定了,这里可以不写)<br />
-writeable = no  </p>
-
-<p>[source] (leo,frank可读写;james只读;其余用户无权访问)<br />
-path = /home/source<br />
-valid users = james,leo,frank(可访问此资源的用户的列表,如果不指定,任何用户都可以访问)<br />
-write list = leo,frank (有写权限的用户的列表)<br />
-writeable = no (其他用户不可写)<br />
-create mode = 666 (保证新建的文件目录可以其他用户读写)<br />
-directory mode = 777<br />
-force group = nobody (无论用户以什么身份login,强制为此user/group;不一定需要)<br />
-force user = nobody  </p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class="ini"><span class="line"><span class="err">[global]</span>
+</span><span class="line"><span class="na">netbios name</span> <span class="o">=</span> <span class="s">SERVERNAME  </span>
+</span><span class="line"><span class="na">workgroup</span> <span class="o">=</span> <span class="s">GROUPNAME  </span>
+</span><span class="line"><span class="na">null passwords</span> <span class="o">=</span> <span class="s">yes (是否允许用户设置空密码,default=no)  </span>
+</span><span class="line"><span class="na">log file</span> <span class="o">=</span> <span class="s">/var/log/samba/log.%m  </span>
+</span><span class="line"><span class="na">max log size</span> <span class="o">=</span> <span class="s">500  </span>
+</span><span class="line"><span class="na">dns proxy</span> <span class="o">=</span> <span class="s">No (default=yes,一般情况下没有必要)  </span>
+</span><span class="line"><span class="na">security</span> <span class="o">=</span> <span class="s">user (相当于WinNT/2000的文件共享)  </span>
+</span><span class="line"><span class="na">encrypt passwords</span> <span class="o">=</span> <span class="s">yes  </span>
+</span><span class="line"><span class="na">guest ok</span> <span class="o">=</span> <span class="s">yes (default=no,是否允许guest访问,即不需要输入密码)  </span>
+</span><span class="line"><span class="err">(在global节中的这个设定会作为各共享资源设定的缺省值)</span>
+</span><span class="line">
+</span><span class="line"><span class="err">[homes]</span> <span class="err">(每个用户会看到各自的home目录)</span>
+</span><span class="line"><span class="na">comment</span> <span class="o">=</span> <span class="s">Your Home Directories  </span>
+</span><span class="line"><span class="na">read only</span> <span class="o">=</span> <span class="s">No  </span>
+</span><span class="line"><span class="na">browseable</span> <span class="o">=</span> <span class="s">No  </span>
+</span><span class="line"><span class="s">  </span>
+</span><span class="line"><span class="err">[share]</span> <span class="err">(share</span> <span class="err">to</span> <span class="err">all,</span> <span class="err">read</span> <span class="err">only)</span>
+</span><span class="line"><span class="na">comment</span> <span class="o">=</span> <span class="s">Share Folder  </span>
+</span><span class="line"><span class="na">path</span> <span class="o">=</span> <span class="s">/home/samba  </span>
+</span><span class="line"><span class="na">guest ok</span> <span class="o">=</span> <span class="s">yes (在global中设定了,这里可以不写)  </span>
+</span><span class="line"><span class="na">writeable</span> <span class="o">=</span> <span class="s">no  </span>
+</span><span class="line"><span class="s">  </span>
+</span><span class="line"><span class="err">[source]</span> <span class="err">(leo,frank可读写</span><span class="c">;james只读;其余用户无权访问)  </span>
+</span><span class="line"><span class="na">path</span> <span class="o">=</span> <span class="s">/home/source  </span>
+</span><span class="line"><span class="na">valid users</span> <span class="o">=</span> <span class="s">james,leo,frank(可访问此资源的用户的列表,如果不指定,任何用户都可以访问)  </span>
+</span><span class="line"><span class="na">write list</span> <span class="o">=</span> <span class="s">leo,frank (有写权限的用户的列表)  </span>
+</span><span class="line"><span class="na">writeable</span> <span class="o">=</span> <span class="s">no (其他用户不可写)  </span>
+</span><span class="line"><span class="na">create mode</span> <span class="o">=</span> <span class="s">666 (保证新建的文件目录可以其他用户读写)  </span>
+</span><span class="line"><span class="na">directory mode</span> <span class="o">=</span> <span class="s">777  </span>
+</span><span class="line"><span class="na">force group</span> <span class="o">=</span> <span class="s">nobody (无论用户以什么身份login,强制为此user/group;不一定需要)  </span>
+</span><span class="line"><span class="na">force user</span> <span class="o">=</span> <span class="s">nobody  </span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>在samba的权限控制中, 关键的是以下一些参数. <br />
 invalid users <br />
@@ -276,7 +353,7 @@ readonly / writeable (两种写法都可以) <br />
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/sys-admin/'>Sys_Admin</a>
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
   
 </span>
 
@@ -288,7 +365,7 @@ readonly / writeable (两种写法都可以) <br />
 
 
   <div class="entry-content"><p>使用crle命令, 例如:<br />
-crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/libthread.so.1 -o /usr/lib/lwp  </p>
+    crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/libthread.so.1 -o /usr/lib/lwp  </p>
 
 <p>以上命令的作用  </p>
 
@@ -299,7 +376,7 @@ crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/lib
 </ul>
 
 <p>然后执行<br />
-crle -u<br />
+    crle -u<br />
 更新/var/ld/ld.config文件  </p>
 
 </div>
@@ -333,6 +410,10 @@ crle -u<br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
       </li>
     
@@ -348,10 +429,6 @@ crle -u<br />
         <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -363,41 +440,39 @@ crle -u<br />
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 144%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 85%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 116%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 116%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/software/">software</a>
-<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
 </section>

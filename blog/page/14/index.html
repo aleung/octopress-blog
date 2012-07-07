@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="一直都想体验一下正式的长跑活动，也可以给自己跑步一个动力。得知10月24日在广州大学城Nike举办10公里跑活动，就报名参加了。 上个月感觉腰椎的问题有一点点要复发的迹象，就停止了跑步。接下来9月份都在北京出差，跑鞋也没有带过来。算下来一个月没有跑步了。离活动只剩1个月了，怎么也得训练一下， &hellip;">
+  <meta name="description" content="一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。 各层级classloader加载的类的范围 Bootstrap classloader Core Java &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,119 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/27/WebLogic-classloading/">WebLogic的classloading</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-09-27T07:23:00+08:00" pubdate data-updated="true">2009-09-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4379354938/"><img src="http://farm3.static.flickr.com/2682/4379354938_dc7cd5f47e_o.png" alt="wls_classloading" /></a></p>
+
+<h3 id="section"></h3>
+
+<h3 id="classloader">各层级classloader加载的类的范围</h3>
+
+<ul>
+  <li>Bootstrap classloader
+    <ul>
+      <li>Core Java libraries (<jre>/lib)</jre></li>
+    </ul>
+  </li>
+  <li>Extension classloader
+    <ul>
+      <li>JRE extensions directory (<jre>/lib/ext)</jre></li>
+    </ul>
+  </li>
+  <li>WebLogic Server system classloader
+    <ul>
+      <li>Classpath</li>
+      <li>
+        <domain>/lib
+
+</domain>
+      </li>
+    </ul>
+  </li>
+  <li>Filtering classloader
+    <ul>
+      <li>nothing</li>
+    </ul>
+  </li>
+  <li>Application classloader
+    <ul>
+      <li>EJB JARs</li>
+      <li>APP-INF/lib</li>
+      <li>APP-INF/classes</li>
+      <li>Manifest Class-Path in EJB JARs</li>
+    </ul>
+  </li>
+  <li>Web application classloader
+    <ul>
+      <li>WAR</li>
+      <li>Manifest Class-Path in WAR</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section-1">类加载的优先级</h3>
+
+<p>每个classloader在要加载一个class之前都会先请求它的上层classloader，如此逐级传递。因此效果就是越上层的classloader优先级越高，一个class如果在上层classloader能加载到，就不会让下面的classloader加载。</p>
+
+<p>但是web application classloader是个特例，通过在weblogic.xml中配置<prefer-web-inf-classes>，可以让web application classloader优先在自己war范围内加载类，找不到的类才会请求上层classloader。</prefer-web-inf-classes></p>
+
+<p>Filtering classloader是个特殊的classloader，它并不会加载任何类，而是起到控制类加载优先级的作用。在weblogic-application.xml中配置<prefer-application-packages>，可以限制对于指定的类不再向上层classloader请求，也就是限制在EAR的范围之内加载。</prefer-application-packages></p>
+
+<h3 id="section-2">其他</h3>
+
+<p>以上仅仅描述了缺省情况下classloading的行为。WebLogic对于一个application (EAR)内的classloader的层次结构是可以自定义的。Shared library和optional package，也会影响到classloading。另外，resource adapter (RAR)也有独立的classloader。还有其他的一些细节，需要查阅<a href="http://download.oracle.com/docs/cd/E13222_01/wls/docs100/programming/classloading.html">Understanding WebLogic Server Application Classloading</a>。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/09/27/WebLogic-classloading/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -263,7 +376,7 @@ Now the url will be:<br />
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/概率/'>概率</a>, <a class='tag' href='/blog/tags/统计/'>统计</a>
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
   
 </span>
 
@@ -278,46 +391,40 @@ Now the url will be:<br />
 
 <p><em>思考时间：根据这个检查结果，真正患上此病的可能性是多大？</em></p>
 
-<p>_<br />
-_</p>
-
-<p>_<br />
-_</p>
-
 <p>你犹如五雷轰顶一般：99.9%？！那意味着我有99.9%的可能性得了这个病！天哪，怎么六合彩就轮不到我啊，我居然成为了那十万分之一。该怎么办呢？等等，先别丧气，问清楚医生那检查99.9%的可靠性是什么回事。医生告诉你，那就是说，1000个患者进行这项检查，999个为阳性，1000个正常人进行这项检查，只有一个为阳性（误检）。嗯，这是相当准确的检查。</p>
 
 <p><em>思考时间：医生解释之后，是否改变了你的结论？真正患上此病的可能性是多大？</em></p>
-
-<p>_<br />
-_</p>
 
 <p>假如上面的对话真的发生了，估计有不少人立马就感觉浑身不对劲了—-没病都吓出病了。其实并不需要恐慌，根据上面给出的数据，检验出现阳性后真正患病的几率其实只有1%。问题出在这个”准确性99.9%”的定义上，这并不是说1000个检出阳性的人有999个可以确诊患病，而是确诊患病的1000个人里面有999个可以检出阳性。咋一看，这两者好像一样，只是表述不同而已，其实差别大了。</p>
 
 <p>用这个表格看就清晰了：</p>
 
-<hr />
-
-<p><strong>**</strong>健康<strong>**</strong></p>
-
-<p><strong>**</strong>患者<strong>**</strong></p>
-
-<hr />
-
-<p>99.999%</p>
-
-<p>0.001%</p>
-
-<p><strong>**</strong>阳性<strong>**(+)</strong><em>**</em></p>
-
-<p>0.1% × <strong>99.999%</strong> = 0.00099999</p>
-
-<p>99.9% × <strong>0.001%</strong> = 0.00000999</p>
-
-<p><strong>**</strong>阴性<strong>**(-)</strong><em>**</em></p>
-
-<p>99.9% × <strong>99.999%</strong> = 0.99899001</p>
-
-<p>0.1% × <strong>0.001%</strong> = 0.00000001</p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>健康</th>
+      <th>患者</th>
+    </tr>
+    <tr>
+      <th> </th>
+      <th>99.999%</th>
+      <th>0.001%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>阳性(+)</td>
+      <td>0.1% × <strong>99.999%</strong> = 0.00099999</td>
+      <td>99.9% × <strong>0.001%</strong> = 0.00000999</td>
+    </tr>
+    <tr>
+      <td>阴性(-)</td>
+      <td>99.9% × <strong>99.999%</strong> = 0.99899001</td>
+      <td>0.1% × <strong>0.001%</strong> = 0.00000001</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>表中列出健康但结果为阳性（误检），健康并且结果阴性，患病并且结果为阳性，患病结果为阴性（漏检）这四种情况发生的概率。现在检查结果为阳性这一条件已经确定下来，就看阳性那行，健康与患病的概率之比为0.0099999:0.00000999，也就是大约100:1，真正得病的可能性比1%还小一点点。</p>
 
@@ -410,7 +517,7 @@ _</p>
   <li>7月29日，公盟负责人许志永及财务负责人庄璐被警方以”涉嫌偷税”名义刑事拘留。</li>
 </ul>
 
-<p>尽管公盟否认偷税并正通过法规规定途径进行申辩，但另一方面公盟接受社会捐款以缴交罚款。这是公盟的公告：[https://docs.google.com/View?id=dgrg4q87<em>34cfrdmxct](https://docs.google.com/View?id=dgrg4q87</em>34cfrdmxct)</p>
+<p>尽管公盟否认偷税并正通过法规规定途径进行申辩，但另一方面公盟接受社会捐款以缴交罚款。见公盟的<a href="https://docs.google.com/View?id=dgrg4q87_34cfrdmxct">公告</a>。</p>
 
 <h2 id="section-2">我为什么捐款</h2>
 
@@ -442,71 +549,6 @@ _</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/04/Outlook2007-/">Outlook2007日历的改进</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-08-04T07:18:00+08:00" pubdate data-updated="true">2009-08-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/leoliang/4727145208/"><img src="http://farm2.static.flickr.com/1415/4727145208_1fd6c492de.jpg" alt="outlook2007" /></a></p>
-
-<p>之前在<a href="http://good-good-study.appspot.com/blog/posts/3184">《为什么不能合在一起》</a>一文中，我提到期望的时间管理系统是这样的：</p>
-
-<blockquote>
-  <p>在展现上，能够将一天里已经安排好具体时间的事件，和没有安排具体时间，但是需要在这天内做（根据Start date和Due date）的任务显示在同一界面上，什么时候该做什么就一目了然了。在操作上，将一个任务拖放到日历中，或者输入开始结束时间，就能为任务安排计划的执行时间，并且显示在日历中。</p>
-</blockquote>
-
-<p>最近升级到Outlook 2007，发现它的日历界面基本上就是跟我想的差不多了。任务、事件的都可以通过鼠标拖放来建立：把邮件或者任务拖到具体的日期时间上，就创建了事件；把邮件或事件拖到任务窗格，就创建了任务。下面的任务窗格，会按天显示当天开始或到期的任务，这样一天该做什么事情，无论是否安排了具体时间，都在一个纵列上显示出来了。如果要推迟一个任务，非常简单，把它拖到另外一天就可以了。</p>
-
-<p>Outlook 2007还有一个改进，就是可以分类的个数不再是有限的几个，可以任意创建，一个项目也不再限于一个分类，而是可以标注多个分类，因此这个分类其实就是tag了。每个分类设成不同的颜色，很醒目。</p>
-
-<p>Outlook 2007给了我不少惊喜的，其实我想的Microsoft早就做到了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/08/04/Outlook2007-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/15/">&larr; Older</a>
@@ -528,6 +570,10 @@ _</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
       </li>
     
@@ -543,10 +589,6 @@ _</p>
         <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -558,41 +600,39 @@ _</p>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 144%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 85%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 116%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 116%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/software/">software</a>
-<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
 </section>

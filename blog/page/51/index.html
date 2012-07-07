@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="现在广州某些线路的公交车已经开始使用GPS跟踪调度，并且在站牌上实时显示车辆位置、预计到站时间。不知道什么时候能够推广到所有线路。 根据网上的资料，城市公交GPS定位调度系统由车载终端分系统，信息传输分系统，中心及线路调度管理分系统，信息发布分系统及电子站牌分系统五大部分组成。 &hellip;">
+  <meta name="description" content="cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。注意：该命令必须以cyrus用户身份才能运行
+且此quota不同于/usr/bin/quota命令 /var/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/17/cyrus-imapd-/">Cyrus Imapd的邮件目录修复</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-17T23:02:00+08:00" pubdate data-updated="true">2003-07-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。<em>注意：该命令必须以cyrus用户身份才能运行<br />
+且此quota不同于/usr/bin/quota命令</em>  </p>
+
+<p>/var/imap/quota/[a-z]/user.* 文件是用户的quota信息，第一行是当前占用的quota，第二行是quota limit。  </p>
+
+<p>当用户有d权限时，才会在quota达到特定值时发送warrning信件。不过，正常使用的用户都是有d权限的。  </p>
+
+<p><a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">http://asg.web.cmu.edu/cyrus/cyrus-overview.html</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/17/cyrus-imapd-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -235,10 +294,13 @@
 
   <div class="entry-content"><p>在<a href="http://www.chinaxp.org">chinaxp</a>上看到<a href="http://199.243.248.196/forum/viewThread.go?parentId=1056538532746&amp;forum=1">一段话</a>：</p>
 
-<p>到目前为止，个人觉得 XP 还是中小公司开发的最好模式。实现起来的确还是有难度，特别是 PP，不过总比 RUP 便于实施。RUP、CMM 比较容易得到 MBA 的青睐。主要原因就在于_事先规范好的重量级流程，给人一种“一切尽在掌握”的错觉_，哈哈，的确是错觉。英雄的时代已经过去，矫枉过正，现在软件开发中，人的因素重视不够啊。</p>
+<blockquote>
+  <p>到目前为止，个人觉得 XP 还是中小公司开发的最好模式。实现起来的确还是有难度，特别是 PP，不过总比 RUP 便于实施。RUP、CMM 比较容易得到 MBA 的青睐。主要原因就在于_事先规范好的重量级流程，给人一种“一切尽在掌握”的错觉_，哈哈，的确是错觉。英雄的时代已经过去，矫枉过正，现在软件开发中，人的因素重视不够啊。</p>
+</blockquote>
 
-<p>说得有道理，领导层总是喜欢严谨的纪律的，因此他们喜欢这些严谨的方法，轻量级方法太“自由主义”了，不好管:)<br />
-不过, 在我们这儿, 可是过于自由主义了, 缺乏的是规范.  </p>
+<p>说得有道理，领导层总是喜欢严谨的纪律的，因此他们喜欢这些严谨的方法，轻量级方法太“自由主义”了，不好管:) </p>
+
+<p>不过, 在我们这儿, 可是过于自由主义了, 缺乏的是规范.  </p>
 
 </div>
   
@@ -323,64 +385,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/06/12/Version-control-software/">版本控制的软件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-06-12T00:05:00+08:00" pubdate data-updated="true">2003-06-12</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>网上找到一些版本控制的软件。</p>
-
-<p>一个是TortoiseCVS(<a href="http://www.tortoisecvs.org">http://www.tortoisecvs.org</a>)，是CVS client as windows shell extension，能够直接在explorer里面用右键菜单来操作。它是基于WinCVS代码开发的，与WinCVS各有千秋吧，WinCVS的功能更全面些。</p>
-
-<p>另外一个是TortoiseSVN(<a href="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</a>)，是for subversion的。这个更另我感兴趣，因为我看好subversion，它比CVS更有技术优势。安装试用了，使用local repository时不需要安装subversion server，看来可以用它来管理自己的代码、网页等等了。</p>
-
-<p>另一个是我也很关心的SVN-UP(<a href="http://svnup.tigris.org/">http://svnup.tigris.org/</a>): Java client gui for subversion and plugin for idea ide. 因为我喜欢用IDEA，不过这个软件还很不完善，要等以后的版本了。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/06/12/Version-control-software/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/52/">&larr; Older</a>
@@ -402,6 +406,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
       </li>
     
@@ -417,10 +425,6 @@
         <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -432,41 +436,39 @@
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 70%" href="/blog/tags/build/">Build</a>
-<a style="font-size: 111%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 70%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 104%" href="/blog/tags/diy/">Diy</a>
+<a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 85%" href="/blog/tags/gps/">GPS</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 144%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 85%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 116%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 138%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 85%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 116%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 104%" href="/blog/tags/sys-admin/">Sys_Admin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/mobile/">mobile</a>
-<a style="font-size: 70%" href="/blog/tags/software/">software</a>
-<a style="font-size: 70%" href="/blog/tags/概率/">概率</a>
-<a style="font-size: 70%" href="/blog/tags/统计/">统计</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
 </section>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Misc | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/misc/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-07-06T00:09:13+08:00</updated>
+  <updated>2012-07-07T21:47:55+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -33,31 +33,58 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[The world can change in a day]]></title>
-    <link href="http://aleung.github.com/blog/2009/11/03/The-world-can-change-in-a-day/"/>
-    <updated>2009-11-03T08:39:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/11/03/The-world-can-change-in-a-day</id>
-    <content type="html"><![CDATA[<p>8 November 1989</p>
+    <title type="html"><![CDATA[当体检结果为阳性]]></title>
+    <link href="http://aleung.github.com/blog/2009/08/17/When-a-medical-results-for-positive/"/>
+    <updated>2009-08-17T07:42:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2009/08/17/When-a-medical-results-for-positive</id>
+    <content type="html"><![CDATA[<p>假设你在体检后，发现体检报告里面有一个项目的检验结果为阳性，你去问医生：这是什么意思？医生一面阴沉的告诉你：这个检查项目结果为阳性，说明你有可能患上了XXX病，虽然这个病不算常见，根据统计数据，患病率约为十万分之一，但是，患上的后果非常严重，基本上是不治之症。啊？！你抱着侥幸的心理再问医生：没理由啊？我身体好好的，有没有可能是检查出错了啊？医生一面严肃的说：不排除这样的可能性，但是，这个检查的可靠性是相当高的，达到99.9%。</p>
 
-<p><a href="http://www.bababian.com/phoinfo/9578CEE8C2383B74375E4E0C40CB8EB4DT"> </a></p>
+<p><em>思考时间：根据这个检查结果，真正患上此病的可能性是多大？</em></p>
 
-<p><a href="http://www.bababian.com/phoinfo/9578CEE8C2383B74375E4E0C40CB8EB4DT"><img src="http://photo2.bababian.com/upload1/20091103/9578CEE8C2383B74375E4E0C40CB8EB4_800.jpg" alt="" /></a></p>
+<p>你犹如五雷轰顶一般：99.9%？！那意味着我有99.9%的可能性得了这个病！天哪，怎么六合彩就轮不到我啊，我居然成为了那十万分之一。该怎么办呢？等等，先别丧气，问清楚医生那检查99.9%的可靠性是什么回事。医生告诉你，那就是说，1000个患者进行这项检查，999个为阳性，1000个正常人进行这项检查，只有一个为阳性（误检）。嗯，这是相当准确的检查。</p>
 
-<p>9 November 1989, the wall fell. </p>
+<p><em>思考时间：医生解释之后，是否改变了你的结论？真正患上此病的可能性是多大？</em></p>
 
-<p>栢林人民踴躍飜墻的塲景：</p>
+<p>假如上面的对话真的发生了，估计有不少人立马就感觉浑身不对劲了—-没病都吓出病了。其实并不需要恐慌，根据上面给出的数据，检验出现阳性后真正患病的几率其实只有1%。问题出在这个”准确性99.9%”的定义上，这并不是说1000个检出阳性的人有999个可以确诊患病，而是确诊患病的1000个人里面有999个可以检出阳性。咋一看，这两者好像一样，只是表述不同而已，其实差别大了。</p>
 
-<p><a href="http://www.bababian.com/phoinfo/CE5297E3308E7584FCD30F2B2E063B1CDT"><img src="http://photo2.bababian.com/upload1/20091103/CE5297E3308E7584FCD30F2B2E063B1C.jpg" alt="" /></a></p>
+<p>用这个表格看就清晰了：</p>
 
-<p>当年栢林是被这样的高墻分隔的：</p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>健康</th>
+      <th>患者</th>
+    </tr>
+    <tr>
+      <th> </th>
+      <th>99.999%</th>
+      <th>0.001%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>阳性(+)</td>
+      <td>0.1% × <strong>99.999%</strong> = 0.00099999</td>
+      <td>99.9% × <strong>0.001%</strong> = 0.00000999</td>
+    </tr>
+    <tr>
+      <td>阴性(-)</td>
+      <td>99.9% × <strong>99.999%</strong> = 0.99899001</td>
+      <td>0.1% × <strong>0.001%</strong> = 0.00000001</td>
+    </tr>
+  </tbody>
+</table>
 
-<p><a href="http://www.bababian.com/phoinfo/3B666ADB403159B4CDA7891A546A80E9DT"><img src="http://photo2.bababian.com/upload1/20091103/3B666ADB403159B4CDA7891A546A80E9_800.jpg" alt="" /></a></p>
+<p>表中列出健康但结果为阳性（误检），健康并且结果阴性，患病并且结果为阳性，患病结果为阴性（漏检）这四种情况发生的概率。现在检查结果为阳性这一条件已经确定下来，就看阳性那行，健康与患病的概率之比为0.0099999:0.00000999，也就是大约100:1，真正得病的可能性比1%还小一点点。</p>
 
-<p>如今残存的墙上的壁画，反映了当年飜墻的种种途径：</p>
+<p>上面的东西其实是根据《环球科学》杂志2009-8的文章《被误读的患病率和死亡率》中的一个例子改写的，我觉得类似的与统计、概率相关的误区在日常生活中见得不少，很有必要学习一下。最后总结一下：</p>
 
-<p><a href="http://www.bababian.com/phoinfo/553B6F08561392D0A96026AC1F793581DT"><img src="http://photo2.bababian.com/upload1/20091103/553B6F08561392D0A96026AC1F793581_800.jpg" alt="" /></a></p>
-
-<p><a href="http://www.bababian.com/phoinfo/5B63D6517BA472FF5E9F5F7556DA4D4BDT"><img src="http://photo2.bababian.com/upload1/20091103/5B63D6517BA472FF5E9F5F7556DA4D4B_800.jpg" alt="" /></a></p>
+<ul>
+  <li>体检很重要，但是也不要自己吓自己 </li>
+  <li>概率的知识很有用，实际结果往往与直觉不一致 </li>
+  <li>统计调查的结果不一定靠谱，即使数据是真实的，也要看解释是否合理，是否符合逻辑。那种数字很有迷惑性。至于误导的原因，有些是因为说的人自己也没搞清楚，有些是故意忽悠人</li>
+</ul>
 ]]></content>
   </entry>
   
@@ -80,25 +107,24 @@
 
 <p>盾构机前部盾体的结构图：  </p>
 
-<p><a href="http://www.bababian.com/phoinfo/43A01E7DAE866663E26E1BC60D9320BBDT"><img src="http://photo1.bababian.com/upload13/20090307/43A01E7DAE866663E26E1BC60D9320BB.jpg" alt="" /></a></p>
+<p><img src="/attachments/2009/3/Herrenknecht1.jpg" alt="" /></p>
 
 <p>整个盾构机像火车一样很长，一节节台车组成。车间里这台盾构机才刚开始组装，提供给云南的一个水利工程用的，工程师介绍说共有三十多节：</p>
 
-<p><a href="http://www.bababian.com/phoinfo/7E7CF1BB8624098EA74350F864E84C60DT"><img src="http://photo1.bababian.com/upload13/20090307/7E7CF1BB8624098EA74350F864E84C60.jpg" alt="" /></a></p>
+<p><img src="/attachments/2009/3/Herrenknecht2.jpg" alt="" /></p>
 
 <p>准备组装的刀盘驱动部分：</p>
 
-<p><a href="http://www.bababian.com/phoinfo/E1B146EC1B4A66CEE70F6499AF065967DT"><img src="http://photo1.bababian.com/upload13/20090307/E1B146EC1B4A66CEE70F6499AF065967.jpg" alt="" /></a></p>
+<p><img src="/attachments/2009/3/Herrenknecht3.jpg" alt="" /></p>
 
 <p>左面是回收回来的旧滚刀，右面是展台上的滚刀，和适合不同地质条件的刀体。岩石就是靠这些滚刀压碎的：</p>
 
-<p><a href="http://www.bababian.com/phoinfo/F187EB3304F1CAF4B64AFAE6BA8C9898DT"><img src="http://photo1.bababian.com/upload13/20090307/F187EB3304F1CAF4B64AFAE6BA8C9898.jpg" alt="" /></a></p>
+<p><img src="/attachments/2009/3/Herrenknecht4.jpg" alt="" /></p>
 
 <p>我参观的时候厂房里没有组装好的机器，从网上找来两张照片。上图看到的是盾构机的前部，红色的刀盘，上面镶嵌的黑色的就是刀具。从照片看似乎就是在我参观的那个车间。下图是一台硬岩掘进机的侧面。</p>
 
-<p><a href="http://www.bababian.com/phoinfo/90C173B6332E72DF0433F1567DA90E67DT"><img src="http://photo1.bababian.com/upload13/20090307/90C173B6332E72DF0433F1567DA90E67.jpg" alt="" /></a></p>
-
-<p><a href="http://www.bababian.com/phoinfo/7AEFC3A647EAF99A3FF7EBE654DE9C27DT"><img src="http://photo1.bababian.com/upload13/20090307/7AEFC3A647EAF99A3FF7EBE654DE9C27.jpg" alt="" /></a></p>
+<p><img src="/attachments/2009/3/Herrenknecht5.jpg" alt="" />
+<img src="/attachments/2009/3/Herrenknecht6.jpg" alt="" /></p>
 
 ]]></content>
   </entry>
