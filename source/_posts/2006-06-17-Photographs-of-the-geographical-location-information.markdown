@@ -4,8 +4,8 @@ title: "照片的地理位置信息"
 comments: true
 date: 2006-06-17 08:59
 tags:
-- GPS
-- software
+- GPS_GIS
+- Software
 - ImageProcessing
 ---
 在JPG图像的 EXIF meta data 中，有一组是与地理位置信息相关的，包括经纬度、高度、方向等，可以记录拍摄图像当时的位置信息。不过，目前内置GPS或者带有GPS接口的相机还非常少见，所以这组数据通常是空的。

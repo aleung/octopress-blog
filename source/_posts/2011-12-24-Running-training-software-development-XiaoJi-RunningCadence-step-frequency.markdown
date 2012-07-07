@@ -7,6 +7,7 @@ tags:
 - Android
 - SoftwareDev
 - Running
+- MyWork
 ---
 在[10km跑总结](http://good-good-study.appspot.com/blog/posts/156002)里提到：这次10km跑成绩的提高最重要因素是步频的提高。
 

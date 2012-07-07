@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Solaris中指定动态链接库路径的方法"
+comments: true
+date: 2001-12-08 18:43
+tags:
+- SysAdmin
+---
+使用crle命令, 例如:  
+    crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/libthread.so.1 -o /usr/lib/lwp  
+  
+以上命令的作用  
+
+* 设置library路径为 /usr/lib 和 /usr/local/lib 
+* 在这些目录建立cached list of libaries 
+* 指定用 /usr/lib/lwp 中的 libthread.so 代替 /usr/lib 中的版本.  
+  
+然后执行  
+    crle -u  
+更新/var/ld/ld.config文件  
+

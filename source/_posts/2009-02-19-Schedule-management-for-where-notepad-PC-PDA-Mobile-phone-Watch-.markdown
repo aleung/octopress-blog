@@ -1,14 +1,15 @@
 ---
 layout: post
-title: "日程管理适合做在哪里：记事本？PC?PDA?手机？手表！"
+title: "日程管理适合做在哪里: 记事本? PC? PDA? 手机? 手表!"
 comments: true
 date: 2009-02-19 20:17
 tags:
 - Idea
+- TimeManagement
 ---
 做日常管理，传统用纸质记事本，电脑化之后是PC，便携设备出现后是PDA和现在流行的智能手机。但其实还有一个很好的途径一直被忽略了，那就是：
 
-[![](http://photo1.bababian.com/upload14/20090219/BEB5C21686C5BAE7863856C565E51405_800.jpg)](http://www.mrjoneswatches.com/avg-index.html)
+[![](/attachments/2009/2/watch.jpg)](http://www.mrjoneswatches.com/average-day/)
 
 这是一个很有创意的设计，相信戴起来也很cool，但恐怕实用价值不大：表盘上标的是"a breakdown of what average people do on an average day"，但每个人都有自己的行事方式，没有多少人是一个average的人吧？
 

@@ -1,0 +1,66 @@
+---
+layout: post
+title: "Landsat7卫星及遥感图象处理"
+comments: true
+date: 2003-08-13 02:49
+tags:
+- GPS_GIS
+---
+LANDSAT是美国陆地探测卫星系统。从1972年开始发射第一颗卫星LANDSAT 1，到目前最新的LANDSAT 7。
+
+LANDSAT 7 卫星于99年发射，装备有Enhanced Thematic Mapper Plus(ETM+)设备，ETM+被动感应地表反射的太阳辐射和散发的热辐射，有8个波段的感应器，覆盖了从红外到可见光的不同波长范围。
+
+ETM+比起在LANDSAT 4、5上面装备的Thematic Mapper(TM)设备在红外波段的分辨率更高，因此有更高的准确性。
+
+LANDSAT 7 的一些总体数据：
+
+  * 7个光谱波段和一个全色波段 
+  * 观察宽度达185km 
+  * 15、30、60、80米精度 
+  * 离地705km太阳同步轨道 
+  * 16天运行周期 
+  * 覆盖范围为南北纬81度之间区域
+
+ETM+的波段：
+
+  1. 0.45-0.52微米蓝绿波段, 用于水体穿透, 土壤植被分辨 
+  2. 0.52-0.60微米绿色波段, 用于植被分辨 
+  3. 0.63-0.69微米红色波段, 处于叶绿素吸收区域, 用于观测道路/裸露土壤/植被种类效果很好 
+  4. 0.76-0.90微米近红外波段, 用于估算生物数量, 尽管这个波段可以从植被中区分出水体，分辨潮湿土壤，但是对于道路辨认效果不如TM3。 
+  5. 1.55-1.75微米中红外波段, 这被认为是所有波段中最佳的一个, 用于分辨道路/裸露土壤/水, 它还能在不同植被之间有好的对比度, 并且有较好的穿透大气、云雾的能力。 
+  6. 10.5-12.5微米热红外波段, 感应发出热辐射的目标. 分辨率为60m. 
+  7. 2.08-2.35微米中红外波段, 对于岩石/矿物的分辨很有用, 也可用于辨识植被覆盖和湿润土壤. 
+  8. 0.52-0.90微米全色波段, 得到的是黑白图象, 分辨率为15m, 用于增强分辨率, 提供分辨能力. (ETM+增加了这个波段，TM没有)
+
+以上波段除6、8外分辨率均为30m。
+
+Landsat7 ETM+ 数据又分为多种，例如L0Rp, L1R和L1G.
+
+  * L1R: radiometrically corrected but not geometrically resampled. 
+  * L1G: radiometrically corrected and resampled for geometric correction and registration to geographic map projections.
+
+在使用这些卫星图象的时候，要先进行处理。通常是用多个波段的图象进行彩色合成，得到伪彩色图象。在合成前，各波段图象还要先做图象增强处理。
+
+例如：MrSid卫星图象是用band7作为红色, band4作为绿色，band2作为蓝色合成的，简称为742。（MrSid用的是Landsat TM, 1987-1993拍摄数据，当时未有Landsat 7）；GeoGratis Landsat7 合成卫星图象是用743(RGB)。Terra为绿野做到北京图用的是542。
+
+常用的合成方法：
+
+  * 321：真彩合成。与肉眼所见接近；仅使用反射的可见光，受大气、云雾、阴影、散射的影响较大，通常对比度不高，感觉模糊（蓝色光散射严重）；对于海岸区域研究特别有用，因为可见光可穿透水面，观察到海底。 
+  * 432：近红外合成。颜色与肉眼所见完全不同；植被在近红外波段反射率特别高，因为叶绿素在此波段反射的能量大，因此在432图象中植被会明显表现为深浅不同的红色，不同类型植物有不同的红色色调；水会吸收差不多所有的近红外光，因此水面颜色很深近乎黑色。 
+  * 743/742：短波红外合成。包含至少一个短波红外波段，短波红外波段的反射率主要取决于物体表面的含水量，因此这类图象可用于植被保护和土地研究。
+
+图象合成可以用Photoshop之类的图象编辑软件来做，缺点是不能做出带地理信息的GeoTiff图象。[Chips](http://www.geogr.ku.dk/chips/)（哥本哈根图象处理系统）是一个专门用于遥感图象处理的软件，标准版是免费的。用它来制作3波段合成图象很容易。以下为简单使用方法：
+
+>
+Open WinChips, and from the _File_ menu, select _New Project_. From the _File_ menu, select _Add Object(s)_, and select the three images for the three bands you want to use in your composite image, and add them as _Chips Image_s. From the _File_ menu, select _New Object_, then _Lookup Table_, then save the new Lookup Table file. From the _View_ menu, select _New Image View_. In the _Image View Configuration_ dialog, on the _Image_ tab, select _Display Mode_ as RGB. For each of the _(Red, Green, Blue)_ choices, select the image for the band you want to use for the respective color. For _Lookup Table_ select the Lookup Table you added earlier, then click _OK_. 
+>
+You should now have a _Default Image View_ window open, showing your 3-band color composite image. From the _Image View_ menu, select _Lookup Table_, then _Enhance using Statistics for Entire Image_. Once the statistics are calculated for each of the colors, a _Modify Lookup Table_ dialog will be presented. To see the effect of some basic image enhancement, click on _Hist. Equal._. You can use _Reset_ to undo the enhancement. Click on _Cancel_ to close the dialog window. 
+>
+To save the 3-band color composite image, from the _Image View_ menu select _Export View To Standard Format_. Once you have saved the image file, you have the option of saving geocoding for the image. 
+
+参考：  
+
+* [http://imaging.geocomm.com/features/sensor/landsat7/](http://imaging.geocomm.com/features/sensor/landsat7/)  
+* [http://members.shaw.ca/davepatton/landsat7.html](http://members.shaw.ca/davepatton/landsat7.html)  
+* [http://chesapeake.towson.edu/data/composite.asp](http://chesapeake.towson.edu/data/composite.asp)  
+* [http://chesapeake.towson.edu/data/raw_data.asp](http://chesapeake.towson.edu/data/raw_data.asp)

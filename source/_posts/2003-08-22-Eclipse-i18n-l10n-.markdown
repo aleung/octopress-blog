@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Eclipse的i18n/l10n辅助功能"
+comments: true
+date: 2003-08-22 20:15
+tags:
+- SoftwareDev
+---
+Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。  
+对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。  
+选择文件，右键菜单 source->Extenalize Strings 打开工具，能够找出源文件中的所有字符串，选择那些需要翻译，自动替换并生成properties文件。  
+

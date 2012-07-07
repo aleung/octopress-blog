@@ -6,10 +6,12 @@ date: 2009-04-19 07:45
 tags:
 - Android
 - GPS_GIS
+- MyWork
 ---
-**Better My Location** （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。
 
-[![](http://photo1.bababian.com/upload15/20090418/65636492EAE6C21016E8E45740CD66DF.jpg)](http://www.bababian.com/phoinfo/65636492EAE6C21016E8E45740CD66DFDT)
+{% img right /attachments/2009/4/HereIm.jpg %}
+
+**Better My Location** （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。
 
 ## 下载 / 版本更新记录
 
@@ -35,7 +37,3 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
 ### 用手机自带地图显示当前位置  
   
 菜单选择"open in map app"，会切换到手机自带的地图软件，这时屏幕正中间就是当前位置。要注意，它的蓝点位置还是偏的。校准仅仅在 Better My Location 中有效。
-
-## 相关文章
-
-  * [BetterMyLocation开发手记](http://aleung.blogbus.com/logs/37558170.html)

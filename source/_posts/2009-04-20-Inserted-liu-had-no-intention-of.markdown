@@ -6,6 +6,7 @@ date: 2009-04-20 08:05
 tags:
 - Android
 - GPS_GIS
+- MyWork
 ---
 春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为[用得不爽一时兴起而写](http://aleung.blogbus.com/logs/37558170.html)的校正中国地图偏移的软件不断添加新功能发布新版本。
 

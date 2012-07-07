@@ -1,0 +1,17 @@
+---
+layout: post
+title: "PHP代码的格式化工具"
+comments: true
+date: 2003-07-22 23:00
+tags:
+- Software
+---
+寻找一个PHP代码的格式化工具, chedong的主页上介绍了phpCodeBeautify, 下载试用一下, 还是开发版, 效果不是很满意.  
+  
+以前我用过astyle,并且自己改成phpstyle, 但它毕竟只是为C++/Java设计, 对PHP处理不是很全面.  
+在google上搜索, 有些是要付钱买的, 不感兴趣.  
+BeautifyPHP([http://www.bierkandt.org/beautify/](http://www.bierkandt.org/beautify/))有个online demo, 感觉还不错. 而且它直接就是php写的!  
+另一个是PHPIndent([http://www.palfrader.org/phpindent/](http://www.palfrader.org/phpindent/)), 用perl写的, 没有试, 因为BeautifyPHP感觉可以了.  
+  
+顺便还发现了一个工具GNU Source-highlight [http://www.gnu.org/software/src-highlite/](http://www.gnu.org/software/src-highlite/), 能够将多种源程序生成HTML文件,并且语法加亮.  
+

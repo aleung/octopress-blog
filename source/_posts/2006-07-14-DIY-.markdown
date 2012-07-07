@@ -4,6 +4,6 @@ title: "DIY交流网站"
 comments: true
 date: 2006-07-14 08:00
 tags:
-- Diy
+- DIY
 ---
 喜欢DIY的人不应该错过这个网站，[instructables](http://www.instructables.com) ，在这里分享DIY的创意，可以看看人家做了些什么好玩的东西，是怎么做的，也可以将自己的经验发布出来。

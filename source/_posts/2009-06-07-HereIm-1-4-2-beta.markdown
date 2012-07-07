@@ -5,8 +5,7 @@ comments: true
 date: 2009-06-07 09:46
 tags:
 - Android
-- mobile
-- GPS
+- GPS_GIS
 ---
 在为共享校准数据做准备: 
 

@@ -6,6 +6,7 @@ date: 2011-09-27 19:28
 tags:
 - ImageProcessing
 ---
+&nbsp;
 
 Temperature | Typical Sources
 ------------|----------------------

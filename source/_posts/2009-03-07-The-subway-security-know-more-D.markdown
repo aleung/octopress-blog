@@ -18,31 +18,26 @@ tags:
 
 顺便show几张照片，是前段时间去参观海瑞克隧道设备公司时拍的，广州地铁的大部分隧道盾构工程所用的盾构机都是由海瑞克提供的。
 
-  
-
-
 盾构机前部盾体的结构图：  
 
-
-[![](http://photo1.bababian.com/upload13/20090307/43A01E7DAE866663E26E1BC60D9320BB.jpg)](http://www.bababian.com/phoinfo/43A01E7DAE866663E26E1BC60D9320BBDT)
+![](/attachments/2009/3/Herrenknecht1.jpg)
 
 整个盾构机像火车一样很长，一节节台车组成。车间里这台盾构机才刚开始组装，提供给云南的一个水利工程用的，工程师介绍说共有三十多节：
 
-[![](http://photo1.bababian.com/upload13/20090307/7E7CF1BB8624098EA74350F864E84C60.jpg)](http://www.bababian.com/phoinfo/7E7CF1BB8624098EA74350F864E84C60DT)
+![](/attachments/2009/3/Herrenknecht2.jpg)
 
 准备组装的刀盘驱动部分：
 
-[![](http://photo1.bababian.com/upload13/20090307/E1B146EC1B4A66CEE70F6499AF065967.jpg)](http://www.bababian.com/phoinfo/E1B146EC1B4A66CEE70F6499AF065967DT)
+![](/attachments/2009/3/Herrenknecht3.jpg)
 
 左面是回收回来的旧滚刀，右面是展台上的滚刀，和适合不同地质条件的刀体。岩石就是靠这些滚刀压碎的：
 
-[![](http://photo1.bababian.com/upload13/20090307/F187EB3304F1CAF4B64AFAE6BA8C9898.jpg)](http://www.bababian.com/phoinfo/F187EB3304F1CAF4B64AFAE6BA8C9898DT)
+![](/attachments/2009/3/Herrenknecht4.jpg)
 
 我参观的时候厂房里没有组装好的机器，从网上找来两张照片。上图看到的是盾构机的前部，红色的刀盘，上面镶嵌的黑色的就是刀具。从照片看似乎就是在我参观的那个车间。下图是一台硬岩掘进机的侧面。
 
-[![](http://photo1.bababian.com/upload13/20090307/90C173B6332E72DF0433F1567DA90E67.jpg)](http://www.bababian.com/phoinfo/90C173B6332E72DF0433F1567DA90E67DT)
-
-[![](http://photo1.bababian.com/upload13/20090307/7AEFC3A647EAF99A3FF7EBE654DE9C27.jpg)](http://www.bababian.com/phoinfo/7AEFC3A647EAF99A3FF7EBE654DE9C27DT)
+![](/attachments/2009/3/Herrenknecht5.jpg)
+![](/attachments/2009/3/Herrenknecht6.jpg)
 
   
 

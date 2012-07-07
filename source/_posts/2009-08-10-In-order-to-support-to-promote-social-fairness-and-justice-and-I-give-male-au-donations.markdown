@@ -32,7 +32,7 @@ tags:
   * 7月17日，北京市民政局以"未经登记擅自开展活动"为由，宣布取缔"公盟法律研究"中心。 
   * 7月29日，公盟负责人许志永及财务负责人庄璐被警方以"涉嫌偷税"名义刑事拘留。
 
-尽管公盟否认偷税并正通过法规规定途径进行申辩，但另一方面公盟接受社会捐款以缴交罚款。这是公盟的公告：[https://docs.google.com/View?id=dgrg4q87_34cfrdmxct](https://docs.google.com/View?id=dgrg4q87_34cfrdmxct)
+尽管公盟否认偷税并正通过法规规定途径进行申辩，但另一方面公盟接受社会捐款以缴交罚款。见公盟的[公告](https://docs.google.com/View?id=dgrg4q87_34cfrdmxct)。
 
 ## 我为什么捐款
 

@@ -5,7 +5,7 @@ comments: true
 date: 2008-11-06 03:54
 updated: 2010-08-16 17:36
 tags:
-- Diy
+- DIY
 ---
 办公室桌面不够大，总是感觉不够空间。看到instructable网站上的一个[作品](http://www.instructables.com/id/Ergonomic_Laptop_Stand_Made_From_a_Coat_Hanger/)，将laptop竖起来摆放，受到启发，琢磨着怎么把自己的笔记本电脑也竖起来。不过，我是通过dock来外接显示器、键盘、鼠标的，这样才不需要经常拔插那一大堆电缆，因此dock要跟laptop一块竖起来才行。
 

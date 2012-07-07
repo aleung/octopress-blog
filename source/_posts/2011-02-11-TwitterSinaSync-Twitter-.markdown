@@ -5,7 +5,7 @@ comments: true
 date: 2011-02-11 05:31
 updated: 2011-07-08 00:03
 tags:
-- SoftwareDev
+- MyWork
 ---
 之前寻找同步twitter到新浪微博的方法，没有尝试到满意的。@cutemic[介绍说](http://cutemic.posterous.com/twitter)他是在GAE上跑一个叫twitter2sina的python程序，周期性读取自己的tweets，再调用API发送到新浪微博。
 

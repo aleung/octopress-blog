@@ -6,7 +6,6 @@ date: 2011-08-26 11:51
 tags:
 - SoftwareDev
 - Maven
-- Build
 ---
 ![](https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png)
 
