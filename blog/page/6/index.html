@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="首先，我得承认：我又在折腾了。 这些年来，用过好多种任务管理（to-do）工具，包括low-tech的，电子化的，始终没有一个完全满意。最近一段时间又纠结于此，寻找、尝试各种工具，花了不少时间，真是有点本末倒置啊。 经过多年的练习，已经逐渐明确了自己对任务管理工具的需求是什么：（优先级从高到低排列 &hellip;">
+  <meta name="description" content="因为有些tweet没有同步到新浪微博，查看了 TwitterSinaSync 的运行日志，发现了这样的记录： 前一个tweet（绿色框）正常同步到了新浪微博，而接下来一个就失败（红色框），错误信息是黑名单用户。显然是tweet中的某些内容触发了黑名单机制，在这里估计是”twitter”。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/13/Sina-micro-bo-API-blacklist-terrible/">新浪微博API黑名单威武</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-13T01:40:00+08:00" pubdate data-updated="true">2011-03-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>因为有些tweet没有同步到新浪微博，查看了 <a href="http://good-good-study.appspot.com/blog/posts/111001">TwitterSinaSync</a> 的运行日志，发现了这样的记录：</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5519631639/"><img src="http://farm6.static.flickr.com/5057/5519631639_5b0593fd42_z.jpg" alt="" /></a></p>
+
+<p>前一个tweet（绿色框）正常同步到了新浪微博，而接下来一个就失败（红色框），错误信息是黑名单用户。显然是tweet中的某些内容触发了黑名单机制，在这里估计是”twitter”。</p>
+
+<p>一旦用户被列入了黑名单，接下来对这个用户的操作都会失败。看下面的例子，第一条是成功的，第二个失败后，接下来的tweet的同步都失败了，即使内容看起来绝无敏感词。其实我也猜不出第二条tweet中哪个词触发了加入黑名单，是”境外”？还是”mranti”？</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5519631597/"><img src="http://farm6.static.flickr.com/5217/5519631597_e6064611fc_z.jpg" alt="sina_blacklist_1" /></a></p>
+
+<p>目前新浪微博API的自动触发黑名单是临时性的，过一段时间后用户就可以继续使用，不过不知道它内部有没有什么计数器什么的。为此，我修改了 TwitterSinaSync，当用户被列入黑名单后会暂停同步一段时间。这个版本还处理了用户撤销新浪API授权的情况，会自动将用户删除。用户可以用原邀请链接重新开通。请到<a href="https://github.com/aleung/TwitterSinaSync">TwitterSinaSync@github</a>下载 2.3 版本源代码。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/03/13/Sina-micro-bo-API-blacklist-terrible/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -452,66 +513,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/">GQueuesInbox : Send Item to Your GQueues Inbox With Android Device Anywhere Anytime</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2011-01-14T05:15:00+08:00" pubdate data-updated="true">2011-01-14</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="http://farm6.static.flickr.com/5285/5360976023_928916d839_m.jpg" title="GQueueInbox" />
-去年底<a href="https://www.rememberthemilk.com/">RememberTheMilk</a>的pro帐号到期了，于是又折腾了一下看看有没有好用的类似工具，发现了一个在线任务管理的新秀：<a href="http://www.gqueues.com">GQueues</a>。GQueues的功能和界面都不错，我比较喜欢它的一点是没有用高中低的任务优先级，而是让你在列表中拖放任务改变顺序，排在最顶的就是需要优先处理的。有些事情你很难界定应该是属于重要性高还是重要性中等，但是如果几件事情放在一起，就很容易分出哪个相对更重要一些。</p>
-
-<p>但是，GQueues没有开发手机本地应用，在手机上只能通过浏览器访问。虽然它的网站有专门为移动设备优化，但还是不如本地应用便捷。而且很重要一点，不是任何时候都能访问到网络的，想起一件要做的事情，却因为连不上网而无法记录下来，只能留在脑子里或者要记录到别的地方，这样不符合GTD的原则。</p>
-
-<p>为此，我写了一个简单的Android应用，做的唯一事情就是往GQueues inbox里面添加新任务，并且允许离线使用：如果没有网络，任务会暂存起来，在有网络的时候后台自动发送出去。软件介绍：<a href="http://www.appbrain.com/app/gqueuesinbox/leoliang.gqueuesinbox">http://www.appbrain.com/app/gqueuesinbox/leoliang.gqueuesinbox</a></p>
-
-<p>不过，因为GQueues部署在Google App Engine上的，IP地址被GFW屏蔽，在国内无法直接访问。解决办法是自己将可以访问的IP配置到hosts文件里面，无论是PC还是手机都要如此处理。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/7/">&larr; Older</a>
@@ -533,6 +534,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
@@ -546,10 +551,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
       </li>
     
   </ul>
@@ -566,6 +567,7 @@
 <a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
@@ -584,7 +586,7 @@
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 116%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
@@ -592,7 +594,7 @@
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

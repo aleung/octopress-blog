@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="今天参加了一个名为《有效率的会议管理》的培训课程，其中关于如何解决冲突的问题，比较有意义，记录下来。 面临冲突时，一般人有以下几种行为反应的模式： 回避型：回避问题，避免与对方发生冲突。但是这并不能解决问题，因为并不接受对方的观点，只是将问题拖延。 竞争型：竭力坚持自己的立场和观点，力图说服对方 &hellip;">
+  <meta name="description" content="白鸦在他的blog上说，日历(calendar)和任务(task, todo)这两样东西为什么要分成两个独立功能，而不能合到一起？ 对此，我是有同感的。 在我的日常事务管理流程中，会将所有要做的事情都记录在todo list中，然后每天会做时间规划，根据todo list里面任务的优先级、due &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,122 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/17/Why-can-t-together/">为什么不能合在一起</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-17T08:20:00+08:00" pubdate data-updated="true">2009-03-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>白鸦在他的<a href="http://uicom.net/blog/?p=818">blog</a>上说，日历(calendar)和任务(task, todo)这两样东西为什么要分成两个独立功能，而不能合到一起？ 对此，我是有同感的。</p>
+
+<p>在我的日常事务管理流程中，会将所有要做的事情都记录在todo list中，然后每天会做时间规划，根据todo list里面任务的优先级、due date决定当天需要做的事情，并且在日历中计划出处理这些事情的时间。当然，如果是会议请求，outlook就已经自动把它放在日历里面了。事情完成后，到todo list中将相应任务设置为completed。实际的执行过程中，时间安排可能会做出改变，我把日历里的项目调整为实际耗用的时间。这样，事务的管理、时间安排、时间耗用的跟踪都在todo list和日历这两个系统中完成了。</p>
+
+<p>但是，分为两个系统，还是有麻烦之处：我必须同时查看todo list和日历，才能进行时间的安排；需要将todo list里面已经存在的任务手工填写到日历中。实际上，可以认为任务和日历中的事件(event)本质上是相同的东西：都是需要完成的一些事情。任务安排了具体时间之后就变成了日历中的事件。如果要将两者合并，属性上可以做这样一些设计：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>统一后的属性</th>
+      <th>原Todo中的属性</th>
+      <th>原Calendar中的属性</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Subject / Description</td>
+      <td>Subject / Description</td>
+      <td>Subject / Description</td>
+    </tr>
+    <tr>
+      <td>Due date</td>
+      <td>Due date</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Start date</td>
+      <td>Start date</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Complete status</td>
+      <td>Complete status</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Estimation</td>
+      <td>Estimation</td>
+      <td>作为缺省的duration</td>
+    </tr>
+    <tr>
+      <td>Repeat</td>
+      <td>Repeat</td>
+      <td>Repeat</td>
+    </tr>
+    <tr>
+      <td>Start time / End time</td>
+      <td>Start time / End time</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Where</td>
+      <td>Where (不是所有todo软件都有此属性)</td>
+      <td>Where</td>
+    </tr>
+    <tr>
+      <td>Priority</td>
+      <td>Priority</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>还有其他的一些属性就不一一列出了，但已经可见两者其实大部分都是重叠的。</p>
+
+<p>两者合并后，在展现上，能够将一天里已经安排好具体时间的事件，和没有安排具体时间，但是需要在这天内做（根据Start date和Due date）的任务显示在同一界面上，什么时候该做什么就一目了然了。在操作上，将一个任务拖放到日历中，或者输入开始结束时间，就能为任务安排计划的执行时间，并且显示在日历中。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/03/17/Why-can-t-together/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -370,63 +486,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/02/05/Do-you-have-a-boring-/">有没有更无聊的？</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-05T21:22:00+08:00" pubdate data-updated="true">2009-02-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在<a href="http://aleung.blogbus.com/logs/34064067.html">摄像头做自动监控</a>一文中，我提到了”我从来不用摄像头来視頻窷兲”，发布出来的那几天还是正常的，今天flyisland问我”从来不×××”是什么意思，一看原来是”視頻窷兲”这四个字被屏蔽了。</p>
-
-<p>真是无语，有比这更无聊的吗？我说的又不是琺耣功，又不是㈥④亊件这些有专门含义的敏感词，video chatting只是一种网络通信应用，咱们中国所谓有自主知识产权的3G标准，TD-SCDMA，就可以实现video chatting啊，干嘛不把它禁掉？只能说，在低俗的人眼中什么都是低俗的。</p>
-
-<p>类似的事情比比皆是：在淘宝网收藏了洗车用的水管和喷头，给的tag名字是”水枪”，结果显示出来就变成了”水×××”；在一些论坛里，”靠近”、”依靠”、”操作”、”体操”等单词是显示不出来的，看到的只是”x近”，”依x”，”x作”，”体x”。还有，最近广州发生的手机爆炸致死事件，查出真正原因不是手机爆炸，而是”不锈钢击发装置__“造成的。</p>
-
-<p>文化就是这样被摧残的。台湾打算将正体（我们称为繁体）汉字申请世界遗产，大陆这边不乐意，有专家说要申请也应该是所有汉字作为整体来申请。确实，简体汉字更应该申请做遗产，照这样的趋势下去，汉字都要被消灭了，大家都用<a href="http://www.qccu.cn/">火星文</a>吧。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/02/05/Do-you-have-a-boring-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/19/">&larr; Older</a>
@@ -448,6 +507,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
@@ -461,10 +524,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
       </li>
     
   </ul>
@@ -481,6 +540,7 @@
 <a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
@@ -499,7 +559,7 @@
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 116%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
@@ -507,7 +567,7 @@
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

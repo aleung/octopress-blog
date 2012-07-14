@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="图像格式介绍在网上有很多资料, 随便google一下都能找到. 这是我在论坛上回复别人的帖子, 顺手也帖到这儿. 这几种格式都是光栅图像格式(除了光栅格式还有一种是矢量格式), 描述的是图像点阵的色彩数据. BMP格式是最简单的格式，基本就是图像点阵的内存拷贝。没有任何压缩，也无法表示格外的数据。 &hellip;">
+  <meta name="description" content="MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。 其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/06/30/MicroDEM-/">MicroDEM制图所需地理数据转换方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-30T01:23:00+08:00" pubdate data-updated="true">2004-06-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。</p>
+
+<p>其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector data为shapefile, 会生成3个文件, 其中一个是dbf, MicroDEM可读取的格式.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/06/30/MicroDEM-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -321,61 +374,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/05/27/WordPress-/">WordPress越做越好了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-05-27T16:44:00+08:00" pubdate data-updated="true">2004-05-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨天晚上把我的<a href="http://sunnyday.cn2k.net/blog/">另外一个blog</a>的程序升级到<a href="http://wordpress.org">WordPress</a> 1.2, 升级本身是非常简单的, 正如wordpress网站上说的, installing WordPress and upgrading from previous versions and other software is a piece of cake, 它的安装升级脚本做的非常完善且友好, 访问一个URL点击几次next就做好了, 因为是全web化的配置, 保存在数据库中的, 一切都自动完成. 不过update我自己的页面template耗了些时间, 因为新版本提供的函数有些更改了, 必须手工修改, 如果用它的default template就不需要费这些功夫. </p>
-
-<p>我的blog从最早的b2, 到WordPress 0.5x, 到现在的WordPress 1.2, 几次升级, 感觉这个软件越做越好了. XML-RPC的支持, email-blogging, 可自定义字段, link manager, 层次化的category, 多作者, 图片上传和自动生成缩略图, 保存草稿… 还有好多细节方面的功能都不错.</p>
-
-<p>我还考虑过是不是该把blogbus上的这个blog也搬到自己的WordPress上边去, 不过暂时blogbus还是用得不错, 搬起来挺麻烦的, 而且它的HTML编辑挺方便, WYSIWYG, 还是等等再说吧.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/05/27/WordPress-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/41/">&larr; Older</a>
@@ -397,6 +395,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
@@ -410,10 +412,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/09/Some-reading-record/">一些读书记录</a>
       </li>
     
   </ul>
@@ -430,6 +428,7 @@
 <a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
@@ -448,7 +447,7 @@
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 116%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 111%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
@@ -456,7 +455,7 @@
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 104%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

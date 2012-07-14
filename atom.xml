@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-07-07T21:47:55+08:00</updated>
+  <updated>2012-07-14T11:21:50+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[《简约至上》读书笔记]]></title>
+    <link href="http://aleung.github.com/blog/2012/07/14/simple-first/"/>
+    <updated>2012-07-14T10:43:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/07/14/simple-first</id>
+    <content type="html"><![CDATA[<p><a href="http://book.douban.com/subject/5394309/">简约至上</a>，原作名为 Simple and Usable Web,Mobile,and Interaction Design，不错的关于交互设计的书籍。</p>
+
+<iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/aleung/simple-first/" width="900px" height="300px" frameborder="0" scrolling="no"></iframe>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring bean reference injection definition by external configuration]]></title>
@@ -1016,130 +1027,6 @@ Beans without reference:
 <p><img src="https://lh4.googleusercontent.com/-XJdyMrSafCM/Tj905psGecI/AAAAAAAAASg/lGJsgsjir7I/s800/maven-repo-2sites-solution2.png" alt="" /></p>
 
 <p>This solution looks good if one artifact is owned by one site. But I’m wondering if it works in the situation that both sites publish the same SNAPSHOT artifact to its local repository manager. For example, foo-1.0.0-SNAPSHOT.jar was already deployed on Repository Manger A, and then on Repository Manager B a newer edition of the jar is deployed, how can site A get the later one?</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[确定优先级]]></title>
-    <link href="http://aleung.github.com/blog/2011/06/26/Determine-priority/"/>
-    <updated>2011-06-26T15:38:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/06/26/Determine-priority</id>
-    <content type="html"><![CDATA[<p>在我们的工作中，不时需要评估工作任务的优先级：例如下个版本的软件应该加入的功能，又或者对之前工作回顾列出的一大堆改进项目，在一轮头脑风暴之后，发现需要做的事情是如此之多，而能投入的资源显得如此至少，怎么挑选出最有价值的事情来做就成了头痛的事。</p>
-
-<p>过往，我们常做的方法是，召集一个会议，大家一起来为每个任务评分：分别评估出任务的工作量级和重要性（1、2、3… 最重要为1），然后将两者相乘得到一个分数，根据这个分数对任务排序。这种做法是期望能找出重要性比较高，但是又不太难完成的任务。但很不幸，越是重要的任务往往工作量越大—-如果有重要而简单的任务，我们早就把它做了，不需要等到这个会议的召开—-得到的分数差距不大。印象中，我参加过的评估会，都没有得出什么有用的结论，最终做的决策似乎跟评估没有太多的关系。</p>
-
-<p>你可能会指出，这个评估模型根本就是不对的，工作量和重要性两者相乘得不出有意义的数字。但我们都不够聪明，没有想到一个足够简单而直观的方法。（回过头来看，应该是我们谁都没有花心思去想过。为什么？为什么？为什么？！）</p>
-
-<p>今天读”<a href="http://book.douban.com/subject/4163938/">More Joel on Software</a>“，第36节介绍了他们用的方法，值得借鉴。</p>
-
-<p>首先评估每项任务的工作量（成本），得到一个数字，其实这个数字是什么单位无所谓，story point也好，$也好，在例子里用的是$，金额。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>功能</th>
-      <th style="text-align: right">成本</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>个性化首页</td>
-      <td style="text-align: right">$10</td>
-    </tr>
-    <tr>
-      <td>轻松安排软件开放进程</td>
-      <td style="text-align: right">$4</td>
-    </tr>
-    <tr>
-      <td>追踪资金到账时间</td>
-      <td style="text-align: right">$5</td>
-    </tr>
-    <tr>
-      <td>允许对bug分叉(fork)</td>
-      <td style="text-align: right">$1</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>然后规定每人手上只有限量的资金，例如$20，可以用来购买这些功能。每个人根据自己对功能的重要性判断来决定应该为每个功能分配多少钱。例如：我觉得追踪资金到账时间是没有用的功能，一分钱也不分给它；安排软件开发过程很重要，我愿意出两倍的钱；而允许对bug分叉更重要，出4倍的钱；而个性化首页不是那么重要，所以我只愿意出80%的钱。故此，我的资金这样分配：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>功能</th>
-      <th style="text-align: right">成本</th>
-      <th style="text-align: right">销售额</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>个性化首页</td>
-      <td style="text-align: right">$10</td>
-      <td style="text-align: right">$8</td>
-    </tr>
-    <tr>
-      <td>轻松安排软件开放进程</td>
-      <td style="text-align: right">$4</td>
-      <td style="text-align: right">$8</td>
-    </tr>
-    <tr>
-      <td>追踪资金到账时间</td>
-      <td style="text-align: right">$5</td>
-      <td style="text-align: right">$0</td>
-    </tr>
-    <tr>
-      <td>允许对bug分叉(fork)</td>
-      <td style="text-align: right">$1</td>
-      <td style="text-align: right">$4</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>这个过程其实就是一个已经按照成本加权的优先级评估。每个人在评估时已经综合考虑了成本和重要性。</p>
-
-<p>将每个功能从各人手中获得的资金累加起来，再除以成本，就得到一个投资收益率，很明显，投资收益率最高的功能就是应该最优先做的。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>功能</th>
-      <th style="text-align: right">成本</th>
-      <th style="text-align: right">总销售额</th>
-      <th style="text-align: right">投资收益率</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>个性化首页</td>
-      <td style="text-align: right">$10</td>
-      <td style="text-align: right">$45</td>
-      <td style="text-align: right">4.5</td>
-    </tr>
-    <tr>
-      <td>轻松安排软件开放进程</td>
-      <td style="text-align: right">$4</td>
-      <td style="text-align: right">$36</td>
-      <td style="text-align: right">9</td>
-    </tr>
-    <tr>
-      <td>追踪资金到账时间</td>
-      <td style="text-align: right">$5</td>
-      <td style="text-align: right">$12</td>
-      <td style="text-align: right">2.4</td>
-    </tr>
-    <tr>
-      <td>允许对bug分叉(fork)</td>
-      <td style="text-align: right">$1</td>
-      <td style="text-align: right">$7</td>
-      <td style="text-align: right">7</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>下次排任务优先级的时候，我们应该尝试一下这种方法。</p>
-
-<p>P.S. 回头再想一下，这个方法其实跟我们以前用的工作量乘以重要性级别的方法本质上是一样的，但是我们过去用的重要性级别1、2、3、4、5没有定量关系，说不出不同级别之间的重要性相差多少倍，因此相乘出来的数字就没有比较价值了。另外，每人手上持有有限量资金进行分配这种方式更接近我们日常的思维模式，调动起人的直觉，类似于planning game。</p>
-
 ]]></content>
   </entry>
   
