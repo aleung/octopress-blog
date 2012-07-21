@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-07-14T11:21:50+08:00</updated>
+  <updated>2012-07-22T00:17:17+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xperia U 刷机]]></title>
+    <link href="http://aleung.github.com/blog/2012/07/21/flashing-xperia-u/"/>
+    <updated>2012-07-21T23:20:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/07/21/flashing-xperia-u</id>
+    <content type="html"><![CDATA[<p>昨天中午拿到国行 <a href="http://www.sonymobile.com/global-en/products/phones/xperia-u/">Sony Xperia U</a> (ST25i) 手机，开机试了一下，索尼(原来的索尼爱立信)在Android 2.3基础上的定制系统做得还可以，但大陆行货里好多功能都被阉割得不成样子。Google系列的任何东西都去掉了就不用说了，很奇怪的是居然系统里没有自带任何应用市场，国内的山寨市场也没有。可以想象一个不熟悉IT的用户买到手机后就会局限在预装的那几个应用，连升级都没有途径。比较一下SonyMobile英文与中文网站对这款手机的介绍，就会发现中文产品介绍缩水不少，好多卖点都没有了。</p>
+
+<p>这样的智能手机简直就是残废，于是下班后就开始研究怎么刷机。先是在国内的一些论坛上搜索，但国内论坛真是很没有营养，里面的信息的价值很低。Android hacker的大本营在XDA，相关问题还是要到<a href="http://www.xda-developers.com/">XDA论坛</a>找靠谱。</p>
+
+<p>关于Xperia系列刷机需要了解的基础知识，这篇 <a href="http://forum.xda-developers.com/showthread.php?t=1526866">All that u need to know before u begin</a> 讲得比较清楚。</p>
+
+<p>无论要刷什么，前提条件是先将 bootloader 解锁。关于解锁的教程很多，SonyMobile网站上就有详细步骤，XDA上的 <a href="http://forum.xda-developers.com/showthread.php?t=1527159">Xperia S/P/U/Sola Bootloader Unlocking &amp; Relocking</a> 附带了所需工具的下载。还有一个国产软件，号称是一键自动解锁。</p>
+
+<p>但是，就在第一步，将手机boot到fastboot模式，就花了我好几个小时。按教程，手机在关机状态按着音量+键的同时将USB连接上电脑，就会进入fastboot模式，并且亮起蓝灯。但是无论我怎么反复重试，手机都不会亮起蓝灯，电脑上弹出对话框提示安装驱动程序，但当我选择操作时它又说USB设备已经断开，显示这样的错误信息：s1boot fastboot device unplugged。网上搜索，有人说是驱动没有装好的原因，最后还是从XDA里找到了<a href="http://forum.xda-developers.com/showthread.php?t=1554632">解决方案</a>。原来，Xperia手机在进入fastboot模式时，会检测电脑是否已经装上了正确的驱动程序，如果没有，就会退出fastboot模式。而电脑端刚刚提示用户安装驱动，就发现手机已经关闭了连接，就取消了驱动的安装。这种问题可以用来做经典反面案例了。XDA帖子里的解决方法还是要拼手快：预先打开设备管理器，一插上手机后，里面会出现s1boot这个设备，赶紧鼠标右键选择升级驱动，升级驱动的对话框打开后，即使设备断开了还是可以继续进行驱动程序的安装。终于看到传说中的蓝灯了，原来是在下面透明发光条发出很亮的蓝光，我之前还一直以为是右上角摄像头旁边的小灯。</p>
+
+<p>接下来就非常顺利了，解锁bootloader后，用fastboot安装了ROM和Kernel。我都没有另外用其他工具了，感觉fastboot用起来就很简单，很多人不喜欢可能是因为命令行操作吧。关于fastboot使用，推荐看cyanogenmod的wiki里的<a href="http://wiki.cyanogenmod.com/wiki/Fastboot">介绍</a>。</p>
+
+<p>我刷的ROM是<a href="http://forum.xda-developers.com/showthread.php?t=1684062">KA02 Xperia SSpeed</a>， 还是Android 2.3.7，Sony还没有为Xperia U 提供Android 4.0 ICS。Kernel是<a href="http://forum.xda-developers.com/showthread.php?t=1688147">Advanced Stock Kernel</a>。刷完开机，见到熟悉Google账号绑定，然后Gmail、通信录、日历同步、Google Play都回来了。Root也有了，收工。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[《简约至上》读书笔记]]></title>
@@ -1002,31 +1023,6 @@ Beans without reference:
   <li>DZone Refcardz: <a href="http://refcardz.dzone.com/refcardz/apache-maven-2">Apache Maven 2</a></li>
   <li><a href="http://gavin-chen.iteye.com/blog/336607">Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解</a></li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Maven artifact repository setup for multiple sites team]]></title>
-    <link href="http://aleung.github.com/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team/"/>
-    <updated>2011-08-08T18:20:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team</id>
-    <content type="html"><![CDATA[<p>A typical way of adopting Maven to manage artifacts in an organization is to setup a repository manager locally. The repository manager proxies opensource repositories like Maven central from Internet, and hosts release and snapshot repositories for internal artifacts. It works fine in most cases, but when the team locales geographically in more than one site, and the bandwitdth between the sites is limited, or the artifacts are huge in size, the build performance will decrease, because uploading and downloading artifacts to/from the remove repository takes time.</p>
-
-<h2 id="solution-1-pubish-to-master-repository-download-from-local-repository">Solution 1: Pubish to master repository, download from local repository</h2>
-
-<p>Suppose on site A there is already a repository manager A, now site B is setup, what we need is a repository manager on site B that proxies both external repositories and internal repositories. Sonatype Nexus has the capability to aggregate serveral repositories / mirrories and provides download access from a single URL.</p>
-
-<p><img src="https://lh6.googleusercontent.com/-kQ4SwY2UV2s/Tj905hhUlJI/AAAAAAAAASc/hj_0Kxt6CQ0/s800/maven-repo-2sites-solution1.png" alt="" /></p>
-
-<p>By this solution, pom.xml of existing projects aren’t required to be modified. Simply add a <mirror> section with <mirrorof> value set to * into Maven setting.xml for all developers who work in site B. But the publishing of artifacts from site B is still cross sites over slow connection, so mvn deploy is not fully optimized though the download of dependencies is speeded up by cache on local repository manager.</mirrorof></mirror></p>
-
-<h2 id="solution-2-publish-to-local-repository-cross-caching">Solution 2: Publish to local repository, cross caching</h2>
-
-<p>This solution comes from <a href="http://www.sonatype.com/people/2011/07/video-multi-master-configuration-for-nexus/">Sonatype Blog</a>. Artifacts are always publish to repository on local site, each repository is cached by other site’s repository manager.</p>
-
-<p><img src="https://lh4.googleusercontent.com/-XJdyMrSafCM/Tj905psGecI/AAAAAAAAASg/lGJsgsjir7I/s800/maven-repo-2sites-solution2.png" alt="" /></p>
-
-<p>This solution looks good if one artifact is owned by one site. But I’m wondering if it works in the situation that both sites publish the same SNAPSHOT artifact to its local repository manager. For example, foo-1.0.0-SNAPSHOT.jar was already deployed on Repository Manger A, and then on Repository Manager B a newer edition of the jar is deployed, how can site A get the later one?</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="家里的松下H540U波轮洗衣机，使用了大概一年半左右开始出现撞桶现象，就是在洗衣的过程中，每次波轮起动（或反转）时，洗衣桶会碰撞到箱体。因为箱体相应位置贴了防撞海绵，摩擦时发出很大很难听的”吱吱”的声音。打开上盖检查过，发现是箱体吊挂系统变形所致，我觉得这属于设计上的缺陷。 &hellip;">
+  <meta name="description" content="几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/30/Swimming-feeling/">游泳感想</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-07-30T22:49:00+08:00" pubdate data-updated="true">2010-07-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。</p>
+
+<p>首先是想为什么没有音乐听听呢？跑步的时候可以戴着耳机听音乐，游泳也应该可以才对。做防水的播放器和防水的耳机，难度应该不大，说不定已经有这样的产品了，只是没有普及。</p>
+
+<p>第二个想法有意思些。我在海里看过珊瑚，离岸不远的浅水，只要把头沉入水中，就能见到海底犹如大花园一般的珊瑚世界。如果整个游泳池底铺上大显示屏，游泳池也可以变身为虚拟海底世界。五彩斑斓的珊瑚随着水波微微摇曳，鱼群在其中穿梭。假若结合电脑控制的虚拟现实系统，加上感应器，还可让鱼群在你游近时飞快逃开，而海豚就伴在你左右。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/07/30/Swimming-feeling/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -346,79 +401,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/">在考虑怎样在Android手机上使用SSH Tunnel翻墙</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-02T14:53:00+08:00" pubdate data-updated="true">2010-06-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。因此Android上是应该也可以使用SSH tunnel的。</p>
-
-<p>先看看Windows上是怎样设置SSH翻墙的：</p>
-
-<ul>
-  <li>首先需要有个支持dynamic port forwarding的SSH client，这个SSH client能开放出SOCKS服务</li>
-  <li>如果浏览器(或者其他程序)支持使用SOCKS proxy，设置使用SSH client开放出来的SOCKS端口，就可以使用了</li>
-  <li>如果浏览器(或者其他程序)不支持SOCKS proxy，只支持HTTP proxy，就需要再运行一个支持SOCKS的代理程序（例如Privoxy），将HTTP转成SOCKS</li>
-</ul>
-
-<p><img src="http://farm5.static.flickr.com/4046/4662779602_743c1c50c2_b.jpg" alt="" /></p>
-
-<p>在Android上就要麻烦一点了，因为需要网络通讯的不仅仅是浏览器，很多Android application都需要访问网络，但是它们并不支持proxy—-连HTTP proxy都不支持，更不用说SOCKS了。它们只会直接连接目标站点，如图中虚线所示，然后撞墙。</p>
-
-<p>但是Linux有iptables，可以设置iptables规则（需要root权限），将HTTP/HTTPS请求forward到一个transparent SOCKS proxy去。transparent SOCKS proxy的作用是将任意TCP连接转成SOCKS连接，这样就可以走SSH tunnel出去了。我分析过几乎所有的Android应用访问网络都是走HTTP/HTTPS协议的，所有仅仅处理HTTP/HTTPS就够了。</p>
-
-<p><img src="http://farm5.static.flickr.com/4023/4662779594_32dd9773cb_b.jpg" alt="" /></p>
-
-<p>Android上支持dynamic port forwarding的SSH client有<a href="http://code.google.com/p/connectbot/">ConnectBot</a>，不过ConnectBot是一个有界面的应用，似乎不能由其他程序来控制，这样就不好做到翻墙软件的傻瓜化了。应该还是弄一个命令行的ssh client更合适。</p>
-
-<p>在网上搜索了一下，开源的transparent SOCKS proxy有几个：<a href="http://oss.tiggerswelt.net/transocks_ev/">transocks_ev</a>，<a href="http://transocks.sourceforge.net/">TranSocks</a> 和 <a href="http://darkk.net.ru/redsocks/">redsocks</a>。从文档上看，似乎transocks_ev比较适合。</p>
-
-<p>但是，我现在面临的困难在于我不熟悉如何交叉编译Android平台程序（C语言），了解了一下如何搭建Android交叉编译环境，似乎挺麻烦（对我而言）。而且要让普通Linux上可运行的sshd和transocks port到Android上，也许还有一些代码要修改。不知道有没有Android系统高手能够帮忙？</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/10/">&larr; Older</a>
@@ -440,6 +422,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
@@ -455,16 +441,12 @@
         <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 133%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
