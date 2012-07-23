@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。 &hellip;">
+  <meta name="description" content="我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过为什么不能合在一起一文。后来，也发现Outlook 2007已经将两者做了一定程度的整合。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,145 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/">时间管理工具的设计：任务计划时间的逐步精确</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-23T23:27:00+08:00" pubdate data-updated="true">2010-06-23</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">为什么不能合在一起</a>一文。后来，也发现<a href="http://good-good-study.appspot.com/blog/posts/3212">Outlook 2007已经将两者做了一定程度的整合</a>。</p>
+
+<p>今天又再思考了一下：任务管理就是一个逐步细化的过程，包括执行时间的具体化和操作步骤的细化（拆分子任务）。理想的工具应该对整个过程都提供支持。</p>
+
+<p>当新增一个任务时，外界往往并没有指定执行任务的具体时间，可能会有一个deadline，只要在deadline之前完成都是可以的，这时就是传统时间管理工具说称的 task。为了完成此任务，需要安排一个具体的时间段去执行它，在传统的时间管理工具上，就是要为此任务创建一个日程安排 (event)。但在实际操作中，你往往不能一下子就确定在哪个明确的时间去执行任务，而是先确定一个大概的时间范围，再逐步的精确。目前我还没有见到哪个工具能够为这个过程提供支持。</p>
+
+<p>我设想的时间管理系统应该用一个统一的模型来存储任务与日程，因为它们本质上是同样的东西。任务有一个属性，是计划执行的时间。计划执行时间可以为空，说明还没有为此任务指定执行时间。计划执行时间不一定是精确时间类型，可以有不同精度级别的时间类型，包括：年 / 季度 / 月份 / 周 / 天 / 时间段 / 时 / 分。随着计划的逐步细化，赋予任务计划执行时间越来越高精度的时间。</p>
+
+<p>例如，我和Bob很久没见，想一起吃午饭聚聚旧，于是电话联络。Bob刚好出差了，要下个月中旬才回来，所以我们初定时间在下个月的第四周（Week 29），我在时间管理系统中添加了 Dinner with Bob 这一项，并设计划时间为 W29。到了week 28的周末，我review任务时看到了这项，就跟Bob再确认时间，发现周一中午大家都有时间，但是具体几点钟要看周一早上与餐厅订座时才能确认，于是我把这项任务的计划时间更新为周一，但这还不是最精确的时间。周一早上，订座确认了，再把任务的具体时间12:00～13:00设置上去。</p>
+
+<p>我也大概设想了一下用户界面，应该有一个可缩放的时间视图，就像电子地图的缩放一样，既可以查看大时间范围内的任务安排，也可以查看具体精确的时间计划。用Excel画了界面原型，比较粗糙，实际做时当然需要细致的考虑用户体验了。左右拖动进行时间的缩放，具体某个时间列的上下滚动进行时间的选择。要为某个任务安排或者修改执行时间，可以通过拖拽到时间视图相应的位置来做到。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4727145212/"><img src="http://farm2.static.flickr.com/1387/4727145212_e90a483c0b_m.jpg" alt="scheduler-day" /></a></p>
+
+<p>为任务安排大概的时间（Week 29）：</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4727145218/"><img src="http://farm2.static.flickr.com/1253/4727145218_5a3c9cb27e.jpg" alt="scheduler-week" /></a></p>
+
+<p>为任务安排具体精确的时间：</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4727145214/"><img src="http://farm2.static.flickr.com/1010/4727145214_0175c6f578.jpg" alt="scheduler-minute" /></a></p>
+
+<p><em>（我并没有开发这样一个时间管理工具的计划，不过如果你有这样的打算，并且也认同我的这种思路，不妨与我联系）</em></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/">Android手机上使用SSH Tunnel的进展 (2010-06-06)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-07T13:22:00+08:00" pubdate data-updated="true">2010-06-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在上一篇博客中，我提出了<a href="http://good-good-study.appspot.com/blog/posts/20001">在Android手机上使用SSH tunnel的想法</a>。几天下来有了一些进展。</p>
+
+<p>首先，非常感谢<a href="http://sunner.cn/">Sunner</a>，他帮忙编译出Android平台的transocks_ev binary，并且解决了一些在Android平台上运行的问题。</p>
+
+<p>在实验中，用ConnectBot + transocks_ev + iptables，HTTP和HTTPS请求都能重定向到SSH tunnel了，测试了浏览器和其他一些应用，无需任何额外设置就可正常访问网络。不过目前没有考虑使用非HTTP/HTTPS的应用。但现在还有两个问题：</p>
+
+<ol>
+  <li>DNS查询还是直接出去，不能避免DNS污染</li>
+  <li>现在用ConnectBot作为ssh client，并不合适： 
+    * 在port forwarding时ConnectBot CPU占用非常高，达到99%，估计是有bug。
+    * ConnectBot的连接和断开需要手动控制，密码也要在界面输入，无法做到整个翻墙过程单击执行。</li>
+</ol>
+
+<p>对于第一个问题，transocks_ev 不支持UDP，因此无法tunnel DNS查询请求。我在考虑参考<a href="http://code.google.com/p/cmwrap/">CMWrap</a>的方案，做一个DNS proxy，转成TCP请求发出去。  </p>
+
+<p>对于第二个问题，想用一个命令行ssh来代替ConnectBot。目前在Android上常用的是dropbear，但dropbear不支持SOCKS。查了linux上支持SOCKS的ssh client有OpenSSH和lsh（还有没有其他？），但是Sunner尝试了编译OpenSSH和lsh都不成功，因为它俩都太依赖gnu的一些东西了，比如glibc、glib等，而android上所有的对应的库都是从简的。因此暂时还是先用着ConnectBot，并将CPU高的问题反馈给开发者，看看有没有什么回应。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -304,156 +443,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/04/13/Reading-feeling-contact-and-the-space-Life-between-buildings-/">读书感想：交往与空间 (Life Between Buildings)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-04-13T22:46:00+08:00" pubdate data-updated="true">2010-04-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://book.douban.com/subject/1393903/">交往与空间</a>是一本关于城市规划如何影响人的生活，怎样才能让城区更富于生机和魅力，让生活其中的人更愉快舒畅的书。这本书探讨了怎样的城市是真正的宜居城市。</p>
-
-<p>周末花了大半天时间看完了这本书，看书过程挺享受的，很久没有认真看书了。边看边用手机在twitter上发读书感想，twitter是一个不错的记录读书感想的工具。</p>
-
-<hr />
-
-<p>为什么老城区会让人感觉亲切?因为公共空间尺度合适，不是宏大而单调；空间没有被宽阔的机动车道割裂，联系紧密；空间功能多元化，各种人群各种活动融合在一起更有生机。</p>
-
-<p>现在发达国家的城市规划逐渐摒弃功能主义，让每个区域的功能趋于综合化，使得空间更有生气和活力，也减少了时间性单向的交通压力。但我们的城市规划还是喜欢搞单一的商务区，高科技园，大学城。</p>
-
-<p>“通过人的观察与感受，使公共环境中的活动与毗邻的住宅商店车间工厂的各种活动融会贯通，就能从双向扩展和丰富体验的可能性”：这是新的理念，在欧洲就见过不少临街办公室开着大大的玻璃窗并且毫无遮挡，外面对里面的东西和活动一览无遗。在瑞典，私人住宅的阳台和院落大多都是通透的，夏日经常见到有人在阳台上闲坐观望甚至用餐，外面的人也看到他们，大家互为风景。</p>
-
-<p>步行者走捷径的愿望是非常执着的，如果可以看到目标，他们总是径直走向那里。因此，很多草坪花基是注定要被践踏的，与其竖牌子搭栏杆还不如想想怎样能够方便行人。</p>
-
-<p>当去远处目的地的路程一览无遗时，步行就会索然无味；但看得见目的地而又不得不绕行，则更令人扫兴和不悦。蜿蜒富于变化的街道使步行变得更有趣，因此在老城古镇中闲逛是一种享受，特别是拐过一个弯，一个小广场一座特别建筑或是一个雕塑突然显露眼前时更令人惊喜。</p>
-
-<p>一个理想的居住空间应该是既有足够的私人空间，也有良好的可活动的公共空间。现在我们的居住环境是普遍提高了，但公共空间却几乎没有。回家关上双重防盗门，窗户阳台还有防盗网，基本与外界隔绝。有小区花园的也没有多少可闲坐的地方。比起以前小孩可在街头玩耍，街坊在门前聊天，我们城市离宜居更远了。</p>
-
-<p>我们这里一些郊区大盘算是有些公共空间，但还不是有活力的空间。因为开发的思路是纯住宅区，像祈福要买点东西都要跑到外头去。适当的商业其实是有益的。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/04/13/Reading-feeling-contact-and-the-space-Life-between-buildings-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/23/The-old-city-relativity-dialogue-old-city-device-art/">旧城相对论 - 对话旧城装置艺术展</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-23T23:30:00+08:00" pubdate data-updated="true">2010-03-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/artculture/'>ArtCulture</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这个活动由<a href="http://www.firexrd.com/Blog/?p=603">FIREXRD</a>发起，他以”<a href="http://zh.wikipedia.org/zh-cn/File:Chanyuengposter.jpg">广州撑你</a>“海报而闻名。豆瓣同城上也有<a href="http://www.douban.com/event/11600836/">活动页面</a>。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4457516716/"><img src="http://farm5.static.flickr.com/4049/4457516716_34649e402d_o.jpg" alt="旧城相对论" /></a></p>
-
-<p>展览在北京路的<a href="http://225.goelia.com.cn/">歌莉娅225概念会所</a>进行，展厅面积很小，但这是由观众参与完成的装置艺术，你在那里看到的不是完成后的作品，而是不断动态更新中的，并且每人都可以参与其中。另外这个会所也值得一赞，在是旧建筑保育与商业利用结合的成功例子。</p>
-
-<blockquote>
-  <p>感谢国家，我冇意见，谢绝跨省</p>
-</blockquote>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4457512786/"><img src="http://farm3.static.flickr.com/2759/4457512786_e9a1222544_o.jpg" alt="旧城相对论" /></a></p>
-
-<p>这个更加猛：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4457511592/"><img src="http://farm5.static.flickr.com/4006/4457511592_2c05c2fd31_o.jpg" alt="旧城相对论" /></a></p>
-
-<p>当然，发泄怨气的其实还是少数，大多数都是表达对老建筑以及其上承载的文化的留恋。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4456734439/"><img src="http://farm5.static.flickr.com/4020/4456734439_b293ff5282_o.jpg" alt="旧城相对论" /></a></p>
-
-<p>这是我和清风白云的”创作”：</p>
-
-<blockquote>
-  <p>Big brother is watching you!</p>
-</blockquote>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4456736391/"><img src="http://farm5.static.flickr.com/4042/4456736391_192618ca5b_o.jpg" alt="旧城相对论" /></a></p>
-
-<p>这也是我们搞的，我们向往信息的自由：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4456735659/"><img src="http://farm3.static.flickr.com/2700/4456735659_d6f35ef45e_o.jpg" alt="旧城相对论" /></a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/03/23/The-old-city-relativity-dialogue-old-city-device-art/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/11/">&larr; Older</a>
@@ -475,6 +464,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a>
       </li>
     
@@ -486,20 +483,12 @@
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在chinaxp上看到一段话： 到目前为止，个人觉得 XP 还是中小公司开发的最好模式。实现起来的确还是有难度，特别是 PP，不过总比 RUP 便于实施。RUP、CMM 比较容易得到 MBA 的青睐。主要原因就在于_事先规范好的重量级流程，给人一种“一切尽在掌握”的错觉_，哈哈，的确是错觉。 &hellip;">
+  <meta name="description" content="现在广州某些线路的公交车已经开始使用GPS跟踪调度，并且在站牌上实时显示车辆位置、预计到站时间。不知道什么时候能够推广到所有线路。 根据网上的资料，城市公交GPS定位调度系统由车载终端分系统，信息传输分系统，中心及线路调度管理分系统，信息发布分系统及电子站牌分系统五大部分组成。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,124 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/16/The-bus-operation-monitoring-system/">公交车运行监控系统</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-16T03:13:00+08:00" pubdate data-updated="true">2003-07-16</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>现在广州某些线路的公交车已经开始使用GPS跟踪调度，并且在站牌上实时显示车辆位置、预计到站时间。不知道什么时候能够推广到所有线路。</p>
+
+<p>根据网上的资料，城市公交GPS定位调度系统由车载终端分系统，信息传输分系统，中心及线路调度管理分系统，信息发布分系统及电子站牌分系统五大部分组成。车载系统与中心的数据传输是通过电台或者手机短信进行。</p>
+
+<p>不过，公交车的定位一定要靠GPS吗？我也有另外一个idea。</p>
+
+<p>公交车是沿着固定路线行驶的，在路线上分布着大量站点，站点的距离都不太远，如果能够确定某车辆在哪个站点区间，一般来说这样的定位信息也足够了。</p>
+
+<p>可以在各个车站设立无线电通讯基站，基站与中心有通讯链路（目前的GPS系统在车站有电子站牌，与中心也需要通讯链路）；车载系统为一个无线应答机。使用小功率通讯，通讯范围在数百米之内，即车站周边区域。这样，车辆行驶到一个车站附近，就能与此车站的基站联络上，基站根据车载系统发送的身份信息可以知道那些车辆进入了本站点范围，将信息传送给控制中心；电子站牌能将当前车辆位置显示出来（相比GPS系统，就不能给出预计到站时间，不过候车者知道车辆目前在哪个站也基本能估计出时间来）；车辆也能得到当前的车站信息，报站系统能自动报站。</p>
+
+<p>GPS系统的优势：定位准确，实时性强，能随时传送其他大量信息。缺点：在城市的高楼、立交、高架桥中，GPS信号常会受到遮挡；无线传输系统的频率资源分配是个问题。</p>
+
+<p>站点定位系统的优势：无线通讯仅在近距离区域，不受环境影响，频率资源占用少；车载系统相对简单。缺点：需要在各个车站安装无线基站系统，分散维护；定位只能精确到车站区间；在车站范围外无法与中心交换信息。</p>
+
+<p>如果车辆与中心的实时信息传输非常重要，可以采用与GPS系统相同的车辆直接与中心无线通讯的方法，车站安装的是简单的无线信标，当收到车辆发出的查询信号时，自动返回车站身份信息，这样车辆就可知道目前在哪个车站范围。不过这个方案与GPS方案的区别就不大了，仅仅在于将GPS定位改为车站无线信标定位。</p>
+
+<p>此外，目前的电子站牌设计也不尽合理，面积很大，显示信息量少。如果所有线路都用了电子站牌，不知道要多大才够。其实在现有站牌的每个站名下加个指示灯指示车辆位置就够了，最多就再加一个最近车辆到站时间的双7段LED。这样通用性强，不同线路、站名更改只需将上面标签换掉就行了，成本应该也可以低一些。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/16/The-bus-operation-monitoring-system/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/14/Top-75-security-tools/">Top 75 Security Tools</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-14T23:05:00+08:00" pubdate data-updated="true">2003-07-14</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Top 75 security tools: <a href="http://www.insecure.org/tools.html">http://www.insecure.org/tools.html</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/14/Top-75-security-tools/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -266,134 +384,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/">在关系数据库中保存树状结构</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-06-03T00:07:00+08:00" pubdate data-updated="true">2003-06-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/database/'>Database</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>看了 <a href="http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html">Trees in SQL</a> 这篇文章, 提出了一个巧妙的方法来在关系数据库中保存树状结构. 在记录中不是保存父子关系, 而是记录着树的遍历的编号, 通过利用编号可以在单个SQL语句中获取某个节点的所有子节点等操作. <br />
-据介绍, 著名论坛jive在2.5版本起增加了catalog, 就是用这种方法实现树状关系帖子的保存.  </p>
-
-<p><a href="http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html">http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html</a>  </p>
-
-<p><em>需要注册一个帐号才能进入上面的连接. 本来想直接帖出来, 可是转贴后格式会乱</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/">给WebCatcher作者的建议（个人开发软件的开发管理问题）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-05-29T03:00:00+08:00" pubdate data-updated="true">2003-05-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.wizissoft.com/cn">WebCatcher</a>是我非常喜欢的一个软件，作者很热情的在论坛中解答问题、了解意见。我觉得个人开发软件同样存在着软件开发管理的问题，这是我写给他的一个建议： </p>
-
-<hr />
-
-<p>估计这段时间老魏也够烦的：）</p>
-
-<p>问题一个接一个，用户意见也不少。。。</p>
-
-<p>我对这个软件还是很欣赏的，作者的技术水平也不错。</p>
-
-<p>不过这次在版本升级的过程中暴露出了在开发管理中的问题，呵呵，一个人写程序也是要有开发管理的，因为随着软件规模增大、复杂性增加，遇到的问题也会越来越多。</p>
-
-<p>不知道作者有没有用版本管理软件来管理源代码，用版本管理软件的分支－合并功能可以做到同时维护旧版本的bug和增加新版本的功能，另可避免同样的bug重复出现。已发布版本可以不断出bug fix版本，但不包括新功能；开发中版本包含新功能，可以定时发布供测试。大多少用户还是希望软件把工作稳定放在第一位的，而不是当测试者。</p>
-
-<p>软件的发布的细节也不够细致，例如供下载的测试版本没有区分版本号，没有详细change log。无论修改得多还是少，只要是公开/半公开发布的，都必须要有不同的版本标识，小改动的发布可以只更改子版本号或者build序列号，但一定要能跟旧版本区分。change log是让用户（也是让开发者自己）知道各版本的区别的，也不应该省略。</p>
-
-<p>上次提过这个意见： <a href="http://211.92.136.88/~wsj/BBS/viewtopic.php?t=578">http://211.92.136.88/~wsj/BBS/viewtopic.php?t=578</a><br />
-其实并不是说要让用户自己去添加bug信息，这个还是应该由作者（或者找一个专人）做的，将用户反馈收集整理后添加。用不用专门软件也不是很重要，专门软件用起来方便些，不过开始的安装配置和学习使用也麻烦，重要的是有这样的流程，并且能给用户反馈。例如，用户发现了问题，一查就可以知道这个问题是否意见被别人发现了，在哪个版本已经修正，或者是有什么临时的解决方法。</p>
-
-<p>作者与用户沟通的态度很令人赞赏，回答问题、接受建议都很认真诚恳。不过有些细节上还可以更进一步，例如用户发现一个bug，作者马上说“谢谢，我会尽快改进”，用户会很高兴，因为作者重视他的意见。可是，这个bug什么时候修改了，在哪个版本中？没有了下文。用户只好一个个版本下载试用，然后发现自己提到的bug还是存在，而且还多了一些新的问题，长久下去可能就会厌烦而放弃这个软件了。作为用户，关心的是软件是否能符合自己的需求，如果他某一天在新版本change log中看到自己提出的问题意见解决了，才是真正的心满意足。个人做软件比起大公司的优势也在于可以跟最终用户更加贴近，实际上，好的个人软件的用户忠诚度往往比大公司的软件更高。</p>
-
-<p>另外给个建议，作者的免费终生升级策略以后也许要考虑改改，否则你只能靠发展新用户来获得收入，而随着用户增加，支持的压力却越来越大。用适当的金钱来换取良好的服务、功能升级，对于用户来说也是很合理的。老实说，如果作者因为经济原因不能继续软件的开发维护，对于已有用户来说是更大的损失。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/53/">&larr; Older</a>
@@ -415,6 +405,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a>
       </li>
     
@@ -426,20 +424,12 @@
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

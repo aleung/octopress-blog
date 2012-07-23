@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="这些GPS游戏与定向越野有点类似：定向越野是根据地图指南针在最短的时间内到达预先布好的若干个check point；GPS定向是依靠GPS、电子地图到达（尽量靠近）预先设定的点。 GPS定向是相当有趣的活动。它是对参加者的野外行进、找路的能力是一个考验，你知道目标的方位、距离，但是怎么才能到达？ &hellip;">
+  <meta name="description" content="MySQL的数据表访问锁定：读操作、写操作分别要申请读锁和写锁，读锁可以并发，写锁是唯一的。通过配置或者一些命令可以改变读、写的优先级。在MySQL手册中关于性能部分有说明。 普通的表类型，如MyISAM表是采用table级锁定；InnoDB和BDB是支持transaction的表类型， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,129 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/08/MySQL-/">MySQL的锁</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-11-08T02:54:00+08:00" pubdate data-updated="true">2003-11-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MySQL的数据表访问锁定：读操作、写操作分别要申请读锁和写锁，读锁可以并发，写锁是唯一的。通过配置或者一些命令可以改变读、写的优先级。在MySQL手册中关于性能部分有说明。</p>
+
+<p>普通的表类型，如MyISAM表是采用table级锁定；InnoDB和BDB是支持transaction的表类型，它们采用更小粒度的锁定，BDB是page级锁定，InnoDB是row级锁定。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/08/MySQL-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/">GPS数据管理软件EasyGPS和格式转换工具GPSBabel</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-11-01T01:17:00+08:00" pubdate data-updated="true">2003-11-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>EasyGPS是很好用的GPS数据管理器，能管理waypoint、route资料，它支持的文件格式是文件格式是gpx/loc。我使用过程中感觉它有以下优点：   </p>
+
+<p>※ GPS waypoint的名称、说明字段的文字个数有限制，通常只能输入缩写。waypoint多了之后缩写很难理解，管理十分困难。在EasyGPS中，可以输入额外的信息，如中文说明、类别信息等，利用资料的整理。 <br />
+※ 双击选定一个点作为active point，程序会计算出所有其他点与active point的距离、方位角。如果用距离来排序，就能够快速找出某距离范围以内的waypoint。这是我认为这个软件最好用的功能。 <br />
+※ 软件提供检索功能，能够根据多种条件查找、选定符合条件的waypoint <br />
+※ 可以打印waypoint清单。GPS中保存的waypoint没有详细说明，只要在出发前先打印一张单，名字具体对应的是什么地点就一清二楚了。英文机也不用愁啦。 <br />
+※ 从GPS上传、下载waypoint也是十分方便的   </p>
+
+<p>我以前是用ozi文件分地区存放waypoint的，管理起来非常麻烦，先按大的地区分目录，再按小地区建立文件。而且在GPS多次导入导出，都分不清那些是新增那些是旧，有些还重复了。 <br />
+现在用了EasyGPS不用这么麻烦了，把所有点都放一个gpx文件里面，需要的时候利用搜索很容易就能找到，只要找到一个，按范围排序马上就把附近整个区域的所有点都找出来了，然后另存文件或者直接传到GPS。   </p>
+
+<p>因此强烈推荐大家使用这种格式交换waypoint! :)   </p>
+
+<p>EasyGPS是免费软件，在<a href="http://www.easygps.com/">http://www.easygps.com/</a> 可下载；另外有ExpertGPS，功能更加多些，对route、track的管理更全面，不过是要钱买的。   </p>
+
+<p>另一个推荐的是GPSBabel软件，可以在gpx / ozi / mapsource / mapsend 等几十种文件格式之间转换，除了格式转换之外，还有过滤waypoint的功能，例如可以将重名的、距离很接近的waypoint过滤掉，或者是只输出某个座标范围内的waypoint。 <br />
+这个是命令行工具，但同时也提供了GUI界面，方便使用。（GUI界面只能做格式转换，不能过滤） <br />
+GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">http://gpsbabel.sourceforge.net</a> 可下载。 </p>
+
+<p>这里是ExpertGPS的<a href="http://www.lvye.org/uploadfiles/597018-easygps_introduce.gif">screen shot</a>。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -371,139 +494,6 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/19/The-system-performance-monitoring-tool/">系统性能监控工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-09-19T22:39:00+08:00" pubdate data-updated="true">2003-09-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等:  </p>
-
-<ul>
-  <li>
-    <p>MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/<br />
-这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, 可以通过调用其他程序来采集数据并生成曲线图. 但由于原来设计是流量监测, 故此配置灵活性不如RRDtool.<br />
-这里是各种扩展: <a href="http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html">http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html</a>  </p>
-  </li>
-  <li>
-    <p>RRDTool http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/<br />
-RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并且按照一定的周期生成曲线图. 很象MRTG, 不过它不包含数据采集功能, 而且灵活性高适应面更广.  </p>
-  </li>
-  <li>
-    <p>ORCA(http://www.orcaware.com/orca/docs/orcallator.html), 一个主机性能采集的工具, 利用RRDTool生成很多种性能曲线. 它只能在solaris上运行. 但它采集的数据和生成的曲线可以参考, 部分在linux上用RRDTool配合其他的采集程序应该也可以生成的.  </p>
-  </li>
-  <li>
-    <p>BGraphs(http://www.ag0ny.com/graphs/) 利用RRDtool和shell script做的linux性能采集工具。我在它的基础上修改，安装到公司的上网服务器上，还不错。  </p>
-  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/19/The-system-performance-monitoring-tool/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/">Invalid XML Character, msxml.dll的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-09-11T22:35:00+08:00" pubdate data-updated="true">2003-09-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Java程序测试中发现parse一个XML文件时出现exception, 错误信息为invalid XML character. 但这个XML文件用XMLSpy检查却没有问题.  </p>
-
-<p>经过查找资料, 发现是XML文件中包含了一些不允许在XML中使用的字符(控制符). XML规范中规定了允许的字符范围(<a href="http://www.w3.org/TR/REC-xml#dt-character">http://www.w3.org/TR/REC-xml#dt-character</a>):  </p>
-
-<pre><code>Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]   
-</code></pre>
-
-<p>包含illegal字符的XML文件不是well-formedness的, 为什么这样的文件能够生成, 并且XMLSpy不报错? 是Microsoft XML parser的问题. 这个XML文件是使用msxml.dll生成的, 估计XMLSpy用的也是msxml.dll, 这个parser的其中一个缺陷是允许某些非常字符的存在. 而Java程序中用的parser估计是sun的crimson, 这个parser严格检查XML character range, 包含非法字符就会报错.   </p>
-
-<p>msxml.dll的问题看来还有不少, 这里专门有谈到: <a href="http://www.xml.com/pub/a/1999/11/parser/index.html?page=2">http://www.xml.com/pub/a/1999/11/parser/index.html?page=2</a>   </p>
-
-<p>为了解决此问题, 需要在生成XML前先对字符串检查, 把非法字符过滤掉. 这里提供了java的过滤函数: <a href="http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html">http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html</a>   </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/48/">&larr; Older</a>
@@ -525,6 +515,14 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a>
       </li>
     
@@ -536,20 +534,12 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/25/migrate-my-blog-to-github/">migrate my blog to github</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 134%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

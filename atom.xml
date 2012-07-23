@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-07-22T00:17:17+08:00</updated>
+  <updated>2012-07-24T00:50:37+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xperia U 上手]]></title>
+    <link href="http://aleung.github.com/blog/2012/07/22/xperia-u+%28Autosaved%29/"/>
+    <updated>2012-07-22T18:22:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/07/22/xperia-u (Autosaved)</id>
+    <content type="html"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/Nexus_One">Nexus One</a> 手机用了两年多，升过几次系统，到现在用起来还是挺满意，但唯一的问题是内部存储(ROM)太小了，只有512M，留给安装应用的空间不足200M，而现在的应用又越来越大，已经到了当想装新应用必须先卸载其他一些的地步了。尝试过A2SD，效果不大理想，卡顿感比较明显，也可能因为我的TF卡速度不够高。</p>
+
+<p>现在换的这个 <a href="http://www.sonymobile.com/global-en/products/phones/xperia-u/">Sony Xperia U</a> 在配置上其实跟 Nexus One 变化不算大（<a href="http://geekaphone.com/compare/Sony-Xperia-U-vs-HTC-Nexus-One">对比</a>），主要区别是CPU双核(频率相同)，内部存储容量4G，而其他的如屏幕之类都不相上下。不过，两个产品发布时间差了2年，Nexus One在当年算是旗舰级别，而现在Xperia U只是中端机型，在现在的手机大混战中一点都不起眼。这也正符合我目前的需要，相当于一个内存升级版的Nexus One。之前考虑过人称Google三儿子的Galaxy Nexus，样样都满意，不过有些特性我倒用不着，例如4.6寸大屏幕。</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li><a href="http://aleung.github.com/blog/2010/05/11/Nexus-One-/">Nexus One 到手，以及刷机过程</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Xperia U 上手]]></title>
+    <link href="http://aleung.github.com/blog/2012/07/22/xperia-u/"/>
+    <updated>2012-07-22T18:22:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/07/22/xperia-u</id>
+    <content type="html"><![CDATA[<p>Nexus One 手机用了两年多，升过几次系统，到现在用起来还是挺满意，但唯一的问题是内存(ROM)太小了，留给安装应用的空间不足200M，而现在的应用又越来越大，已经到了当想装新应用必须先卸载其他一些的地步了。尝试过A2SD，效果不大理想，卡顿感比较明显，也可能因为我的TF卡速度不够高。</p>
+
+<p>现在换的这个 <a href="http://www.sonymobile.com/global-en/products/phones/xperia-u/">Sony Xperia U</a> 在配置上其实跟 Nexus One 变化不算大（<a href="http://geekaphone.com/compare/Sony-Xperia-U-vs-HTC-Nexus-One">对比</a>），主要区别是CPU双核，内部存储容量4G，而其他的如屏幕之类都不相上下。不过，两个产品发布时间差了2年，Nexus One在当年算是旗舰级别，而现在Xperia U只是中端机型，在现在的手机大混战中一点都不起眼。这也正符合我目前的需要，相当于一个内存升级版的Nexus One。之前考虑过人称Google三儿子的Galaxy Nexus，样样都满意，不过有些特性我倒用不着，例如4.6寸大屏幕。</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li><a href="http://aleung.github.com/blog/2010/05/11/Nexus-One-/">Nexus One 到手，以及刷机过程</a></li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Xperia U 刷机]]></title>
@@ -927,102 +961,6 @@ Beans without reference:
     </tr>
   </tbody>
 </table>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Color temperature of common light sources]]></title>
-    <link href="http://aleung.github.com/blog/2011/09/27/Color-temperature-of-common-light-sources/"/>
-    <updated>2011-09-27T19:28:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/09/27/Color-temperature-of-common-light-sources</id>
-    <content type="html"><![CDATA[<p> </p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Temperature</th>
-      <th>Typical Sources</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1000K</td>
-      <td><strong>Candles</strong>, oil lamps</td>
-    </tr>
-    <tr>
-      <td>2000K</td>
-      <td><strong>Very early sunrise</strong>, low effect tungsten lamps</td>
-    </tr>
-    <tr>
-      <td>2500K</td>
-      <td><strong>Household light bulbs</strong>(2680K - 40 W incandescent lamp)</td>
-    </tr>
-    <tr>
-      <td>3000K</td>
-      <td>Studio lights (continuous), 200 W incandescent lamp, (<strong>3200K - Sunrise/sunset;</strong><strong>3400K - 1 hour from dusk/dawn</strong>, Tungsten lamp)</td>
-    </tr>
-    <tr>
-      <td>4000K</td>
-      <td>Clear flashbulbs (now obsolete),<strong>Fluorescent</strong></td>
-    </tr>
-    <tr>
-      <td>5000K</td>
-      <td><strong>Typical average daylight</strong>, electronic flash</td>
-    </tr>
-    <tr>
-      <td>5500K</td>
-      <td>The sun at noon, (<strong>5500~6000K - vertical daylight</strong>)</td>
-    </tr>
-    <tr>
-      <td>6000K</td>
-      <td><strong>Bright sunshine with clear sky</strong></td>
-    </tr>
-    <tr>
-      <td>7000K</td>
-      <td><strong>Slightly overcast sky</strong></td>
-    </tr>
-    <tr>
-      <td>8000K</td>
-      <td><strong>Hazy sky</strong></td>
-    </tr>
-    <tr>
-      <td>9000K</td>
-      <td><strong>Open shade on clear day</strong></td>
-    </tr>
-    <tr>
-      <td>10,000K</td>
-      <td><strong>Heavily overcast sky</strong></td>
-    </tr>
-    <tr>
-      <td>11,000K</td>
-      <td><strong>Sunless blue skies</strong></td>
-    </tr>
-    <tr>
-      <td>20,000+K</td>
-      <td>Open shade in mountains on a really clear day</td>
-    </tr>
-  </tbody>
-</table>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Maven Lifecycle Concepts]]></title>
-    <link href="http://aleung.github.com/blog/2011/08/26/Maven-Lifecycle-Concepts/"/>
-    <updated>2011-08-26T11:51:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/08/26/Maven-Lifecycle-Concepts</id>
-    <content type="html"><![CDATA[<p><img src="https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png" alt="" /></p>
-
-<p>(<a href="https://picasaweb.google.com/lh/photo/D_sskYHvn6CgEruCxN6lMdBJO7epb5AqjiUnD_coqoo?feat=directlink">大图链接</a>)</p>
-
-<p>一年前画的，把它电子化方便日后查看。看看有没有空补充些文字说明吧。</p>
-
-<p>Reference:</p>
-
-<ul>
-  <li>DZone Refcardz: <a href="http://refcardz.dzone.com/refcardz/apache-maven-2">Apache Maven 2</a></li>
-  <li><a href="http://gavin-chen.iteye.com/blog/336607">Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解</a></li>
-</ul>
 ]]></content>
   </entry>
   
