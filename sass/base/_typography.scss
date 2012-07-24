@@ -43,7 +43,8 @@ h1 {
 
 #{headings()}{
   @extend .heading;
-  text-rendering: optimizelegibility;
+  // Below line leads to hidden Chinese characters problem in some Chrome browser.
+  //text-rendering: optimizelegibility;
   margin-bottom: 1em;
   font-weight: bold;
 }
@@ -107,7 +108,7 @@ big { font-size: 1.2em; }
 
 blockquote {
   $bq-margin: 1.2em;
-  font-style: italic;
+  // font-style: italic;
   position: relative;
   font-size: 1.2em;
   line-height: 1.5em;
