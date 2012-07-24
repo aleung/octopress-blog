@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="手提电脑升级到Vista操作系统后，在家里通过ADSL上网，招商银行网上银行无法登录，报告通信出错。运行自带测试程序，发现是与服务器无法进行SSL通信。但是在办公室上网时登录招行网银又很正常。打招行的服务热线，客服让我设置了IE的一些SSL相关选项，没有用。因为办公室网络可用， &hellip;">
+  <meta name="description" content="在Java内存模型中，有main memory，每个线程也有自己的memory (例如寄存器)。为了性能，一个线程会在自己的memory中保持要访问的变量的副本。这样就会出现同一个变量在某个瞬间，在一个线程的memory中的值可能与另外一个线程memory中的值，或者main &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,63 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/01/04/Windows-Vista-/">Windows Vista无法登录招商银行网上银行的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-04T06:27:00+08:00" pubdate data-updated="true">2009-01-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>手提电脑升级到Vista操作系统后，在家里通过ADSL上网，招商银行网上银行无法登录，报告通信出错。运行自带测试程序，发现是与服务器无法进行SSL通信。但是在办公室上网时登录招行网银又很正常。打招行的服务热线，客服让我设置了IE的一些SSL相关选项，没有用。因为办公室网络可用，根据中国电信一贯的不佳记录，我第一时间就是怀疑电信封了ADSL的某些端口，造成ADSL无法使用招行网银。向中国电信投诉，接case的小伙子检查来检查去，都没有发现问题，他说帮我把局端可以换的东西都换过了，设置也全重设过，但都没有用。</p>
-
-<p>跟同事说起，有人告诉我是IE7新增的一个安全选项的影响，将Advance Settings - Security - Check for server certificate revocation选项disable就可以正常使用招行网银了。回家一试，果然就正常了。可是，为什么呢？上网查了一下certificate revocation check的作用，大概的意思就是，SSL通信建立时，服务器需要有有效的安全证书，这个证书是由认证中心(CA)签发的，但是由于某种原因CA会撤销某些已经签发的证书，当IE的这个选项打开时，浏览器就会去CA检查一下服务器的证书是否已经被撤销。那么，看来还是招商银行的问题了，<strong>为什么招行网银服务器的证书会在已撤销列表中？这应该是个很大的安全问题啊</strong>。</p>
-
-<p>至于为什么同样打开Check for server certificate revocation选项，在办公室网络可以正常访问招行网银，我估计那是由于办公室上网要经过proxy，很可能是公司内部的proxy屏蔽了CA的访问，造成浏览器无法得知证书已被撤销。</p>
-
-<p>用Wireshark抓网银登录时的网络流，发现当选项打开时，确实出现了一个HTTP GET <a href="http://crl.verisign.com/Class3InternationalServer.crl">http://crl.verisign.com/Class3InternationalServer.crl</a>请求，请求者是Microsoft-CryptoAPI/6.0</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/01/04/Windows-Vista-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -410,6 +353,65 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/09/15/Online-backup/">在线备份</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-15T18:20:00+08:00" pubdate data-updated="true">2008-09-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以前介绍过文件同步/备份工具<a href="http://aleung.blogbus.com/logs/5545100.html">Unison</a>，那是一个在两台电脑之间进行文件双向同步的好工具。不过，Unison同步时需要两台电脑同时开机，并且可以通过网络直接通信。我以前用于办公室内两台电脑的同步，非常方便，不过想将办公室和家里的电脑进行同步(备份)，就做不到了。</p>
+
+<p>尝试了网上的在线文件同步/备份/分析工具，这样的网站有好多，我并没有仔细研究比较过，现在用的是<a href="http://syncplicity.com/">Syncplicity</a>，感觉功能不错，速度也可以。</p>
+
+<p>使用相当简便，在要同步的电脑上安装一个client，指定哪些目录需要同步，它就会自动将文件上传服务器，或者从服务器下载，就看哪边的版本更新一点。只要连上网，它就在后台运行，不用费心。如果是要手工执行备份的话，往往会忘记的，自动就没有这个问题。一个帐号可以连接多个client(免费账号限制2个)，相当于星形连接，由服务器分发改变了的文件。备份在服务器上的文件可以通过web界面访问。它的FAQ介绍了它有处理冲突的能力：保留所有不同的版本，让用户自己选择。不过，我没有试过，目前我只是用它来做单向备份。Syncplicity能够与GoogleDoc同步，我没有使用GoogleDoc的需要，也懒得试了。</p>
+
+<p>Syncplicity对免费用户提供2GB空间，允许两台电脑进行同步，当然收费版本的限制会放宽了。免费的服务基本上都够用的，需要备份的是些比较重要又经常变化的文件，如果是备份旧东西，不变的，用刻光盘的方式更合适。</p>
+
+<p>给Syncplicity做了这么多广告，是因为：如果我邀请新用户注册，我可以增加100M空间。所以各位记得填写我的邀请信中的号码啊，呵呵。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/09/15/Online-backup/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/22/">&larr; Older</a>
@@ -431,10 +433,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -450,12 +448,16 @@
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
+      </li>
+    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

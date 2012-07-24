@@ -9,7 +9,40 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常. 检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时. 解决办法: 确认邮件服务器使用本机作为DNS ( /etc &hellip;">
+  <meta name="description" content="根据实践的经验，基本了解了samba配置方法，将它记录下来。 一个基本的配置文件： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+[global]
+netbios &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,67 +109,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/">邮件系统发信缓慢问题的解决</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2002-03-13T00:13:00+08:00" pubdate data-updated="true">2002-03-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常.  </p>
-
-<p>检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时.  </p>
-
-<p>解决办法:  </p>
-
-<ul>
-  <li>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </li>
-  <li>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -359,10 +331,6 @@ readonly / writeable (两种写法都可以) <br />
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -378,12 +346,16 @@ readonly / writeable (两种写法都可以) <br />
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
+      </li>
+    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

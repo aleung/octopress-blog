@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="MySQL的数据表访问锁定：读操作、写操作分别要申请读锁和写锁，读锁可以并发，写锁是唯一的。通过配置或者一些命令可以改变读、写的优先级。在MySQL手册中关于性能部分有说明。 普通的表类型，如MyISAM表是采用table级锁定；InnoDB和BDB是支持transaction的表类型， &hellip;">
+  <meta name="description" content="EasyGPS是很好用的GPS数据管理器，能管理waypoint、route资料，它支持的文件格式是文件格式是gpx/loc。我使用过程中感觉它有以下优点： ※ GPS waypoint的名称、说明字段的文字个数有限制，通常只能输入缩写。waypoint多了之后缩写很难理解，管理十分困难。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,59 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/11/08/MySQL-/">MySQL的锁</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-11-08T02:54:00+08:00" pubdate data-updated="true">2003-11-08</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>MySQL的数据表访问锁定：读操作、写操作分别要申请读锁和写锁，读锁可以并发，写锁是唯一的。通过配置或者一些命令可以改变读、写的优先级。在MySQL手册中关于性能部分有说明。</p>
-
-<p>普通的表类型，如MyISAM表是采用table级锁定；InnoDB和BDB是支持transaction的表类型，它们采用更小粒度的锁定，BDB是page级锁定，InnoDB是row级锁定。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/11/08/MySQL-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -494,6 +441,76 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/19/The-system-performance-monitoring-tool/">系统性能监控工具</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-19T22:39:00+08:00" pubdate data-updated="true">2003-09-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等:  </p>
+
+<ul>
+  <li>
+    <p>MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/<br />
+这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, 可以通过调用其他程序来采集数据并生成曲线图. 但由于原来设计是流量监测, 故此配置灵活性不如RRDtool.<br />
+这里是各种扩展: <a href="http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html">http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html</a>  </p>
+  </li>
+  <li>
+    <p>RRDTool http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/<br />
+RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并且按照一定的周期生成曲线图. 很象MRTG, 不过它不包含数据采集功能, 而且灵活性高适应面更广.  </p>
+  </li>
+  <li>
+    <p>ORCA(http://www.orcaware.com/orca/docs/orcallator.html), 一个主机性能采集的工具, 利用RRDTool生成很多种性能曲线. 它只能在solaris上运行. 但它采集的数据和生成的曲线可以参考, 部分在linux上用RRDTool配合其他的采集程序应该也可以生成的.  </p>
+  </li>
+  <li>
+    <p>BGraphs(http://www.ag0ny.com/graphs/) 利用RRDtool和shell script做的linux性能采集工具。我在它的基础上修改，安装到公司的上网服务器上，还不错。  </p>
+  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/19/The-system-performance-monitoring-tool/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/48/">&larr; Older</a>
@@ -515,10 +532,6 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -534,12 +547,16 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
+      </li>
+    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

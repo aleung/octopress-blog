@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Jacksum is a free and platform independent utility for computing and verifying checksums, CRCs and message digests as well as timestamps of files. &hellip;">
+  <meta name="description" content="下载ASTER L1B数据，AST09(或者AST07,未知有何区别)格式。数据包括两个文件，hdf0是15m VNIR(band 1-3)，hdf1是30m SWIR(band 4-9)，一般只需要hdf0。 用MultiSpecWin打开hdf文件，将各个band分别保存为tif文件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,61 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/12/09/Jacksum-java-utility-for-computing-checksum/">Jacksum : Java Utility for Computing Checksum</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-12-09T20:31:00+08:00" pubdate data-updated="true">2003-12-09</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong><a href="http://www.jonelo.de/java/jacksum/index.html">Jacksum</a></strong> is a free and platform independent utility for computing and verifying checksums, CRCs and message digests as well as timestamps of files. </p>
-
-<p>Jacksum is entirely written in <em>Java</em>. </p>
-
-<p>It supports most common checksum algorithms (<em>Adler32, BSD sum, POSIX cksum, CRC-16, CRC-32, MD2, MD4, MD5, RIPEMD-128, RIPEMD-160, SHA-1, SHA-256, SHA-384, SHA-512, Unix System V sum, sum8, sum16, sum24, sum32, Whirlpool and xor8</em>)</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/12/09/Jacksum-java-utility-for-computing-checksum/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -438,6 +383,59 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/08/MySQL-/">MySQL的锁</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-11-08T02:54:00+08:00" pubdate data-updated="true">2003-11-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MySQL的数据表访问锁定：读操作、写操作分别要申请读锁和写锁，读锁可以并发，写锁是唯一的。通过配置或者一些命令可以改变读、写的优先级。在MySQL手册中关于性能部分有说明。</p>
+
+<p>普通的表类型，如MyISAM表是采用table级锁定；InnoDB和BDB是支持transaction的表类型，它们采用更小粒度的锁定，BDB是page级锁定，InnoDB是row级锁定。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/08/MySQL-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/47/">&larr; Older</a>
@@ -459,10 +457,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/22/xperia-u+%28Autosaved%29/">Xperia U 上手</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -478,12 +472,16 @@
         <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
+      </li>
+    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
