@@ -1,0 +1,20 @@
+---
+layout: post
+title: "apigee"
+date: 2012-07-31 23:20
+comments: true
+tags:
+- Web 
+---
+
+[Apigee](http://apigee.com/) is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it.
+
+Apigee is an API management platform and services company. It benefits both API providers and developers who build their apps with APIs.
+
+Apigee Enterprise
+-----------------
+
+Apigee Enterprise product is API proxy.
+
+
+
