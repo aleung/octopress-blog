@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在Java内存模型中，有main memory，每个线程也有自己的memory (例如寄存器)。为了性能，一个线程会在自己的memory中保持要访问的变量的副本。这样就会出现同一个变量在某个瞬间，在一个线程的memory中的值可能与另外一个线程memory中的值，或者main &hellip;">
+  <meta name="description" content="自从豆瓣9点推出以来，一直都使用9点来阅读blog，都算是忠实用户了。喜欢用9点是因为它具有一定的社会化功能，我可以推荐喜欢的文章，可以看到友邻的推荐，也可以看到9点分类汇总的热点文章，不会错过网络的热点话题。 可是，最近9点的改版确让我不得不放弃它。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,128 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/01/16/Make-unified-network-information-reading-entrance/">打造统一的网络信息阅读入口</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-16T06:26:00+08:00" pubdate data-updated="true">2009-01-16</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/reading/'>Reading</a>, <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自从<a href="http://9.douban.com/">豆瓣9点</a>推出以来，一直都使用9点来阅读blog，都算是忠实用户了。喜欢用9点是因为它具有一定的社会化功能，我可以推荐喜欢的文章，可以看到友邻的推荐，也可以看到9点分类汇总的热点文章，不会错过网络的热点话题。</p>
+
+<p>可是，最近9点的改版确让我不得不放弃它。放弃的原因一方面是我不喜欢新版本中个人订阅的阅读界面的用户体验，另一方面更重要的原因是新版本在移动设备上无非正常阅读，包括手机上的UCWEB，OperaMini和PDA上的Opera for Windows Mobile。阅读blog是我利用上下班以及其他在外的零碎时间的重要手段，因此9点不能在移动设备阅读对我来说是不可接受的。</p>
+
+<p>向豆瓣反馈了意见，但是没有得到回应。不得不另外寻找阅读器了。很多人都喜欢使用<a href="https://www.google.com/reader/">Google Reader</a>，我以前也稍微尝试过，但当时觉得不是很习惯，没有真正使用。这次认真的用了一下，感觉熟悉了之后还是不错的，包括手机上的访问效果也还行。从9点上将订阅列表导入到Google Reader中，打算用一段时间试试效果如何，如果好以后就用它了。</p>
+
+<p>不用9点，就不能在豆瓣上推荐文章了，不过我豆瓣上的友邻也没有几个看9点的，关系不大。Google Reader现在也有了share，但我除了<a href="http://flyisland.blogbus.com/">flyisland</a>外好像也没有别的友邻。另外就是Google Reader没有做热点推荐，这个要看还是可以回去9点看吧。</p>
+
+<p>今天还花了一些时间整理了订阅的feed的tag。我以前为大部分feed都加了tag，是按类别分的，例如”软件开发”、”时评”、”科学”之类，但实际上这些tag的用处不大，因为基本上不会根据分类来阅读。为了在有限时间里面让阅读更有效，这次我为所有订阅的feed都加上了优先级标签，目前分为：Priority High, Priority Middle, Priority Low, PC only Priority High, PC only Priority Middle, PC only Priority Low。PC only的类别是不适合在移动设备上阅读的feed，例如包含很多摄影、图片的，或者是带有很多链接，又或者是需要静下心来阅读的。Google Reader似乎有一定的阅读行为分析功能，使用一段时间之后也许可以根据分析数据调整不同feed的优先级。</p>
+
+<p>Blog是我目前获取信息的很重要的一个途径。我不上门户网站看新闻，那些网站太乱七八糟了；专业门户也看到很少；有些论坛会看一下，也不算太多。基本上，上网看的信息来源除了搜索引擎就是blog了。RSS阅读器可以将blog的内容聚合在一起，阅读的效率和方便程度都提高了很多。现在提供RSS的专业门户网站也越来越多了，虽然一般都只提供摘要信息，但这样也已经可以将RSS阅读器作为一个统一的入口来阅读这些散落在不同网站上的文章。有些论坛也开始提供帖子RSS，这样的论坛还不多，不知道能否成为趋势。我很希望能够将RSS阅读器作为网络上各种信息来源的统一阅读入口，结合优先级设定，可以节省时间也不容易遗漏重要的信息。</p>
+
+<p>目前试用过程中感觉Google Reader的抓取速度好像比9点要快一些，这边看到的新文章9点上还没有。Google应该也不会象豆瓣一样把一些文章给和谐掉，但是，Google Reader本身很可能被整体和谐，这是用Google服务的最大风险。要尽量用HTTPS来访问，降低风险。</p>
+
+<p>另外，推荐一个Firefox插件<a href="https://addons.mozilla.org/en-US/firefox/addon/3362">Update Scanner</a>，它可以监视你指定的网页是否发生了变化，利用它就不需要经常去打开bookmark看关心的网页是否有更新了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/01/16/Make-unified-network-information-reading-entrance/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/01/04/Windows-Vista-/">Windows Vista无法登录招商银行网上银行的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-04T06:27:00+08:00" pubdate data-updated="true">2009-01-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>手提电脑升级到Vista操作系统后，在家里通过ADSL上网，招商银行网上银行无法登录，报告通信出错。运行自带测试程序，发现是与服务器无法进行SSL通信。但是在办公室上网时登录招行网银又很正常。打招行的服务热线，客服让我设置了IE的一些SSL相关选项，没有用。因为办公室网络可用，根据中国电信一贯的不佳记录，我第一时间就是怀疑电信封了ADSL的某些端口，造成ADSL无法使用招行网银。向中国电信投诉，接case的小伙子检查来检查去，都没有发现问题，他说帮我把局端可以换的东西都换过了，设置也全重设过，但都没有用。</p>
+
+<p>跟同事说起，有人告诉我是IE7新增的一个安全选项的影响，将Advance Settings - Security - Check for server certificate revocation选项disable就可以正常使用招行网银了。回家一试，果然就正常了。可是，为什么呢？上网查了一下certificate revocation check的作用，大概的意思就是，SSL通信建立时，服务器需要有有效的安全证书，这个证书是由认证中心(CA)签发的，但是由于某种原因CA会撤销某些已经签发的证书，当IE的这个选项打开时，浏览器就会去CA检查一下服务器的证书是否已经被撤销。那么，看来还是招商银行的问题了，<strong>为什么招行网银服务器的证书会在已撤销列表中？这应该是个很大的安全问题啊</strong>。</p>
+
+<p>至于为什么同样打开Check for server certificate revocation选项，在办公室网络可以正常访问招行网银，我估计那是由于办公室上网要经过proxy，很可能是公司内部的proxy屏蔽了CA的访问，造成浏览器无法得知证书已被撤销。</p>
+
+<p>用Wireshark抓网银登录时的网络流，发现当选项打开时，确实出现了一个HTTP GET <a href="http://crl.verisign.com/Class3InternationalServer.crl">http://crl.verisign.com/Class3InternationalServer.crl</a>请求，请求者是Microsoft-CryptoAPI/6.0</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/01/04/Windows-Vista-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -284,134 +406,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/10/24/Will-the-wireless-tags-used-in-the-library/">将无线标签用在图书馆中</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-24T07:32:00+08:00" pubdate data-updated="true">2008-10-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>看豆瓣的图书馆小组，有人抱怨乱架率太高，找书不容易。我去图书馆的时候也有这样的烦恼，当时就想过，图书馆的乱架问题和找书问题，能不能用科技手段来帮助解决呢？  </p>
-
-<p>目前国内的图书馆藏书都是用条形码标识，如果改用RFID之类的无线标签，除了可以满足外借系统借书还书只用，还可以用来做书架管理，防盗。</p>
-
-<p><strong>防盗</strong> ：在书库出口设置感应器，就像现有的磁条感应一样，假如未办借阅手续的书籍经过，引发告警。不过我不知道RFID的感应距离怎样，还有不知道是否很容易屏蔽，所以可行性不确定。</p>
-
-<p><strong>借书还书</strong>：现在都是需要工作人员手工进行的，用条形码阅读器扫描书籍的条形码以及借书证条形码，完成借书或还书的登记。采用RFID后，会更加简单，只需要将书经过感应区域就可以了。假如书和借书证都带有RFID，甚至可以做到无需工作人员。我想到的有两个方案。</p>
-
-<p>一个是离开书库时将要借的书和书证放上传送带，传送带自动将书送进感应区完成登记，然后送出书库后，读者出库后在外面就可以取回，好像超市收银台一样。如果登记过程出错，例如书证过期或已经借满，机器可以将书推送到一旁，进行人工处理。还书就更简单了，把书往传送带一放就行了。如果过期，自然会记录在书证上，下次借书时交罚款。</p>
-
-<p>另外一种方案是结合防盗系统（假如防盗是可行的），由读者自助操作。读者出书库前，自己将要借的书籍拿到自助借书机前感应一下，完成借书操作，然后直接带出库。如果没办借书手续的书带出库，防盗系统会报警。不过，从成本、安全等方面考虑，书籍上用的应该是只读标签，外借记录不直接保存在标签上，那就要求防盗系统要即时查询一次数据库才能确定这本书是否已经办理了借书手续，查询时间要够快才行。</p>
-
-<p><strong>帮忙找书</strong>：目前找书都是根据图书分类号，到相应的书架寻找。但是同一分类号的书还是很多，往往占了多个书架，看得眼花缭乱都很难找到。图书馆可提供一些手持的寻书器，读者将要找的书的书号输入到寻书器中（或者由电脑查询系统自动输入），读者拿着寻书器到相应书架前，在每排书旁边都扫一遍，当要找的书进入感应范围时，寻书器可通过灯光显示来告之，这样需要肉眼寻找的范围就大大缩小。这个方案的可行的前提是标签的有效感应距离比较短，或者寻书器的感应区域有定向性。</p>
-
-<p><strong>书架整理</strong>：与寻书器类似，图书馆工作人员需要整理书架，找出乱架图书时，将分类号输入扫描器，对书架的每排书扫一遍。当发现不符合分类号的书籍时，扫描器进行提醒， 工作人员就能将这些书挑出来，重新正确归架。</p>
-
-<p>甚至可能在书架上安装感应器，变成智能书架。不过还是有感应距离的问题，距离太大定位不准确，距离太小，需要很多感应器，成本也太高。这个想法似乎不大可行。</p>
-
-<p>我对无线标签并没有什么了解，不知道上面的想法到底有多少是技术上可行的，只不过想到了就记下来。也许早已经有这样的研究甚至应用了，反正我又不是干图书馆这行，我就不去了解了，呵呵。 </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/10/24/Will-the-wireless-tags-used-in-the-library/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/15/Online-backup/">在线备份</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-15T18:20:00+08:00" pubdate data-updated="true">2008-09-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前介绍过文件同步/备份工具<a href="http://aleung.blogbus.com/logs/5545100.html">Unison</a>，那是一个在两台电脑之间进行文件双向同步的好工具。不过，Unison同步时需要两台电脑同时开机，并且可以通过网络直接通信。我以前用于办公室内两台电脑的同步，非常方便，不过想将办公室和家里的电脑进行同步(备份)，就做不到了。</p>
-
-<p>尝试了网上的在线文件同步/备份/分析工具，这样的网站有好多，我并没有仔细研究比较过，现在用的是<a href="http://syncplicity.com/">Syncplicity</a>，感觉功能不错，速度也可以。</p>
-
-<p>使用相当简便，在要同步的电脑上安装一个client，指定哪些目录需要同步，它就会自动将文件上传服务器，或者从服务器下载，就看哪边的版本更新一点。只要连上网，它就在后台运行，不用费心。如果是要手工执行备份的话，往往会忘记的，自动就没有这个问题。一个帐号可以连接多个client(免费账号限制2个)，相当于星形连接，由服务器分发改变了的文件。备份在服务器上的文件可以通过web界面访问。它的FAQ介绍了它有处理冲突的能力：保留所有不同的版本，让用户自己选择。不过，我没有试过，目前我只是用它来做单向备份。Syncplicity能够与GoogleDoc同步，我没有使用GoogleDoc的需要，也懒得试了。</p>
-
-<p>Syncplicity对免费用户提供2GB空间，允许两台电脑进行同步，当然收费版本的限制会放宽了。免费的服务基本上都够用的，需要备份的是些比较重要又经常变化的文件，如果是备份旧东西，不变的，用刻光盘的方式更合适。</p>
-
-<p>给Syncplicity做了这么多广告，是因为：如果我邀请新用户注册，我可以增加100M空间。所以各位记得填写我的邀请信中的号码啊，呵呵。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/09/15/Online-backup/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/22/">&larr; Older</a>
@@ -433,6 +427,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -444,14 +446,6 @@
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -459,7 +453,7 @@
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -494,8 +488,8 @@
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

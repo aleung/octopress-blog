@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="(Platform: Windows Vista) Mercurial is already installed. Install Apache. Download mercurial source package to get the file hgwebdir.cgi. This file &hellip;">
+  <meta name="description" content="一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。 各层级classloader加载的类的范围 Bootstrap classloader Core Java &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,184 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/27/WebLogic-classloading/">WebLogic的classloading</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-09-27T07:23:00+08:00" pubdate data-updated="true">2009-09-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4379354938/"><img src="http://farm3.static.flickr.com/2682/4379354938_dc7cd5f47e_o.png" alt="wls_classloading" /></a></p>
+
+<h3 id="section"></h3>
+
+<h3 id="classloader">各层级classloader加载的类的范围</h3>
+
+<ul>
+  <li>Bootstrap classloader
+    <ul>
+      <li>Core Java libraries (<jre>/lib)</jre></li>
+    </ul>
+  </li>
+  <li>Extension classloader
+    <ul>
+      <li>JRE extensions directory (<jre>/lib/ext)</jre></li>
+    </ul>
+  </li>
+  <li>WebLogic Server system classloader
+    <ul>
+      <li>Classpath</li>
+      <li>
+        <domain>/lib
+
+</domain>
+      </li>
+    </ul>
+  </li>
+  <li>Filtering classloader
+    <ul>
+      <li>nothing</li>
+    </ul>
+  </li>
+  <li>Application classloader
+    <ul>
+      <li>EJB JARs</li>
+      <li>APP-INF/lib</li>
+      <li>APP-INF/classes</li>
+      <li>Manifest Class-Path in EJB JARs</li>
+    </ul>
+  </li>
+  <li>Web application classloader
+    <ul>
+      <li>WAR</li>
+      <li>Manifest Class-Path in WAR</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section-1">类加载的优先级</h3>
+
+<p>每个classloader在要加载一个class之前都会先请求它的上层classloader，如此逐级传递。因此效果就是越上层的classloader优先级越高，一个class如果在上层classloader能加载到，就不会让下面的classloader加载。</p>
+
+<p>但是web application classloader是个特例，通过在weblogic.xml中配置<prefer-web-inf-classes>，可以让web application classloader优先在自己war范围内加载类，找不到的类才会请求上层classloader。</prefer-web-inf-classes></p>
+
+<p>Filtering classloader是个特殊的classloader，它并不会加载任何类，而是起到控制类加载优先级的作用。在weblogic-application.xml中配置<prefer-application-packages>，可以限制对于指定的类不再向上层classloader请求，也就是限制在EAR的范围之内加载。</prefer-application-packages></p>
+
+<h3 id="section-2">其他</h3>
+
+<p>以上仅仅描述了缺省情况下classloading的行为。WebLogic对于一个application (EAR)内的classloader的层次结构是可以自定义的。Shared library和optional package，也会影响到classloading。另外，resource adapter (RAR)也有独立的classloader。还有其他的一些细节，需要查阅<a href="http://download.oracle.com/docs/cd/E13222_01/wls/docs100/programming/classloading.html">Understanding WebLogic Server Application Classloading</a>。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/09/27/WebLogic-classloading/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/25/Prepare-10-km-run/">准备10km跑</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-09-25T05:21:00+08:00" pubdate data-updated="true">2009-09-25</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/running/'>Running</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一直都想体验一下正式的长跑活动，也可以给自己跑步一个动力。得知10月24日在广州大学城<a href="https://www.nike.com.cn/humanrace2009/index.html">Nike举办10公里跑</a>活动，就报名参加了。</p>
+
+<p>上个月感觉腰椎的问题有一点点要复发的迹象，就停止了跑步。接下来9月份都在北京出差，跑鞋也没有带过来。算下来一个月没有跑步了。离活动只剩1个月了，怎么也得训练一下，于是今天去迪卡侬把T-shirt、短裤、袜子、跑鞋买了一套回来，去附近的公园跑步。</p>
+
+<p>开始从住处到公园的500多米没有记录时间，从公园里跑了4.5km平均步速6’03”/km，看来这样的状态10km一小时都进不了 :( 不过速度慢点就慢点，这次我没有速度目标，只是体验一下。我至今还只是跑过两次十公里，平常都是跑5公里距离。但最担心的还是膝痛的问题，最近几个月来每次跑完步左膝外侧都有疼痛的现象。</p>
+
+<p>Updated 2009-10-26:</p>
+
+<p>58:30，完成了自己跑进1小时的目标，状态还好，跑完也不觉得辛苦。之前一段时间训练时一直受膝盖痛和小腿肌肉酸硬的困扰，但正式跑时一点问题都没有。第一次参加这样的活动，算比较满意了。</p>
+
+<p>看了成绩，发现5km计时是29:48，前半程比后半程还要慢。主要是刚起跑那两公里太慢了，起跑时才发现手机GPS不知为什么不工作了，一边跑一边弄，后来重启了一次才正常。随着人潮慢腾腾往前挪，很多人都不是跑的，像逛花市。后来觉得这个速度受不了，才开始钻人缝。</p>
+
+<p>以后有经验，起跑位置要尽量靠前才行。下次的目标定在55:00吧。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/09/25/Prepare-10-km-run/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -371,134 +549,6 @@ Now the url will be:<br />
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/04/Outlook2007-/">Outlook2007日历的改进</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-08-04T07:18:00+08:00" pubdate data-updated="true">2009-08-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/leoliang/4727145208/"><img src="http://farm2.static.flickr.com/1415/4727145208_1fd6c492de.jpg" alt="outlook2007" /></a></p>
-
-<p>之前在<a href="http://good-good-study.appspot.com/blog/posts/3184">《为什么不能合在一起》</a>一文中，我提到期望的时间管理系统是这样的：</p>
-
-<blockquote>
-  <p>在展现上，能够将一天里已经安排好具体时间的事件，和没有安排具体时间，但是需要在这天内做（根据Start date和Due date）的任务显示在同一界面上，什么时候该做什么就一目了然了。在操作上，将一个任务拖放到日历中，或者输入开始结束时间，就能为任务安排计划的执行时间，并且显示在日历中。</p>
-</blockquote>
-
-<p>最近升级到Outlook 2007，发现它的日历界面基本上就是跟我想的差不多了。任务、事件的都可以通过鼠标拖放来建立：把邮件或者任务拖到具体的日期时间上，就创建了事件；把邮件或事件拖到任务窗格，就创建了任务。下面的任务窗格，会按天显示当天开始或到期的任务，这样一天该做什么事情，无论是否安排了具体时间，都在一个纵列上显示出来了。如果要推迟一个任务，非常简单，把它拖到另外一天就可以了。</p>
-
-<p>Outlook 2007还有一个改进，就是可以分类的个数不再是有限的几个，可以任意创建，一个项目也不再限于一个分类，而是可以标注多个分类，因此这个分类其实就是tag了。每个分类设成不同的颜色，很醒目。</p>
-
-<p>Outlook 2007给了我不少惊喜的，其实我想的Microsoft早就做到了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/08/04/Outlook2007-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/03/To-clean-the-mirror-is-not-a-simple-task/">擦镜子不是简单的任务</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-03T01:02:00+08:00" pubdate data-updated="true">2009-08-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/life/'>Life</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>镜子使用一段时间后，就会蒙上一层雾气，还有手指印或者水痕（浴室里的镜子），不像刚买回来那样明亮。怎么擦干净它呢？这可不是一件简单的任务，至少对我而言。</p>
-
-<p>最初，我是用最常规的方法，用水浸湿抹布来擦，这样擦完之后手指印依然还在，因为手指印是油脂，并且留下一道道水痕，比擦之前更难看。后来，我看到公共场所的清洁工人擦玻璃是用洗涤剂抹湿玻璃，然后用橡皮刮把水刮干净，一点水痕都不会留，于是我也买了一个橡皮刮回来，但发现效果并不是那么理想，还是有水痕残留的，不知道是我技术不够还是刮子质量不好，反正我把它退掉了—-宜家的东西可以退货，不错。我又试了用玻璃水，使用说明上说：喷射到表面上，用干布轻轻擦净即可，不留水痕，不挂尘。但实践证明广告都是骗人的。喷上去，一擦，哇，真的很干净，可是过一会再看，抹过之处全是整片的抹痕，特别是从反光的角度上看，镜子变成花面猫一样。而且，抹布还会在镜面上留下很多细小的纤维。</p>
-
-<p>后来，请钟点工来搞卫生的时候，才学到艺，她是用报纸来擦的。她擦过的镜子真是跟刚买回来的差不多的干净明亮，上面没有一点痕迹。不过，别看人家干得利索，自己试的时候就不是那么回事了。经过反复尝试，总算总结出一点经验：</p>
-
-<ol>
-  <li>玻璃水不能喷太多，如果太湿了就会留下痕迹。</li>
-  <li>报纸是效果最好的，我试过布、纸巾、洗手间用的擦手纸，都不如报纸。一方面是报纸即使湿了也不会留下纤维，另外去痕的效果很好，不知道什么原因。</li>
-  <li>使劲擦。</li>
-</ol>
-
-<p>另外，如果有些东西粘在玻璃表面上面擦不掉，可以用刀片慢慢平推将其刮起，我是安装衣柜的时候看到师傅这样把贴在上面的不干胶清除掉的，完全不留痕迹。一般刀片（如美工刀）的钢硬度不够玻璃高，因此玻璃是不会被刮花的。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/08/03/To-clean-the-mirror-is-not-a-simple-task/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/16/">&larr; Older</a>
@@ -520,6 +570,14 @@ Now the url will be:<br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -531,14 +589,6 @@ Now the url will be:<br />
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -546,7 +596,7 @@ Now the url will be:<br />
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -581,8 +631,8 @@ Now the url will be:<br />
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

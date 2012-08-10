@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在上次写下进展之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。 首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行 &hellip;">
+  <meta name="description" content="JCA 1.5 规范定义了WorkManager API，能方便的进行任务的(多线程)并行处理。按照JCA规范的原意，WorkManager是仅提供给Resource Adapter使用的，容器会提供WorkManager实例并通过BootstrapContext注入到adapter中。可是， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,130 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/">WebLogic在非Resource Adapter里直接使用JCA WorkManager的失败尝试</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-02T05:43:00+08:00" pubdate data-updated="true">2010-11-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JCA 1.5 规范定义了WorkManager API，能方便的进行任务的(多线程)并行处理。按照JCA规范的原意，WorkManager是仅提供给Resource Adapter使用的，容器会提供WorkManager实例并通过BootstrapContext注入到adapter中。可是，有时在其他场合，例如EJB、Servlet中，也希望能将请求拆分，使用WorkManager并行处理，但JEE规范中并没有提供这样的机制。</p>
+
+<p>WebLogic提供了CommonJ WorkManager API，可用于任意应用中，但这个API不在JEE规范之中，因此GlassFish是不支持的。而且，使用WebLogic CommonJ WorkManager时需要在ejb-jar.xml中加入一个类型为commonj.work.WorkManager的resource reference，这样同一个ejb包就不能在不同application server间通用了，因此我还是希望能找到一种通用的方法。</p>
+
+<p>SpringFramework的org.springframework.jca.work包为GlassFish和JBoss提供了在Resource Adapter外部使用JCA 1.5 WorkManager的简便方法。看了for GlassFish的源代码，发现它其实是调用了GlassFish内部的factory去直接创建WorkManager，那么对GlassFish是否也可以这样做呢？</p>
+
+<p>反编译WebLogic的jar包，发现commonj WorkManager和connector WorkManager实际上都是delegate到一个weblogic.work.WorkManager实现的，也就是说在WebLogic里，CommonJ和JCA的WorkManager的底层实现其实都是同样的。接下来找到了weblogic.work.WorkManagerFactory，它有find和findOrCreate方法可返回weblogic.work.WorkManager实例，也许就是可以拿到weblogic-ejb-jar.xml里面定义的weblogic WorkManager。拿到了内部的weblogic.work.WorkManager实例后，再调用weblogic.connector.work.WorkManager的create方法，将这个内部WorkManger包裹到JCA WorkManager中，那么我们的应用就可以使用这个JCA WorkManager了，通过Spring的WorkManagerTaskExecutor来很方便的调度任务，上层的逻辑就可以做到与应用服务器无关。看起来很美。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5137622842/"><img src="http://farm2.static.flickr.com/1208/5137622842_a9b4e5fda8_b.jpg" alt="WLS-WorkManager" /></a></p>
+
+<p>可是结果是残酷的。写了一个测试程序，结果是通过这个WorkManagerFactory可以成功的获取到weblogic.work.WorkManager实例，也能够创建出包裹的JCA WorkManager，可是真正要使用它来执行work时，它很坚定的拒绝了，抛出异常信息：Attempt to create Work outside the context of the Connector container。</p>
+
+<p>查看代码，发现weblogic.connector.work.WorkManager及WorkImpl内部会寻找相应的RAInstanceManager，并且WorkImpl需要用到rarClassloader，看来它设计上还是与resource adapter相关的。一涉及到classloader，我无心恋战了，算了，就此打住。</p>
+
+<p>P.S. 既然说到WorkManager，就推荐一下我的同事写的相关的一篇blog：<a href="http://www.javaeye.com/topic/623825">application server 下的任务异步/并行执行方案</a></p>
+
+<p>P.P.S. 我后来采用的解决方案是让build system可以根据需要为不同的 target application server 选择不同的 deployment descriptor 来build相应的artifacts。</p>
+
+<p>P.P.P.S. 回头再读一下，发现文章里中文英文混杂得很厉害。没办法了，那些专业术语都是看惯英文了，用中文翻译了反而别扭。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/28/Andriod-TransProxy/">Andriod TransProxy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-28T06:13:00+08:00" pubdate data-updated="true">2010-09-28</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>关注我之前写的Android翻墙系列文章<a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">1</a>, <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-">2</a>, <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype">3</a>的朋友请留意一下这个应用：<a href="http://forum.xda-developers.com/showthread.php?t=766569">TransProxy</a>。这个应用的v3版本集成了HTTP transparent proxy (使用<a href="http://transproxy.sourceforge.net/">Transproxy</a>)、HTTPS/SOCKS redirector (使用<a href="http://darkk.net.ru/redsocks/">redsocks</a>) 、iptables script 并提供了配置、控制的界面。理论上，结合TransProxy和ConnectBot就可以实现Android上通过SSH tunnel翻墙，请参考<a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">这里</a>的第二张图片：ConnectBot实现了SSH client，TransProxy提供了transparent socks proxy并且设置iptables。</p>
+
+<p>不过，我刚刚将TransProxy和ConnectBot配合运行起来试了一下，并没有成功，并且手机又遇到了100% CPU占用的问题，只能手工将ConnectBot kill了。ConnectBot当前最新的snapshot版本都还是没有解决这个<a href="http://code.google.com/p/connectbot/issues/detail?id=299">bug</a>，大家快去给这个bug加星，促使开发者优先解决吧。</p>
+
+<p>鉴于我目前暂时处于肉身翻墙状态，没有积极性去进一步实验了，各位动手试试吧，有结果记得共享出来。另外，目前TransProxy的作者还在相当勤快的改进这个应用，不妨到xda-developers论坛与他交流。  </p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/09/28/Andriod-TransProxy/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -285,142 +409,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/28/Amazing-I-got-the-geocoin-which-was-sent-to-me-from-Italy-two-years-ago-/">Amazing, I Got the Geocoin Which Was Sent to Me From Italy Two Years Ago!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-28T16:35:00+08:00" pubdate data-updated="true">2010-06-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/geocaching/'>Geocaching</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/leoliang/4741853682/"><img src="http://farm5.static.flickr.com/4121/4741853682_e9e93e2010.jpg" alt="Geocoin ALEUNG 1" /></a></p>
-
-<p>This picture was taken at 18:44 18-Jun-2010, when I picked up the geocoin <a href="http://www.geocaching.com/track/details.aspx?id=1007428">ALEUNG 1</a> from the cache <a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f4f03572-94c5-440a-ae7e-ce1f755a069b">Golden Triangle</a>. The coin has traveled for two and a half years and over 21 thousand kilometers fromVeneto, Italy before it came to Guangzhou, China.</p>
-
-<p>If you don’t know what is Geocaching, please refer to the definition on <a href="http://en.wikipedia.org/wiki/Geocaching">Wikipedia</a>. In simple saying, it’s a game that someone hide something (a cache) and publish the coordinate (latitude and longitude) on Internet and then other players seek it with help of a GPS receiver. <a href="http://en.wikipedia.org/wiki/Geocoin">Geocoin</a> is a special kind of coin each has an unique number that can be traced on geocaching website. Geocaching players pick up a coin from one cache and drop it into another cache, so that the coin can travel from cache to cache, even around the world.</p>
-
-<p>The story began from Oct 2006, Italian geocacher <a href="http://www.geocaching.com/profile/?guid=b160e421-bca1-4b08-9c48-7944b4f019dc">i5fzi</a> came to Guangzhou for the Canton Fair. He contacted me on <a href="http://www.geocaching.com/">geocaching.com</a>.He didn’t know me before, but I was almost the only cacher in Guangzhou at that time. So it was geocaching that make us know each other. He kindly invited me for dinner and I suggested him some caches to find.</p>
-
-<p>After i5fzi came back to Italy, he sent out several geocoins as present to me and Cherrie, who was his translator in Guangzhou. The goal of these coins are to reach my caches in Guangzhou. But unfortunately most of the geocoins were missed in there trip, this one I got is the only survival – I am so lucky to get it.</p>
-
-<p>From this <a href="http://www.geocaching.com/track/map_gm.aspx?ID=1007428">map</a> you can see where the coin has been in. It visited some places in Europe then flied to HongKong, and then held by AirQ for a long time, until it was put in Guangzhou. I also thank AirQ, if AirQ didn’t hold and take it to Guangzhou, I guess this coin would have been lost as its friends. The last hotel the coin slept was KowloonW’s <a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f4f03572-94c5-440a-ae7e-ce1f755a069b">Golden Triangle</a>, but it isn’t shown on the map because not recorded on the website. KowloonW was very nice to keep the coin to avoid loss until I have time to fetch it.</p>
-
-<p>Geocaching is so an amazing game. Thank you, all my friends in this game!</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/28/Amazing-I-got-the-geocoin-which-was-sent-to-me-from-Italy-two-years-ago-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/">时间管理工具的设计：任务计划时间的逐步精确</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-23T23:27:00+08:00" pubdate data-updated="true">2010-06-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">为什么不能合在一起</a>一文。后来，也发现<a href="http://good-good-study.appspot.com/blog/posts/3212">Outlook 2007已经将两者做了一定程度的整合</a>。</p>
-
-<p>今天又再思考了一下：任务管理就是一个逐步细化的过程，包括执行时间的具体化和操作步骤的细化（拆分子任务）。理想的工具应该对整个过程都提供支持。</p>
-
-<p>当新增一个任务时，外界往往并没有指定执行任务的具体时间，可能会有一个deadline，只要在deadline之前完成都是可以的，这时就是传统时间管理工具说称的 task。为了完成此任务，需要安排一个具体的时间段去执行它，在传统的时间管理工具上，就是要为此任务创建一个日程安排 (event)。但在实际操作中，你往往不能一下子就确定在哪个明确的时间去执行任务，而是先确定一个大概的时间范围，再逐步的精确。目前我还没有见到哪个工具能够为这个过程提供支持。</p>
-
-<p>我设想的时间管理系统应该用一个统一的模型来存储任务与日程，因为它们本质上是同样的东西。任务有一个属性，是计划执行的时间。计划执行时间可以为空，说明还没有为此任务指定执行时间。计划执行时间不一定是精确时间类型，可以有不同精度级别的时间类型，包括：年 / 季度 / 月份 / 周 / 天 / 时间段 / 时 / 分。随着计划的逐步细化，赋予任务计划执行时间越来越高精度的时间。</p>
-
-<p>例如，我和Bob很久没见，想一起吃午饭聚聚旧，于是电话联络。Bob刚好出差了，要下个月中旬才回来，所以我们初定时间在下个月的第四周（Week 29），我在时间管理系统中添加了 Dinner with Bob 这一项，并设计划时间为 W29。到了week 28的周末，我review任务时看到了这项，就跟Bob再确认时间，发现周一中午大家都有时间，但是具体几点钟要看周一早上与餐厅订座时才能确认，于是我把这项任务的计划时间更新为周一，但这还不是最精确的时间。周一早上，订座确认了，再把任务的具体时间12:00～13:00设置上去。</p>
-
-<p>我也大概设想了一下用户界面，应该有一个可缩放的时间视图，就像电子地图的缩放一样，既可以查看大时间范围内的任务安排，也可以查看具体精确的时间计划。用Excel画了界面原型，比较粗糙，实际做时当然需要细致的考虑用户体验了。左右拖动进行时间的缩放，具体某个时间列的上下滚动进行时间的选择。要为某个任务安排或者修改执行时间，可以通过拖拽到时间视图相应的位置来做到。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145212/"><img src="http://farm2.static.flickr.com/1387/4727145212_e90a483c0b_m.jpg" alt="scheduler-day" /></a></p>
-
-<p>为任务安排大概的时间（Week 29）：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145218/"><img src="http://farm2.static.flickr.com/1253/4727145218_5a3c9cb27e.jpg" alt="scheduler-week" /></a></p>
-
-<p>为任务安排具体精确的时间：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145214/"><img src="http://farm2.static.flickr.com/1010/4727145214_0175c6f578.jpg" alt="scheduler-minute" /></a></p>
-
-<p><em>（我并没有开发这样一个时间管理工具的计划，不过如果你有这样的打算，并且也认同我的这种思路，不妨与我联系）</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/10/">&larr; Older</a>
@@ -442,6 +430,14 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -453,14 +449,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -468,7 +456,7 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -503,8 +491,8 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

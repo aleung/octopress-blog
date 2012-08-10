@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="同事刚买了几本书，包括了《你的灯亮着吗》。马上拿过来读，书很薄，字很疏，一个来小时就读完了。 看完后有点失望，也许是看书评后期望太高，也许是我并不适合读这样的书，不懂从中领悟些什么。 翻到最后一页，才发现译者在译后记里面已经把这本书的中心思想全归纳出来了。我觉得比较有共鸣的是几点： &hellip;">
+  <meta name="description" content="mbs: multi byte string, 用char作为存储类型, 一个字符可能对应1个或者多个char, 不能直接确定字符边界. charset不确定. 过去的程序都是采用mbs的. wcs: wide character string, 用wchar_t作为存储类型, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,149 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/05/26/C-C-i18n/">C/C++中的i18n</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-05-26T21:44:00+08:00" pubdate data-updated="true">2004-05-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>mbs: multi byte string, 用char作为存储类型, 一个字符可能对应1个或者多个char, 不能直接确定字符边界. charset不确定. 过去的程序都是采用mbs的.</p>
+
+<p>wcs: wide character string, 用wchar_t作为存储类型, 一个字符对于一个wchar_t. 使用unicode编码, charset与OS相关, 在windows平台中为UTF16(UCS-2), 在大多数unix平台中为UTF32(UCS-4). </p>
+
+<p>国际化的程序都应该在内部使用wcs, 在输入输出时做mbs与wcs的转换.</p>
+
+<p>mbs与wcs的转换函数: </p>
+
+<p>wcstombs/mbstowcs是实现转换的一对函数. wcs的charset是固定不可变的, 但是mbs的charset是可变的, 可能是ASCII, 可能是gb2312, 也可能是big5. wcstombs/mbstowcs是根据locale环境设置来决定mbs采用的charset的, 在程序中可以用setlocale来设定locale, 例如 setlocale(LC_ALL, “chinese”)</p>
+
+<p>程序启动时, locale设定为 LC_ALL=”C”, 用 setlocale(LC_ALL, “”) 就可以设置成操作系统的locale设定.</p>
+
+<p>Locale决定了当前程序运行的本地化设置方式, 但是在程序中可能需要作其他charset的转换, 例如程序本身语言设定为简体中文, 需要做big5与unicode的转换, 或者是其他两种charset的mbstombs转换, 这时wcstombs/mbstowcs就不能胜任了. 在unix平台中可以使用iconv来做这个转换(iconv lib也有windows版本), 在windows平台可以用MultiByteToWideChar/WideCharToMultiByte 函数.</p>
+
+<p>参考资料: <a href="http://xcin.linux.org.tw/i18n/pc2000/p3/chinese-3.html">http://xcin.linux.org.tw/i18n/pc2000/p3/chinese-3.html</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/05/26/C-C-i18n/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/05/20/The-European-space-agency-mistakes-In-the-photo-is-the-Great-Wall-/">欧洲航天局的低级错误？照片中的是长城吗？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-05-20T06:50:00+08:00" pubdate data-updated="true">2004-05-20</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>没有想到，欧洲航天局网站上的一张卫星照片引起了国内沸沸扬扬的讨论，而且讨论还大有向民族精神升级的趋势，真让人哭笑不得。</p>
+
+<p>由于个人爱好，曾经专门找过一些有关卫星遥感的资料来看，卫星照片也看过一些。且不论卫星照片上可见到长城与太空飞船中肉眼是否可见长城有些什么联系，至少我认为欧洲航天局公布的这照片上的根本不是长城。</p>
+
+<p>先来看看欧洲航天局公布的照片吧：<a href="http://esamultimedia.esa.int/images/Proba/cina.jpg">（照片很大，请在新窗口中打开）http://esamultimedia.esa.int/images/Proba/cina.jpg</a> 照片右上角蜿蜒的白线就是被认为是长城，左下角很粗的白线是河流。</p>
+
+<p>在判读卫片、航片时，立体感不是那么直观的，很容易把山脊当成了山谷，山谷当成了山脊，因为都是明暗交界线，不知道阳光方向就很难断定那儿高一些。判断的一个比较有效的方法，就是从河流看起，有河流的地方必然是山谷，两边的是山脊，山谷和山脊是交替的。</p>
+
+<p>原图为了突出右上角，将其余部分增加了亮度，为了分析照片，我用photoshop把图象做了还原处理。<a href="http://sunnyday.cn2k.net/photo/cina_edited.jpg">http://sunnyday.cn2k.net/photo/cina_edited.jpg</a></p>
+
+<p>从图的左下角可以看到一条比较明显的支流，左边又是露出一部分的大河，倚靠左边的这部分图象，就可以找出山脊，并且判断出当时的阳光是从图的右下方向照射过来的。依次向右看过去，就会发现右上角蜿蜒的不是“长城”，而是一条相对细点的河流。从图的右下角看，也能得到这样的结论。</p>
+
+<p>另一方面，在卫星照片中，河谷一般是比山脊明显的，因为山脊通常是较细的线，而河谷由于冲积的原因，比较宽阔。村镇建筑物一般也分布在河谷附近。在图的右上角贴近照片边缘处就可以看到一个小建筑群。</p>
+
+<p>虽然照片没有给出比例尺，但是从图象左下部分很明显的建筑物和公路，就可以对图象的比例有个大概的观念了。很明显，右上角的不可能是长城，太宽了。</p>
+
+<p>这些都是从卫片的判读来认定图上的不是长城。其实要做更科学可靠的判读也不难，只要欧洲航天局给出这张图的坐标范围就行了。根据坐标，将图象与SRTM数字高程模型结合，在电脑中就可以绘制出三维立体图象，哪儿高哪儿低一目了然。</p>
+
+<p>只能说欧洲航天局对这张图的判读过于草率了，居然犯了如此低级的错误。</p>
+
+<p>BTW, 再看看这里的讨论和卫星照片，13m分辨率的，你能识别出司马台长城吗？如果看不出，我可以给一点tips：左下角的水平山脊就是司马台所在的山脊，黑色的一小块是个湖，如果我没有记错，上面有道铁索桥的。</p>
+
+<p><a href="http://www.lvye.org/modules/lvyebb/viewtopic.php?view=1&amp;post_id=743913">http://www.lvye.org/modules/lvyebb/viewtopic.php?view=1&amp;post_id=743913</a><br />
+<a href="http://www.smth.org/bbscon.php?bid=332&amp;id=26741&amp;ap=512">http://www.smth.org/bbscon.php?bid=332&amp;id=26741&amp;ap=512</a></p>
+
+<p>2004-5-21补充：</p>
+
+<p>卫星照片的范围居然正好是北京的白河岩场，攀岩的人常玩的地方。看看<a href="http://my.ziqu.com/bbs/665078/messages/2085.html">这个帖子</a>里面的卫星照片，立体感更强了，红色轨迹的地方就是欧洲空间局照片的左下角位置。<a href="http://www.lvye.org/modules/lvyebb/viewtopic.php?post_id=803480">这里</a>有该地区的等高线地图，看图的右上角位置。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/05/20/The-European-space-agency-mistakes-In-the-photo-is-the-Great-Wall-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -414,134 +557,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/04/10/How-to-increase-the-number-of-Windows-programs-thread-/">如何增加windows程序的线程数量?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-04-10T06:10:00+08:00" pubdate data-updated="true">2004-04-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>编写测试程序, 发现超过1000个线程, 程序执行就会出现内存错误. 原来我还以为是windows对线程数量有限制, 查资料才知道支持线程多少并不是操作系统决定的, 而是与程序的堆栈空间大小有关.</p>
-
-<p>在VC中, 修改Project Setting - Link - Stack allocation - Reserve, 缺省为1M(0x100000), 将这个数值降低, 也就是减少每个线程的栈空间大小, 就可以增加线程数量. 这是因为用户地址空间总共是2GB, 线程保留栈空间大小乘以线程数量不能大于2GB.</p>
-
-<p>因为上下文切换的开销, 线程过多效率会降低, 我做这个测试程序就是想知道这个效率曲线到底是怎样的.</p>
-
-<p>以下为网上找到的资料:</p>
-
-<p>I just found this under CreateThread() in MSDN:  </p>
-
-<p>The number of threads a process can create is limited by the available virtual memory. By default, every thread has one megabyte of stack space. Therefore, you can create at most 2028 threads. If you reduce the default stack size, you can create more threads. However, your application will have better performance if you create one thread per processor and build queues of requests for which the application maintains the context information. A thread would process all requests in a queue before processing requests in the next queue.  </p>
-
-<p>So the number of threads you can create is capped by the 2 GB user address space available to your process.  </p>
-
-<p>So you have a few choices, as I see it:  </p>
-
-<p>1) Run multiple copies of your server at once and coordinate between them. You will need endless amounts of swap space.<br />
-2) Reduce the amount of stack used per thread (lowering from 1 Mb to 100Kb should get you 40,000 threads).<br />
-3) Re-architect your app to not require one thread per connection. Have each thread monitor many connections using (for example) a select() call.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/04/10/How-to-increase-the-number-of-Windows-programs-thread-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/04/05/Target-plan/">目标，计划</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-04-05T07:02:00+08:00" pubdate data-updated="true">2004-04-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/personaldevelopment/'>PersonalDevelopment</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>不知不觉的，差不多三十岁了。都说三十是人生一个关口，对于一名程序员尤甚。即将告别人生的一个段落，回望过去，看到自己存在不少缺点；展望未来，路要怎么走，不免有些患得患失。</p>
-
-<p>前两天跟<a href="http://flyisland.blogbus.com">flyisland</a>聊天，他说（书上说）：失败的最重要原因，是没有长期目标；第二个原因，是没有短期目标。是啊，总是觉得时间过得很快，到底时间是怎么过去的呢？做些什么不做些什么，年轻的时候可以恣意而行，但现在不行了。</p>
-
-<p>经常会有这样的时候：无所事事不知道该干些什么，过后又后悔浪费了时间。目标不一定要很远大，它指引的是方向，帮助自己排除干扰，做出每个选择，什么是值得做的。不是说做的每件事情都需要有意义，而是做完之后不需要后悔就好了。多些思考，少些漫无目的，</p>
-
-<p><a href="http://huamin.blogone.net/">长夜孤灯</a>（很好的名字），这个blog的主人把他在人生目标，个人计划这方面的思考记录下来。看了很有同感，为人理性，爱好思考，但个性稍微消沉，容易患得患失，似乎自己与作者有共通之处（flyisland也是这么说的，难道大家都一样？）。他提到的很多问题也是我的问题，看看他写的东西，反思自己，很有好处。</p>
-
-<p>应该怎样做？继续思考，坚持于行动，一点一点改进。记录下来，自勉。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/04/05/Target-plan/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/43/">&larr; Older</a>
@@ -563,6 +578,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -574,14 +597,6 @@
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -589,7 +604,7 @@
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -624,8 +639,8 @@
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

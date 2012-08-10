@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="个人blog再一次搬家，从 Google Application Engine (GAE) 搬到 github 上来。原来的地址依然能够访问，但是不会再更新了，新文章都发到这里。Feed订阅地址不变，建议使用Google Reader订阅本站。 搬迁原因 上一次从blogbus搬到GAE， &hellip;">
+  <meta name="description" content="当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,158 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring Bean Reference Injection Definition by External Configuration</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-07T21:38:00+08:00" pubdate data-updated="true">2012-07-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/springframework/'>SpringFramework</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。</p>
+
+<p>利用Spring Framework的property placeholder，将bean依赖关系配置抽离Spring XML文件，就能在产品发布部署后，通过配置选项来选定不同的实现，可用于集成接口、特定业务逻辑打开关闭等。</p>
+
+<p><a href="http://www.oodesign.com/adapter-pattern.html">Adaptor pattern</a> is widely used at the point where our product integrates with external system. Product will provide several adapters to adapt to different external system interface.
+We deliver our product in uniform installation package for all customers. A mechanism is required to configure which adapter to be used after system is installed.</p>
+
+<p><a href="http://www.oodesign.com/factory-pattern.html">Factory pattern</a> can be used to create the specific adapter by configuration property. But by this way we need to create factory for each kind of adapters.</p>
+
+<p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
+
+<p>Here is a sample code snippet:</p>
+<div><script src="https://gist.github.com/2934603.js?file="></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-30T22:24:00+08:00" pubdate data-updated="true">2012-06-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>软件团队的办公室空间可以分为三大类：团队工作空间，会议空间，公共区域。</p>
+
+<p>敏捷团队在工作过程中需要有比较多沟通，团队工作空间需要为此准备必要的设施，例如带有白板的讨论区域，这样就不需要讨论一些事情都要跑很远找会议室；供张贴东西的墙面；公共信息显示屏，显示CI状态之类。</p>
+
+<p>每个人的座位当然是越宽敞越好，即使条件限制，最低限度也需要保证可以增加一个人并排坐一起结对编程或讨论问题。因此应该用长条型的桌子，而不是曲尺型的桌子。</p>
+
+<p>不同团队之间的空间有一定的隔离，减少相互影响，因为团队内的讨论对他人是噪音。并且，空间的尺度对心理也有影响，需要合适的尺度，过大的大厅一排排整齐排列的桌子的心理效果不好。</p>
+
+<p>将公共区域，例如休息区、茶水间、打印机等，放在各个区域空间的交汇点，一方面是方便各个区域的人的到达，另外是形成汇聚点，成为人们的交流场所。公司里面需要创造让不同团队成员见面交流的机会。公共区域特别应该是开放性的，不带有物理边界，才能彰显公共属性，例如茶水间休息区与走廊不应该设墙，让它们融合起来，这样大家路过的时候就能够打个招呼聊上几句。休息家具款式可以多样化，颜色也可选择鲜明多彩的，让空间生动有活力。</p>
+
+<p>其实不仅是公共区域，团队区域之间也应该是柔性边界。柔性边界会鼓励人们进入不同的区域，在软件公司里并没有什么理由要为员工进入一个普通区域造成障碍。人从一个大厅进入另一个大厅，心理不会有异样感，但如果要穿过一个门进入一个坐了人的封闭的房间，那他必须是有专门目的才会这样做。</p>
+
+<p>会议室相对团队空间来说，私密性会强一些。在软件公司里开会，白板是很重要的，会议室的白板（或者用玻璃）的面积应该尽量的大，越大越好，画不下要擦掉影响思路，有可能的话将整面墙都做白版。会议室面积小，密闭空间的压抑感会特别严重，用玻璃做墙面可以改善空间感。由于团队工作空间是开放性的，需要多留一些小会议室(quite room)，或者半开放小隔间作为不受干扰的环境来临时使用。</p>
+
+<p>人喜欢在窗户旁边工作：与外界空间的连通感，扩大心理空间，不会有幽闭压抑感；自然采光与通风。因此有窗的空间应该留作给人长时间活动的空间，而不是用作偶然才有人使用的用途，如果用作储物、机房就更浪费了。</p>
+
+<p><em>后记：</em></p>
+
+<p><em>差不多两年前在荷兰工作的时候，对于欧洲的办公环境深有感触，回到国内后就有了这些想法，不过一直没有动笔写下来。期望在国内有类似欧洲的环境在目前显然是不现实的，但如果是在一开始设计办公环境的时候考虑更多人的因素，其实在不增加成本的情况下也能有所改善。最重要的是观念。</em></p>
+
+<p><em>另外还有更早的一篇<a href="/blog/2006/05/12/Each-have-independent-office-with-the-Windows">每人都有带窗户的独立办公室</a>，是在瑞典工作的时候写的。</em></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -475,160 +627,6 @@ stay foolish.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T22:27:00+08:00" pubdate data-updated="true">2012-06-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/personaldevelopment/'>PersonalDevelopment</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>《<a href="http://book.douban.com/subject/5372651/">程序员的思维修炼—-开发认知潜能的九堂课</a>》，国内书商起个怪名字，其实重点在副标题。 原书标题根本不是这样的。</p>
-
-<h2 id="dreyfus">德雷福斯(Dreyfus)技能模型</h2>
-
-<h3 id="novice">新手(Novice)</h3>
-
-<p>新手缺乏经验，完成任务时需要操作指引。</p>
-
-<p>即使某人在一个领域上工作了十年，对所有指引已经了然于心，但他只是不断重复执行指令，也依然是新手。</p>
-
-<h3 id="advanced-beginner">高级新手(Advanced beginner)</h3>
-
-<p>能执行要做的任务并根据需求学习新任务，但没对任务环境获得更广泛的概念上的理解，缺乏全局思维。</p>
-
-<p>高级新手占了绝大部分比例，但他们常高估自己，因为不知道自己不知道什么。</p>
-
-<h3 id="competent">胜任者(Competent)</h3>
-
-<p>胜任者能够独立解决问题。</p>
-
-<h3 id="proficient-practitioner">精通者(Proficient practitioner)</h3>
-
-<p>精通者懂得反思，自我纠正，从自己和他人的经验中学习。</p>
-
-<h3 id="expert">专家(Expert)</h3>
-
-<p>专家凭直觉工作，基于他们在领域中的丰富经验，在恰当的情景中选取和应用这些经验。</p>
-
-<p>专家对问题思考时将所有方面作为一个完整和独特的整体来考虑，而不仅是关注相关方面。</p>
-
-<p>处理问题时，新手需要指引(instruction)，专家依靠直觉。不给新手指引，或者要求专家跟随指引，都会降低生产力。</p>
-
-<p><em>按照前面说那个技能模型的定义，看看自己，在大部分领域都只是高级新手，少量能到胜任者，连精通都算不上。</em></p>
-
-<h2 id="section">隐性思维</h2>
-
-<p><em>原文中为R型思维，R指右脑，但作者认为左右脑区分并非真实情况，将L解释为线性(linear)模式R解释为富(rich)模式。我按照自己的理解将R型思维看成隐性思维。</em></p>
-
-<p>发挥隐性思维，捕获闪现灵感，随时准备着记录下来。</p>
-
-<p>隐性思维会被压抑，在一种思维不受控制的状态下，隐性思维才会发挥作用。</p>
-
-<p>重视你的直觉，但要去验证它，而不是盲目在第一时间跟随直觉行动。</p>
-
-<p>隐性思维是非线性的，它从你的记忆库中匹配关联，多学习接触不同类别的东西，为隐性思维累积素材。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/">用手机遥控Linux后台播放豆瓣电台</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2012-03-10T00:35:00+08:00" pubdate data-updated="true">2012-03-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近买了一个<a href="http://en.wikipedia.org/wiki/Asus_EeeBox_PC">EeeBox</a>来做home server，装Ubuntu操作系统，有不少东西可以玩。</p>
-
-<p>其中一个用途是连接到音响播放音乐。我比较喜欢听豆瓣电台，于是找一个豆瓣电台的客户端。Home server平常不接显示器，也不启动图形界面，常见的浏览器客户端、桌面客户端都不能用，要找命令行的。在github上找到Johnny Huang开发的<a href="https://github.com/hzqtc/fmd">fmd</a>（Douban FM daemon），启动后在后台运行，正合我意。Fork下来给它增加了个安装脚本，能够安装为服务，开机就自动运行了。但fmd只是个后台进程，只有telnet命令接口，没法对它进行直接控制的，作者另外做了个命令行工具，叫做fmc（FMD client），用来控制fmd。但命令行工具在我这里也还是不能用—-没有显示器没有键盘—-必须能遥控才行。于是我在fmc基础上给它增加了一个web UI，称为<a href="https://github.com/aleung/fmweb">fmweb</a>，通过手机浏览器访问，就可以控制播放了。于是，我现在在家里任何地方，都可以控制我的豆瓣电台的播放，不喜欢听，跳下一首歌。</p>
-
-<p>这是在Android浏览器上的截图，在iPhone、iPad上也可以用。</p>
-
-<p><img src="https://lh6.googleusercontent.com/-ishGby7lpTk/T1ove7Z0-rI/AAAAAAAAAoU/94_iFdmfSKw/s400/Screenshot_2012-03-09-23-41-13.png" alt="" /><img src="https://lh5.googleusercontent.com/-zXp_XdbbgNk/T1ovfpnkxbI/AAAAAAAAAoc/CN-7dV4U4Xg/s400/Screenshot_2012-03-09-23-55-39.png" alt="" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/3/">&larr; Older</a>
@@ -650,6 +648,14 @@ stay foolish.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -661,14 +667,6 @@ stay foolish.</p>
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -676,7 +674,7 @@ stay foolish.</p>
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -711,8 +709,8 @@ stay foolish.</p>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

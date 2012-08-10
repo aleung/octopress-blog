@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。 虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西， &hellip;">
+  <meta name="description" content="ClearCaseWeb is a simple web-based utility for browsing files stored in ClearCase. With it you can get the list of recent changed files and find out &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,149 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/31/ClearCaseWeb/">ClearCaseWeb</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-31T05:16:00+08:00" pubdate data-updated="true">2007-03-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ClearCaseWeb is a simple web-based utility for browsing files stored in ClearCase. With it you can get the list of recent changed files and find out who is the last modifier of each line in a file in a very handy maner. The original idea to develop ClearCaseWeb is to overcome the lack of GUI for cleartool annotation. It’s inspired by <a href="http://www.freebsd.org/projects/cvsweb.html">CVSWeb</a>, which is widely used in open source community.</p>
+
+<p>Screenshots: </p>
+
+<p>Annotation View</p>
+
+<p><img src="http://farm1.static.flickr.com/186/439704788_26969d28be.jpg" alt="" /></p>
+
+<p>Browse View</p>
+
+<p><img src="http://farm1.static.flickr.com/168/439704790_204c0d2c98.jpg" alt="" /></p>
+
+<p>Recent Changes View</p>
+
+<p><img src="http://farm1.static.flickr.com/175/439704792_3da1066a9b.jpg" alt="" /></p>
+
+<p>ClearCaseWeb is developed in php. Currently it only works on Windows with ClearCase dynamic view successfully configurated.</p>
+
+<p>Download:</p>
+
+<ul>
+  <li>2007-3-30: <a href="http://aleung.blogbus.com/files/11752618700.zip">ClearCaseWeb_0.2</a><br />
+First functional release.</li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/31/ClearCaseWeb/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/">利用Excel进行分组统计及生成直方图</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2007-03-17T02:19:00+08:00" pubdate data-updated="true">2007-03-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/excel/'>Excel</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
+
+<p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>
+
+<p>先把要处理的目标数据准备好：一列是输入数据A3:A66（在例子中为了清晰，已经排序，实际没有必要），另外一列是分组间隔D3:D21，在这里每个区间的大小是10。</p>
+
+<p>对于每个区间的频率，我希望输出在E3:E21区域。用鼠标将这个区域框起来，然后输入公式 =FREQUENCY(A3:A66,D3:D21)。FREQUENCY函数有两个参数，第一个是要分析的目标数据，第二个是分组间隔值，都需要是数组。输出也是一个数组，因此需要按 Ctrl-Shift-Enter 来结束公式的输入，表明这是数组公式。(数组公式会显示为有个花括号括起来)</p>
+
+<p>公式输入后，马上就能看到计算的结果了，如果希望更清晰些，可以做一张图。依然是选中E3:E21区域，菜单中选中插入图表，照着向导操作。在第二步选择DataSource中，需要在”Serials”中指定X轴区域为C3:C21(或D3:D21)，否则X轴数据会变成1、2、3…</p>
+
+<p><img src="http://farm1.static.flickr.com/162/422940441_9279aaa292_o.jpg" alt="" /></p>
+
+<p>从图中，可以明显看出大部分数据范围在50-120之间，峰值为90-100。</p>
+
+<p><a href="http://soft.yesky.com/office/283/2639283.shtml">这个网页</a>介绍了另外一种方法，通过Excel数据分析功能来实现上面做的事情，更加简单。但是Excel缺省安装中没有数据分析功能。</p>
+
+<p>Reference：<a href="http://www0.ccidnet.com/school/office//2001/06/26/70_4531.html">Excel统计函数</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -325,130 +468,6 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/27/No-update-for-a-long-long-time/">很久很久没有更新了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-27T03:41:00+08:00" pubdate data-updated="true">2007-01-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>好像没有什么好写的，贴张照片吧<br />
-<img src="http://farm1.static.flickr.com/136/369778069_a78a5ac873.jpg" alt="" />  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2007/01/27/No-update-for-a-long-long-time/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/08/29/-/">‘I Love’ Audio Player - Basic Design</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2006-08-29T02:19:00+08:00" pubdate data-updated="true">2006-08-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>对于”I Love” audio player的想法, flyisland的批阅建议是请jobs同志执行。我也很希望jobs同志能够欣赏这个想法，更希望的是我也能有flyisland同志同样的运气，能得到一个赠送的iPod。在此之前，还是继续自我陶醉一下，下面是想到的初步设计：</p>
-
-<p><a href="http://www.flickr.com/photos/aleung/227012217/"><img src="http://static.flickr.com/61/227012217_2b9c0d6ecd.jpg" alt="audioplayer" /></a></p>
-
-<p>UI负责用户界面；Control接受UI的命令，进行播放控制；作品的选择、喜爱度的累积是profile的任务；媒体文件的播放是委托给player进行的。</p>
-
-<p><a href="http://www.flickr.com/photos/aleung/227012224/"><img src="http://static.flickr.com/70/227012224_56936e3643.jpg" alt="audioplayer.control" /></a></p>
-
-<p>JavaZoom.com的<a href="http://www.javazoom.net/jlgui/developerguide.html">jlGui</a>是一个opensource的music player，它提供了一个很简洁实用的BasicPlayer API，用在这里正合适。</p>
-
-<p><a href="http://www.flickr.com/photos/aleung/227012248/"><img src="http://static.flickr.com/92/227012248_2ce4e0e4e8.jpg" alt="basicplayer" /></a></p>
-
-<p>UI，应该就是GUI了吧，有人会需要command line吗？甚至是外接LED显示屏？</p>
-
-<p><a href="http://www.flickr.com/photos/aleung/227012242/"><img src="http://static.flickr.com/28/227012242_fa610759ef.jpg" alt="audioplayer.ui" /></a></p>
-
-<p>Profile部分将是最重要也是最复杂的了，现在考虑得还不成熟，只有个大概。</p>
-
-<p><a href="http://www.flickr.com/photos/aleung/227012232/"><img src="http://static.flickr.com/61/227012232_3c57a934d1.jpg" alt="audioplayer.profile" /></a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/08/29/-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/27/">&larr; Older</a>
@@ -470,6 +489,14 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -481,14 +508,6 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -496,7 +515,7 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -531,8 +550,8 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

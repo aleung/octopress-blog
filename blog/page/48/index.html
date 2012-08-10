@@ -9,7 +9,10 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Java程序测试中发现parse一个XML文件时出现exception, 错误信息为invalid XML character. 但这个XML文件用XMLSpy检查却没有问题. 经过查找资料, 发现是XML文件中包含了一些不允许在XML中使用的字符(控制符). XML规范中规定了允许的字符范围( &hellip;">
+  <meta name="description" content="1)
+This refers to the satellite images available from Nasa’s
+Earth Science Applications Directorate MrSID Image Server:
+https://zulu.ssc.nasa.gov/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +79,222 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/26/In-OziExplorer-use-of-NASA-LandCover-MrSID-data-method/">在OziExplorer中使用NASA LandCover MrSID数据的方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-26T20:57:00+08:00" pubdate data-updated="true">2003-09-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1)<br />
+This refers to the satellite images available from Nasa’s<br />
+Earth Science Applications Directorate MrSID Image Server:<br />
+<a href="https://zulu.ssc.nasa.gov/mrsid/">https://zulu.ssc.nasa.gov/mrsid/</a><br />
+Note that this is using secure HTTP, and the old URL<br />
+no longer works. They do not have their server set up<br />
+properly, so you may get warnings about the site’s<br />
+security certificate.  </p>
+
+<p>从 <a href="https://zulu.ssc.nasa.gov/mrsid/">https://zulu.ssc.nasa.gov/mrsid/</a> 下载数据  </p>
+
+<p>2)<br />
+Initially you use your mouse and the options at the<br />
+bottom of the map webpage(In/Out, zoom level, map size) to<br />
+find the map you want, then you select the “Select Image”<br />
+radiobutton and click on the map to get a popup window,<br />
+and on that you select “Download MrSID Image”.<br />
+You have to zoom in a couple of levels from the world map<br />
+before the image names are shown, and you won’t get the popup<br />
+window if you have Javascript disabled.  </p>
+
+<p>用鼠标点出你需要的区块，选择”Select Image”，弹出区块窗口，下载  </p>
+
+<p>3)<br />
+The downloaded file will have a “.tar” extension. Programs<br />
+such as WinZip that work with ZIP files should be able to<br />
+open the ‘tarball’(the name used for tar archives) file.<br />
+Typically it contains four files - the MrSid image(.sid),<br />
+it’s “world file”(.sdw), it’s metadata file(.met), and a<br />
+small JPEG thumbnail image(.jpg).  </p>
+
+<p>下载的是tar文件，用winzip、winrar可解压。包含4个文件，后缀为 sid, sdw, met, jpg  </p>
+
+<p>4)<br />
+The only files you need from the tarball are the image(.sid)<br />
+and it’s “world file”, which has a “.sdw” extension. Extract<br />
+them from the tarball, and save them into the same directory.  </p>
+
+<p>有用的文件是 sid 和 sdw，解开放到同一目录中  </p>
+
+<p>5)<br />
+Make sure you have the correct version of OziExplorer.<br />
+Older versions did not support the use of MrSid images.<br />
+As explained on Ozi’s Optional Extras page:<br />
+<a href="http://216.40.224.145/eng/optional_extras.html">http://216.40.224.145/eng/optional_extras.html</a><br />
+you need to have the MrSid DLL.<br />
+I would suggest using OziExplorer version 3.90.4j or newer,<br />
+because prior to that the filename was not shown on the<br />
+“DRG Import Defaults” dialog box.  </p>
+
+<p>在 <a href="http://216.40.224.145/eng/optional_extras.html">http://216.40.224.145/eng/optional_extras.html</a> 下载MrSid.dll并安装，这是OziExplorer的MrSID pluggin。<br />
+最好用OziExplorer 3.90.4j以后的版本。  </p>
+
+<p>6)<br />
+All the Nasa MrSid images use the WGS84 datum.<br />
+There is no need for the associated “.met” file when importing<br />
+into Ozi, and there is no need to look at the contents of the<br />
+“.met” or “.sdw” files.<br />
+The first character of the MrSid file’s name is the hemisphere(N or S).<br />
+The first pair of digits is the file’s UTM zone.<br />
+The second pair of digits is the latitude of the lower edge<br />
+of the image in the Northern hemisphere, and the upper edge of the<br />
+image in the Southern hemisphere - the images span 5 degrees of latitude, <br />
+with a slight bit of overlap to the north and south.<br />
+For example, N-10-45_loc.sid is for the Northern hemisphere,<br />
+UTM zone 10, and covers between 45 and 50 degrees North.  </p>
+
+<p>MrSid图象使用WGS84座标系，文件名首字母为南/北半球，第一组数字为UTM zone，第二组数字为区块靠近赤道一边的纬度，每个文件覆盖纬度5度的区域。如N-10-45_loc.sid表示北半球，UTM 10区，北纬45-50度。  </p>
+
+<p>7)<br />
+In Ozi select “Import Map” from the File menu, then either<br />
+“Single DRG Map” or “All DRG Maps on a CD or in a Folder”.<br />
+If you are going to import multiple Nasa MrSid images at the<br />
+same time from one directory, arrange it so that all the images<br />
+are for the same hemisphere and same UTM zone.<br />
+On the “DRG Import Defaults” dialog box:<br />
+Map Datum = WGS84<br />
+Map Grid Zone = UTM zone of the map image(s)<br />
+Hemisphere = first letter of image file(s) name(s)<br />
+Map Projection = UTM  </p>
+
+<p>在Ozi的File菜单选择”Import Map”，然后选择”Single DRG Map”或”All DRG Maps on a CD or in a Folder”.<br />
+如果打算一次导入同一目录中的多个MrSid图象，应该是同一个半球同一个zone的。（我试过没有成功，如果不怕麻烦还是一次一个好了）<br />
+在”DRG Import Defaults”对话框中，按以下填写：<br />
+Map Datum = WGS84<br />
+Map Grid Zone = 图象的UTM zone<br />
+Hemisphere = 图象文件名的首字母<br />
+Map Projection = UTM  </p>
+
+<p>That’s it - you should now be able to use the MrSid images in Ozi.<br />
+You no longer need the “.sdw” file(s), but they are small, so I<br />
+would keep them in case you ever need to re-do the import.  </p>
+
+<p>OK了，以后在Ozi中打开map文件就行了。<br />
+sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/26/In-OziExplorer-use-of-NASA-LandCover-MrSID-data-method/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/19/The-system-performance-monitoring-tool/">系统性能监控工具</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-19T22:39:00+08:00" pubdate data-updated="true">2003-09-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等:  </p>
+
+<ul>
+  <li>
+    <p>MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/<br />
+这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, 可以通过调用其他程序来采集数据并生成曲线图. 但由于原来设计是流量监测, 故此配置灵活性不如RRDtool.<br />
+这里是各种扩展: <a href="http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html">http://people.ee.ethz.ch/~oetiker/webtools/mrtg/links.html</a>  </p>
+  </li>
+  <li>
+    <p>RRDTool http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/<br />
+RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并且按照一定的周期生成曲线图. 很象MRTG, 不过它不包含数据采集功能, 而且灵活性高适应面更广.  </p>
+  </li>
+  <li>
+    <p>ORCA(http://www.orcaware.com/orca/docs/orcallator.html), 一个主机性能采集的工具, 利用RRDTool生成很多种性能曲线. 它只能在solaris上运行. 但它采集的数据和生成的曲线可以参考, 部分在linux上用RRDTool配合其他的采集程序应该也可以生成的.  </p>
+  </li>
+  <li>
+    <p>BGraphs(http://www.ag0ny.com/graphs/) 利用RRDtool和shell script做的linux性能采集工具。我在它的基础上修改，安装到公司的上网服务器上，还不错。  </p>
+  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/19/The-system-performance-monitoring-tool/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -310,171 +529,6 @@ JDOM 的速度也比较高, 仅仅比SAX慢一点. 它主要是使用SAX来实�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/04/How-to-let-JTextArea-automatic-scroll-to-the-bottom-/">如何让JTextArea自动滚动到最底?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2003-09-04T22:52:00+08:00" pubdate data-updated="true">2003-09-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>如果用JTextArea来做信息窗口，不断用append()显示新信息，通常会希望内容能自动滚动，保持最后增加的信息能够显示出来。利用setCaretPosition()可以实现，这个方法是设置输入光标的位置，如果光标位置超出目前可视范围，会自动滚动以保正光标可以显示出来。</p>
-
-<pre><code>int length = textArea.getText().length();
-textArea.setCaretPosition(length);
-</code></pre>
-
-<p>如果还希望限制JTextArea中的文本长度，不让它无限制的增长，可以加上以下两行，当长度超出预订的maxTextLength后将开头的字符截除。不过美中不足的是截除无法按行进行。</p>
-
-<pre><code>if ( length &gt; maxTextLength ) { 
-    textArea.replaceRange("", 0, length - maxTextLength); 
-}
-</code></pre>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/04/How-to-let-JTextArea-automatic-scroll-to-the-bottom-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/02/Unicode-/">Unicode与字符编码</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-09-02T22:55:00+08:00" pubdate data-updated="true">2003-09-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3 id="unicode">Unicode:</h3>
-
-<p>unicode.org制定的编码机制, 要将全世界常用文字都函括进去.<br />
-在1.0中是16位编码, 由U+0000到U+FFFF. 每个2byte码对应一个字符; 在2.0开始抛弃了16位限制, 原来的16位作为基本位平面, 另外增加了16个位平面, 相当于20位编码, 编码范围0到0x10FFFF.  </p>
-
-<h3 id="ucs">UCS:</h3>
-
-<p>ISO制定的ISO10646标准所定义的 Universal Character Set, 采用4byte编码.  </p>
-
-<h3 id="unicodeucs">Unicode与UCS的关系:</h3>
-
-<p>ISO与unicode.org是两个不同的组织, 因此最初制定了不同的标准; 但自从unicode2.0开始, unicode采用了与ISO 10646-1相同的字库和字码, ISO也承诺ISO10646将不会给超出0x10FFFF的UCS-4编码赋值, 使得两者保持一致.  </p>
-
-<h3 id="ucs-1">UCS的编码方式:</h3>
-
-<ul>
-  <li>UCS-2, 与unicode的2byte编码基本一样.   </li>
-  <li>UCS-4, 4byte编码, 目前是在UCS-2前加上2个全零的byte.  </li>
-</ul>
-
-<h3 id="utf-unicodeucs-transformation-format">UTF: Unicode/UCS Transformation Format</h3>
-
-<ul>
-  <li>UTF-8, 8bit编码, ASCII不作变换, 其他字符做变长编码, 每个字符1-3 byte. 通常作为外码. 有以下优点:<br />
-    <ul>
-      <li>与CPU字节顺序无关, 可以在不同平台之间交流  </li>
-      <li>容错能力高, 任何一个字节损坏后, 最多只会导致一个编码码位损失, 不会链锁错误(如GB码错一个字节就会整行乱码)   </li>
-    </ul>
-  </li>
-  <li>UTF-16, 16bit编码, 是变长码, 大致相当于20位编码, 值在0到0x10FFFF之间, 基本上就是unicode编码的实现. 它是变长码, 与CPU字序有关, 但因为最省空间, 常作为网络传输的外码.<br />
-UTF-16是unicode的preferred encoding.   </li>
-  <li>UTF-32, 仅使用了unicode范围(0到0x10FFFF)的32位编码, 相当于UCS-4的子集.  </li>
-</ul>
-
-<h3 id="utfunicode">UTF与unicode的关系:</h3>
-
-<p>Unicode是一个字符集, 可以看作为内码.<br />
-而UTF是一种编码方式, 它的出现是因为unicode不适宜在某些场合直接传输和处理. UTF-16直接就是unicode编码, 没有变换, 但它包含了0x00在编码内, 头256字节码的第一个byte都是0x00, 在操作系统(C语言)中有特殊意义, 会引起问题. 采用UTF-8编码对unicode的直接编码作些变换可以避免这问题, 并带来一些优点.  </p>
-
-<h3 id="section">中国国标编码:</h3>
-
-<ul>
-  <li>GB 13000: 完全等同于ISO 10646-1/Unicode 2.1, 今后也将随ISO 10646/Unicode的标准更改而同步更改.  </li>
-  <li>GBK: 对GB2312的扩充, 以容纳GB2312字符集范围以外的Unicode 2.1的统一汉字部分, 并且增加了部分unicode中没有的字符.   </li>
-  <li>GB 18030-2000: 基于GB 13000, 作为Unicode 3.0的GBK扩展版本, 覆盖了所有unicode编码, 地位等同于UTF-8, UTF-16, 是一种unicode编码形式. 变长编码, 用单字节/双字节/4字节对字符编码. GB18030向下兼容GB2312/GBK. <br />
-GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准.  </li>
-</ul>
-
-<p><em>2001-11-14 (2003-9-2 补充)</em>  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/02/Unicode-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/49/">&larr; Older</a>
@@ -496,6 +550,14 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -507,14 +569,6 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -522,7 +576,7 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -557,8 +611,8 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Nexus One 手机用了两年多，升过几次系统，到现在用起来还是挺满意，但唯一的问题是内部存储(ROM)太小了，只有512M，留给安装应用的空间不足200M，而现在的应用又越来越大，已经到了当想装新应用必须先卸载其他一些的地步了。尝试过A2SD，效果不大理想，卡顿感比较明显， &hellip;">
+  <meta name="description" content="Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases. All &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,247 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T22:54:00+08:00" pubdate data-updated="true">2012-08-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases.</p>
+
+<p>All WorkManagers share a common thread pool and a priority-based queue. The size of the thread pool is determined automatically by the kernel and resized as needed.  Priority of the requests is dynamic and computed internally to meet the stated goals. </p>
+
+<p>The thread pool is so-called self-tunning. It monitors the overall throughput every two seconds and uses the collected data to determine if thread count needs to change. Present thread count, the measured throughput, and the past history is taken into account by the algorithm to determine if the thread count needs to increase or decrease, and new threads are automatically added to the pool or removed, as needed.</p>
+
+<p>It’s no longer have to (and is unable to) configure thread counts on a WorkManager nor the common thread pool. However, it’s possible to affect how server prioritizes work and allocates threads by parameters defined in WorkManager. Each WorkManager can contain following types of components:</p>
+
+<ul>
+  <li>Request class 
+    <ul>
+      <li>Fair-share</li>
+      <li>Response-time goal</li>
+      <li>Context based</li>
+    </ul>
+  </li>
+  <li>Constraints
+    <ul>
+      <li>Minimum threads constraint</li>
+      <li>Maximum threads constraint</li>
+      <li>Capacity</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Request class affects how requests are prioritized. Fair-share request class changes thread usage weight of a WorkManage, which is by default 50. Response-time goal request class specifies the response-time goal in milliseconds. Context-based request class is a compound request class that provides a mapping between the request context and the above two request classes. With context-based request class, it’s possible to specify different request classes for the same servlet invocation depending on the user associated with the invocation.</p>
+
+<p>A constraint defines minimum and maximum numbers of threads allocated to execute requests and the total number of requests that can be queued or executing before WebLogic Server begins rejecting requests. Constraint is referenced in WorkManager by constraint name. So a constraint can be shared by several WorkManagers and set the common limit.</p>
+
+<p>Minimum threads constraint makes sure that during periods of high workloads, there would still be a certain number of threads from the self-tuning thread pool available to process work requests for all work managers that reference the minimum threads constraint. Using the minimum threads constraint could result in some side-effects. Users should consider adding a minimum threads constraint to a work manager configuration when it is critical that progress must be made for an application even when the WLS server is under very heavy load, such as work that would have resulted in server-to-server deadlock if not being processed promptly. It is not to be used as a mean of prioritizing workload among different work managers. </p>
+
+<p>The maximum threads constraint limits the number of threads in the self-tuning thread pool that can be used for executing work for all work managers that references the same constraint. The maximum threads constraint is not designed as a mean to prioritize workloads among different work managers. It is most useful when there are other known limitations where a hard upper limit should be put on the number of threads that should be assigned for processing work requests, and that allocating more threads for processing the workload would not increase the overall throughput.</p>
+
+<p>A typical use case of maximum threads constraint is to take a data source connection pool size as the max constraint.</p>
+
+<pre><code>&lt;max-threads-constraint&gt;
+  &lt;name&gt;MyConstraint&lt;/name&gt;
+  &lt;pool-name&gt;MyDataSource&lt;/pool-name&gt;
+&lt;/max-threads-constraint&gt;
+</code></pre>
+
+<p>The capacity constraint defines the maximum number of requests that can be queued (waiting for thread) or are executing. Overload action, e.g. refuse with HTTP response code 503, is taken after the capacity is reached. </p>
+
+<p>I draw a picture to show the threadpool and queue. Requests dispatched with different WorkManager are in different color.</p>
+
+<p><img src="/blog/attachments/2012/8/workmanager.jpg" alt="" /></p>
+
+<ul>
+  <li>Self-tuning thread pool thread allocation ratio amoung WorkManagers is affected by request class. </li>
+  <li>Minimum threads constraint limits: never queue request, unless <code>executing &gt;= min-threads-constraint.count</code></li>
+  <li>Maximum threads constraint limits: <code>executing &lt;= max-threads-constraint.count</code></li>
+  <li>capacity contraint limits: <code>executing + queued &lt;= capacity.count</code></li>
+</ul>
+
+<p>WorkManager can be created for a specific application or module (ejb/war), which is called application-scoped WorkManager. If there is no special requirement on individual application or module, you can create global Work Managers that are available to all applications and modules. An application uses a globally-defined Work Manager as a template. Each application creates its own instance, this means that each application has its own default WorkManager that is not shared with other applications. WebLogic Server provides a built-in default Work Manager which may be sufficient for most application requirements.</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li><a href="http://www.oracle.com/technetwork/articles/entarch/workload-management-088692.html">Workload Management in WebLogic Server 9.0</a></li>
+  <li><a href="https://blogs.oracle.com/WebLogicServer/entry/threads_constraints_in_work_ma">Threads Constraints in Work Managers</a></li>
+  <li><a href="http://docs.oracle.com/cd/E15051_01/wls/docs103/config_wls/self_tuned.html">Using Work Managers to Optimize Scheduled Work</a></li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/31/apigee/">Apigee</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-31T23:20:00+08:00" pubdate data-updated="true">2012-07-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/web/'>Web</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://apigee.com/">Apigee</a> is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it.</p>
+
+<p>Apigee is an API management platform and services company. It benefits both API providers and developers who build their apps with APIs.</p>
+
+<h2 id="apigee-enterprise">Apigee Enterprise</h2>
+
+<p>Apigee Enterprise product is an API proxy plus developer portal.</p>
+
+<p>Usually when an organization open its internal services or data to external, it develops the API and exposure it, with necessary document published. Application developers learn the API by reading the document, and then code to use the API.</p>
+
+<p><img src="/blog/attachments/2012/7/api.png" alt="" /></p>
+
+<p>ApiGee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
+
+<p><img src="/blog/attachments/2012/7/api_with_apigee.png" alt="" /></p>
+
+<h2 id="console-to-go">Console To-Go</h2>
+
+<p>Apigee Enterprise features are not available to free subscriber of ApiGee, excepts the console that let developer learn an API by playing with it. ApiGee opens this service to free subscriber as Console To-Go.</p>
+
+<p>I try to create my own Console To-Go:</p>
+
+<p>Create an API on Google Application Engine: <a href="http://api-playground.appspot.com/time">time API</a> , it simply return the current time since epoch.</p>
+
+<p>Write the WADL for the API.</p>
+<div><script src="https://gist.github.com/3214300.js?file="></script>
+<noscript><pre><code>&lt;application xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+             xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+             xmlns:apigee=&quot;http://api.apigee.com/wadl/2010/07/&quot;
+             xmlns=&quot;http://wadl.dev.java.net/2009/02&quot;
+             xsi:schemaLocation=&quot;http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd&quot;&gt;
+
+    &lt;resources base=&quot;http://api-playground.appspot.com&quot;&gt;
+
+        &lt;resource path=&quot;/time&quot;&gt;
+            &lt;method id=&quot;getTime&quot; name=&quot;GET&quot; apigee:displayName=&quot;Get time since epoch&quot;&gt;
+                &lt;apigee:tags&gt;
+                    &lt;apigee:tag primary=&quot;true&quot;&gt;Time&lt;/apigee:tag&gt;
+                &lt;/apigee:tags&gt;            
+                &lt;apigee:authentication required=&quot;false&quot;/&gt;
+                &lt;apigee:example url=&quot;/time&quot;/&gt;
+            &lt;/method&gt;
+        &lt;/resource&gt;
+
+    &lt;/resources&gt;
+
+&lt;/application&gt;
+</code></pre></noscript></div>
+
+<p>Create a new console on <a href="https://apigee.com/togo">Apigee Console To-Go</a>, upload the WADL file for my playground API.</p>
+
+<p>That’s all I need to do. Now the console is ready and anyone can try my time API on the console. This is a snapshot of API request-response:</p>
+
+<iframe src="https://snap.apigee.com/NRNmNb" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+
+<h2 id="usergrid">Usergrid</h2>
+
+<p>A cloud-based <strong>data service</strong> for application developer, especially for mobile application developer. It provides a core set of <em>commonly used social media application objects</em>, including a rich user model, as well as the ability to create new objects. </p>
+
+<p>REST API is provided, with data model in JSON.  </p>
+
+<p>Features includes:</p>
+
+<ul>
+  <li>
+    <p><em>User model</em>. Organize users into groups, teams or other structures. User authentication via Facebook, Twitter or other OAuth services. User profile synchronization.</p>
+  </li>
+  <li>
+    <p><em>Collections</em>. Any type of application data in JSON. Data sharing between users and applications.</p>
+  </li>
+  <li>
+    <p><em>Messages and activities</em>. Automates user interaction e.g. status updates, check-ins, comments in the form of activity streams. Support messaging (application internal) and notifications by delivering activities to connected users.</p>
+  </li>
+  <li>
+    <p><em>Data analytics</em>. Log events generated by application. Store, search and analyze at any level of scale.</p>
+  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/07/31/apigee/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -289,158 +530,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring Bean Reference Injection Definition by External Configuration</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-07T21:38:00+08:00" pubdate data-updated="true">2012-07-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/springframework/'>SpringFramework</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。</p>
-
-<p>利用Spring Framework的property placeholder，将bean依赖关系配置抽离Spring XML文件，就能在产品发布部署后，通过配置选项来选定不同的实现，可用于集成接口、特定业务逻辑打开关闭等。</p>
-
-<p><a href="http://www.oodesign.com/adapter-pattern.html">Adaptor pattern</a> is widely used at the point where our product integrates with external system. Product will provide several adapters to adapt to different external system interface.
-We deliver our product in uniform installation package for all customers. A mechanism is required to configure which adapter to be used after system is installed.</p>
-
-<p><a href="http://www.oodesign.com/factory-pattern.html">Factory pattern</a> can be used to create the specific adapter by configuration property. But by this way we need to create factory for each kind of adapters.</p>
-
-<p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
-
-<p>Here is a sample code snippet:</p>
-<div><script src="https://gist.github.com/2934603.js?file="></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
-    default-autowire=&quot;byType&quot;&gt;
-
-    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
-
-    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
-    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
-    
-    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
-        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-30T22:24:00+08:00" pubdate data-updated="true">2012-06-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>软件团队的办公室空间可以分为三大类：团队工作空间，会议空间，公共区域。</p>
-
-<p>敏捷团队在工作过程中需要有比较多沟通，团队工作空间需要为此准备必要的设施，例如带有白板的讨论区域，这样就不需要讨论一些事情都要跑很远找会议室；供张贴东西的墙面；公共信息显示屏，显示CI状态之类。</p>
-
-<p>每个人的座位当然是越宽敞越好，即使条件限制，最低限度也需要保证可以增加一个人并排坐一起结对编程或讨论问题。因此应该用长条型的桌子，而不是曲尺型的桌子。</p>
-
-<p>不同团队之间的空间有一定的隔离，减少相互影响，因为团队内的讨论对他人是噪音。并且，空间的尺度对心理也有影响，需要合适的尺度，过大的大厅一排排整齐排列的桌子的心理效果不好。</p>
-
-<p>将公共区域，例如休息区、茶水间、打印机等，放在各个区域空间的交汇点，一方面是方便各个区域的人的到达，另外是形成汇聚点，成为人们的交流场所。公司里面需要创造让不同团队成员见面交流的机会。公共区域特别应该是开放性的，不带有物理边界，才能彰显公共属性，例如茶水间休息区与走廊不应该设墙，让它们融合起来，这样大家路过的时候就能够打个招呼聊上几句。休息家具款式可以多样化，颜色也可选择鲜明多彩的，让空间生动有活力。</p>
-
-<p>其实不仅是公共区域，团队区域之间也应该是柔性边界。柔性边界会鼓励人们进入不同的区域，在软件公司里并没有什么理由要为员工进入一个普通区域造成障碍。人从一个大厅进入另一个大厅，心理不会有异样感，但如果要穿过一个门进入一个坐了人的封闭的房间，那他必须是有专门目的才会这样做。</p>
-
-<p>会议室相对团队空间来说，私密性会强一些。在软件公司里开会，白板是很重要的，会议室的白板（或者用玻璃）的面积应该尽量的大，越大越好，画不下要擦掉影响思路，有可能的话将整面墙都做白版。会议室面积小，密闭空间的压抑感会特别严重，用玻璃做墙面可以改善空间感。由于团队工作空间是开放性的，需要多留一些小会议室(quite room)，或者半开放小隔间作为不受干扰的环境来临时使用。</p>
-
-<p>人喜欢在窗户旁边工作：与外界空间的连通感，扩大心理空间，不会有幽闭压抑感；自然采光与通风。因此有窗的空间应该留作给人长时间活动的空间，而不是用作偶然才有人使用的用途，如果用作储物、机房就更浪费了。</p>
-
-<p><em>后记：</em></p>
-
-<p><em>差不多两年前在荷兰工作的时候，对于欧洲的办公环境深有感触，回到国内后就有了这些想法，不过一直没有动笔写下来。期望在国内有类似欧洲的环境在目前显然是不现实的，但如果是在一开始设计办公环境的时候考虑更多人的因素，其实在不增加成本的情况下也能有所改善。最重要的是观念。</em></p>
-
-<p><em>另外还有更早的一篇<a href="/blog/2006/05/12/Each-have-independent-office-with-the-Windows">每人都有带窗户的独立办公室</a>，是在瑞典工作的时候写的。</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -460,6 +549,14 @@ We deliver our product in uniform installation package for all customers. A mech
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/31/apigee/">apigee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
@@ -471,14 +568,6 @@ We deliver our product in uniform installation package for all customers. A mech
         <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring bean reference injection definition by external configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -486,7 +575,7 @@ We deliver our product in uniform installation package for all customers. A mech
   <ul class="tag-cloud">
 <a style="font-size: 135%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 85%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
@@ -521,8 +610,8 @@ We deliver our product in uniform installation package for all customers. A mech
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 104%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 93%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
