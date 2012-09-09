@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-08-10T23:40:02+08:00</updated>
+  <updated>2012-09-09T21:22:45+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[广州跑步路线: 麓湖]]></title>
+    <link href="http://aleung.github.com/blog/2012/09/09/running-route-luhu/"/>
+    <updated>2012-09-09T21:13:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/09/09/running-route-luhu</id>
+    <content type="html"><![CDATA[<p><img src="http://aleung.github.com/blog/attachments/2012/9/luhu_sat.jpg" alt="" /></p>
+
+<p>麓湖的跑步路线是环绕着湖一周的路。路面包括木栈道、柏油车道、砖铺人行道，麓湖路属于绿道系统的部分有木栈道，其余环湖路线的人行道很窄，可以跑到车道边上，但有来车时需要注意安全。</p>
+
+<p>麓湖是广州为数不多的大湖泊，比一般公园的湖要大很多，周边都是山头绿地，环境和景色都不错。可惜环湖的车道虽然不是主干道，但来往车辆还是不少，汽车尾气导致空气还是一般。</p>
+
+<p>虽然周边环境偏僻些，但白天游人不少，路上也不时会见到跑友，安全不成问题。我没有晚上去跑过，估计会比较僻静，安全上需要小心。附近麓景路、麓湖路都有公交车站。</p>
+
+<p>环湖一圈约3.5km，总上升59m，基本上没什么起伏。</p>
+
+<p><img src="http://aleung.github.com/blog/attachments/2012/9/luhu_elevation.jpg" alt="" /></p>
+
+<p>总体来说是不错的跑步路线，推荐。</p>
+
+<p><img src="http://aleung.github.com/blog/attachments/2012/9/luhu_map.jpg" alt="" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[广州跑步路线：索引]]></title>
+    <link href="http://aleung.github.com/blog/2012/09/09/running-route/"/>
+    <updated>2012-09-09T21:09:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/09/09/running-route</id>
+    <content type="html"><![CDATA[<p>这一系列博文记录我曾经跑过的路线。</p>
+
+<ul>
+  <li><a href="2012/09/09/running-route-luhu/">麓湖</a></li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Understanding WebLogic WorkManager]]></title>
@@ -101,13 +138,13 @@
 
 <p><img src="http://aleung.github.com/blog/attachments/2012/7/api.png" alt="" /></p>
 
-<p>ApiGee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
+<p>Apigee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
 
 <p><img src="http://aleung.github.com/blog/attachments/2012/7/api_with_apigee.png" alt="" /></p>
 
 <h2 id="console-to-go">Console To-Go</h2>
 
-<p>Apigee Enterprise features are not available to free subscriber of ApiGee, excepts the console that let developer learn an API by playing with it. ApiGee opens this service to free subscriber as Console To-Go.</p>
+<p>Apigee Enterprise features are not available to free subscriber of Apigee, excepts the console that let developer learn an API by playing with it. Apigee opens this service to free subscriber as Console To-Go.</p>
 
 <p>I try to create my own Console To-Go:</p>
 
@@ -790,260 +827,6 @@ stay foolish.</p>
 <p>虽然名字叫做Lunar Run，比赛是在早上9点进行的。前半程自己感觉状态并不好，步频提不到每分钟170～180步的目标，还不如平常晚上训练的感觉好。也许是早上活动不开，应该热身多一些才行。但跟两年前比较，整个过程跑下来轻松很多，09年那次到最后2公里有点拖着腿熬下来的感觉，最后看着终点在前面都完全没有办法加速了。因为怕最后会跑不动，这次一路上都有点留力，跑到最后一两公里时感觉有余力，还想最后500米可以加速冲一下的，结果一个不留神发现终点已经到了。</p>
 
 <p>成绩提高首先是因为平常的训练增加了，最近一个多月基本保持每周跑两到三次。最重要的因素应该是提高步频的训练，以前习惯低步频大步幅，特别是跑到累的时候脚步沉了更是想靠增大步幅来弥补，最近知道这样不对后才有意识的提高步频，特别是前两个星期做了个Android应用来测量步频，按照180的目标来训练，速度明显提升，膝盖也基本不会怎么痛。我现在还是没办法达到180的步频，一般只能在160～170左右，但已经比以前好不少了。现在跑步的时候基本上就是默念着一件事情：保持步频。只要步频不降下去，速度就不会太慢，也能够压抑着增大步幅的欲望。另外还有些技巧性的因素：上次排在比较后的位置起跑，跑道上人太拥挤了，只能用比走路快不了太多的速度挪动，这次有经验就尽量往起跑区的前面靠，本来在第二区的，后来跟着人穿进了第一区，排在第一区的较前位置起跑，起跑跑出一两百米后就不会受人阻挡了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dump beans information from live Spring application context]]></title>
-    <link href="http://aleung.github.com/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context/"/>
-    <updated>2011-11-08T18:42:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context</id>
-    <content type="html"><![CDATA[<p>To maintain the Spring application context in a large application is not an easy job. There may be dozens of beans, whenever you want to make changes, you have to be very clear on there dependency. After serveral rounds of update, some beans might be orphan, they’re unused any more but you don’t know.</p>
-
-<p>Spring IDE provides bean cross reference view and bean graph view that can help to analysis the bean relationship. But what Spring IDE has is a static view of the beans. In our project the application context is complicated: it scans classpath for all bean definition XML files and load them; application context created in WAR package inherits parent application context which is defines in EJB classpath; some beans are marked with annotation and loaded by <context:component-scan>, rather than define in XML file. I doubt Spring IDE can show the dynamic bean view as it is in runtime. What&#8217;s more, Spring IDE isn&#8217;t available at our standard development environment.</context:component-scan></p>
-
-<p>Inspired by a StackOverflow <a href="http://stackoverflow.com/questions/5850639/how-to-keep-track-of-all-the-autowired-stuff-while-using-spring-ioc/5851872#5851872">answer</a>, I created an ApplicationContextDumper. Add it into application context, it will dump all beans and their dependencies in the current context and parent contexts (if any) into log file when the application context initialization finishes. It also lists the beans which aren’t referenced.</p>
-
-<div><script src="https://gist.github.com/1347171.js?file=ApplicationContextDumper.java"></script>
-<noscript><pre><code>package leoliang.springtest;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.support.AbstractRefreshableApplicationContext;
-
-public class ApplicationContextDumper implements ApplicationContextAware {
-
-    private Map&lt;String, Integer&gt; beanReferenceCounter = new HashMap&lt;String, Integer&gt;();
-    private StringBuilder outputMessage;
-
-    @Override
-    public void setApplicationContext(ApplicationContext context) throws BeansException {
-        outputMessage = new StringBuilder();
-        beanReferenceCounter.clear();
-        outputMessage.append(&quot;--- ApplicationContextDumper begin ---\n&quot;);
-        dumpApplicationContext(context);
-        dumpBeansWithoutReference();
-        outputMessage.append(&quot;--- ApplicationContextDumper end ---\n&quot;);
-        System.out.print(outputMessage);
-    }
-
-    private void dumpBeansWithoutReference() {
-        outputMessage.append(&quot;Beans without reference:\n&quot;);
-        for (String bean : beanReferenceCounter.keySet()) {
-            if (beanReferenceCounter.get(bean) == 0) {
-                outputMessage.append(&quot;  &quot;).append(bean).append('\n');
-            }
-        }
-    }
-
-    private void initBeanReferenceIfNotExist(String beanName) {
-        Integer count = beanReferenceCounter.get(beanName);
-        if (count == null) {
-            beanReferenceCounter.put(beanName, 0);
-        }
-    }
-
-    private void increaseBeanReference(String beanName) {
-        Integer count = beanReferenceCounter.get(beanName);
-        if (count == null) {
-            count = new Integer(0);
-        }
-        beanReferenceCounter.put(beanName, ++count);
-    }
-
-    private void dumpApplicationContext(ApplicationContext context) {
-        // Read context id isn't available. https://jira.springsource.org/browse/SPR-8816
-        String appContextInfo = String.format(&quot;ApplicationContext %s : %s&quot;, context.getId(), context.getClass()
-                .getName());
-        ApplicationContext parent = context.getParent();
-        if (parent != null) {
-            appContextInfo += String.format(&quot; -&gt; %s&quot;, parent.getId());
-        }
-        outputMessage.append(appContextInfo).append('\n');
-
-        ConfigurableListableBeanFactory factory = ((AbstractRefreshableApplicationContext) context).getBeanFactory();
-        for (String beanName : factory.getBeanDefinitionNames()) {
-            if (factory.getBeanDefinition(beanName).isAbstract()) {
-                continue;
-            }
-            initBeanReferenceIfNotExist(beanName);
-            Object bean = factory.getBean(beanName);
-            outputMessage.append(String.format(&quot;  %s : %s\n&quot;, beanName, bean.getClass().getName()));
-            for (String dependency : factory.getDependenciesForBean(beanName)) {
-                outputMessage.append(String.format(&quot;    -&gt; %s\n&quot;, dependency));
-                increaseBeanReference(dependency);
-            }
-        }
-
-        if (parent != null) {
-            outputMessage.append(&quot;Parent:\n&quot;);
-            dumpApplicationContext(parent);
-        }
-    }
-
-}</code></pre></noscript></div>
-
-<p>Here is an example. We have two application contexts. Please be noticed that the ApplicationContextDumper has been added into applicationContext.xml.</p>
-
-<div><script src="https://gist.github.com/1347171.js?file=applicationContext.xml"></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xsi:schemaLocation=&quot;
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;
-    default-lazy-init=&quot;false&quot; default-autowire=&quot;byName&quot;&gt;
-
-    &lt;!-- Enable @Autowired --&gt;
-    &lt;context:annotation-config/&gt;
-    
-    &lt;!-- Load all beans with @Repository --&gt;
-    &lt;context:component-scan base-package=&quot;leoliang.springtest&quot;/&gt;
-
-    &lt;bean id=&quot;aNormalBean&quot; class=&quot;leoliang.springtest.NormalBean&quot;&gt;
-        &lt;property name=&quot;anotherBean&quot; ref=&quot;anotherBean&quot;/&gt;
-    &lt;/bean&gt;
-
-    &lt;bean class=&quot;leoliang.springtest.ApplicationContextDumper&quot; /&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-
-<div><script src="https://gist.github.com/1347171.js?file=parentContext.xml"></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
-    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
-    &lt;bean id=&quot;abstractBean&quot;  abstract=&quot;true&quot; /&gt;
-    &lt;bean id=&quot;anotherBean&quot; class=&quot;leoliang.springtest.AnotherBean&quot; parent=&quot;abstractBean&quot; /&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-
-<p>parentBeanFactory is the parent of myBeanFactory:</p>
-
-<div><script src="https://gist.github.com/1347171.js?file=beanRefContext.xml"></script>
-<noscript><pre><code>&lt;beans&gt;
-    &lt;bean id=&quot;parentBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
-        &lt;constructor-arg&gt;
-            &lt;list&gt;
-                &lt;value&gt;classpath:**/parentContext.xml&lt;/value&gt;
-            &lt;/list&gt;
-        &lt;/constructor-arg&gt;
-    &lt;/bean&gt;
-    &lt;bean id=&quot;myBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
-        &lt;constructor-arg&gt;
-            &lt;list&gt;
-                &lt;value&gt;classpath:**/applicationContext.xml&lt;/value&gt;
-            &lt;/list&gt;
-        &lt;/constructor-arg&gt;
-        &lt;constructor-arg&gt;
-            &lt;ref bean=&quot;parentBeanFactory&quot; /&gt;
-        &lt;/constructor-arg&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-
-<p>In main, loads application context from beanRefContext.xml. </p>
-
-<div><script src="https://gist.github.com/1347171.js?file=main.java"></script>
-<noscript><pre><code>    public static void main(String[] args) {
-        String[] paths = { &quot;classpath:**/beanRefContext.xml&quot; };
-        new ClassPathXmlApplicationContext(paths);
-    }
-</code></pre></noscript></div>
-
-<p>The application context is dumped in log:</p>
-
-<div><script src="https://gist.github.com/1347171.js?file=output"></script>
-<noscript><pre><code>--- ApplicationContextDumper begin ---
-ApplicationContext org.springframework.context.support.ClassPathXmlApplicationContext@e1d5ea : org.springframework.context.support.ClassPathXmlApplicationContext -&gt; parentBeanFactory
-  org.springframework.context.annotation.internalConfigurationAnnotationProcessor : org.springframework.context.annotation.ConfigurationClassPostProcessor
-  org.springframework.context.annotation.internalAutowiredAnnotationProcessor : org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
-  org.springframework.context.annotation.internalRequiredAnnotationProcessor : org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
-  org.springframework.context.annotation.internalCommonAnnotationProcessor : org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
-  repositoryBean : leoliang.springtest.RepositoryBean
-    -&gt; aNormalBean
-  aNormalBean : leoliang.springtest.NormalBean
-    -&gt; anotherBean
-  leoliang.springtest.ApplicationContextDumper#0 : leoliang.springtest.ApplicationContextDumper
-Parent:
-ApplicationContext parentBeanFactory : org.springframework.context.support.ClassPathXmlApplicationContext
-  anotherBean : leoliang.springtest.AnotherBean
-Beans without reference:
-  repositoryBean
-  org.springframework.context.annotation.internalAutowiredAnnotationProcessor
-  org.springframework.context.annotation.internalCommonAnnotationProcessor
-  org.springframework.context.annotation.internalConfigurationAnnotationProcessor
-  org.springframework.context.annotation.internalRequiredAnnotationProcessor
-  leoliang.springtest.ApplicationContextDumper#0
---- ApplicationContextDumper end ---</code></pre></noscript></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RAW照片后期处理的常用操作]]></title>
-    <link href="http://aleung.github.com/blog/2011/09/27/RAW-/"/>
-    <updated>2011-09-27T22:33:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/09/27/RAW-</id>
-    <content type="html"><![CDATA[<p>这里讲的是 Apple Aperture 3 的操作，但其他RAW处理软件（如Photoshop Lightroom）的功能和效果也都类似，可以参考。</p>
-
-<h2 id="exposure">Exposure</h2>
-
-<h3 id="exposure-1">Exposure</h3>
-
-<p>黑位固定，直方图右侧拉伸。相当于相机的曝光量调整。</p>
-
-<p><img src="https://lh6.googleusercontent.com/-fnAGXvmnFJE/ToHQKWlruvI/AAAAAAAAAZ0/O4pdxnS64yY/s800/exposure-1.jpg" alt="" />》<img src="https://lh5.googleusercontent.com/-FP6Vg1nAOWI/ToHQKRFOhtI/AAAAAAAAAZ4/0lESY5sW318/s800/exposure-2.jpg" alt="" /></p>
-
-<h3 id="recovery">Recovery</h3>
-
-<p>利用RAW记录的额外信息恢复高光溢出部分。</p>
-
-<h3 id="black-point">Black Point</h3>
-
-<p>利用RAW记录的额外信息恢复丢失的暗部细节。</p>
-
-<h3 id="brightness">Brightness</h3>
-
-<p>黑位与白位均固定，直方图中间色调左右移动。用于调整图像的整体明暗。与level工具的亮度调节功能类似，但level工具中若只拖动一个锚点时对直方图的影响更加局部，只改变特定色调范围。</p>
-
-<p><img src="https://lh5.googleusercontent.com/-mKyUGov3PCc/ToHQJ9LMS-I/AAAAAAAAAZs/Z7XqqxDgQJk/s800/brightness-1.jpg" alt="" />》<img src="https://lh4.googleusercontent.com/-MWAZLV47es8/ToHQKHGqVNI/AAAAAAAAAZw/B4GjHYLSF_A/s800/brightness-2.jpg" alt="" /></p>
-
-<h2 id="enhance">Enhance</h2>
-
-<h3 id="contrast">Contrast</h3>
-
-<p>中灰不变，直方图向两侧拉伸。（不建议使用，用level工具控制更准确）</p>
-
-<p><img src="https://lh6.googleusercontent.com/-lZY-AgmwRcU/ToHQJ3eBQMI/AAAAAAAAAZo/1lTWE0LHHoA/s800/contrast.jpg" alt="" /></p>
-
-<h3 id="definition">Definition</h3>
-
-<p>增强图像局部的对比度，但不影响整体图像的对比度，直方图无整体性变化。可提高图像明暗交界的细节，例如让云朵更加立体。</p>
-
-<h3 id="saturation">Saturation</h3>
-
-<p>让RGB三原色的直方图趋于重合或者更加离散。用于减弱色彩或者增强色彩(变鲜艳)。饱和度增加时图像细节会丢失。</p>
-
-<p><img src="https://lh6.googleusercontent.com/-EKHur68d4-A/ToHQKvYuHQI/AAAAAAAAAZ8/LRPgisNijDM/s800/saturation-1.jpg" alt="" />》<img src="https://lh3.googleusercontent.com/-NGeEU2MWZwg/ToHQLOXNoBI/AAAAAAAAAaE/hwsr11w3eS0/s800/saturation-2.jpg" alt="" /></p>
-
-<h3 id="vibrancy">Vibrancy</h3>
-
-<p>与saturation类似，但不影响肤色。用于人像照片中的色彩调整，但保持肤色不变。</p>
-
-<h2 id="highlights--shadows">Highlights &amp; Shadows</h2>
-
-<p>降低高光部分亮度，但不影响中间调和暗部；提高暗部亮度，但不影响中间调和亮部。直方图上的效果是高光部分和/或暗部扩展，移向中间调位置，但实际处理并非单纯的直方图映射，运算时会考虑到周边像素的色调的影响。用于对图像中过亮或者过暗的部分进行补偿，增加色调变化细节。</p>
-
-<h2 id="levels">Levels</h2>
-
-<p>将直方图进行映射变换，下横轴是输入，上横轴是输出。Aperture的levels工具可以调节四分之一色调的映射，可以完成部分本来需要使用曲线工具的调节。</p>
-
-<p>Levels调整是在上面几种调整的基础之上进行的，可能会抵消了前面所做的调整的效果。若非必要不应该将它与前面提到的工具混合使用。</p>
-
-<p><img src="https://lh3.googleusercontent.com/-Af7kvdJq3pU/ToHQKit_TwI/AAAAAAAAAaA/1x5cdJ1hZrE/s800/level-1.jpg" alt="" />》<img src="https://lh3.googleusercontent.com/-f0jePRCWRAI/ToHQQCnp4qI/AAAAAAAAAaI/qW_bMiOvGZw/s800/level-2.jpg" alt="" /></p>
 ]]></content>
   </entry>
   

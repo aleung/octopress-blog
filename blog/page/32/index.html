@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="不要以为我说的是流行的杀人游戏，虽然也有人将这个游戏搬到网上来玩。我下面要贴出来的是一部小说，原名是F2F(face to face)，可能是译者觉得“网络上的杀人游戏”这个直白的名字更加让人容易了解小说的内容。 我读到这小说的中文翻译是在1997年春节，是清华大学的一个同学给我的。（ &hellip;">
+  <meta name="description" content="ACE(The ADAPTIVE Communication Environment)是一套功能非常丰富的open source C++ library/framework，虽然目前已经有相关的一些书籍和在线文档，但要全面的掌握它依然不是一件容易的事情。 花了几天时间，将ACE的主要功能整理了一下 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,120 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/12/03/ACE-concept-map/">ACE Concept Map</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-03T02:16:00+08:00" pubdate data-updated="true">2005-12-03</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ACE(The ADAPTIVE Communication Environment)是一套功能非常丰富的open source C++ library/framework，虽然目前已经有相关的一些书籍和在线文档，但要全面的掌握它依然不是一件容易的事情。</p>
+
+<p>花了几天时间，将ACE的主要功能整理了一下，用 mind map 归纳出来，这有助于了解ACE提供些什么功能，也可以用作速查参考，查找要实现某项功能时应该用ACE的什么类。</p>
+
+<p>下图未将节点完全展开，请下载: <a href="http://aleung.blogbus.com/files/1133518564.rar">ACE.mm</a> (使用<a href="http://freemind.sourceforge.net">FreeMind</a>打开)  </p>
+
+<p><a href="http://www.flickr.com/photos/aleung/69324015/"><img src="http://static.flickr.com/35/69324015_6c168b2ec2.jpg" alt="ACE concept map" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2005/12/03/ACE-concept-map/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/12/02/C-/">C++中生成格式化字符串方法的性能比较</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-02T22:28:00+08:00" pubdate data-updated="true">2005-12-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在C++中进行格式化字符串的生成，通常有两种方法。一种是C风格的，使用sprintf生成格式化字符串，用str系列字符串函数进行字符串（实际是内存buffer）的拼接、拷贝等操作。另外一种是C++风格的，用string stream类通过流操作来生成格式化的字符串。</p>
+
+<p>在使用上，两种方法各有长短，在这里不作分析。我发现的问题是string stream的效率相对C的方法效率比较低。</p>
+
+<p>编写了两个程序做对比测试，都是模拟写日志文件的操作，往文件里面写入特定数量的文字信息，每行包括了字符串、整数，分别使用两种方法生成同样的内容。为了避免代码其余部分造成的影响，使用rational quantify采集运行的时间信息，只比较生成格式化字符串部分的代码运行所占用的时间。做了多次测试，结果都表明，C++风格方法的耗时是C风格方法的3倍。</p>
+
+<p>结论是string stream的效率相对sprintf要低，实现同样的功能耗时大概是3倍左右。其实STL慢是很正常的，毕竟复杂很多，只是没想到慢这么多。其实大多数应用中，这也不算什么问题，毕竟现在的处理器能力这么强，只有在对性能要求极端严格的场合才需要把这因素考虑进去。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2005/12/02/C-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -636,211 +750,6 @@ in kernel.c and condvar.c) </p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/11/05/Collection-and-hiding-disc/">藏书与藏碟</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-05T01:32:00+08:00" pubdate data-updated="true">2005-11-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>, <a class='tag' href='/blog/tags/web/'>Web</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>书买了不少，放在办公室的书柜里老是被人家拿走就失踪了，时间长了自己都忘记自己有哪些书了。本来想找过软件来记录藏书资料的，却找着了一个网站 <a href="http://www.listal.com/">www.listal.com</a> ,在线管理自己的book/music/dvd。而且它能够根据ISBN号自动从 <a href="http://amazon.com/">amazon.com</a> 获取书籍的信息。</p>
-
-<p>我的页面是 <a href="http://aleung.listal.com/">aleung.listal.com</a> ，上面列出的都是英文版的书，其实我英文没有这么厉害，大部分都是中译版，不过为了能够自动取得书籍信息，我都登记了原版书的编号。有空试试把DVD也记录上去。</p>
-
-<p>另外有个个人书籍管理软件<a href="http://songstech.com/elibpro.html">eLibPro</a>，也可以从amazon拿到书籍信息。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/11/05/Collection-and-hiding-disc/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/11/03/Everyone-to-blog/">大家都来blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-03T21:59:00+08:00" pubdate data-updated="true">2005-11-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/funny/'>Funny</a>, <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Blog这个东西还真挺厉害，原本以为只是给那些网络知识分子闹的，还有就是广大网民百姓自娱自乐，现在可连各类名人都纷纷“博”起来了。文化界的人老早就在网上非常活跃，只是我平常上网只看技术方面的东西，不知道而已。</p>
-
-<p>今天无意中还看到了何勇的blog（<a href="http://www.blogcn.com/user42/qilinriji/index.html">麒麟日记</a>），还不知道是真是假，从一些文章看来应该是真的吧。记得早两年还看到什么传闻说何勇已经得了精神病:( 看来网络就是好，起码能让人知道他没有进精神病院。</p>
-
-<p><a href="http://lydon.yculblog.com/">按摩乳</a>的blog有意思，他的友情链接更有意思，都是国家级男女流氓啦，限制级男女文青啦之类的。下面是从他的blog中copy过来的，我觉得很搞笑。</p>
-
-<p><strong>五分钟电视剧：《余秋雨开博客》</strong>   </p>
-
-<blockquote>
-  <p>[新浪网办公室] <br />
-<strong>公关小姐</strong>：请问您是余秋雨老师吗？ <br />
-[正在枉凝着眉头做文化苦旅状的余秋雨突然听到了一个曼妙的甜甜的声音，赶紧把拧成中国结般的眉头舒展成了额头的两道弧线] <br />
-<strong>余秋雨</strong>：：我似余秋雨，请问您是哪位？ <br />
-<strong>公关小姐</strong>：：我是新浪网公关部的，我叫博一客。 <br />
-<strong>余秋雨</strong>：：您找我有事么？ <br />
-<strong>公关小姐</strong>：：对不起，余老师，打扰您了，想占用您点时间。 <br />
-<strong>余秋雨</strong>：：没关系，你说。 <br />
-<strong>公关小姐</strong>：：是这样，我们新浪网开了博客空间，想请您到我们这里开一个博客，您看您在社会上有这么大的影响，写了那么多有理、有力、有节的文字，连三陪小姐都看您的书，说明您的文字成了这个时代的文本。 <br />
-<strong>余秋雨</strong>：：对不起，我没听清楚，你刚才说的是什么？博客？跟嫖客有什么关系？ <br />
-<strong>公关小姐</strong>：：哦，您可能不知道吧，那我就再给您介绍一下，博客就是…… <br />
-[公关小姐坐地日行八万里般地一通介绍，把博客的来龙去脉，上下五千年介绍一遍，电话那头的余秋雨听得一头雾水，但是他舍不得这么好听的声音，否则他会立刻挂掉电话。] <br />
-<strong>余秋雨</strong>：：我不明白，我写的日记干嘛要让别人看？这样他们又要拷问我的灵魂了。 <br />
-<strong>公关小姐</strong>：：余老师，您误会了，其实不一定是您写的日记，您平时写的那些脍炙人口的文章都可以贴在上面，让大家欣赏不是一件很好的事情吗。只是博客这种网络日志，非常随意，想写什么就写什么，比如您今天去买菜看到了什么，您去大学作报告的感受，您看报的时候对一些新闻事件的产生的看法，都可以写到博客上。 <br />
-<strong>余秋雨</strong>：：这么说我明白了，就是什么都可以写在上面，那我可以骂那些攻击我的人么？ <br />
-<strong>公关小姐</strong>：：当然可以。 <br />
-<strong>余秋雨</strong>：：可是我平时很忙，没有时间啊。 <br />
-<strong>公关小姐</strong>：：我知道您忙。您看，余华老师都在我们这里开博客了，他平时也很忙，但是他说，再忙也要在新浪开一个博客，因为我喜欢这种网络日志形式，对我来说是一种新的体验。您看，你们都性欲，不对，都姓余，凭什么他都开博客了，您就不能开呢？ <br />
-[这招的确管用，我平时采访的时候就惯用这种伎俩，如果遇到不想接受采访的人，就来这招，保管管用。您看罗大佑、刘欢、崔健、李宗盛都谈了自己的看法，您要是不谈谈的话，好像少点分量。要知道，名人的虚荣心都很强，虚荣到虚怀若谷的境界了，你要是这么一说，他立马就上钩] <br />
-<strong>余秋雨</strong>：：嗯，网络是一种很新颖的形式，我觉得网络带给我很大方便，我经常上网，但是对博客这东西我的确比较陌生。 <br />
-<strong>公关小姐</strong>：：没关系，您不明白的事情我会帮助您，只要您登记注册就行了。 <br />
-<strong>余秋雨</strong>：：登记？我几年前已经跟我太太登记了，再登记就是重婚了。 <br />
-<strong>公关小姐</strong>：：余老师，您理解错了，我说的登记啊，就是在网络上注册一个您的名字，这样就可以让人识别您了。不然的话，人家会以为您是余杰呢。 <br />
-<strong>余秋雨</strong>：：你说什么？余杰？如果他在新浪上开博客，我坚决不开。 <br />
-<strong>公关小姐</strong>：：余老师，您放心，我们不会请余杰开博客的，因为他的文字里面敏感词太多了，就算是在我们那里开博客，根本贴不上去，会把他气死的。 <br />
-<strong>余秋雨</strong>：：那你们还是让他开一个吧。 <br />
-<strong>公关小姐</strong>：：那您开不开呢？ <br />
-<strong>余秋雨</strong>：：开!为了气死余杰，我也开。 <br />
-<strong>公关小姐</strong>：：那您的博客叫什么名字呢？ <br />
-<strong>余秋雨</strong>：：就叫“文化甜饼”怎么样？ <br />
-<strong>公关小姐</strong>：：太好了，您不愧是一个学者，给博客起名字都那么高雅、那么有文化，不像有些人，给博客起名字叫什么“按摩乳”，多下流啊。人啊，就是这样，多读一本书，境界就不一样啊。 <br />
-<strong>余秋雨</strong>：：那我写的东西你们怎么付我稿酬呢？ <br />
-<strong>公关小姐</strong>：：是这样，您开了博客，会给您带来更大的影响，会有很多媒体关注的，您的文章会转遍大江南北的媒体，到时候，您就多往邮局跑吧。 <br />
-<strong>余秋雨</strong>：这我还没想到。那好，我决定开博客了。 <br />
-[于是，在半推半就之间，余秋雨的博客像羞答答的玫瑰静悄悄地开一样出现在第二天的新浪新闻首页上：余秋雨博客] <br />
-<strong>余秋雨唱</strong>：就这样被你征服，喝下你藏好的毒，我的心情是坚固，我的决定是糊涂…… <br />
-<strong>公关小姐唱</strong>：就在半推半就之间，我们越过时空相见，每一分钟换成一年哦，究竟能有多少缠绵，就在半推半就之间，我们忘了还有明天，忘了保留一点时间哦，好让这种感觉永远，迷迷糊糊睁开双眼，醒来你已了无踪影，再回到梦里，梦已不相连哦……讨厌，似梦似真，转眼改变梦已不相连…… <br />
-<strong>那些没有被新浪搞定的名流唱</strong>：大错特错不要来侮辱我的美，我不是你的style为何天天缠著我，大错不要来侮辱我的美，但要是你喜欢我就快点大声说出来。 <br />
-<strong>公关小姐唱</strong>：：多想说声我真的爱你，多想说声对不起你，你哭着说情缘已尽，难再续，难再续。就请你给我多一点点时间，再多一点点问候，不要一切都带走，就请你给我多一点点空间，再多一点点温柔，不要让我如此难受。你这样一个名人，让我欢喜让我忧，让我甘心为了新浪的博客，付出我所有。 <br />
-<strong>开博客的众名人合唱</strong>：我们的博客它就要开，往哪儿开？往新浪里开。我们的博客它就要开，往哪开？往垃圾堆里开…… <br />
-<strong>新浪全体员工合唱</strong>：我必须学会新的卖弄呀，这样你才能继续地喜欢呢。因为网络是个天生的哑巴，它必须想出别的办法说话……   </p>
-
-  <p><strong>新浪全体员工再合唱</strong>：：心会跟爱一起走，说好就一宿。 <br />
-<strong>开博客的众名人合唱</strong>：：“那就来一宿吧。” <br />
-（剧终）   </p>
-
-  <p>出字幕   </p>
-
-  <p><strong>演职人员表</strong> <br />
-公关小姐——林志玲饰 <br />
-余秋雨——余杰饰 <br />
-汪延——陈彤饰 <br />
-陈彤——汪延饰 <br />
-萨达姆——侯赛因饰 <br />
-妓院老鸨——老六（反串） <br />
-新浪中层主管甲——南袁蕾 <br />
-新浪中层主管乙——北孟静   </p>
-
-  <p><strong>鸣谢以下艺人提供歌曲：</strong> <br />
-那英：《征服》 <br />
-谭咏麟：《半梦半醒之间》 <br />
-中国娃娃：《大错特错》 <br />
-周华健：《让我欢喜让我忧》 <br />
-二手玫瑰：《火车快开》、《伎俩》 <br />
-郭峰、陈洁仪：《心会跟爱一起走》   </p>
-
-  <p>编剧：带三个表 <br />
-艺术指导：大仙 <br />
-摄像：土摩托 <br />
-录音合成：共同提高 <br />
-音乐监制：流氓洪启 <br />
-短信平台宣传：小强 <br />
-海外推广：安替 <br />
-灯光：平客的脑袋 <br />
-场记：小精子 <br />
-字幕：新浪嘉宾聊天特约打字员 <br />
-英文字幕：飞猪 <br />
-制片人：老颓 <br />
-导演：老六&amp;HuHu工作室   </p>
-
-  <p>中央新闻纪录电影制片厂 <br />
-新浪网 <br />
-中央电视台 <br />
-金五星家具城 <br />
-火鸟色拉油   </p>
-
-  <p>联合摄制 <br />
-2005.10.29   </p>
-
-  <p>（步步低DVD温馨提示：碟片已播放完毕，请退碟。）</p>
-</blockquote>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/11/03/Everyone-to-blog/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/33/">&larr; Older</a>
@@ -862,6 +771,14 @@ in kernel.c and condvar.c) </p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/running-route/">广州跑步路线：索引</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
       </li>
     
@@ -871,14 +788,6 @@ in kernel.c and condvar.c) </p>
     
       <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
   </ul>
@@ -915,7 +824,7 @@ in kernel.c and condvar.c) </p>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 116%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

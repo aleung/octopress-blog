@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Web | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/web/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-08-10T23:40:02+08:00</updated>
+  <updated>2012-09-09T21:22:45+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -30,13 +30,13 @@
 
 <p><img src="/attachments/2012/7/api.png" alt="" /></p>
 
-<p>ApiGee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
+<p>Apigee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
 
 <p><img src="/attachments/2012/7/api_with_apigee.png" alt="" /></p>
 
 <h2 id="console-to-go">Console To-Go</h2>
 
-<p>Apigee Enterprise features are not available to free subscriber of ApiGee, excepts the console that let developer learn an API by playing with it. ApiGee opens this service to free subscriber as Console To-Go.</p>
+<p>Apigee Enterprise features are not available to free subscriber of Apigee, excepts the console that let developer learn an API by playing with it. Apigee opens this service to free subscriber as Console To-Go.</p>
 
 <p>I try to create my own Console To-Go:</p>
 

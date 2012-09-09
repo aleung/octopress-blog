@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="挺实用的一个东西，用来运点东西挺方便。但不知道在国内会不会被警察叔叔抓？ ">
+  <meta name="description" content="下载的mp3越来越多之后，总想怎样才能将喜欢的与不太喜欢的区分出来呢。渐渐的有一个想法，就是在播放的时候统计自己的喜好。基本思路其实跟以前想过的”什么时候电视机可以变得聪明一些”差不多。 下面就设想一下这个音乐播放器应该是怎样的：如果觉得一首歌不好听/不想听，就跳过它放下一首。如果觉得特别喜欢， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,217 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/08/23/I-Love-Audio-Player/">‘I Love’ Audio Player</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2006-08-23T15:06:00+08:00" pubdate data-updated="true">2006-08-23</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>下载的mp3越来越多之后，总想怎样才能将喜欢的与不太喜欢的区分出来呢。渐渐的有一个想法，就是在播放的时候统计自己的喜好。基本思路其实跟以前想过的”什么时候电视机可以变得聪明一些”差不多。</p>
+
+<p>下面就设想一下这个音乐播放器应该是怎样的：如果觉得一首歌不好听/不想听，就跳过它放下一首。如果觉得特别喜欢，可以投一票。根据用户的动作，可以统计出对歌曲的喜爱程度。歌曲全都是随机播放，越是喜欢的歌曲播放出来的机会会越大，但是其它歌曲也会偶然播放出来，不会永远埋没起来。原本喜欢的听多了后也许会有点腻，没关系，不想听就跳过好了，播放器会不断”学习”你的喜好。只要曲库里有足够多的歌曲，总能保证听到的大部分都是喜欢的歌曲。</p>
+
+<p>假设要开发这样一个软件，就叫它”I love”吧，将它的功能用user story描述出来，应该有这些（还可能增加好多）：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>description</th>
+      <th>priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>播放MP3</td>
+      <td>能够播放mp3格式的音频文件</td>
+      <td>最高</td>
+    </tr>
+    <tr>
+      <td>播放WMV</td>
+      <td>能够播放wmv格式的音频文件</td>
+      <td>最低</td>
+    </tr>
+    <tr>
+      <td>Copy profile</td>
+      <td>将现有的profile copy成一个新的profile</td>
+      <td>低</td>
+    </tr>
+    <tr>
+      <td>Switch profile</td>
+      <td>在软件中可以存在很多个profile，但只能有一个profile生效。所有对喜爱值的操作都是对当前profile进行的。用户选择一个profile，将这个profile设置成为当前active的profile。切换profile时不停止当前歌曲的播放。</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>I like it</td>
+      <td>当歌曲正在播放时，用户按下”I love”按钮，将这首歌的喜爱度增加一个数值，如果同一首歌，用户再次按下，忽略这个操作</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>Don’t like it, next</td>
+      <td>当歌曲正在播放时，用户按下”I don’t like it”按钮，停止播放这首歌，并且将这首歌的喜爱度减少一个数值。然后 随机播放下一首歌</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td>歌曲播放结束</td>
+      <td>如果歌曲播放到结尾，并且在这个过程中用户没有按下过”I like it”按钮，将这首歌的喜爱度增加一个数值。然后 随机播放下一首歌</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td>随机播放一首歌(shuffle)</td>
+      <td>profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个喜爱度的值。从profile中按照喜爱度加权来随机的挑选一首歌来播放，歌曲的喜爱度越高，被选中的概率越大。</td>
+      <td>最高</td>
+    </tr>
+    <tr>
+      <td>暂停/继续</td>
+      <td>当用户按下”暂停/播放”按钮，暂停当前歌曲的播放；再按一次，从上次暂停的地方继续播放。</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>Rename profile</td>
+      <td> </td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>程序启动</td>
+      <td>选择最后一次使用的profile，如果配置为”启动立即播放”，随机播放一首歌</td>
+      <td>低</td>
+    </tr>
+    <tr>
+      <td>显示歌曲信息</td>
+      <td>显示当前播放歌曲的信息，包括歌名、专辑、艺人等</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>off-line media library</td>
+      <td>将off-line媒体库（例如光盘）的曲目也加入profile中，同步的时候按照喜爱度加权的原则随机copy一部分曲目到硬盘中，换掉旧的一些。</td>
+      <td>最低</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>只要把播放mp3、shuffle、don’t like it、播放结束这四个user story实现了，基本就能用了；再将优先级为”中”也实现了，设想的目标就基本都能达到。</p>
+
+<p>整个播放器的界面将会非常简洁：三个按钮：喜欢/不喜欢/暂停或继续，不喜欢（下一首）的按钮应该是最大的；音量控制；正在播放的歌曲显示。切换profile放在菜单里面。这些按钮都必须能够用键盘快捷键控制。</p>
+
+<p>不过，我只是想想而已，真的去写这样一个软件的可能性微乎其微。媒体播放、用户界面这些都是我不熟悉的东西。不知道是不是已经有类似功能的软件？如果有就太好了。</p>
+
+<p>这样的播放器其实更适合用硬件实现，上面这些user story可以完完全全在随身听上实现。不过，软件还有可能自己写，要自己做硬件的门槛就高多了。现在市面的mp3品种多得眼花缭乱，大部分功能都是一个样，有创意的厂商非常少。写下自己的想法后，上网查了一下，发现apple ipod shuffle和sony的walkman A系列有类似的功能，但从介绍来看都没有完全满足我的要求，不知道用起来怎样。在我看来，以下两点是最重要的：</p>
+
+<p>第一是歌曲的喜爱度必须是在播放过程中日积月累的更新，而不是通过什么操作界面来评级。对于用户，只有最简单直接的操作：喜欢，按一下（可别要进什么菜单）；不喜欢，跳下一首。我认为甚至不应该提供任何机会给用户直接更改喜爱度。</p>
+
+<p>第二是需要有profile切换，在不同环境、不同心情下喜欢的音乐是不一样的，有了profile功能就可以独立累计喜爱度。Profile也可以用来区分不同的使用者。</p>
+
+<p>也许过不了多久就会有这样的产品出现了，到时是不是要考虑买一个呢？ :)</p>
+
+<p><strong>Update 2012-7-5:</strong> 这样的产品真的有了，不过不是本地播放器，而是在线播放，就是<a href="http://douban.fm">豆瓣电台</a>。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/08/23/I-Love-Audio-Player/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/08/20/Anger-green-and-the-collapse-of-a-generation/">愤青与垮掉的一代</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-08-20T15:56:00+08:00" pubdate data-updated="true">2006-08-20</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在MSN上见到一个久没联络的中学同学，聊天中她说到我以前是愤青。我非常奇怪，怎么我变成愤青了？她说因为我听摇滚，所以觉得我是愤青。我只好跟她解释，“愤青”这个词在当前的语境中是特指偏激的民族主义分子。如今“愤青”一词含义已经不同于“愤怒青年”了，英文里用的也是专有名词fenqing，只用于chinese。愤青们是否听摇滚我不清楚，但我猜大部分都是不听的。</p>
+
+<p>现在又时兴将80后称为中国的“垮掉的一代”。如果硬要这样套的话，也只好增加一个流行的前缀：有中国特色的。  </p>
+
+<p>近日在读《<a href="http://www.douban.com/subject/1051440/">在路上</a>》，很久没有读过这样的书了，好像回到了大学的年代。摘录豆瓣上的一段<a href="http://www.douban.com/review/1055467/">书评</a>：  </p>
+
+<blockquote>
+  <p>垮掉的那一代人已经老去，但不知道他们的精神是否依然？跟他们的迷惘相比，我们这一代人越来越像一群被圈养的行尸走肉，没有朝气，也没有感动人的生命之光。 <br />
+在我的想像中，那个“伟大的时代”跟那些逝去的人一样，已经远远地离开，再也不会回来了。   </p>
+</blockquote>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/08/20/Anger-green-and-the-collapse-of-a-generation/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -271,110 +482,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/07/14/Or-blogline-works-better/">还是blogline好用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-07-14T08:00:00+08:00" pubdate data-updated="true">2006-07-14</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/web/'>Web</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>试过了好几种RSS阅读器，换来换去都感觉总是差那么一点点不够好用。最终还是用回了<a href="http://www.bloglines.com/">blogline</a>,简单、方便，这就够了。不过前提是网络的速度够快，好像在国内访问的速度不怎么样，也许又得换了。</p>
-
-<p>2009-5-31 Updated: 现在应该改为”还是Google Reader好用” <img src="http://public.blogbus.com/biaoqing/163/11.gif" alt="" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/07/14/Or-blogline-works-better/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/07/14/DIY-/">DIY交流网站</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-07-14T08:00:00+08:00" pubdate data-updated="true">2006-07-14</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/diy/'>DIY</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>喜欢DIY的人不应该错过这个网站，<a href="http://www.instructables.com">instructables</a> ，在这里分享DIY的创意，可以看看人家做了些什么好玩的东西，是怎么做的，也可以将自己的经验发布出来。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/07/14/DIY-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/29/">&larr; Older</a>
@@ -396,6 +503,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/running-route/">广州跑步路线：索引</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
       </li>
     
@@ -405,14 +520,6 @@
     
       <li class="post">
         <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/14/simple-first/">《简约至上》读书笔记</a>
       </li>
     
   </ul>
@@ -449,7 +556,7 @@
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 111%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 116%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
