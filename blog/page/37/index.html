@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Yesterday, I discussed with Alex whether “delete this” in C++ is legal code. In some case, only the object itself knows when its life is to the end &hellip;">
+  <meta name="description" content="MPC - The Makefile, Project and workspace Creator (http://www.ociweb.com/product/mpc/) is comes with ACE, ACE use it to create its makefile. Now it’s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,124 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/02/24/Use-MPC-to-generate-makefile-for-you/">Use MPC to Generate Makefile for You</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-24T04:15:00+08:00" pubdate data-updated="true">2005-02-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MPC - The Makefile, Project and workspace Creator (<a href="http://www.ociweb.com/product/mpc/">http://www.ociweb.com/product/mpc/</a>) is comes with ACE, ACE use it to create its makefile.</p>
+
+<p>Now it’s no need to write makefile anymore, MPC can do it for you.</p>
+
+<ol>
+  <li>Write the workspace file (mwc) and project file (mpc)  </li>
+  <li>Generate makefile <br />
+   $ACE_ROOT/bin/mwc.pl -type make ismap.mwc</li>
+</ol>
+
+<p>Let’s study on an example.</p>
+
+<p>Our ismap_server have 4 sub-projects. Directories ismap, oblc, rtbp each contains a sub project, they will build libraries for later use. The main project builds 3 libraries together and generates the executable file.</p>
+
+<p>The directory structure is like this:</p>
+
+<p>src/{ismap_server files (main project)}<br />
+src/ismap/{ismap_frontend files (sub project)}<br />
+src/oblc/{oblc files (sub project)}<br />
+src/rtbp/{rtbp_backend files (sub project)}</p>
+
+<p>First, write the workspace file <strong>ismap.mwc</strong>. In the workspace block, each line defines a project(mpc file) or directory.</p>
+
+<p>workspace {<br />
+ ismap<br />
+ oblc<br />
+ rtbp<br />
+ ismap_server.mpc<br />
+}</p>
+
+<p>Actually, this mwc file can be omitted. The default behavior of MPC is recursing into directories and adding all mpc files into workspace.</p>
+
+<p>Then write the project files for each project. The ismap, oblc and rtbp projects are the same, they generates a library file. Put a mpc file with content as following in each project directory, named as the project’s name (<strong>ismap.mpc</strong>, <strong>oblc.mpc</strong> and <strong>rtbp.mpc</strong>).</p>
+
+<p>project : aceexe {<br />
+ libout = ../<br />
+}</p>
+
+<p>The mpc file is very simple. The first lines means that the project inherits setting from base project aceexe, which is defined in $ACE_ROOT/bin/MakeProjectCreator/config/aceexe.mpb. The second line defines where to put the output library. I set it to the upper directory so that all 3 libraries are put together. (It seems that static library target won’t be put into the specified directory. )</p>
+
+<p>Project can have tree kinds of output: executable, dynamic library and static library. The output filename is defined by keywork <em>exename</em>, <em>sharedname</em> and <em>staticname</em>. MPC will search the source files to see whether the main function exists. If main exists, set target as executable, library otherwise. If mwc.pl/mpc.pl is called with the <em>-static</em> parameter, generates static library. The default is dynamic library.</p>
+
+<p>I omit the keywork staticname here. The output file name will be the same as the mpc file.</p>
+
+<p>It’s no need to specify any source file name or header file name. MPC will generate a makefile compiling all the sources in the directory.</p>
+
+<p>The main project’s mpc file <strong>ismap_server.mpc</strong> is a bit different than sub project’s. </p>
+
+<p>project : aceexe {<br />
+ exename = ismap_server<br />
+ libs += ismap oblc rtbp<br />
+ libpaths += .<br />
+ after += ismap oblc rtbp<br />
+}</p>
+
+<p>The keyword <em>libs</em> specifies the library(s) to link into the target. “+=” means no overwrite but append. The keyword <em>after</em> specifies the dependance between projects.</p>
+
+<p>From the example, you will find that write mpc file and use MPC to generate makefile is easier than write makefile by hand.</p>
+
+<p>ps. To make project successfully on solaris system, need to set the following directory into PATH environment variable:</p>
+
+<ul>
+  <li>/usr/ccs/bin  (for ar) </li>
+  <li>/usr/openwin/bin  (for makedepend) </li>
+  <li>/usr/local/bin  (for make, gcc)</li>
+</ul>
+
+<p> </p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2005/02/24/Use-MPC-to-generate-makefile-for-you/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -353,61 +471,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/11/Relaxed-and-desktop/">清爽的桌面</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-11T02:37:00+08:00" pubdate data-updated="true">2004-12-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一直以为explorer是与windows结合得很紧密的程序，不可缺少。因为它是windows的shell，桌面、菜单、文件浏览窗口都是由它拥有的，如果explorer没有运行，整个屏幕就是空空如也，什么都控制不了。</p>
-
-<p>没有想到，explorer也是可以替换的，<a href="www.geoshell.com">GeoShell</a>就是这样一个explorer的替代品。而且，它是open source的。安装geoshell替换了explorer之后，屏幕界面清爽了很多，可以替换skin，可以安装plugin，最适合那些疯狂的DIYer了，例如可以把系统装扮成MacOS。据说，geoshell占用内存比起explorer要小，稳定性也很不错。我装起来用了半天，确实占内存比explorer少，不过还要用的时间长一点才能确认。</p>
-
-<p><a href="http://www.flickr.com/photos/aleung/2075928/"><img src="http://photos2.flickr.com/2075928_d0c94036cb.jpg" alt="geoshell" /></a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/11/Relaxed-and-desktop/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/38/">&larr; Older</a>
@@ -429,6 +492,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
@@ -442,10 +509,6 @@
     
       <li class="post">
         <a href="/blog/2012/07/31/apigee/">apigee</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
   </ul>
@@ -482,7 +545,7 @@
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 116%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

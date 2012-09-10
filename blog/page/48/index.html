@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="这些GPS游戏与定向越野有点类似：定向越野是根据地图指南针在最短的时间内到达预先布好的若干个check point；GPS定向是依靠GPS、电子地图到达（尽量靠近）预先设定的点。 GPS定向是相当有趣的活动。它是对参加者的野外行进、找路的能力是一个考验，你知道目标的方位、距离，但是怎么才能到达？ &hellip;">
+  <meta name="description" content="EasyGPS是很好用的GPS数据管理器，能管理waypoint、route资料，它支持的文件格式是文件格式是gpx/loc。我使用过程中感觉它有以下优点： ※ GPS waypoint的名称、说明字段的文字个数有限制，通常只能输入缩写。waypoint多了之后缩写很难理解，管理十分困难。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/">GPS数据管理软件EasyGPS和格式转换工具GPSBabel</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-11-01T01:17:00+08:00" pubdate data-updated="true">2003-11-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>EasyGPS是很好用的GPS数据管理器，能管理waypoint、route资料，它支持的文件格式是文件格式是gpx/loc。我使用过程中感觉它有以下优点：   </p>
+
+<p>※ GPS waypoint的名称、说明字段的文字个数有限制，通常只能输入缩写。waypoint多了之后缩写很难理解，管理十分困难。在EasyGPS中，可以输入额外的信息，如中文说明、类别信息等，利用资料的整理。 <br />
+※ 双击选定一个点作为active point，程序会计算出所有其他点与active point的距离、方位角。如果用距离来排序，就能够快速找出某距离范围以内的waypoint。这是我认为这个软件最好用的功能。 <br />
+※ 软件提供检索功能，能够根据多种条件查找、选定符合条件的waypoint <br />
+※ 可以打印waypoint清单。GPS中保存的waypoint没有详细说明，只要在出发前先打印一张单，名字具体对应的是什么地点就一清二楚了。英文机也不用愁啦。 <br />
+※ 从GPS上传、下载waypoint也是十分方便的   </p>
+
+<p>我以前是用ozi文件分地区存放waypoint的，管理起来非常麻烦，先按大的地区分目录，再按小地区建立文件。而且在GPS多次导入导出，都分不清那些是新增那些是旧，有些还重复了。 <br />
+现在用了EasyGPS不用这么麻烦了，把所有点都放一个gpx文件里面，需要的时候利用搜索很容易就能找到，只要找到一个，按范围排序马上就把附近整个区域的所有点都找出来了，然后另存文件或者直接传到GPS。   </p>
+
+<p>因此强烈推荐大家使用这种格式交换waypoint! :)   </p>
+
+<p>EasyGPS是免费软件，在<a href="http://www.easygps.com/">http://www.easygps.com/</a> 可下载；另外有ExpertGPS，功能更加多些，对route、track的管理更全面，不过是要钱买的。   </p>
+
+<p>另一个推荐的是GPSBabel软件，可以在gpx / ozi / mapsource / mapsend 等几十种文件格式之间转换，除了格式转换之外，还有过滤waypoint的功能，例如可以将重名的、距离很接近的waypoint过滤掉，或者是只输出某个座标范围内的waypoint。 <br />
+这个是命令行工具，但同时也提供了GUI界面，方便使用。（GUI界面只能做格式转换，不能过滤） <br />
+GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">http://gpsbabel.sourceforge.net</a> 可下载。 </p>
+
+<p>这里是ExpertGPS的<a href="http://www.lvye.org/uploadfiles/597018-easygps_introduce.gif">screen shot</a>。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -441,69 +511,6 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/">Invalid XML Character, msxml.dll的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-09-11T22:35:00+08:00" pubdate data-updated="true">2003-09-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Java程序测试中发现parse一个XML文件时出现exception, 错误信息为invalid XML character. 但这个XML文件用XMLSpy检查却没有问题.  </p>
-
-<p>经过查找资料, 发现是XML文件中包含了一些不允许在XML中使用的字符(控制符). XML规范中规定了允许的字符范围(<a href="http://www.w3.org/TR/REC-xml#dt-character">http://www.w3.org/TR/REC-xml#dt-character</a>):  </p>
-
-<pre><code>Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]   
-</code></pre>
-
-<p>包含illegal字符的XML文件不是well-formedness的, 为什么这样的文件能够生成, 并且XMLSpy不报错? 是Microsoft XML parser的问题. 这个XML文件是使用msxml.dll生成的, 估计XMLSpy用的也是msxml.dll, 这个parser的其中一个缺陷是允许某些非常字符的存在. 而Java程序中用的parser估计是sun的crimson, 这个parser严格检查XML character range, 包含非法字符就会报错.   </p>
-
-<p>msxml.dll的问题看来还有不少, 这里专门有谈到: <a href="http://www.xml.com/pub/a/1999/11/parser/index.html?page=2">http://www.xml.com/pub/a/1999/11/parser/index.html?page=2</a>   </p>
-
-<p>为了解决此问题, 需要在生成XML前先对字符串检查, 把非法字符过滤掉. 这里提供了java的过滤函数: <a href="http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html">http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html</a>   </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/49/">&larr; Older</a>
@@ -525,6 +532,10 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
@@ -538,10 +549,6 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
     
       <li class="post">
         <a href="/blog/2012/07/31/apigee/">apigee</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
   </ul>
@@ -578,7 +585,7 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 116%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

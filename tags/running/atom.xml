@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Running | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/running/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-09-09T21:22:45+08:00</updated>
+  <updated>2012-09-10T22:44:48+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[广州跑步路线：二沙岛]]></title>
+    <link href="http://aleung.github.com/blog/2012/09/10/running-route-ersha/"/>
+    <updated>2012-09-10T22:13:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/09/10/running-route-ersha</id>
+    <content type="html"><![CDATA[<p><img src="/attachments/2012/9/ersha_sat.jpg" alt="" /></p>
+
+<p>环岛一周约4.4km，其实只能算环半岛，因为岛西面一大段的沿江堤岸是公众不能进入的。车道大部分是沥青路面，晴澜路段水泥路面，人行道是铺石路面。环岛道路汽车不多，在注意安全的前提下可以靠边跑车道。</p>
+
+<p>虽然算不上有什么景观，但二沙岛上的都是别墅和高级会所，环境幽静，江边视野开阔，跑起来挺舒服。</p>
+
+<p>晚上晴波路音乐厅美术馆一段江边比较热闹点，有游客、玩单车和玩音乐的，其他路段都比较僻静，特别的北面晴澜路段。但每隔一段距离就有保安坐在路旁，毕竟这里是富人区，治安有保障。</p>
+
+<p>岛中央是几个大草坪，上面有橡胶铺设的步道，跑步也不错，但就是拐弯多，断断续续，总长度也不够长。</p>
+
+<p>岛中央大通路/烟雨路有公交车途经。往东过广州大桥可以接着跑珠江新城临江大道，往西沿大通路过桥也可以接着沿江边跑，因此二沙岛可以作为沿珠江跑路线的一段。</p>
+
+<p>总体来说也是可以推荐的跑步路线。</p>
+
+<p><img src="/attachments/2012/9/ersha_map.jpg" alt="" /></p>
+
+<p>其他跑步路线介绍：<a href="/2012/09/09/running-route">广州跑步路线：索引</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[广州跑步路线: 麓湖]]></title>
@@ -26,13 +51,15 @@
 
 <p>虽然周边环境偏僻些，但白天游人不少，路上也不时会见到跑友，安全不成问题。我没有晚上去跑过，估计会比较僻静，安全上需要小心。附近麓景路、麓湖路都有公交车站。</p>
 
-<p>环湖一圈约3.5km，总上升59m，基本上没什么起伏。</p>
+<p>环湖一圈约3.5km，总上升59m，基本上不算多大起伏。</p>
 
 <p><img src="/attachments/2012/9/luhu_elevation.jpg" alt="" /></p>
 
 <p>总体来说是不错的跑步路线，推荐。</p>
 
 <p><img src="/attachments/2012/9/luhu_map.jpg" alt="" /></p>
+
+<p>其他跑步路线介绍：<a href="/2012/09/09/running-route">广州跑步路线：索引</a></p>
 
 ]]></content>
   </entry>
@@ -42,10 +69,11 @@
     <link href="http://aleung.github.com/blog/2012/09/09/running-route/"/>
     <updated>2012-09-09T21:09:00+08:00</updated>
     <id>http://aleung.github.com/blog/2012/09/09/running-route</id>
-    <content type="html"><![CDATA[<p>这一系列博文记录我曾经跑过的路线。</p>
+    <content type="html"><![CDATA[<p>这一系列博文记录我跑过的路线。</p>
 
 <ul>
-  <li><a href="2012/09/09/running-route-luhu/">麓湖</a></li>
+  <li><a href="/2012/09/09/running-route-luhu/">麓湖</a></li>
+  <li><a href="/2012/09/10/running-route-ersha/">二沙岛</a></li>
 </ul>
 ]]></content>
   </entry>
@@ -99,21 +127,6 @@
 <p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
 
 <p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nike Lunar Run 10公里跑总结]]></title>
-    <link href="http://aleung.github.com/blog/2011/11/15/Nike-Lunar-Run-10-/"/>
-    <updated>2011-11-15T21:34:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/11/15/Nike-Lunar-Run-10-</id>
-    <content type="html"><![CDATA[<p>11月12日，完成了Nike Lunar Run 10公里跑，这是我第二次参加计时的跑步活动。其实准确的说，只是9.5km跑，因为赛道长度不足10km，多人的GPS测量结果和在Google Maps上面量度距离都证明了这点，但是官方公布的成绩又比实际冲线时计时显示的时间多了大约两分钟，大概是换算出10km的时间。</p>
-
-<p>上一次参加10公里跑是2009年，成绩为58:30，当时定下了目标要提高到55:00（看<a href="http://good-good-study.appspot.com/blog/posts/4216">这篇博客</a>），也就是每公里5分30秒的步速。这次出来的成绩却是意想不到的好，官方公布的成绩是48:29，可能还需要减去过起跑线之前的10来秒，我自己的GPS只记录到8公里处就停止了（<a href="http://runkeeper.com/user/aleung/activity/59561069">RunKeeper</a>），总之步速大约是每公里4分50秒的样子。我之前从来没有想过步速可以迈进5分钟每公里大关的，对这个速度已经非常满意，下次再跑也没有速度目标了，保持这个水平并且不要受伤就好，希望能够尝试一下更长的距离。</p>
-
-<p>虽然名字叫做Lunar Run，比赛是在早上9点进行的。前半程自己感觉状态并不好，步频提不到每分钟170～180步的目标，还不如平常晚上训练的感觉好。也许是早上活动不开，应该热身多一些才行。但跟两年前比较，整个过程跑下来轻松很多，09年那次到最后2公里有点拖着腿熬下来的感觉，最后看着终点在前面都完全没有办法加速了。因为怕最后会跑不动，这次一路上都有点留力，跑到最后一两公里时感觉有余力，还想最后500米可以加速冲一下的，结果一个不留神发现终点已经到了。</p>
-
-<p>成绩提高首先是因为平常的训练增加了，最近一个多月基本保持每周跑两到三次。最重要的因素应该是提高步频的训练，以前习惯低步频大步幅，特别是跑到累的时候脚步沉了更是想靠增大步幅来弥补，最近知道这样不对后才有意识的提高步频，特别是前两个星期做了个Android应用来测量步频，按照180的目标来训练，速度明显提升，膝盖也基本不会怎么痛。我现在还是没办法达到180的步频，一般只能在160～170左右，但已经比以前好不少了。现在跑步的时候基本上就是默念着一件事情：保持步频。只要步频不降下去，速度就不会太慢，也能够压抑着增大步幅的欲望。另外还有些技巧性的因素：上次排在比较后的位置起跑，跑道上人太拥挤了，只能用比走路快不了太多的速度挪动，这次有经验就尽量往起跑区的前面靠，本来在第二区的，后来跟着人穿进了第一区，排在第一区的较前位置起跑，起跑跑出一两百米后就不会受人阻挡了。</p>
 ]]></content>
   </entry>
   

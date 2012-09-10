@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在看过北京奥运开幕式之后，我就想各种各样的视频显示将会无处不在。前几天晚上在天河公园跑步时，突然发现天空中有个闪烁着不同颜色亮光的物体在缓缓移动，咋一看还以为看见了UFO，原来是一个飞艇，但与以往看到的飞艇不同之处在于气囊侧面是一块巨大的显示屏，正在播放视频广告。 继续跑步，看着前方漆黑的路面， &hellip;">
+  <meta name="description" content="在Java内存模型中，有main memory，每个线程也有自己的memory (例如寄存器)。为了性能，一个线程会在自己的memory中保持要访问的变量的副本。这样就会出现同一个变量在某个瞬间，在一个线程的memory中的值可能与另外一个线程memory中的值，或者main &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,99 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/04/Java-volatile-/">Java的volatile关键字的作用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-04T01:04:00+08:00" pubdate data-updated="true">2008-12-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Java内存模型中，有main memory，每个线程也有自己的memory (例如寄存器)。为了性能，一个线程会在自己的memory中保持要访问的变量的副本。这样就会出现同一个变量在某个瞬间，在一个线程的memory中的值可能与另外一个线程memory中的值，或者main memory中的值不一致的情况。</p>
+
+<p>一个变量声明为volatile，就意味着这个变量是随时会被其他线程修改的，因此不能将它cache在线程memory中。以下例子展现了volatile的作用：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StoppableTask</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+</span><span class="line">  <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">pleaseStop</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    <span class="k">while</span> <span class="o">(!</span><span class="n">pleaseStop</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">      <span class="c1">// do some stuff...  </span>
+</span><span class="line">    <span class="o">}</span>
+</span><span class="line">  <span class="o">}</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tellMeToStop</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    <span class="n">pleaseStop</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">  <span class="o">}</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>假如pleaseStop没有被声明为volatile，线程执行run的时候检查的是自己的副本，就不能及时得知其他线程已经调用tellMeToStop()修改了pleaseStop的值。</p>
+
+<p>Volatile一般情况下不能代替sychronized，因为volatile不能保证操作的原子性，即使只是i++，实际上也是由多个原子操作组成：read i; inc; write i，假如多个线程同时执行i++，volatile只能保证他们操作的i是同一块内存，但依然可能出现写入脏数据的情况。如果配合Java 5增加的atomic wrapper classes，对它们的increase之类的操作就不需要sychronized。</p>
+
+<p>Reference：</p>
+
+<ul>
+  <li><a href="http://www.javamex.com/tutorials/synchronization_volatile.shtml">http://www.javamex.com/tutorials/synchronization_volatile.shtml</a></li>
+  <li>[http://www.javamex.com/tutorials/synchronization_volatile_java<em>5.shtml](http://www.javamex.com/tutorials/synchronization_volatile_java</em>5.shtml)</li>
+  <li><a href="http://www.ibm.com/developerworks/cn/java/j-jtp06197.html">http://www.ibm.com/developerworks/cn/java/j-jtp06197.html</a></li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/12/04/Java-volatile-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -319,61 +412,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/08/13/The-opening-ceremony-of-the-Beijing-Olympic-Games-feel/">北京奥运开幕式感受</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-13T21:36:00+08:00" pubdate data-updated="true">2008-08-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>看北京奥运开幕式的感觉就像第一次看好莱坞大片 True Lie 时的感觉一样，新奇，刺激。高科技的声光器械加上集权国家一向擅长的大型团体操，确实非常吸引眼球。<br />
-也许过两届后回头再看，这些声光手段都是司空见惯，就会觉得平淡无奇了，但至少在现在看来，张艺谋是做得很好的。上次雅典奥运开幕式，我觉得是一个难以逾越的高度，很为张艺谋担心，现在看来他还是很好的完成了任务。<br />
-这开幕式就相当于一部商业大片，看得观众很爽。至于说到艺术性和内涵，我还是喜欢雅典的。</p>
-
-<p>技术方面，这次开幕式LED与大型投影的大量应用到了无处不在的地步。相信相关的应用在将来会越来越普遍，屏幕会越来越大，出现在各种想像不到的地方，随时随地都是绚丽的视频。如果以后街上每个人的衣服上都是不停变幻的图案，也许我们会怀念只有素色的那个年代。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/08/13/The-opening-ceremony-of-the-Beijing-Olympic-Games-feel/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/23/">&larr; Older</a>
@@ -395,6 +433,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
@@ -408,10 +450,6 @@
     
       <li class="post">
         <a href="/blog/2012/07/31/apigee/">apigee</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/22/xperia-u/">Xperia U 上手</a>
       </li>
     
   </ul>
@@ -448,7 +486,7 @@
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 116%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
