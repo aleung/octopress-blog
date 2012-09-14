@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>图像格式介绍: jpg, gif, bmp, png, ecw...... - Good good study, day day up</title>
+  <title>成员函数调用delete this合法吗？ - Good good study, day day up</title>
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="图像格式介绍在网上有很多资料, 随便google一下都能找到. 这是我在论坛上回复别人的帖子, 顺手也帖到这儿. 这几种格式都是光栅图像格式(除了光栅格式还有一种是矢量格式), 描述的是图像点阵的色彩数据. BMP格式是最简单的格式，基本就是图像点阵的内存拷贝。没有任何压缩，也无法表示格外的数据。 &hellip;">
+  <meta name="description" content="Yesterday, I discussed with Alex whether “delete this” in C++ is legal code. In some case, only the object itself knows when its life is to the end &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw-/">
+  <link rel="canonical" href="http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal/">
   <link href="/blog/favicon.png" rel="icon">
   <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/blog/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">图像格式介绍: Jpg, Gif, Bmp, Png, Ecw......</h1>
+      <h1 class="entry-title">成员函数调用delete This合法吗？</h1>
     
     
       <p class="meta">
@@ -95,13 +95,13 @@
   
 
 
-<time datetime="2004-06-29T21:39:00+08:00" pubdate data-updated="true">2004-06-29</time>
+<time datetime="2005-02-18T21:18:00+08:00" pubdate data-updated="true">2005-02-18</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -112,25 +112,71 @@
   </header>
 
 
-<div class="entry-content"><p><em>图像格式介绍在网上有很多资料, 随便google一下都能找到. 这是我在论坛上回复别人的帖子, 顺手也帖到这儿.</em></p>
+<div class="entry-content"><p>Yesterday, I discussed with Alex whether “delete this” in C++ is legal code.</p>
 
-<p>这几种格式都是光栅图像格式(除了光栅格式还有一种是矢量格式), 描述的是图像点阵的色彩数据.</p>
+<p>In some case, only the object itself knows when its life is to the end and should be destroyed, the owner of object doesn’t know it, or the object has no explicit owner. The most easy way to manger the life time of this kind of object is let it delete itself.</p>
 
-<p>BMP格式是最简单的格式，基本就是图像点阵的内存拷贝。没有任何压缩，也无法表示格外的数据。现在很少用BMP来做图像数据交换了。</p>
+<p>But we doubted that “delete this” isn’t legal in C++: after the object is released, how does the execution continue?</p>
 
-<p>GIF和PNG都是索引色彩, 也就是不直接描述象素的颜色, 只是说这个点是几号颜色, 另外有个索引表（调色板）给出颜色号对应的RGB颜色。有简单的压缩算法，但这种压缩仅对于连续色彩的象素（例如大块色块的图形）才有效，适用于颜色有限的图像(如商业图形/地图/漫画), 对真彩色图像(如照片)不太合适. GIF的LZW压缩算法是有专利限制的（好像是在去年已经过期失效）, 需要授权才能使用, 故此w3c组织另起炉灶订立PNG格式, 对于使用而言两者差不多.</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line"><span class="err"> </span> <span class="kt">void</span> <span class="n">foo</span><span class="p">();</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">void</span> <span class="n">A</span><span class="o">::</span><span class="n">foo</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line"><span class="err"> </span> <span class="c1">// do something  </span>
+</span><span class="line"><span class="err"> </span> <span class="k">delete</span> <span class="k">this</span><span class="p">;</span>
+</span><span class="line"><span class="err"> </span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;I commit suicide!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line"><span class="err"> </span> <span class="n">A</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line"><span class="err"> </span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">foo</span><span class="p">();</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>JPG是有损压缩, 利用人眼对高频细节分辨不是很敏感的特性, 将数据量减少。当压缩率过大时, 会在图像色彩变化的边界出现马赛克的现象. 但是作有限度的压缩时, 图像质量损失并不明显, 往往不能察觉。它的压缩率是可以调节的，让制图者可以在图象质量与图像文件大小间取得一个平衡点，因此是很有用的一种格式, 基本上网上的照片都是用jpg格式.</p>
+<p>I find the answer now, it’s legal, but must be careful when using it. </p>
 
-<p>相比起以上的各种格式，TIFF格式更多的是一个框架，它规定了文件的数据段结构，但是对图像数据的具体编码算法没有定义，是可扩展定义的，因此其下发展出很多的子格式。例如原始的TIFF格式是无压缩的，现在也有多种压缩算法的扩展；将地理数据也保存到数据段中，就是GeoTIF格式。因为子格式很多，不是所有图像处理软件都支持，一般都只是支持无压缩的基本格式，故此有时会出现无法打开文件，或者显示图像不正确的现象。TIFF格式在出版业得到比较广的应用，作为标准的图像交换格式。</p>
+<p>The following <a href="http://www.sunistudio.com/cppfaq/freestore-mgmt.html#[16.14]">faq</a> explain it clearly:</p>
 
-<p>在地理信息领域，还使用一些其他的有损压缩格式，例如基于小波算法的ecw和MrSID格式。但是这些格式目前还基本是用于专业领域，不如jpg通用，支持的图像处理软件也不多。</p>
+<blockquote>
+  <p>只要你小心，一个对象请求自杀(<code>delete</code> <code>this</code>).是可以的。</p>
 
-<p>对于卫星影像的最终输出，我觉得还是采用有损压缩格式比较好，因为图像数据量实在太大了，如果不压缩或者压缩过小，对于存储、传送都不方便。采用合适的压缩率，图像质量基本不会受到影响，看看网上的漂亮mm照片，都是jpg有损压缩的:) 如果是在oziexplorer中观看，建议使用ecw格式，ecw的好处在于可以局部加载数据，减少内存占用，对于超大图像有好处；它不像其他格式，即使只显示图像其中一小快，也要将整个图像数据全部解码放入内存。但是能处理ecw的软件很少, 只能在最后输出最终结果时转换.</p>
+  <p>以下是我对“小心”的定义：</p>
 
-<p>地图制作，看什么图，如果是色块为主的图，用gif/png比较合适，如果色彩都是过渡的，就还是用jpg或者ecw好。</p>
+  <ol>
+    <li>你必须100%的确定，<code>this</code>对象是用 <code>new</code>分配的（不是用<code>new[]</code>，也不是用<a href="http://www.sunistudio.com/cppfaq/dtors.html#[11.10]">定位放置 <code>new</code></a>，也不是一个栈上的局部对象，也不是全局的，也不是另一个对象的成员，而是明白的普通的<code>new</code>）。</li>
+    <li>你必须100%的确定，该成员函数是<code>this</code>对象最后调用的的成员函数。</li>
+    <li>你必须100%的确定，剩下的成员函数（<code>delete</code> <code>this</code>之后的）不接触到 <code>this</code>对象任何一块（包括调用任何其他成员函数或访问任何数据成员）。</li>
+    <li>你必须 100%的确定，在<code>delete</code> <code>this</code>之后不再去访问<code>this</code>指针。换句话说，你不能去检查它，将它和其他指针比较，和 <code>NULL</code>比较，打印它，转换它，对它做任何事。</li>
+  </ol>
 
-<p>图像压缩：<a href="http://media.cs.tsinghua.edu.cn/~ahz/digitalimageprocess/chapter14/chapt14_ahz.htm">http://media.cs.tsinghua.edu.cn/~ahz/digitalimageprocess/chapter14/chapt14_ahz.htm</a></p>
+  <p>自然，对于这种情况还要习惯性地告诫：当你的指针是一个指向基类类型的指针，而没有<a href="http://www.sunistudio.com/cppfaq/virtual-functions.html#[20.4]">虚析构函数</a>时（也不可以 <code>delete</code> <code>this</code>）。 </p>
+</blockquote>
+
+<p>And these ariticles also take about “delete this”:</p>
+
+<p><a href="http://info.tlw.cn/6079.htm">http://info.tlw.cn/6079.htm</a><br />
+<a href="http://blog.csdn.net/foxmail/archive/2004/09/22/113060.aspx">http://blog.csdn.net/foxmail/archive/2004/09/22/113060.aspx</a></p>
 </div>
 
 
@@ -154,7 +200,7 @@
   
 
 
-<time datetime="2004-06-29T21:39:00+08:00" pubdate data-updated="true">2004-06-29</time>
+<time datetime="2005-02-18T21:18:00+08:00" pubdate data-updated="true">2005-02-18</time>
       
 
 
@@ -162,7 +208,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -172,7 +218,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw-/" data-via="acette" data-counturl="http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw-/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal/" data-via="acette" data-counturl="http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -183,10 +229,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2004/06/16/Gmail-account-registered-to-it/" title="Previous Post: 注册到了gmail账号啦">&laquo; 注册到了gmail账号啦</a>
+        <a class="basic-alignment left" href="/blog/2004/12/22/Updated-the-RSS/" title="Previous Post: 更新了RSS">&laquo; 更新了RSS</a>
       
       
-        <a class="basic-alignment right" href="/blog/2004/06/30/MicroDEM-/" title="Next Post: MicroDEM制图所需地理数据转换方法">MicroDEM制图所需地理数据转换方法 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2005/02/24/Use-MPC-to-generate-makefile-for-you/" title="Next Post: Use MPC to generate makefile for you">Use MPC to generate makefile for you &raquo;</a>
       
     </p>
   </footer>
@@ -211,6 +257,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
       </li>
     
@@ -224,10 +274,6 @@
     
       <li class="post">
         <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/31/apigee/">apigee</a>
       </li>
     
   </ul>
@@ -253,7 +299,7 @@
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 85%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
@@ -298,8 +344,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw-/';
-        var disqus_url = 'http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw-/';
+        var disqus_identifier = 'http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal/';
+        var disqus_url = 'http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal/';
         var disqus_script = 'embed.js';
       
     (function () {

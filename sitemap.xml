@@ -310,7 +310,7 @@
     </url>
     <url>
         <loc>
-            http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw-/
+            http://aleung.github.com/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw/
         </loc>
         <lastmod>2012-07-05T22:31:44+08:00</lastmod>
     </url>
@@ -359,7 +359,7 @@
         <lastmod>2012-06-24T22:53:40+08:00</lastmod>
     </url>
     <url>
-        <loc>http://aleung.github.com/blog/2004/11/02/Encounter-virus-Trojan-/</loc>
+        <loc>http://aleung.github.com/blog/2004/11/02/Encounter-virus-Trojan/</loc>
         <lastmod>2012-07-05T22:23:45+08:00</lastmod>
     </url>
     <url>
@@ -369,8 +369,8 @@
         <lastmod>2012-07-05T22:23:01+08:00</lastmod>
     </url>
     <url>
-        <loc>http://aleung.github.com/blog/2004/11/12/Color-management-1-/</loc>
-        <lastmod>2012-06-24T22:53:40+08:00</lastmod>
+        <loc>http://aleung.github.com/blog/2004/11/12/Color-management-1/</loc>
+        <lastmod>2012-09-15T01:03:52+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/2004/11/23/To-adopt-Firefox/</loc>
@@ -408,7 +408,7 @@
     </url>
     <url>
         <loc>
-            http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal-/
+            http://aleung.github.com/blog/2005/02/18/Member-function-call-delete-this-legal/
         </loc>
         <lastmod>2012-07-05T22:18:22+08:00</lastmod>
     </url>
@@ -1259,11 +1259,15 @@
         <lastmod>2012-09-10T22:39:07+08:00</lastmod>
     </url>
     <url>
+        <loc>http://aleung.github.com/blog/2012/09/15/color-management-2/</loc>
+        <lastmod>2012-09-15T01:24:29+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aleung.github.com/blog/blog/archives/</loc>
-        <lastmod>2012-09-10T22:42:46+08:00</lastmod>
+        <lastmod>2012-09-15T01:24:29+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/</loc>
-        <lastmod>2012-09-10T22:42:46+08:00</lastmod>
+        <lastmod>2012-09-15T01:24:29+08:00</lastmod>
     </url>
 </urlset>

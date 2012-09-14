@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="环岛一周约4.4km，其实只能算环半岛，因为岛西面一大段的沿江堤岸是公众不能进入的。车道大部分是沥青路面，晴澜路段水泥路面，人行道是铺石路面。环岛道路汽车不多，在注意安全的前提下可以靠边跑车道。 虽然算不上有什么景观，但二沙岛上的都是别墅和高级会所，环境幽静，江边视野开阔，跑起来挺舒服。 &hellip;">
+  <meta name="description" content="色彩管理的第一篇是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。 颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T00:56:00+08:00" pubdate data-updated="true">2012-09-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>色彩管理的<a href="/blog/2004/11/12/Color-management-1">第一篇</a>是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。</p>
+
+<p>颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象：颜色就是可见光波长这个物理量的反映。但是问题来了，白色对应什么波长的光？为什么红光和绿光混合在一起变成了黄光，难道混合后波长产生变化了？原因在于，颜色并不是某一個物理量的直接反映，而是人对光线的心理反映，称之为色觉。</p>
+
+<p><img class="right" src="/blog/attachments/2012/9/eye.jpg" /> </p>
+
+<p>人眼有三种色彩感受器（视锥细胞），每种感受器可以感应不同波长范围的光，分别的感受峰值波长为：420nm，534nm，564nm，差不多相当于蓝、绿、红三色光的波长。对于某一种光谱，三种感受器得到三组信号送往大脑，大脑根据这三组信号值的不同组合感知到不同的色彩。</p>
+
+<p>现实世界中的光线通常都不会是单一波长的（只有激光光源产生的才是单一波长的光吧，要么是经过分光镜得到的），而是不同波长组合的混合光。视觉感受器并不能区分这些光谱，反正各种感受器只对自己能感应的波长范围内的光作出反应，最后大脑拿到的就是三组信号而已。不同的光谱组合的光线，可能对三种视觉感受器产生的刺激恰好是一样的，这样大脑就会将它们感受为同一种颜色，术语称为“异谱同色”。例如波长600nm左右的光线人感受是黄色，而波长540nm绿光和700nm红光一定强度比例的混合，人感觉到的也是黄色。</p>
+
+<p>我曾经在之乎问过一个问题：人眼若多一种新的视椎细胞可感应可见光范围内的另外一个波长的光，人看到的色彩会有什么变化吗？看到的颜色更多？ 后来我想明白了，是会看到更多的颜色的，准确的说，是能够分辨出更多不同的颜色。在只有三种感受器时，有些不同波长组合的混合光产生的刺激是一样的，大脑区分不出，将它们当作同样的颜色，但假若增加另一种波长的感受器后，这个感受器感应到的刺激不同，就能够分辨为不同色彩了。至于这个颜色是什么？我们不可能知道，因为颜色仅仅是一种心理反应。如此类推，不同动物看到的色彩也是不一样的，因为不同动物眼睛的视锥细胞的波长响应曲线不同，而且数量也不一定一样。假如有某种外星人有四种甚至更多的色彩感受器，那他们会认为地球人全是色盲，地球人到他们的世界里可能连分辨交通灯都有问题——如果他们还用交通灯。另外，所谓三原色，也是针对人而言的。</p>
+
+<p>既然色彩只是种心理反应（感觉），那为了准确描述色彩和进行分析，就需要建立色彩模型。根据关注的角度不同，不同的研究者拿出了不同的色彩模型，例如孟塞尔颜色立体模型、CIE L* a* b* 模型。其中 CIE XYZ 模型应该是最能反映人的颜色视觉的，因为它的制定就是通过大量实验来测定人对三种特定波长光线S、M、L（约对应于红绿蓝）的刺激值X，Y，Z。实验方式是让人同时观察目标色光线和SML三组标准光的混合光，调节S/M/L的光强，使得人眼感觉混合光和目标色光线的颜色完全一样，从而得出目标色的XYZ值。CIE XYZ色彩空间是色彩管理的基础。</p>
+
+<p>CIE XYZ定义了一个三维空间，展现起来不如二维图形直观。经常用来表示色彩空间大小的二维马蹄型图称为CIE xy色度图，如下图。它的纵横座标xy是根据XYZ推导出来的，x=X/(X+Y+Z), y=Y/(X+Y+Z), z=Z/(X+Y+Z), x+y+z=1。彩色的马蹄形范围表示人眼可见的全部色彩范围。在数码相机和电脑显示中使用的RGB色彩空间在CIE xy色度图中反映为三角形范围，三个顶点分别为R/G/B三原色。</p>
+
+<p><img src="/blog/attachments/2012/9/gamut.jpg" alt="" /></p>
+
+<p>不考虑印刷，摄影爱好者一般会接触到的色彩空间也就是AdobeRGB和sRGB。从图中可见，AdobeRGB的色域比sRGB广，特别是在蓝绿色系方面，AdobeRGB能够表现的色彩比sRGB丰富很多。我查找不到资料描述各种数码相机的感光元件能够记录下来的色域有多大，但一般的说法是一般数码单反所能记录的色彩范围都比sRGB广，接近或大于AdobeRGB。因此，专业的摄影都会选择AdobeRGB色彩空间来保存图像文档。但问题是，我们的显示器并不能展现这么广的色域，民用型号通常都只能再现sRGB色彩空间或更小一点（广色域显示器会比sRGB大，但一般还是达不到AdobeRGB），因此照片中记录的部分颜色是无法在显示器上原汁原味的再现出来的（这里先不考虑显示器没有校准导致偏色问题），超出设备色彩空间的颜色只能用接近的来替换，例如翠绿色的海水就没有那么漂亮了。另外一个问题是有些软件，例如不是最新版本的浏览器，是不支持色彩管理的，它不会将照片的色彩空间映射到显示器的色彩空间以保持在可显示范围内的颜色一致，而是将照片中的RGB值当作设备色彩空间的值来直接显示。如果照片用的是sRGB还好，因为显示器本身大致符合sRGB，颜色偏差不会太多，但若照片是用色域更广的AdobeRGB的，色彩偏差就严重了。所以数码相机的说明书上一般会建议如果照片仅在电脑上观看最好选择sRGB。</p>
+
+<p>不过，数码相机的色彩空间设置仅仅是针对JPG格式的，如果用RAW格式，保存的是传感器得到的原始值，实际上是数码相机设备色彩空间，而不是任何标准色彩空间。当在电脑中用RAW处理软件打开时，会将照片由设备色彩空间映射到软件设定的工作空间。我用Apple Aperture打开Nikon的RAW，看到它是被标识为AdobeRGB色彩空间。用数码单反的话，最好还是选择RAW格式，因为记录的信息多，后期处理的余地就大很多。</p>
+
+<p>See also:</p>
+
+<p><a href="/blog/2004/11/12/Color-management-1">色彩管理(1)</a></p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/09/15/color-management-2/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -381,134 +457,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/31/apigee/">Apigee</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-31T23:20:00+08:00" pubdate data-updated="true">2012-07-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/web/'>Web</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://apigee.com/">Apigee</a> is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it.</p>
-
-<p>Apigee is an API management platform and services company. It benefits both API providers and developers who build their apps with APIs.</p>
-
-<h2 id="apigee-enterprise">Apigee Enterprise</h2>
-
-<p>Apigee Enterprise product is an API proxy plus developer portal.</p>
-
-<p>Usually when an organization open its internal services or data to external, it develops the API and exposure it, with necessary document published. Application developers learn the API by reading the document, and then code to use the API.</p>
-
-<p><img src="/blog/attachments/2012/7/api.png" alt="" /></p>
-
-<p>Apigee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
-
-<p><img src="/blog/attachments/2012/7/api_with_apigee.png" alt="" /></p>
-
-<h2 id="console-to-go">Console To-Go</h2>
-
-<p>Apigee Enterprise features are not available to free subscriber of Apigee, excepts the console that let developer learn an API by playing with it. Apigee opens this service to free subscriber as Console To-Go.</p>
-
-<p>I try to create my own Console To-Go:</p>
-
-<p>Create an API on Google Application Engine: <a href="http://api-playground.appspot.com/time">time API</a> , it simply return the current time since epoch.</p>
-
-<p>Write the WADL for the API.</p>
-<div><script src="https://gist.github.com/3214300.js?file="></script>
-<noscript><pre><code>&lt;application xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-             xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-             xmlns:apigee=&quot;http://api.apigee.com/wadl/2010/07/&quot;
-             xmlns=&quot;http://wadl.dev.java.net/2009/02&quot;
-             xsi:schemaLocation=&quot;http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd&quot;&gt;
-
-    &lt;resources base=&quot;http://api-playground.appspot.com&quot;&gt;
-
-        &lt;resource path=&quot;/time&quot;&gt;
-            &lt;method id=&quot;getTime&quot; name=&quot;GET&quot; apigee:displayName=&quot;Get time since epoch&quot;&gt;
-                &lt;apigee:tags&gt;
-                    &lt;apigee:tag primary=&quot;true&quot;&gt;Time&lt;/apigee:tag&gt;
-                &lt;/apigee:tags&gt;            
-                &lt;apigee:authentication required=&quot;false&quot;/&gt;
-                &lt;apigee:example url=&quot;/time&quot;/&gt;
-            &lt;/method&gt;
-        &lt;/resource&gt;
-
-    &lt;/resources&gt;
-
-&lt;/application&gt;
-</code></pre></noscript></div>
-
-<p>Create a new console on <a href="https://apigee.com/togo">Apigee Console To-Go</a>, upload the WADL file for my playground API.</p>
-
-<p>That’s all I need to do. Now the console is ready and anyone can try my time API on the console. This is a snapshot of API request-response:</p>
-
-<iframe src="https://snap.apigee.com/NRNmNb" width="800" height="300" frameborder="0" scrolling="no"></iframe>
-
-<h2 id="usergrid">Usergrid</h2>
-
-<p>A cloud-based <strong>data service</strong> for application developer, especially for mobile application developer. It provides a core set of <em>commonly used social media application objects</em>, including a rich user model, as well as the ability to create new objects. </p>
-
-<p>REST API is provided, with data model in JSON.  </p>
-
-<p>Features includes:</p>
-
-<ul>
-  <li>
-    <p><em>User model</em>. Organize users into groups, teams or other structures. User authentication via Facebook, Twitter or other OAuth services. User profile synchronization.</p>
-  </li>
-  <li>
-    <p><em>Collections</em>. Any type of application data in JSON. Data sharing between users and applications.</p>
-  </li>
-  <li>
-    <p><em>Messages and activities</em>. Automates user interaction e.g. status updates, check-ins, comments in the form of activity streams. Support messaging (application internal) and notifications by delivering activities to connected users.</p>
-  </li>
-  <li>
-    <p><em>Data analytics</em>. Log events generated by application. Store, search and analyze at any level of scale.</p>
-  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/07/31/apigee/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -528,6 +476,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
       </li>
     
@@ -541,10 +493,6 @@
     
       <li class="post">
         <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/31/apigee/">apigee</a>
       </li>
     
   </ul>
@@ -570,7 +518,7 @@
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 85%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>

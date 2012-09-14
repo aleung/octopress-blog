@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="一直以为explorer是与windows结合得很紧密的程序，不可缺少。因为它是windows的shell，桌面、菜单、文件浏览窗口都是由它拥有的，如果explorer没有运行，整个屏幕就是空空如也，什么都控制不了。 没有想到，explorer也是可以替换的， &hellip;">
+  <meta name="description" content="字符串匹配最常用的是正则表达式，但是正则表达式的匹配非常严格，某些场合下，希望的匹配算法是模糊的，只要求找出相似的字符串而不是完全匹配的字符串，例如拼写错误、插入空格等情况。http://www.codeproject.com/aspnet/intelligent404page. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/12/13/String-fuzzy-matching/">字符串模糊匹配</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-12-13T17:35:00+08:00" pubdate data-updated="true">2004-12-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>字符串匹配最常用的是正则表达式，但是正则表达式的匹配非常严格，某些场合下，希望的匹配算法是模糊的，只要求找出相似的字符串而不是完全匹配的字符串，例如拼写错误、插入空格等情况。<a href="http://www.codeproject.com/aspnet/intelligent404page.asp">http://www.codeproject.com/aspnet/intelligent404page.asp</a>这篇文章介绍了如何生成智能的404页面，当URL不存在时可提示出拼写近似的网页。其中使用Levenshtein的算法来计算两个字符串的‘edit distance’,也就是一个字符串要经过多少步修改（增加、改变、删除字符），才能变成另外一个字符串。根据计算出的相似的分值，据此来给出建议结果。</p>
+
+<p>这个算法看来在处理用户输入的时候会很有用，能够增加用户界面的人性化程度。一个友善的提示，比起冷冰冰的“输入错误”友好多了，降低了用户使用软件时的心理阻碍。另外，这个算法应该也是可以适用于中文的，采用unicode处理就可以了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/12/13/String-fuzzy-matching/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -300,79 +353,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/11/23/To-adopt-Firefox/">转用Firefox</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-11-23T20:50:00+08:00" pubdate data-updated="true">2004-11-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Firefox出了1.0版本，网上展开了铺天盖地的宣传。这真是网络的魅力啊，一个自由软件本来是没有多大力气搞宣传活动的，但经过用户fans的自发传播，也包括搭便车商家的推波助澜，一下子用户量出现了爆发增长。</p>
-
-<p>但宣传归宣传，用户也不是傻瓜，毕竟firefox是一个好软件，mozilla项目这么多年也总算结下一个大果子了。说起来，mozilla为开源社区也贡献了不少东西，除了浏览器套件外，bugzilla、SpiderMonkey/Rhino这些“副产品”也是被广泛使用了。</p>
-
-<p>我以前也曾经试用过mozilla suite和firefox，但是那时感觉产品还不成熟，至少还缺乏说服IE用户“叛变”的feature。现在的firefox不一样了，我使用了好几天，感觉基本上已经可以把原来一直用的基于IE内核的Maxthon(MyIE2)替换掉了。</p>
-
-<p>不过，虽然在易用性方面有了很大进步，firefox目前还不能算是一个适合普通用户使用的软件。它的强大，必须在配合各种extensions的情况下才能发挥出来，而extensions需要用户自己去下载安装。对于一个普通用户，面对几百种extensions，怎么知道应该下载哪些。要推广firefox，需要有人（组织）去做打包的工作才行，根据不同的需求，选择合适的extension做出专门的安装包，装好就可以用。</p>
-
-<p>例如大家都说foobar2000比winamp好，我下了一个安装起来，一点都不好用，配置又复杂得要命。后来又见到一个网友做的精选版，将必备的插件、常用的配置做到安装包里面了，一装起来，才发现原来foobar2000是这么好用的。</p>
-
-<p>介绍一下我现在用的extension，基本是为了符合原来使用Maxthon(MyIE2)的习惯而配置的：</p>
-
-<ul>
-  <li>Adblock：过滤网页广告 </li>
-  <li>Advanced Highlighter Button (AHB)：将页面的搜索关键字高亮显示(其实这个extension也不是很必要) </li>
-  <li>ieview：遇到firefox不兼容的网页，可以用IE打开 </li>
-  <li>FlashGot：使用外部下载工具下载文件 </li>
-  <li>Tabbrowser Extensions：这个东西用来配置tab的，配置很灵活，当然了，灵活的代名词就是复杂:) </li>
-  <li>Super DragAndGo：拖放一个link，在新窗口打开；拖放一段文字，打开搜索引擎搜索 </li>
-  <li>del.icio.us：as title:)</li>
-</ul>
-
-<p>Firefox本身的防弹出窗口功能就很好。另外页面搜索也很方便，敲入“/”就可以在当前显示页里面搜索文字。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/11/23/To-adopt-Firefox/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/39/">&larr; Older</a>
@@ -394,6 +374,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
       </li>
     
@@ -407,10 +391,6 @@
     
       <li class="post">
         <a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/31/apigee/">apigee</a>
       </li>
     
   </ul>
@@ -436,7 +416,7 @@
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 108%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 85%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
