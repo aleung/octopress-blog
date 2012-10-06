@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="党和政府出于对广大网民的深切爱护, 于前段时间将大家喜爱的全球影响力最大的在线相册网站 flickr.com 列入了功夫网(ＧＦＷ). 等待了半月有余, 未见有变化, 看来是被功夫网永久性收录了. 我等良民一向坚决支持拥护中央的英明决策，可是无奈我网上的所有照片、配文图表都存放在flickr中. &hellip;">
+  <meta name="description" content="去年写下关于 “I Love” audio player的想法，曾想过自己开发的，但我没有开发这方面软件的经验，要学习的东西太多了，也没有时间精力来做。前段时间xlla朋友给我留言，介绍iPod的智能播放列表，我一下子兴趣又上来了，上网再次搜索一番， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/06/28/I-realized-I-Love-Player/">实现了我的 I Love Player 了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-28T02:17:00+08:00" pubdate data-updated="true">2007-06-28</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>去年写下关于 <a href="http://aleung.blogbus.com/logs/3115868.html">“I Love” audio player</a>的想法，曾想过自己开发的，但我没有开发这方面软件的经验，要学习的东西太多了，也没有时间精力来做。前段时间xlla朋友给我留言，介绍iPod的智能播放列表，我一下子兴趣又上来了，上网再次搜索一番，这次真给我找到了好几款支持智能播放列表的播放器软件，有些功能跟我期望的已经差不多了。我以前就想，不可能没有人想到的:)</p>
+
+<p>第一个是KDE环境下的Amarok，特点是支持智能评分，能根据收听的行为，例如skip到下首歌曲时已播放的百分比，来给歌曲评定分数，而且评分方式是脚本定制的。这跟我期望的功能1（歌曲的喜爱度必须是在播放过程中日积月累的更新）一样了。可是我没有Linux环境，无法试用这个软件。Amarok下个版本计划支持Windows，只能等待了。</p>
+
+<p>第二个是<a href="http://www.musikcube.com">musikCube</a>，特点是使用嵌入式数据库SQLite来保存歌曲library，包括播放的统计数据，并且通过自定义的SQL查询where子句来生产动态列表，例如最近加入library的50首歌，听得最多的100首，最近一个月没有听过的歌等等，非常灵活。当然，完全不懂SQL语言的人就体会不到它的好处了。</p>
+
+<p>musikCube是Visual C++开发的，open source。我把它的源代码下载来看，觉得代码挺好理解(比foobar2000好很多)，做点小修改不难。于是我写了一个<a href="http://aleung.blogbus.com/files/11829395480.zip">patch</a> (基于musikCube 1.0 final)，实现了智能评分的功能。musikCube的歌曲数据库没有score字段，我不想修改数据库结构，就利用了它的times played字段当成score。每当播放下一首歌的时候，检查前一首歌播放了多少，如果播放了90%以上，score +5，如果少于10%，score -2，少于30%，score -1。总是被skip的歌得分就会很低，利用动态列表挑选出分数高的歌曲，就是我喜欢的歌了。</p>
+
+<p>虽然musikCube不支持profile，但是支持多个library，可以建立多个library，里面是同样的歌曲，但播放统计却是独立的，这样也能满足我的需求2 (在不同环境、不同心情下喜欢的音乐是不一样的，有了profile功能就可以独立累计喜爱度)了。</p>
+
+<p>虽然用起来还是没有我设想中那样简单，但已经大致符合我的期望了。等我使用一段时间再告诉大家效果如何 :)  </p>
+
+<p><a href="http://aleung.blogbus.com/files/11829395480.zip">Patch下载</a>(包括binary和source) </p>
+
+<p><a href="http://www.musikcube.com/page/main/download">musikCube下载</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/06/28/I-realized-I-Love-Player/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -339,80 +404,6 @@ Possible to get good knowledge of the system. Large funding. Main motive to get 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/31/ClearCaseWeb/">ClearCaseWeb</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-31T05:16:00+08:00" pubdate data-updated="true">2007-03-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ClearCaseWeb is a simple web-based utility for browsing files stored in ClearCase. With it you can get the list of recent changed files and find out who is the last modifier of each line in a file in a very handy maner. The original idea to develop ClearCaseWeb is to overcome the lack of GUI for cleartool annotation. It’s inspired by <a href="http://www.freebsd.org/projects/cvsweb.html">CVSWeb</a>, which is widely used in open source community.</p>
-
-<p>Screenshots: </p>
-
-<p>Annotation View</p>
-
-<p><img src="http://farm1.static.flickr.com/186/439704788_26969d28be.jpg" alt="" /></p>
-
-<p>Browse View</p>
-
-<p><img src="http://farm1.static.flickr.com/168/439704790_204c0d2c98.jpg" alt="" /></p>
-
-<p>Recent Changes View</p>
-
-<p><img src="http://farm1.static.flickr.com/175/439704792_3da1066a9b.jpg" alt="" /></p>
-
-<p>ClearCaseWeb is developed in php. Currently it only works on Windows with ClearCase dynamic view successfully configurated.</p>
-
-<p>Download:</p>
-
-<ul>
-  <li>2007-3-30: <a href="http://aleung.blogbus.com/files/11752618700.zip">ClearCaseWeb_0.2</a><br />
-First functional release.</li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2007/03/31/ClearCaseWeb/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/27/">&larr; Older</a>
@@ -434,6 +425,10 @@ First functional release.</li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
@@ -449,16 +444,12 @@ First functional release.</li>
         <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/09/running-route/">广州跑步路线：索引</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 135%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -481,19 +472,19 @@ First functional release.</li>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 119%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 118%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 108%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

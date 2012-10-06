@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android: 在應用中設定locale - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="近幾天把以前做的跑步步频训练软件 RunningCadence 加上了多語言支持，可以在應用中設定界面以及語音播報所用的語言。 對多語言的支持，Android已經做得很完善，開發者只需要在應用中加入各種locale的資源文件。但是，應用只會使用系統全局設置的locale， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android: 在應用中設定locale</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-06T00:25:00+08:00" pubdate data-updated="true">2012-10-06</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>近幾天把以前做的跑步步频训练软件 <a href="https://play.google.com/store/apps/details?id=leoliang.runningcadence">RunningCadence</a> 加上了多語言支持，可以在應用中設定界面以及語音播報所用的語言。</p>
+
+<p>對多語言的支持，Android已經做得很完善，開發者只需要在應用中加入各種locale的資源文件。但是，應用只會使用系統全局設置的locale，而要在應用自己的設定中選擇locale，以及要讓設定立即生效，就需要開發者自己去實現了。</p>
+
+<p>本來，一般應用並沒必要自己提供語言設定，用系統全局設定就好了。但這個 RunningCadence 使用了語音合成(TTS)功能，而一般手機上安裝的TTS引擎支持的語言都有限，如果TTS不支持系統locale的語言，那就聽不到聲音了，所以需要花力氣去搞這個應用內的語言選擇。</p>
+
+<h2 id="localelocale">讓應用啓動時使用自己設定的locale，而非系統locale</h2>
+
+<p>開發應用時要爲不同locale準備不同的資源，在應用中通過 <a href="http://developer.android.com/reference/android/content/res/Resources.html">Resources</a> 類來加載資源，各個界面組件的構建都需要用到資源。而具體資源如何選擇是受 <a href="http://developer.android.com/reference/android/content/res/Configuration.html">Configuration</a> 影響的，Configuration帶有設備的硬件相關配置信息（如屏幕分辨率，屏幕方向）和系統全局配置信息（如locale），由系統底層框架提供。</p>
+
+<p>應用啓動時，Configuration中的locale會被設置爲系統locale。應用若要使用自己的locale，就必須在創建界面之前，將Resources裏的Configuration更改。</p>
+
+<p>這個更改在application的 onCreate() 裏面做最合適，對應用全局生效，因爲它在任何activity創建之前就執行了，不再需要在各個activity裏做任何事情。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="nd">@Override</span>
+</span><span class="line"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">setLocale</span><span class="o">();</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLocale</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">Locale</span> <span class="n">locale</span> <span class="o">=</span> <span class="n">getLocaleFromPref</span><span class="o">();</span>
+</span><span class="line">	<span class="n">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="n">locale</span><span class="o">);</span>
+</span><span class="line">	<span class="n">Configuration</span> <span class="n">config</span> <span class="o">=</span> <span class="n">getBaseContext</span><span class="o">().</span><span class="na">getResources</span><span class="o">().</span><span class="na">getConfiguration</span><span class="o">();</span>
+</span><span class="line">	<span class="n">overwriteConfigurationLocale</span><span class="o">(</span><span class="n">config</span><span class="o">,</span> <span class="n">locale</span><span class="o">);</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">overwriteConfigurationLocale</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">config</span><span class="o">,</span> <span class="n">Locale</span> <span class="n">locale</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">config</span><span class="o">.</span><span class="na">locale</span> <span class="o">=</span> <span class="n">locale</span><span class="o">;</span>
+</span><span class="line">	<span class="n">getBaseContext</span><span class="o">().</span><span class="na">getResources</span><span class="o">()</span>
+</span><span class="line">			<span class="o">.</span><span class="na">updateConfiguration</span><span class="o">(</span><span class="n">config</span><span class="o">,</span> <span class="n">getBaseContext</span><span class="o">().</span><span class="na">getResources</span><span class="o">().</span><span class="na">getDisplayMetrics</span><span class="o">());</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>加了這段代碼後，應用啓動時就會根據 getLocaleFromPref() 返回的語言來顯示了，但是你會發現如果將手機屏幕轉一下，例如豎屏變爲橫屏，界面又會變回系統缺省語言，爲什麼呢？</p>
+
+<p>系統底層框架會在configuration發生了變化時通知應用<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。對application是調用 Application.onConfigurationChanged() 方法。對activity的處理採用那種方式，就與manifest文件中&lt;Activity&gt;的 android:configChanges 屬性配置相關：</p>
+
+<ul>
+  <li>如果發生的是configChanges中指定的事件，調用 Activity.onConfigurationChanged()，不重啓activity；</li>
+  <li>否則重啓activity。</li>
+</ul>
+
+<p>屏幕的旋轉就是一種 runtime change，缺省情況下會觸發activity的重啓，也就是銷毀並重新創建activity<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，重新創建時使用的是新的Configuration，裏面帶的又是系統locale，因此就造成了界面變回系統缺省語言。</p>
+
+<p>爲了避免這種情況，需要在Application的 onConfigurationChanged() 裏面也對Configuration做修改。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="nd">@Override</span>
+</span><span class="line"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onConfigurationChanged</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">newConfig</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">Locale</span> <span class="n">locale</span> <span class="o">=</span> <span class="n">getLocaleFromPref</span><span class="o">();</span>
+</span><span class="line">	<span class="n">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="n">locale</span><span class="o">);</span>
+</span><span class="line">	<span class="n">overwriteConfigurationLocale</span><span class="o">(</span><span class="n">newConfig</span><span class="o">,</span> <span class="n">locale</span><span class="o">);</span>
+</span><span class="line">	<span class="kd">super</span><span class="o">.</span><span class="na">onConfigurationChanged</span><span class="o">(</span><span class="n">newConfig</span><span class="o">);</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>做了這些後，應用就能使用自己的locale設定，而不是系統locale了。完整代碼例子可以參考RunningCadence源碼 <a href="https://github.com/aleung/RunningCadence/blob/c658e00bd24a23bd95369bf6e3d87254776ae2cb/RunningCadence/src/leoliang/runningcadence/Application.java">Application.java</a>。</p>
+
+<h2 id="preferencelocale">讓應用preference中的locale設定修改立即生效</h2>
+
+<p>應用通常會使用 Preference API 來構造用戶設定界面，在上一步完成後，用戶可以在應用preference裏設置locale，在應用重新啓動時會使用選定的locale。但是用戶在preference裏修改locale後是不會立即生效的，因爲修改沒有反映到 configuration 中去，而且對於已經存在的activity，界面組件都已經創建好了，界面上的文字不可能自動改變。</p>
+
+<p>一種方案是讓整個應用重新啓動，所有資源都重新加載，所有界面都重新創建。我留意了一下，大部分提供應用內語言設定的應用都是這樣做的——在彈出對話框裏選擇語言並確認後，不會返回到設定頁面，而是顯示應用的入口界面——應用已經重啓了。在 RunningCadence 中，我不想用這種方法，因爲用戶體驗會不好——用戶在修改語言後，通常還要選擇另一個選項進行語音合成測試，看看TTS對新選擇的語言能否正常工作——如果應用重啓返回主界面，用戶就得再進入設定界面才能進行測試，一方面是操作麻煩了，另一方面界面無緣無故跳轉也會帶來困惑。</p>
+
+<h3 id="configuration">在用戶修改設定後，更新Configuration</h3>
+
+<p>更新Configuration的方法跟應用啓動時的做法一樣，可以重用 setLocale() 方法，問題是要能在合適的時機去調用。使用SharedPreference的修改通知機制可以做到這點。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PreferenceActivity</span> <span class="kd">extends</span> <span class="n">android</span><span class="o">.</span><span class="na">preference</span><span class="o">.</span><span class="na">PreferenceActivity</span> <span class="kd">implements</span>
+</span><span class="line">		<span class="n">OnSharedPreferenceChangeListener</span> <span class="o">{</span>
+</span><span class="line">
+</span><span class="line">	<span class="c1">// ...</span>
+</span><span class="line">
+</span><span class="line">	<span class="nd">@Override</span>
+</span><span class="line">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSharedPreferenceChanged</span><span class="o">(</span><span class="n">SharedPreferences</span> <span class="n">sharedPreferences</span><span class="o">,</span> <span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;pref_language&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="line">			<span class="o">((</span><span class="n">Application</span><span class="o">)</span> <span class="n">getApplication</span><span class="o">()).</span><span class="na">setLocale</span><span class="o">();</span>
+</span><span class="line">			<span class="n">restartActivity</span><span class="o">();</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">	<span class="nd">@Override</span>
+</span><span class="line">	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+</span><span class="line">		<span class="n">addPreferencesFromResource</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">preferences</span><span class="o">);</span>
+</span><span class="line">		<span class="n">getPreferenceScreen</span><span class="o">().</span><span class="na">getSharedPreferences</span><span class="o">().</span><span class="na">registerOnSharedPreferenceChangeListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">	<span class="nd">@Override</span>
+</span><span class="line">	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onStop</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">		<span class="kd">super</span><span class="o">.</span><span class="na">onStop</span><span class="o">();</span>
+</span><span class="line">		<span class="n">getPreferenceScreen</span><span class="o">().</span><span class="na">getSharedPreferences</span><span class="o">().</span><span class="na">unregisterOnSharedPreferenceChangeListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>要注意這個listener的寫法，如果按照通常Android程序風格，使用匿名內部類來實現，就會發生詭異的問題，總是不會被回調。這個問題花了我好長時間，誤打誤撞解決了也沒明白什麼回事，寫這篇文章時才看見StackOverflow上有這個問題的<a href="http://stackoverflow.com/a/3104265/94148">根源解答</a>。</p>
+
+<h3 id="locale">將已經存在的界面按照新locale重新顯示</h3>
+
+<p>先分析哪些activity是需要重新顯示的，這需要對應用的 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html">task stack</a> 結構有一個審視。要知道在locale更改的時刻，哪些activity還在生存着，會在後續操作中重新變爲可見狀態，這些activity的界面需要重建。在RunningCadence裏比較簡單，就是PreferenceActivity本身和調用它的主activity。</p>
+
+<p>要讓activity的界面按新locale重新顯示，最簡單的方法應該就是讓它重啓，這比起對每個界面元件都用重新加載資源去重設要簡單得多。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">restartActivity</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">();</span>
+</span><span class="line">	<span class="n">finish</span><span class="o">();</span>
+</span><span class="line">	<span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>PreferenceActivity的重啓是在OnSharedPreferenceChangeListener得知設定發生了改變的時候進行，在上面的代碼例子裏已經顯示出來了。而主activity的重啓是在當用戶從PreferenceActivity中返回到主activity時，在onActivityResult() 中觸發。</p>
+
+<p>完整代碼例子可以參考RunningCadence源碼 <a href="https://github.com/aleung/RunningCadence/blob/f0cdb98b42a94caa5c7e2cec1a8aa6abf91e73b9/RunningCadence/src/leoliang/runningcadence/PreferenceActivity.java">PreferenceActivity.java</a>。</p>
+
+<h2 id="section">總結</h2>
+
+<p>現在將思路理清了寫下來，感覺不算複雜，但是在做的過程中費了好多腦筋繞了不少彎路，邊上網查資料邊嘗試。Android的API Guides在ICS發佈後改進了好多，很多內容重寫過更清晰容易理解了，另外一個非常有價值的資源是<a href="StackOverflow.com">StackOverflow.com</a>。</p>
+
+<p>我感覺，對於一般應用沒有太大必要去實現應用內的語言選擇。系統裏所有應用都使用統一的locale本來就挺好的。</p>
+
+<p>如果應用的task stack結構複雜，需要重新顯示的activity很多，可能用重啓整個應用的方法更簡單一些。我不知道重啓應用是怎麼做到的，Android API裏面沒有現成的方法。不過若實現了應用重啓，應用內部各個Activity都不需要做任何額外處理了。</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>詳細機制見 <a href="http://developer.android.com/guide/topics/resources/runtime-changes.html">Handling Runtime Changes</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>在 <a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram">Android Activity Lifecycle in UML</a> 文中的狀態圖可以見到configChanged引發的狀態遷移。<a href="#fnref:2" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-06T00:25:00+08:00" pubdate data-updated="true">2012-10-06</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/" data-via="acette" data-counturl="http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/17/Java-volatile-/" title="Previous Post: Java的volatile关键字的作用">&laquo; Java的volatile关键字的作用</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 144%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 108%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 118%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 137%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 108%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/';
+        var disqus_url = 'http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

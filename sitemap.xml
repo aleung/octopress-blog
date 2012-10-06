@@ -1204,7 +1204,7 @@
     </url>
     <url>
         <loc>http://aleung.github.com/blog/2012/06/24/try-octopress-markdown-features/</loc>
-        <lastmod>2012-06-25T21:40:16+08:00</lastmod>
+        <lastmod>2012-10-06T21:11:25+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/2012/06/25/migrate-my-blog-to-github/</loc>
@@ -1263,11 +1263,15 @@
         <lastmod>2012-09-17T23:38:08+08:00</lastmod>
     </url>
     <url>
+        <loc>http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/</loc>
+        <lastmod>2012-10-06T21:14:52+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aleung.github.com/blog/blog/archives/</loc>
-        <lastmod>2012-09-17T23:38:08+08:00</lastmod>
+        <lastmod>2012-10-06T21:14:52+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/</loc>
-        <lastmod>2012-09-17T23:38:08+08:00</lastmod>
+        <lastmod>2012-10-06T21:14:52+08:00</lastmod>
     </url>
 </urlset>

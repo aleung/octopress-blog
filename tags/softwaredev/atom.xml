@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-09-17T23:38:52+08:00</updated>
+  <updated>2012-10-06T21:15:13+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,152 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android: 在應用中設定locale]]></title>
+    <link href="http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/"/>
+    <updated>2012-10-06T00:25:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application</id>
+    <content type="html"><![CDATA[<p>近幾天把以前做的跑步步频训练软件 <a href="https://play.google.com/store/apps/details?id=leoliang.runningcadence">RunningCadence</a> 加上了多語言支持，可以在應用中設定界面以及語音播報所用的語言。</p>
+
+<p>對多語言的支持，Android已經做得很完善，開發者只需要在應用中加入各種locale的資源文件。但是，應用只會使用系統全局設置的locale，而要在應用自己的設定中選擇locale，以及要讓設定立即生效，就需要開發者自己去實現了。</p>
+
+<p>本來，一般應用並沒必要自己提供語言設定，用系統全局設定就好了。但這個 RunningCadence 使用了語音合成(TTS)功能，而一般手機上安裝的TTS引擎支持的語言都有限，如果TTS不支持系統locale的語言，那就聽不到聲音了，所以需要花力氣去搞這個應用內的語言選擇。</p>
+
+<h2 id="localelocale">讓應用啓動時使用自己設定的locale，而非系統locale</h2>
+
+<p>開發應用時要爲不同locale準備不同的資源，在應用中通過 <a href="http://developer.android.com/reference/android/content/res/Resources.html">Resources</a> 類來加載資源，各個界面組件的構建都需要用到資源。而具體資源如何選擇是受 <a href="http://developer.android.com/reference/android/content/res/Configuration.html">Configuration</a> 影響的，Configuration帶有設備的硬件相關配置信息（如屏幕分辨率，屏幕方向）和系統全局配置信息（如locale），由系統底層框架提供。</p>
+
+<p>應用啓動時，Configuration中的locale會被設置爲系統locale。應用若要使用自己的locale，就必須在創建界面之前，將Resources裏的Configuration更改。</p>
+
+<p>這個更改在application的 onCreate() 裏面做最合適，對應用全局生效，因爲它在任何activity創建之前就執行了，不再需要在各個activity裏做任何事情。</p>
+
+<p>``` java
+	@Override
+	public void onCreate() {
+		setLocale();
+	}</p>
+
+<pre><code>public void setLocale() {
+	Locale locale = getLocaleFromPref();
+	Locale.setDefault(locale);
+	Configuration config = getBaseContext().getResources().getConfiguration();
+	overwriteConfigurationLocale(config, locale);
+}
+
+private void overwriteConfigurationLocale(Configuration config, Locale locale) {
+	config.locale = locale;
+	getBaseContext().getResources()
+			.updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+} ```
+</code></pre>
+
+<p>加了這段代碼後，應用啓動時就會根據 getLocaleFromPref() 返回的語言來顯示了，但是你會發現如果將手機屏幕轉一下，例如豎屏變爲橫屏，界面又會變回系統缺省語言，爲什麼呢？</p>
+
+<p>系統底層框架會在configuration發生了變化時通知應用<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。對application是調用 Application.onConfigurationChanged() 方法。對activity的處理採用那種方式，就與manifest文件中&lt;Activity&gt;的 android:configChanges 屬性配置相關：</p>
+
+<ul>
+  <li>如果發生的是configChanges中指定的事件，調用 Activity.onConfigurationChanged()，不重啓activity；</li>
+  <li>否則重啓activity。</li>
+</ul>
+
+<p>屏幕的旋轉就是一種 runtime change，缺省情況下會觸發activity的重啓，也就是銷毀並重新創建activity<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，重新創建時使用的是新的Configuration，裏面帶的又是系統locale，因此就造成了界面變回系統缺省語言。</p>
+
+<p>爲了避免這種情況，需要在Application的 onConfigurationChanged() 裏面也對Configuration做修改。</p>
+
+<p><code>java
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		Locale locale = getLocaleFromPref();
+		Locale.setDefault(locale);
+		overwriteConfigurationLocale(newConfig, locale);
+		super.onConfigurationChanged(newConfig);
+	}
+</code></p>
+
+<p>做了這些後，應用就能使用自己的locale設定，而不是系統locale了。完整代碼例子可以參考RunningCadence源碼 <a href="https://github.com/aleung/RunningCadence/blob/c658e00bd24a23bd95369bf6e3d87254776ae2cb/RunningCadence/src/leoliang/runningcadence/Application.java">Application.java</a>。</p>
+
+<h2 id="preferencelocale">讓應用preference中的locale設定修改立即生效</h2>
+
+<p>應用通常會使用 Preference API 來構造用戶設定界面，在上一步完成後，用戶可以在應用preference裏設置locale，在應用重新啓動時會使用選定的locale。但是用戶在preference裏修改locale後是不會立即生效的，因爲修改沒有反映到 configuration 中去，而且對於已經存在的activity，界面組件都已經創建好了，界面上的文字不可能自動改變。</p>
+
+<p>一種方案是讓整個應用重新啓動，所有資源都重新加載，所有界面都重新創建。我留意了一下，大部分提供應用內語言設定的應用都是這樣做的——在彈出對話框裏選擇語言並確認後，不會返回到設定頁面，而是顯示應用的入口界面——應用已經重啓了。在 RunningCadence 中，我不想用這種方法，因爲用戶體驗會不好——用戶在修改語言後，通常還要選擇另一個選項進行語音合成測試，看看TTS對新選擇的語言能否正常工作——如果應用重啓返回主界面，用戶就得再進入設定界面才能進行測試，一方面是操作麻煩了，另一方面界面無緣無故跳轉也會帶來困惑。</p>
+
+<h3 id="configuration">在用戶修改設定後，更新Configuration</h3>
+
+<p>更新Configuration的方法跟應用啓動時的做法一樣，可以重用 setLocale() 方法，問題是要能在合適的時機去調用。使用SharedPreference的修改通知機制可以做到這點。</p>
+
+<p>``` java
+    public class PreferenceActivity extends android.preference.PreferenceActivity implements
+    		OnSharedPreferenceChangeListener {</p>
+
+<pre><code>	// ...
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		if (key.equals("pref_language")) {
+			((Application) getApplication()).setLocale();
+			restartActivity();
+		}
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.preferences);
+		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+	}
+} ```
+</code></pre>
+
+<p>要注意這個listener的寫法，如果按照通常Android程序風格，使用匿名內部類來實現，就會發生詭異的問題，總是不會被回調。這個問題花了我好長時間，誤打誤撞解決了也沒明白什麼回事，寫這篇文章時才看見StackOverflow上有這個問題的<a href="http://stackoverflow.com/a/3104265/94148">根源解答</a>。</p>
+
+<h3 id="locale">將已經存在的界面按照新locale重新顯示</h3>
+
+<p>先分析哪些activity是需要重新顯示的，這需要對應用的 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html">task stack</a> 結構有一個審視。要知道在locale更改的時刻，哪些activity還在生存着，會在後續操作中重新變爲可見狀態，這些activity的界面需要重建。在RunningCadence裏比較簡單，就是PreferenceActivity本身和調用它的主activity。</p>
+
+<p>要讓activity的界面按新locale重新顯示，最簡單的方法應該就是讓它重啓，這比起對每個界面元件都用重新加載資源去重設要簡單得多。</p>
+
+<p><code>java
+	private void restartActivity() {
+		Intent intent = getIntent();
+		finish();
+		startActivity(intent);
+	}
+</code></p>
+
+<p>PreferenceActivity的重啓是在OnSharedPreferenceChangeListener得知設定發生了改變的時候進行，在上面的代碼例子裏已經顯示出來了。而主activity的重啓是在當用戶從PreferenceActivity中返回到主activity時，在onActivityResult() 中觸發。</p>
+
+<p>完整代碼例子可以參考RunningCadence源碼 <a href="https://github.com/aleung/RunningCadence/blob/f0cdb98b42a94caa5c7e2cec1a8aa6abf91e73b9/RunningCadence/src/leoliang/runningcadence/PreferenceActivity.java">PreferenceActivity.java</a>。</p>
+
+<h2 id="section">總結</h2>
+
+<p>現在將思路理清了寫下來，感覺不算複雜，但是在做的過程中費了好多腦筋繞了不少彎路，邊上網查資料邊嘗試。Android的API Guides在ICS發佈後改進了好多，很多內容重寫過更清晰容易理解了，另外一個非常有價值的資源是<a href="StackOverflow.com">StackOverflow.com</a>。</p>
+
+<p>我感覺，對於一般應用沒有太大必要去實現應用內的語言選擇。系統裏所有應用都使用統一的locale本來就挺好的。</p>
+
+<p>如果應用的task stack結構複雜，需要重新顯示的activity很多，可能用重啓整個應用的方法更簡單一些。我不知道重啓應用是怎麼做到的，Android API裏面沒有現成的方法。不過若實現了應用重啓，應用內部各個Activity都不需要做任何額外處理了。</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>詳細機制見 <a href="http://developer.android.com/guide/topics/resources/runtime-changes.html">Handling Runtime Changes</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>在 <a href="/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram">Android Activity Lifecycle in UML</a> 文中的狀態圖可以見到configChanged引發的狀態遷移。<a href="#fnref:2" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java的volatile关键字的作用]]></title>
@@ -173,21 +319,6 @@ We deliver our product in uniform installation package for all customers. A mech
 <h3 id="httpbookdoubancomsubject5406042"><a href="http://book.douban.com/subject/5406042/">设计原本</a></h3>
 
 <p>一个设计，一个人能完成就不要让其他人参与，增加的人手会削弱设计的一致性，概念的完整性。一个职责，一个部门负责就好，多部门合作带来各自的利益考虑和冲突。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用手机遥控Linux后台播放豆瓣电台]]></title>
-    <link href="http://aleung.github.com/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/"/>
-    <updated>2012-03-10T00:35:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements</id>
-    <content type="html"><![CDATA[<p>最近买了一个<a href="http://en.wikipedia.org/wiki/Asus_EeeBox_PC">EeeBox</a>来做home server，装Ubuntu操作系统，有不少东西可以玩。</p>
-
-<p>其中一个用途是连接到音响播放音乐。我比较喜欢听豆瓣电台，于是找一个豆瓣电台的客户端。Home server平常不接显示器，也不启动图形界面，常见的浏览器客户端、桌面客户端都不能用，要找命令行的。在github上找到Johnny Huang开发的<a href="https://github.com/hzqtc/fmd">fmd</a>（Douban FM daemon），启动后在后台运行，正合我意。Fork下来给它增加了个安装脚本，能够安装为服务，开机就自动运行了。但fmd只是个后台进程，只有telnet命令接口，没法对它进行直接控制的，作者另外做了个命令行工具，叫做fmc（FMD client），用来控制fmd。但命令行工具在我这里也还是不能用—-没有显示器没有键盘—-必须能遥控才行。于是我在fmc基础上给它增加了一个web UI，称为<a href="https://github.com/aleung/fmweb">fmweb</a>，通过手机浏览器访问，就可以控制播放了。于是，我现在在家里任何地方，都可以控制我的豆瓣电台的播放，不喜欢听，跳下一首歌。</p>
-
-<p>这是在Android浏览器上的截图，在iPhone、iPad上也可以用。</p>
-
-<p><img src="https://lh6.googleusercontent.com/-ishGby7lpTk/T1ove7Z0-rI/AAAAAAAAAoU/94_iFdmfSKw/s400/Screenshot_2012-03-09-23-41-13.png" alt="" /><img src="https://lh5.googleusercontent.com/-zXp_XdbbgNk/T1ovfpnkxbI/AAAAAAAAAoc/CN-7dV4U4Xg/s400/Screenshot_2012-03-09-23-55-39.png" alt="" /></p>
 ]]></content>
   </entry>
   

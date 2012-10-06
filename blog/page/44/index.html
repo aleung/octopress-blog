@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="不知不觉的，差不多三十岁了。都说三十是人生一个关口，对于一名程序员尤甚。即将告别人生的一个段落，回望过去，看到自己存在不少缺点；展望未来，路要怎么走，不免有些患得患失。 前两天跟flyisland聊天，他说（书上说）：失败的最重要原因，是没有长期目标；第二个原因，是没有短期目标。是啊， &hellip;">
+  <meta name="description" content="编写测试程序, 发现超过1000个线程, 程序执行就会出现内存错误. 原来我还以为是windows对线程数量有限制, 查资料才知道支持线程多少并不是操作系统决定的, 而是与程序的堆栈空间大小有关. 在VC中, 修改Project Setting - Link - Stack allocation &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,75 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/04/10/How-to-increase-the-number-of-Windows-programs-thread-/">如何增加windows程序的线程数量?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-04-10T06:10:00+08:00" pubdate data-updated="true">2004-04-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>编写测试程序, 发现超过1000个线程, 程序执行就会出现内存错误. 原来我还以为是windows对线程数量有限制, 查资料才知道支持线程多少并不是操作系统决定的, 而是与程序的堆栈空间大小有关.</p>
+
+<p>在VC中, 修改Project Setting - Link - Stack allocation - Reserve, 缺省为1M(0x100000), 将这个数值降低, 也就是减少每个线程的栈空间大小, 就可以增加线程数量. 这是因为用户地址空间总共是2GB, 线程保留栈空间大小乘以线程数量不能大于2GB.</p>
+
+<p>因为上下文切换的开销, 线程过多效率会降低, 我做这个测试程序就是想知道这个效率曲线到底是怎样的.</p>
+
+<p>以下为网上找到的资料:</p>
+
+<p>I just found this under CreateThread() in MSDN:  </p>
+
+<p>The number of threads a process can create is limited by the available virtual memory. By default, every thread has one megabyte of stack space. Therefore, you can create at most 2028 threads. If you reduce the default stack size, you can create more threads. However, your application will have better performance if you create one thread per processor and build queues of requests for which the application maintains the context information. A thread would process all requests in a queue before processing requests in the next queue.  </p>
+
+<p>So the number of threads you can create is capped by the 2 GB user address space available to your process.  </p>
+
+<p>So you have a few choices, as I see it:  </p>
+
+<p>1) Run multiple copies of your server at once and coordinate between them. You will need endless amounts of swap space.<br />
+2) Reduce the amount of stack used per thread (lowering from 1 Mb to 100Kb should get you 40,000 threads).<br />
+3) Re-architect your app to not require one thread per connection. Have each thread monitor many connections using (for example) a select() call.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/04/10/How-to-increase-the-number-of-Windows-programs-thread-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -307,59 +376,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/02/20/If-you-get-used-to-using-UNIX-commands-so-in-Windows-/">如果你习惯使用UNIX的命令，那么在Windows中&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-02-20T03:00:00+08:00" pubdate data-updated="true">2004-02-20</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://unxutils.sourceforge.net">unxutils.sourceforge.net</a> 提供了一系列的unix工具在win32平台上的移植版本. 这些版本是完全基于win32平台的, 不像cygwin那样还需要一个模拟层.</p>
-
-<p>Windows 2000 command line 中的 for 命令用于对一组文件中的每个执行某特定命令，类似于unix的 find * -exec command ，功能很强大，具体参数用 for /? 查看。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/02/20/If-you-get-used-to-using-UNIX-commands-so-in-Windows-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/45/">&larr; Older</a>
@@ -381,6 +397,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
@@ -396,16 +416,12 @@
         <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/09/running-route/">广州跑步路线：索引</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 135%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -428,19 +444,19 @@
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 108%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 140%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 119%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 118%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 121%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 108%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
