@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="接着昨天的分析：http://good-good-study.appspot.com/blog/posts/3224 已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线： 看起来相当完美。那在看看将它应用到大尺度上效果如何 &hellip;">
+  <meta name="description" content="Update 2010-2-15: 今天将BlogBus的数据导入到这里后，进BlogBus后台核对一下文章是否有缺失，一看又有好几篇文章被隐藏了。那些都是纯正的技术文章，并不像下面截屏的那样故意加入特殊字眼，有一篇还是全英文的，我真看不出有什么敏感词。 下面的原文发在BlogBus。 去向未定， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,126 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/24/Seems-to-have-to-get-off-here/">看来还是得下车了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2010-01-24T06:41:00+08:00" pubdate data-updated="true">2010-01-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Update 2010-2-15:</p>
+
+<p>今天将BlogBus的数据导入到这里后，进BlogBus后台核对一下文章是否有缺失，一看又有好几篇文章被隐藏了。那些都是纯正的技术文章，并不像下面截屏的那样故意加入特殊字眼，有一篇还是全英文的，我真看不出有什么敏感词。</p>
+
+<p>下面的原文发在<a href="http://aleung.blogbus.com">BlogBus</a>。</p>
+
+<hr />
+
+<p>去向未定，但想继续看我的blog，估计都得学几招翻墙功夫了</p>
+
+<p>请bookmark这个地址：<a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp">http://feeds.feedburner.com/GoodGoodStudyDayDayUp</a></p>
+
+<p><img src="http://farm5.static.flickr.com/4030/4356716336_bd25956bc6_o.jpg" alt="" /></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/01/24/Seems-to-have-to-get-off-here/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/01/The-reason-for-explorer-crash-tools/">查找explorer Crash原因的工具</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-01T06:59:00+08:00" pubdate data-updated="true">2010-01-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>不知道装了什么软件之后，只要在文件管理器中点击鼠标右键，Windows Explorer就会崩溃，重新启动依然如是。</p>
+
+<p>找到<a href="http://www.nirsoft.net/">Nir Sofer</a>出品的小工具 ShellExView，这个工具分析注册表，列出所有注册到explorer的shell extension及相关信息，并能够enable/disable选定的extension。找到可疑的extension，将它disable，然后再进行一次右键操作，看看还会不会crash。如此排除法很快就定位出什么软件是罪魁祸首，将它卸载或者将extension disable，问题就解决了。</p>
+
+<p>比较有用的信息是extension type，file extensions，file created time。首先关注文件创建时间，找出最近新增的extension，因为以前正常，最近才出问题，那引起问题通常是新装的软件。不过也不能一概而论，也有可能是以前安装的软件，因为最近的环境更改而出现了问题。另外可以根据extension type和file extensions进行过滤，例如我遇到的问题是右键菜单引发崩溃，那重点关注extension type为Context Menu的那些项。还有，在任何类型文件上按右键菜单都会引发崩溃，所以不大可能是由只针对特定文件类型的extension引发的。虽然系统注册的shell extension很多，例如我这个新装没多久的Vista系统就已经有三百多项，但是大部分都是Microsoft出品的，一般来说还是比较可靠的，只要关注非Microsoft的就可以了，找起问题来还是很快的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/01/01/The-reason-for-explorer-crash-tools/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -279,134 +399,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/03/Restore-the-wind-baiyun-sunny-days-blog/">重拾 “清风白云艳阳天” Blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-03T08:05:00+08:00" pubdate data-updated="true">2009-12-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>, <a class='tag' href='/blog/tags/life/'>Life</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>“清风白云艳阳天: 摄影-旅行-生活” 是我的第一个blog，大概是在2000/2001年左右开始的吧，搬过好多次家，最初放在公司的服务器上，又放过在绿野上，后来放在朋友的服务器。2006年朋友的服务器关了，这个blog就没有着落了。随着对摄影的兴趣减淡，也一直没有提起心情来把它重新建起来。反倒是后来的 “Goog good study day day up” 断断续续的一直坚持了下来。</p>
-
-<p>Blogbus用了这么久，感觉还不错，就在这里再安一个家吧。不一定会更新得多勤快，反正想写就写，想贴就贴。及时性是肯定不能保证的了，我好多照片都是等一年后才扫描出来，再不知道等多久才会处理好。</p>
-
-<p>下面是链接，建议用RSS订阅，免得每次打开都看不到新内容 :)</p>
-
-<h1 id="sunnyday--feelingwindhttpsunnywindblogbuscom"><a href="http://sunnywind.blogbus.com/">SunnyDay &amp; FeelingWind</a></h1>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/12/03/Restore-the-wind-baiyun-sunny-days-blog/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/11/03/The-world-can-change-in-a-day/">The World Can Change in a Day</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-03T08:39:00+08:00" pubdate data-updated="true">2009-11-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/civilsociety/'>CivilSociety</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>8 November 1989</p>
-
-<p><img src="/blog/attachments/2009/11/CapeTimes-BerlinWall.jpg" alt="" /></p>
-
-<p>9 November 1989, the wall fell. </p>
-
-<p>柏林人民踊跃翻墙的塲景：</p>
-
-<p><img src="/blog/attachments/2009/11/OverBerlinWall.jpg" alt="" /></p>
-
-<p>当年柏林是被这样的高墻分隔的：</p>
-
-<p><img src="/blog/attachments/2009/11/BerlinWallMap.jpg" alt="" /></p>
-
-<p>如今残存的墙上的壁画，反映了当年翻墙的种种途径：</p>
-
-<p><img src="/blog/attachments/2009/11/BerlinWallPicture1.jpg" alt="" /></p>
-
-<p><img src="/blog/attachments/2009/11/BerlinWallPicture2.jpg" alt="" /></p>
-
-<p>—— 纪念柏林墙倒下20周年</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/11/03/The-world-can-change-in-a-day/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/16/">&larr; Older</a>
@@ -428,6 +420,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/11/my-first-half-marathon+%28Autosaved%29/">我的首個半馬拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/11/my-first-half-marathon/">my-first-half-marathon</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
       </li>
     
@@ -437,14 +437,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
   </ul>
@@ -481,7 +473,7 @@
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 118%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 120%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

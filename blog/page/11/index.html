@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="家里的松下H540U波轮洗衣机，使用了大概一年半左右开始出现撞桶现象，就是在洗衣的过程中，每次波轮起动（或反转）时，洗衣桶会碰撞到箱体。因为箱体相应位置贴了防撞海绵，摩擦时发出很大很难听的”吱吱”的声音。打开上盖检查过，发现是箱体吊挂系统变形所致，我觉得这属于设计上的缺陷。 &hellip;">
+  <meta name="description" content="在上次写下进展之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。 首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,147 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/">Android手机上使用SSH Tunnel：prototype</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2010-07-31T00:17:00+08:00" pubdate data-updated="true">2010-07-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在上次写下<a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-">进展</a>之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。</p>
+
+<ol>
+  <li>首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行</li>
+  <li>将transocks_ev放到Android系统中，目录随你喜欢。这里<a href="http://cid-e1c6bc07e3f505a3.office.live.com/self.aspx/.Public/transocks%5E_ev-android.zip">下载</a>已编译的transocks_ev for Android可执行文件，解压后文件的MD5：6a0c3500bcd24ab7b706c8caf34f15ba</li>
+  <li>从Android Market下载ConnectBot，配置好你的ssh帐号，记得设置port forwarding，端口为9050</li>
+  <li>在ConnectBot中连接ssh</li>
+  <li>在shell中运行transocks_ev:  </li>
+</ol>
+
+<pre><code>transocks_ev -S 127.0.0.1 -s 9050
+</code></pre>
+
+<ol>
+  <li>在shell中执行iptables命令： </li>
+</ol>
+
+<pre><code>iptables -t nat -F 
+iptables -t nat -A OUTPUT -m owner --cmd-owner transocks_ev -j RETURN 
+iptables -t nat -A OUTPUT -m owner --cmd-owner org.connectbot -j RETURN 
+iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-ports 1211 
+iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
+</code></pre>
+
+<ol>
+  <li>这时所有的HTTP/HTTPS流量都会通过ssh tunnel了，但DNS查询不会，所以依然无法访问被DNS污染的网站</li>
+  <li>断开ConnectBot连接</li>
+  <li>在shell中kill掉transocks_ev进程</li>
+  <li>在shell中执行iptables命令：</li>
+</ol>
+
+<pre><code>iptables -t nat -F
+</code></pre>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/30/Swimming-feeling/">游泳感想</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-07-30T22:49:00+08:00" pubdate data-updated="true">2010-07-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。</p>
+
+<p>首先是想为什么没有音乐听听呢？跑步的时候可以戴着耳机听音乐，游泳也应该可以才对。做防水的播放器和防水的耳机，难度应该不大，说不定已经有这样的产品了，只是没有普及。</p>
+
+<p>第二个想法有意思些。我在海里看过珊瑚，离岸不远的浅水，只要把头沉入水中，就能见到海底犹如大花园一般的珊瑚世界。如果整个游泳池底铺上大显示屏，游泳池也可以变身为虚拟海底世界。五彩斑斓的珊瑚随着水波微微摇曳，鱼群在其中穿梭。假若结合电脑控制的虚拟现实系统，加上感应器，还可让鱼群在你游近时飞快逃开，而海豚就伴在你左右。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/07/30/Swimming-feeling/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -280,145 +421,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/">Android手机上使用SSH Tunnel的进展 (2010-06-06)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-07T13:22:00+08:00" pubdate data-updated="true">2010-06-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在上一篇博客中，我提出了<a href="http://good-good-study.appspot.com/blog/posts/20001">在Android手机上使用SSH tunnel的想法</a>。几天下来有了一些进展。</p>
-
-<p>首先，非常感谢<a href="http://sunner.cn/">Sunner</a>，他帮忙编译出Android平台的transocks_ev binary，并且解决了一些在Android平台上运行的问题。</p>
-
-<p>在实验中，用ConnectBot + transocks_ev + iptables，HTTP和HTTPS请求都能重定向到SSH tunnel了，测试了浏览器和其他一些应用，无需任何额外设置就可正常访问网络。不过目前没有考虑使用非HTTP/HTTPS的应用。但现在还有两个问题：</p>
-
-<ol>
-  <li>DNS查询还是直接出去，不能避免DNS污染</li>
-  <li>现在用ConnectBot作为ssh client，并不合适： 
-    * 在port forwarding时ConnectBot CPU占用非常高，达到99%，估计是有bug。
-    * ConnectBot的连接和断开需要手动控制，密码也要在界面输入，无法做到整个翻墙过程单击执行。</li>
-</ol>
-
-<p>对于第一个问题，transocks_ev 不支持UDP，因此无法tunnel DNS查询请求。我在考虑参考<a href="http://code.google.com/p/cmwrap/">CMWrap</a>的方案，做一个DNS proxy，转成TCP请求发出去。  </p>
-
-<p>对于第二个问题，想用一个命令行ssh来代替ConnectBot。目前在Android上常用的是dropbear，但dropbear不支持SOCKS。查了linux上支持SOCKS的ssh client有OpenSSH和lsh（还有没有其他？），但是Sunner尝试了编译OpenSSH和lsh都不成功，因为它俩都太依赖gnu的一些东西了，比如glibc、glib等，而android上所有的对应的库都是从简的。因此暂时还是先用着ConnectBot，并将CPU高的问题反馈给开发者，看看有没有什么回应。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/">在考虑怎样在Android手机上使用SSH Tunnel翻墙</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-02T14:53:00+08:00" pubdate data-updated="true">2010-06-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。因此Android上是应该也可以使用SSH tunnel的。</p>
-
-<p>先看看Windows上是怎样设置SSH翻墙的：</p>
-
-<ul>
-  <li>首先需要有个支持dynamic port forwarding的SSH client，这个SSH client能开放出SOCKS服务</li>
-  <li>如果浏览器(或者其他程序)支持使用SOCKS proxy，设置使用SSH client开放出来的SOCKS端口，就可以使用了</li>
-  <li>如果浏览器(或者其他程序)不支持SOCKS proxy，只支持HTTP proxy，就需要再运行一个支持SOCKS的代理程序（例如Privoxy），将HTTP转成SOCKS</li>
-</ul>
-
-<p><img src="http://farm5.static.flickr.com/4046/4662779602_743c1c50c2_b.jpg" alt="" /></p>
-
-<p>在Android上就要麻烦一点了，因为需要网络通讯的不仅仅是浏览器，很多Android application都需要访问网络，但是它们并不支持proxy—-连HTTP proxy都不支持，更不用说SOCKS了。它们只会直接连接目标站点，如图中虚线所示，然后撞墙。</p>
-
-<p>但是Linux有iptables，可以设置iptables规则（需要root权限），将HTTP/HTTPS请求forward到一个transparent SOCKS proxy去。transparent SOCKS proxy的作用是将任意TCP连接转成SOCKS连接，这样就可以走SSH tunnel出去了。我分析过几乎所有的Android应用访问网络都是走HTTP/HTTPS协议的，所有仅仅处理HTTP/HTTPS就够了。</p>
-
-<p><img src="http://farm5.static.flickr.com/4023/4662779594_32dd9773cb_b.jpg" alt="" /></p>
-
-<p>Android上支持dynamic port forwarding的SSH client有<a href="http://code.google.com/p/connectbot/">ConnectBot</a>，不过ConnectBot是一个有界面的应用，似乎不能由其他程序来控制，这样就不好做到翻墙软件的傻瓜化了。应该还是弄一个命令行的ssh client更合适。</p>
-
-<p>在网上搜索了一下，开源的transparent SOCKS proxy有几个：<a href="http://oss.tiggerswelt.net/transocks_ev/">transocks_ev</a>，<a href="http://transocks.sourceforge.net/">TranSocks</a> 和 <a href="http://darkk.net.ru/redsocks/">redsocks</a>。从文档上看，似乎transocks_ev比较适合。</p>
-
-<p>但是，我现在面临的困难在于我不熟悉如何交叉编译Android平台程序（C语言），了解了一下如何搭建Android交叉编译环境，似乎挺麻烦（对我而言）。而且要让普通Linux上可运行的sshd和transocks port到Android上，也许还有一些代码要修改。不知道有没有Android系统高手能够帮忙？</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/12/">&larr; Older</a>
@@ -440,6 +442,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/11/my-first-half-marathon+%28Autosaved%29/">我的首個半馬拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/11/my-first-half-marathon/">my-first-half-marathon</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
       </li>
     
@@ -449,14 +459,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
   </ul>
@@ -493,7 +495,7 @@
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 118%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 120%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

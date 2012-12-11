@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="去年底RememberTheMilk的pro帐号到期了，于是又折腾了一下看看有没有好用的类似工具，发现了一个在线任务管理的新秀：GQueues。GQueues的功能和界面都不错，我比较喜欢它的一点是没有用高中低的任务优先级，而是让你在列表中拖放任务改变顺序，排在最顶的就是需要优先处理的。 &hellip;">
+  <meta name="description" content="之前我写过一系列文章介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：sshtunnel 与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,145 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/Android-ssh-/">Android用户的好消息：用ssh翻墙</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2011-02-11T20:41:00+08:00" pubdate data-updated="true">2011-02-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前我写过一系列<a href="http://good-good-study.appspot.com/blog/posts/90001">文章</a>介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：<a href="http://madeye.me/2011/02/10/ssh-tunnel-on-the-android-application-puff-android-edition/">sshtunnel</a></p>
+
+<p>与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流，不同的是它还使用了trilead-ssh2代码（作者说来自于ConnectBot）来做SSH client，因此这一个程序就可以完成整个过程，操作简单。根据文档说明和大致浏览代码，貌似没有使用SSH dynamic port forwarding，而是要求SSH server端安装了HTTP代理服务器，SSH连接纯粹是tunnel了到服务端HTTP proxy的连接。</p>
+
+<p>Update: <a href="https://twitter.com/#!/ofmax/status/36717058762739712">作者说</a>，不使用SSH dynamic port forwarding是因为受限于Android手机的机能。我之前测试用ConnectBot做SOCKS proxy的时候就总是遇到CPU占用100%的问题，估计作者说的就是这个。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/02/11/Android-ssh-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/TwitterSinaSync-Twitter-/">TwitterSinaSync，自动同步Twitter信息到新浪微博</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2011-02-11T05:31:00+08:00" pubdate data-updated="true">2011-02-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前寻找同步twitter到新浪微博的方法，没有尝试到满意的。@cutemic<a href="http://cutemic.posterous.com/twitter">介绍说</a>他是在GAE上跑一个叫twitter2sina的python程序，周期性读取自己的tweets，再调用API发送到新浪微博。</p>
+
+<p>程序员的基本素质是懒惰，因此我问@cutemic他安装的程序是否支持多用户，如果支持，我就懒得自己折腾，让他给我加个用户好了。很可惜，他的程序是要将新浪微博用户名密码hard code到程序里的，那我只能自力更生了。</p>
+
+<p>装起来之后，本着助人为乐的精神，考虑把这个服务也提供给别人使用。看看代码，调用新浪微博API是用Basic HTTP认证的，需要提供用户名和密码，这样太没有安全感了，别人不敢用的。如果改成OAuth，用户就不需要提供密码了。</p>
+
+<p>动手尝试修改，于是，就有了这个<a href="https://github.com/aleung/TwitterSinaSync">TwitterSinaSync</a>。</p>
+
+<p>代码大概的历史：</p>
+
+<ol>
+  <li>原始版本是<a href="http://code.google.com/p/twitter2sina/">twitter2sina</a>，没有使用新浪微博API，已经失效</li>
+  <li>@cutemic的<a href="http://cutemic.posterous.com/twitter">修改版本</a>，改成使用新浪微博API</li>
+  <li>我修改的<a href="">TwitterSinaSync</a></li>
+</ol>
+
+<p>主要特性：</p>
+
+<ul>
+  <li>部署于Google App Engine，免费、可靠、方便的云计算环境</li>
+  <li>使用新浪微博API OAuth认证，用户不需要提供密码，保证安全</li>
+  <li>支持多用户：多组twitter-微博同步绑定</li>
+  <li>新用户凭管理员提供的邀请链接才能加入，方便私人分享</li>
+</ul>
+
+<p><a href="https://github.com/aleung/TwitterSinaSync">代码</a>托管在GitHub，bug report 和 feature request可以往<a href="">这里</a>提交。</p>
+
+<p><em><strong>Updated 2011-7-7:</strong></em></p>
+
+<p>由于新浪微博对API使用过滤异常的严格，这个应用基本上用处不大了，普通内容的tweet，大概十条里只有两三条能够成功同步，见<a href="http://good-good-study.appspot.com/blog/posts/124001">新浪微博API黑名单威武</a>。如果应用能够通过审核，也许过滤会放宽一些，但是根据新浪微博API的用户协议，是不能用于从其他微博系统同步信息的，更何况是Twitter，通过审核的可能性微乎其微。故此我不再维护这个软件了，也不再提供邀请码，请谅解。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/02/11/TwitterSinaSync-Twitter-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -293,334 +432,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/">Android Activity Lifecycle in UML State Machine Diagram</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-16T06:25:00+08:00" pubdate data-updated="true">2010-12-16</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Lifecycle of Android activity is always confusing beginners. The <code>Activity</code> class has defined dozens of callback functions, all begin with “on”. Some of them are triggered by UI events, some are lifecycle related. It isn’t easy for developer to remember the usage of them.</p>
-
-<p>An activity has essentially four states, when some event happens, like user navigates between different activities, state transites. There are lots of callback functions which will be called by framework when an activity transites between states. So the activity lifecyle is ideally modeled in state machine. However in <a href="http://developer.android.com/reference/android/app/Activity.html#ActivityLifecycle">Android SDK document</a>, the Activity Lifecycle is descripted by a diagram and table of callback functions. It explains the order of the callback functions being called, but a developer can’t clearly understand in whatcircumstance each callback function will be called.</p>
-
-<p>I tried to draw an UML state machine diagram for Android activity lifecycle:</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5264062473/"><img src="http://farm6.static.flickr.com/5241/5264062473_22989eacb7_b.jpg" alt="Android Activity Lifecycle" /></a></p>
-
-<p>If you aren’t familiar with UML state machine diagram, read the <a href="http://en.wikipedia.org/wiki/UML_state_machine">introduction</a> on Wikipedia.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/">Tiny HTTP Server by Java</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2010-12-10T06:56:00+08:00" pubdate data-updated="true">2010-12-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法，URL必须指向一个文件。我顺手修改了一下，让它可以列出目录，这样用起来更加方便一些。</p>
-
-<div><script src="https://gist.github.com/1347769.js?file="></script>
-<noscript><pre><code>import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.StringTokenizer;
-
-public class HttpServer {
-  public static void main(String args[]) {
-    int port;
-    try {
-      port = Integer.parseInt(args[0]);
-    } catch (Exception e) {
-      port = 80;
-    }
-
-    String root;
-    try {
-      root = args[1];
-    } catch (Exception e) {
-      root = &quot;../&quot;;
-    }
-    
-    try {
-
-      ServerSocket server_socket = new ServerSocket(port);
-      System.out.println(&quot;HttpServer running on port &quot;
-          + server_socket.getLocalPort() + &quot;, root directory is &quot; + root);
-
-      // server infinite loop
-      while (true) {
-        Socket socket = server_socket.accept();
-        System.out.println(&quot;New connection accepted &quot;
-            + socket.getInetAddress() + &quot;:&quot; + socket.getPort());
-
-        // Construct handler to process the HTTP request message.
-        try {
-          HttpRequestHandler request = new HttpRequestHandler(socket, root);
-          // Create a new thread to process the request.
-          Thread thread = new Thread(request);
-          thread.start();
-        } catch (Exception e) {
-          System.out.println(e);
-        }
-      }
-    } catch (IOException e) {
-      System.out.println(e);
-    }
-  }
-}
-
-class HttpRequestHandler implements Runnable {
-  final static String CRLF = &quot;\r\n&quot;;
-
-  Socket socket;
-  InputStream input;
-  OutputStream output;
-  BufferedReader br;
-  private String root;
-
-  public HttpRequestHandler(Socket socket, String root) throws Exception {
-    this.root = root;
-    this.socket = socket;
-    this.input = socket.getInputStream();
-    this.output = socket.getOutputStream();
-    this.br = new BufferedReader(new InputStreamReader(socket
-        .getInputStream()));
-  }
-
-  public void run() {
-    try {
-      processRequest();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void processRequest() throws Exception {
-    while (true) {
-      String headerLine = br.readLine();
-      System.out.println(&quot;&gt;&gt;&gt;Request&quot;);
-      System.out.println(headerLine);
-      if (headerLine.equals(CRLF) || headerLine.equals(&quot;&quot;))
-        break;
-
-      StringTokenizer s = new StringTokenizer(headerLine);
-      String temp = s.nextToken();
-
-      if (temp.equals(&quot;GET&quot;)) {
-
-        String serverLine = &quot;Server: Simple Java Http Server&quot;;
-        String statusLine = null;
-        String contentTypeLine = &quot;text/html&quot;;
-        String entityBody = null;
-        String contentLengthLine = &quot;&quot;;
-        FileInputStream fis = null;
-        boolean fileExists = false;
-      
-        String requestedPath = s.nextToken();
-        if (requestedPath.equals(&quot;/&quot;)) {
-          requestedPath = &quot;&quot;;
-        }
-        String fileName = root + requestedPath;
-        System.out.println(&quot;===Debug&quot;);
-        System.out.println(fileName);
-        File file = new File(fileName);
-        if (!file.exists()) {
-          statusLine = &quot;HTTP/1.0 404 Not Found&quot; + CRLF;
-          entityBody = &quot;&lt;HTML&gt;&quot;
-              + &quot;&lt;HEAD&gt;&lt;TITLE&gt;404 Not Found&lt;/TITLE&gt;&lt;/HEAD&gt;&quot;
-              + &quot;&lt;BODY&gt;404 Not Found&quot;
-              + &quot;&lt;br&gt;usage:http://yourHostName:port/&quot;
-              + &quot;fileName.html&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
-        } else {
-          statusLine = &quot;HTTP/1.0 200 OK&quot; + CRLF;
-
-          if (file.isDirectory()) {
-            String[] files = file.list();
-            entityBody = &quot;&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;&quot; + file.getPath() 
-                + &quot;&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;&lt;UL&gt;&quot;;
-            for (String entry : files) {
-              entityBody += &quot;&lt;LI&gt;&lt;a href='&quot; + requestedPath + &quot;/&quot; + entry + &quot;'&gt;&quot; 
-                + entry +&quot;&lt;/a&gt;&lt;/LI&gt;&quot;;
-            }
-            entityBody += &quot;&lt;/UL&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
-          } else {
-            try {
-              fis = new FileInputStream(file);
-              fileExists = true;
-            } catch (FileNotFoundException e) {
-              e.printStackTrace();
-            }
-            contentTypeLine = &quot;Content-type: &quot; + contentType(fileName) + CRLF;
-            contentLengthLine = &quot;Content-Length: &quot;
-              + (new Integer(fis.available())).toString() + CRLF;
-          }
-        }
-
-        if (!fileExists) {
-            contentLengthLine = &quot;Content-Length: &quot;
-              + (new Integer(entityBody.getBytes().length)).toString() + CRLF;
-        }
-        
-        System.out.println(&quot;&lt;&lt;&lt;Response&quot;);
-
-        output.write(statusLine.getBytes());
-        System.out.println(statusLine);
-        output.write(serverLine.getBytes());
-        System.out.println(serverLine);
-        output.write(contentTypeLine.getBytes());
-        System.out.println(contentTypeLine);
-        output.write(contentLengthLine.getBytes());
-        System.out.println(contentLengthLine);
-
-        // Send a blank line to indicate the end of the header lines.
-        output.write(CRLF.getBytes());
-        System.out.println(CRLF);
-
-        // Send the entity body.
-        if (fileExists) {
-          sendBytes(fis, output);
-          fis.close();
-        } else {
-          output.write(entityBody.getBytes());
-          System.out.println(entityBody);
-        }
-
-      }
-    }
-
-    try {
-      output.close();
-      br.close();
-      socket.close();
-    } catch (Exception e) {
-    }
-  }
-
-  private static void sendBytes(FileInputStream fis, OutputStream os)
-      throws Exception {
-
-    byte[] buffer = new byte[1024];
-    int bytes = 0;
-
-    while ((bytes = fis.read(buffer)) != -1) {
-      os.write(buffer, 0, bytes);
-    }
-  }
-
-  private static String contentType(String fileName) {
-    if (fileName.endsWith(&quot;.htm&quot;) || fileName.endsWith(&quot;.html&quot;)
-        || fileName.endsWith(&quot;.txt&quot;)) {
-      return &quot;text/html&quot;;
-    } else if (fileName.endsWith(&quot;.jpg&quot;) || fileName.endsWith(&quot;.jpeg&quot;)) {
-      return &quot;image/jpeg&quot;;
-    } else if (fileName.endsWith(&quot;.gif&quot;)) {
-      return &quot;image/gif&quot;;
-    } else {
-      return &quot;application/octet-stream&quot;;
-    }
-  }
-}</code></pre></noscript></div>
-
-<p>运行时可带两个参数：port, http root directory。例如:</p>
-
-<pre><code>$JAVA_HOME/bin/java httpServer 8080 /tmp/test-report
-</code></pre>
-
-<p>P.S. 网上搜索一下，我的同事应该是从这里找到这段代码的：<a href="http://www.java2s.com/Code/Java/Tiny-Application/HttpServer.htm">http://www.java2s.com/Code/Java/Tiny-Application/HttpServer.htm</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/10/">&larr; Older</a>
@@ -642,6 +453,14 @@ class HttpRequestHandler implements Runnable {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/11/my-first-half-marathon+%28Autosaved%29/">我的首個半馬拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/11/my-first-half-marathon/">my-first-half-marathon</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
       </li>
     
@@ -651,14 +470,6 @@ class HttpRequestHandler implements Runnable {
     
       <li class="post">
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/09/running-route-luhu/">广州跑步路线: 麓湖</a>
       </li>
     
   </ul>
@@ -695,7 +506,7 @@ class HttpRequestHandler implements Runnable {
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 118%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 120%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
