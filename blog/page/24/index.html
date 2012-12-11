@@ -9,9 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="NO space (at all) after the last jar name of each line; and TWO spaces on the next line.
-This will work: Class-path: lib/1.jar
-lib/2.jar Anything &hellip;">
+  <meta name="description" content="Allow remote TCP connection to the X server. You need root privilege to config it. Just run gdmsetup. This will open a window with multiple tabs. In &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,72 +76,6 @@ lib/2.jar Anything &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/18/Line-break-in-MANIFEST-class-path/">Line Break in MANIFEST Class-path</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-18T08:00:00+08:00" pubdate data-updated="true">2008-06-18</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ol>
-  <li>
-    <p>NO space (at all) after the last jar name of each line; and  </p>
-  </li>
-  <li>
-    <p>TWO spaces on the next line.<br />
-This will work:</p>
-  </li>
-</ol>
-
-<p>Class-path: lib/1.jar<br />
-lib/2.jar</p>
-
-<p>Anything different from that will cause an exception or some of your jars will not be found on the classpath. </p>
-
-<p>From: <a href="http://www.jroller.com/sgm/entry/manifest_class_path_too_long">http://www.jroller.com/sgm/entry/manifest_class_path_too_long</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/06/18/Line-break-in-MANIFEST-class-path/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -397,6 +329,66 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/15/Linux-cut-/">Linux的cut命令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-15T20:54:00+08:00" pubdate data-updated="true">2008-04-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原来有个这么好用的命令：cut</p>
+
+<p>经常都需要分析一个字符串或者文本文件，根据一些规则提取出其中某部分的内容。以前都是用awk来做，但awk太复杂了，每次都要拿手册查半天。今天才知道原来GNU有个叫cut的命令，就可以做这个事情。</p>
+
+<p>例如，获取当前机器的IP地址：</p>
+
+<pre><code>/sbin/ifconfig | grep 'inet addr' | grep -v '127.0.0.1' | cut -d: -f2 | cut -d' ' -f1
+</code></pre>
+
+<p>这个命令在linux和windows的unixutils里都有。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/04/15/Linux-cut-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/25/">&larr; Older</a>
@@ -418,11 +410,7 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/12/11/my-first-half-marathon+%28Autosaved%29/">我的首個半馬拉松</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/11/my-first-half-marathon/">my-first-half-marathon</a>
+        <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
       </li>
     
       <li class="post">
@@ -435,6 +423,10 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
     
       <li class="post">
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
       </li>
     
   </ul>

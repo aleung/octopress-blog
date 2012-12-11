@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/android/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-12-12T00:55:13+08:00</updated>
+  <updated>2012-12-12T01:05:23+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -164,7 +164,7 @@ private void overwriteConfigurationLocale(Configuration config, Locale locale) {
     <link href="http://aleung.github.com/blog/2012/07/22/xperia-u/"/>
     <updated>2012-07-22T18:22:00+08:00</updated>
     <id>http://aleung.github.com/blog/2012/07/22/xperia-u</id>
-    <content type="html"><![CDATA[<p>{%img /attachments/2012/7/xperia-u.png %}</p>
+    <content type="html"><![CDATA[<p><img src="/attachments/2012/7/xperia-u.png"></p>
 
 <p><a href="http://en.wikipedia.org/wiki/Nexus_One">Nexus One</a> 手机用了两年多，升过几次系统，到现在用起来还是挺满意，但唯一的问题是内部存储(ROM)太小了，只有512M，留给安装应用的空间不足200M，而现在的应用又越来越大，已经到了当想装新应用必须先卸载其他一些的地步了。尝试过A2SD，效果不大理想，卡顿感比较明显，也可能因为我的TF卡速度不够高。</p>
 
