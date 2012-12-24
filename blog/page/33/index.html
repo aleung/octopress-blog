@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在C++中进行格式化字符串的生成，通常有两种方法。一种是C风格的，使用sprintf生成格式化字符串，用str系列字符串函数进行字符串（实际是内存buffer）的拼接、拷贝等操作。另外一种是C++风格的，用string stream类通过流操作来生成格式化的字符串。 在使用上，两种方法各有长短， &hellip;">
+  <meta name="description" content="ACE(The ADAPTIVE Communication Environment)是一套功能非常丰富的open source C++ library/framework，虽然目前已经有相关的一些书籍和在线文档，但要全面的掌握它依然不是一件容易的事情。 花了几天时间，将ACE的主要功能整理了一下 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/12/03/ACE-concept-map/">ACE Concept Map</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-03T02:16:00+08:00" pubdate data-updated="true">2005-12-03</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ACE(The ADAPTIVE Communication Environment)是一套功能非常丰富的open source C++ library/framework，虽然目前已经有相关的一些书籍和在线文档，但要全面的掌握它依然不是一件容易的事情。</p>
+
+<p>花了几天时间，将ACE的主要功能整理了一下，用 mind map 归纳出来，这有助于了解ACE提供些什么功能，也可以用作速查参考，查找要实现某项功能时应该用ACE的什么类。</p>
+
+<p>下图未将节点完全展开，请下载: <a href="http://aleung.blogbus.com/files/1133518564.rar">ACE.mm</a> (使用<a href="http://freemind.sourceforge.net">FreeMind</a>打开)  </p>
+
+<p><a href="http://www.flickr.com/photos/aleung/69324015/"><img src="http://static.flickr.com/35/69324015_6c168b2ec2.jpg" alt="ACE concept map" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2005/12/03/ACE-concept-map/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -693,61 +750,6 @@ in kernel.c and condvar.c) </p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/11/05/Collection-and-hiding-disc/">藏书与藏碟</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-05T01:32:00+08:00" pubdate data-updated="true">2005-11-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>, <a class='tag' href='/blog/tags/web/'>Web</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>书买了不少，放在办公室的书柜里老是被人家拿走就失踪了，时间长了自己都忘记自己有哪些书了。本来想找过软件来记录藏书资料的，却找着了一个网站 <a href="http://www.listal.com/">www.listal.com</a> ,在线管理自己的book/music/dvd。而且它能够根据ISBN号自动从 <a href="http://amazon.com/">amazon.com</a> 获取书籍的信息。</p>
-
-<p>我的页面是 <a href="http://aleung.listal.com/">aleung.listal.com</a> ，上面列出的都是英文版的书，其实我英文没有这么厉害，大部分都是中译版，不过为了能够自动取得书籍信息，我都登记了原版书的编号。有空试试把DVD也记录上去。</p>
-
-<p>另外有个个人书籍管理软件<a href="http://songstech.com/elibpro.html">eLibPro</a>，也可以从amazon拿到书籍信息。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/11/05/Collection-and-hiding-disc/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/34/">&larr; Older</a>
@@ -769,6 +771,10 @@ in kernel.c and condvar.c) </p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
       </li>
     
@@ -784,16 +790,12 @@ in kernel.c and condvar.c) </p>
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

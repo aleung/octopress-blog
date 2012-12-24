@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/android/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-12-12T01:05:23+08:00</updated>
+  <updated>2012-12-24T22:55:49+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[四儿子无望，粗粮也好吧]]></title>
+    <link href="http://aleung.github.com/blog/2012/12/23/mi2/"/>
+    <updated>2012-12-23T14:03:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/12/23/mi2</id>
+    <content type="html"><![CDATA[<p><img src="/attachments/2012/12/mi2<em>focus</em>01s.jpg"></p>
+
+<p>Xperia U 手機用了半年，<a href="/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
+
+<p>對於國產手機，最關心的是能不能用Google服務，有沒有ROM可以刷。行貨的閹割系統對於我來說是根本不能用的。小米做得還不錯，保留了Google Service Framework，可以添加Google帳號同步，Google Play等應用自己裝上就可以了。小米手機不算開放，沒有找到任何第三方的ROM，但好在小米除了MIUI外還是提供了原生Android系統ROM，如果不喜歡MIUI還是可以用回native Android。小米2的操作系统已經超越了ICS，是Android 4.1 Jelly Bean，除了四儿子是4.2，小米2也算是版本最高的一款Android手机了吧。手機到手後，刷了個MIUI開發版，因為穩定版不提供root權限。個人感覺MIUI的定製的度把握得比較合適，把很多系統級的有用的功能集成進去了，例如來電短信攔截，LBE的權限管理，通知欄開關等等，而又沒有像其他廠商那樣內置一大堆用不著又刪不掉的應用。因此我試了一下還是決定保留MIUI。</p>
+
+<p>唯一不喜欢的是MIUI的launcher。仿照iOS将图标全平铺在桌面上，用起来不方便；它为第三方应用的图标都缩小并加上一块灰绿色背景，难看死了，本来应用精心设计的透明背景图标都被它搞成一块块牛粪。MIUI的设计风格不错的，真不知道为什么这个launcher会搭配得那么丑，即使自己创建主题将那个灰绿背景改成透明，图标还是被缩小了不好看。我另外找到了一個launcher：<a href="https://play.google.com/store/apps/details?id=com.dlto.atom.launcher">Atom Launcher</a>，界面風格簡潔，功能細節也很好，這下就完美了。</p>
+
+<p>小米2給我最大的感受是显示非常细腻，特别是低磅数的Roboto字体特别干净秀气。342ppi的屏幕达到视网膜屏的标准，其实现在新出的好多手机都是视网膜屏了，只不过现在已经不再新鲜，厂商也不会拿这来做特别宣传。Android从ICS起缺省的是Holo蓝色主题，MIUI换成了自己标志性的亮橙色，大片白色背景，黑色/灰色字体加上亮橙的点缀，整个风格很现代和清新。</p>
+
+<p>剛到手時，對尺寸不太適應，讓我覺得蘋果說的3.5寸是最適合的手機屏幕尺寸不無道理。現在慢慢有些習慣了，但是單手操作始終還是有些彆扭，比如用右手操作，左上角和右下角的按鈕都不容易按到，還是雙手會方便些。</p>
+
+<p>當然啦，新手機最爽的事情就是2G的RAM，運行的順暢程度跟舊手機比真是一個天一個地，看到什麼應用都想裝就裝啦。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android: 在應用中設定locale]]></title>
@@ -260,33 +281,6 @@ private void overwriteConfigurationLocale(Configuration config, Locale locale) {
 <p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
 
 <p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Drag and drop list view on Android]]></title>
-    <link href="http://aleung.github.com/blog/2011/04/10/Drag-and-drop-list-view-on-Android/"/>
-    <updated>2011-04-10T06:05:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/04/10/Drag-and-drop-list-view-on-Android</id>
-    <content type="html"><![CDATA[<p>I didn’t expect that implementing a drag and drop list view on Android is so difficult. It took me more than one week to get it work.</p>
-
-<p>Android SDK doesn’t provide too much support on drag and drop, at least there is no out of box API that can be used till Android 3.0 Honeycomb. It’s said that drag and drop support is improved in Android 3.0 SDK, I didn’t learn it yet because Android 3.0 hasn’t come to mobile device.</p>
-
-<p>At first I looked for open source implementation of drag and drop list view. After searching on Internet I did find some examples and library, e.g. <a href="https://github.com/commonsguy/cwac-touchlist">CWAC TouchListView</a> , they all derives from source code of Android music application. However they don’t fit for my application: First, they require to specify the height of item view in code or in layout file, that also implicitly force all item views in the same height. In my application the list view has two item view types, which differ in height. Even if item views are in same height, I don’t like the way that specifying exact value of height, I perfer to set <code>layout_height</code> to <code>wrap_content</code> and let it automatically calculates the value. Second, by those implementation, on each list item view there must be a “grabber” element. User moves an item by putting finger on the grabber then drag. I want to keep UI of my application as clean as it can, I would like to active item dragging by long press on an item, instead of drag a grabber. So I implement my version of drag and drop list view, the source code is at GitHub: <a href="https://github.com/aleung/tasks365/blob/master/tasks365/src/leoliang/tasks365/DraggableListView.java">DraggableListView</a>. It isn’t perfect yet, still has large room for improvement.</p>
-
-<p>A ListView shows items in a vertically scrolling list. The items can be refered by their position in the list. When there are a lot of items, only portion of them are visible. A visible item view can be retrieved by calling <code>ListView.getChildAt()</code>. Please be noticed that child view index is different to item position. In the code you will find these two values need to be converted between each other.</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5603506949/"><img src="http://farm6.static.flickr.com/5267/5603506949_627d31073c.jpg" alt="listview" /></a></p>
-
-<p>Long press on an item is detected by<code>GestureDetector</code>, then a dragging object is created. The dragging object represents on UI by an ImageView, which is a copy of the view of the item to be moved. The dragging object moves on screen following user’s finger. Untill user’s finger leave touch screen, the list items do not change their order, they just expand or shrink to simulate item dragging.</p>
-
-<p>In below diagram, dragging object is in green. Item at position 3 is being dragged in this example. When dragging starts, the view of item 3 shrinks its height to 1 to make it invisible (I didn’t investigate why height should be 1 instead of 0). User sees item 3 is dragged, actually it’s the dragging object – clone of the item 3 view. When dragging object is hovering at a position, the item view at that position expands to make an empty space, so looks like that it is being pushed aside by the dragging object.</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5604090272/"><img src="http://farm6.static.flickr.com/5101/5604090272_641594fa57_m.jpg" alt="listview-dnp-1" /></a><a href="http://www.flickr.com/photos/leoliang/5603507715/"><img src="http://farm6.static.flickr.com/5188/5603507715_d47cb49532_m.jpg" alt="listview-dnp-2" /></a></p>
-
-<p>Here is a screenshot of demo:</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5603811095/"><img src="http://farm5.static.flickr.com/4099/5603811095_f2f7c52c79.jpg" alt="DraggableListView" /></a></p>
 ]]></content>
   </entry>
   

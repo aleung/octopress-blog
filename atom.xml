@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-12-12T01:05:23+08:00</updated>
+  <updated>2012-12-24T22:55:49+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[四儿子无望，粗粮也好吧]]></title>
+    <link href="http://aleung.github.com/blog/2012/12/23/mi2/"/>
+    <updated>2012-12-23T14:03:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/12/23/mi2</id>
+    <content type="html"><![CDATA[<p><img src="http://aleung.github.com/blog/attachments/2012/12/mi2_focus_01s.jpg" /></p>
+
+<p>Xperia U 手機用了半年，<a href="http://aleung.github.com/blog/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
+
+<p>對於國產手機，最關心的是能不能用Google服務，有沒有ROM可以刷。行貨的閹割系統對於我來說是根本不能用的。小米做得還不錯，保留了Google Service Framework，可以添加Google帳號同步，Google Play等應用自己裝上就可以了。小米手機不算開放，沒有找到任何第三方的ROM，但好在小米除了MIUI外還是提供了原生Android系統ROM，如果不喜歡MIUI還是可以用回native Android。小米2的操作系统已經超越了ICS，是Android 4.1 Jelly Bean，除了四儿子是4.2，小米2也算是版本最高的一款Android手机了吧。手機到手後，刷了個MIUI開發版，因為穩定版不提供root權限。個人感覺MIUI的定製的度把握得比較合適，把很多系統級的有用的功能集成進去了，例如來電短信攔截，LBE的權限管理，通知欄開關等等，而又沒有像其他廠商那樣內置一大堆用不著又刪不掉的應用。因此我試了一下還是決定保留MIUI。</p>
+
+<p>唯一不喜欢的是MIUI的launcher。仿照iOS将图标全平铺在桌面上，用起来不方便；它为第三方应用的图标都缩小并加上一块灰绿色背景，难看死了，本来应用精心设计的透明背景图标都被它搞成一块块牛粪。MIUI的设计风格不错的，真不知道为什么这个launcher会搭配得那么丑，即使自己创建主题将那个灰绿背景改成透明，图标还是被缩小了不好看。我另外找到了一個launcher：<a href="https://play.google.com/store/apps/details?id=com.dlto.atom.launcher">Atom Launcher</a>，界面風格簡潔，功能細節也很好，這下就完美了。</p>
+
+<p>小米2給我最大的感受是显示非常细腻，特别是低磅数的Roboto字体特别干净秀气。342ppi的屏幕达到视网膜屏的标准，其实现在新出的好多手机都是视网膜屏了，只不过现在已经不再新鲜，厂商也不会拿这来做特别宣传。Android从ICS起缺省的是Holo蓝色主题，MIUI换成了自己标志性的亮橙色，大片白色背景，黑色/灰色字体加上亮橙的点缀，整个风格很现代和清新。</p>
+
+<p>剛到手時，對尺寸不太適應，讓我覺得蘋果說的3.5寸是最適合的手機屏幕尺寸不無道理。現在慢慢有些習慣了，但是單手操作始終還是有些彆扭，比如用右手操作，左上角和右下角的按鈕都不容易按到，還是雙手會方便些。</p>
+
+<p>當然啦，新手機最爽的事情就是2G的RAM，運行的順暢程度跟舊手機比真是一個天一個地，看到什麼應用都想裝就裝啦。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[我的首個半馬拉松]]></title>
@@ -1093,25 +1114,6 @@ stay foolish.</p>
 <p>这是在Android浏览器上的截图，在iPhone、iPad上也可以用。</p>
 
 <p><img src="https://lh6.googleusercontent.com/-ishGby7lpTk/T1ove7Z0-rI/AAAAAAAAAoU/94_iFdmfSKw/s400/Screenshot_2012-03-09-23-41-13.png" alt="" /><img src="https://lh5.googleusercontent.com/-zXp_XdbbgNk/T1ovfpnkxbI/AAAAAAAAAoc/CN-7dV4U4Xg/s400/Screenshot_2012-03-09-23-55-39.png" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在亚马逊买电脑主板，故障退货的经历及总结]]></title>
-    <link href="http://aleung.github.com/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/"/>
-    <updated>2012-02-25T19:58:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return</id>
-    <content type="html"><![CDATA[<p>为了给老台式电脑升级，在Amazon买了主板、CPU、内存，但装起来加电后不亮。根据现象分析，主板故障的可能性最大，主板是华擎H61M-HVS。拿去华擎网站上列出的本地特约维修中心检查。那里的人说亚马逊网上买的他们不管，跟他沟通了一下，他才勉为其难的测试了一下，查出是主板故障，贴了张故障标签就算了。问他是否能出检测报告之类，我好退货，他说不行，本来检测都不是他们的责任。</p>
-
-<p>想找Amazon客服咨询，才发现根本没有客服热线，只能上网。幸好智能手机能上网，在订单退货的页面里能够呼叫客服。客服回电话倒是非常快，说了情况后她让我保留好维修中心的故障标签，给我办理了退货申请。我现在就等着退货了。</p>
-
-<p>就这次经历总结一下：</p>
-
-<ol>
-  <li>买回来的新主板就有故障，让我对华擎的质量失去信心。后来我就买了华硕的主板，一线品牌可能可以放心些。</li>
-  <li>华擎（好多其他电脑配件厂商也一样）的售后服务是要求通过原销售店家进行的，但亚马逊并不负责售后，因此出现故障后能否得到有效的服务很难说。我这次幸好还在7天退货期内，可以找亚马逊退货，假如超过7天，我都不知道该如何送修。这点的责任我觉得更多在厂商，他们还没有重视网络电子商务市场。因此消费者在购买这类商品的时候要慎重考虑，要么在实体店买，要么选择明确支持直接全国联保无需通过经销商的品牌。</li>
-  <li>亚马逊的客服态度和处理都令我满意。结合以前网购的经历，亚马逊在网站、送货、支付、退货各环节都做得不错，是体验最好的。当然，这次我还要等到退货完成，退款成功后才能下最后结论。</li>
-</ol>
 ]]></content>
   </entry>
   

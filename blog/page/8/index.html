@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="今天在公司休息区看到了一本政府出版物，《2010年Brabant可持续发展与平衡报告书》，Brabant是荷兰南部的一个省份。 我对这本册子相当感兴趣，关心的主要有几点： 政府如何进行信息公开； 如何达致可持续发展，怎样维持经济、文化与生态的平衡； 民众关心哪些方面的指标； &hellip;">
+  <meta name="description" content="It isn’t a full diagram that presents all WebLogic MBeans. Only the MBeans I’m interesting in are shown. Reference:The WebLogic Server® MBean &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/21/Diagram-of-WebLogic-MBean-navigation/">Diagram of WebLogic MBean Navigation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-21T18:37:00+08:00" pubdate data-updated="true">2011-03-21</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It isn’t a full diagram that presents all WebLogic MBeans. Only the MBeans I’m interesting in are shown.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5546496754/"><img src="http://farm6.static.flickr.com/5056/5546496754_181f58ec69_b.jpg" alt="WeblogicMBean" /></a></p>
+
+<p>Reference:<a href="http://download.oracle.com/docs/cd/E15051_01/wls/docs103/wlsmbeanref/core/index.html">The WebLogic Server® MBean Reference</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/03/21/Diagram-of-WebLogic-MBean-navigation/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -502,63 +557,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/11/Android-ssh-/">Android用户的好消息：用ssh翻墙</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2011-02-11T20:41:00+08:00" pubdate data-updated="true">2011-02-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>之前我写过一系列<a href="http://good-good-study.appspot.com/blog/posts/90001">文章</a>介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：<a href="http://madeye.me/2011/02/10/ssh-tunnel-on-the-android-application-puff-android-edition/">sshtunnel</a></p>
-
-<p>与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流，不同的是它还使用了trilead-ssh2代码（作者说来自于ConnectBot）来做SSH client，因此这一个程序就可以完成整个过程，操作简单。根据文档说明和大致浏览代码，貌似没有使用SSH dynamic port forwarding，而是要求SSH server端安装了HTTP代理服务器，SSH连接纯粹是tunnel了到服务端HTTP proxy的连接。</p>
-
-<p>Update: <a href="https://twitter.com/#!/ofmax/status/36717058762739712">作者说</a>，不使用SSH dynamic port forwarding是因为受限于Android手机的机能。我之前测试用ConnectBot做SOCKS proxy的时候就总是遇到CPU占用100%的问题，估计作者说的就是这个。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/02/11/Android-ssh-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/9/">&larr; Older</a>
@@ -580,6 +578,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
       </li>
     
@@ -595,16 +597,12 @@
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

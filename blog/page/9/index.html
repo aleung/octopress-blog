@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="之前寻找同步twitter到新浪微博的方法，没有尝试到满意的。@cutemic介绍说他是在GAE上跑一个叫twitter2sina的python程序，周期性读取自己的tweets，再调用API发送到新浪微博。 程序员的基本素质是懒惰，因此我问@cutemic他安装的程序是否支持多用户，如果支持， &hellip;">
+  <meta name="description" content="之前我写过一系列文章介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：sshtunnel 与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/Android-ssh-/">Android用户的好消息：用ssh翻墙</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2011-02-11T20:41:00+08:00" pubdate data-updated="true">2011-02-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前我写过一系列<a href="http://good-good-study.appspot.com/blog/posts/90001">文章</a>介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：<a href="http://madeye.me/2011/02/10/ssh-tunnel-on-the-android-application-puff-android-edition/">sshtunnel</a></p>
+
+<p>与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流，不同的是它还使用了trilead-ssh2代码（作者说来自于ConnectBot）来做SSH client，因此这一个程序就可以完成整个过程，操作简单。根据文档说明和大致浏览代码，貌似没有使用SSH dynamic port forwarding，而是要求SSH server端安装了HTTP代理服务器，SSH连接纯粹是tunnel了到服务端HTTP proxy的连接。</p>
+
+<p>Update: <a href="https://twitter.com/#!/ofmax/status/36717058762739712">作者说</a>，不使用SSH dynamic port forwarding是因为受限于Android手机的机能。我之前测试用ConnectBot做SOCKS proxy的时候就总是遇到CPU占用100%的问题，估计作者说的就是这个。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/02/11/Android-ssh-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -375,65 +432,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/">Android Activity Lifecycle in UML State Machine Diagram</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-16T06:25:00+08:00" pubdate data-updated="true">2010-12-16</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Lifecycle of Android activity is always confusing beginners. The <code>Activity</code> class has defined dozens of callback functions, all begin with “on”. Some of them are triggered by UI events, some are lifecycle related. It isn’t easy for developer to remember the usage of them.</p>
-
-<p>An activity has essentially four states, when some event happens, like user navigates between different activities, state transites. There are lots of callback functions which will be called by framework when an activity transites between states. So the activity lifecyle is ideally modeled in state machine. However in <a href="http://developer.android.com/reference/android/app/Activity.html#ActivityLifecycle">Android SDK document</a>, the Activity Lifecycle is descripted by a diagram and table of callback functions. It explains the order of the callback functions being called, but a developer can’t clearly understand in whatcircumstance each callback function will be called.</p>
-
-<p>I tried to draw an UML state machine diagram for Android activity lifecycle:</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5264062473/"><img src="http://farm6.static.flickr.com/5241/5264062473_22989eacb7_b.jpg" alt="Android Activity Lifecycle" /></a></p>
-
-<p>If you aren’t familiar with UML state machine diagram, read the <a href="http://en.wikipedia.org/wiki/UML_state_machine">introduction</a> on Wikipedia.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/10/">&larr; Older</a>
@@ -455,6 +453,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
       </li>
     
@@ -470,16 +472,12 @@
         <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 136%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
