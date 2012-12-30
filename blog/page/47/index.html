@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在sourceforge上无意中留意到top download list, 看看什么软件最热门？这是前20位： 1 eMule 2 BitTorrent 3 DC++ 4 VirtualDub 5 Azureus - BitTorrent Client 6 CDex 7 guliverkli 8 &hellip;">
+  <meta name="description" content="SRTM数据中国部分终于可以下载了，盼望了几年啊。精度比GTOPO30的高多了。 ftp://edcsgs9.cr.usgs.gov/pub/data/srtm Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米。 在OZI的DEM数据格式中选择GLOBE（ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/12/12/SRTM-/">SRTM数据中国部分终于可以下载了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-12-12T23:43:00+08:00" pubdate data-updated="true">2003-12-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>SRTM数据中国部分终于可以下载了，盼望了几年啊。精度比GTOPO30的高多了。</p>
+
+<p><a href="ftp://edcsgs9.cr.usgs.gov/pub/data/srtm">ftp://edcsgs9.cr.usgs.gov/pub/data/srtm</a> <br />
+Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米。</p>
+
+<p>在OZI的DEM数据格式中选择GLOBE（ARCVIEW）格式就可以打开；用MicroDEM可以对多种DEM数据进行处理。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/12/12/SRTM-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -373,65 +429,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/12/04/Used-as-a-OziExplorer-for-reproduction-of-the-production-of-ASTER-presents-the-satellite/">用作OziExplorer底图的ASTER卫星遥感图的制作</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-12-04T18:04:00+08:00" pubdate data-updated="true">2003-12-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ol>
-  <li>下载ASTER L1B数据，AST<em>09(或者AST</em>07,未知有何区别)格式。数据包括两个文件，hdf0是15m VNIR(band 1-3)，hdf1是30m SWIR(band 4-9)，一般只需要hdf0。 </li>
-  <li>用MultiSpecWin打开hdf文件，将各个band分别保存为tif文件 </li>
-  <li>用photoshop打开三个band的tif文件，按照RGB模式通道合成为一个文件，采用231合成的效果比较好。 </li>
-  <li>在photoshop中对图像进行直方图调整、锐化，保存为jpg </li>
-  <li>用ECW compressser将jpg转换为ecw格式 </li>
-  <li>在OziExplorer中校准, 投影设为UTM，然后用META FILE里面的四个点来作为校准点，分别是图像（包括黑色部分）的四个角。  </li>
-</ol>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/12/04/Used-as-a-OziExplorer-for-reproduction-of-the-production-of-ASTER-presents-the-satellite/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/48/">&larr; Older</a>
@@ -453,6 +450,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
@@ -468,16 +469,12 @@
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

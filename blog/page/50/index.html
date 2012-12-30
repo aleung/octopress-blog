@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在SQL标准中, 标识符是不区分大小写的. 可是在MySQL中, 情况有所不同, 表名有可能是大小写敏感的: 在 MySQL 中，数据库和表对就于那些目录下的目录和文件。因而，操作系统的敏感性决定数据库和表命名的大小写敏感。这就意味着数据库和表名在 Windows 中是大小写不敏感的， &hellip;">
+  <meta name="description" content="Java程序测试中发现parse一个XML文件时出现exception, 错误信息为invalid XML character. 但这个XML文件用XMLSpy检查却没有问题. 经过查找资料, 发现是XML文件中包含了一些不允许在XML中使用的字符(控制符). XML规范中规定了允许的字符范围( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/">Invalid XML Character, msxml.dll的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-11T22:35:00+08:00" pubdate data-updated="true">2003-09-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java程序测试中发现parse一个XML文件时出现exception, 错误信息为invalid XML character. 但这个XML文件用XMLSpy检查却没有问题.  </p>
+
+<p>经过查找资料, 发现是XML文件中包含了一些不允许在XML中使用的字符(控制符). XML规范中规定了允许的字符范围(<a href="http://www.w3.org/TR/REC-xml#dt-character">http://www.w3.org/TR/REC-xml#dt-character</a>):  </p>
+
+<pre><code>Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]   
+</code></pre>
+
+<p>包含illegal字符的XML文件不是well-formedness的, 为什么这样的文件能够生成, 并且XMLSpy不报错? 是Microsoft XML parser的问题. 这个XML文件是使用msxml.dll生成的, 估计XMLSpy用的也是msxml.dll, 这个parser的其中一个缺陷是允许某些非常字符的存在. 而Java程序中用的parser估计是sun的crimson, 这个parser严格检查XML character range, 包含非法字符就会报错.   </p>
+
+<p>msxml.dll的问题看来还有不少, 这里专门有谈到: <a href="http://www.xml.com/pub/a/1999/11/parser/index.html?page=2">http://www.xml.com/pub/a/1999/11/parser/index.html?page=2</a>   </p>
+
+<p>为了解决此问题, 需要在生成XML前先对字符串检查, 把非法字符过滤掉. 这里提供了java的过滤函数: <a href="http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html">http://lists.ibiblio.org/pipermail/xom-interest/2003-May/000471.html</a>   </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/11/Invalid-XML-character-msxml-dll-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -412,66 +475,6 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/29/java-library/">Java开发辅助工具,library</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-29T20:24:00+08:00" pubdate data-updated="true">2003-08-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.zaval.org/">http://www.zaval.org/</a> 这个网站有好几个java开发辅助工具,library. 包括了:  </p>
-
-<ul>
-  <li>Java Resource Editor: 用于i18n/l10n的翻译 </li>
-  <li>Light-Weight Visual Components Library (LwVCL): 一组基于AWT的可视控件, 估计目标是可以移植到PDA等小型设备上 </li>
-  <li>Proxy Suite: an easy-to-use solution that allows monitoring TCP-based protocols, such as HTTP, NNTP and others. It is extremely useful in software development and can be used as a debug tool. </li>
-  <li>轻型数据库工具 </li>
-  <li>其他的一些东西, 如Java Charts Package等, 只有介绍没有下载  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/29/java-library/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/51/">&larr; Older</a>
@@ -493,6 +496,10 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
@@ -508,16 +515,12 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2012-12-24T22:55:49+08:00</updated>
+  <updated>2012-12-30T20:37:31+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[怎样在OSX上adb连接小米2]]></title>
+    <link href="http://aleung.github.com/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
+    <updated>2012-12-30T20:24:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2012/12/30/mi2-usb-debug-on-osx</id>
+    <content type="html"><![CDATA[<p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
+
+<p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
+
+<p><img src="http://aleung.github.com/blog/attachments/2012/12/osx_usb.jpg" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[四儿子无望，粗粮也好吧]]></title>
@@ -1099,21 +1112,6 @@ stay foolish.</p>
 <p>重视你的直觉，但要去验证它，而不是盲目在第一时间跟随直觉行动。</p>
 
 <p>隐性思维是非线性的，它从你的记忆库中匹配关联，多学习接触不同类别的东西，为隐性思维累积素材。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用手机遥控Linux后台播放豆瓣电台]]></title>
-    <link href="http://aleung.github.com/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements/"/>
-    <updated>2012-03-10T00:35:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/03/10/By-mobile-phone-remote-control-Linux-backstage-radio-broadcast-requirements</id>
-    <content type="html"><![CDATA[<p>最近买了一个<a href="http://en.wikipedia.org/wiki/Asus_EeeBox_PC">EeeBox</a>来做home server，装Ubuntu操作系统，有不少东西可以玩。</p>
-
-<p>其中一个用途是连接到音响播放音乐。我比较喜欢听豆瓣电台，于是找一个豆瓣电台的客户端。Home server平常不接显示器，也不启动图形界面，常见的浏览器客户端、桌面客户端都不能用，要找命令行的。在github上找到Johnny Huang开发的<a href="https://github.com/hzqtc/fmd">fmd</a>（Douban FM daemon），启动后在后台运行，正合我意。Fork下来给它增加了个安装脚本，能够安装为服务，开机就自动运行了。但fmd只是个后台进程，只有telnet命令接口，没法对它进行直接控制的，作者另外做了个命令行工具，叫做fmc（FMD client），用来控制fmd。但命令行工具在我这里也还是不能用—-没有显示器没有键盘—-必须能遥控才行。于是我在fmc基础上给它增加了一个web UI，称为<a href="https://github.com/aleung/fmweb">fmweb</a>，通过手机浏览器访问，就可以控制播放了。于是，我现在在家里任何地方，都可以控制我的豆瓣电台的播放，不喜欢听，跳下一首歌。</p>
-
-<p>这是在Android浏览器上的截图，在iPhone、iPad上也可以用。</p>
-
-<p><img src="https://lh6.googleusercontent.com/-ishGby7lpTk/T1ove7Z0-rI/AAAAAAAAAoU/94_iFdmfSKw/s400/Screenshot_2012-03-09-23-41-13.png" alt="" /><img src="https://lh5.googleusercontent.com/-zXp_XdbbgNk/T1ovfpnkxbI/AAAAAAAAAoc/CN-7dV4U4Xg/s400/Screenshot_2012-03-09-23-55-39.png" alt="" /></p>
 ]]></content>
   </entry>
   

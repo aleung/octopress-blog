@@ -9,7 +9,40 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="使用crle命令, 例如: crle -l /usr/lib -l /usr/local/lib -i /usr/lib -i /usr/local/lib -a /usr/lib/libthread.so.1 -o /usr/lib/lwp 以上命令的作用 设置library路径为 /usr/ &hellip;">
+  <meta name="description" content="根据实践的经验，基本了解了samba配置方法，将它记录下来。 一个基本的配置文件： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+[global]
+netbios &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +109,143 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2002/01/19/Samba-configuration-file-sharing/">配置samba文件共享</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2002-01-19T00:14:00+08:00" pubdate data-updated="true">2002-01-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>根据实践的经验，基本了解了samba配置方法，将它记录下来。   </p>
+
+<p>一个基本的配置文件：   </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class="ini"><span class="line"><span class="err">[global]</span>
+</span><span class="line"><span class="na">netbios name</span> <span class="o">=</span> <span class="s">SERVERNAME  </span>
+</span><span class="line"><span class="na">workgroup</span> <span class="o">=</span> <span class="s">GROUPNAME  </span>
+</span><span class="line"><span class="na">null passwords</span> <span class="o">=</span> <span class="s">yes (是否允许用户设置空密码,default=no)  </span>
+</span><span class="line"><span class="na">log file</span> <span class="o">=</span> <span class="s">/var/log/samba/log.%m  </span>
+</span><span class="line"><span class="na">max log size</span> <span class="o">=</span> <span class="s">500  </span>
+</span><span class="line"><span class="na">dns proxy</span> <span class="o">=</span> <span class="s">No (default=yes,一般情况下没有必要)  </span>
+</span><span class="line"><span class="na">security</span> <span class="o">=</span> <span class="s">user (相当于WinNT/2000的文件共享)  </span>
+</span><span class="line"><span class="na">encrypt passwords</span> <span class="o">=</span> <span class="s">yes  </span>
+</span><span class="line"><span class="na">guest ok</span> <span class="o">=</span> <span class="s">yes (default=no,是否允许guest访问,即不需要输入密码)  </span>
+</span><span class="line"><span class="err">(在global节中的这个设定会作为各共享资源设定的缺省值)</span>
+</span><span class="line">
+</span><span class="line"><span class="err">[homes]</span> <span class="err">(每个用户会看到各自的home目录)</span>
+</span><span class="line"><span class="na">comment</span> <span class="o">=</span> <span class="s">Your Home Directories  </span>
+</span><span class="line"><span class="na">read only</span> <span class="o">=</span> <span class="s">No  </span>
+</span><span class="line"><span class="na">browseable</span> <span class="o">=</span> <span class="s">No  </span>
+</span><span class="line"><span class="s">  </span>
+</span><span class="line"><span class="err">[share]</span> <span class="err">(share</span> <span class="err">to</span> <span class="err">all,</span> <span class="err">read</span> <span class="err">only)</span>
+</span><span class="line"><span class="na">comment</span> <span class="o">=</span> <span class="s">Share Folder  </span>
+</span><span class="line"><span class="na">path</span> <span class="o">=</span> <span class="s">/home/samba  </span>
+</span><span class="line"><span class="na">guest ok</span> <span class="o">=</span> <span class="s">yes (在global中设定了,这里可以不写)  </span>
+</span><span class="line"><span class="na">writeable</span> <span class="o">=</span> <span class="s">no  </span>
+</span><span class="line"><span class="s">  </span>
+</span><span class="line"><span class="err">[source]</span> <span class="err">(leo,frank可读写</span><span class="c">;james只读;其余用户无权访问)  </span>
+</span><span class="line"><span class="na">path</span> <span class="o">=</span> <span class="s">/home/source  </span>
+</span><span class="line"><span class="na">valid users</span> <span class="o">=</span> <span class="s">james,leo,frank(可访问此资源的用户的列表,如果不指定,任何用户都可以访问)  </span>
+</span><span class="line"><span class="na">write list</span> <span class="o">=</span> <span class="s">leo,frank (有写权限的用户的列表)  </span>
+</span><span class="line"><span class="na">writeable</span> <span class="o">=</span> <span class="s">no (其他用户不可写)  </span>
+</span><span class="line"><span class="na">create mode</span> <span class="o">=</span> <span class="s">666 (保证新建的文件目录可以其他用户读写)  </span>
+</span><span class="line"><span class="na">directory mode</span> <span class="o">=</span> <span class="s">777  </span>
+</span><span class="line"><span class="na">force group</span> <span class="o">=</span> <span class="s">nobody (无论用户以什么身份login,强制为此user/group;不一定需要)  </span>
+</span><span class="line"><span class="na">force user</span> <span class="o">=</span> <span class="s">nobody  </span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>在samba的权限控制中, 关键的是以下一些参数. <br />
+invalid users <br />
+valid users <br />
+guest ok / public (两种写法都可以) <br />
+这三个参数, 优先级从高到低, 控制用户是否可以/是否需要login到一个服务. <br />
+write list <br />
+read list <br />
+readonly / writeable (两种写法都可以) <br />
+这三个参数, 优先级从高到低, 控制用户是否有写权限.   </p>
+
+<p>用户要访问一个服务(共享目录),<br />
+首先要成功login到这个服务(或者这个服务是public, 不需要login),<br />
+然后再根据配置决定他是否有写的权限. 只要login进入了,就起码有读权限了.   </p>
+
+<p>另外, unix文件系统的权限设置是个前提, 无论samba的访问权限怎么设置,<br />
+用户在unix中无权访问的文件在samba中也肯定是不能访问的.   </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2002/01/19/Samba-configuration-file-sharing/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -161,6 +331,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
@@ -176,16 +350,12 @@
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

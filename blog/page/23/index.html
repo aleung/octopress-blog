@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在看过北京奥运开幕式之后，我就想各种各样的视频显示将会无处不在。前几天晚上在天河公园跑步时，突然发现天空中有个闪烁着不同颜色亮光的物体在缓缓移动，咋一看还以为看见了UFO，原来是一个飞艇，但与以往看到的飞艇不同之处在于气囊侧面是一块巨大的显示屏，正在播放视频广告。 继续跑步，看着前方漆黑的路面， &hellip;">
+  <meta name="description" content="手提电脑升级到Vista操作系统后，在家里通过ADSL上网，招商银行网上银行无法登录，报告通信出错。运行自带测试程序，发现是与服务器无法进行SSL通信。但是在办公室上网时登录招行网银又很正常。打招行的服务热线，客服让我设置了IE的一些SSL相关选项，没有用。因为办公室网络可用， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/01/04/Windows-Vista-/">Windows Vista无法登录招商银行网上银行的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-04T06:27:00+08:00" pubdate data-updated="true">2009-01-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>手提电脑升级到Vista操作系统后，在家里通过ADSL上网，招商银行网上银行无法登录，报告通信出错。运行自带测试程序，发现是与服务器无法进行SSL通信。但是在办公室上网时登录招行网银又很正常。打招行的服务热线，客服让我设置了IE的一些SSL相关选项，没有用。因为办公室网络可用，根据中国电信一贯的不佳记录，我第一时间就是怀疑电信封了ADSL的某些端口，造成ADSL无法使用招行网银。向中国电信投诉，接case的小伙子检查来检查去，都没有发现问题，他说帮我把局端可以换的东西都换过了，设置也全重设过，但都没有用。</p>
+
+<p>跟同事说起，有人告诉我是IE7新增的一个安全选项的影响，将Advance Settings - Security - Check for server certificate revocation选项disable就可以正常使用招行网银了。回家一试，果然就正常了。可是，为什么呢？上网查了一下certificate revocation check的作用，大概的意思就是，SSL通信建立时，服务器需要有有效的安全证书，这个证书是由认证中心(CA)签发的，但是由于某种原因CA会撤销某些已经签发的证书，当IE的这个选项打开时，浏览器就会去CA检查一下服务器的证书是否已经被撤销。那么，看来还是招商银行的问题了，<strong>为什么招行网银服务器的证书会在已撤销列表中？这应该是个很大的安全问题啊</strong>。</p>
+
+<p>至于为什么同样打开Check for server certificate revocation选项，在办公室网络可以正常访问招行网银，我估计那是由于办公室上网要经过proxy，很可能是公司内部的proxy屏蔽了CA的访问，造成浏览器无法得知证书已被撤销。</p>
+
+<p>用Wireshark抓网银登录时的网络流，发现当选项打开时，确实出现了一个HTTP GET <a href="http://crl.verisign.com/Class3InternationalServer.crl">http://crl.verisign.com/Class3InternationalServer.crl</a>请求，请求者是Microsoft-CryptoAPI/6.0</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/01/04/Windows-Vista-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -319,61 +376,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/08/13/The-opening-ceremony-of-the-Beijing-Olympic-Games-feel/">北京奥运开幕式感受</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-13T21:36:00+08:00" pubdate data-updated="true">2008-08-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>看北京奥运开幕式的感觉就像第一次看好莱坞大片 True Lie 时的感觉一样，新奇，刺激。高科技的声光器械加上集权国家一向擅长的大型团体操，确实非常吸引眼球。<br />
-也许过两届后回头再看，这些声光手段都是司空见惯，就会觉得平淡无奇了，但至少在现在看来，张艺谋是做得很好的。上次雅典奥运开幕式，我觉得是一个难以逾越的高度，很为张艺谋担心，现在看来他还是很好的完成了任务。<br />
-这开幕式就相当于一部商业大片，看得观众很爽。至于说到艺术性和内涵，我还是喜欢雅典的。</p>
-
-<p>技术方面，这次开幕式LED与大型投影的大量应用到了无处不在的地步。相信相关的应用在将来会越来越普遍，屏幕会越来越大，出现在各种想像不到的地方，随时随地都是绚丽的视频。如果以后街上每个人的衣服上都是不停变幻的图案，也许我们会怀念只有素色的那个年代。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/08/13/The-opening-ceremony-of-the-Beijing-Olympic-Games-feel/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/24/">&larr; Older</a>
@@ -395,6 +397,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
@@ -410,16 +416,12 @@
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

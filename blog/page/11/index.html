@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在上次写下进展之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。 首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行 &hellip;">
+  <meta name="description" content="关注我之前写的Android翻墙系列文章1, 2, 3的朋友请留意一下这个应用：TransProxy。这个应用的v3版本集成了HTTP transparent proxy (使用Transproxy)、HTTPS/SOCKS redirector (使用redsocks) 、iptables &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/28/Andriod-TransProxy/">Andriod TransProxy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-28T06:13:00+08:00" pubdate data-updated="true">2010-09-28</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>关注我之前写的Android翻墙系列文章<a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">1</a>, <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-">2</a>, <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype">3</a>的朋友请留意一下这个应用：<a href="http://forum.xda-developers.com/showthread.php?t=766569">TransProxy</a>。这个应用的v3版本集成了HTTP transparent proxy (使用<a href="http://transproxy.sourceforge.net/">Transproxy</a>)、HTTPS/SOCKS redirector (使用<a href="http://darkk.net.ru/redsocks/">redsocks</a>) 、iptables script 并提供了配置、控制的界面。理论上，结合TransProxy和ConnectBot就可以实现Android上通过SSH tunnel翻墙，请参考<a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">这里</a>的第二张图片：ConnectBot实现了SSH client，TransProxy提供了transparent socks proxy并且设置iptables。</p>
+
+<p>不过，我刚刚将TransProxy和ConnectBot配合运行起来试了一下，并没有成功，并且手机又遇到了100% CPU占用的问题，只能手工将ConnectBot kill了。ConnectBot当前最新的snapshot版本都还是没有解决这个<a href="http://code.google.com/p/connectbot/issues/detail?id=299">bug</a>，大家快去给这个bug加星，促使开发者优先解决吧。</p>
+
+<p>鉴于我目前暂时处于肉身翻墙状态，没有积极性去进一步实验了，各位动手试试吧，有结果记得共享出来。另外，目前TransProxy的作者还在相当勤快的改进这个应用，不妨到xda-developers论坛与他交流。  </p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/09/28/Andriod-TransProxy/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -348,79 +403,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/">时间管理工具的设计：任务计划时间的逐步精确</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-23T23:27:00+08:00" pubdate data-updated="true">2010-06-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">为什么不能合在一起</a>一文。后来，也发现<a href="http://good-good-study.appspot.com/blog/posts/3212">Outlook 2007已经将两者做了一定程度的整合</a>。</p>
-
-<p>今天又再思考了一下：任务管理就是一个逐步细化的过程，包括执行时间的具体化和操作步骤的细化（拆分子任务）。理想的工具应该对整个过程都提供支持。</p>
-
-<p>当新增一个任务时，外界往往并没有指定执行任务的具体时间，可能会有一个deadline，只要在deadline之前完成都是可以的，这时就是传统时间管理工具说称的 task。为了完成此任务，需要安排一个具体的时间段去执行它，在传统的时间管理工具上，就是要为此任务创建一个日程安排 (event)。但在实际操作中，你往往不能一下子就确定在哪个明确的时间去执行任务，而是先确定一个大概的时间范围，再逐步的精确。目前我还没有见到哪个工具能够为这个过程提供支持。</p>
-
-<p>我设想的时间管理系统应该用一个统一的模型来存储任务与日程，因为它们本质上是同样的东西。任务有一个属性，是计划执行的时间。计划执行时间可以为空，说明还没有为此任务指定执行时间。计划执行时间不一定是精确时间类型，可以有不同精度级别的时间类型，包括：年 / 季度 / 月份 / 周 / 天 / 时间段 / 时 / 分。随着计划的逐步细化，赋予任务计划执行时间越来越高精度的时间。</p>
-
-<p>例如，我和Bob很久没见，想一起吃午饭聚聚旧，于是电话联络。Bob刚好出差了，要下个月中旬才回来，所以我们初定时间在下个月的第四周（Week 29），我在时间管理系统中添加了 Dinner with Bob 这一项，并设计划时间为 W29。到了week 28的周末，我review任务时看到了这项，就跟Bob再确认时间，发现周一中午大家都有时间，但是具体几点钟要看周一早上与餐厅订座时才能确认，于是我把这项任务的计划时间更新为周一，但这还不是最精确的时间。周一早上，订座确认了，再把任务的具体时间12:00～13:00设置上去。</p>
-
-<p>我也大概设想了一下用户界面，应该有一个可缩放的时间视图，就像电子地图的缩放一样，既可以查看大时间范围内的任务安排，也可以查看具体精确的时间计划。用Excel画了界面原型，比较粗糙，实际做时当然需要细致的考虑用户体验了。左右拖动进行时间的缩放，具体某个时间列的上下滚动进行时间的选择。要为某个任务安排或者修改执行时间，可以通过拖拽到时间视图相应的位置来做到。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145212/"><img src="http://farm2.static.flickr.com/1387/4727145212_e90a483c0b_m.jpg" alt="scheduler-day" /></a></p>
-
-<p>为任务安排大概的时间（Week 29）：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145218/"><img src="http://farm2.static.flickr.com/1253/4727145218_5a3c9cb27e.jpg" alt="scheduler-week" /></a></p>
-
-<p>为任务安排具体精确的时间：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4727145214/"><img src="http://farm2.static.flickr.com/1010/4727145214_0175c6f578.jpg" alt="scheduler-minute" /></a></p>
-
-<p><em>（我并没有开发这样一个时间管理工具的计划，不过如果你有这样的打算，并且也认同我的这种思路，不妨与我联系）</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/12/">&larr; Older</a>
@@ -442,6 +424,10 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
@@ -457,16 +443,12 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

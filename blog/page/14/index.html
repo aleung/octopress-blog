@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在一个比较复杂的enterprise application (EAR)里面，往往有多个war和ejb，如果希望使用Springframework通过IoC方式来管理及装配POJO beans，就要面对如何初始化application context，由谁来初始化， &hellip;">
+  <meta name="description" content="SIP messages are sent in mix of UDP and TCP In our test we found that our client first sent SIP messages in UDP but later on it changed to TCP. Is it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,83 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/26/Two-questions-about-SIP-message-transport/">Two Questions About SIP Message Transport</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-26T12:30:00+08:00" pubdate data-updated="true">2010-02-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sip/'>SIP</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="sip-messages-are-sent-in-mix-of-udp-and-tcp">SIP messages are sent in mix of UDP and TCP</h3>
+
+<p>In our test we found that our client first sent SIP messages in UDP but later on it changed to TCP. Is it an issue?</p>
+
+<p>In RFC 3261 (SIP) chapter 18.1.1 and 18.2.1, it says:</p>
+
+<blockquote>
+  <p>If a request is within 200 bytes of the path MTU, or if it is larger than 1300 bytes and the path MTU is unknown, the request MUST be sent using an RFC 2914 congestion controlled transport protocol, such as TCP. … This prevents fragmentation of messages over UDP and provides congestion control for larger messages.</p>
+
+  <p>For any port and interface that a server listens on for UDP, it MUST listen on that same port and interface for TCP. This is because a message may need to be sent using TCP, rather than UDP, if it is too large.</p>
+</blockquote>
+
+<p>So, whether send a SIP message in UDP or TCP is decided bytransport layer. When the initial SIP message of a transaction is sent in UDP it’s possible that the consequent messages are sent in TCP.</p>
+
+<h3 id="sip-message-is-resent-in-05-second">SIP MESSAGE is resent in 0.5 second</h3>
+
+<p>In another test case we found that the client resends the SIP MESSAGE request in 0.5 second if it doesn’t receive the response. We know that SIP message should be resent in a specific time if no response is received. But why the interval is 0.5 second? Is it configurable in Sailfin?</p>
+
+<p>Also go to RFC 3261, find the answer in chapter 17.1.1.2 and 17.1.2.2:</p>
+
+<blockquote>
+  <p>If an unreliable transport is in use, the client transaction MUST set timer E to fire in T1 seconds. If timer E fires while still in this state, the timer is reset, but this time with a value of MIN(2<em>T1, T2). When the timer fires again, it is reset to a MIN(4</em>T1, T2). … For the default values of T1 and T2, this results in intervals of 500 ms, 1 s, 2 s, 4 s, 4 s, 4 s, etc.</p>
+
+  <p>The default value for T1 is 500 ms. T1 is an estimate of the RTT between the client and server transactions. … T1 MAY be chosen larger, and this is RECOMMENDED if it is known in advance (such as on high latency access links) that the RTT is larger.</p>
+</blockquote>
+
+<p>In SailFin(GlassFish) the value of T1 and T2 can be configured in admin console under: Configuration - SIP Service - SIP Protocol.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/02/26/Two-questions-about-SIP-message-transport/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -606,67 +683,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/02/14/Basic-function-complete-can-open/">基本功能完备，可以公开了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-14T18:16:00+08:00" pubdate data-updated="true">2010-02-14</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一个blog所需要的功能的最小集合已经完备了，可以投入使用，再边用边改进了：</p>
-
-<ul>
-  <li>发文章</li>
-  <li>文章分页显示</li>
-  <li>Tag</li>
-  <li>评论</li>
-  <li>用户认证通过Google account进行</li>
-</ul>
-
-<p><a href="https://appengine.google.com/">Google Application Engine</a> 提供了强大的平台，<a href="http://www.playframework.org">Play Framework</a>使得Java web开发变得很简便。开发这个应用用了几天时间，不算快，但作为第一次，学习、查资料花的时间不少，上手之后的工作效率将会提高很多。另外，对我来说，HTML+CSS才是最困难的部分，基本没有做前端的经验。现在的界面是从sample里面copy出来改的，每改一点就要看看效果，边试边改。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/02/14/Basic-function-complete-can-open/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/15/">&larr; Older</a>
@@ -688,6 +704,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
@@ -703,16 +723,12 @@
         <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
