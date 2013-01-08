@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在JPG图像的 EXIF meta data 中，有一组是与地理位置信息相关的，包括经纬度、高度、方向等，可以记录拍摄图像当时的位置信息。不过，目前内置GPS或者带有GPS接口的相机还非常少见，所以这组数据通常是空的。 World-Wide Media eXchange 提供了免费工具 WWMX &hellip;">
+  <meta name="description" content="有些网站不支持汉字，输入的中文字符显示不出来，变成了问号。geocaching.com就是这样。这通常是在文字处理的某个过程中只能处理7bit字符，将汉字过滤掉了。 在HTML/XML中对于这种在字符集以外的字符的表示有一种特殊方法：字符实体(character entity)， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/06/28/How-does-not-support-Chinese-sites-in-the-input-Chinese-information/">如何在不支持中文的网站中输入中文信息</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-06-28T12:23:00+08:00" pubdate data-updated="true">2006-06-28</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/web/'>Web</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有些网站不支持汉字，输入的中文字符显示不出来，变成了问号。geocaching.com就是这样。这通常是在文字处理的某个过程中只能处理7bit字符，将汉字过滤掉了。</p>
+
+<p>在HTML/XML中对于这种在字符集以外的字符的表示有一种特殊方法：字符实体(character entity)，用字符实体来代替一个字符，相当于编程语言里面的转义符。HTML字符实体都是用&amp;开头，分号结尾的，又分为两种，命名字符实体(named character entity)和数字字符实体(numeric character entity)，命名字符实体数量不多，都是些常用的符号，例如 表示空格；数字字符实体是将unicode字符编码的十进制或十六进制数字放在&amp;和;之间，例如字(十进制)和字(十六进制)。这样，所有unicode字符都变成了7bit ASCII编码，如果在不支持汉字的网站上输入这样编码后的中文，就不会在处理过程中被过滤了，只要浏览器支持，就能够把这些字符还原显示出来。</p>
+
+<p>怎样将一段中文变成HTML实体的表示方法呢？知道相关的名词之后就好办了，用“HTML entity convert”之类的keywords到google搜索，找到了以下工具：</p>
+
+<ul>
+  <li><a href="http://konieczny.be/unicode.html">Unicode (UTF-8) to HTML entities converter</a> (online)</li>
+  <li><a href="http://pioneer.stereo.lu/converter.html">Unicode Characters to HTML Entities Converter</a> (online)</li>
+  <li><a href="http://www.mikezilla.com/exp0012.html">ASCII Converter</a> (online) </li>
+  <li><a href="http://code.cside.com/3rdpage/jp/unicode/converter.html">10進、16進文字コードin HTMLユニコード</a> (online) </li>
+  <li><a href="http://www.babelstone.co.uk/Software/BabelPad.html">BabelPad</a> (Unicode Text Editor for Windows)</li>
+</ul>
+
+<p>一般的话用在线的都可以了，如果希望用本地软件的，可以用BabelPad，注意要将字体设置成宋体或者其他中文字体，否则中文显示不出来的。输入或者粘贴一段中文进去，全选，然后在菜单中选择“转换”-“统一码转换成HTML字名”。</p>
+
+<p>不过，输入HTML实体，网站是不会将它按照一个字符来处理的，而是一串ASCII字符，故此在搜索、切分的时候就会出现问题了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/06/28/How-does-not-support-Chinese-sites-in-the-input-Chinese-information/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -325,91 +392,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/04/20/Furniture-DIY-shoe-rack/">家具DIY——鞋架</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-04-20T07:58:00+08:00" pubdate data-updated="true">2006-04-20</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/diy/'>DIY</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>打算在家的入户门后面放一个鞋架，收纳全家人日常穿着的鞋子，和换季暂不穿着的鞋子。为了充分利用空间，鞋架要做得比较高，最好一直到天花板。因为在门背后，架子不能影响开门。这样的要求显然不可能有任何成品可以满足，因为已经有自己做书桌的经验，这次还是打算自己动手做。</p>
-
-<p>其实自制板式家具不是很困难，需要的工具也不特别。下面的照片记录了制作的过程。</p>
-
-<p>[左上]：使用的板材是已经贴面的中密度板，2.4m x 1.2m，在电脑上画好图纸，设计好怎么开料，在建材超市买板的时候可以让店员给开裁。他们用的大型锯床开的板子又快又漂亮，但只能锯直线。长的锯口最好还是让他们给开，省事很多，而且木板要锯成小块才好搬运。选用贴面板，可以省了油漆或者自己贴面的步骤。</p>
-
-<p>[右上]：在板上画线做标记</p>
-
-<p>[左中]：用到的工具：曲线锯，吸尘机，另外还有电钻没有在照片上。</p>
-
-<p>[右中]：小的锯口或者曲线自己用曲线锯来锯。操作电锯的时候要注意个人防护，这东西锯起来粉尘和噪音都很大，要戴上口罩塞起耳朵。前面的管子是吸尘器的管，吸尘器在做这些家居工程的时候很管用，无论是锯还是钻，将吸尘管放在工位旁边可以吸走大部分粉尘。曲线锯可以锯曲线也可以锯直线，刚开始锯不好，练熟手后顺了。</p>
-
-<p>[左下]：锯好的板子</p>
-
-<p>[右下]：在架身的木板上打孔，用来放置可调的搁板</p>
-
-<p><img src="http://static.flickr.com/48/131333600_ae4b3f8297_o.jpg" alt="" /></p>
-
-<p>[左上]：密度板硬度很高，如果要直接上木螺丝会非常费劲，而且容易开裂。先用小号钻头钻个螺丝孔，上起来就非常轻松了。</p>
-
-<p>[右上]：连接件采用角码，便宜并且安装容易。商品的家具不会这样做的，太不专业了，但是他们用的连接件需要钻孔的加工精度很高，人家用钻床的，手电钻无法保证足够精度。</p>
-
-<p>[中]：等待装配的架身，已经钻好孔，上了角码。</p>
-
-<p>[右中]：装配，用角码连接正交的两块板。</p>
-
-<p>[左下]：手电钻可以当作电动螺丝批用，不过力矩不好控制。</p>
-
-<p>[右下]：装配中的架子。</p>
-
-<p><img src="http://static.flickr.com/1/131333601_5a5c3eea0e_o.jpg" alt="" /></p>
-
-<p>这是做好的成品。再去布艺市场做了一块窗帘，将架子遮起来。</p>
-
-<p><img src="http://static.flickr.com/50/131384360_07664ea8cb_o.jpg" alt="" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/04/20/Furniture-DIY-shoe-rack/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/32/">&larr; Older</a>
@@ -431,6 +413,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/08/keyboard-and-mouse/">人體工學鍵盤鼠標組合</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
       </li>
     
@@ -444,10 +430,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a>
       </li>
     
   </ul>
@@ -469,6 +451,7 @@
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 144%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
@@ -505,7 +488,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Leo Liang -
+  Copyright &copy; 2013 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
