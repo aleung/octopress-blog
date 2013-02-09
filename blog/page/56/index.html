@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常. 检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时. 解决办法: 确认邮件服务器使用本机作为DNS ( /etc &hellip;">
+  <meta name="description" content="为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/">解决Solaris中sendmail不断报错的方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-04-05T00:12:00+08:00" pubdate data-updated="true">2003-04-05</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名，另一个是主机名加域名（在这里没有域名，只是加个点）。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -359,6 +410,10 @@ readonly / writeable (两种写法都可以) <br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/08/keyboard-and-mouse/">人體工學鍵盤鼠標組合</a>
       </li>
     
@@ -374,10 +429,6 @@ readonly / writeable (两种写法都可以) <br />
         <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/10/06/change-locale-in-android-application/">Android: 在應用中設定locale</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -391,6 +442,7 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 114%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 108%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -412,12 +464,14 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 85%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 120%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 137%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 85%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
