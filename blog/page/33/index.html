@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="啊，硬盘又满了，要清理一下了。每个电脑使用者都常常要面对这样的问题，硬盘越来越大，可是里面要塞的东西也越来越多。要清理硬盘，首先就需要找出是什么东西把硬盘占满了。有一些工具可以帮助我们，显示出每个目录占用的空间大小，但通常这些工具都只能简单的列出某层目录所占用的空间大小， &hellip;">
+  <meta name="description" content="现在的版本管理工具都具有版本比较的功能，可以比较一个文件不同版本间的差别，将变化的代码行标记出来。对于常见的开发语言，也有工具可以进行UML逆向工程，根据代码生成出class diagram，这提供了一个概览代码的途径，对于理解代码整体结构很有帮助。有没有可能再进一步， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/06/Version-control-with-UML-reverse-engineering/">Version Control With UML Reverse Engineering</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-06T02:18:00+08:00" pubdate data-updated="true">2006-01-06</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>现在的版本管理工具都具有版本比较的功能，可以比较一个文件不同版本间的差别，将变化的代码行标记出来。对于常见的开发语言，也有工具可以进行UML逆向工程，根据代码生成出class diagram，这提供了一个概览代码的途径，对于理解代码整体结构很有帮助。有没有可能再进一步，将UML逆向工程与版本管理结合在一起呢？</p>
+
+<p>我设想的工具具有这样的功能：将两个版本的project进行比较，生成出class diagram，并且将变化过的（增加/修改/删除）类、方法、关系等UML元素用特别颜色标记出来。这样，就可以方便的看到两个版本之间修改过什么类、方法，而不仅仅是只是在代码行的级别。</p>
+
+<p>这样，做代码review也方便多了，知道重点看哪里。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/01/06/Version-control-with-UML-reverse-engineering/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -354,63 +409,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/12/02/C-/">C++中生成格式化字符串方法的性能比较</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-12-02T22:28:00+08:00" pubdate data-updated="true">2005-12-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在C++中进行格式化字符串的生成，通常有两种方法。一种是C风格的，使用sprintf生成格式化字符串，用str系列字符串函数进行字符串（实际是内存buffer）的拼接、拷贝等操作。另外一种是C++风格的，用string stream类通过流操作来生成格式化的字符串。</p>
-
-<p>在使用上，两种方法各有长短，在这里不作分析。我发现的问题是string stream的效率相对C的方法效率比较低。</p>
-
-<p>编写了两个程序做对比测试，都是模拟写日志文件的操作，往文件里面写入特定数量的文字信息，每行包括了字符串、整数，分别使用两种方法生成同样的内容。为了避免代码其余部分造成的影响，使用rational quantify采集运行的时间信息，只比较生成格式化字符串部分的代码运行所占用的时间。做了多次测试，结果都表明，C++风格方法的耗时是C风格方法的3倍。</p>
-
-<p>结论是string stream的效率相对sprintf要低，实现同样的功能耗时大概是3倍左右。其实STL慢是很正常的，毕竟复杂很多，只是没想到慢这么多。其实大多数应用中，这也不算什么问题，毕竟现在的处理器能力这么强，只有在对性能要求极端严格的场合才需要把这因素考虑进去。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/12/02/C-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/34/">&larr; Older</a>
@@ -432,6 +430,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
@@ -447,16 +449,12 @@
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>

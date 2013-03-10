@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在玩户外的人中，GPS的拥有量开始增加，什么型号的GPS适合户外使用？我在买GPS之前看过不少资料，可以参考一下。 GPS information是一个很值得看的站点，几大GPS厂家的设备信息、GPS相关软件、使用心得等等资料非常齐全。 该网站里面一篇文章Important features &hellip;">
+  <meta name="description" content="EE times 的一篇文章介绍了Garmin GPS map76s的内部模块结构，下图是引自该文章的。 据分析，这样一个GPS的成本价不足100美圆，可是现在市场价是差不多400美圆！好赚吧？:) 从照片中可以看到，四螺旋天线垂直安装在顶部，因此GPS在直立放置时的信号接收效果是最好的。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/26/Garmin-GPS-map76s-/">Garmin GPS Map76s 解剖</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-11-26T23:49:00+08:00" pubdate data-updated="true">2003-11-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>EE times 的一篇<a href="http://www.eet.com/sys/uth/OEG20020710S0026">文章</a>介绍了Garmin GPS map76s的内部模块结构，下图是引自该文章的。</p>
+
+<p><img src="http://img.cmpnet.com/eet/news/02/July/UTH1226.gif" alt="" /></p>
+
+<p>据分析，这样一个GPS的成本价不足100美圆，可是现在市场价是差不多400美圆！好赚吧？:)</p>
+
+<p>从照片中可以看到，四螺旋天线垂直安装在顶部，因此GPS在直立放置时的信号接收效果是最好的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/26/Garmin-GPS-map76s-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -414,69 +472,6 @@ GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">htt
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/10/24/Nikon-Coolpix-series-camera-to-generate-rawformat-method/">使Nikon Coolpix系列相机生成raw格式文件的方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-10-24T02:53:00+08:00" pubdate data-updated="true">2003-10-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>使Nikon Coolpix系列相机生成raw格式文件的方法：将机器的id字符串由”NIKON DIGITAL CAMERA”改为”DIAG RAW”。利用photopc软件，通过串口数据线可以发送命令给相机实现修改</p>
-
-<pre><code>photopc id"DIAG RAW" query 
-photopc id "NIKON DIGITAL CAMERA" query
-</code></pre>
-
-<p>打开DIAG RAW模式后，每次拍摄会生成两个文件，一个是正常的jpg，另外一个是raw格式文件，在950上大概文件大小是2.35M左右。</p>
-
-<p>photopc软件可以控制相机的操作，例如设置光圈快门、拍摄照片等。</p>
-
-<p>RAW2NEF工具可以将raw格式文件转换为Nikon的NEF文件格式，这是nikon的公开raw格式，photoshop plugin可以打开。<a href="http://e2500.narod.ru/raw2nef_e.htm">http://e2500.narod.ru/raw2nef_e.htm</a></p>
-
-<p>好像另一个dcraw软件也是做这工作的：<a href="http://www.cybercom.net/~dcoffin/dcraw/">http://www.cybercom.net/~dcoffin/dcraw/</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/10/24/Nikon-Coolpix-series-camera-to-generate-rawformat-method/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/50/">&larr; Older</a>
@@ -498,6 +493,10 @@ photopc id "NIKON DIGITAL CAMERA" query
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
@@ -513,16 +512,12 @@ photopc id "NIKON DIGITAL CAMERA" query
         <a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
