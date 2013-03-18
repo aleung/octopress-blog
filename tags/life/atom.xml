@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Life | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/life/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-10T23:20:31+08:00</updated>
+  <updated>2013-03-19T01:26:43+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[站立工作环境]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/18/stand-up-desk/"/>
+    <updated>2013-03-18T23:44:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/18/stand-up-desk</id>
+    <content type="html"><![CDATA[<p>坐姿，特别是不正确的坐姿，对腰椎间盘的压力是站姿的2到3倍，长期在电脑前工作的人很容易得腰椎间盘突出等腰椎疾病。因此现在IT工作者逐渐流行站立工作。但是，长期站立也会带来其他的问题，如下肢静脉曲张等。一个比较理想的方案是使用可升降的办公桌，坐姿站姿交替。</p>
+
+<p>2011年我花了不少时间寻找国内哪里可以买到可升降办公桌，但都没有找到。网上搜索倒是有不少信息，但都是厂家寻求批发订货的，电话问过几个本地厂商，基本都说不做，做的也没有现货不零售。唯一的是淘宝上有个泠泠岛，做个人客户，当时价格很高，外地购买也不方便，而且我对它的质量不是很放心。最终放弃了购买升降桌的念头，改为自行DIY站立工作桌。</p>
+
+<p>2012年初用IKEA的BRODER系统加一个VIKA桌面搭建了一个站立工作桌。BRODER归属在重型储物系列里，本来用途是储物架，钢柱杆和钢网搁板很牢固，最大的搁板深度基本足够做桌面了，在上面垫上一块木桌面刚刚好。用IKEA的东西好处是你有很大发挥的空间，这个<a href="http://www.wretch.cc/blog/ikeameatball/12392137">IKEA的居家生活部落格</a>里就有不少BRODER各种应用的照片。但刚刚查IKEA中国网站，已经找不到BRODER，不知是否不卖了。</p>
+
+<p><img src="/attachments/2013/3/desk.jpg"></p>
+
+<p>就这样用了一年，但长期站立工作也不好，于是想配一张高脚凳也许就差不多了。桌面高度是按站立工作而定的，按照我的身高桌面高度也偏高，一般市面上卖的高脚凳（酒吧凳）座高都不够。最后在淘宝上找到了一款，高度比较合适。今天到货刚刚装起来了。其实这凳子做工、质量都不算很好，组装也不够方便，如果IKEA有合适的我绝对不会选择它的（虽然说IKEA的东西质量也只算一般，但还是要比这淘宝货强）。</p>
+
+<p><img src="/attachments/2013/3/desk_chair.jpg"></p>
+
+<p>关于工作台面、座椅以及显示器的合适高度，在<a href="http://book.douban.com/subject/11652185/">Human Factors in Engineering and Design</a>一书的 chapter 13. Applied Anthropometry, Work-Space Design and Seating 中对站姿与坐姿工作环境有很好的描述。我在决定台面高度与椅子高度的时候参考了此书中给出的研究数据。</p>
+
+<p>顺便说说，上面提到那本书是<a href="http://zh.wikipedia.org/wiki/%E4%BA%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B%E5%AD%A6">人因学</a>的经典好书，国内有<a href="http://book.douban.com/subject/3746065/">中文翻译版</a>。</p>
+
+<p>另外再推荐阅读：美国职业健康和安全管理局(OSHA)工作区健康与安全指南<a href="http://www.youliv.com/ErgoStandard/WSGoodPositions.aspx">中文翻译</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[延长洁厕宝(蓝泡泡)使用时间的小技巧]]></title>
@@ -92,22 +117,6 @@
 </ol>
 
 <p>另外，如果有些东西粘在玻璃表面上面擦不掉，可以用刀片慢慢平推将其刮起，我是安装衣柜的时候看到师傅这样把贴在上面的不干胶清除掉的，完全不留痕迹。一般刀片（如美工刀）的钢硬度不够玻璃高，因此玻璃是不会被刮花的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[防身自卫术]]></title>
-    <link href="http://aleung.github.com/blog/2009/02/11/Self-defense-self-defense-was/"/>
-    <updated>2009-02-11T05:37:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/02/11/Self-defense-self-defense-was</id>
-    <content type="html"><![CDATA[<p>无意中在CCTV看到女子防身自卫术的介绍，没太多技巧，不需要太强体力，不难记，不只是对女子，对文弱书生也有用吧，记录下关键，以备不时之需。</p>
-
-<ul>
-  <li>头部弱点在眼睛，用两指插眼睛。</li>
-  <li>躯干弱点在裆部，招式可以用抓/顶/踢。（应该是只针对男性吧，不过需要对付的应该都是男性）</li>
-  <li>被对方用手抓/捂住时，向外掰其尾指。松手后用上面两招攻击。</li>
-  <li>出招要快、狠；可声东击西，引开注意力时出击；趁对方短暂失去攻击能力时抓紧时间逃走。</li>
-</ul>
 ]]></content>
   </entry>
   

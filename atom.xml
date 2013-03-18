@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-10T23:19:04+08:00</updated>
+  <updated>2013-03-19T01:26:43+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[站立工作环境]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/18/stand-up-desk/"/>
+    <updated>2013-03-18T23:44:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/18/stand-up-desk</id>
+    <content type="html"><![CDATA[<p>坐姿，特别是不正确的坐姿，对腰椎间盘的压力是站姿的2到3倍，长期在电脑前工作的人很容易得腰椎间盘突出等腰椎疾病。因此现在IT工作者逐渐流行站立工作。但是，长期站立也会带来其他的问题，如下肢静脉曲张等。一个比较理想的方案是使用可升降的办公桌，坐姿站姿交替。</p>
+
+<p>2011年我花了不少时间寻找国内哪里可以买到可升降办公桌，但都没有找到。网上搜索倒是有不少信息，但都是厂家寻求批发订货的，电话问过几个本地厂商，基本都说不做，做的也没有现货不零售。唯一的是淘宝上有个泠泠岛，做个人客户，当时价格很高，外地购买也不方便，而且我对它的质量不是很放心。最终放弃了购买升降桌的念头，改为自行DIY站立工作桌。</p>
+
+<p>2012年初用IKEA的BRODER系统加一个VIKA桌面搭建了一个站立工作桌。BRODER归属在重型储物系列里，本来用途是储物架，钢柱杆和钢网搁板很牢固，最大的搁板深度基本足够做桌面了，在上面垫上一块木桌面刚刚好。用IKEA的东西好处是你有很大发挥的空间，这个<a href="http://www.wretch.cc/blog/ikeameatball/12392137">IKEA的居家生活部落格</a>里就有不少BRODER各种应用的照片。但刚刚查IKEA中国网站，已经找不到BRODER，不知是否不卖了。</p>
+
+<p><img src="http://aleung.github.com/blog/attachments/2013/3/desk.jpg" /></p>
+
+<p>就这样用了一年，但长期站立工作也不好，于是想配一张高脚凳也许就差不多了。桌面高度是按站立工作而定的，按照我的身高桌面高度也偏高，一般市面上卖的高脚凳（酒吧凳）座高都不够。最后在淘宝上找到了一款，高度比较合适。今天到货刚刚装起来了。其实这凳子做工、质量都不算很好，组装也不够方便，如果IKEA有合适的我绝对不会选择它的（虽然说IKEA的东西质量也只算一般，但还是要比这淘宝货强）。</p>
+
+<p><img src="http://aleung.github.com/blog/attachments/2013/3/desk_chair.jpg" /></p>
+
+<p>关于工作台面、座椅以及显示器的合适高度，在<a href="http://book.douban.com/subject/11652185/">Human Factors in Engineering and Design</a>一书的 chapter 13. Applied Anthropometry, Work-Space Design and Seating 中对站姿与坐姿工作环境有很好的描述。我在决定台面高度与椅子高度的时候参考了此书中给出的研究数据。</p>
+
+<p>顺便说说，上面提到那本书是<a href="http://zh.wikipedia.org/wiki/%E4%BA%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B%E5%AD%A6">人因学</a>的经典好书，国内有<a href="http://book.douban.com/subject/3746065/">中文翻译版</a>。</p>
+
+<p>另外再推荐阅读：美国职业健康和安全管理局(OSHA)工作区健康与安全指南<a href="http://www.youliv.com/ErgoStandard/WSGoodPositions.aspx">中文翻译</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[怎么处理Android耗电严重的问题]]></title>
@@ -22,7 +47,7 @@
 
 <p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
 
-<p>找到罪魁祸首后，最简单处理手段就是卸载它。但如果这个应用非装不可没有替代品，怎么办？Kill不是办法，若应用因后台服务而耗电，后台服务kill掉也能自动重启的。每次用完都要去kill用起来也不方便。这时 <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Greenify</a> 就派上用场了，当你将一个应用加入greenify列表中，它能够在你不使用这个应用时将它进入冬眠状态，但又不影响其正常使用。除了用来对付耗电应用，对付耗内存应用也不错，当应用冬眠时，也不会占用内存(RAM)。至于它的工作原理，作者没有透露过，只能用于Android 3.1+，需要root。Android手机要玩好，root基本上是不可少的。</p>
+<p>找到罪魁祸首后，最简单处理手段就是卸载它。但如果这个应用非装不可没有替代品，怎么办？Kill不是办法，若应用因后台服务而耗电，后台服务kill掉也能自动重启的。每次用完都要去kill用起来也不方便。这时 <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Greenify</a> 就派上用场了，当你将一个应用加入greenify列表中，它能够在你不使用这个应用时将它进入冬眠状态，但又不影响其正常使用。除了用来对付耗电应用，对付耗内存应用也不错，当应用冬眠时，也不会占用内存(RAM)。至于它的工作原理，作者没有透露过，我还没有见到有解释。Greenify只能用于Android 3.1+，需要root。Android手机要玩好，root基本上是不可少的。</p>
 ]]></content>
   </entry>
   
@@ -1152,69 +1177,6 @@ We deliver our product in uniform installation package for all customers. A mech
 <p><em>差不多两年前在荷兰工作的时候，对于欧洲的办公环境深有感触，回到国内后就有了这些想法，不过一直没有动笔写下来。期望在国内有类似欧洲的环境在目前显然是不现实的，但如果是在一开始设计办公环境的时候考虑更多人的因素，其实在不增加成本的情况下也能有所改善。最重要的是观念。</em></p>
 
 <p><em>另外还有更早的一篇<a href="http://aleung.github.com/blog/2006/05/12/Each-have-independent-office-with-the-Windows">每人都有带窗户的独立办公室</a>，是在瑞典工作的时候写的。</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[migrate my blog to github]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/25/migrate-my-blog-to-github/"/>
-    <updated>2012-06-25T23:40:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/25/migrate-my-blog-to-github</id>
-    <content type="html"><![CDATA[<p>个人blog再一次搬家，从 Google Application Engine (GAE) 搬到 github 上来。原来的<a href="http://good-good-study.appspot.com/">地址</a>依然能够访问，但是不会再更新了，新文章都发到这里。Feed订阅地址不变，建议使用Google Reader订阅本站。</p>
-
-<h2 id="section">搬迁原因</h2>
-
-<p>上一次从blogbus搬到GAE，是因为忍受不了审查制度。GAE后来也被墙了，但是即使如此，我也不会为了读者数量而再使用国内的blog服务，在被审查的状态下写东西。</p>
-
-<p>这次搬到github，最主要的动机是为了使用<a href="http://octopress.org/">Octopress</a>这个blog framework。</p>
-
-<h3 id="section-1">好玩</h3>
-
-<p>这个是最重要的原因。写blog不是什么正事，本来就是兴趣而已。之前搬离blogbus，选择了GAE的原因就是尝试一下GAE和PlayFramework编程。这次就是为了尝试Octopress。</p>
-
-<h3 id="markdown">使用markdown写作</h3>
-
-<p>Octopress使用markdown语法。接触markdown语法是在github项目的README页面上，还有<a href="http://stackoverflow.com">StackOverflow</a>里发帖用的也是markdown。刚开始觉得又是另一种wiki语法，但慢慢习惯了发现很好用：语法不太复杂，常用的格式不难记住；基本上常用的格式都覆盖了，实在不行还可以直接写HTML；原始文本的阅读性很好，不像HTML没法直接看；排版容易，文本编辑器就可以，而HTML的WYSIWYG编辑器生成的内容经常格式错乱需要手工再编辑。</p>
-
-<h3 id="section-2">访问速度提高</h3>
-
-<p>原来在GAE上的blog因为访问量少，服务进程闲置一段时间就会关闭，新请求进来要实例化新服务进程。我用的是PlayFramework，每次初始化都要等上十来秒左右，因此打开首个页面一定要等，体验很不好。</p>
-
-<p>Octopress是在本地生成HTML页面后静态发布，速度自然不慢。不过缺省页面模版有些引用的资源下载速度不快，也有些可能被墙了，影响页面加载时间，下一步需要优化一下。</p>
-
-<h3 id="section-3">版本管理与备份</h3>
-
-<p>Octopress最好用的特性就是跟github集成，发布到github上。整个blog就是一个git project，天然就有版本管理了。放在github上，我也不需要考虑备份问题了。</p>
-
-<h3 id="section-4">目前没有被墙</h3>
-
-<p>目前github是可以直接访问的，因此可以方便大陆读者。不过这个是最次要的原因了，因为作为一个优秀的网络服务，github说不定哪天就被GFW给认证了。另外，前面说过页面里面嵌入的某些资源是被墙的，我还没有测试过对访问会带来什么影响。</p>
-
-<h2 id="section-5">搬迁过程</h2>
-
-<p>Octopress的搭建不算难，需要安装ruby和一些gem，按照文档指导，再Google一下就能搞掂。按照文档做了一些配置，也没什么问题。缺省不支持tag，找了两个<a href="https://github.com/robbyedwards/octopress-tag-pages">插件</a>装上去。模版和theme都用缺省的，稍微改了一点点，反正不在乎有没有个性了，我自己做也不一定好看，以后再说吧。缺省style显示不出表格，也需要改一点css。网上的资料不少，遇到问题Google一下大都能找到答案。</p>
-
-<p>然后就是旧文章的迁移了，我原来的blog能够将所有数据用json格式导出，现在就要将它转换成新系统的文件格式；原来的文章正文是HTML，需要转换成markdown语法。不懂ruby，于是找了个python写的转换工具<a href="http://www.aaronsw.com/2002/html2text/">html2txt</a>，自己再写点脚本就好了。</p>
-
-<p>问题还是有一些的：</p>
-
-<p>Post的时间很奇怪：如果精确到秒，Octopress(其实是Jekyll)会认为这是UTC时间，在generate的时候变换为本地时区，页面里的帖子时间就加了8个小时；如果不精确到秒，只是分钟，那它就会当做本地时间而不做变换。我都不知道这是by design还是bug，不懂ruby看了下代码不得要领。后来我就把时间全部都改成只保留到分钟，绕开这个问题算了。</p>
-
-<p>Ruby不支持中文URL，因此有几个问题：</p>
-
-<ol>
-  <li>文章URL不能是中文</li>
-  <li>tag URL不能是中文</li>
-  <li>文章中不能带有中文URL的链接。</li>
-</ol>
-
-<p>对于1，可以不用标题而只是用id来做post URL，但我觉得permalink还是用标题更cool一些，将中文翻译成英文好了。Google translate的API不公开了，本来想用Bing translate的API，但它要用OAuth2认证，我嫌要写太多代码了，后来找到有道翻译的API，效果还行。</p>
-
-<p>对于2，因为tag的URL与显示是一致的，不能象post permalink那样做。网上的一些解决方法都比较复杂，不能保证日后升级兼容性，我干脆全部用英文做tag算了。</p>
-
-<p>对于3，搜索了一遍旧文章，只有一个链接是中文的，而且已经失效了，故此也不需要花功夫了。</p>
-
-<p>最后，就是还需要人工去check一遍老文章，看看自动转换的格式有没有问题，顺便回顾一下以前写的东西，有需要修改补充的就更新一下。</p>
 ]]></content>
   </entry>
   

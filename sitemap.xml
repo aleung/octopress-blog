@@ -978,7 +978,7 @@
         <loc>
             http://aleung.github.com/blog/2010/03/11/Study-of-the-issue-that-CXF-can-t-run-on-GlassFish/
         </loc>
-        <lastmod>2012-06-24T22:53:40+08:00</lastmod>
+        <lastmod>2013-03-11T21:20:11+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -1293,11 +1293,15 @@
         <lastmod>2013-03-10T23:20:30+08:00</lastmod>
     </url>
     <url>
+        <loc>http://aleung.github.com/blog/2013/03/18/stand-up-desk/</loc>
+        <lastmod>2013-03-19T01:25:57+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aleung.github.com/blog/blog/archives/</loc>
-        <lastmod>2013-03-10T23:20:30+08:00</lastmod>
+        <lastmod>2013-03-19T01:25:57+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/</loc>
-        <lastmod>2013-03-10T23:20:30+08:00</lastmod>
+        <lastmod>2013-03-19T01:25:57+08:00</lastmod>
     </url>
 </urlset>

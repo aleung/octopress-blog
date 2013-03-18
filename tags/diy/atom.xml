@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: DIY | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/diy/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-10T23:20:31+08:00</updated>
+  <updated>2013-03-19T01:26:43+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[站立工作环境]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/18/stand-up-desk/"/>
+    <updated>2013-03-18T23:44:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/18/stand-up-desk</id>
+    <content type="html"><![CDATA[<p>坐姿，特别是不正确的坐姿，对腰椎间盘的压力是站姿的2到3倍，长期在电脑前工作的人很容易得腰椎间盘突出等腰椎疾病。因此现在IT工作者逐渐流行站立工作。但是，长期站立也会带来其他的问题，如下肢静脉曲张等。一个比较理想的方案是使用可升降的办公桌，坐姿站姿交替。</p>
+
+<p>2011年我花了不少时间寻找国内哪里可以买到可升降办公桌，但都没有找到。网上搜索倒是有不少信息，但都是厂家寻求批发订货的，电话问过几个本地厂商，基本都说不做，做的也没有现货不零售。唯一的是淘宝上有个泠泠岛，做个人客户，当时价格很高，外地购买也不方便，而且我对它的质量不是很放心。最终放弃了购买升降桌的念头，改为自行DIY站立工作桌。</p>
+
+<p>2012年初用IKEA的BRODER系统加一个VIKA桌面搭建了一个站立工作桌。BRODER归属在重型储物系列里，本来用途是储物架，钢柱杆和钢网搁板很牢固，最大的搁板深度基本足够做桌面了，在上面垫上一块木桌面刚刚好。用IKEA的东西好处是你有很大发挥的空间，这个<a href="http://www.wretch.cc/blog/ikeameatball/12392137">IKEA的居家生活部落格</a>里就有不少BRODER各种应用的照片。但刚刚查IKEA中国网站，已经找不到BRODER，不知是否不卖了。</p>
+
+<p><img src="/attachments/2013/3/desk.jpg"></p>
+
+<p>就这样用了一年，但长期站立工作也不好，于是想配一张高脚凳也许就差不多了。桌面高度是按站立工作而定的，按照我的身高桌面高度也偏高，一般市面上卖的高脚凳（酒吧凳）座高都不够。最后在淘宝上找到了一款，高度比较合适。今天到货刚刚装起来了。其实这凳子做工、质量都不算很好，组装也不够方便，如果IKEA有合适的我绝对不会选择它的（虽然说IKEA的东西质量也只算一般，但还是要比这淘宝货强）。</p>
+
+<p><img src="/attachments/2013/3/desk_chair.jpg"></p>
+
+<p>关于工作台面、座椅以及显示器的合适高度，在<a href="http://book.douban.com/subject/11652185/">Human Factors in Engineering and Design</a>一书的 chapter 13. Applied Anthropometry, Work-Space Design and Seating 中对站姿与坐姿工作环境有很好的描述。我在决定台面高度与椅子高度的时候参考了此书中给出的研究数据。</p>
+
+<p>顺便说说，上面提到那本书是<a href="http://zh.wikipedia.org/wiki/%E4%BA%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B%E5%AD%A6">人因学</a>的经典好书，国内有<a href="http://book.douban.com/subject/3746065/">中文翻译版</a>。</p>
+
+<p>另外再推荐阅读：美国职业健康和安全管理局(OSHA)工作区健康与安全指南<a href="http://www.youliv.com/ErgoStandard/WSGoodPositions.aspx">中文翻译</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[DIY一个Sheldon用的叠衣板]]></title>
@@ -78,49 +103,6 @@
     <updated>2006-07-14T08:00:00+08:00</updated>
     <id>http://aleung.github.com/blog/2006/07/14/DIY-</id>
     <content type="html"><![CDATA[<p>喜欢DIY的人不应该错过这个网站，<a href="http://www.instructables.com">instructables</a> ，在这里分享DIY的创意，可以看看人家做了些什么好玩的东西，是怎么做的，也可以将自己的经验发布出来。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[家具DIY——鞋架]]></title>
-    <link href="http://aleung.github.com/blog/2006/04/20/Furniture-DIY-shoe-rack/"/>
-    <updated>2006-04-20T07:58:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2006/04/20/Furniture-DIY-shoe-rack</id>
-    <content type="html"><![CDATA[<p>打算在家的入户门后面放一个鞋架，收纳全家人日常穿着的鞋子，和换季暂不穿着的鞋子。为了充分利用空间，鞋架要做得比较高，最好一直到天花板。因为在门背后，架子不能影响开门。这样的要求显然不可能有任何成品可以满足，因为已经有自己做书桌的经验，这次还是打算自己动手做。</p>
-
-<p>其实自制板式家具不是很困难，需要的工具也不特别。下面的照片记录了制作的过程。</p>
-
-<p>[左上]：使用的板材是已经贴面的中密度板，2.4m x 1.2m，在电脑上画好图纸，设计好怎么开料，在建材超市买板的时候可以让店员给开裁。他们用的大型锯床开的板子又快又漂亮，但只能锯直线。长的锯口最好还是让他们给开，省事很多，而且木板要锯成小块才好搬运。选用贴面板，可以省了油漆或者自己贴面的步骤。</p>
-
-<p>[右上]：在板上画线做标记</p>
-
-<p>[左中]：用到的工具：曲线锯，吸尘机，另外还有电钻没有在照片上。</p>
-
-<p>[右中]：小的锯口或者曲线自己用曲线锯来锯。操作电锯的时候要注意个人防护，这东西锯起来粉尘和噪音都很大，要戴上口罩塞起耳朵。前面的管子是吸尘器的管，吸尘器在做这些家居工程的时候很管用，无论是锯还是钻，将吸尘管放在工位旁边可以吸走大部分粉尘。曲线锯可以锯曲线也可以锯直线，刚开始锯不好，练熟手后顺了。</p>
-
-<p>[左下]：锯好的板子</p>
-
-<p>[右下]：在架身的木板上打孔，用来放置可调的搁板</p>
-
-<p><img src="http://static.flickr.com/48/131333600_ae4b3f8297_o.jpg" alt="" /></p>
-
-<p>[左上]：密度板硬度很高，如果要直接上木螺丝会非常费劲，而且容易开裂。先用小号钻头钻个螺丝孔，上起来就非常轻松了。</p>
-
-<p>[右上]：连接件采用角码，便宜并且安装容易。商品的家具不会这样做的，太不专业了，但是他们用的连接件需要钻孔的加工精度很高，人家用钻床的，手电钻无法保证足够精度。</p>
-
-<p>[中]：等待装配的架身，已经钻好孔，上了角码。</p>
-
-<p>[右中]：装配，用角码连接正交的两块板。</p>
-
-<p>[左下]：手电钻可以当作电动螺丝批用，不过力矩不好控制。</p>
-
-<p>[右下]：装配中的架子。</p>
-
-<p><img src="http://static.flickr.com/1/131333601_5a5c3eea0e_o.jpg" alt="" /></p>
-
-<p>这是做好的成品。再去布艺市场做了一块窗帘，将架子遮起来。</p>
-
-<p><img src="http://static.flickr.com/50/131384360_07664ea8cb_o.jpg" alt="" /></p>
 ]]></content>
   </entry>
   

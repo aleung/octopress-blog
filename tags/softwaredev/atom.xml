@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-10T23:20:31+08:00</updated>
+  <updated>2013-03-19T01:26:43+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -245,7 +245,26 @@ We deliver our product in uniform installation package for all customers. A mech
 <p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
 
 <p>Here is a sample code snippet:
-{% gist https://gist.github.com/2934603 %}</p>
+<div><script src='https://gist.github.com/2934603.js?file='></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
