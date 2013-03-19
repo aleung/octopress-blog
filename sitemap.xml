@@ -1184,7 +1184,7 @@
         <loc>
             http://aleung.github.com/blog/2012/02/25/In-the-amazon-bought-the-computer-motherboard-and-summarizes-the-experience-of-fault-return/
         </loc>
-        <lastmod>2012-06-24T22:53:40+08:00</lastmod>
+        <lastmod>2013-03-19T02:09:53+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -1297,11 +1297,15 @@
         <lastmod>2013-03-19T01:25:57+08:00</lastmod>
     </url>
     <url>
+        <loc>http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts/</loc>
+        <lastmod>2013-03-19T22:17:18+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aleung.github.com/blog/blog/archives/</loc>
-        <lastmod>2013-03-19T01:25:57+08:00</lastmod>
+        <lastmod>2013-03-19T22:17:18+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/</loc>
-        <lastmod>2013-03-19T01:25:57+08:00</lastmod>
+        <lastmod>2013-03-19T22:17:18+08:00</lastmod>
     </url>
 </urlset>

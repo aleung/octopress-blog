@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-19T01:26:43+08:00</updated>
+  <updated>2013-03-19T22:17:19+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
+    <updated>2013-03-19T21:32:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts</id>
+    <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
+
+<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
+
+<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
+
+<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
+
+<p><div><script src='https://gist.github.com/5194777.js?file='></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
+
+<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android: 在應用中設定locale]]></title>
@@ -294,31 +317,6 @@ We deliver our product in uniform installation package for all customers. A mech
 <p><em>差不多两年前在荷兰工作的时候，对于欧洲的办公环境深有感触，回到国内后就有了这些想法，不过一直没有动笔写下来。期望在国内有类似欧洲的环境在目前显然是不现实的，但如果是在一开始设计办公环境的时候考虑更多人的因素，其实在不增加成本的情况下也能有所改善。最重要的是观念。</em></p>
 
 <p><em>另外还有更早的一篇<a href="/2006/05/12/Each-have-independent-office-with-the-Windows">每人都有带窗户的独立办公室</a>，是在瑞典工作的时候写的。</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一些读书记录]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/09/Some-reading-record/"/>
-    <updated>2012-06-09T11:56:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/09/Some-reading-record</id>
-    <content type="html"><![CDATA[<p>前几个月看了些软件开发相关的书，读的时候有时有感悟就发条tweet，在这里备份一下。  </p>
-
-<h3 id="httpbookdoubancomsubject6526454"><a href="http://book.douban.com/subject/6526454/">梦断代码</a></h3>
-
-<p>开始阅读《梦断代码》，一个历时多年的软件项目惨败的故事。其实类似的案例很多很多，不过大家都不愿意承认失败，或者将失败轻描淡写而已。</p>
-
-<p>可复用软件之梦有一悖论：几乎总能找到一段满足大部分需要的代码，但这些拿来的代码所不能做到的部分，恰是本项目与众不同的创新之处。</p>
-
-<p>软件开发的时间估算始终是恒久难题，敏捷方法能做到的只是对于短期估算有改善：通过任务切分和开发团队亲自估算让数值看起来可靠些，通过计算迭代速率等手段让估算值反映团队近期状态；但对于长期估算，答案依然是：你丫别问了，到时自然就知道。</p>
-
-<p>《梦断代码》讲了一帮聪明人是怎么把事情搞砸的。因此我非常感兴趣Linux项目是怎么运作的，Linus怎么把这么多聪明人弄到一起合作，而且似乎成效相当不错。</p>
-
-<p>在周五下班的地铁上看完了《梦断代码》，没有做计划也没有刻意定目标，但已经是在周五读完的第三本书，每周一本。就像连续三个叠代都准时交付。</p>
-
-<h3 id="httpbookdoubancomsubject5406042"><a href="http://book.douban.com/subject/5406042/">设计原本</a></h3>
-
-<p>一个设计，一个人能完成就不要让其他人参与，增加的人手会削弱设计的一致性，概念的完整性。一个职责，一个部门负责就好，多部门合作带来各自的利益考虑和冲突。</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="今来在blog中比较关注的一个热点是社会性软件，似乎现在中文blog群体中比较活跃的一些人是做教育的，因此对这方面的探讨比较多。 对于社会学方面的东西我不大懂，对社会性软件的概念也是一知半解，不过有个软件是很令我感兴趣的：SubEthaEdit。这个软件提供了通过网络多人共同进行文本编辑的功能， &hellip;">
+  <meta name="description" content="下载ASTER L1B数据，AST09(或者AST07,未知有何区别)格式。数据包括两个文件，hdf0是15m VNIR(band 1-3)，hdf1是30m SWIR(band 4-9)，一般只需要hdf0。 用MultiSpecWin打开hdf文件，将各个band分别保存为tif文件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/12/04/Used-as-a-OziExplorer-for-reproduction-of-the-production-of-ASTER-presents-the-satellite/">用作OziExplorer底图的ASTER卫星遥感图的制作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-12-04T18:04:00+08:00" pubdate data-updated="true">2003-12-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+  <li>下载ASTER L1B数据，AST<em>09(或者AST</em>07,未知有何区别)格式。数据包括两个文件，hdf0是15m VNIR(band 1-3)，hdf1是30m SWIR(band 4-9)，一般只需要hdf0。 </li>
+  <li>用MultiSpecWin打开hdf文件，将各个band分别保存为tif文件 </li>
+  <li>用photoshop打开三个band的tif文件，按照RGB模式通道合成为一个文件，采用231合成的效果比较好。 </li>
+  <li>在photoshop中对图像进行直方图调整、锐化，保存为jpg </li>
+  <li>用ECW compressser将jpg转换为ecw格式 </li>
+  <li>在OziExplorer中校准, 投影设为UTM，然后用META FILE里面的四个点来作为校准点，分别是图像（包括黑色部分）的四个角。  </li>
+</ol>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/12/04/Used-as-a-OziExplorer-for-reproduction-of-the-production-of-ASTER-presents-the-satellite/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -377,76 +436,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/">GPS数据管理软件EasyGPS和格式转换工具GPSBabel</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-11-01T01:17:00+08:00" pubdate data-updated="true">2003-11-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>EasyGPS是很好用的GPS数据管理器，能管理waypoint、route资料，它支持的文件格式是文件格式是gpx/loc。我使用过程中感觉它有以下优点：   </p>
-
-<p>※ GPS waypoint的名称、说明字段的文字个数有限制，通常只能输入缩写。waypoint多了之后缩写很难理解，管理十分困难。在EasyGPS中，可以输入额外的信息，如中文说明、类别信息等，利用资料的整理。 <br />
-※ 双击选定一个点作为active point，程序会计算出所有其他点与active point的距离、方位角。如果用距离来排序，就能够快速找出某距离范围以内的waypoint。这是我认为这个软件最好用的功能。 <br />
-※ 软件提供检索功能，能够根据多种条件查找、选定符合条件的waypoint <br />
-※ 可以打印waypoint清单。GPS中保存的waypoint没有详细说明，只要在出发前先打印一张单，名字具体对应的是什么地点就一清二楚了。英文机也不用愁啦。 <br />
-※ 从GPS上传、下载waypoint也是十分方便的   </p>
-
-<p>我以前是用ozi文件分地区存放waypoint的，管理起来非常麻烦，先按大的地区分目录，再按小地区建立文件。而且在GPS多次导入导出，都分不清那些是新增那些是旧，有些还重复了。 <br />
-现在用了EasyGPS不用这么麻烦了，把所有点都放一个gpx文件里面，需要的时候利用搜索很容易就能找到，只要找到一个，按范围排序马上就把附近整个区域的所有点都找出来了，然后另存文件或者直接传到GPS。   </p>
-
-<p>因此强烈推荐大家使用这种格式交换waypoint! :)   </p>
-
-<p>EasyGPS是免费软件，在<a href="http://www.easygps.com/">http://www.easygps.com/</a> 可下载；另外有ExpertGPS，功能更加多些，对route、track的管理更全面，不过是要钱买的。   </p>
-
-<p>另一个推荐的是GPSBabel软件，可以在gpx / ozi / mapsource / mapsend 等几十种文件格式之间转换，除了格式转换之外，还有过滤waypoint的功能，例如可以将重名的、距离很接近的waypoint过滤掉，或者是只输出某个座标范围内的waypoint。 <br />
-这个是命令行工具，但同时也提供了GUI界面，方便使用。（GUI界面只能做格式转换，不能过滤） <br />
-GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">http://gpsbabel.sourceforge.net</a> 可下载。 </p>
-
-<p>这里是ExpertGPS的<a href="http://www.lvye.org/uploadfiles/597018-easygps_introduce.gif">screen shot</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/50/">&larr; Older</a>
@@ -468,6 +457,10 @@ GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">htt
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch deploy artifacts to Maven repository</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
       </li>
     
@@ -483,16 +476,12 @@ GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">htt
         <a href="/blog/2013/01/08/keyboard-and-mouse/">人體工學鍵盤鼠標組合</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 114%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -506,7 +495,7 @@ GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">htt
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 144%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
@@ -516,7 +505,7 @@ GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">htt
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 85%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 93%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 108%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 85%" href="/blog/tags/novel/">Novel</a>
@@ -530,7 +519,7 @@ GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">htt
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 85%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 126%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 85%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 108%" href="/blog/tags/web/">Web</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Maven | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/maven/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-19T01:26:43+08:00</updated>
+  <updated>2013-03-19T22:17:19+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
+    <updated>2013-03-19T21:32:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts</id>
+    <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
+
+<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
+
+<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
+
+<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
+
+<p><div><script src='https://gist.github.com/5194777.js?file='></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
+
+<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Maven Lifecycle Concepts]]></title>
