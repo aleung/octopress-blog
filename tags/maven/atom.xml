@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Maven | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/maven/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-19T22:17:19+08:00</updated>
+  <updated>2013-03-22T23:51:00+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
+    <updated>2013-03-22T23:21:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
+    <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
+
+<p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
+
+<p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
+
+<p>{% gist https://gist.github.com/aleung/5203736 %}</p>
+
+<p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
@@ -26,9 +43,7 @@
 
 <p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
 
-<p><div><script src='https://gist.github.com/5194777.js?file='></script>
-<noscript><pre><code></code></pre></noscript></div>
-</p>
+<p>{%gist https://gist.github.com/aleung/5194777 %}</p>
 
 <p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
 

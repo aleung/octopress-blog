@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-19T22:17:19+08:00</updated>
+  <updated>2013-03-22T23:51:00+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
+    <updated>2013-03-22T23:21:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
+    <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
+
+<p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
+
+<p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
+
+<p>{% gist https://gist.github.com/aleung/5203736 %}</p>
+
+<p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
@@ -26,9 +43,7 @@
 
 <p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
 
-<p><div><script src='https://gist.github.com/5194777.js?file='></script>
-<noscript><pre><code></code></pre></noscript></div>
-</p>
+<p>{%gist https://gist.github.com/aleung/5194777 %}</p>
 
 <p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
 
@@ -268,55 +283,7 @@ We deliver our product in uniform installation package for all customers. A mech
 <p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
 
 <p>Here is a sample code snippet:
-<div><script src='https://gist.github.com/2934603.js?file='></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
-    default-autowire=&quot;byType&quot;&gt;
-
-    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
-
-    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
-    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
-    
-    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
-        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[软件团队工作空间再设计]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/30/redesign-of-software-development-workspace/"/>
-    <updated>2012-06-30T22:24:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/30/redesign-of-software-development-workspace</id>
-    <content type="html"><![CDATA[<p>软件团队的办公室空间可以分为三大类：团队工作空间，会议空间，公共区域。</p>
-
-<p>敏捷团队在工作过程中需要有比较多沟通，团队工作空间需要为此准备必要的设施，例如带有白板的讨论区域，这样就不需要讨论一些事情都要跑很远找会议室；供张贴东西的墙面；公共信息显示屏，显示CI状态之类。</p>
-
-<p>每个人的座位当然是越宽敞越好，即使条件限制，最低限度也需要保证可以增加一个人并排坐一起结对编程或讨论问题。因此应该用长条型的桌子，而不是曲尺型的桌子。</p>
-
-<p>不同团队之间的空间有一定的隔离，减少相互影响，因为团队内的讨论对他人是噪音。并且，空间的尺度对心理也有影响，需要合适的尺度，过大的大厅一排排整齐排列的桌子的心理效果不好。</p>
-
-<p>将公共区域，例如休息区、茶水间、打印机等，放在各个区域空间的交汇点，一方面是方便各个区域的人的到达，另外是形成汇聚点，成为人们的交流场所。公司里面需要创造让不同团队成员见面交流的机会。公共区域特别应该是开放性的，不带有物理边界，才能彰显公共属性，例如茶水间休息区与走廊不应该设墙，让它们融合起来，这样大家路过的时候就能够打个招呼聊上几句。休息家具款式可以多样化，颜色也可选择鲜明多彩的，让空间生动有活力。</p>
-
-<p>其实不仅是公共区域，团队区域之间也应该是柔性边界。柔性边界会鼓励人们进入不同的区域，在软件公司里并没有什么理由要为员工进入一个普通区域造成障碍。人从一个大厅进入另一个大厅，心理不会有异样感，但如果要穿过一个门进入一个坐了人的封闭的房间，那他必须是有专门目的才会这样做。</p>
-
-<p>会议室相对团队空间来说，私密性会强一些。在软件公司里开会，白板是很重要的，会议室的白板（或者用玻璃）的面积应该尽量的大，越大越好，画不下要擦掉影响思路，有可能的话将整面墙都做白版。会议室面积小，密闭空间的压抑感会特别严重，用玻璃做墙面可以改善空间感。由于团队工作空间是开放性的，需要多留一些小会议室(quite room)，或者半开放小隔间作为不受干扰的环境来临时使用。</p>
-
-<p>人喜欢在窗户旁边工作：与外界空间的连通感，扩大心理空间，不会有幽闭压抑感；自然采光与通风。因此有窗的空间应该留作给人长时间活动的空间，而不是用作偶然才有人使用的用途，如果用作储物、机房就更浪费了。</p>
-
-<p><em>后记：</em></p>
-
-<p><em>差不多两年前在荷兰工作的时候，对于欧洲的办公环境深有感触，回到国内后就有了这些想法，不过一直没有动笔写下来。期望在国内有类似欧洲的环境在目前显然是不现实的，但如果是在一开始设计办公环境的时候考虑更多人的因素，其实在不增加成本的情况下也能有所改善。最重要的是观念。</em></p>
-
-<p><em>另外还有更早的一篇<a href="/2006/05/12/Each-have-independent-office-with-the-Windows">每人都有带窗户的独立办公室</a>，是在瑞典工作的时候写的。</em></p>
+{% gist https://gist.github.com/2934603 %}</p>
 ]]></content>
   </entry>
   
