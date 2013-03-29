@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="现在广州某些线路的公交车已经开始使用GPS跟踪调度，并且在站牌上实时显示车辆位置、预计到站时间。不知道什么时候能够推广到所有线路。 根据网上的资料，城市公交GPS定位调度系统由车载终端分系统，信息传输分系统，中心及线路调度管理分系统，信息发布分系统及电子站牌分系统五大部分组成。 &hellip;">
+  <meta name="description" content="什么是FXP？以前就听说FlashFXP这个软件可以在两台ftp之间直接传输文件，不需要中转。 在网上查了一下资料，好像fxp并不是一种新的协议，而是对ftp中的proxy命令的巧妙运用。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,117 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/21/What-is-FXP-/">What Is FXP?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-21T23:02:00+08:00" pubdate data-updated="true">2003-07-21</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>什么是FXP？以前就听说FlashFXP这个软件可以在两台ftp之间直接传输文件，不需要中转。  </p>
+
+<p>在网上查了一下资料，好像fxp并不是一种新的协议，而是对ftp中的proxy命令的巧妙运用。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/21/What-is-FXP-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/17/cyrus-imapd-/">Cyrus Imapd的邮件目录修复</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-17T23:02:00+08:00" pubdate data-updated="true">2003-07-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。<em>注意：该命令必须以cyrus用户身份才能运行<br />
+且此quota不同于/usr/bin/quota命令</em>  </p>
+
+<p>/var/imap/quota/[a-z]/user.* 文件是用户的quota信息，第一行是当前占用的quota，第二行是quota limit。  </p>
+
+<p>当用户有d权限时，才会在quota达到特定值时发送warrning信件。不过，正常使用的用户都是有d权限的。  </p>
+
+<p><a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">http://asg.web.cmu.edu/cyrus/cyrus-overview.html</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/17/cyrus-imapd-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -255,135 +367,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/07/01/Java-profilor/">Java Profilor</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-07-01T21:21:00+08:00" pubdate data-updated="true">2003-07-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>同事写的java程序执行很慢，但又找不出原因。我想起C程序可以通过profiler来检查时间耗在什么函数里面，java应该也有类似的工具。Google一把，找到以下几个软件：</p>
-
-<ul>
-  <li>
-    <p>Mike’s Java Profiler <a href="http://mjp.sourceforge.net/">http://mjp.sourceforge.net/</a>   </p>
-  </li>
-  <li>
-    <p>SD’s Java profiler tool <a href="http://www.semdesigns.com/Products/Profilers/JavaProfiler.html">http://www.semdesigns.com/Products/Profilers/JavaProfiler.html</a>  </p>
-  </li>
-  <li>
-    <p>ej-technologie’s JProfiler <br />
-<a href="http://www.ej-technologies.com/products/jprofiler/overview.html">http://www.ej-technologies.com/products/jprofiler/overview.html</a><br />
-这是商业软件，从screenshot看功能很多，界面很漂亮，但只有试用版本   </p>
-  </li>
-  <li>
-    <p>JProbe Profiler <a href="http://java.quest.com/jprobe/profiler.shtml">http://java.quest.com/jprobe/profiler.shtml</a><br />
-这也是商业软件，JProbe还有一系列用于java测试的软件</p>
-  </li>
-</ul>
-
-<p>在JAVA developer’s journal的best java profiler/test tool投票中，JProfiler和JProbe名列第一和第三。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/07/01/Java-profilor/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/06/12/Version-control-software/">版本控制的软件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-06-12T00:05:00+08:00" pubdate data-updated="true">2003-06-12</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>网上找到一些版本控制的软件。</p>
-
-<p>一个是TortoiseCVS(<a href="http://www.tortoisecvs.org">http://www.tortoisecvs.org</a>)，是CVS client as windows shell extension，能够直接在explorer里面用右键菜单来操作。它是基于WinCVS代码开发的，与WinCVS各有千秋吧，WinCVS的功能更全面些。</p>
-
-<p>另外一个是TortoiseSVN(<a href="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</a>)，是for subversion的。这个更另我感兴趣，因为我看好subversion，它比CVS更有技术优势。安装试用了，使用local repository时不需要安装subversion server，看来可以用它来管理自己的代码、网页等等了。</p>
-
-<p>另一个是我也很关心的SVN-UP(<a href="http://svnup.tigris.org/">http://svnup.tigris.org/</a>): Java client gui for subversion and plugin for idea ide. 因为我喜欢用IDEA，不过这个软件还很不完善，要等以后的版本了。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/06/12/Version-control-software/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/56/">&larr; Older</a>
@@ -405,6 +388,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -414,14 +405,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -447,13 +430,14 @@
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>

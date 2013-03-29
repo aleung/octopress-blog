@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Maven | Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/tags/maven/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-22T23:51:00+08:00</updated>
+  <updated>2013-03-30T01:03:33+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <updated>2013-03-30T00:04:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
+
+<p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
+
+<p>Before I changed the configuration, there were SNAPSHOT artifacts in the repository. After configuration changed, the continuous integration jobs running on CI server redeployed artifacts to the repository, and those new files have time stamp in file names, and the version is the same. That caused the problem.</p>
+
+<p>To solve the problem, I should delete the *-SNAPSHOT file, if and only if there are both unique snapshot and non-unique snapshot of the same version.</p>
+
+<p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
+
+<p>{%gist https://gist.github.com/aleung/5260512 %}</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
@@ -48,6 +67,12 @@
 <p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
 
 <p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
 ]]></content>
   </entry>
   

@@ -1298,18 +1298,30 @@
     </url>
     <url>
         <loc>http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts/</loc>
-        <lastmod>2013-03-19T22:17:18+08:00</lastmod>
+        <lastmod>2013-03-30T00:01:23+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory/</loc>
         <lastmod>2013-03-22T23:50:59+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/
+        </loc>
+        <lastmod>2013-03-30T00:30:32+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/
+        </loc>
+        <lastmod>2013-03-30T01:03:32+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aleung.github.com/blog/blog/archives/</loc>
-        <lastmod>2013-03-22T23:50:59+08:00</lastmod>
+        <lastmod>2013-03-30T01:03:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.com/blog/</loc>
-        <lastmod>2013-03-22T23:50:59+08:00</lastmod>
+        <lastmod>2013-03-30T01:03:32+08:00</lastmod>
     </url>
 </urlset>

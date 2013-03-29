@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="看了 Trees in SQL 这篇文章, 提出了一个巧妙的方法来在关系数据库中保存树状结构. 在记录中不是保存父子关系, 而是记录着树的遍历的编号, 通过利用编号可以在单个SQL语句中获取某个节点的所有子节点等操作. 据介绍, 著名论坛jive在2.5版本起增加了catalog, &hellip;">
+  <meta name="description" content="同事写的java程序执行很慢，但又找不出原因。我想起C程序可以通过profiler来检查时间耗在什么函数里面，java应该也有类似的工具。Google一把，找到以下几个软件： Mike’s Java Profiler http://mjp.sourceforge.net/ SD’s Java &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,135 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/01/Java-profilor/">Java Profilor</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-01T21:21:00+08:00" pubdate data-updated="true">2003-07-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>同事写的java程序执行很慢，但又找不出原因。我想起C程序可以通过profiler来检查时间耗在什么函数里面，java应该也有类似的工具。Google一把，找到以下几个软件：</p>
+
+<ul>
+  <li>
+    <p>Mike’s Java Profiler <a href="http://mjp.sourceforge.net/">http://mjp.sourceforge.net/</a>   </p>
+  </li>
+  <li>
+    <p>SD’s Java profiler tool <a href="http://www.semdesigns.com/Products/Profilers/JavaProfiler.html">http://www.semdesigns.com/Products/Profilers/JavaProfiler.html</a>  </p>
+  </li>
+  <li>
+    <p>ej-technologie’s JProfiler <br />
+<a href="http://www.ej-technologies.com/products/jprofiler/overview.html">http://www.ej-technologies.com/products/jprofiler/overview.html</a><br />
+这是商业软件，从screenshot看功能很多，界面很漂亮，但只有试用版本   </p>
+  </li>
+  <li>
+    <p>JProbe Profiler <a href="http://java.quest.com/jprobe/profiler.shtml">http://java.quest.com/jprobe/profiler.shtml</a><br />
+这也是商业软件，JProbe还有一系列用于java测试的软件</p>
+  </li>
+</ul>
+
+<p>在JAVA developer’s journal的best java profiler/test tool投票中，JProfiler和JProbe名列第一和第三。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/01/Java-profilor/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/06/12/Version-control-software/">版本控制的软件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-06-12T00:05:00+08:00" pubdate data-updated="true">2003-06-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>网上找到一些版本控制的软件。</p>
+
+<p>一个是TortoiseCVS(<a href="http://www.tortoisecvs.org">http://www.tortoisecvs.org</a>)，是CVS client as windows shell extension，能够直接在explorer里面用右键菜单来操作。它是基于WinCVS代码开发的，与WinCVS各有千秋吧，WinCVS的功能更全面些。</p>
+
+<p>另外一个是TortoiseSVN(<a href="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</a>)，是for subversion的。这个更另我感兴趣，因为我看好subversion，它比CVS更有技术优势。安装试用了，使用local repository时不需要安装subversion server，看来可以用它来管理自己的代码、网页等等了。</p>
+
+<p>另一个是我也很关心的SVN-UP(<a href="http://svnup.tigris.org/">http://svnup.tigris.org/</a>): Java client gui for subversion and plugin for idea ide. 因为我喜欢用IDEA，不过这个软件还很不完善，要等以后的版本了。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/06/12/Version-control-software/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -329,129 +458,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/05/15/The-man-machine-interactive-way-taken/">人机交互方式的跃进</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-05-15T00:09:00+08:00" pubdate data-updated="true">2003-05-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/ux/'>UX</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>找到一个神奇的软件Denim: <a href="http://guir.cs.berkeley.edu/projects/denim/">http://guir.cs.berkeley.edu/projects/denim/</a>  </p>
-
-<p>这是一个辅助web设计/界面设计,用来画草图的软件, 使用鼠标或者手写版, 在屏幕上绘制草图.  </p>
-
-<p>如果在软件设计领域也有这样的软件就好了, 例如用来画UML. 软件需要有一定的识别能力, 能够辨认出用户画的是什么图形, 变成规范的格式. </p>
-
-<p>今天把手写板装上，试用了Denim，确实不错。  </p>
-
-<p>因为经常在写文档中需要有些框图之类的，我是想用手写板来画，并且利用软件的自动图形识别来将画出的图元规范化，那就方便了。于是在网上找有没有这样的软件。用google搜索，发现手绘草图的识别方面的论文不少，但是实用化软件就没几个。  </p>
-
-<p>看介绍，比较好的一个软件是Corel的Grafigo（<a href="http://www.corel.com/grafigo/">http://www.corel.com/grafigo/</a>），这是一个专门for Tablet PC的软件，在Win2k上不能运行，也不能尝试实际效果。  </p>
-
-<p>另外一个是riteShape，是供开发pen application shape recognition的SDK，网上有在线demo（<a href="http://pi.parascript.com/piweb/products/riteshape/rs_demo.asp">http://pi.parascript.com/piweb/products/riteshape/rs_demo.asp</a>），这个技术用在了该公司的riteMail中。riteMail是一个邮件client，提供了手写、图形邮件，包括了英文文字识别、图形识别的功能。  </p>
-
-<p>最终还是没有找到desktop PC可用的合适的软件。不过在找的过程中，发现了tablet PC是很特别的一个产品，它的手写输入、数字墨水带来了电脑人机交换中的一个新的概念。  </p>
-
-<p>另外也发现一个不错的软件SketchBook Pro，这个软件是用手写笔来绘画图形的，但不是面向美术设计师的，故此不象painter那么复杂，可以供你随时在上面涂鸦，可能作为草稿本更适合。另外它提供layer，故此可以在现有的图片上面做注释，例如在设计稿上标示出修改建议等。我要找它的注册码才行。  </p>
-
-<p>在做构思时，我更习惯用笔在纸上写画而不习惯在电脑上面写，因为笔纸有最大的自由度，不会因为工具的使用的限制而成为思维的障碍。由于技术上的限制，人机交互目前仍然只能在比较低级的层面，主要是键盘和鼠标，是人要改变自己的习惯去适应电脑，实际并不能顺畅，故此在某些情况下会成为思维的限制，因为要把精力分散在如何操控上了。如今Microsoft提出Tablet PC，有人认为只是概念抄作，但我觉得这已经超出仅仅输入设备的范畴了，而将是人机交换方式的一大跃进，这些挺有意思的，会是以后的方向，电脑与人的交换会越来越人性化。  </p>
-
-<p>在eDonkey网上发现有WinXP Tablet PC版本，不知能否下载下来。据说这个版本只是在XP pro基础上加了手写方面的功能，那么应该可以在台式机上安装吧？第一次对XP这么有好感:)  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/05/15/The-man-machine-interactive-way-taken/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/">解决Solaris中sendmail不断报错的方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-04-05T00:12:00+08:00" pubdate data-updated="true">2003-04-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名，另一个是主机名加域名（在这里没有域名，只是加个点）。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/57/">&larr; Older</a>
@@ -473,6 +479,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -482,14 +496,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -515,13 +521,14 @@
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>

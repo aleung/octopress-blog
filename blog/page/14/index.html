@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在《生活大爆炸》第一季中某集的场景是Sheldon在洗衣房里叠衣服，他用的是叠衣板，衣服铺上面翻三下，就方方正正的叠好了。没看过的同学可以看看下面的youtube视频片段（需要翻墙）： 看着觉得真好玩，于是去淘宝找一下。淘宝果然没有买不到的东西，叫做神奇叠衣板，山寨货几十块钱， &hellip;">
+  <meta name="description" content="目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,160 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/">在考虑怎样在Android手机上使用SSH Tunnel翻墙</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-02T14:53:00+08:00" pubdate data-updated="true">2010-06-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。因此Android上是应该也可以使用SSH tunnel的。</p>
+
+<p>先看看Windows上是怎样设置SSH翻墙的：</p>
+
+<ul>
+  <li>首先需要有个支持dynamic port forwarding的SSH client，这个SSH client能开放出SOCKS服务</li>
+  <li>如果浏览器(或者其他程序)支持使用SOCKS proxy，设置使用SSH client开放出来的SOCKS端口，就可以使用了</li>
+  <li>如果浏览器(或者其他程序)不支持SOCKS proxy，只支持HTTP proxy，就需要再运行一个支持SOCKS的代理程序（例如Privoxy），将HTTP转成SOCKS</li>
+</ul>
+
+<p><img src="http://farm5.static.flickr.com/4046/4662779602_743c1c50c2_b.jpg" alt="" /></p>
+
+<p>在Android上就要麻烦一点了，因为需要网络通讯的不仅仅是浏览器，很多Android application都需要访问网络，但是它们并不支持proxy—-连HTTP proxy都不支持，更不用说SOCKS了。它们只会直接连接目标站点，如图中虚线所示，然后撞墙。</p>
+
+<p>但是Linux有iptables，可以设置iptables规则（需要root权限），将HTTP/HTTPS请求forward到一个transparent SOCKS proxy去。transparent SOCKS proxy的作用是将任意TCP连接转成SOCKS连接，这样就可以走SSH tunnel出去了。我分析过几乎所有的Android应用访问网络都是走HTTP/HTTPS协议的，所有仅仅处理HTTP/HTTPS就够了。</p>
+
+<p><img src="http://farm5.static.flickr.com/4023/4662779594_32dd9773cb_b.jpg" alt="" /></p>
+
+<p>Android上支持dynamic port forwarding的SSH client有<a href="http://code.google.com/p/connectbot/">ConnectBot</a>，不过ConnectBot是一个有界面的应用，似乎不能由其他程序来控制，这样就不好做到翻墙软件的傻瓜化了。应该还是弄一个命令行的ssh client更合适。</p>
+
+<p>在网上搜索了一下，开源的transparent SOCKS proxy有几个：<a href="http://oss.tiggerswelt.net/transocks_ev/">transocks_ev</a>，<a href="http://transocks.sourceforge.net/">TranSocks</a> 和 <a href="http://darkk.net.ru/redsocks/">redsocks</a>。从文档上看，似乎transocks_ev比较适合。</p>
+
+<p>但是，我现在面临的困难在于我不熟悉如何交叉编译Android平台程序（C语言），了解了一下如何搭建Android交叉编译环境，似乎挺麻烦（对我而言）。而且要让普通Linux上可运行的sshd和transocks port到Android上，也许还有一些代码要修改。不知道有没有Android系统高手能够帮忙？</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/11/Nexus-One-/">Nexus One 到手，以及刷机过程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-11T20:10:00+08:00" pubdate data-updated="true">2010-05-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天终于拿到了Google赠送的Nexus One手机了，Google做事也够拖拖拉拉的，确认信说两个星期左右会寄到，实际上用了两个多月。不过还是得感谢Google，我去年开通Android Developer帐号的时候还埋怨，我只是发布免费软件，都要我交25美元才能开通。Google送我手机的原因是因为我符合它的Android开发者推广计划的条件：开发的Android应用下载量超过5000，用户评价高于3.5星。我的 HereIm Map Helper 和 Wallpaper Label 都符合条件。</p>
+
+<p>原来用的G1因为内存太小，运行速度很卡。Nexus One用起来的第一感受就是顺畅，另外就是屏幕显示效果很艳丽。</p>
+
+<p>机器是2.1的系统，但是没有root，因此正式使用前的第一件事情就是刷机。上网看了一些文章，大部分写得罗里罗嗦的，完全没有重点，真正动手做其实就是简单几步。下面不写具体操作过程，因为网上一大堆。</p>
+
+<h3 id="section">准备</h3>
+
+<p>PC上要安装好USB驱动和fastboot、adb工具。工具是Android SDK附带的，装好SDK就有。</p>
+
+<h3 id="unlock-bootloader">Unlock bootloader</h3>
+
+<p>Unlock了之后才允许进行刷机操作。Unlock后开机时会显示一个打开的锁的图标，说明这台机器已经unlock了，也就是无保修了。只要unlock了，下面的操作都可以进行了，不一定要按照先后顺序。</p>
+
+<h3 id="recovery">更新recovery</h3>
+
+<p>下载Amon_RA做的recovery image，用fastboot工具写入手机。安装新ROM或者patch都需要通过recovery来进行，其实系统已经自带了recovery，不更换也能用，但是Amon_RA的功能更强，使用起来会方便很多。</p>
+
+<h3 id="radio">更新radio</h3>
+
+<p>我检查了一下，自带的radio已经是最新版本，所以跳过了这个步骤。</p>
+
+<h3 id="rom">安装新版本的ROM</h3>
+
+<p>我装的是CyanogenMod的ROM，比较可靠。这个ROM是带root的，装起来就有root权限了。因为CM的ROM是不带Google Applications的（版权问题），所以还需要再刷个GoogleApp包（网上可找到，目前最新版本是EPE54B），这个包应该是通过Google官方升级包制作出来的。如果装的是其他版本的ROM，例如国内的人制作的，通常已经把Google应用内置进去了，就不需要额外步骤。</p>
+
+<p>对我而言，到此为止刷机过程就完成了。有些人还要再打其他的patch，例如中文排序、theme之类的。</p>
+
+<h3 id="romroot">不更换ROM，获取root</h3>
+
+<p>是否有root权限，是与ROM相关的，例如我刷了CM 5.0.6就有root权限了。有些人不想换ROM，沿用官方的系统，但又想要root权限，就需要刷hack过的superboot image。要注意下载superboot image的时候，要选择跟ROM一致的版本，例如目前官方正式发布的最新ROM版本是ERE27。版本号从手机信息界面可以查到。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/05/11/Nexus-One-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -300,210 +454,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/19/Grab-Android-system-on-network-communication/">抓取Android系统上的网络通信</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-19T13:33:00+08:00" pubdate data-updated="true">2010-03-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Android是基于Linux的系统，这是对开发者很方便的。今天手机上网不太正常，想到抓些包来看看，于是上网google一下，就找到教程了：<a href="http://pdk.android.com/online-pdk/guide/tcpdump.html">Debugging with Tcpdump</a>。我的ROM没有预装tcpdump（据说cm的rom有），自己编译也太麻烦了，网上也可以找到编译好的包，搜索”tcpdump-arm”可找到。</p>
-
-<p>有了tcpdump，要分析别人的应用干了些什么也方便多了。例如这是 Google Maps 获取network location的包：</p>
-
-<pre><code>POST /loc/m/api HTTP/1.1
-Connection: close
-Content-Type: application/binary
-Content-Length: 496
-Host: www.google.com
-User-Agent: GMM/3.0 (dream ERE27); gzip
-
-...."location,1.0,android,android,en_US... I.....g...........g:loc/ql......
-..
-.1.0.Iandroid/google/passion/passion/mahimahi:2.1/ERD72/22132:user/release-keys.#2:l-7Yxu1UHhuUZlb5:F_iqbZnw84bV2J0q*.zh_CN2
-....CMCC .(...
-.voicesearch..
-.com.diddo.diddo.diddo..
-.apps.maps..
-.com.lim.android.automemman"..
-..
-...I...... ..(.......$....I...... ..(.....I...... ..(.....I...... ..(.....I...... ..(.....I...... ..(."...I...... ..(.0..K"...I...... ..(.0..J"...I...... ..(.0..."...I...... ..(.0...(......
-
-
-HTTP/1.1 200 OK
-Content-Type: application/binary
-Content-Disposition: attachment
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Pragma: no-cache
-Expires: Fri, 01 Jan 1990 00:00:00 GMT
-Date: Fri, 19 Mar 2010 04:49:31 GMT
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-Content-Length: 188
-Server: GSE
-X-XSS-Protection: 0
-Connection: close
-
-..............g...)...........`.Z... $...k.......fg./,
-.....,.."....cZ
-....(.
-!'....S`..F...3..BP.n..j...`Q{..V..v...Z'yT;.j...]..Q+.U.d.Pm.,6..aj..j_....=..T...
-goB. .U....s7.......#
-)...
-</code></pre>
-
-<p>不过payload是binary的，没法直接看出里面是些什么东西。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/03/19/Grab-Android-system-on-network-communication/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/11/Study-of-the-issue-that-CXF-can-t-run-on-GlassFish/">Study of the Issue That CXF Can&#8217;t Run on GlassFish</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-11T11:59:00+08:00" pubdate data-updated="true">2010-03-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="issue">Issue</h2>
-
-<p>SOAP WS client which uses CXF can’t run on GlassFish AS. Getting ClassCastException on invoking some CXF API. The problem was described as CXF-2237 [2].</p>
-
-<h2 id="analysis">Analysis</h2>
-
-<p>JAX-WS is the Java API for XML Web Service defined by JSR 224. SUN provides a JAX-WS reference implementation in Metro project, which is inside GlassFish AS. The SUN JAX-WS implement was later also merged into JDK 6. Apache CXF is another JAX-WS implementation.</p>
-
-<p>An application can select different JAX-WS implementation by Provider SPI. JSR 224 [4] chapter 6.2.1 defines the algorithm of Provider implementation selection:</p>
-
-<blockquote>
-  <ol>
-    <li>
-      <p>If a resource with the name of META-INF/services/javax.xml.ws.spi.Provider exists, then its first line, if present, is used as the UTF-8 encoded name of the implementation class.</p>
-    </li>
-    <li>
-      <p>If the ${java.home}/lib/jaxws.properties file exists and it is readable by the java.util.Properties.load(InputStream) method and it contains an entry whose key is javax.xml.ws.spi.Provider, then the value of that entry is used as the name of the implementation class.</p>
-    </li>
-    <li>
-      <p>If a system property with the name javax.xml.ws.spi.Provider is defined, then its value is used as the name of the implementation class.</p>
-    </li>
-    <li>
-      <p>Finally, a default implementation class name is used.</p>
-    </li>
-  </ol>
-</blockquote>
-
-<p>The Provider implementation class in JDK 6 is <code>com.sun.xml.internal.ws.spi.ProviderImpl</code> in rt.jar. I guess it’s the default implementation as mentioned in step 4.</p>
-
-<p>CXF packages META-INF/services/javax.xml.ws.spi.Provider which points to <code>org.apache.cxf.jaxws.spi.ProviderImpl</code> in cxf.jar. It will be considered in step 1.</p>
-
-<p>Metro also packages META-INF/services/javax.xml.ws.spi.Provider which points to <code>com.sun.xml.ws.spi.ProviderImpl</code> in webservices-rt.jar. It also will be considered in step 1.</p>
-
-<p>Because in GlassFish the Metro library is in system classpath, so its META-INF/services/javax.xml.ws.spi.Provider will be loaded precede over CXF’s. That’s why Metro will always be used as JAX-WS implement no matter CXF exists or not.</p>
-
-<h2 id="potential-solution">Potential Solution</h2>
-
-<h3 id="classloader-control">Classloader control</h3>
-
-<p>If we can force the JVM to load resource from cxf.jar prior to webservices-rt.jar that will be fine. But GlassFish hasn’t the mechanism likeWebLogic’s <code>&lt;prefer-application-packages&gt;</code>[5]. After some finding we give up this approach.</p>
-
-<h3 id="remove-metro-from-glassfish">Remove Metro from GlassFish</h3>
-
-<p>If there is no application which deploys on the this application server that depends on Metro, we can remove Metro lib (webservices-*.jar) from GlassFish’s lib folder.</p>
-
-<h3 id="change-to-metro">Change to Metro</h3>
-
-<p>That’s nothing to say. We finally choose this way. There is almost no workload to migrate our code from CXF to Metro, because both of them follows JAX-WS specification, except that some code that calls CXF specify API need to be changed. We even don’t change the build script and still use CXF’s wsdl2java tool.</p>
-
-<h2 id="reference">Reference</h2>
-
-<ol>
-  <li><a href="https://issues.apache.org/jira/browse/CXF-857">CXF Issue: CXF-857</a></li>
-  <li><a href="https://issues.apache.org/jira/browse/CXF-2237">CXF Issue: CXF-2237</a></li>
-  <li><a href="http://stackoverflow.com/questions/2064068/how-to-pick-cxf-over-metro-on-glassfish">StackOverflow: How to pick CXF over Metro on Glassfish</a></li>
-  <li><a href="http://jcp.org/en/jsr/detail?id=224">JSR 224: JAX-WS 2.x</a></li>
-  <li><a href="http://good-good-study.appspot.com/blog/posts/4218">WebLogic的classloading</a></li>
-</ol>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/03/11/Study-of-the-issue-that-CXF-can-t-run-on-GlassFish/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/15/">&larr; Older</a>
@@ -525,6 +475,14 @@ goB. .U....s7.......#
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -534,14 +492,6 @@ goB. .U....s7.......#
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -567,13 +517,14 @@ goB. .U....s7.......#
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>

@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="四川汶川县境内今天14:28发生7.8级地震，震中距离成都市区约90km，距离彭州市区约66km。14:54发生的5.7级余震距离彭州市区约22km。 上图数据来自USGS（US Geological Survey，美国地质勘探局），这里可以看到此次地震以及余震的信息(一周内有效)。
-">
+  <meta name="description" content="Allow remote TCP connection to the X server. You need root privilege to config it. Just run gdmsetup. This will open a window with multiple tabs. In &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,138 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/">How to Allow Remote Application Setting Display to the SUSE Linux Desktop</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-17T20:59:00+08:00" pubdate data-updated="true">2008-06-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+  <li>Allow remote TCP connection to the X server. You need root privilege to config it. </li>
+</ol>
+
+<p>Just run gdmsetup. This will open a window with multiple tabs. In the Security tab, disabled the line that says “Deny TCP connections to the X server”. Close the window and then log out of your current X session. You need to restart gdm for this to work.  The easiest way to do that is to go to a console login, login as root, change to run level 3 (just type “init 3”) and then return to run level 5 (“init 5”) to restart gdm. <br />
+Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.org/wp/?p=69</a></p>
+
+<ol>
+  <li>Add remote host into X server access control</li>
+</ol>
+
+<p>Run xhost <em>remote_host_ip</em></p>
+
+<ol>
+  <li>Set DISPLAY environment variable in remote host before execute the application</li>
+</ol>
+
+<p>setenv DISPLAY <em>display_host_ip</em>:0.0</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/16/Attention-to-wenchuan-earthquake-relief-forces-folk-some-support/">关注汶川地震——给民间救援力量一些支持</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-16T21:31:00+08:00" pubdate data-updated="true">2008-05-16</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/civilsociety/'>CivilSociety</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>地震发生后，我所在的公司组织捐款。公司承诺员工总共捐出多少钱，公司会再捐出一个同样的数额。员工捐款非常的踊跃，到目前为止，已经募集到很大一笔数额（具体数字就不说了，现在捐款数量的多少在网上变成了道德评判的对象）。</p>
+
+<p>不过我没有选择通过公司的途径来捐款。同事问我为什么呢，通过公司捐，公司会再多出一份钱，灾民能得到更多的帮助啊。我想过这个问题。公司募集到的款项会转交给中国红十字会或者中华慈善总会，这两个机构都基本上是官方性质的，现在社会各界的捐款大部分也是会转交给他们，他们收到的捐款将会非常多。而我选择了<a href="http://www.bullog.cn/blogs/liuyanban/">牛博</a>发起的捐款，我希望能够给民间的救援力量一些微薄的支持。</p>
+
+<p>有时候民间的救援力量可以帮助到一些官方渠道关注不到的地方和人，对于他们，这种帮助不是多一点或者少一点的区别，而是有和没有的区别。</p>
+
+<p>牛博这次捐款的组织者包括了罗永浩（老罗）、<a href="http://www.lianyue.net/blogs/rosu/">连岳</a>、<a href="http://wenyc1230.blog.163.com/">北风</a>、<a href="http://blog.sina.com.cn/twocold">韩寒</a>等等，这些人我虽然不认识，但是可以说熟悉他们。在网络上我知道他们曾经说过什么做过什么，知道他们的想法和他们的做事风格。比起红十字会或者政府部门的那些我不知道的官老爷们，我觉得牛博这帮人更靠谱。而且，他们有人亲临灾区前线去了解信息，组织协调，发放物资，并且不断从前线发回消息，让大家知道情况的进展。</p>
+
+<p>从国际上救援成熟国家的经验看，民间救援力量是很重要的一环，可以补充官方力量的不足，优势互补。而在我们这里连基础都没有。这次牛博的人估计也没有太多的救援经验，因此不一定能在第一线发挥很大作用，但是这可以积累经验推动民间救援的发展。民间救援的发展另一方面会给官方机构带来压力，促进他们的进步。观念的转变总需要一个过程。</p>
+
+<p>牛博捐款的具体信息请看<a href="http://www.bullog.cn/blogs/liuyanban/">牛博公告板</a>，我就不转载过来了，大家需要自行核实信息。</p>
+
+<p>前方发回的信息请关注这几个blog：<a href="http://siyi123123123.spaces.live.com">创造社新任社长宋石男</a>， <a href="http://blog.sina.com.cn/twocold">韩寒</a>  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/05/16/Attention-to-wenchuan-earthquake-relief-forces-folk-some-support/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -258,158 +389,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/08/A-strict-scientific-attitude-all-have-no-calculate-what-scientists/">一点严谨的科学态度都没有，算什么科学家</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-08T03:06:00+08:00" pubdate data-updated="true">2007-12-08</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>摘自网易新闻《<a href="http://news.163.com/07/1207/06/3V3C3V5G0001124J.html">欧阳自远强调月照真实 称拼接误差不值一谈</a>》：</p>
-
-<blockquote>
-  <p><strong>南都</strong>：最近网上对嫦娥月照有一些争论，特别是嫦娥月照比美国拍的”多”了一个陨石坑的问题很多人都关心，有网友说是拼接错误造成的……  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>欧阳自远</strong>：这个问题分两个层次来讲：第一，中国的照片是真是假，这是原则问题，这是丝毫不容许乱说的，<em>这是对我们国家的侮辱</em>，这是对1.7万人工作成果的否定，这是原则问题，我希望你们能够理解这一点。  </p>
-</blockquote>
-
-<blockquote>
-  <p>第二个问题，美国的图是1994年拍到，2005年才校核了，多少年？10年啊，我们这个图才3天啊，对不对？<strong><em>这技术拼接上有一些具体……因为牵涉到很多很多因素，我认为没什么关系的</em></strong>，我们还没有最后定型啊，所以我的意思啊，不能以此认为是假的，而且那个事情也没有多大争论的意义。  </p>
-</blockquote>
-
-<blockquote>
-  <p>我认为不要去纠缠这些问题，为什么呢？这个是真假的问题，真假是不允许有任何怀疑的，难道我们会去做假吗？那么多人，这是侮辱啊，所以我要说清楚。  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>南都</strong>：那就是说，我们在3天内，采用技术拼接出来的图片，可能在拼接过程中有一定瑕疵，但美国人是用10年时间才拼接出来的图片，不一定能说明他……  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>欧阳自远</strong>：他也有很多问题啊，<em>我跟你说啊，不要在这个问题上面，我建议你就讲真假问题，不要讲后面的，那个没有多大意思</em>。  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>南都</strong>：问题是，在网络上，那个多了的陨石坑大家议论很多……  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>欧阳</strong>：我告诉你一个问题，阿波罗还是假的呢，你知道现在还在争论这个问题。美国航空航天局对这个问题什么态度？  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>南都</strong>：回避，不争论。  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong>欧阳自远</strong>：不是回避，是不值得一驳。现在这个问题，我也觉得，不值得一谈，置之不理，为什么？<strong><em>这种小儿科的问题，不要谈</em></strong>。另一个问题就是争论，你让网友去争论吧，媒体不必去掺和了，好不好？  </p>
-</blockquote>
-
-<blockquote>
-  <p><strong><em>我们就谈真假，不去谈细节了。细节，坦白讲你们搞不懂的</em></strong>，你知道有多少繁琐的细节啊，你去扯这个扯不清楚啊。 </p>
-</blockquote>
-
-<p>图像拼接的细节没有关系？那么花这么多钱发射个嫦娥就是为了开个新闻发布会的？</p>
-
-<p>技术细节别人不懂，就你们专家才懂？只有你们才懂，所以就可以随便糊弄了？看看天文爱好者是怎么分析的：<a href="http://www.astron.sh.cn/cgi-bin/topic.cgi?forum=52&amp;topic=92">疑问：欧阳自远说的嫦娥月照上的新撞击坑</a></p>
-
-<p>首席科学家也就是这么一个德行，中国科学界能搞出什么名堂来？ </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2007/12/08/A-strict-scientific-attitude-all-have-no-calculate-what-scientists/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/30/-DuDong-lawsuit-with-Shanghai-telecom-case/">“杜东劲诉上海电信”案</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-30T05:05:00+08:00" pubdate data-updated="true">2007-10-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一审判决败诉，判决书见<a href="http://picasaweb.google.com/yetaai/ChinaInternetCensorshipLawsuitAgainstChinaTelecomByYetaai">这里</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2007/10/30/-DuDong-lawsuit-with-Shanghai-telecom-case/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/27/">&larr; Older</a>
@@ -431,6 +410,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -440,14 +427,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -473,13 +452,14 @@
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>

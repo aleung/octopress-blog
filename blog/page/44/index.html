@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="今天抱着试试看的心态又一次登录blogger.com，在右侧栏看到了一小段文字，有什么gmail的字样，太兴奋了，我都没有来得及看清楚它写的是什么，迫不及待的点击进去——这就是传说中的gmail邀请啊！ 不过可惜，注册不到我想要的sunnyday，好像它允许注册的名字一定要与blogger. &hellip;">
+  <meta name="description" content="MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。 其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,128 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/06/30/MicroDEM-/">MicroDEM制图所需地理数据转换方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-30T01:23:00+08:00" pubdate data-updated="true">2004-06-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。</p>
+
+<p>其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector data为shapefile, 会生成3个文件, 其中一个是dbf, MicroDEM可读取的格式.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/06/30/MicroDEM-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw/">图像格式介绍: Jpg, Gif, Bmp, Png, Ecw&#8230;&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-29T21:39:00+08:00" pubdate data-updated="true">2004-06-29</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>图像格式介绍在网上有很多资料, 随便google一下都能找到. 这是我在论坛上回复别人的帖子, 顺手也帖到这儿.</em></p>
+
+<p>这几种格式都是光栅图像格式(除了光栅格式还有一种是矢量格式), 描述的是图像点阵的色彩数据.</p>
+
+<p>BMP格式是最简单的格式，基本就是图像点阵的内存拷贝。没有任何压缩，也无法表示格外的数据。现在很少用BMP来做图像数据交换了。</p>
+
+<p>GIF和PNG都是索引色彩, 也就是不直接描述象素的颜色, 只是说这个点是几号颜色, 另外有个索引表（调色板）给出颜色号对应的RGB颜色。有简单的压缩算法，但这种压缩仅对于连续色彩的象素（例如大块色块的图形）才有效，适用于颜色有限的图像(如商业图形/地图/漫画), 对真彩色图像(如照片)不太合适. GIF的LZW压缩算法是有专利限制的（好像是在去年已经过期失效）, 需要授权才能使用, 故此w3c组织另起炉灶订立PNG格式, 对于使用而言两者差不多.</p>
+
+<p>JPG是有损压缩, 利用人眼对高频细节分辨不是很敏感的特性, 将数据量减少。当压缩率过大时, 会在图像色彩变化的边界出现马赛克的现象. 但是作有限度的压缩时, 图像质量损失并不明显, 往往不能察觉。它的压缩率是可以调节的，让制图者可以在图象质量与图像文件大小间取得一个平衡点，因此是很有用的一种格式, 基本上网上的照片都是用jpg格式.</p>
+
+<p>相比起以上的各种格式，TIFF格式更多的是一个框架，它规定了文件的数据段结构，但是对图像数据的具体编码算法没有定义，是可扩展定义的，因此其下发展出很多的子格式。例如原始的TIFF格式是无压缩的，现在也有多种压缩算法的扩展；将地理数据也保存到数据段中，就是GeoTIF格式。因为子格式很多，不是所有图像处理软件都支持，一般都只是支持无压缩的基本格式，故此有时会出现无法打开文件，或者显示图像不正确的现象。TIFF格式在出版业得到比较广的应用，作为标准的图像交换格式。</p>
+
+<p>在地理信息领域，还使用一些其他的有损压缩格式，例如基于小波算法的ecw和MrSID格式。但是这些格式目前还基本是用于专业领域，不如jpg通用，支持的图像处理软件也不多。</p>
+
+<p>对于卫星影像的最终输出，我觉得还是采用有损压缩格式比较好，因为图像数据量实在太大了，如果不压缩或者压缩过小，对于存储、传送都不方便。采用合适的压缩率，图像质量基本不会受到影响，看看网上的漂亮mm照片，都是jpg有损压缩的:) 如果是在oziexplorer中观看，建议使用ecw格式，ecw的好处在于可以局部加载数据，减少内存占用，对于超大图像有好处；它不像其他格式，即使只显示图像其中一小快，也要将整个图像数据全部解码放入内存。但是能处理ecw的软件很少, 只能在最后输出最终结果时转换.</p>
+
+<p>地图制作，看什么图，如果是色块为主的图，用gif/png比较合适，如果色彩都是过渡的，就还是用jpg或者ecw好。</p>
+
+<p>图像压缩：<a href="http://media.cs.tsinghua.edu.cn/~ahz/digitalimageprocess/chapter14/chapt14_ahz.htm">http://media.cs.tsinghua.edu.cn/~ahz/digitalimageprocess/chapter14/chapt14_ahz.htm</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -252,126 +374,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/05/27/WordPress-/">WordPress越做越好了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-05-27T16:44:00+08:00" pubdate data-updated="true">2004-05-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨天晚上把我的<a href="http://sunnyday.cn2k.net/blog/">另外一个blog</a>的程序升级到<a href="http://wordpress.org">WordPress</a> 1.2, 升级本身是非常简单的, 正如wordpress网站上说的, installing WordPress and upgrading from previous versions and other software is a piece of cake, 它的安装升级脚本做的非常完善且友好, 访问一个URL点击几次next就做好了, 因为是全web化的配置, 保存在数据库中的, 一切都自动完成. 不过update我自己的页面template耗了些时间, 因为新版本提供的函数有些更改了, 必须手工修改, 如果用它的default template就不需要费这些功夫. </p>
-
-<p>我的blog从最早的b2, 到WordPress 0.5x, 到现在的WordPress 1.2, 几次升级, 感觉这个软件越做越好了. XML-RPC的支持, email-blogging, 可自定义字段, link manager, 层次化的category, 多作者, 图片上传和自动生成缩略图, 保存草稿… 还有好多细节方面的功能都不错.</p>
-
-<p>我还考虑过是不是该把blogbus上的这个blog也搬到自己的WordPress上边去, 不过暂时blogbus还是用得不错, 搬起来挺麻烦的, 而且它的HTML编辑挺方便, WYSIWYG, 还是等等再说吧.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/05/27/WordPress-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/05/26/C-C-i18n/">C/C++中的i18n</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-05-26T21:44:00+08:00" pubdate data-updated="true">2004-05-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>mbs: multi byte string, 用char作为存储类型, 一个字符可能对应1个或者多个char, 不能直接确定字符边界. charset不确定. 过去的程序都是采用mbs的.</p>
-
-<p>wcs: wide character string, 用wchar_t作为存储类型, 一个字符对于一个wchar_t. 使用unicode编码, charset与OS相关, 在windows平台中为UTF16(UCS-2), 在大多数unix平台中为UTF32(UCS-4). </p>
-
-<p>国际化的程序都应该在内部使用wcs, 在输入输出时做mbs与wcs的转换.</p>
-
-<p>mbs与wcs的转换函数: </p>
-
-<p>wcstombs/mbstowcs是实现转换的一对函数. wcs的charset是固定不可变的, 但是mbs的charset是可变的, 可能是ASCII, 可能是gb2312, 也可能是big5. wcstombs/mbstowcs是根据locale环境设置来决定mbs采用的charset的, 在程序中可以用setlocale来设定locale, 例如 setlocale(LC_ALL, “chinese”)</p>
-
-<p>程序启动时, locale设定为 LC_ALL=”C”, 用 setlocale(LC_ALL, “”) 就可以设置成操作系统的locale设定.</p>
-
-<p>Locale决定了当前程序运行的本地化设置方式, 但是在程序中可能需要作其他charset的转换, 例如程序本身语言设定为简体中文, 需要做big5与unicode的转换, 或者是其他两种charset的mbstombs转换, 这时wcstombs/mbstowcs就不能胜任了. 在unix平台中可以使用iconv来做这个转换(iconv lib也有windows版本), 在windows平台可以用MultiByteToWideChar/WideCharToMultiByte 函数.</p>
-
-<p>参考资料: <a href="http://xcin.linux.org.tw/i18n/pc2000/p3/chinese-3.html">http://xcin.linux.org.tw/i18n/pc2000/p3/chinese-3.html</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/05/26/C-C-i18n/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/45/">&larr; Older</a>
@@ -393,6 +395,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -402,14 +412,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -435,13 +437,14 @@
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>

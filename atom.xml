@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-03-22T23:49:15+08:00</updated>
+  <updated>2013-03-30T01:02:20+08:00</updated>
   <id>http://aleung.github.com/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[笔记本充满电后，是否应该拔掉电源]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/"/>
+    <updated>2013-03-30T00:34:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged</id>
+    <content type="html"><![CDATA[<p>在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。要获得正确的知识，得多看看来源正式些的资料，特别是英文的资料质量会高些。为此我科普了一把。</p>
+
+<hr />
+
+<p>看看Apple的网站吧： </p>
+
+<ul>
+  <li>http://www.apple.com/batteries/ </li>
+  <li>http://www.apple.com/batteries/notebooks.html </li>
+</ul>
+
+<blockquote>
+  <p>A charge cycle means using all of the battery’s power, but that doesn’t necessarily mean a single charge. For instance, you could listen to your iPod for a few hours one day, using half its power, and then recharge it fully. If you did the same thing the next day, it would count as one charge cycle, not two, so you may take several days to complete a cycle. </p>
+</blockquote>
+
+<blockquote>
+  <p>Lithium-ion polymer batteries need to be used for maximum performance. If you don’t use your device often, be sure to complete a charge cycle at least once a month. </p>
+</blockquote>
+
+<p>锂电池需要。电池的放电循环是累计的（原文里有图），不是说要一次性用光所有的电。 </p>
+
+<p>如果你一个月用电池用不够一个放电循环，那就需要专门去把电池的电耗掉再充满。但如果你平常不时需要移动使用电脑的话，一般一个月都能用够一个电池放电循环，就没有必要专门去耗用电池的电了。 </p>
+
+<p>锂电池的正常使用寿命大概在500～1000次放电循环左右。<a href="http://support.apple.com/kb/ht1519">这里</a>有Apple官方声称的电池寿命数值，新款MBP，MBA都是1000次。 </p>
+
+<p>而且有说法是浅放电比起深放电有利于延长电池寿命[<a href="http://batteryuniversity.com/learn/article/how_to_prolong_lithium_based_batteries">来源</a>] 。特别是，过放电会严重损害电池。电脑有保护，不会让电池过放，电量低到一定程度就自动关机，但是若关机后依然长期不充电，电池的自放电也会最终使电池过放电。 </p>
+
+<p>我的MBP用了接近两年，按照有电源时就插电源的用法，现在电池也已经用了131个周期了。要知道，电脑休眠也是耗电的。 </p>
+
+<p>还有<a href="http://forums.macrumors.com/showpost.php?p=9875442&amp;postcount=23">这里</a>也整理了很多与Apple Notebook电池相关的知识。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
+    <link href="http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <updated>2013-03-30T00:04:00+08:00</updated>
+    <id>http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
+
+<p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
+
+<p>Before I changed the configuration, there were SNAPSHOT artifacts in the repository. After configuration changed, the continuous integration jobs running on CI server redeployed artifacts to the repository, and those new files have time stamp in file names, and the version is the same. That caused the problem.</p>
+
+<p>To solve the problem, I should delete the *-SNAPSHOT file, if and only if there are both unique snapshot and non-unique snapshot of the same version.</p>
+
+<p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
+
+<div><script src="https://gist.github.com/5260512.js?file="></script>
+<noscript><pre><code /></pre></noscript></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
@@ -50,6 +109,12 @@
 <p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
 
 <p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
 ]]></content>
   </entry>
   
@@ -1117,38 +1182,6 @@ parallel(data)
 <ul>
   <li><a href="http://aleung.github.com/blog/2010/05/11/Nexus-One-/">Nexus One 到手，以及刷机过程</a></li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Xperia U 刷机]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/21/flashing-xperia-u/"/>
-    <updated>2012-07-21T23:20:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/21/flashing-xperia-u</id>
-    <content type="html"><![CDATA[<p>昨天中午拿到国行 <a href="http://www.sonymobile.com/global-en/products/phones/xperia-u/">Sony Xperia U</a> (ST25i) 手机，开机试了一下，索尼(原来的索尼爱立信)在Android 2.3基础上的定制系统做得还可以，但大陆行货里好多功能都被阉割得不成样子。Google系列的任何东西都去掉了就不用说了，很奇怪的是居然系统里没有自带任何应用市场，国内的山寨市场也没有。可以想象一个不熟悉IT的用户买到手机后就会局限在预装的那几个应用，连升级都没有途径。比较一下SonyMobile英文与中文网站对这款手机的介绍，就会发现中文产品介绍缩水不少，好多卖点都没有了。</p>
-
-<p>这样的智能手机简直就是残废，于是下班后就开始研究怎么刷机。先是在国内的一些论坛上搜索，但国内论坛真是很没有营养，里面的信息的价值很低。Android hacker的大本营在XDA，相关问题还是要到<a href="http://www.xda-developers.com/">XDA论坛</a>找靠谱。</p>
-
-<p>关于Xperia系列刷机需要了解的基础知识，这篇 <a href="http://forum.xda-developers.com/showthread.php?t=1526866">All that u need to know before u begin</a> 讲得比较清楚。</p>
-
-<p>无论要刷什么，前提条件是先将 bootloader 解锁。关于解锁的教程很多，SonyMobile网站上就有详细步骤，XDA上的 <a href="http://forum.xda-developers.com/showthread.php?t=1527159">Xperia S/P/U/Sola Bootloader Unlocking &amp; Relocking</a> 附带了所需工具的下载。还有一个国产软件，号称是一键自动解锁。</p>
-
-<p>但是，就在第一步，将手机boot到fastboot模式，就花了我好几个小时。按教程，手机在关机状态按着音量+键的同时将USB连接上电脑，就会进入fastboot模式，并且亮起蓝灯。但是无论我怎么反复重试，手机都不会亮起蓝灯，电脑上弹出对话框提示安装驱动程序，但当我选择操作时它又说USB设备已经断开，显示这样的错误信息：s1boot fastboot device unplugged。网上搜索，有人说是驱动没有装好的原因，最后还是从XDA里找到了<a href="http://forum.xda-developers.com/showthread.php?t=1554632">解决方案</a>。原来，Xperia手机在进入fastboot模式时，会检测电脑是否已经装上了正确的驱动程序，如果没有，就会退出fastboot模式。而电脑端刚刚提示用户安装驱动，就发现手机已经关闭了连接，就取消了驱动的安装。这种问题可以用来做经典反面案例了。XDA帖子里的解决方法还是要拼手快：预先打开设备管理器，一插上手机后，里面会出现s1boot这个设备，赶紧鼠标右键选择升级驱动，升级驱动的对话框打开后，即使设备断开了还是可以继续进行驱动程序的安装。终于看到传说中的蓝灯了，原来是在下面透明发光条发出很亮的蓝光，我之前还一直以为是右上角摄像头旁边的小灯。</p>
-
-<p>接下来就非常顺利了，解锁bootloader后，用fastboot安装了ROM和Kernel。我都没有另外用其他工具了，感觉fastboot用起来就很简单，很多人不喜欢可能是因为命令行操作吧。关于fastboot使用，推荐看cyanogenmod的wiki里的<a href="http://wiki.cyanogenmod.com/wiki/Fastboot">介绍</a>。</p>
-
-<p>我刷的ROM是<a href="http://forum.xda-developers.com/showthread.php?t=1684062">KA02 Xperia SSpeed</a>， 还是Android 2.3.7，Sony还没有为Xperia U 提供Android 4.0 ICS。Kernel是<a href="http://forum.xda-developers.com/showthread.php?t=1688147">Advanced Stock Kernel</a>。刷完开机，见到熟悉Google账号绑定，然后Gmail、通信录、日历同步、Google Play都回来了。Root也有了，收工。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[《简约至上》读书笔记]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/14/simple-first/"/>
-    <updated>2012-07-14T10:43:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/14/simple-first</id>
-    <content type="html"><![CDATA[<p><a href="http://book.douban.com/subject/5394309/">简约至上</a>，原作名为 Simple and Usable Web,Mobile,and Interaction Design，不错的关于交互设计的书籍。</p>
-
-<iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/aleung/simple-first/" width="900px" height="300px" frameborder="0" scrolling="no"></iframe>
 ]]></content>
   </entry>
   

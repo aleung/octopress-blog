@@ -95,6 +95,8 @@
   
 
 
+
+  
 <time datetime="2013-03-19T21:32:00+08:00" pubdate data-updated="true">2013-03-19</time>
         
          | 
@@ -126,6 +128,12 @@
 <p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
 
 <p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
 </div>
 
 
@@ -149,7 +157,9 @@
   
 
 
-<time datetime="2013-03-19T21:32:00+08:00" pubdate data-updated="true">2013-03-19</time>
+
+  
+<time datetime="2013-03-29T23:42:00+08:00" class="updated">Updated 2013-03-29</time>
       
 
 
@@ -206,6 +216,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -215,14 +233,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -248,13 +258,14 @@
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>

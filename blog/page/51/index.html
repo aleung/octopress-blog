@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="有些工具是专门用来绘制曲线图的, 可用于监控系统、设备的性能等用途，例如网络流量曲线/系统性能曲线等: MRTG http://www.univ.kiev.ua/~roman/soft/mrtg/
-这个工具原本用于显示路由器的流量, 通过SNMP来获取流量. 但是也有扩展特性, &hellip;">
+  <meta name="description" content="使Nikon Coolpix系列相机生成raw格式文件的方法：将机器的id字符串由”NIKON DIGITAL CAMERA”改为”DIAG RAW”。利用photopc软件，通过串口数据线可以发送命令给相机实现修改 photopc id"DIAG RAW" query photopc id " &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,215 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/10/24/Nikon-Coolpix-series-camera-to-generate-rawformat-method/">使Nikon Coolpix系列相机生成raw格式文件的方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-10-24T02:53:00+08:00" pubdate data-updated="true">2003-10-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>使Nikon Coolpix系列相机生成raw格式文件的方法：将机器的id字符串由”NIKON DIGITAL CAMERA”改为”DIAG RAW”。利用photopc软件，通过串口数据线可以发送命令给相机实现修改</p>
+
+<pre><code>photopc id"DIAG RAW" query 
+photopc id "NIKON DIGITAL CAMERA" query
+</code></pre>
+
+<p>打开DIAG RAW模式后，每次拍摄会生成两个文件，一个是正常的jpg，另外一个是raw格式文件，在950上大概文件大小是2.35M左右。</p>
+
+<p>photopc软件可以控制相机的操作，例如设置光圈快门、拍摄照片等。</p>
+
+<p>RAW2NEF工具可以将raw格式文件转换为Nikon的NEF文件格式，这是nikon的公开raw格式，photoshop plugin可以打开。<a href="http://e2500.narod.ru/raw2nef_e.htm">http://e2500.narod.ru/raw2nef_e.htm</a></p>
+
+<p>好像另一个dcraw软件也是做这工作的：<a href="http://www.cybercom.net/~dcoffin/dcraw/">http://www.cybercom.net/~dcoffin/dcraw/</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/10/24/Nikon-Coolpix-series-camera-to-generate-rawformat-method/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/26/In-OziExplorer-use-of-NASA-LandCover-MrSID-data-method/">在OziExplorer中使用NASA LandCover MrSID数据的方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-26T20:57:00+08:00" pubdate data-updated="true">2003-09-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1)<br />
+This refers to the satellite images available from Nasa’s<br />
+Earth Science Applications Directorate MrSID Image Server:<br />
+<a href="https://zulu.ssc.nasa.gov/mrsid/">https://zulu.ssc.nasa.gov/mrsid/</a><br />
+Note that this is using secure HTTP, and the old URL<br />
+no longer works. They do not have their server set up<br />
+properly, so you may get warnings about the site’s<br />
+security certificate.  </p>
+
+<p>从 <a href="https://zulu.ssc.nasa.gov/mrsid/">https://zulu.ssc.nasa.gov/mrsid/</a> 下载数据  </p>
+
+<p>2)<br />
+Initially you use your mouse and the options at the<br />
+bottom of the map webpage(In/Out, zoom level, map size) to<br />
+find the map you want, then you select the “Select Image”<br />
+radiobutton and click on the map to get a popup window,<br />
+and on that you select “Download MrSID Image”.<br />
+You have to zoom in a couple of levels from the world map<br />
+before the image names are shown, and you won’t get the popup<br />
+window if you have Javascript disabled.  </p>
+
+<p>用鼠标点出你需要的区块，选择”Select Image”，弹出区块窗口，下载  </p>
+
+<p>3)<br />
+The downloaded file will have a “.tar” extension. Programs<br />
+such as WinZip that work with ZIP files should be able to<br />
+open the ‘tarball’(the name used for tar archives) file.<br />
+Typically it contains four files - the MrSid image(.sid),<br />
+it’s “world file”(.sdw), it’s metadata file(.met), and a<br />
+small JPEG thumbnail image(.jpg).  </p>
+
+<p>下载的是tar文件，用winzip、winrar可解压。包含4个文件，后缀为 sid, sdw, met, jpg  </p>
+
+<p>4)<br />
+The only files you need from the tarball are the image(.sid)<br />
+and it’s “world file”, which has a “.sdw” extension. Extract<br />
+them from the tarball, and save them into the same directory.  </p>
+
+<p>有用的文件是 sid 和 sdw，解开放到同一目录中  </p>
+
+<p>5)<br />
+Make sure you have the correct version of OziExplorer.<br />
+Older versions did not support the use of MrSid images.<br />
+As explained on Ozi’s Optional Extras page:<br />
+<a href="http://216.40.224.145/eng/optional_extras.html">http://216.40.224.145/eng/optional_extras.html</a><br />
+you need to have the MrSid DLL.<br />
+I would suggest using OziExplorer version 3.90.4j or newer,<br />
+because prior to that the filename was not shown on the<br />
+“DRG Import Defaults” dialog box.  </p>
+
+<p>在 <a href="http://216.40.224.145/eng/optional_extras.html">http://216.40.224.145/eng/optional_extras.html</a> 下载MrSid.dll并安装，这是OziExplorer的MrSID pluggin。<br />
+最好用OziExplorer 3.90.4j以后的版本。  </p>
+
+<p>6)<br />
+All the Nasa MrSid images use the WGS84 datum.<br />
+There is no need for the associated “.met” file when importing<br />
+into Ozi, and there is no need to look at the contents of the<br />
+“.met” or “.sdw” files.<br />
+The first character of the MrSid file’s name is the hemisphere(N or S).<br />
+The first pair of digits is the file’s UTM zone.<br />
+The second pair of digits is the latitude of the lower edge<br />
+of the image in the Northern hemisphere, and the upper edge of the<br />
+image in the Southern hemisphere - the images span 5 degrees of latitude, <br />
+with a slight bit of overlap to the north and south.<br />
+For example, N-10-45_loc.sid is for the Northern hemisphere,<br />
+UTM zone 10, and covers between 45 and 50 degrees North.  </p>
+
+<p>MrSid图象使用WGS84座标系，文件名首字母为南/北半球，第一组数字为UTM zone，第二组数字为区块靠近赤道一边的纬度，每个文件覆盖纬度5度的区域。如N-10-45_loc.sid表示北半球，UTM 10区，北纬45-50度。  </p>
+
+<p>7)<br />
+In Ozi select “Import Map” from the File menu, then either<br />
+“Single DRG Map” or “All DRG Maps on a CD or in a Folder”.<br />
+If you are going to import multiple Nasa MrSid images at the<br />
+same time from one directory, arrange it so that all the images<br />
+are for the same hemisphere and same UTM zone.<br />
+On the “DRG Import Defaults” dialog box:<br />
+Map Datum = WGS84<br />
+Map Grid Zone = UTM zone of the map image(s)<br />
+Hemisphere = first letter of image file(s) name(s)<br />
+Map Projection = UTM  </p>
+
+<p>在Ozi的File菜单选择”Import Map”，然后选择”Single DRG Map”或”All DRG Maps on a CD or in a Folder”.<br />
+如果打算一次导入同一目录中的多个MrSid图象，应该是同一个半球同一个zone的。（我试过没有成功，如果不怕麻烦还是一次一个好了）<br />
+在”DRG Import Defaults”对话框中，按以下填写：<br />
+Map Datum = WGS84<br />
+Map Grid Zone = 图象的UTM zone<br />
+Hemisphere = 图象文件名的首字母<br />
+Map Projection = UTM  </p>
+
+<p>That’s it - you should now be able to use the MrSid images in Ozi.<br />
+You no longer need the “.sdw” file(s), but they are small, so I<br />
+would keep them in case you ever need to re-do the import.  </p>
+
+<p>OK了，以后在Ozi中打开map文件就行了。<br />
+sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/26/In-OziExplorer-use-of-NASA-LandCover-MrSID-data-method/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -275,177 +483,6 @@ RRD是Round Robin Database的意思, 这个工具专门用于收集数据, 并�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/08/Java-XML-API/">Java的几种XML语法分析API</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-09-08T22:42:00+08:00" pubdate data-updated="true">2003-09-08</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>用Java对XML进行处理, 有好多种方案, 如不了解相互的关系让人很头晕. 这里介绍的都是XML processing/parsing的范畴, XML的应用还有其他的许多方面, 也有好多令人眼花缭乱的缩写.  </p>
-
-<p>XML语法分析的方案有两种, 分别为DOM和SAX.  </p>
-
-<p><strong>DOM</strong>: Document Object Model (<a href="http://www.w3.org/DOM/">http://www.w3.org/DOM/</a>)<br />
-DOM 由 W3C 创建，并且是该协会的正式建议.<br />
-解析器读入整个文档，然后构建一个驻留内存的树结构，然后您的代码就可以使用 DOM 接口来操作这个树结构。您可以遍历树以了解原始文档包含了什么，您可以删除树的几个部分，还可以重新排列树和添加新的分支，等等。<br />
-DOM 构建整个文档驻留内存的树。如果文档很大，就会要求有极大的内存。 <br />
-DOM 创建表示原始文档中每个东西的对象，包括元素、文本、属性和空格。如果您只需关注原始文档的一小部分，那么创建那些永远不被使用的对象是极其浪费的。 <br />
-DOM 解析器必须在您的代码取得控制权之前读取整个文档。对于非常大的文档，这会引起显著的延迟。   </p>
-
-<p><strong>SAX</strong> API for XML (<a href="http://www.saxproject.org/">http://www.saxproject.org/</a>) <br />
-SAX 采用事件驱动的模式, 解释器读入XML文档, 进行扫描, 当发现符合指定条件的数据时, 向您的代码发送一个事件。SAX 不能修改 XML 文档.<br />
-SAX 事件是无状态的。当 SAX 解析器在 XML 文档中发现文本时，它就向您的代码发送一个事件。该事件仅仅给您发现的文本；它不告诉您什么元素包含那个文本。如果您想知道这一点，则必须自己编写状态管理代码。 <br />
-SAX 事件不是持久的。如果应用程序需要一个数据结构来对 XML 文档建模，则必须自己编写那样的代码。如果您需要从 SAX 事件访问数据，并且没有把那个数据存储在代码中，那么您不得不再次解析该文档。 <br />
-SAX 的速度相当快, 而且节省内存, 因为它不会保存数据在内存之中.   </p>
-
-<p>DOM/SAX 是两种不同的解析方法, 各有侧重点, 用于不同用途. 它们都可以用不同的编程语言来实现, 不同的供应商会提供各自的解释器版本. 例如Microsoft提供了DOM分析器msxml.dll, Apache的xerces, SUN的crimson等.   </p>
-
-<p>DOM与SAX, 如何选择?   </p>
-
-<ul>
-  <li>
-    <p>应用程序将如何部署？<br />
-如果您的应用程序将要作为 Java applet 部署，那么您会希望使要下载的代码数量最小，SAX 解析器比 DOM 解析器小。   </p>
-  </li>
-  <li>
-    <p>一旦解析了 XML 文档，还需要多次访问那些数据吗？<br />
-如果您需要回过头来访问 XML 文件的已解析版本，DOM 可能是正确的选择。而 SAX 事件被触发时，如果您以后需要它，则由您（开发人员）自己决定以某种方式保存它。如果您需要访问不曾保存的事件，则必须再次解析该文件。而 DOM 自动保存所有的数据。   </p>
-  </li>
-  <li>
-    <p>只需要 XML 源文件的少量内容吗？<br />
-如果您只需要 XML 源文件的少量内容，那么 SAX 可能是正确的选择。SAX 不会为源文件中的每个东西创建对象；您要确定什么是重要的。使用 SAX，您要检查每个事件以了解它是否与您的需要有关，然后相应地处理它。更妙的是，一旦找到您正在寻找的东西，您的代码就会抛出一个异常来完全停止 SAX 解析器。   </p>
-  </li>
-  <li>
-    <p>您正在一台内存很少的机器上工作吗？<br />
-若是的话，不管您可能考虑到的其它因素是什么，SAX 是您的最佳选择。  </p>
-  </li>
-</ul>
-
-<p>在Java语言中, 要处理XML, 除了直接使用DOM/SAX, 还有高层次一点的API可以使用, 比较常见的是JAXP和JDOM.   </p>
-
-<p><strong>JAXP</strong>: Java API for XML Processing<br />
-是 Sun 提供的标准API, 包含在JDK中. <br />
-但它更多的是一套接口, 将DOM和SAX的接口规范起来, 并没有在易操作性方面提供太多的方便.  </p>
-
-<p><strong>JDOM</strong>: 由Brett McLaughlin, Jason Hunter两人创立的open source项目 (<a href="http://www.jdom.org">http://www.jdom.org</a>)<br />
-JDOM的设计目的不是要做万能的解析器, 而是能提供常用的大部分的功能. 它的使用相对简单, 容易理解, 使用它开发代码量会比较少.<br />
-JDOM 的速度也比较高, 仅仅比SAX慢一点. 它主要是使用SAX来实现功能, 当需要用到DOM的时候才使用DOM.   </p>
-
-<p>还有不少类似的API, 某些甚至已经比JDOM更好, 不过都不如JDOM使用范围广.  </p>
-
-<p>JAXP/JDOM 都是建立在 DOM/SAX 之上的API, 也可认为是抽象层, 需要通过具体供应商提供 DOM/SAX 实现来完成 XML 解析工作. 作为一个相对高层的接口, 隐藏了具体厂商实现, 减低复杂性, 降低开发的工作量.   </p>
-
-<p>一般来说, 在我们开发程序的时候, 从开发效率,兼容性,移植性等方面考虑, 都是选择使用高层的API更好些. JAXP已经附带在JDK中, 由SUN所支持, 应该标准化/延续性方面会比较好; 而根据网上开发者反映, 普遍都喜欢用JDOM, 因为使用简单方便.  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/08/Java-XML-API/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/04/How-to-let-JTextArea-automatic-scroll-to-the-bottom-/">如何让JTextArea自动滚动到最底?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2003-09-04T22:52:00+08:00" pubdate data-updated="true">2003-09-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>如果用JTextArea来做信息窗口，不断用append()显示新信息，通常会希望内容能自动滚动，保持最后增加的信息能够显示出来。利用setCaretPosition()可以实现，这个方法是设置输入光标的位置，如果光标位置超出目前可视范围，会自动滚动以保正光标可以显示出来。</p>
-
-<pre><code>int length = textArea.getText().length();
-textArea.setCaretPosition(length);
-</code></pre>
-
-<p>如果还希望限制JTextArea中的文本长度，不让它无限制的增长，可以加上以下两行，当长度超出预订的maxTextLength后将开头的字符截除。不过美中不足的是截除无法按行进行。</p>
-
-<pre><code>if ( length &gt; maxTextLength ) { 
-    textArea.replaceRange("", 0, length - maxTextLength); 
-}
-</code></pre>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/04/How-to-let-JTextArea-automatic-scroll-to-the-bottom-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/52/">&larr; Older</a>
@@ -467,6 +504,14 @@ textArea.setCaretPosition(length);
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
       </li>
     
@@ -476,14 +521,6 @@ textArea.setCaretPosition(length);
     
       <li class="post">
         <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/beginning-r/">R初略学习笔记</a>
       </li>
     
   </ul>
@@ -509,13 +546,14 @@ textArea.setCaretPosition(length);
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 140%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 99%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
