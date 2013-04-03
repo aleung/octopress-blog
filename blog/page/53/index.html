@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="想写个GPS有关的软件，网上找到一些相关的项目: Java framework for GPS http://www.aasted.org/gps/
-这个项目的目标是为各种应用程序加入GPS功能提供framework. 目前提供的是与Garmin GPS通讯的功能. Chaeron GPS &hellip;">
+  <meta name="description" content="SWT(in Eclipse)与Swing之争, 似乎争议注意在这几方面: SWT是否比Swing更快? SWT使用OS native构件, 理论上更快. 但实际比较如何, 争议很大. SWT与Swing比较, 是否更符合平台传统外观? SWT使用OS native构件, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/28/SWT-Swing-/">SWT与Swing之争</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-28T20:19:00+08:00" pubdate data-updated="true">2003-08-28</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>SWT(in Eclipse)与Swing之争, 似乎争议注意在这几方面:  </p>
+
+<ul>
+  <li>SWT是否比Swing更快? SWT使用OS native构件, 理论上更快. 但实际比较如何, 争议很大. </li>
+  <li>SWT与Swing比较, 是否更符合平台传统外观? SWT使用OS native构件,而不是象Swing一样重新写代码模拟出来. Swing支持者说用Look&amp;Feel灵活, 也可以做得不错. </li>
+  <li>Swing的结构过于复杂. Swing的事件模型设计得不好. 但是swing扩展性强. </li>
+  <li>Swing采用JVM的垃圾收集来回收资源, SWT提供可控的资源销毁而不采用垃圾收集.  </li>
+</ul>
+
+<p>这个Java英文讨论组, <a href="http://www.javalobby.org">http://www.javalobby.org</a> , 内容还可以, search功能也比较好用.<br />
+看老外的论坛也是老骂架的:)  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/28/SWT-Swing-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -307,59 +368,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/19/Swing-components-refresh/">Swing Components Refresh</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-19T19:30:00+08:00" pubdate data-updated="true">2003-08-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Java swing编程，更改了一个JPanel的内部components后，需要改变一下窗口大小，新内容才能显示出来。<br />
-解决方法：调用panel.validate()。<br />
-对于container，添加或者改变了对象后，需要调用validate()才能重新布局并显示。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/19/Swing-components-refresh/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/54/">&larr; Older</a>
@@ -381,6 +389,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
       </li>
     
@@ -396,16 +408,12 @@
         <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch deploy artifacts to Maven repository</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -446,7 +454,7 @@
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 84%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="用Java对XML进行处理, 有好多种方案, 如不了解相互的关系让人很头晕. 这里介绍的都是XML processing/parsing的范畴, XML的应用还有其他的许多方面, 也有好多令人眼花缭乱的缩写. XML语法分析的方案有两种, 分别为DOM和SAX. DOM: Document &hellip;">
+  <meta name="description" content="在SQL标准中, 标识符是不区分大小写的. 可是在MySQL中, 情况有所不同, 表名有可能是大小写敏感的: 在 MySQL 中，数据库和表对就于那些目录下的目录和文件。因而，操作系统的敏感性决定数据库和表命名的大小写敏感。这就意味着数据库和表名在 Windows 中是大小写不敏感的， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,70 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/08/MySQL-/">MySQL的表名大小写问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-08T22:44:00+08:00" pubdate data-updated="true">2003-09-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在SQL标准中, 标识符是不区分大小写的. 可是在MySQL中, 情况有所不同, 表名有可能是大小写敏感的:  </p>
+
+<blockquote>
+  <p>在 MySQL 中，数据库和表对就于那些目录下的目录和文件。因而，操作系统的敏感性决定数据库和表命名的大小写敏感。这就意味着数据库和表名在 Windows 中是大小写不敏感的，而在大多数类型的 Unix 系统中是大小写敏感的。  </p>
+</blockquote>
+
+<p>尽管在 Windows 中数据库与表名是忽略大小写的，你不应该在同一个查询中使用不同的大小写来引用一个给定的数据库和表。  </p>
+
+<p>表的别名是区分大小写的。  </p>
+
+<p>详细信息在MySQL参考手册中有说明. 查看: <em>MySQL语言参考</em> - <em>语言结构</em>  </p>
+
+<p>从兼容性和可移植性考虑, 在涉及到数据库表名的时候, 均应该<strong>严格区分大小写</strong>, 无论使用的是什么类型的数据库和什么类型的平台.  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/08/MySQL-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -408,68 +472,6 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/28/SWT-Swing-/">SWT与Swing之争</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-28T20:19:00+08:00" pubdate data-updated="true">2003-08-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>SWT(in Eclipse)与Swing之争, 似乎争议注意在这几方面:  </p>
-
-<ul>
-  <li>SWT是否比Swing更快? SWT使用OS native构件, 理论上更快. 但实际比较如何, 争议很大. </li>
-  <li>SWT与Swing比较, 是否更符合平台传统外观? SWT使用OS native构件,而不是象Swing一样重新写代码模拟出来. Swing支持者说用Look&amp;Feel灵活, 也可以做得不错. </li>
-  <li>Swing的结构过于复杂. Swing的事件模型设计得不好. 但是swing扩展性强. </li>
-  <li>Swing采用JVM的垃圾收集来回收资源, SWT提供可控的资源销毁而不采用垃圾收集.  </li>
-</ul>
-
-<p>这个Java英文讨论组, <a href="http://www.javalobby.org">http://www.javalobby.org</a> , 内容还可以, search功能也比较好用.<br />
-看老外的论坛也是老骂架的:)  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/28/SWT-Swing-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/53/">&larr; Older</a>
@@ -491,6 +493,10 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
       </li>
     
@@ -506,16 +512,12 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
         <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch deploy artifacts to Maven repository</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -556,7 +558,7 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 84%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
