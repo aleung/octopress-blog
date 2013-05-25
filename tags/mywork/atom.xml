@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: MyWork | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/mywork/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/mywork/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[跑步步频训练软件 RunningCadence 开发小记]]></title>
-    <link href="http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/"/>
+    <link href="http://aleung.github.io/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/"/>
     <updated>2011-12-24T00:16:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency</id>
+    <id>http://aleung.github.io/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency</id>
     <content type="html"><![CDATA[<p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
 
 <p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
@@ -44,9 +44,9 @@
   
   <entry>
     <title type="html"><![CDATA[TwitterSinaSync，自动同步Twitter信息到新浪微博]]></title>
-    <link href="http://aleung.github.com/blog/2011/02/11/TwitterSinaSync-Twitter-/"/>
+    <link href="http://aleung.github.io/blog/2011/02/11/TwitterSinaSync-Twitter-/"/>
     <updated>2011-02-11T05:31:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/02/11/TwitterSinaSync-Twitter-</id>
+    <id>http://aleung.github.io/blog/2011/02/11/TwitterSinaSync-Twitter-</id>
     <content type="html"><![CDATA[<p>之前寻找同步twitter到新浪微博的方法，没有尝试到满意的。@cutemic<a href="http://cutemic.posterous.com/twitter">介绍说</a>他是在GAE上跑一个叫twitter2sina的python程序，周期性读取自己的tweets，再调用API发送到新浪微博。</p>
 
 <p>程序员的基本素质是懒惰，因此我问@cutemic他安装的程序是否支持多用户，如果支持，我就懒得自己折腾，让他给我加个用户好了。很可惜，他的程序是要将新浪微博用户名密码hard code到程序里的，那我只能自力更生了。</p>
@@ -82,9 +82,9 @@
   
   <entry>
     <title type="html"><![CDATA[Android软件：Wallpaper Label]]></title>
-    <link href="http://aleung.github.com/blog/2009/10/31/Android-Wallpaper-Label/"/>
+    <link href="http://aleung.github.io/blog/2009/10/31/Android-Wallpaper-Label/"/>
     <updated>2009-10-31T09:14:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/10/31/Android-Wallpaper-Label</id>
+    <id>http://aleung.github.io/blog/2009/10/31/Android-Wallpaper-Label</id>
     <content type="html"><![CDATA[<p><img class="right" src="/attachments/2009/10/wallpaperlabel1.jpg"></p>
 
 <p>Android与IPhone类似，都是有多个桌面屏幕，用手指划一下就可以左右切换屏幕。Android缺省设置只有3屏，但一些mod可以修改屏幕个数，例如设置为5屏。</p>
@@ -111,9 +111,9 @@
   
   <entry>
     <title type="html"><![CDATA[无意插柳]]></title>
-    <link href="http://aleung.github.com/blog/2009/04/20/Inserted-liu-had-no-intention-of/"/>
+    <link href="http://aleung.github.io/blog/2009/04/20/Inserted-liu-had-no-intention-of/"/>
     <updated>2009-04-20T08:05:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/04/20/Inserted-liu-had-no-intention-of</id>
+    <id>http://aleung.github.io/blog/2009/04/20/Inserted-liu-had-no-intention-of</id>
     <content type="html"><![CDATA[<p>春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为<a href="http://aleung.blogbus.com/logs/37558170.html">用得不爽一时兴起而写</a>的校正中国地图偏移的软件不断添加新功能发布新版本。</p>
 
 <p>今天把软件改了个名字，由 Better My Location 改为 Here I’m!，应该会更顺口和好记一些。不过，这个名字不好的地方就是太常用了，肯定无法出现在搜索引擎的开头几页。另外也把软件介绍的文案更新了一部分，目的是要把软件的功能更清晰的表达出来（不知道是否达到效果了，欢迎提意见）。还花了几个小时弄了个漂亮一些的logo，不是搞设计的，真是赶鸭子上架啊。</p>
@@ -124,9 +124,9 @@
   
   <entry>
     <title type="html"><![CDATA[Better My Location, 准确定位当前位置]]></title>
-    <link href="http://aleung.github.com/blog/2009/04/19/Better-My-Location-/"/>
+    <link href="http://aleung.github.io/blog/2009/04/19/Better-My-Location-/"/>
     <updated>2009-04-19T07:45:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/04/19/Better-My-Location-</id>
+    <id>http://aleung.github.io/blog/2009/04/19/Better-My-Location-</id>
     <content type="html"><![CDATA[<p><img class="right" src="/attachments/2009/4/HereIm.jpg"></p>
 
 <p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>

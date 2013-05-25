@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: SpringFramework | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/springframework/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/springframework/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Spring bean reference injection definition by external configuration]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/"/>
+    <link href="http://aleung.github.io/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/"/>
     <updated>2012-07-07T21:38:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration</id>
+    <id>http://aleung.github.io/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration</id>
     <content type="html"><![CDATA[<p>当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。</p>
 
 <p>利用Spring Framework的property placeholder，将bean依赖关系配置抽离Spring XML文件，就能在产品发布部署后，通过配置选项来选定不同的实现，可用于集成接口、特定业务逻辑打开关闭等。</p>
@@ -55,9 +55,9 @@ We deliver our product in uniform installation package for all customers. A mech
   
   <entry>
     <title type="html"><![CDATA[Dump beans information from live Spring application context]]></title>
-    <link href="http://aleung.github.com/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context/"/>
+    <link href="http://aleung.github.io/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context/"/>
     <updated>2011-11-08T18:42:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context</id>
+    <id>http://aleung.github.io/blog/2011/11/08/Dump-beans-information-from-live-Spring-application-context</id>
     <content type="html"><![CDATA[<p>To maintain the Spring application context in a large application is not an easy job. There may be dozens of beans, whenever you want to make changes, you have to be very clear on there dependency. After serveral rounds of update, some beans might be orphan, they’re unused any more but you don’t know.</p>
 
 <p>Spring IDE provides bean cross reference view and bean graph view that can help to analysis the bean relationship. But what Spring IDE has is a static view of the beans. In our project the application context is complicated: it scans classpath for all bean definition XML files and load them; application context created in WAR package inherits parent application context which is defines in EJB classpath; some beans are marked with annotation and loaded by <context:component-scan>, rather than define in XML file. I doubt Spring IDE can show the dynamic bean view as it is in runtime. What's more, Spring IDE isn't available at our standard development environment.</context:component-scan></p>
@@ -248,9 +248,9 @@ Beans without reference:
   
   <entry>
     <title type="html"><![CDATA[图解：Spring ApplicationContext in enterprise application]]></title>
-    <link href="http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/"/>
+    <link href="http://aleung.github.io/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application/"/>
     <updated>2010-02-24T21:46:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application</id>
+    <id>http://aleung.github.io/blog/2010/02/24/Illustration-Spring-ApplicationContext-in-enterprise-application</id>
     <content type="html"><![CDATA[<p>在一个比较复杂的enterprise application (EAR)里面，往往有多个war和ejb，如果希望使用Springframework通过IoC方式来管理及装配POJO beans，就要面对如何初始化application context，由谁来初始化，如何让这些war和ejb共享application context等问题。</p>
 
 <p>关于多个war、ejb共享application context的方法，在下面这两篇文章里解释得比较清楚：</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: SIP | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/sip/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/sip/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Two questions about SIP message transport]]></title>
-    <link href="http://aleung.github.com/blog/2010/02/26/Two-questions-about-SIP-message-transport/"/>
+    <link href="http://aleung.github.io/blog/2010/02/26/Two-questions-about-SIP-message-transport/"/>
     <updated>2010-02-26T12:30:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/02/26/Two-questions-about-SIP-message-transport</id>
+    <id>http://aleung.github.io/blog/2010/02/26/Two-questions-about-SIP-message-transport</id>
     <content type="html"><![CDATA[<h3 id="sip-messages-are-sent-in-mix-of-udp-and-tcp">SIP messages are sent in mix of UDP and TCP</h3>
 
 <p>In our test we found that our client first sent SIP messages in UDP but later on it changed to TCP. Is it an issue?</p>

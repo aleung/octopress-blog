@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Database | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/database/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/database/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[在关系数据库中保存树状结构]]></title>
-    <link href="http://aleung.github.com/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/"/>
+    <link href="http://aleung.github.io/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/"/>
     <updated>2003-06-03T00:07:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure</id>
+    <id>http://aleung.github.io/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure</id>
     <content type="html"><![CDATA[<p>看了 <a href="http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html">Trees in SQL</a> 这篇文章, 提出了一个巧妙的方法来在关系数据库中保存树状结构. 在记录中不是保存父子关系, 而是记录着树的遍历的编号, 通过利用编号可以在单个SQL语句中获取某个节点的所有子节点等操作. <br />
 据介绍, 著名论坛jive在2.5版本起增加了catalog, 就是用这种方法实现树状关系帖子的保存.  </p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: i18n | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/i18n/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/i18n/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Java字符转换问题]]></title>
-    <link href="http://aleung.github.com/blog/2003/08/18/Java-/"/>
+    <link href="http://aleung.github.io/blog/2003/08/18/Java-/"/>
     <updated>2003-08-18T22:57:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2003/08/18/Java-</id>
+    <id>http://aleung.github.io/blog/2003/08/18/Java-</id>
     <content type="html"><![CDATA[<p>字符编码问题一直都是令人头痛，查阅资料，写下了《java 字符转换问题的学习笔记》。</p>
 
 <h3 id="section">什么是字节流与字符流的转换? 什么时候会做转换?</h3>

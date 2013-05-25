@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Idea | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/idea/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/idea/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[软件团队工作空间再设计]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/30/redesign-of-software-development-workspace/"/>
+    <link href="http://aleung.github.io/blog/2012/06/30/redesign-of-software-development-workspace/"/>
     <updated>2012-06-30T22:24:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/30/redesign-of-software-development-workspace</id>
+    <id>http://aleung.github.io/blog/2012/06/30/redesign-of-software-development-workspace</id>
     <content type="html"><![CDATA[<p>软件团队的办公室空间可以分为三大类：团队工作空间，会议空间，公共区域。</p>
 
 <p>敏捷团队在工作过程中需要有比较多沟通，团队工作空间需要为此准备必要的设施，例如带有白板的讨论区域，这样就不需要讨论一些事情都要跑很远找会议室；供张贴东西的墙面；公共信息显示屏，显示CI状态之类。</p>
@@ -44,9 +44,9 @@
   
   <entry>
     <title type="html"><![CDATA[追踪丢失了的手机]]></title>
-    <link href="http://aleung.github.com/blog/2010/12/21/Tracking-lost-cell-phone/"/>
+    <link href="http://aleung.github.io/blog/2010/12/21/Tracking-lost-cell-phone/"/>
     <updated>2010-12-21T17:21:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/12/21/Tracking-lost-cell-phone</id>
+    <id>http://aleung.github.io/blog/2010/12/21/Tracking-lost-cell-phone</id>
     <content type="html"><![CDATA[<p>现在已经有好些智能手机应用可以用来帮助追踪丢失了的手机。有些是当插入不同的SIM卡时触发跟踪，有些是在网络上触发跟踪。我想到另外一个方法：每当手机打开屏幕离开休眠状态时，前置摄像头自动拍摄一幅图像，对画面中的人面进行识别，如果判断不是机主，就将图像上传服务器，并且开启定位跟踪，不断将轨迹上传。这样，不但可以知道手机在哪里，还获得了拿着手机的人的相貌，因为一般人打开手机的时候都是拿在手上，正好前置摄像头就可以拍下面部照片了。</p>
 
 <p>Answer to questions:</p>
@@ -91,9 +91,9 @@
   
   <entry>
     <title type="html"><![CDATA[游泳感想]]></title>
-    <link href="http://aleung.github.com/blog/2010/07/30/Swimming-feeling/"/>
+    <link href="http://aleung.github.io/blog/2010/07/30/Swimming-feeling/"/>
     <updated>2010-07-30T22:49:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/07/30/Swimming-feeling</id>
+    <id>http://aleung.github.io/blog/2010/07/30/Swimming-feeling</id>
     <content type="html"><![CDATA[<p>几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。</p>
 
 <p>首先是想为什么没有音乐听听呢？跑步的时候可以戴着耳机听音乐，游泳也应该可以才对。做防水的播放器和防水的耳机，难度应该不大，说不定已经有这样的产品了，只是没有普及。</p>
@@ -104,9 +104,9 @@
   
   <entry>
     <title type="html"><![CDATA[时间管理工具的设计：任务计划时间的逐步精确]]></title>
-    <link href="http://aleung.github.com/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/"/>
+    <link href="http://aleung.github.io/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/"/>
     <updated>2010-06-23T23:27:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step</id>
+    <id>http://aleung.github.io/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step</id>
     <content type="html"><![CDATA[<p>我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">为什么不能合在一起</a>一文。后来，也发现<a href="http://good-good-study.appspot.com/blog/posts/3212">Outlook 2007已经将两者做了一定程度的整合</a>。</p>
 
 <p>今天又再思考了一下：任务管理就是一个逐步细化的过程，包括执行时间的具体化和操作步骤的细化（拆分子任务）。理想的工具应该对整个过程都提供支持。</p>
@@ -135,9 +135,9 @@
   
   <entry>
     <title type="html"><![CDATA[便携式行人过街警示棒]]></title>
-    <link href="http://aleung.github.com/blog/2010/02/27/Portable-pedestrians-cross-the-street-warning-great/"/>
+    <link href="http://aleung.github.io/blog/2010/02/27/Portable-pedestrians-cross-the-street-warning-great/"/>
     <updated>2010-02-27T01:40:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/02/27/Portable-pedestrians-cross-the-street-warning-great</id>
+    <id>http://aleung.github.io/blog/2010/02/27/Portable-pedestrians-cross-the-street-warning-great</id>
     <content type="html"><![CDATA[<p><img src="http://farm5.static.flickr.com/4010/4390272360_cd4c3c040a_o.jpg" alt="" /></p>
 
 <p>几乎每次过马路，我都恨不得手里有这样一块牌子，可以伸到身体前面，把来车挡住 —- 在没有交通灯的斑马线，十个司机有九个会毫不减速的冲过，而不会避让过马路的行人；即使在有交通灯的斑马线，如果不是路口，也有司机根本当红灯不存在。</p>

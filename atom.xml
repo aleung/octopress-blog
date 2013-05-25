@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[看老罗的锤子发布会]]></title>
-    <link href="http://aleung.github.com/blog/2013/04/03/my-opinion-on-smartisan-os/"/>
+    <link href="http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os/"/>
     <updated>2013-04-03T13:05:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/04/03/my-opinion-on-smartisan-os</id>
-    <content type="html"><![CDATA[<p>两个小时，演讲太啰嗦，时间压缩一半可能会精炼很多，乔布斯有这么多废话吗？另外就是老罗一贯的自恋。我突然想找小米首次发布会来看看，看雷布斯的表现如何。</p>
+    <id>http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os</id>
+    <content type="html"><![CDATA[<p>两个小时，演讲太啰嗦，时间压缩一半可能会精炼很多，乔布斯有这么多废话吗？另外就是老罗一贯的自恋。我突然想找小米首次发布会来看看，看雷布斯的表现如何。老罗已经是名嘴，雷布斯更惨不忍睹？</p>
 
 <p>从发布会的信息上看，锤子是一个做了UI / HI (Human Interface) 优化的Android系统：</p>
 
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[笔记本充满电后，是否应该拔掉电源]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/"/>
+    <link href="http://aleung.github.io/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/"/>
     <updated>2013-03-30T00:34:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged</id>
+    <id>http://aleung.github.io/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged</id>
     <content type="html"><![CDATA[<p>在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。为此我科普了一把。</p>
 
 <hr />
@@ -86,9 +86,9 @@
   
   <entry>
     <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <link href="http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
     <updated>2013-03-30T00:04:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <id>http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
     <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
 
 <p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
@@ -107,9 +107,9 @@
   
   <entry>
     <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
+    <link href="http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
     <updated>2013-03-22T23:21:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
+    <id>http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
     <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
 
 <p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
@@ -125,9 +125,9 @@
   
   <entry>
     <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
+    <link href="http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
     <updated>2013-03-19T21:32:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts</id>
+    <id>http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts</id>
     <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
 
 <p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
@@ -153,20 +153,20 @@
   
   <entry>
     <title type="html"><![CDATA[站立工作环境]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/18/stand-up-desk/"/>
+    <link href="http://aleung.github.io/blog/2013/03/18/stand-up-desk/"/>
     <updated>2013-03-18T23:44:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/18/stand-up-desk</id>
+    <id>http://aleung.github.io/blog/2013/03/18/stand-up-desk</id>
     <content type="html"><![CDATA[<p>坐姿，特别是不正确的坐姿，对腰椎间盘的压力是站姿的2到3倍，长期在电脑前工作的人很容易得腰椎间盘突出等腰椎疾病。因此现在IT工作者逐渐流行站立工作。但是，长期站立也会带来其他的问题，如下肢静脉曲张等。一个比较理想的方案是使用可升降的办公桌，坐姿站姿交替。</p>
 
 <p>2011年我花了不少时间寻找国内哪里可以买到可升降办公桌，但都没有找到。网上搜索倒是有不少信息，但都是厂家寻求批发订货的，电话问过几个本地厂商，基本都说不做，做的也没有现货不零售。唯一的是淘宝上有个泠泠岛，做个人客户，当时价格很高，外地购买也不方便，而且我对它的质量不是很放心。最终放弃了购买升降桌的念头，改为自行DIY站立工作桌。</p>
 
 <p>2012年初用IKEA的BRODER系统加一个VIKA桌面搭建了一个站立工作桌。BRODER归属在重型储物系列里，本来用途是储物架，钢柱杆和钢网搁板很牢固，最大的搁板深度基本足够做桌面了，在上面垫上一块木桌面刚刚好。用IKEA的东西好处是你有很大发挥的空间，这个<a href="http://www.wretch.cc/blog/ikeameatball/12392137">IKEA的居家生活部落格</a>里就有不少BRODER各种应用的照片。但刚刚查IKEA中国网站，已经找不到BRODER，不知是否不卖了。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2013/3/desk.jpg" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2013/3/desk.jpg" /></p>
 
 <p>就这样用了一年，但长期站立工作也不好，于是想配一张高脚凳也许就差不多了。桌面高度是按站立工作而定的，按照我的身高桌面高度也偏高，一般市面上卖的高脚凳（酒吧凳）座高都不够。最后在淘宝上找到了一款，高度比较合适。今天到货刚刚装起来了。其实这凳子做工、质量都不算很好，组装也不够方便，如果IKEA有合适的我绝对不会选择它的（虽然说IKEA的东西质量也只算一般，但还是要比这淘宝货强）。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2013/3/desk_chair.jpg" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2013/3/desk_chair.jpg" /></p>
 
 <p>关于工作台面、座椅以及显示器的合适高度，在<a href="http://book.douban.com/subject/11652185/">Human Factors in Engineering and Design</a>一书的 chapter 13. Applied Anthropometry, Work-Space Design and Seating 中对站姿与坐姿工作环境有很好的描述。我在决定台面高度与椅子高度的时候参考了此书中给出的研究数据。</p>
 
@@ -178,9 +178,9 @@
   
   <entry>
     <title type="html"><![CDATA[怎么处理Android耗电严重的问题]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/10/which-app-is-draining-your-android-bettery/"/>
+    <link href="http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/"/>
     <updated>2013-03-10T21:49:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/10/which-app-is-draining-your-android-bettery</id>
+    <id>http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery</id>
     <content type="html"><![CDATA[<p>Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程，也只会在必要的时候唤醒进行短时间工作。但有些应用开发者不懂怎么合理设计应用后台任务，造成耗电问题。</p>
 
 <p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
@@ -191,9 +191,9 @@
   
   <entry>
     <title type="html"><![CDATA[R初略学习笔记]]></title>
-    <link href="http://aleung.github.com/blog/2013/02/09/beginning-r/"/>
+    <link href="http://aleung.github.io/blog/2013/02/09/beginning-r/"/>
     <updated>2013-02-09T14:18:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/02/09/beginning-r</id>
+    <id>http://aleung.github.io/blog/2013/02/09/beginning-r</id>
     <content type="html"><![CDATA[<h2 id="section">包管理</h2>
 
 <p>从CRAN安装一个包：<code>install.packages("pkg_name")</code></p>
@@ -514,26 +514,26 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[人體工學鍵盤鼠標組合]]></title>
-    <link href="http://aleung.github.com/blog/2013/01/08/keyboard-and-mouse/"/>
+    <link href="http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse/"/>
     <updated>2013-01-08T23:00:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/01/08/keyboard-and-mouse</id>
+    <id>http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse</id>
     <content type="html"><![CDATA[<p>作為悲催的程序猿，每天的大部份時間都是陪伴鼠標鍵盤度過的，一套合適的鼠標鍵盤非常重要，可以降低得職業病的機率。尋找人體工學的鼠標鍵盤並不容易，現在這套用了好些時間了，感覺很滿意。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2013/1/keyboard_mouse.jpg" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2013/1/keyboard_mouse.jpg" /></p>
 
 <p>先說鍵盤，普通鍵盤其實並不符合雙手自然的角度，如果要能讓雙手自然，左右手鍵盤需要分離。因此，理想的鍵盤大概是這個樣子的：</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2013/1/kb_adv-pro.jpg" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2013/1/kb_adv-pro.jpg" /></p>
 
 <p>這個是Kinesis Advantage Pro，我在荷蘭公司見過有同事用，在網上程序員社區也受到推薦。</p>
 
 <p>還有這個怪樣子的DataHand，手指已經不僅是向下敲鍵盤了，而是每個手指上下左右各個方向都是不同的鍵。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2013/1/datahand.jpg" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2013/1/datahand.jpg" /></p>
 
 <p>上面說的鍵盤不僅僅怪異，也买不起。前者$359，後者更是近千美元。更何況即使有錢，在國內也買不到。因此我只能選擇還算中規中矩的<a href="http://www.microsoft.com/hardware/en-us/p/natural-ergonomic-keyboard-4000">微軟人體工學鍵盤4000</a>，這款鍵盤算是評價不錯，價錢也可接受，國內可以直接買到。它的左右手鍵盤區並沒有分離得很遠，但剛好分開一個夾角，跟雙手自然擺放時的角度一樣。左右手分開鍵盤區要求指法一定要正確，還好我到手後在一個下午裏就已經適應了。</p>
 
-<p><img class="right" src="http://aleung.github.com/blog/attachments/2013/1/microsoft-mouse-6000.jpg" /> 鼠標我開始用的是<a href="http://www.microsoft.com/hardware/en-us/d/natural-wireless-laser-mouse-6000">微軟人體工學霸雷鯊6000</a>（已經停產），它的好處是傾斜的表面讓手腕不需要向內旋轉。但是用了一段時間感覺還是未達理想程度，主要問題是我移動鼠標時通常前臂放在桌面上是不動的，僅靠手腕的活動，時間長了手腕還是覺得累。</p>
+<p><img class="right" src="http://aleung.github.io/blog/attachments/2013/1/microsoft-mouse-6000.jpg" /> 鼠標我開始用的是<a href="http://www.microsoft.com/hardware/en-us/d/natural-wireless-laser-mouse-6000">微軟人體工學霸雷鯊6000</a>（已經停產），它的好處是傾斜的表面讓手腕不需要向內旋轉。但是用了一段時間感覺還是未達理想程度，主要問題是我移動鼠標時通常前臂放在桌面上是不動的，僅靠手腕的活動，時間長了手腕還是覺得累。</p>
 
 <p>後來在網上看了不少資料，軌跡球可能可以解決這個問題，不需要手腕的動作，依靠手指移動就可以了。但是，對於軌跡球的評價好壞很極端，要麼說很好用要麼說根本沒用，估計這個東西的適應比較困難。但要真正用起來才會知道是否適合，最後還是下定決心買一個來試一下。軌跡球始終屬於小眾產品沒有推廣開來，產品甚至越出越少，市場上現在可買到的沒幾款，相對鼠標來說價錢也貴不少（其實結構、元件都差不多）。最終買的是<a href="http://www.kensington.com/kensington/us/us/p/1444/K64325/expert-mouse%C2%AE.aspx">Kensington Expert Mouse</a>（淘寶有售），明明是trackball要叫做mouse，可見trackball不受落。選擇這個是因為球體夠大，而且是可以用食指中指來滾動球體。Logitech M570 本來也不錯，但聽說拇指球用起來不夠靈活，拇指也容易累。中置球體的另外一個好處是左右手通用，我本來習慣用右手的，但那個鍵盤實在太霸氣了，把軌跡球放右邊，手在鍵盤和軌跡球間切換要移動很遠，於是就換用左手了。剛買回來，球滾動不大順滑，有點澀的感覺，真有些失望，但用了一兩個星期後就好很多了，現在操作起來絲柔順滑，阻尼感恰到好處，應該是球的三個支撐點需要一段時間磨合。軌跡球剛用起來確實不是那麼容易上手，操作會比較笨拙，比用鼠標慢很多，但是多花些時間適應，大概幾天到一周就可以上手了。</p>
 
@@ -543,25 +543,25 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[怎样在OSX上adb连接小米2]]></title>
-    <link href="http://aleung.github.com/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
+    <link href="http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
     <updated>2012-12-30T20:24:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/12/30/mi2-usb-debug-on-osx</id>
+    <id>http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx</id>
     <content type="html"><![CDATA[<p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
 
 <p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/12/osx_usb.jpg" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/12/osx_usb.jpg" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[四儿子无望，粗粮也好吧]]></title>
-    <link href="http://aleung.github.com/blog/2012/12/23/mi2/"/>
+    <link href="http://aleung.github.io/blog/2012/12/23/mi2/"/>
     <updated>2012-12-23T14:03:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/12/23/mi2</id>
-    <content type="html"><![CDATA[<p><img src="http://aleung.github.com/blog/attachments/2012/12/mi2_focus_01s.jpg" /></p>
+    <id>http://aleung.github.io/blog/2012/12/23/mi2</id>
+    <content type="html"><![CDATA[<p><img src="http://aleung.github.io/blog/attachments/2012/12/mi2_focus_01s.jpg" /></p>
 
-<p>Xperia U 手機用了半年，<a href="http://aleung.github.com/blog/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
+<p>Xperia U 手機用了半年，<a href="http://aleung.github.io/blog/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
 
 <p>對於國產手機，最關心的是能不能用Google服務，有沒有ROM可以刷。行貨的閹割系統對於我來說是根本不能用的。小米做得還不錯，保留了Google Service Framework，可以添加Google帳號同步，Google Play等應用自己裝上就可以了。小米手機不算開放，沒有找到任何第三方的ROM，但好在小米除了MIUI外還是提供了原生Android系統ROM，如果不喜歡MIUI還是可以用回native Android。小米2的操作系统已經超越了ICS，是Android 4.1 Jelly Bean，除了四儿子是4.2，小米2也算是版本最高的一款Android手机了吧。手機到手後，刷了個MIUI開發版，因為穩定版不提供root權限。個人感覺MIUI的定製的度把握得比較合適，把很多系統級的有用的功能集成進去了，例如來電短信攔截，LBE的權限管理，通知欄開關等等，而又沒有像其他廠商那樣內置一大堆用不著又刪不掉的應用。因此我試了一下還是決定保留MIUI。</p>
 
@@ -577,9 +577,9 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[我的首個半馬拉松]]></title>
-    <link href="http://aleung.github.com/blog/2012/12/11/my-first-half-marathon/"/>
+    <link href="http://aleung.github.io/blog/2012/12/11/my-first-half-marathon/"/>
     <updated>2012-12-11T22:25:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/12/11/my-first-half-marathon</id>
+    <id>http://aleung.github.io/blog/2012/12/11/my-first-half-marathon</id>
     <content type="html"><![CDATA[<p>11月18日，廣州首屆馬拉松賽，也是我跑的第一次半馬拉松。過去大半個月了，還是記錄一下吧。</p>
 
 <p>看回以前寫的blog，應該是在2005年底開始跑步的，也不記得當時爲什麼突然有了要經常性跑步的想法。那時傍晚下班後在天河公園跑，跑步是作爲鍛鍊和放鬆，一次跑半小時左右，最多5、6公里，根本不敢想象自己能跑21公里的半馬拉松。雖然跑了好多年，但都是斷斷續續，有時一停就幾個月，跑的頻率也低，最多一週兩次，一直都是維持在只能連續跑5公里左右水平。</p>
@@ -612,13 +612,13 @@ parallel(data)
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p><a href="http://aleung.github.com/blog/2009/09/25/Prepare-10-km-run/">准备10km跑</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p><a href="http://aleung.github.io/blog/2009/09/25/Prepare-10-km-run/">准备10km跑</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p><a href="http://aleung.github.com/blog/2011/11/15/Nike-Lunar-Run-10-/">Nike Lunar Run 10公里跑总结</a><a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p><a href="http://aleung.github.io/blog/2011/11/15/Nike-Lunar-Run-10-/">Nike Lunar Run 10公里跑总结</a><a href="#fnref:2" rel="reference">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p><a href="http://aleung.github.com/blog/2011/12/26/Baiyun-mountain-running/">白云山跑步</a><a href="#fnref:3" rel="reference">&#8617;</a></p>
+      <p><a href="http://aleung.github.io/blog/2011/12/26/Baiyun-mountain-running/">白云山跑步</a><a href="#fnref:3" rel="reference">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -627,9 +627,9 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[Android: 在應用中設定locale]]></title>
-    <link href="http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/"/>
+    <link href="http://aleung.github.io/blog/2012/10/06/change-locale-in-android-application/"/>
     <updated>2012-10-06T00:25:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application</id>
+    <id>http://aleung.github.io/blog/2012/10/06/change-locale-in-android-application</id>
     <content type="html"><![CDATA[<p>近幾天把以前做的跑步步频训练软件 <a href="https://play.google.com/store/apps/details?id=leoliang.runningcadence">RunningCadence</a> 加上了多語言支持，可以在應用中設定界面以及語音播報所用的語言。</p>
 
 <p>對多語言的支持，Android已經做得很完善，開發者只需要在應用中加入各種locale的資源文件。但是，應用只會使用系統全局設置的locale，而要在應用自己的設定中選擇locale，以及要讓設定立即生效，就需要開發者自己去實現了。</p>
@@ -815,7 +815,7 @@ parallel(data)
       <p>詳細機制見 <a href="http://developer.android.com/guide/topics/resources/runtime-changes.html">Handling Runtime Changes</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>在 <a href="http://aleung.github.com/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram">Android Activity Lifecycle in UML</a> 文中的狀態圖可以見到configChanged引發的狀態遷移。<a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p>在 <a href="http://aleung.github.io/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram">Android Activity Lifecycle in UML</a> 文中的狀態圖可以見到configChanged引發的狀態遷移。<a href="#fnref:2" rel="reference">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -824,9 +824,9 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[Java的volatile关键字的作用]]></title>
-    <link href="http://aleung.github.com/blog/2012/09/17/Java-volatile-/"/>
+    <link href="http://aleung.github.io/blog/2012/09/17/Java-volatile-/"/>
     <updated>2012-09-17T00:00:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/09/17/Java-volatile-</id>
+    <id>http://aleung.github.io/blog/2012/09/17/Java-volatile-</id>
     <content type="html"><![CDATA[<ul>
   <li>Initial: 2008-12-04</li>
   <li>Updated: 2012-9-17</li>
@@ -910,14 +910,14 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[色彩管理 (2)]]></title>
-    <link href="http://aleung.github.com/blog/2012/09/15/color-management-2/"/>
+    <link href="http://aleung.github.io/blog/2012/09/15/color-management-2/"/>
     <updated>2012-09-15T00:56:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/09/15/color-management-2</id>
-    <content type="html"><![CDATA[<p>色彩管理的<a href="http://aleung.github.com/blog/2004/11/12/Color-management-1">第一篇</a>是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。</p>
+    <id>http://aleung.github.io/blog/2012/09/15/color-management-2</id>
+    <content type="html"><![CDATA[<p>色彩管理的<a href="http://aleung.github.io/blog/2004/11/12/Color-management-1">第一篇</a>是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。</p>
 
 <p>颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象：颜色就是可见光波长这个物理量的反映。但是问题来了，白色对应什么波长的光？为什么红光和绿光混合在一起变成了黄光，难道混合后波长产生变化了？原因在于，颜色并不是某一個物理量的直接反映，而是人对光线的心理反映，称之为色觉。</p>
 
-<p><img class="right" src="http://aleung.github.com/blog/attachments/2012/9/eye.jpg" /> </p>
+<p><img class="right" src="http://aleung.github.io/blog/attachments/2012/9/eye.jpg" /> </p>
 
 <p>人眼有三种色彩感受器（视锥细胞），每种感受器可以感应不同波长范围的光，分别的感受峰值波长为：420nm，534nm，564nm，差不多相当于蓝、绿、红三色光的波长。对于某一种光谱，三种感受器得到三组信号送往大脑，大脑根据这三组信号值的不同组合感知到不同的色彩。</p>
 
@@ -929,7 +929,7 @@ parallel(data)
 
 <p>CIE XYZ定义了一个三维空间，展现起来不如二维图形直观。经常用来表示色彩空间大小的二维马蹄型图称为CIE xy色度图，如下图。它的纵横座标xy是根据XYZ推导出来的，x=X/(X+Y+Z), y=Y/(X+Y+Z), z=Z/(X+Y+Z), x+y+z=1。彩色的马蹄形范围表示人眼可见的全部色彩范围。在数码相机和电脑显示中使用的RGB色彩空间在CIE xy色度图中反映为三角形范围，三个顶点分别为R/G/B三原色。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/9/gamut.jpg" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/9/gamut.jpg" alt="" /></p>
 
 <p>不考虑印刷，摄影爱好者一般会接触到的色彩空间也就是AdobeRGB和sRGB。从图中可见，AdobeRGB的色域比sRGB广，特别是在蓝绿色系方面，AdobeRGB能够表现的色彩比sRGB丰富很多。我查找不到资料描述各种数码相机的感光元件能够记录下来的色域有多大，但一般的说法是一般数码单反所能记录的色彩范围都比sRGB广，接近或大于AdobeRGB。因此，专业的摄影都会选择AdobeRGB色彩空间来保存图像文档。但问题是，我们的显示器并不能展现这么广的色域，民用型号通常都只能再现sRGB色彩空间或更小一点（广色域显示器会比sRGB大，但一般还是达不到AdobeRGB），因此照片中记录的部分颜色是无法在显示器上原汁原味的再现出来的（这里先不考虑显示器没有校准导致偏色问题），超出设备色彩空间的颜色只能用接近的来替换，例如翠绿色的海水就没有那么漂亮了。另外一个问题是有些软件，例如不是最新版本的浏览器，是不支持色彩管理的，它不会将照片的色彩空间映射到显示器的色彩空间以保持在可显示范围内的颜色一致，而是将照片中的RGB值当作设备色彩空间的值来直接显示。如果照片用的是sRGB还好，因为显示器本身大致符合sRGB，颜色偏差不会太多，但若照片是用色域更广的AdobeRGB的，色彩偏差就严重了。所以数码相机的说明书上一般会建议如果照片仅在电脑上观看最好选择sRGB。</p>
 
@@ -937,17 +937,17 @@ parallel(data)
 
 <p>See also:</p>
 
-<p><a href="http://aleung.github.com/blog/2004/11/12/Color-management-1">色彩管理(1)</a></p>
+<p><a href="http://aleung.github.io/blog/2004/11/12/Color-management-1">色彩管理(1)</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[广州跑步路线：二沙岛]]></title>
-    <link href="http://aleung.github.com/blog/2012/09/10/running-route-ersha/"/>
+    <link href="http://aleung.github.io/blog/2012/09/10/running-route-ersha/"/>
     <updated>2012-09-10T22:13:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/09/10/running-route-ersha</id>
-    <content type="html"><![CDATA[<p><img src="http://aleung.github.com/blog/attachments/2012/9/ersha_sat.jpg" alt="" /></p>
+    <id>http://aleung.github.io/blog/2012/09/10/running-route-ersha</id>
+    <content type="html"><![CDATA[<p><img src="http://aleung.github.io/blog/attachments/2012/9/ersha_sat.jpg" alt="" /></p>
 
 <p>环岛一周约4.4km，其实只能算环半岛，因为岛西面一大段的沿江堤岸是公众不能进入的。车道大部分是沥青路面，晴澜路段水泥路面，人行道是铺石路面。环岛道路汽车不多，在注意安全的前提下可以靠边跑车道。</p>
 
@@ -961,18 +961,18 @@ parallel(data)
 
 <p>总体来说也是可以推荐的跑步路线。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/9/ersha_map.jpg" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/9/ersha_map.jpg" alt="" /></p>
 
-<p>其他跑步路线介绍：<a href="http://aleung.github.com/blog/2012/09/09/running-route">广州跑步路线：索引</a></p>
+<p>其他跑步路线介绍：<a href="http://aleung.github.io/blog/2012/09/09/running-route">广州跑步路线：索引</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[广州跑步路线: 麓湖]]></title>
-    <link href="http://aleung.github.com/blog/2012/09/09/running-route-luhu/"/>
+    <link href="http://aleung.github.io/blog/2012/09/09/running-route-luhu/"/>
     <updated>2012-09-09T21:13:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/09/09/running-route-luhu</id>
-    <content type="html"><![CDATA[<p><img src="http://aleung.github.com/blog/attachments/2012/9/luhu_sat.jpg" alt="" /></p>
+    <id>http://aleung.github.io/blog/2012/09/09/running-route-luhu</id>
+    <content type="html"><![CDATA[<p><img src="http://aleung.github.io/blog/attachments/2012/9/luhu_sat.jpg" alt="" /></p>
 
 <p>麓湖的跑步路线是环绕着湖一周的路。路面包括木栈道、柏油车道、砖铺人行道，麓湖路属于绿道系统的部分有木栈道，其余环湖路线的人行道很窄，可以跑到车道边上，但有来车时需要注意安全。</p>
 
@@ -982,36 +982,36 @@ parallel(data)
 
 <p>环湖一圈约3.5km，总上升59m，基本上不算多大起伏。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/9/luhu_elevation.jpg" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/9/luhu_elevation.jpg" alt="" /></p>
 
 <p>总体来说是不错的跑步路线，推荐。</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/9/luhu_map.jpg" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/9/luhu_map.jpg" alt="" /></p>
 
-<p>其他跑步路线介绍：<a href="http://aleung.github.com/blog/2012/09/09/running-route">广州跑步路线：索引</a></p>
+<p>其他跑步路线介绍：<a href="http://aleung.github.io/blog/2012/09/09/running-route">广州跑步路线：索引</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[广州跑步路线：索引]]></title>
-    <link href="http://aleung.github.com/blog/2012/09/09/running-route/"/>
+    <link href="http://aleung.github.io/blog/2012/09/09/running-route/"/>
     <updated>2012-09-09T21:09:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/09/09/running-route</id>
+    <id>http://aleung.github.io/blog/2012/09/09/running-route</id>
     <content type="html"><![CDATA[<p>这一系列博文记录我跑过的路线。</p>
 
 <ul>
-  <li><a href="http://aleung.github.com/blog/2012/09/09/running-route-luhu/">麓湖</a></li>
-  <li><a href="http://aleung.github.com/blog/2012/09/10/running-route-ersha/">二沙岛</a></li>
+  <li><a href="http://aleung.github.io/blog/2012/09/09/running-route-luhu/">麓湖</a></li>
+  <li><a href="http://aleung.github.io/blog/2012/09/10/running-route-ersha/">二沙岛</a></li>
 </ul>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Understanding WebLogic WorkManager]]></title>
-    <link href="http://aleung.github.com/blog/2012/08/10/understanding-weblogic-workmanager/"/>
+    <link href="http://aleung.github.io/blog/2012/08/10/understanding-weblogic-workmanager/"/>
     <updated>2012-08-10T22:54:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/08/10/understanding-weblogic-workmanager</id>
+    <id>http://aleung.github.io/blog/2012/08/10/understanding-weblogic-workmanager</id>
     <content type="html"><![CDATA[<p>Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases.</p>
 
 <p>All WorkManagers share a common thread pool and a priority-based queue. The size of the thread pool is determined automatically by the kernel and resized as needed.  Priority of the requests is dynamic and computed internally to meet the stated goals. </p>
@@ -1057,7 +1057,7 @@ parallel(data)
 
 <p>I draw a picture to show the threadpool and queue. Requests dispatched with different WorkManager are in different color.</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/8/workmanager.jpg" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/8/workmanager.jpg" alt="" /></p>
 
 <ul>
   <li>Self-tuning thread pool thread allocation ratio amoung WorkManagers is affected by request class. </li>
@@ -1080,9 +1080,9 @@ parallel(data)
   
   <entry>
     <title type="html"><![CDATA[apigee]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/31/apigee/"/>
+    <link href="http://aleung.github.io/blog/2012/07/31/apigee/"/>
     <updated>2012-07-31T23:20:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/31/apigee</id>
+    <id>http://aleung.github.io/blog/2012/07/31/apigee</id>
     <content type="html"><![CDATA[<p><a href="http://apigee.com/">Apigee</a> is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it.</p>
 
 <p>Apigee is an API management platform and services company. It benefits both API providers and developers who build their apps with APIs.</p>
@@ -1093,11 +1093,11 @@ parallel(data)
 
 <p>Usually when an organization open its internal services or data to external, it develops the API and exposure it, with necessary document published. Application developers learn the API by reading the document, and then code to use the API.</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/7/api.png" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/7/api.png" alt="" /></p>
 
 <p>Apigee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
 
-<p><img src="http://aleung.github.com/blog/attachments/2012/7/api_with_apigee.png" alt="" /></p>
+<p><img src="http://aleung.github.io/blog/attachments/2012/7/api_with_apigee.png" alt="" /></p>
 
 <h2 id="console-to-go">Console To-Go</h2>
 

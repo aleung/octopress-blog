@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: ImageProcessing | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/imageprocessing/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/imageprocessing/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[色彩管理 (2)]]></title>
-    <link href="http://aleung.github.com/blog/2012/09/15/color-management-2/"/>
+    <link href="http://aleung.github.io/blog/2012/09/15/color-management-2/"/>
     <updated>2012-09-15T00:56:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/09/15/color-management-2</id>
+    <id>http://aleung.github.io/blog/2012/09/15/color-management-2</id>
     <content type="html"><![CDATA[<p>色彩管理的<a href="/2004/11/12/Color-management-1">第一篇</a>是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。</p>
 
 <p>颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象：颜色就是可见光波长这个物理量的反映。但是问题来了，白色对应什么波长的光？为什么红光和绿光混合在一起变成了黄光，难道混合后波长产生变化了？原因在于，颜色并不是某一個物理量的直接反映，而是人对光线的心理反映，称之为色觉。</p>
@@ -49,9 +49,9 @@
   
   <entry>
     <title type="html"><![CDATA[RAW照片后期处理的常用操作]]></title>
-    <link href="http://aleung.github.com/blog/2011/09/27/RAW-/"/>
+    <link href="http://aleung.github.io/blog/2011/09/27/RAW-/"/>
     <updated>2011-09-27T22:33:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/09/27/RAW-</id>
+    <id>http://aleung.github.io/blog/2011/09/27/RAW-</id>
     <content type="html"><![CDATA[<p>这里讲的是 Apple Aperture 3 的操作，但其他RAW处理软件（如Photoshop Lightroom）的功能和效果也都类似，可以参考。</p>
 
 <h2 id="exposure">Exposure</h2>
@@ -114,9 +114,9 @@
   
   <entry>
     <title type="html"><![CDATA[Apple Aperture 数码照片处理几板斧]]></title>
-    <link href="http://aleung.github.com/blog/2011/09/27/Apple-Aperture-/"/>
+    <link href="http://aleung.github.io/blog/2011/09/27/Apple-Aperture-/"/>
     <updated>2011-09-27T22:04:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/09/27/Apple-Aperture-</id>
+    <id>http://aleung.github.io/blog/2011/09/27/Apple-Aperture-</id>
     <content type="html"><![CDATA[<p><img class="right" src="https://lh5.googleusercontent.com/-MGOVmxQlebs/ToHSOBbvsCI/AAAAAAAAAaQ/ZgUEHwlGelk/s800/aperture3.jpg"></p>
 
 <p>以前都用Photoshop来处理照片，刚开始用Aperture，还真不太适应，用了几天兼阅读了help，慢慢有些了解了。对于照片的后期处理，其实用什么工具都大同小异，基本上就是几板斧。没拍好的照片也没有必要费心去调，直接删除就得了。</p>
@@ -208,9 +208,9 @@
   
   <entry>
     <title type="html"><![CDATA[Color temperature of common light sources]]></title>
-    <link href="http://aleung.github.com/blog/2011/09/27/Color-temperature-of-common-light-sources/"/>
+    <link href="http://aleung.github.io/blog/2011/09/27/Color-temperature-of-common-light-sources/"/>
     <updated>2011-09-27T19:28:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/09/27/Color-temperature-of-common-light-sources</id>
+    <id>http://aleung.github.io/blog/2011/09/27/Color-temperature-of-common-light-sources</id>
     <content type="html"><![CDATA[<p> </p>
 
 <table>
@@ -284,9 +284,9 @@
   
   <entry>
     <title type="html"><![CDATA[照片的地理位置信息]]></title>
-    <link href="http://aleung.github.com/blog/2006/06/17/Photographs-of-the-geographical-location-information/"/>
+    <link href="http://aleung.github.io/blog/2006/06/17/Photographs-of-the-geographical-location-information/"/>
     <updated>2006-06-17T08:59:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2006/06/17/Photographs-of-the-geographical-location-information</id>
+    <id>http://aleung.github.io/blog/2006/06/17/Photographs-of-the-geographical-location-information</id>
     <content type="html"><![CDATA[<p>在JPG图像的 EXIF meta data 中，有一组是与地理位置信息相关的，包括经纬度、高度、方向等，可以记录拍摄图像当时的位置信息。不过，目前内置GPS或者带有GPS接口的相机还非常少见，所以这组数据通常是空的。</p>
 
 <p><a href="http://wwmx.org/">World-Wide Media eXchange</a> 提供了免费工具 WWMX Location Stamper，能够依照数码照片的拍摄时间将GPS记录的track的位置信息设置到照片的EXIF中。只要在拍摄的过程中同时打开GPS将track记录下来，通过这个软件处理，照片就能附加上坐标了。</p>

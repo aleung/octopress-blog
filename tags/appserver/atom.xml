@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: AppServer | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/appserver/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/appserver/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Understanding WebLogic WorkManager]]></title>
-    <link href="http://aleung.github.com/blog/2012/08/10/understanding-weblogic-workmanager/"/>
+    <link href="http://aleung.github.io/blog/2012/08/10/understanding-weblogic-workmanager/"/>
     <updated>2012-08-10T22:54:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/08/10/understanding-weblogic-workmanager</id>
+    <id>http://aleung.github.io/blog/2012/08/10/understanding-weblogic-workmanager</id>
     <content type="html"><![CDATA[<p>Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases.</p>
 
 <p>All WorkManagers share a common thread pool and a priority-based queue. The size of the thread pool is determined automatically by the kernel and resized as needed.  Priority of the requests is dynamic and computed internally to meet the stated goals. </p>
@@ -86,9 +86,9 @@
   
   <entry>
     <title type="html"><![CDATA[WebLogic在非Resource Adapter里直接使用JCA WorkManager的失败尝试]]></title>
-    <link href="http://aleung.github.com/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/"/>
+    <link href="http://aleung.github.io/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/"/>
     <updated>2010-11-02T05:43:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-</id>
+    <id>http://aleung.github.io/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-</id>
     <content type="html"><![CDATA[<p>JCA 1.5 规范定义了WorkManager API，能方便的进行任务的(多线程)并行处理。按照JCA规范的原意，WorkManager是仅提供给Resource Adapter使用的，容器会提供WorkManager实例并通过BootstrapContext注入到adapter中。可是，有时在其他场合，例如EJB、Servlet中，也希望能将请求拆分，使用WorkManager并行处理，但JEE规范中并没有提供这样的机制。</p>
 
 <p>WebLogic提供了CommonJ WorkManager API，可用于任意应用中，但这个API不在JEE规范之中，因此GlassFish是不支持的。而且，使用WebLogic CommonJ WorkManager时需要在ejb-jar.xml中加入一个类型为commonj.work.WorkManager的resource reference，这样同一个ejb包就不能在不同application server间通用了，因此我还是希望能找到一种通用的方法。</p>
@@ -113,9 +113,9 @@
   
   <entry>
     <title type="html"><![CDATA[WebLogic的classloading]]></title>
-    <link href="http://aleung.github.com/blog/2009/09/27/WebLogic-classloading/"/>
+    <link href="http://aleung.github.io/blog/2009/09/27/WebLogic-classloading/"/>
     <updated>2009-09-27T07:23:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/09/27/WebLogic-classloading</id>
+    <id>http://aleung.github.io/blog/2009/09/27/WebLogic-classloading</id>
     <content type="html"><![CDATA[<p>一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。</p>
 
 <p><a href="http://www.flickr.com/photos/leoliang/4379354938/"><img src="http://farm3.static.flickr.com/2682/4379354938_dc7cd5f47e_o.png" alt="wls_classloading" /></a></p>

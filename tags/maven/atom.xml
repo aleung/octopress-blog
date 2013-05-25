@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Maven | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/maven/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/maven/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <link href="http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
     <updated>2013-03-30T00:04:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <id>http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
     <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
 
 <p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
@@ -36,9 +36,9 @@
   
   <entry>
     <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
+    <link href="http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
     <updated>2013-03-22T23:21:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
+    <id>http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
     <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
 
 <p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
+    <link href="http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
     <updated>2013-03-19T21:32:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/19/maven-batch-deploy-artifacts</id>
+    <id>http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts</id>
     <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
 
 <p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
@@ -84,9 +84,9 @@
   
   <entry>
     <title type="html"><![CDATA[Maven Lifecycle Concepts]]></title>
-    <link href="http://aleung.github.com/blog/2011/08/26/Maven-Lifecycle-Concepts/"/>
+    <link href="http://aleung.github.io/blog/2011/08/26/Maven-Lifecycle-Concepts/"/>
     <updated>2011-08-26T11:51:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/08/26/Maven-Lifecycle-Concepts</id>
+    <id>http://aleung.github.io/blog/2011/08/26/Maven-Lifecycle-Concepts</id>
     <content type="html"><![CDATA[<p><img src="https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png" alt="" /></p>
 
 <p>(<a href="https://picasaweb.google.com/lh/photo/D_sskYHvn6CgEruCxN6lMdBJO7epb5AqjiUnD_coqoo?feat=directlink">大图链接</a>)</p>
@@ -104,9 +104,9 @@
   
   <entry>
     <title type="html"><![CDATA[Maven artifact repository setup for multiple sites team]]></title>
-    <link href="http://aleung.github.com/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team/"/>
+    <link href="http://aleung.github.io/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team/"/>
     <updated>2011-08-08T18:20:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team</id>
+    <id>http://aleung.github.io/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team</id>
     <content type="html"><![CDATA[<p>A typical way of adopting Maven to manage artifacts in an organization is to setup a repository manager locally. The repository manager proxies opensource repositories like Maven central from Internet, and hosts release and snapshot repositories for internal artifacts. It works fine in most cases, but when the team locales geographically in more than one site, and the bandwitdth between the sites is limited, or the artifacts are huge in size, the build performance will decrease, because uploading and downloading artifacts to/from the remove repository takes time.</p>
 
 <h2 id="solution-1-pubish-to-master-repository-download-from-local-repository">Solution 1: Pubish to master repository, download from local repository</h2>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: PersonalDevelopment | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/personaldevelopment/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/personaldevelopment/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[《程序员的思维修炼》读书笔记]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/"/>
+    <link href="http://aleung.github.io/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/"/>
     <updated>2012-06-05T22:27:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes</id>
+    <id>http://aleung.github.io/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes</id>
     <content type="html"><![CDATA[<p>《<a href="http://book.douban.com/subject/5372651/">程序员的思维修炼—-开发认知潜能的九堂课</a>》，国内书商起个怪名字，其实重点在副标题。 原书标题根本不是这样的。</p>
 
 <h2 id="dreyfus">德雷福斯(Dreyfus)技能模型</h2>
@@ -68,9 +68,9 @@
   
   <entry>
     <title type="html"><![CDATA[如何解决冲突]]></title>
-    <link href="http://aleung.github.com/blog/2009/03/17/How-to-solve-the-conflict/"/>
+    <link href="http://aleung.github.io/blog/2009/03/17/How-to-solve-the-conflict/"/>
     <updated>2009-03-17T05:57:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/03/17/How-to-solve-the-conflict</id>
+    <id>http://aleung.github.io/blog/2009/03/17/How-to-solve-the-conflict</id>
     <content type="html"><![CDATA[<p>今天参加了一个名为《有效率的会议管理》的培训课程，其中关于如何解决冲突的问题，比较有意义，记录下来。</p>
 
 <p>面临冲突时，一般人有以下几种行为反应的模式：</p>
@@ -117,9 +117,9 @@
   
   <entry>
     <title type="html"><![CDATA[应对压力]]></title>
-    <link href="http://aleung.github.com/blog/2009/01/29/Deal-with-the-stress/"/>
+    <link href="http://aleung.github.io/blog/2009/01/29/Deal-with-the-stress/"/>
     <updated>2009-01-29T23:34:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/01/29/Deal-with-the-stress</id>
+    <id>http://aleung.github.io/blog/2009/01/29/Deal-with-the-stress</id>
     <content type="html"><![CDATA[<p>在应对压力的能力方面，我一直都不大好。一旦工作压力大了，同时要处理的事情多了，就会手忙脚乱，心情烦躁，工作效率也降低，忙乎一天却似乎什么都没有干成。另外睡觉也会一些怪梦，例如要跑步但脚像灌了铅一样，骑车怎么蹬也骑不动。</p>
 
 <p>要应对压力，首先要知道压力是怎么来的，因此我尝试做一些分析。这里并没有给出应对压力的方法，我自己还不知道到底怎么做才对。实际上也不会有一套万能的方法，关键是要学会怎么会分析面临的每个具体问题。</p>
@@ -142,9 +142,9 @@
   
   <entry>
     <title type="html"><![CDATA[目标，计划]]></title>
-    <link href="http://aleung.github.com/blog/2004/04/05/Target-plan/"/>
+    <link href="http://aleung.github.io/blog/2004/04/05/Target-plan/"/>
     <updated>2004-04-05T07:02:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2004/04/05/Target-plan</id>
+    <id>http://aleung.github.io/blog/2004/04/05/Target-plan</id>
     <content type="html"><![CDATA[<p>不知不觉的，差不多三十岁了。都说三十是人生一个关口，对于一名程序员尤甚。即将告别人生的一个段落，回望过去，看到自己存在不少缺点；展望未来，路要怎么走，不免有些患得患失。</p>
 
 <p>前两天跟<a href="http://flyisland.blogbus.com">flyisland</a>聊天，他说（书上说）：失败的最重要原因，是没有长期目标；第二个原因，是没有短期目标。是啊，总是觉得时间过得很快，到底时间是怎么过去的呢？做些什么不做些什么，年轻的时候可以恣意而行，但现在不行了。</p>
@@ -159,9 +159,9 @@
   
   <entry>
     <title type="html"><![CDATA[Idea的记录]]></title>
-    <link href="http://aleung.github.com/blog/2003/12/17/Idea-/"/>
+    <link href="http://aleung.github.io/blog/2003/12/17/Idea-/"/>
     <updated>2003-12-17T00:47:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2003/12/17/Idea-</id>
+    <id>http://aleung.github.io/blog/2003/12/17/Idea-</id>
     <content type="html"><![CDATA[<p>记录idea最有效的方法应该是纸和笔，比较符合思维习惯。电脑是好工具，但是电脑不一定在身边，思维最有创造性的时候往往是在非工作状态中，例如洗澡、走在路上的时候。有idea的时候必须尽快记录下来，即使打断了当前的工作。有idea的时候是最有价值的。另一方面，电脑输入的速度也不一定赶得上思维，还有可能因为软件人机界面而局限了思维（Tablet PC是一个好的方向，我以前写过一点有关的<a href="http://blogbus.com/blogbus/blog/diary.php?diaryid=52190">东西</a>）。我也打算尝试用palm来做记录，不知道这样的小机器是否能够提供象纸笔一样足够灵活的记录手段。</p>
 
 <p>电子化是资料整理利用的有力途径，在一定的时间，必须把笔记本中的记录整理输入到电脑中。我习惯是以日期排列，日记的形式。资料整理应该是作为必做的任务，例如在todo list中加入一项：<em>整理记事本xx页的记录</em>。网上的blog可以说是个副产品，我并不会用internet上的blog来作为主要记录手段，太不可靠；在网上公布出来，是希望知识与思维能够共享。</p>

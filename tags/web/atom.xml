@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Web | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/web/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/web/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[apigee]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/31/apigee/"/>
+    <link href="http://aleung.github.io/blog/2012/07/31/apigee/"/>
     <updated>2012-07-31T23:20:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/31/apigee</id>
+    <id>http://aleung.github.io/blog/2012/07/31/apigee</id>
     <content type="html"><![CDATA[<p><a href="http://apigee.com/">Apigee</a> is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it.</p>
 
 <p>Apigee is an API management platform and services company. It benefits both API providers and developers who build their apps with APIs.</p>
@@ -102,9 +102,9 @@
   
   <entry>
     <title type="html"><![CDATA[Web 2.0 渐入佳境]]></title>
-    <link href="http://aleung.github.com/blog/2007/02/03/Web-2-0-/"/>
+    <link href="http://aleung.github.io/blog/2007/02/03/Web-2-0-/"/>
     <updated>2007-02-03T23:21:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2007/02/03/Web-2-0-</id>
+    <id>http://aleung.github.io/blog/2007/02/03/Web-2-0-</id>
     <content type="html"><![CDATA[<p>刚刚上豆瓣去找书的时候，发现豆瓣新增了一个叫做”九点”的栏目，还是与”我看”“我读”“我听”并列的。好奇的打开来看看，原来是blog的聚合，将原来”我上”的功能扩展了，通过RSS将各个blog的内容直接聚合过来。<br />
 试了一下，相当喜欢，虽然这个功能上线才几天，但做到很不错了。可以看到大众推荐的blog文章，也可以看自己订阅的bolg。结合了豆瓣原有的自动推荐，不时会发现到一些符合自己口味的blog/文章。<br />
 它还稀奇古怪的弄出了”二套”“三套”等等的分类，还没有搞清楚什么意思，大概是什么算法计算出来的自动分类。我开始还以为是中央台的第几套节目呢。</p>
@@ -119,9 +119,9 @@
   
   <entry>
     <title type="html"><![CDATA[还是blogline好用]]></title>
-    <link href="http://aleung.github.com/blog/2006/07/14/Or-blogline-works-better/"/>
+    <link href="http://aleung.github.io/blog/2006/07/14/Or-blogline-works-better/"/>
     <updated>2006-07-14T08:00:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2006/07/14/Or-blogline-works-better</id>
+    <id>http://aleung.github.io/blog/2006/07/14/Or-blogline-works-better</id>
     <content type="html"><![CDATA[<p>试过了好几种RSS阅读器，换来换去都感觉总是差那么一点点不够好用。最终还是用回了<a href="http://www.bloglines.com/">blogline</a>,简单、方便，这就够了。不过前提是网络的速度够快，好像在国内访问的速度不怎么样，也许又得换了。</p>
 
 <p>2009-5-31 Updated: 现在应该改为”还是Google Reader好用” <img src="http://public.blogbus.com/biaoqing/163/11.gif" alt="" /></p>
@@ -130,9 +130,9 @@
   
   <entry>
     <title type="html"><![CDATA[如何在不支持中文的网站中输入中文信息]]></title>
-    <link href="http://aleung.github.com/blog/2006/06/28/How-does-not-support-Chinese-sites-in-the-input-Chinese-information/"/>
+    <link href="http://aleung.github.io/blog/2006/06/28/How-does-not-support-Chinese-sites-in-the-input-Chinese-information/"/>
     <updated>2006-06-28T12:23:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2006/06/28/How-does-not-support-Chinese-sites-in-the-input-Chinese-information</id>
+    <id>http://aleung.github.io/blog/2006/06/28/How-does-not-support-Chinese-sites-in-the-input-Chinese-information</id>
     <content type="html"><![CDATA[<p>有些网站不支持汉字，输入的中文字符显示不出来，变成了问号。geocaching.com就是这样。这通常是在文字处理的某个过程中只能处理7bit字符，将汉字过滤掉了。</p>
 
 <p>在HTML/XML中对于这种在字符集以外的字符的表示有一种特殊方法：字符实体(character entity)，用字符实体来代替一个字符，相当于编程语言里面的转义符。HTML字符实体都是用&amp;开头，分号结尾的，又分为两种，命名字符实体(named character entity)和数字字符实体(numeric character entity)，命名字符实体数量不多，都是些常用的符号，例如 表示空格；数字字符实体是将unicode字符编码的十进制或十六进制数字放在&amp;和;之间，例如字(十进制)和字(十六进制)。这样，所有unicode字符都变成了7bit ASCII编码，如果在不支持汉字的网站上输入这样编码后的中文，就不会在处理过程中被过滤了，只要浏览器支持，就能够把这些字符还原显示出来。</p>
@@ -155,9 +155,9 @@
   
   <entry>
     <title type="html"><![CDATA[藏书与藏碟]]></title>
-    <link href="http://aleung.github.com/blog/2005/11/05/Collection-and-hiding-disc/"/>
+    <link href="http://aleung.github.io/blog/2005/11/05/Collection-and-hiding-disc/"/>
     <updated>2005-11-05T01:32:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2005/11/05/Collection-and-hiding-disc</id>
+    <id>http://aleung.github.io/blog/2005/11/05/Collection-and-hiding-disc</id>
     <content type="html"><![CDATA[<p>书买了不少，放在办公室的书柜里老是被人家拿走就失踪了，时间长了自己都忘记自己有哪些书了。本来想找过软件来记录藏书资料的，却找着了一个网站 <a href="http://www.listal.com/">www.listal.com</a> ,在线管理自己的book/music/dvd。而且它能够根据ISBN号自动从 <a href="http://amazon.com/">amazon.com</a> 获取书籍的信息。</p>
 
 <p>我的页面是 <a href="http://aleung.listal.com/">aleung.listal.com</a> ，上面列出的都是英文版的书，其实我英文没有这么厉害，大部分都是中译版，不过为了能够自动取得书籍信息，我都登记了原版书的编号。有空试试把DVD也记录上去。</p>

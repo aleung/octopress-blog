@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/android/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/android/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[看老罗的锤子发布会]]></title>
-    <link href="http://aleung.github.com/blog/2013/04/03/my-opinion-on-smartisan-os/"/>
+    <link href="http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os/"/>
     <updated>2013-04-03T13:05:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/04/03/my-opinion-on-smartisan-os</id>
-    <content type="html"><![CDATA[<p>两个小时，演讲太啰嗦，时间压缩一半可能会精炼很多，乔布斯有这么多废话吗？另外就是老罗一贯的自恋。我突然想找小米首次发布会来看看，看雷布斯的表现如何。</p>
+    <id>http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os</id>
+    <content type="html"><![CDATA[<p>两个小时，演讲太啰嗦，时间压缩一半可能会精炼很多，乔布斯有这么多废话吗？另外就是老罗一贯的自恋。我突然想找小米首次发布会来看看，看雷布斯的表现如何。老罗已经是名嘴，雷布斯更惨不忍睹？</p>
 
 <p>从发布会的信息上看，锤子是一个做了UI / HI (Human Interface) 优化的Android系统：</p>
 
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[怎么处理Android耗电严重的问题]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/10/which-app-is-draining-your-android-bettery/"/>
+    <link href="http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/"/>
     <updated>2013-03-10T21:49:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/10/which-app-is-draining-your-android-bettery</id>
+    <id>http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery</id>
     <content type="html"><![CDATA[<p>Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程，也只会在必要的时候唤醒进行短时间工作。但有些应用开发者不懂怎么合理设计应用后台任务，造成耗电问题。</p>
 
 <p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
@@ -61,9 +61,9 @@
   
   <entry>
     <title type="html"><![CDATA[怎样在OSX上adb连接小米2]]></title>
-    <link href="http://aleung.github.com/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
+    <link href="http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
     <updated>2012-12-30T20:24:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/12/30/mi2-usb-debug-on-osx</id>
+    <id>http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx</id>
     <content type="html"><![CDATA[<p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
 
 <p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[四儿子无望，粗粮也好吧]]></title>
-    <link href="http://aleung.github.com/blog/2012/12/23/mi2/"/>
+    <link href="http://aleung.github.io/blog/2012/12/23/mi2/"/>
     <updated>2012-12-23T14:03:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/12/23/mi2</id>
+    <id>http://aleung.github.io/blog/2012/12/23/mi2</id>
     <content type="html"><![CDATA[<p><img src="/attachments/2012/12/mi2<em>focus</em>01s.jpg"></p>
 
 <p>Xperia U 手機用了半年，<a href="/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
@@ -95,9 +95,9 @@
   
   <entry>
     <title type="html"><![CDATA[Android: 在應用中設定locale]]></title>
-    <link href="http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application/"/>
+    <link href="http://aleung.github.io/blog/2012/10/06/change-locale-in-android-application/"/>
     <updated>2012-10-06T00:25:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/10/06/change-locale-in-android-application</id>
+    <id>http://aleung.github.io/blog/2012/10/06/change-locale-in-android-application</id>
     <content type="html"><![CDATA[<p>近幾天把以前做的跑步步频训练软件 <a href="https://play.google.com/store/apps/details?id=leoliang.runningcadence">RunningCadence</a> 加上了多語言支持，可以在應用中設定界面以及語音播報所用的語言。</p>
 
 <p>對多語言的支持，Android已經做得很完善，開發者只需要在應用中加入各種locale的資源文件。但是，應用只會使用系統全局設置的locale，而要在應用自己的設定中選擇locale，以及要讓設定立即生效，就需要開發者自己去實現了。</p>

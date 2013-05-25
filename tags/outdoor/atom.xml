@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Outdoor | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/outdoor/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/outdoor/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[复旦学生黄山被困事件的感想]]></title>
-    <link href="http://aleung.github.com/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling/"/>
+    <link href="http://aleung.github.io/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling/"/>
     <updated>2010-12-23T19:08:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling</id>
+    <id>http://aleung.github.io/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling</id>
     <content type="html"><![CDATA[<p>很久没有玩户外了，对相关的新闻不再关注。复旦大学生黄山遇险的事情网上流传很广，但我一直也没有点进去看过。今天在Google Reader上看到朋友转发的文章，终于知道是怎么回事了。</p>
 
 <p>关于救援技术和道德层面的东西就不说了。磨房有个<a href="http://www.doyouhike.net/forum/shrescue/476142,0,0,1.html">帖子</a>，从队伍被困就开始讨论了，可以从中了解一些细节。说说我的几个感想：</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[户外活动应该选择什么型号的GPS？]]></title>
-    <link href="http://aleung.github.com/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-/"/>
+    <link href="http://aleung.github.io/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-/"/>
     <updated>2003-11-26T01:36:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-</id>
+    <id>http://aleung.github.io/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-</id>
     <content type="html"><![CDATA[<p>在玩户外的人中，GPS的拥有量开始增加，什么型号的GPS适合户外使用？我在买GPS之前看过不少资料，可以参考一下。</p>
 
 <p><a href="http://gpsinformation.net">GPS information</a>是一个很值得看的站点，几大GPS厂家的设备信息、GPS相关软件、使用心得等等资料非常齐全。</p>

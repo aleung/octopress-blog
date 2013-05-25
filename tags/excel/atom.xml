@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Excel | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/excel/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/excel/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[利用Excel进行分组统计及生成直方图]]></title>
-    <link href="http://aleung.github.com/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/"/>
+    <link href="http://aleung.github.io/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/"/>
     <updated>2007-03-17T02:19:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram</id>
+    <id>http://aleung.github.io/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram</id>
     <content type="html"><![CDATA[<p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
 
 <p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>

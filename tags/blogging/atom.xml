@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Blogging | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/blogging/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/blogging/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[migrate my blog to github]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/25/migrate-my-blog-to-github/"/>
+    <link href="http://aleung.github.io/blog/2012/06/25/migrate-my-blog-to-github/"/>
     <updated>2012-06-25T23:40:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/25/migrate-my-blog-to-github</id>
+    <id>http://aleung.github.io/blog/2012/06/25/migrate-my-blog-to-github</id>
     <content type="html"><![CDATA[<p>个人blog再一次搬家，从 Google Application Engine (GAE) 搬到 github 上来。原来的<a href="http://good-good-study.appspot.com/">地址</a>依然能够访问，但是不会再更新了，新文章都发到这里。Feed订阅地址不变，建议使用Google Reader订阅本站。</p>
 
 <h2 id="section">搬迁原因</h2>
@@ -78,9 +78,9 @@
   
   <entry>
     <title type="html"><![CDATA[试验 Octopress 的各种特性]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/24/try-octopress-markdown-features/"/>
+    <link href="http://aleung.github.io/blog/2012/06/24/try-octopress-markdown-features/"/>
     <updated>2012-06-24T23:08:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/24/try-octopress-markdown-features</id>
+    <id>http://aleung.github.io/blog/2012/06/24/try-octopress-markdown-features</id>
     <content type="html"><![CDATA[<p>这个blog使用的markdown解释器是<a href="http://kramdown.rubyforge.org/quickref.html">kramdown</a>，比起标准markdown有所增强。再加上Jekyll的一些插件特供的特殊功能。</p>
 
 <h2 id="markdown">Markdown基本语法</h2>
@@ -259,9 +259,9 @@ public class HelloWorld {
   
   <entry>
     <title type="html"><![CDATA[独立博客一周年纪念]]></title>
-    <link href="http://aleung.github.com/blog/2011/02/14/Independent-blog-of-a-week/"/>
+    <link href="http://aleung.github.io/blog/2011/02/14/Independent-blog-of-a-week/"/>
     <updated>2011-02-14T01:34:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/02/14/Independent-blog-of-a-week</id>
+    <id>http://aleung.github.io/blog/2011/02/14/Independent-blog-of-a-week</id>
     <content type="html"><![CDATA[<p>Good good study, day day up 这个博客从2001年就开始写，正如副标题所说，定位为记录学习心得和一些想法（之前我还有另外一个摄影、旅行主题的博客），基本上谈的就是理科生的话题。原来一直是放在BlogBus上的，直到去年初，实在忍受不了BlogBus疯狂的内容审查，搬出来做独立博客。</p>
 
 <p>查看历史记录，在这个搭建于Google App Engine上的新blog上发的<a href="http://good-good-study.appspot.com/blog/posts/1001">第一篇文章</a>是在去年的2月14日，居然是在情人节！今天是2月13日，也就是这个独立博客已经一周岁了。</p>
@@ -278,9 +278,9 @@ public class HelloWorld {
   
   <entry>
     <title type="html"><![CDATA[这个blog现在支持feed输出了]]></title>
-    <link href="http://aleung.github.com/blog/2010/02/14/This-blog-now-support-feed-output/"/>
+    <link href="http://aleung.github.io/blog/2010/02/14/This-blog-now-support-feed-output/"/>
     <updated>2010-02-14T18:16:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/02/14/This-blog-now-support-feed-output</id>
+    <id>http://aleung.github.io/blog/2010/02/14/This-blog-now-support-feed-output</id>
     <content type="html"><![CDATA[<p>支持atom比我想象中简单很多，根本用不着什么library，多加一个xml template就行了。</p>
 
 <p>如果你的浏览器支持，就能在地址栏右边看到feed的图标，点击就可以选择阅读器进行订阅。或者在阅读器（例如Google Reader）里面输入这个网站的地址，也可以订阅。</p>
@@ -295,9 +295,9 @@ public class HelloWorld {
   
   <entry>
     <title type="html"><![CDATA[基本功能完备，可以公开了]]></title>
-    <link href="http://aleung.github.com/blog/2010/02/14/Basic-function-complete-can-open/"/>
+    <link href="http://aleung.github.io/blog/2010/02/14/Basic-function-complete-can-open/"/>
     <updated>2010-02-14T18:16:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/02/14/Basic-function-complete-can-open</id>
+    <id>http://aleung.github.io/blog/2010/02/14/Basic-function-complete-can-open</id>
     <content type="html"><![CDATA[<p>一个blog所需要的功能的最小集合已经完备了，可以投入使用，再边用边改进了：</p>
 
 <ul>

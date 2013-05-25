@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Subversion这个以替代CVS为目标的版本管理工具，看来已经开始获得广泛支持了。经历了4年开发，大概1个月一次小版本发布，今年年初终于发布了version 1.0 release，开发过程平稳而谨慎。我去年曾经试用过一个interim release版本，作为本地个人使用的版本管理工具， &hellip;">
+  <meta name="description" content="编写测试程序, 发现超过1000个线程, 程序执行就会出现内存错误. 原来我还以为是windows对线程数量有限制, 查资料才知道支持线程多少并不是操作系统决定的, 而是与程序的堆栈空间大小有关. 在VC中, 修改Project Setting - Link - Stack allocation &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aleung.github.com/blog/blog/page/46/">
+  <link rel="canonical" href="http://aleung.github.io/blog/blog/page/46/">
   <link href="/blog/favicon.png" rel="icon">
   <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/blog/javascripts/modernizr-2.0.js"></script>
@@ -61,7 +61,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -76,282 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/04/30/Promising-subversion/">前景光明的subversion</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-04-30T23:47:00+08:00" pubdate data-updated="true">2004-04-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://subversion.tigris.org/">Subversion</a>这个以替代CVS为目标的版本管理工具，看来已经开始获得广泛支持了。经历了4年开发，大概1个月一次小版本发布，今年年初终于发布了version 1.0 release，开发过程平稳而谨慎。我去年曾经试用过一个interim release版本，作为本地个人使用的版本管理工具，已经感觉相当满意，基本可替代CVS。现在release版本发行后，更是在网上看到一些人说打算从CVS迁移到SVN了。在网上可以找到一些达到实用阶段的兼容subversion的软件工具、plugin，从另一个侧面也反映出subversion正在一步步迈向自己的目标。</p>
-
-<p>以前公司的开发团队使用CVS，配合使用<a href="http://www.cvstrac.org/">CVStrac</a>，对于这样的搭配我感到比较满意。CVStrac作为轻量级的issue tracking工具，确实做得很到位，issue/bug record、CVS track-in record和wiki的无缝整合，构成了简单而实用的web base软件项目管理系统，对于小型项目非常合适。</p>
-
-<p>现在，与SVN配合的类似工具也有了，<a href="http://www.edgewall.com/products/trac/">Trac</a>，完全就是CVStrac的一个clone，不过是用python开发的，从screenshot上看很漂亮，细节上似乎做得比CVStrac要好。不过现在公司用ClearCase，没有机会试用这些轻量级工具了。我觉得ClearCase的client并不好用，缺乏象cvsweb这样的直观的文件、目录浏览、trac这样的check-in浏览功能。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/04/30/Promising-subversion/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/04/30/Solve-Xerces-C-XML-parser-EnitiyResolver-doesn-t-work-in-the-problem/">解决Xerces-C XML parser中EnitiyResolver不起作用的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2004-04-30T01:32:00+08:00" pubdate data-updated="true">2004-04-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在SAX和DOM两种paser API中，均提供了EntityResolver接口，应用程序可通过实现这个接口的resolveEntity()方法来实现对外部实体访问的控制，例如将对网络URL的访问重定向为对本地文件或者数据库的访问。Xerces软件包提供了例子redirect来演示这个功能。</p>
-
-<p>在我们的程序中，parse VXML文件时需要使用外部的schema，而这些schema又会间接引用其他的schema或者DTD，这些外部实体都是通过URL形式的system id来指定的（基本上都是在<a href="http://www.w3c.org">www.w3c.org</a>上）。考虑到程序运行环境不一定与internet连接，还有远程网络的效率也不高，我们在程序中实现了自己的EntityResolver，把所有对这些schemas、DTDs的访问都截取下来，返回程序中内置的拷贝。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">class</span> <span class="nc">DTDResolver</span> <span class="o">:</span> <span class="k">public</span> <span class="n">EntityResolver</span> <span class="p">{</span>
-</span><span class="line"><span class="k">public</span><span class="o">:</span>
-</span><span class="line">    <span class="k">virtual</span> <span class="n">InputSource</span> <span class="o">*</span> <span class="n">resolveEntity</span><span class="p">(</span><span class="k">const</span> <span class="n">XMLCh</span> <span class="o">*</span> <span class="k">const</span> <span class="n">publicId</span><span class="p">,</span>
-</span><span class="line">        <span class="k">const</span> <span class="n">XMLCh</span> <span class="o">*</span> <span class="k">const</span> <span class="n">systemId</span><span class="p">)</span>
-</span><span class="line">    <span class="p">{</span>
-</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">Compare</span><span class="p">(</span><span class="n">systemId</span><span class="p">,</span> <span class="s">L&quot;http://www.w3.org/TR/voicexml20/vxml.xsd&quot;</span><span class="p">))</span> <span class="p">{</span>
-</span><span class="line">            <span class="n">VXIcharToXMLCh</span> <span class="n">name</span><span class="p">(</span><span class="s">L&quot;http://www.w3.org/TR/voicexml20/vxml.xsd (SB)&quot;</span><span class="p">);</span>
-</span><span class="line">            <span class="k">return</span> <span class="k">new</span> <span class="n">MemBufInputSource</span><span class="p">(</span><span class="n">VALIDATOR_DATA</span> <span class="o">+</span> <span class="n">VALIDATOR_VXML</span><span class="p">,</span>
-</span><span class="line">                <span class="n">VALIDATOR_VXML_SIZE</span><span class="p">,</span>
-</span><span class="line">                <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="kc">false</span><span class="p">);</span>
-</span><span class="line">        <span class="p">}</span>
-</span><span class="line">
-</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">Compare</span><span class="p">(</span><span class="n">systemId</span><span class="p">,</span> <span class="s">L&quot;http://www.w3.org/2001/xml.xsd&quot;</span><span class="p">))</span> <span class="p">{</span>
-</span><span class="line">            <span class="n">VXIcharToXMLCh</span> <span class="n">name</span><span class="p">(</span><span class="s">L&quot;http://www.w3.org/2001/xml.xsd&quot;</span><span class="p">);</span>
-</span><span class="line">            <span class="k">return</span> <span class="k">new</span> <span class="n">MemBufInputSource</span><span class="p">(</span><span class="n">VALIDATOR_DATA</span> <span class="o">+</span> <span class="n">VALIDATOR_XML</span><span class="p">,</span>
-</span><span class="line">                <span class="n">VALIDATOR_XML_SIZE</span><span class="p">,</span>
-</span><span class="line">                <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="kc">false</span><span class="p">);</span>
-</span><span class="line">        <span class="p">}</span>
-</span><span class="line">
-</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">Compare</span><span class="p">(</span><span class="n">systemId</span><span class="p">,</span> <span class="s">L&quot;XMLSchema.dtd&quot;</span><span class="p">))</span> <span class="p">{</span>
-</span><span class="line">            <span class="n">VXIcharToXMLCh</span> <span class="n">name</span><span class="p">(</span><span class="s">L&quot;XMLSchema.dtd&quot;</span><span class="p">);</span>
-</span><span class="line">            <span class="k">return</span> <span class="k">new</span> <span class="n">MemBufInputSource</span><span class="p">(</span><span class="n">VALIDATOR_DATA</span> <span class="o">+</span> <span class="n">VALIDATOR_SCHEMA_DTD</span><span class="p">,</span>
-</span><span class="line">                <span class="n">VALIDATOR_SCHEMA_DTD_SIZE</span><span class="p">,</span>
-</span><span class="line">                <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="kc">false</span><span class="p">);</span>
-</span><span class="line">        <span class="p">}</span>
-</span><span class="line">
-</span><span class="line">        <span class="c1">// ......</span>
-</span><span class="line">
-</span><span class="line">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class="line">    <span class="p">}</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">// ......</span>
-</span><span class="line">
-</span><span class="line"><span class="n">parser</span> <span class="o">=</span> <span class="n">XMLReaderFactory</span><span class="o">::</span><span class="n">createXMLReader</span><span class="p">();</span>
-</span><span class="line"><span class="n">DTDResolver</span> <span class="o">*</span> <span class="n">dtd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DTDResolver</span><span class="p">();</span>
-</span><span class="line"><span class="n">parser</span><span class="o">-&gt;</span><span class="n">setEntityResolver</span><span class="p">(</span><span class="n">dtd</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>在测试中发现，对某些外部实体的访问成功截取了，但是另外一些却不成功，parser依然尝试通过网络访问，然后由于网络不通而访问失败，造成xml文件无法parse。</p>
-
-<p>对程序进行跟踪，发现了问题出现的规律：所有对schema文件的引用处理都正常，无论是include还是import方式，也无论是多少层的间接引用；在被parse的XML文件中DOCTYPE声明的外部实体引用，处理也正常，故此xerces自带的redirect例子是不会出问题的；但是，schema文件的DOCTYPE声明的外部实体引用就不能被正确处理了，根本不会调用指定的resolveEntity()方法。</p>
-
-<p>这时，基本上可以确认问题是出在xerces身上，而不是我们的程序的问题了。于是仔细跟踪xerces代码对schema parse的执行过程，最终发现了问题。</p>
-
-<p>XercesDOMParser类有两个resolveEnitiy方法：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XercesDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">publicId</span><span class="p">,</span>
-</span><span class="line">                                            <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">systemId</span><span class="p">,</span>
-</span><span class="line">                                            <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">baseURI</span><span class="p">)</span>
-</span><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fEntityResolver</span><span class="p">)</span>
-</span><span class="line">        <span class="k">return</span> <span class="n">fEntityResolver</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">);</span>
-</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XercesDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">XMLResourceIdentifier</span><span class="o">*</span> <span class="n">resourceIdentifier</span><span class="p">)</span>
-</span><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fEntityResolver</span><span class="p">)</span>
-</span><span class="line">        <span class="k">return</span> <span class="n">fEntityResolver</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">resourceIdentifier</span><span class="o">-&gt;</span><span class="n">getPublicId</span><span class="p">(),</span>
-</span><span class="line">                                                <span class="n">resourceIdentifier</span><span class="o">-&gt;</span><span class="n">getSystemId</span><span class="p">());</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fXMLEntityResolver</span><span class="p">)</span>
-</span><span class="line">        <span class="k">return</span> <span class="n">fXMLEntityResolver</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">resourceIdentifier</span><span class="p">);</span>
-</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>根据代码注释，前者是deprecated的，被后者代替。</p>
-
-<p>由XercesDOMParser派生出XSDDOMParser类，这个类是专门用来parser xsd文件（也就是schema）的。这个类重载了XercesDOMParser的三个参数的resolveEntity方法，用fUserEntityHandler代替fEntityResolver的方法调用。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XSDDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">publicId</span><span class="p">,</span>
-</span><span class="line">                                         <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">systemId</span><span class="p">,</span>
-</span><span class="line">                                         <span class="k">const</span> <span class="n">XMLCh</span><span class="o">*</span> <span class="k">const</span> <span class="n">baseURI</span><span class="p">)</span>
-</span><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fUserEntityHandler</span><span class="p">)</span>
-</span><span class="line">        <span class="k">return</span> <span class="n">fUserEntityHandler</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">,</span> <span class="n">baseURI</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>但是XSDDOMParser没有重载第二个resolveEntity方法，估计是第二个方法是后来才加入XercesDOMParser的，在XSDDOMParser中没有同步修改。因此，依然是使用fEntityResolver，而不是fUserEntityHandler，就造成了没有调用到我们定义的resolveEntity方法，依然按照原来的system id去访问网络了。</p>
-
-<p>问题找出来，解决就简单了，在XSDDOMParser中把另外一个resolveEntity方法也重载了，改为使用fUserEntityHandler。修改之后，测试通过。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="n">InputSource</span><span class="o">*</span> <span class="n">XSDDOMParser</span><span class="o">::</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">XMLResourceIdentifier</span><span class="o">*</span> <span class="n">resourceIdentifier</span><span class="p">)</span>
-</span><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">fUserEntityHandler</span><span class="p">)</span>
-</span><span class="line">        <span class="k">return</span> <span class="n">fUserEntityHandler</span><span class="o">-&gt;</span><span class="n">resolveEntity</span><span class="p">(</span><span class="n">resourceIdentifier</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个问题在Xerces-C 2.4和2.5版本都存在，IBM的XML4C与Xerces-C是影子项目，也有同样的问题。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/04/30/Solve-Xerces-C-XML-parser-EnitiyResolver-doesn-t-work-in-the-problem/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -550,6 +274,108 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/03/01/MeeSoft-/">MeeSoft的软件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-03-01T03:11:00+08:00" pubdate data-updated="true">2004-03-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MeeSoft(<a href="http://meesoft.logicnet.dk/">http://meesoft.logicnet.dk/</a>)这个网站有不少有意思的免费软件，包括Command(还记得DOS时代的NC吗？)、SmartMorph、图象增强(可以修复对焦不准的照片啊!)、图表制作、mp3管理、HTML优化等等。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/03/01/MeeSoft-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/02/22/MAPSOURCE-software-to-lose-weight/">给MAPSOURCE软件减肥</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-02-22T03:04:00+08:00" pubdate data-updated="true">2004-02-22</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MAPSOURCE软件按经纬度的块存储文件，可以把世界其它地方的块删除，仅保留中国地区的文件块,从04309845.IMG到04311439.IMG，节约不少硬盘空间。不用担心，世界地图依然存在的，只是局部细节没有了，我想不必关心美国的乡村小路吧？</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/02/22/MAPSOURCE-software-to-lose-weight/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/47/">&larr; Older</a>
@@ -608,7 +434,7 @@
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>

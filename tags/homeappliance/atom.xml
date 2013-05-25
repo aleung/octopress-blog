@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: HomeAppliance | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/homeappliance/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/homeappliance/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[松下H540U洗衣机的设计缺陷]]></title>
-    <link href="http://aleung.github.com/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws/"/>
+    <link href="http://aleung.github.io/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws/"/>
     <updated>2010-06-28T18:35:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws</id>
+    <id>http://aleung.github.io/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws</id>
     <content type="html"><![CDATA[<p>家里的松下H540U波轮洗衣机，使用了大概一年半左右开始出现撞桶现象，就是在洗衣的过程中，每次波轮起动（或反转）时，洗衣桶会碰撞到箱体。因为箱体相应位置贴了防撞海绵，摩擦时发出很大很难听的”吱吱”的声音。打开上盖检查过，发现是箱体吊挂系统变形所致，我觉得这属于设计上的缺陷。</p>
 
 <p>如果不清楚波轮洗衣机吊挂系统的结构，可以看看<a href="http://wenku.baidu.com/view/b996ea335a8102d276a22ff5.html">全自动波轮洗衣机培训手册</a>的3.1节。洗衣机的桶体是靠四根吊杆悬挂在箱体的四个角上的，如果吊杆的长度不一致就会造成桶体不平衡。</p>

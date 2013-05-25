@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="近日看了报道，说长期使用鼠标，很容易导致手腕疾病。以前一直右手用鼠标的，于是换了左手，避免老是一只手过于劳累。不过刚开始还真不习惯，左手总是笨笨的。 鼠标的功能是为了给用户提供一个全屏幕定位的手段，但是，要能准确地选定屏幕的位置，还是需要一个反馈的过程：手移动鼠标，屏幕鼠标指针反映出当前的位置， &hellip;">
+  <meta name="description" content="现在的linux安装盘通常都有几张，要找一个rpm包在哪张盘就很麻烦了，要一张张放进光驱里面看。在sourceforge.net上面找到whichcd这个小工具，能够告诉你某个rpm在第几张光盘，也能告诉你当需要某个文件/命令时应该安装哪个rpm。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aleung.github.com/blog/blog/page/41/">
+  <link rel="canonical" href="http://aleung.github.io/blog/blog/page/41/">
   <link href="/blog/favicon.png" rel="icon">
   <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/blog/javascripts/modernizr-2.0.js"></script>
@@ -61,7 +61,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:aleung.github.com/blog" />
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -76,119 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/09/Eye-control-the-mouse/">眼控鼠标</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-09T08:44:00+08:00" pubdate data-updated="true">2004-12-09</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近日看了报道，说长期使用鼠标，很容易导致手腕疾病。以前一直右手用鼠标的，于是换了左手，避免老是一只手过于劳累。不过刚开始还真不习惯，左手总是笨笨的。</p>
-
-<p>鼠标的功能是为了给用户提供一个全屏幕定位的手段，但是，要能准确地选定屏幕的位置，还是需要一个反馈的过程：手移动鼠标，屏幕鼠标指针反映出当前的位置，手调整鼠标移动的方向和速度，直到鼠标指针移动到期望的位置。在这个过程中，要选择的地方就是目光集中所在的地方，故此，如果能够监测到眼球注视的位置，就能获取到用户需要定位的地方，这将是一种最为直观的手段——看哪指哪。这样带来好处，一方面是定位直观快速，另一方面是能将手从鼠标上解放出来，不需要在键盘与鼠标之间来回移动，减少疲劳了。</p>
-
-<p>我想，这“眼控鼠标”应该不算什么天方夜谭的想法吧，canon单反相机的眼控对焦技术已经商用化很多年了，起码说明在技术原理上是可行的。当然，相机取景时眼睛是紧贴取景框的，而使用电脑时距离会远很多，而且头部会移动，所以实现难度可能不小。但是，在这个技术飞速发展的年代，只要能想到，有什么不可能？</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/09/Eye-control-the-mouse/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/07/ozi-/">Ozi提供了地图拼合的工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-07T09:03:00+08:00" pubdate data-updated="true">2004-12-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ozi提供了一个地图合并的工具ozimapmerge, 能够将不同区域、不同比例、不同投影方式的多个地图合并生成新的地图。使用很简单，输入可以是所有ozi支持的地图，带有map文件就可以了；选取一定的区域，指定生成地图的线数，就能输出合并后的地图，格式为ozi专用的ozfx3，并且会生成配套的map文件。如果地图重叠，生成图会选择最精细那幅。</p>
-
-<p>根据我现在的摸索，这个工具有两个用途：</p>
-
-<ul>
-  <li>我拥有低精度的大区域地图和高精度的局部地图，利用ozimapmerge，可以把高精度地图镶嵌到低精度地图中。 </li>
-  <li>多幅相邻的地图拼合成一张大图。</li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/07/ozi-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -403,6 +290,137 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/11/12/The-company-group-discussion-in-the-dialogue-about-personal-finance/">公司讨论组里关于个人理财的对话</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-11-12T20:11:00+08:00" pubdate data-updated="true">2004-11-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>我</em>：这个表格不算很细了:) 个人理财有不少好软件，国产的财智家庭理财做得不错，我就喜欢microsoft money</p>
+
+<p><em>同事</em>：请问你用了多久？我就用过一些PDA和电脑上的理财软件，还可以同步的，不过最后发现：所有这些都不过是自找麻烦，还是在白纸上写下来的最好_</p>
+
+<p><em>我</em>：用纸写下来，只是记录，但是不能管理啊？你想知道现在净资产是多少，要算半天；想知道最近什么方面花钱多了，看不出来；比较一下今年总支出跟去年总支出差多少，很难算吧？而这些在软件上面有直观的图表曲线显示出来。MS money的强大之处是report很丰富和灵活，其他理财软件要差远了</p>
+
+<p><em>同事</em>：想问个私人的问题：你用了多久？因为刚用的时候我也这么想啊，可是后来数据丢失……不是拆台，只是想求证一下。或者我应该两种方式都采用。只是每天就比较烦，要记两次。我经常过了十天才发现：我又忘记记账了_</p>
+
+<p><em>我</em>：我用了好几年，具体记不清了，起码超过3年。欢迎交流。</p>
+
+<p>数据要自己经常备份，ms money每次exit都会写一个backup文件的。</p>
+
+<p>刚开始使用，要先规划好怎么分类。这很重要，也影响着你日后能否坚持记录下去。<br />
+如果你怕麻烦或者不想记太细，可以只分一些大类，把日常的费用记入日常支出分类就行了，每次记帐时点点钱，除去大笔的支出要记录明细账，剩余的差值就是日常支出。如果想有更详细的信息，就要把分类分细一点。<br />
+其实主要关心的还是大数，例如供房、投资、旅游、购物、吃大餐之类的，其他日常的消费每个月都差不了太多的。<br />
+如果用钱不多，不需要天天记录，两三天一次也可以，但不要超过一周，记不起来的:) 消费的时候把单据留下来，例如购物小票，柜员机的账单，这样就不怕忘记。你有pda，那就更方便了，可以先记下来，到时再记入电脑。我是用palm的。如果间隔时间长了，很大的账目缺口却实在想不起来花到什么地方，可以建立一个独立分类叫做“unknow”，把帐记到这个分类里面，这样可以保持账目的一致，重要的是要坚持下去。</p>
+
+<p>ms money功能很强，也比较可靠，毕竟是microsoft的产品。但是刚开始学习曲线会比较陡，不容易上手，还有就是英文的。但学会怎么用后，就会觉得它非常好用了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/11/12/The-company-group-discussion-in-the-dialogue-about-personal-finance/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/11/02/Encounter-virus-Trojan/">遭遇病毒(木马)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-11-02T22:45:00+08:00" pubdate data-updated="true">2004-11-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>操作系统刚重装才一天，就出现了莫名其妙的问题。svchost进程就会把CPU全占满，使得系统几乎没有响应。用procexp（Process Explorer）来查看进程，这个svchost.exe确实是系统自带的，是系统服务的宿主进程。</p>
+
+<p>Reboot机器，重试几次，发现不连上网的时候一切正常，一旦网络连上了，CPU就被那个svchost占满，如果把那个进程杀死，系统就不能正常工作。当时刚刚安装了Norton AntiVirus，它的auto update服务会在网络连上的时候自动开始，所以我怀疑是NAV update服务引起的。把NAV卸载了，问题依然存在。因为那个svchost是RPC服务的，我又以为是操作系统的问题，什么文件的版本乱了，就用安装盘采用重装式修复，可是还是不正常。</p>
+
+<p>毫无头绪之际，再度用procexp监视进程树。这次发现一些异常了：svchost启动了一些tftp进程。这些tftp在做什么？从219.137.217.181下载文件，下载的文件名为atiphexx.exe、winupdatez.exe等，还有不少没有记下来。很奇怪啊，是否系统中了木马？检查一下tftp，也是系统自己的东西，没有异常，那是谁启动这些进程的呢？</p>
+
+<p>安装spybot，检查系统，没有查出木马程序。但是，过了一会，注册表监视器报警了，有进程要往注册表的系统启动run项目里写入新内容，居然就是winupdatez.exe。这不用说都是木马了。在winnt\system32目录下找到这个winupdatez.exe，删除。再检查注册表，把相关项目都删除。重启系统，正常了。</p>
+
+<p>开始时太大意了，居然没有第一时间检查注册表的run里面有没有异常，白白浪费了两晚时间。不过，当初进程树里面看到的都是系统的进程，没发现这个winupdatez进程，所以才没有怀疑是病毒/木马。是否还有其他名称的木马存在呢？我心里还是没有底。不过系统现在运行正常了。新装系统，真的是要把所有防护措施都做好才能上网:(</p>
+
+<p>这次用到工具软件Process Explorer很不错，能够看到很多Task Manager没有的进程信息，是<a href="http://www.sysinternals.com/"> www.sysinternals.com</a> 的出品。Sysinternals还有好几个不错的小软件，都是监视系统运行情况的，包括tcpview、filemon、regmon等。</p>
+
+<p>系统除了安装防火墙之外，还应该装上一个可以监视注册表改动的工具。现在修改注册表的网页太多了。我用的是Spybot，兼有木马查找和注册表防护的功能，我喜欢它能够从网上update规则。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/11/02/Encounter-virus-Trojan/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/42/">&larr; Older</a>
@@ -461,7 +479,7 @@
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 99%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>

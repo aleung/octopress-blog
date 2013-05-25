@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Gadget | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/gadget/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/gadget/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[人體工學鍵盤鼠標組合]]></title>
-    <link href="http://aleung.github.com/blog/2013/01/08/keyboard-and-mouse/"/>
+    <link href="http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse/"/>
     <updated>2013-01-08T23:00:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/01/08/keyboard-and-mouse</id>
+    <id>http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse</id>
     <content type="html"><![CDATA[<p>作為悲催的程序猿，每天的大部份時間都是陪伴鼠標鍵盤度過的，一套合適的鼠標鍵盤非常重要，可以降低得職業病的機率。尋找人體工學的鼠標鍵盤並不容易，現在這套用了好些時間了，感覺很滿意。</p>
 
 <p><img src="/attachments/2013/1/keyboard_mouse.jpg"></p>

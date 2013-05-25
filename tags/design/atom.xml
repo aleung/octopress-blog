@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Design | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/design/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/design/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[《简约至上》读书笔记]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/14/simple-first/"/>
+    <link href="http://aleung.github.io/blog/2012/07/14/simple-first/"/>
     <updated>2012-07-14T10:43:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/14/simple-first</id>
+    <id>http://aleung.github.io/blog/2012/07/14/simple-first</id>
     <content type="html"><![CDATA[<p><a href="http://book.douban.com/subject/5394309/">简约至上</a>，原作名为 Simple and Usable Web,Mobile,and Interaction Design，不错的关于交互设计的书籍。</p>
 
 <iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/aleung/simple-first/" width="900px" height="300px" frameborder="0" scrolling="no"></iframe>

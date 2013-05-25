@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: TimeManagement | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/timemanagement/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/timemanagement/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[我的任务管理工具功能原型已经完成]]></title>
-    <link href="http://aleung.github.com/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/"/>
+    <link href="http://aleung.github.io/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed/"/>
     <updated>2011-03-24T05:13:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed</id>
+    <id>http://aleung.github.io/blog/2011/03/24/My-task-management-tools-function-prototype-has-been-completed</id>
     <content type="html"><![CDATA[<p>在<a href="http://good-good-study.appspot.com/blog/posts/119001">上一篇blog</a>里面列出了我个人对任务管理工具的需求以及对比较热门的工具的分析。由于现有工具没有那款能够满足我的几点主要需求，于是就产生了自己做一个的想法。前几天，功能性原型完成，已经正式用了起来，下一步要做的工作是界面设计和交互设计。</p>
 
 <p>目前做的是Android手机应用，web端还没有考虑。一方面是手机几乎不离身，保证了随时可用，另一方面是web端使用现有的服务已经勉强可以满足要求，下面我会说明。</p>
@@ -50,9 +50,9 @@
   
   <entry>
     <title type="html"><![CDATA[任务管理工具]]></title>
-    <link href="http://aleung.github.com/blog/2011/02/28/Task-management-tools/"/>
+    <link href="http://aleung.github.io/blog/2011/02/28/Task-management-tools/"/>
     <updated>2011-02-28T07:51:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/02/28/Task-management-tools</id>
+    <id>http://aleung.github.io/blog/2011/02/28/Task-management-tools</id>
     <content type="html"><![CDATA[<p>首先，我得承认：我又在折腾了。</p>
 
 <p>这些年来，用过好多种任务管理（to-do）工具，包括low-tech的，电子化的，始终没有一个完全满意。最近一段时间又纠结于此，寻找、尝试各种工具，花了不少时间，真是有点本末倒置啊。</p>
@@ -181,9 +181,9 @@
   
   <entry>
     <title type="html"><![CDATA[GQueuesInbox : Send item to your GQueues inbox with Android device anywhere anytime]]></title>
-    <link href="http://aleung.github.com/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/"/>
+    <link href="http://aleung.github.io/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime/"/>
     <updated>2011-01-14T05:15:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime</id>
+    <id>http://aleung.github.io/blog/2011/01/14/GQueuesInbox-Send-item-to-your-GQueues-inbox-with-Android-device-anywhere-anytime</id>
     <content type="html"><![CDATA[<p><img class="right" src="http://farm6.static.flickr.com/5285/5360976023_928916d839_m.jpg" title="GQueueInbox" >
 去年底<a href="https://www.rememberthemilk.com/">RememberTheMilk</a>的pro帐号到期了，于是又折腾了一下看看有没有好用的类似工具，发现了一个在线任务管理的新秀：<a href="http://www.gqueues.com">GQueues</a>。GQueues的功能和界面都不错，我比较喜欢它的一点是没有用高中低的任务优先级，而是让你在列表中拖放任务改变顺序，排在最顶的就是需要优先处理的。有些事情你很难界定应该是属于重要性高还是重要性中等，但是如果几件事情放在一起，就很容易分出哪个相对更重要一些。</p>
 
@@ -197,9 +197,9 @@
   
   <entry>
     <title type="html"><![CDATA[时间管理工具的设计：任务计划时间的逐步精确]]></title>
-    <link href="http://aleung.github.com/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/"/>
+    <link href="http://aleung.github.io/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step/"/>
     <updated>2010-06-23T23:27:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step</id>
+    <id>http://aleung.github.io/blog/2010/06/23/Time-management-tool-design-the-task-of-precise-plan-time-step-by-step</id>
     <content type="html"><![CDATA[<p>我管理待办事情的基本方法是维护一个列表，将所有要做的事情都记录下来，然后安排具体的时间来处理它们。传统的时间管理工具分为任务管理和日程管理两大类，相互独立，而我需要将它们结合起来用，故此以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">为什么不能合在一起</a>一文。后来，也发现<a href="http://good-good-study.appspot.com/blog/posts/3212">Outlook 2007已经将两者做了一定程度的整合</a>。</p>
 
 <p>今天又再思考了一下：任务管理就是一个逐步细化的过程，包括执行时间的具体化和操作步骤的细化（拆分子任务）。理想的工具应该对整个过程都提供支持。</p>
@@ -228,9 +228,9 @@
   
   <entry>
     <title type="html"><![CDATA[Outlook2007日历的改进]]></title>
-    <link href="http://aleung.github.com/blog/2009/08/04/Outlook2007-/"/>
+    <link href="http://aleung.github.io/blog/2009/08/04/Outlook2007-/"/>
     <updated>2009-08-04T07:18:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/08/04/Outlook2007-</id>
+    <id>http://aleung.github.io/blog/2009/08/04/Outlook2007-</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/leoliang/4727145208/"><img src="http://farm2.static.flickr.com/1415/4727145208_1fd6c492de.jpg" alt="outlook2007" /></a></p>
 
 <p>之前在<a href="http://good-good-study.appspot.com/blog/posts/3184">《为什么不能合在一起》</a>一文中，我提到期望的时间管理系统是这样的：</p>

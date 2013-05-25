@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Geek | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/geek/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/geek/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[超级玩具小车]]></title>
-    <link href="http://aleung.github.com/blog/2003/08/26/Super-toy-car/"/>
+    <link href="http://aleung.github.io/blog/2003/08/26/Super-toy-car/"/>
     <updated>2003-08-26T20:17:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2003/08/26/Super-toy-car</id>
+    <id>http://aleung.github.io/blog/2003/08/26/Super-toy-car</id>
     <content type="html"><![CDATA[<p>一个神奇的project, 使用了各种流行的前沿技术, 令人炫目的技术列表:  </p>
 
 <p><a href="http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html">http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html</a>  </p>

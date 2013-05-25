@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Reading | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/reading/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/reading/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[《简约至上》读书笔记]]></title>
-    <link href="http://aleung.github.com/blog/2012/07/14/simple-first/"/>
+    <link href="http://aleung.github.io/blog/2012/07/14/simple-first/"/>
     <updated>2012-07-14T10:43:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/07/14/simple-first</id>
+    <id>http://aleung.github.io/blog/2012/07/14/simple-first</id>
     <content type="html"><![CDATA[<p><a href="http://book.douban.com/subject/5394309/">简约至上</a>，原作名为 Simple and Usable Web,Mobile,and Interaction Design，不错的关于交互设计的书籍。</p>
 
 <iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/aleung/simple-first/" width="900px" height="300px" frameborder="0" scrolling="no"></iframe>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[一些读书记录]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/09/Some-reading-record/"/>
+    <link href="http://aleung.github.io/blog/2012/06/09/Some-reading-record/"/>
     <updated>2012-06-09T11:56:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/09/Some-reading-record</id>
+    <id>http://aleung.github.io/blog/2012/06/09/Some-reading-record</id>
     <content type="html"><![CDATA[<p>前几个月看了些软件开发相关的书，读的时候有时有感悟就发条tweet，在这里备份一下。  </p>
 
 <h3 id="httpbookdoubancomsubject6526454"><a href="http://book.douban.com/subject/6526454/">梦断代码</a></h3>
@@ -51,9 +51,9 @@
   
   <entry>
     <title type="html"><![CDATA[《程序员的思维修炼》读书笔记]]></title>
-    <link href="http://aleung.github.com/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/"/>
+    <link href="http://aleung.github.io/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/"/>
     <updated>2012-06-05T22:27:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes</id>
+    <id>http://aleung.github.io/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes</id>
     <content type="html"><![CDATA[<p>《<a href="http://book.douban.com/subject/5372651/">程序员的思维修炼—-开发认知潜能的九堂课</a>》，国内书商起个怪名字，其实重点在副标题。 原书标题根本不是这样的。</p>
 
 <h2 id="dreyfus">德雷福斯(Dreyfus)技能模型</h2>
@@ -104,9 +104,9 @@
   
   <entry>
     <title type="html"><![CDATA[读书感想：交往与空间 (Life between buildings)]]></title>
-    <link href="http://aleung.github.com/blog/2010/04/13/Reading-feeling-contact-and-the-space-Life-between-buildings-/"/>
+    <link href="http://aleung.github.io/blog/2010/04/13/Reading-feeling-contact-and-the-space-Life-between-buildings-/"/>
     <updated>2010-04-13T22:46:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2010/04/13/Reading-feeling-contact-and-the-space-Life-between-buildings-</id>
+    <id>http://aleung.github.io/blog/2010/04/13/Reading-feeling-contact-and-the-space-Life-between-buildings-</id>
     <content type="html"><![CDATA[<p><a href="http://book.douban.com/subject/1393903/">交往与空间</a>是一本关于城市规划如何影响人的生活，怎样才能让城区更富于生机和魅力，让生活其中的人更愉快舒畅的书。这本书探讨了怎样的城市是真正的宜居城市。</p>
 
 <p>周末花了大半天时间看完了这本书，看书过程挺享受的，很久没有认真看书了。边看边用手机在twitter上发读书感想，twitter是一个不错的记录读书感想的工具。</p>
@@ -131,9 +131,9 @@
   
   <entry>
     <title type="html"><![CDATA[建筑的生与灭]]></title>
-    <link href="http://aleung.github.com/blog/2009/02/01/The-life-of-the-building-and-destroyed/"/>
+    <link href="http://aleung.github.io/blog/2009/02/01/The-life-of-the-building-and-destroyed/"/>
     <updated>2009-02-01T23:02:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2009/02/01/The-life-of-the-building-and-destroyed</id>
+    <id>http://aleung.github.io/blog/2009/02/01/The-life-of-the-building-and-destroyed</id>
     <content type="html"><![CDATA[<p>不知道从什么时候开始，喜欢上阅读关于建筑、城市规划之类的书。</p>
 
 <p>但市面上的建筑类的普及性读物基本上都是从美学方面进行介绍的，例如建筑的历史、流派，著名建筑的形态、立面的特色等等。至于建筑的结构、工程、材料、工艺方面的知识就说得甚少。也许是著书者觉得这些知识太过于专业了，外行人不感兴趣，又或者是没有办法将专业知识讲得让外行人也能够明白。</p>

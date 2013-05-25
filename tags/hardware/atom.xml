@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Hardware | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/hardware/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/hardware/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[笔记本充满电后，是否应该拔掉电源]]></title>
-    <link href="http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/"/>
+    <link href="http://aleung.github.io/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/"/>
     <updated>2013-03-30T00:34:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged</id>
+    <id>http://aleung.github.io/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged</id>
     <content type="html"><![CDATA[<p>在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。为此我科普了一把。</p>
 
 <hr />

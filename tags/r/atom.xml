@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: R | Good good study, day day up]]></title>
-  <link href="http://aleung.github.com/blog/tags/r/atom.xml" rel="self"/>
-  <link href="http://aleung.github.com/blog/"/>
-  <updated>2013-04-03T13:23:13+08:00</updated>
-  <id>http://aleung.github.com/blog/</id>
+  <link href="http://aleung.github.io/blog/tags/r/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2013-05-25T21:11:12+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[R初略学习笔记]]></title>
-    <link href="http://aleung.github.com/blog/2013/02/09/beginning-r/"/>
+    <link href="http://aleung.github.io/blog/2013/02/09/beginning-r/"/>
     <updated>2013-02-09T14:18:00+08:00</updated>
-    <id>http://aleung.github.com/blog/2013/02/09/beginning-r</id>
+    <id>http://aleung.github.io/blog/2013/02/09/beginning-r</id>
     <content type="html"><![CDATA[<h2 id="section">包管理</h2>
 
 <p>从CRAN安装一个包：<code>install.packages("pkg_name")</code></p>
