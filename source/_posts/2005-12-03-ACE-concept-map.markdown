@@ -13,4 +13,4 @@ ACE(The ADAPTIVE Communication Environment)是一套功能非常丰富的open so
 下图未将节点完全展开，请下载: [ACE.mm](http://aleung.blogbus.com/files/1133518564.rar) (使用[FreeMind](http://freemind.sourceforge.net)打开)  
 
 
-[![ACE concept map](http://static.flickr.com/35/69324015_6c168b2ec2.jpg)](http://www.flickr.com/photos/aleung/69324015/)
+![ACE concept map](/attachments/2005/12/69324015_6c168b2ec2_o.png)

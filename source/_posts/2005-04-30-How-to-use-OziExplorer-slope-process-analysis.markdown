@@ -15,4 +15,4 @@ tags:
 7.在Track Profile曲线上点击，会在地图上显示出曲线点对应的位置  
 8.Track Profile同样适合于分析GPS实际采集得到的track 
 
-[![ozi track profile](http://photos8.flickr.com/11446580_3a7f18faae_o.jpg)](http://www.flickr.com/photos/aleung/11446580/)
+![ozi track profile](/attachments/2005/4/11446580_3a7f18faae_o.jpg)

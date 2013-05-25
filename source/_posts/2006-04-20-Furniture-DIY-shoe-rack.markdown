@@ -22,7 +22,7 @@ tags:
 
 [右下]：在架身的木板上打孔，用来放置可调的搁板
 
-![](http://static.flickr.com/48/131333600_ae4b3f8297_o.jpg)
+![](/attachments/2006/4/131333600_ae4b3f8297_o.jpg)
 
 [左上]：密度板硬度很高，如果要直接上木螺丝会非常费劲，而且容易开裂。先用小号钻头钻个螺丝孔，上起来就非常轻松了。
 
@@ -36,8 +36,8 @@ tags:
 
 [右下]：装配中的架子。
 
-![](http://static.flickr.com/1/131333601_5a5c3eea0e_o.jpg)
+![](/attachments/2006/4/131333601_5a5c3eea0e_o.jpg)
 
 这是做好的成品。再去布艺市场做了一块窗帘，将架子遮起来。
 
-![](http://static.flickr.com/50/131384360_07664ea8cb_o.jpg)
+![](/attachments/2006/4/131384360_07664ea8cb_o.jpg)

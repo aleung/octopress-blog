@@ -10,7 +10,7 @@ tags:
 
 [WinDirStat](http://windirstat.sourceforge.net/)，这个移植自Linux KDE KDirStat的软件通过直观的图形告诉你硬盘的占用情况。我觉得这真是非常优秀的人机界面设计，不用复杂的操作，界面也不算繁复，一切信息那么一目了然。
 
-[![WinDirStat](http://static.flickr.com/20/72826124_5fe787b3e0.jpg)](http://www.flickr.com/photos/aleung/72826124/)
+![WinDirStat](/attachments/2005/12/72826124_5fe787b3e0.jpg)
 
 看看这个程序的屏幕截图，很简单。下面的图表示硬盘的文件大小分布，每个小方块代表一个文件，文件越大，方块面积越大。
 
