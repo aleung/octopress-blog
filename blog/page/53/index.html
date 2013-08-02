@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="一个神奇的project, 使用了各种流行的前沿技术, 令人炫目的技术列表: http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html Mobile GPS Demonstration &hellip;">
+  <meta name="description" content="想写个GPS有关的软件，网上找到一些相关的项目: Java framework for GPS http://www.aasted.org/gps/
+这个项目的目标是为各种应用程序加入GPS功能提供framework. 目前提供的是与Garmin GPS通讯的功能. Chaeron GPS &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/27/Some-GPS-related-software-and-project/">一些与GPS相关的软件项目</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-27T01:11:00+08:00" pubdate data-updated="true">2003-08-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>想写个GPS有关的软件，网上找到一些相关的项目: </p>
+
+<ul>
+  <li>Java framework for GPS <a href="http://www.aasted.org/gps/">http://www.aasted.org/gps/</a><br />
+这个项目的目标是为各种应用程序加入GPS功能提供framework. 目前提供的是与Garmin GPS通讯的功能. </li>
+  <li>Chaeron GPS library <a href="http://www.chaeron.com/gps.html">http://www.chaeron.com/gps.html</a><br />
+类似的项目,也是作为支持库，但功能更强/完善. 支持多种平台, 包括多种PDA. 而且这看来是一个active的项目, 由一个公司支持. </li>
+  <li>JavaGPS <a href="http://javagps.sourceforge.net/">http://javagps.sourceforge.net/</a><br />
+这个项目的范围似乎比前两个窄一些, 局限于从GPS中取得当前位置数据. 从代码看来，设计也不如前两个项目规范。</li>
+</ul>
+
+<p>但是，这些项目看来都是只支持从GPS取数据，而不支持传送数据给GPS。</p>
+
+<ul>
+  <li>EPS <a href="http://eps.sourceforge.net/">http://eps.sourceforge.net/</a><br />
+这是一个小应用程序，能够下载GPS数据并显示。这个程序能与Garmin GPS通讯，有上传/下载功能, 不过代码风格很差。</li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/27/Some-GPS-related-software-and-project/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -292,59 +360,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/18/MySQL-NOT-NULL-/">MySQL是不会理会字段的NOT NULL标记的!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-18T22:58:00+08:00" pubdate data-updated="true">2003-08-18</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>原来MySQL是不会理会字段的NOT NULL标记的!<br />
-按照MySQL manual中1.8.5.2节的说法: 当插入的字段的值不符号要求的时候, 不会出错, 而是用一个最接近的”合理”值来替代. 对于NOT NULL的varchar字段, 替换的值是空字符串’’. 这不是等于没有设定NOT NULL吗? 真是莫名其妙.<br />
-只好在程序里面来控制了</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/18/MySQL-NOT-NULL-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/54/">&larr; Older</a>
@@ -366,6 +381,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
@@ -379,10 +398,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch deploy artifacts to Maven repository</a>
       </li>
     
   </ul>
@@ -423,7 +438,7 @@
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 120%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 122%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

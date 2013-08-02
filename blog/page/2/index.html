@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="坐姿，特别是不正确的坐姿，对腰椎间盘的压力是站姿的2到3倍，长期在电脑前工作的人很容易得腰椎间盘突出等腰椎疾病。因此现在IT工作者逐渐流行站立工作。但是，长期站立也会带来其他的问题，如下肢静脉曲张等。一个比较理想的方案是使用可升降的办公桌，坐姿站姿交替。 &hellip;">
+  <meta name="description" content="I need to migrate a Maven repository from Artifactory to Nexus. Nexus’s migration solution uses its migration plugin. But our Nexus service is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch Deploy Artifacts to Maven Repository</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2013-03-19T21:32:00+08:00" pubdate data-updated="true">2013-03-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/maven/'>Maven</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
+
+<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
+
+<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
+
+<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
+
+<div><script src="https://gist.github.com/5194777.js?file="></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
+
+<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -635,61 +707,6 @@ parallel(data)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-30T20:24:00+08:00" pubdate data-updated="true">2012-12-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
-
-<p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
-
-<p><img src="/blog/attachments/2012/12/osx_usb.jpg" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/3/">&larr; Older</a>
@@ -711,6 +728,10 @@ parallel(data)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
@@ -724,10 +745,6 @@ parallel(data)
     
       <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch deploy artifacts to Maven repository</a>
       </li>
     
   </ul>
@@ -768,7 +785,7 @@ parallel(data)
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 120%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 122%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

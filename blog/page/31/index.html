@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="下载的mp3越来越多之后，总想怎样才能将喜欢的与不太喜欢的区分出来呢。渐渐的有一个想法，就是在播放的时候统计自己的喜好。基本思路其实跟以前想过的”什么时候电视机可以变得聪明一些”差不多。 下面就设想一下这个音乐播放器应该是怎样的：如果觉得一首歌不好听/不想听，就跳过它放下一首。如果觉得特别喜欢， &hellip;">
+  <meta name="description" content="读书摘录：Stockholm Horizons Introduction What makes a city? … A city is principally a forum for mankind’s countless activities. We live, think, work, buy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/08/27/Read-excerpts-city/">读书摘录 - 城市</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-08-27T14:45:00+08:00" pubdate data-updated="true">2006-08-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>读书摘录：<a href="http://www.douban.com/subject/1861730/">Stockholm Horizons</a></p>
+
+<p>Introduction</p>
+
+<p>What makes a city? … A city is principally a forum for mankind’s countless activities. We live, think, work, buy, sell, study, love, enjoy and suffer in the city.(P9)</p>
+
+<p>读书摘录：<a href="http://www.douban.com/subject/1451694/">城市的形成</a></p>
+
+<p>“有机”模式</p>
+
+<p>许多城市在初始时是很粗陋的；它们的形成是在含蓄和渐进中形成的。…住宅在扩展的过程中将会变得稠密，并且编辑出肌理。建筑物将尽其所能爬上山坡，占领河湾。到了某个阶段，这种自然的布局将会获得一种自我意识。…画境式郊区的出现是因为城市回过头来欣赏它自己那自然的初始时期，同时，也是对过去曾经拥有的美德的一种眷恋。(P64)</p>
+
+<p>只要将散步者的足迹描摹出来便可以获得画境式的效果。我们可以在乡间发现这些优雅的弧线，而模仿这些弧线是“一种荣誉的事”。(P82)</p>
+
+<p>我们经历了可怕的20世纪二三十年代，当时的老城一方面被法西斯所破坏，另一方面又饱尝了现代主义的狂热；我们也经历了20世纪五六十年代，当时剧烈的城市更新风暴毁坏了无数城市中心，而今天我们已经开始学习如何去接纳城市的完整性。(P90)</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/08/27/Read-excerpts-city/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -410,78 +475,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/07/15/Embedded-script-/">Embedded Script 初接触</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-07-15T08:00:00+08:00" pubdate data-updated="true">2006-07-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近年来各种编程语言如雨后春笋一般涌现出来，令人眼花缭乱。有些是已经有相当历史的近来得到了广泛关注，有些则是新创的但风头不弱于前辈。它们的名字虽然我很多都听说过，大概知道是什么样的语言，但也是仅此而已了。</p>
-
-<p>这些新兴语言大都是动态语言，运行于虚拟机之中。而我一直都是使用C++/Java这些静态语言，这些新语言让我觉得很新鲜。在具有动态特性的语言中，我唯一熟悉的也就是PHP了，但是php给我的印象是方便灵活，但是显得零乱，缺乏OO特性，难以承担大规模应用。也因此我对这些语言就带有一点偏见，觉得“不够严谨”、有点“小儿科”。</p>
-
-<p>由于所开发系统的业务逻辑的复杂和多变，让我们吃尽了苦头，寻找解决方案的一个思路是将业务逻辑控制分离出来，降低这部分修改的难度。如果要再进一步，就是要采用script来描述业务逻辑了，那么是设计这样一种script，还是有什么现有的架构可以重用？</p>
-
-<p>将视野放开，可以看到动态语言在这方面得到了越来越广泛的应用，有好多新兴语言就是用来做embedded script的。在嵌入的脚本和宿主语言之间，数据可以传递，函数可以相互调用。因为我做的应用使用C++开发，因此我这几天看了<a href="http://www.lua.org/">Lua</a>和<a href="http://www.squirrel-lang.org/">Squirrel</a>这两种用于C/C++的嵌入语言的资料，这两种语言目前主要都是在游戏开发领域使用，Lua比较出名因为魔兽争霸使用了它，Squirrel是从Lua派生出来的。先不考虑怎样应用于具体业务，单从语言本身来说，这些简单的语言给我印象不错，一些语言特征能够给编码带来很多方便，如function作为first-class value，table数据结构(关联数组)，而我特别关心的是它们对coroutine(协程)的支持。</p>
-
-<p>使用通用的script还是自己开发引擎，自定义script格式，这就看怎么权衡了。动态语言的语言机制强大而灵活，其描述能力是自定义的script难以到达的；但是通用、灵活往往也意味着复杂，自定义script专注于要实现的业务功能，往往比较简单，学习难度要低；自己定义script虽然要开发解释器，但是针对性很强，与业务紧密相关，使用通用script还是要考虑怎样来描述业务操作，宿主程序如何提供接口来结合起来，其实要做的事情并不少。</p>
-
-<p>不过我现在对它们的了解还只是很表面，仅仅走马观花而已，观点一定是片面的，还需要进一步的学习。就目前来说，我对使用嵌入语言存在着这些疑问：</p>
-
-<ul>
-  <li>缺乏OO特性，如果是宿主程序是采用OOD的话，不容易结合起来，我现在已经很难想象一个大型系统如何能够不采用面向对象来实现了。（不过这个还是因语言而异，据介绍某些语言是具有很完善的OO特性的）。Lua支持基于原型的面向对象编程模型(prototype-based OO Modal)，我对这种对象模型是持怀疑态度的，它并不完善，好多OO设计方法都无法实现出来。不过我必须承认我并没有深入研究过，也许还需要多些了解。[见附注] </li>
-  <li>与宿主语言的binding太复杂。不使用class应该还是挺简单的，但使用了class之后就比较麻烦了。使用嵌入脚本，就是希望让开发更简单快捷，如果因此又引入另外一种复杂性，那么优势就被抵消了。 </li>
-  <li>怎样将通用的script用于针对性的业务？是不是宿主程序需要以例如API的形式提供一套接口？我现在还没有看到这部分，如果找到一些开源应用的代码来看看应该可以解答这个疑问。 </li>
-  <li>性能始终是一个需要关心的问题</li>
-</ul>
-
-<hr />
-
-<p>PS. 刚才网上花了不少时间读了关于面向对象的讨论和文章，看来我对于面向对象的了解还是相当片面的，只是局限在C++/Java语言对于OO的实现，而C++/Java是属于<a href="http://en.wikipedia.org/wiki/Class-based_OOP">class-based OOP</a>，单纯的用class-based的思维去套用<a href="http://en.wikipedia.org/wiki/Prototype-based_programming">prototype-based OOP</a>得到的结论当然不合理。另外一个错误就是我将prototype-based和object-based混为一谈了，其实完全两码事，object-based model则一般不认为是OO。花点时间去了解一下prototype-based OOP和动态编成语言应该是值得的，起码可以开拓思路。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/07/15/Embedded-script-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/32/">&larr; Older</a>
@@ -503,6 +496,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
@@ -516,10 +513,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch deploy artifacts to Maven repository</a>
       </li>
     
   </ul>
@@ -560,7 +553,7 @@
 <a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 120%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 122%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
