@@ -932,7 +932,7 @@
     </url>
     <url>
         <loc>http://aleung.github.io/blog/2010/02/22/JSON-support-in-JAX-RS/</loc>
-        <lastmod>2012-06-25T22:52:06+08:00</lastmod>
+        <lastmod>2013-10-21T23:00:13+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -1309,11 +1309,15 @@
         <lastmod>2013-08-03T00:49:01+08:00</lastmod>
     </url>
     <url>
+        <loc>http://aleung.github.io/blog/2013/10/21/du-of-software-design/</loc>
+        <lastmod>2013-10-21T22:44:58+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aleung.github.io/blog/blog/archives/</loc>
-        <lastmod>2013-08-03T00:49:01+08:00</lastmod>
+        <lastmod>2013-10-21T23:00:13+08:00</lastmod>
     </url>
     <url>
         <loc>http://aleung.github.io/blog/</loc>
-        <lastmod>2013-08-03T00:49:01+08:00</lastmod>
+        <lastmod>2013-10-21T23:00:13+08:00</lastmod>
     </url>
 </urlset>

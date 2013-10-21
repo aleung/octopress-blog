@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="去年底跑完广州马拉松半程后，一直都没有怎么认真跑步，经常一停就几个星期。转眼间到了7月中，算一下离今年广州马拉松不够四个月了，是时候开始训练。用miCoach做训练计划，选择了全程马拉松，居然第一次训练就是要2小时long run，太狠了。想着之前已经隔天跑，跑了一个半星期，身体应该能承受， &hellip;">
+  <meta name="description" content="上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-21T22:30:00+08:00" pubdate data-updated="true">2013-10-21</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/26482993" width="595" height="487" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/10/21/du-of-software-design/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -365,66 +418,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean Aged Artifacts From Artifactory</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-22T23:21:00+08:00" pubdate data-updated="true">2013-03-22</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/maven/'>Maven</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
-
-<p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
-
-<p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
-
-<div><script src="https://gist.github.com/5203736.js?file="></script>
-<noscript><pre><code /></pre></noscript></div>
-
-<p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -444,6 +437,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
       </li>
     
@@ -459,23 +456,19 @@
         <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 111%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
@@ -489,16 +482,16 @@
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 122%" href="/blog/tags/running/">Running</a>

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="软件团队的办公室空间可以分为三大类：团队工作空间，会议空间，公共区域。 敏捷团队在工作过程中需要有比较多沟通，团队工作空间需要为此准备必要的设施，例如带有白板的讨论区域，这样就不需要讨论一些事情都要跑很远找会议室；供张贴东西的墙面；公共信息显示屏，显示CI状态之类。 每个人的座位当然是越宽敞越好， &hellip;">
+  <meta name="description" content="当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring Bean Reference Injection Definition by External Configuration</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-07T21:38:00+08:00" pubdate data-updated="true">2012-07-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/springframework/'>SpringFramework</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。</p>
+
+<p>利用Spring Framework的property placeholder，将bean依赖关系配置抽离Spring XML文件，就能在产品发布部署后，通过配置选项来选定不同的实现，可用于集成接口、特定业务逻辑打开关闭等。</p>
+
+<p><a href="http://www.oodesign.com/adapter-pattern.html">Adaptor pattern</a> is widely used at the point where our product integrates with external system. Product will provide several adapters to adapt to different external system interface.
+We deliver our product in uniform installation package for all customers. A mechanism is required to configure which adapter to be used after system is installed.</p>
+
+<p><a href="http://www.oodesign.com/factory-pattern.html">Factory pattern</a> can be used to create the specific adapter by configuration property. But by this way we need to create factory for each kind of adapters.</p>
+
+<p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
+
+<p>Here is a sample code snippet:</p>
+<div><script src="https://gist.github.com/2934603.js?file="></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -546,101 +627,6 @@ stay foolish.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/">《程序员的思维修炼》读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T22:27:00+08:00" pubdate data-updated="true">2012-06-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/personaldevelopment/'>PersonalDevelopment</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>《<a href="http://book.douban.com/subject/5372651/">程序员的思维修炼—-开发认知潜能的九堂课</a>》，国内书商起个怪名字，其实重点在副标题。 原书标题根本不是这样的。</p>
-
-<h2 id="dreyfus">德雷福斯(Dreyfus)技能模型</h2>
-
-<h3 id="novice">新手(Novice)</h3>
-
-<p>新手缺乏经验，完成任务时需要操作指引。</p>
-
-<p>即使某人在一个领域上工作了十年，对所有指引已经了然于心，但他只是不断重复执行指令，也依然是新手。</p>
-
-<h3 id="advanced-beginner">高级新手(Advanced beginner)</h3>
-
-<p>能执行要做的任务并根据需求学习新任务，但没对任务环境获得更广泛的概念上的理解，缺乏全局思维。</p>
-
-<p>高级新手占了绝大部分比例，但他们常高估自己，因为不知道自己不知道什么。</p>
-
-<h3 id="competent">胜任者(Competent)</h3>
-
-<p>胜任者能够独立解决问题。</p>
-
-<h3 id="proficient-practitioner">精通者(Proficient practitioner)</h3>
-
-<p>精通者懂得反思，自我纠正，从自己和他人的经验中学习。</p>
-
-<h3 id="expert">专家(Expert)</h3>
-
-<p>专家凭直觉工作，基于他们在领域中的丰富经验，在恰当的情景中选取和应用这些经验。</p>
-
-<p>专家对问题思考时将所有方面作为一个完整和独特的整体来考虑，而不仅是关注相关方面。</p>
-
-<p>处理问题时，新手需要指引(instruction)，专家依靠直觉。不给新手指引，或者要求专家跟随指引，都会降低生产力。</p>
-
-<p><em>按照前面说那个技能模型的定义，看看自己，在大部分领域都只是高级新手，少量能到胜任者，连精通都算不上。</em></p>
-
-<h2 id="section">隐性思维</h2>
-
-<p><em>原文中为R型思维，R指右脑，但作者认为左右脑区分并非真实情况，将L解释为线性(linear)模式R解释为富(rich)模式。我按照自己的理解将R型思维看成隐性思维。</em></p>
-
-<p>发挥隐性思维，捕获闪现灵感，随时准备着记录下来。</p>
-
-<p>隐性思维会被压抑，在一种思维不受控制的状态下，隐性思维才会发挥作用。</p>
-
-<p>重视你的直觉，但要去验证它，而不是盲目在第一时间跟随直觉行动。</p>
-
-<p>隐性思维是非线性的，它从你的记忆库中匹配关联，多学习接触不同类别的东西，为隐性思维累积素材。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/06/05/The-programmer-thought-of-uniting-the-reading-notes/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/7/">&larr; Older</a>
@@ -662,6 +648,10 @@ stay foolish.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
       </li>
     
@@ -677,23 +667,19 @@ stay foolish.</p>
         <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 111%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
@@ -707,16 +693,16 @@ stay foolish.</p>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 122%" href="/blog/tags/running/">Running</a>

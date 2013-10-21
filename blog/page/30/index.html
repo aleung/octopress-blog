@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。 虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西， &hellip;">
+  <meta name="description" content="统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。 使用Excel的FREQUENCY函数，可以很简单的实现这个目标： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,75 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/">利用Excel进行分组统计及生成直方图</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2007-03-17T02:19:00+08:00" pubdate data-updated="true">2007-03-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/excel/'>Excel</a>, <a class='tag' href='/blog/tags/statistics/'>Statistics</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
+
+<p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>
+
+<p>先把要处理的目标数据准备好：一列是输入数据A3:A66（在例子中为了清晰，已经排序，实际没有必要），另外一列是分组间隔D3:D21，在这里每个区间的大小是10。</p>
+
+<p>对于每个区间的频率，我希望输出在E3:E21区域。用鼠标将这个区域框起来，然后输入公式 =FREQUENCY(A3:A66,D3:D21)。FREQUENCY函数有两个参数，第一个是要分析的目标数据，第二个是分组间隔值，都需要是数组。输出也是一个数组，因此需要按 Ctrl-Shift-Enter 来结束公式的输入，表明这是数组公式。(数组公式会显示为有个花括号括起来)</p>
+
+<p>公式输入后，马上就能看到计算的结果了，如果希望更清晰些，可以做一张图。依然是选中E3:E21区域，菜单中选中插入图表，照着向导操作。在第二步选择DataSource中，需要在”Serials”中指定X轴区域为C3:C21(或D3:D21)，否则X轴数据会变成1、2、3…</p>
+
+<p><img src="http://farm1.static.flickr.com/162/422940441_9279aaa292_o.jpg" alt="" /></p>
+
+<p>从图中，可以明显看出大部分数据范围在50-120之间，峰值为90-100。</p>
+
+<p><a href="http://soft.yesky.com/office/283/2639283.shtml">这个网页</a>介绍了另外一种方法，通过Excel数据分析功能来实现上面做的事情，更加简单。但是Excel缺省安装中没有数据分析功能。</p>
+
+<p>Reference：<a href="http://www0.ccidnet.com/school/office//2001/06/26/70_4531.html">Excel统计函数</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -378,77 +447,6 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/08/29/I-Love-Audio-Player-Basic-Design/">‘I Love’ Audio Player - Basic Design</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2006-08-29T02:19:00+08:00" pubdate data-updated="true">2006-08-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>对于”I Love” audio player的想法, flyisland的批阅建议是请jobs同志执行。我也很希望jobs同志能够欣赏这个想法，更希望的是我也能有flyisland同志同样的运气，能得到一个赠送的iPod。在此之前，还是继续自我陶醉一下，下面是想到的初步设计：</p>
-
-<p><img src="/blog/attachments/2006/8/227012217_2b9c0d6ecd.jpg" alt="audioplayer" /></p>
-
-<p>UI负责用户界面；Control接受UI的命令，进行播放控制；作品的选择、喜爱度的累积是profile的任务；媒体文件的播放是委托给player进行的。</p>
-
-<p><img src="/blog/attachments/2006/8/227012224_56936e3643.jpg" alt="audioplayer.control" /></p>
-
-<p>JavaZoom.com的<a href="http://www.javazoom.net/jlgui/developerguide.html">jlGui</a>是一个opensource的music player，它提供了一个很简洁实用的BasicPlayer API，用在这里正合适。</p>
-
-<p><img src="/blog/attachments/2006/8/227012248_2ce4e0e4e8.jpg" alt="basicplayer" /></p>
-
-<p>UI，应该就是GUI了吧，有人会需要command line吗？甚至是外接LED显示屏？</p>
-
-<p><img src="/blog/attachments/2006/8/227012242_fa610759ef.jpg" alt="audioplayer.ui" /></p>
-
-<p>Profile部分将是最重要也是最复杂的了，现在考虑得还不成熟，只有个大概。</p>
-
-<p><img src="/blog/attachments/2006/8/227012232_3c57a934d1.jpg" alt="audioplayer.profile" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/08/29/I-Love-Audio-Player-Basic-Design/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/31/">&larr; Older</a>
@@ -470,6 +468,10 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
       </li>
     
@@ -485,23 +487,19 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
         <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 111%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
@@ -515,16 +513,16 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 122%" href="/blog/tags/running/">Running</a>

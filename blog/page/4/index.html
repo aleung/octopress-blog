@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="色彩管理的第一篇是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。 颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象： &hellip;">
+  <meta name="description" content="Initial: 2008-12-04 Updated: 2012-9-17 Java内存模型中，有主内存和每个线程各自的工作内存，虚拟机和硬件可能会让线程工作内存优先存储于寄存器和高速缓存中，以提高性能。 所有变量都存储在主内存中，线程工作内存中保存了此线程使用到的变量的副本。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,134 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/17/Java-volatile-/">Java的volatile关键字的作用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-17T00:00:00+08:00" pubdate data-updated="true">2012-09-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/java/'>Java</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>Initial: 2008-12-04</li>
+  <li>Updated: 2012-9-17</li>
+</ul>
+
+<p>Java内存模型中，有主内存和每个线程各自的工作内存，虚拟机和硬件可能会让线程工作内存优先存储于寄存器和高速缓存中，以提高性能。</p>
+
+<p>所有变量都存储在主内存中，线程工作内存中保存了此线程使用到的变量的副本。工作内存在线程之间是隔离的，对其他线程不可见。线程对变量的所有操作都必须在工作内存中进行，修改后的变量副本要写回主内存。这样就会出现同一个变量在某个瞬间，在一个线程的工作内存中的值可能与另外一个线程工作内存中的值，或者主内存中的值不一致的情况。</p>
+
+<p>一个变量声明为volatile，就意味着这个变量被修改时其他所有使用到此变量的线程都立即能见到变化（称之为可见性）。具体是在每次使用前都要先刷新，以保证别的线程中的修改已经反映到本线程工作内存中，因此可以保证执行时的一致性。以下例子展现了volatile的作用：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StoppableTask</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+</span><span class="line">  <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">pleaseStop</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    <span class="k">while</span> <span class="o">(!</span><span class="n">pleaseStop</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">      <span class="c1">// do some stuff...  </span>
+</span><span class="line">    <span class="o">}</span>
+</span><span class="line">  <span class="o">}</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tellMeToStop</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    <span class="n">pleaseStop</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">  <span class="o">}</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>假如pleaseStop没有被声明为volatile，线程执行run的时候检查的是自己的副本，就不能及时得知其他线程已经调用tellMeToStop()修改了pleaseStop的值。</p>
+
+<p>Volatile一般情况下并不能代替sychronized，因为volatile不能保证操作的原子性，即使只是i++，实际上也是由多个原子操作组成：read i; inc; write i，假如多个线程同时执行i++，依然可能由于不同线程交替执行而出现写入脏数据的情况。也就是说，如果对变量值的修改需要依赖于变量之前的值，那么volatile不能保证一致性，需要用sychronized，或者使用atomic类型(java.util.concurrent.atomic.*)；而上面的代码例子是可以使用volatile的典型场景。</p>
+
+<p>Volatile的另外一个作用是禁止指令的重排序优化。在一般情况下，Java执行语句的顺序可能会因为自动优化而修改，例如下面的例子，initialized的赋值有可能在doInitialize()之前就执行了，线程B就有可能不会正确的等待初始化完成。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kt">boolean</span> <span class="n">initialized</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="c1">// run in one thread</span>
+</span><span class="line"><span class="n">doInitialize</span><span class="o">();</span>
+</span><span class="line"><span class="n">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="c1">// run in another thread</span>
+</span><span class="line"><span class="k">while</span> <span class="o">(!</span><span class="n">initialized</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">  <span class="n">sleep</span><span class="o">();</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果将initialized声明为volatile，就能保证它的执行顺序不会被改变（但JavaSE 5之前的版本依然会有问题）。</p>
+
+<p>以前在讲述Java与C++区别的时候，有个著名的例子是double-checked locking在Java中不能使用，就是执行顺序优化造成的问题。但自JavaSE 5起，配合volatile的使用是可以实现double-checked locking的。</p>
+
+<p>Reference：</p>
+
+<ul>
+  <li><a href="http://www.javamex.com/tutorials/synchronization_volatile.shtml">http://www.javamex.com/tutorials/synchronization_volatile.shtml</a></li>
+  <li><a href="http://www.ibm.com/developerworks/cn/java/j-jtp06197.html">http://www.ibm.com/developerworks/cn/java/j-jtp06197.html</a></li>
+  <li><a href="http://book.douban.com/subject/6522893/">深入理解Java虚拟机</a></li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/09/17/Java-volatile-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -344,119 +472,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T22:54:00+08:00" pubdate data-updated="true">2012-08-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases.</p>
-
-<p>All WorkManagers share a common thread pool and a priority-based queue. The size of the thread pool is determined automatically by the kernel and resized as needed.  Priority of the requests is dynamic and computed internally to meet the stated goals. </p>
-
-<p>The thread pool is so-called self-tunning. It monitors the overall throughput every two seconds and uses the collected data to determine if thread count needs to change. Present thread count, the measured throughput, and the past history is taken into account by the algorithm to determine if the thread count needs to increase or decrease, and new threads are automatically added to the pool or removed, as needed.</p>
-
-<p>It’s no longer have to (and is unable to) configure thread counts on a WorkManager nor the common thread pool. However, it’s possible to affect how server prioritizes work and allocates threads by parameters defined in WorkManager. Each WorkManager can contain following types of components:</p>
-
-<ul>
-  <li>Request class 
-    <ul>
-      <li>Fair-share</li>
-      <li>Response-time goal</li>
-      <li>Context based</li>
-    </ul>
-  </li>
-  <li>Constraints
-    <ul>
-      <li>Minimum threads constraint</li>
-      <li>Maximum threads constraint</li>
-      <li>Capacity</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Request class affects how requests are prioritized. Fair-share request class changes thread usage weight of a WorkManage, which is by default 50. Response-time goal request class specifies the response-time goal in milliseconds. Context-based request class is a compound request class that provides a mapping between the request context and the above two request classes. With context-based request class, it’s possible to specify different request classes for the same servlet invocation depending on the user associated with the invocation.</p>
-
-<p>A constraint defines minimum and maximum numbers of threads allocated to execute requests and the total number of requests that can be queued or executing before WebLogic Server begins rejecting requests. Constraint is referenced in WorkManager by constraint name. So a constraint can be shared by several WorkManagers and set the common limit.</p>
-
-<p>Minimum threads constraint makes sure that during periods of high workloads, there would still be a certain number of threads from the self-tuning thread pool available to process work requests for all work managers that reference the minimum threads constraint. Using the minimum threads constraint could result in some side-effects. Users should consider adding a minimum threads constraint to a work manager configuration when it is critical that progress must be made for an application even when the WLS server is under very heavy load, such as work that would have resulted in server-to-server deadlock if not being processed promptly. It is not to be used as a mean of prioritizing workload among different work managers. </p>
-
-<p>The maximum threads constraint limits the number of threads in the self-tuning thread pool that can be used for executing work for all work managers that references the same constraint. The maximum threads constraint is not designed as a mean to prioritize workloads among different work managers. It is most useful when there are other known limitations where a hard upper limit should be put on the number of threads that should be assigned for processing work requests, and that allocating more threads for processing the workload would not increase the overall throughput.</p>
-
-<p>A typical use case of maximum threads constraint is to take a data source connection pool size as the max constraint.</p>
-
-<pre><code>&lt;max-threads-constraint&gt;
-  &lt;name&gt;MyConstraint&lt;/name&gt;
-  &lt;pool-name&gt;MyDataSource&lt;/pool-name&gt;
-&lt;/max-threads-constraint&gt;
-</code></pre>
-
-<p>The capacity constraint defines the maximum number of requests that can be queued (waiting for thread) or are executing. Overload action, e.g. refuse with HTTP response code 503, is taken after the capacity is reached. </p>
-
-<p>I draw a picture to show the threadpool and queue. Requests dispatched with different WorkManager are in different color.</p>
-
-<p><img src="/blog/attachments/2012/8/workmanager.jpg" alt="" /></p>
-
-<ul>
-  <li>Self-tuning thread pool thread allocation ratio amoung WorkManagers is affected by request class. </li>
-  <li>Minimum threads constraint limits: never queue request, unless <code>executing &gt;= min-threads-constraint.count</code></li>
-  <li>Maximum threads constraint limits: <code>executing &lt;= max-threads-constraint.count</code></li>
-  <li>capacity contraint limits: <code>executing + queued &lt;= capacity.count</code></li>
-</ul>
-
-<p>WorkManager can be created for a specific application or module (ejb/war), which is called application-scoped WorkManager. If there is no special requirement on individual application or module, you can create global Work Managers that are available to all applications and modules. An application uses a globally-defined Work Manager as a template. Each application creates its own instance, this means that each application has its own default WorkManager that is not shared with other applications. WebLogic Server provides a built-in default Work Manager which may be sufficient for most application requirements.</p>
-
-<p>Reference:</p>
-
-<ul>
-  <li><a href="http://www.oracle.com/technetwork/articles/entarch/workload-management-088692.html">Workload Management in WebLogic Server 9.0</a></li>
-  <li><a href="https://blogs.oracle.com/WebLogicServer/entry/threads_constraints_in_work_ma">Threads Constraints in Work Managers</a></li>
-  <li><a href="http://docs.oracle.com/cd/E15051_01/wls/docs103/config_wls/self_tuned.html">Using Work Managers to Optimize Scheduled Work</a></li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/5/">&larr; Older</a>
@@ -478,6 +493,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
       </li>
     
@@ -493,23 +512,19 @@
         <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/22/clean-aged-artifacts-from-artifactory/">Clean aged artifacts from Artifactory</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 111%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 70%" href="/blog/tags/design/">Design</a>
@@ -523,16 +538,16 @@
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 111%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 111%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 104%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 104%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 122%" href="/blog/tags/running/">Running</a>
