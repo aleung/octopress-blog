@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: ImageProcessing | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/imageprocessing/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2013-10-21T23:00:13+08:00</updated>
+  <updated>2013-12-03T00:23:24+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -22,7 +22,7 @@
 
 <p>颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象：颜色就是可见光波长这个物理量的反映。但是问题来了，白色对应什么波长的光？为什么红光和绿光混合在一起变成了黄光，难道混合后波长产生变化了？原因在于，颜色并不是某一個物理量的直接反映，而是人对光线的心理反映，称之为色觉。</p>
 
-<p><img class="right" src="/attachments/2012/9/eye.jpg"> </p>
+<p>{% img right /attachments/2012/9/eye.jpg %} </p>
 
 <p>人眼有三种色彩感受器（视锥细胞），每种感受器可以感应不同波长范围的光，分别的感受峰值波长为：420nm，534nm，564nm，差不多相当于蓝、绿、红三色光的波长。对于某一种光谱，三种感受器得到三组信号送往大脑，大脑根据这三组信号值的不同组合感知到不同的色彩。</p>
 
@@ -117,7 +117,7 @@
     <link href="http://aleung.github.io/blog/2011/09/27/Apple-Aperture-/"/>
     <updated>2011-09-27T22:04:00+08:00</updated>
     <id>http://aleung.github.io/blog/2011/09/27/Apple-Aperture-</id>
-    <content type="html"><![CDATA[<p><img class="right" src="https://lh5.googleusercontent.com/-MGOVmxQlebs/ToHSOBbvsCI/AAAAAAAAAaQ/ZgUEHwlGelk/s800/aperture3.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img right https://lh5.googleusercontent.com/-MGOVmxQlebs/ToHSOBbvsCI/AAAAAAAAAaQ/ZgUEHwlGelk/s800/aperture3.jpg %}</p>
 
 <p>以前都用Photoshop来处理照片，刚开始用Aperture，还真不太适应，用了几天兼阅读了help，慢慢有些了解了。对于照片的后期处理，其实用什么工具都大同小异，基本上就是几板斧。没拍好的照片也没有必要费心去调，直接删除就得了。</p>
 

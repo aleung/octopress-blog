@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="逛超市，看到两款酸奶： 一种是100克装8杯，9.6元； 另一种是150克6杯加送1杯100克，10.5元。 那个价钱更划算？ 如果单位不同，就更难比较了，例如纯净水： 550ml一打，10元； 10L，12元； 5 gal（加仑），18元。 比价易（Unit Price Compare） &hellip;">
+  <meta name="description" content="接着昨天的分析：http://good-good-study.appspot.com/blog/posts/3224 已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线： 看起来相当完美。那在看看将它应用到大尺度上效果如何 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/27/Google-/">Google中国地图偏移 (续)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-27T22:04:00+08:00" pubdate data-updated="true">2009-12-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>接着昨天的分析：<a href="http://good-good-study.appspot.com/blog/posts/3224">http://good-good-study.appspot.com/blog/posts/3224</a></p>
+
+<p>已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线：</p>
+
+<p><img src="http://farm5.static.flickr.com/4009/4382498800_1bc9e586dd_o.jpg" alt="" /></p>
+
+<p>看起来相当完美。那在看看将它应用到大尺度上效果如何：</p>
+
+<p><img src="http://farm3.static.flickr.com/2795/4381740587_73cd1113fd_o.jpg" alt="" /></p>
+
+<p>有微小的抖动，看来参数细节还需要微调一下，不过要求不高的话其实已经可以接受了。</p>
+
+<p>接下来，在这张图上又发现了规律…… 嗯，我不能继续写下去了。</p>
+
+<p>其实对于离线应用，进一步的分析不做也没有关系了，并不需要将整个函数拟合出来，剩余的工作可以通过查表法来做，然后插值再加回高频扰动。因为知道了高频扰动的函数后，就能够用较低的采样频率来记录偏移量，即使将整个表放内存里，占用的空间大小也可以接受。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/27/Google-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -340,77 +407,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/10/31/Android-Wallpaper-Label/">Android软件：Wallpaper Label</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-31T09:14:00+08:00" pubdate data-updated="true">2009-10-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="/blog/attachments/2009/10/wallpaperlabel1.jpg" /></p>
-
-<p>Android与IPhone类似，都是有多个桌面屏幕，用手指划一下就可以左右切换屏幕。Android缺省设置只有3屏，但一些mod可以修改屏幕个数，例如设置为5屏。</p>
-
-<p>在IPhone上，屏幕的数量以及当前处于第几个屏幕是通过界面中下方的小圆点来指示的。但在Android上就没有类似的指示，有时候用户不知道现在正显示的是哪一屏，应该往左还是往右翻屏。</p>
-
-<p><img class="left" src="/blog/attachments/2009/10/wallpaperlabel2.jpg" /></p>
-
-<p>我开发的这个软件 Wallpaper Label 可以为Android手机的桌面每个屏幕添加一个文字标签，这样就很清晰的知道当前打开的是哪一屏了。标签位于在屏幕下方的正中位置，并不会影响图标的显示。</p>
-
-<p>Wallpaper Label 软件的另外一个作用是设置Android手机的桌面墙纸。Android系统自带的墙纸设置工具需要把图片剪切为4:3比例，无法设置其他比例的墙纸。4:3比例对于缺省的3屏是比较合适的，但当桌面屏幕数量更多的时候，这个比例就显得太窄了，左右切换屏幕时墙纸的画面基本没有多少移动。用 Home Screen Label 来设置墙纸没有4:3比例的限制，可以设置宽屏墙纸。</p>
-
-<p>用作墙纸的图片文件需要存放在SD卡的wallpapers目录中。软件也提供了保存当前墙纸的功能，可将现在正使用的墙纸保存到SD卡上。</p>
-
-<p>这是5个屏幕合成的效果图，可以看出宽屏墙纸画面效果：</p>
-
-<p><img src="/blog/attachments/2009/10/wallpaperlabel3.jpg" alt="" /></p>
-
-<p>软件在Android Market上下载安装，搜索”Wallpaper Label”就可以找到。
-(2012-7 update: Android自身功能不断增强，这个软件已经没什么用处，早已下架)</p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/10/31/Android-Wallpaper-Label/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/19/">&larr; Older</a>
@@ -432,6 +428,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
       </li>
     
@@ -445,10 +445,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
   </ul>
@@ -489,7 +485,7 @@
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 122%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

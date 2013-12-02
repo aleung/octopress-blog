@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Life | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/life/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2013-10-21T23:00:13+08:00</updated>
+  <updated>2013-12-03T00:23:24+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -24,11 +24,11 @@
 
 <p>2012年初用IKEA的BRODER系统加一个VIKA桌面搭建了一个站立工作桌。BRODER归属在重型储物系列里，本来用途是储物架，钢柱杆和钢网搁板很牢固，最大的搁板深度基本足够做桌面了，在上面垫上一块木桌面刚刚好。用IKEA的东西好处是你有很大发挥的空间，这个<a href="http://www.wretch.cc/blog/ikeameatball/12392137">IKEA的居家生活部落格</a>里就有不少BRODER各种应用的照片。但刚刚查IKEA中国网站，已经找不到BRODER，不知是否不卖了。</p>
 
-<p><img src="/attachments/2013/3/desk.jpg"></p>
+<p>{%img /attachments/2013/3/desk.jpg %}</p>
 
 <p>就这样用了一年，但长期站立工作也不好，于是想配一张高脚凳也许就差不多了。桌面高度是按站立工作而定的，按照我的身高桌面高度也偏高，一般市面上卖的高脚凳（酒吧凳）座高都不够。最后在淘宝上找到了一款，高度比较合适。今天到货刚刚装起来了。其实这凳子做工、质量都不算很好，组装也不够方便，如果IKEA有合适的我绝对不会选择它的（虽然说IKEA的东西质量也只算一般，但还是要比这淘宝货强）。</p>
 
-<p><img src="/attachments/2013/3/desk_chair.jpg"></p>
+<p>{%img /attachments/2013/3/desk_chair.jpg %}</p>
 
 <p>关于工作台面、座椅以及显示器的合适高度，在<a href="http://book.douban.com/subject/11652185/">Human Factors in Engineering and Design</a>一书的 chapter 13. Applied Anthropometry, Work-Space Design and Seating 中对站姿与坐姿工作环境有很好的描述。我在决定台面高度与椅子高度的时候参考了此书中给出的研究数据。</p>
 

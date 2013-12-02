@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="I didn’t expect that implementing a drag and drop list view on Android is so difficult. It took me more than one week to get it work. Android SDK &hellip;">
+  <meta name="description" content="在我们的工作中，不时需要评估工作任务的优先级：例如下个版本的软件应该加入的功能，又或者对之前工作回顾列出的一大堆改进项目，在一轮头脑风暴之后，发现需要做的事情是如此之多，而能投入的资源显得如此至少，怎么挑选出最有价值的事情来做就成了头痛的事。 过往，我们常做的方法是，召集一个会议， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,172 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/26/Determine-priority/">确定优先级</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-26T15:38:00+08:00" pubdate data-updated="true">2011-06-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在我们的工作中，不时需要评估工作任务的优先级：例如下个版本的软件应该加入的功能，又或者对之前工作回顾列出的一大堆改进项目，在一轮头脑风暴之后，发现需要做的事情是如此之多，而能投入的资源显得如此至少，怎么挑选出最有价值的事情来做就成了头痛的事。</p>
+
+<p>过往，我们常做的方法是，召集一个会议，大家一起来为每个任务评分：分别评估出任务的工作量级和重要性（1、2、3… 最重要为1），然后将两者相乘得到一个分数，根据这个分数对任务排序。这种做法是期望能找出重要性比较高，但是又不太难完成的任务。但很不幸，越是重要的任务往往工作量越大—-如果有重要而简单的任务，我们早就把它做了，不需要等到这个会议的召开—-得到的分数差距不大。印象中，我参加过的评估会，都没有得出什么有用的结论，最终做的决策似乎跟评估没有太多的关系。</p>
+
+<p>你可能会指出，这个评估模型根本就是不对的，工作量和重要性两者相乘得不出有意义的数字。但我们都不够聪明，没有想到一个足够简单而直观的方法。（回过头来看，应该是我们谁都没有花心思去想过。为什么？为什么？为什么？！）</p>
+
+<p>今天读”<a href="http://book.douban.com/subject/4163938/">More Joel on Software</a>“，第36节介绍了他们用的方法，值得借鉴。</p>
+
+<p>首先评估每项任务的工作量（成本），得到一个数字，其实这个数字是什么单位无所谓，story point也好，$也好，在例子里用的是$，金额。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>然后规定每人手上只有限量的资金，例如$20，可以用来购买这些功能。每个人根据自己对功能的重要性判断来决定应该为每个功能分配多少钱。例如：我觉得追踪资金到账时间是没有用的功能，一分钱也不分给它；安排软件开发过程很重要，我愿意出两倍的钱；而允许对bug分叉更重要，出4倍的钱；而个性化首页不是那么重要，所以我只愿意出80%的钱。故此，我的资金这样分配：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+      <th style="text-align: right">销售额</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+      <td style="text-align: right">$8</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+      <td style="text-align: right">$8</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+      <td style="text-align: right">$0</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+      <td style="text-align: right">$4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个过程其实就是一个已经按照成本加权的优先级评估。每个人在评估时已经综合考虑了成本和重要性。</p>
+
+<p>将每个功能从各人手中获得的资金累加起来，再除以成本，就得到一个投资收益率，很明显，投资收益率最高的功能就是应该最优先做的。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th style="text-align: right">成本</th>
+      <th style="text-align: right">总销售额</th>
+      <th style="text-align: right">投资收益率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个性化首页</td>
+      <td style="text-align: right">$10</td>
+      <td style="text-align: right">$45</td>
+      <td style="text-align: right">4.5</td>
+    </tr>
+    <tr>
+      <td>轻松安排软件开放进程</td>
+      <td style="text-align: right">$4</td>
+      <td style="text-align: right">$36</td>
+      <td style="text-align: right">9</td>
+    </tr>
+    <tr>
+      <td>追踪资金到账时间</td>
+      <td style="text-align: right">$5</td>
+      <td style="text-align: right">$12</td>
+      <td style="text-align: right">2.4</td>
+    </tr>
+    <tr>
+      <td>允许对bug分叉(fork)</td>
+      <td style="text-align: right">$1</td>
+      <td style="text-align: right">$7</td>
+      <td style="text-align: right">7</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下次排任务优先级的时候，我们应该尝试一下这种方法。</p>
+
+<p>P.S. 回头再想一下，这个方法其实跟我们以前用的工作量乘以重要性级别的方法本质上是一样的，但是我们过去用的重要性级别1、2、3、4、5没有定量关系，说不出不同级别之间的重要性相差多少倍，因此相乘出来的数字就没有比较价值了。另外，每人手上持有有限量资金进行分配这种方式更接近我们日常的思维模式，调动起人的直觉，类似于planning game。</p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/06/26/Determine-priority/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -406,67 +572,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/03/13/Sina-micro-bo-API-blacklist-terrible/">新浪微博API黑名单威武</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-13T01:40:00+08:00" pubdate data-updated="true">2011-03-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>因为有些tweet没有同步到新浪微博，查看了 <a href="http://good-good-study.appspot.com/blog/posts/111001">TwitterSinaSync</a> 的运行日志，发现了这样的记录：</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5519631639/"><img src="http://farm6.static.flickr.com/5057/5519631639_5b0593fd42_z.jpg" alt="" /></a></p>
-
-<p>前一个tweet（绿色框）正常同步到了新浪微博，而接下来一个就失败（红色框），错误信息是黑名单用户。显然是tweet中的某些内容触发了黑名单机制，在这里估计是”twitter”。</p>
-
-<p>一旦用户被列入了黑名单，接下来对这个用户的操作都会失败。看下面的例子，第一条是成功的，第二个失败后，接下来的tweet的同步都失败了，即使内容看起来绝无敏感词。其实我也猜不出第二条tweet中哪个词触发了加入黑名单，是”境外”？还是”mranti”？</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5519631597/"><img src="http://farm6.static.flickr.com/5217/5519631597_e6064611fc_z.jpg" alt="sina_blacklist_1" /></a></p>
-
-<p>目前新浪微博API的自动触发黑名单是临时性的，过一段时间后用户就可以继续使用，不过不知道它内部有没有什么计数器什么的。为此，我修改了 TwitterSinaSync，当用户被列入黑名单后会暂停同步一段时间。这个版本还处理了用户撤销新浪API授权的情况，会自动将用户删除。用户可以用原邀请链接重新开通。请到<a href="https://github.com/aleung/TwitterSinaSync">TwitterSinaSync@github</a>下载 2.3 版本源代码。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/03/13/Sina-micro-bo-API-blacklist-terrible/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/11/">&larr; Older</a>
@@ -488,6 +593,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
       </li>
     
@@ -501,10 +610,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
   </ul>
@@ -545,7 +650,7 @@
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 122%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

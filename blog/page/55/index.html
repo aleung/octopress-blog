@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="寻找一个PHP代码的格式化工具, chedong的主页上介绍了phpCodeBeautify, 下载试用一下, 还是开发版, 效果不是很满意. 以前我用过astyle,并且自己改成phpstyle, 但它毕竟只是为C++/Java设计, 对PHP处理不是很全面.
-在google上搜索, &hellip;">
+  <meta name="description" content="Robocode的每个机器人都是一个线程，线程调度为非强占式，由战斗管理线程依次调度运行。每个线程执行到一个阻塞函数的时候，交出cpu占用权。对于AdvancedRobot，阻塞函数是excute()。 从这个角度而言，可以把robocode看作是回合制的游戏， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/05/Robocode-/">Robocode的线程与执行次序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-05T22:59:00+08:00" pubdate data-updated="true">2003-08-05</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Robocode的每个机器人都是一个线程，线程调度为非强占式，由战斗管理线程依次调度运行。每个线程执行到一个阻塞函数的时候，交出cpu占用权。对于AdvancedRobot，阻塞函数是excute()。  </p>
+
+<p>从这个角度而言，可以把robocode看作是回合制的游戏，每个回合各个robot设定要做些什么操作，即调用setXXX()，调用excute()完成本回合的操作设定。各个robot都设定完后，战斗模拟模块模拟执行各个robot的动作，并且在屏幕显示结果。下个回合，robot线程在excute()下面继续执行，直到再次调用excute()为止。  </p>
+
+<p>不过，setXXX()设定的操作，往往是在一个回合中执行不完的。在robocode中，一个回合是游戏中的一个时间单位，各个元素的运动都有一定的速度，需要一定单位的时间才能完成。如果上回合中设置的动作还没有完成，本回合又重新设定了，就会把新动作覆盖旧动作。  </p>
+
+<p>事件处理函数onXXX()，看起来是在事件发生的时候立即执行的，其实不然，还是要在回合中轮到这个robot的时候才能执行。而且若在队列中有多个事件，而某个事件处理函数调用了excute()结束了本回合的动作，那么剩下的事件就要等到下个回合才能处理了。因此，onXXX()改变的只是某个线程内部的执行次序，并不改变robot线程之间的执行次序。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/05/Robocode-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -315,57 +372,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/07/14/Top-75-security-tools/">Top 75 Security Tools</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-07-14T23:05:00+08:00" pubdate data-updated="true">2003-07-14</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Top 75 security tools: <a href="http://www.insecure.org/tools.html">http://www.insecure.org/tools.html</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/07/14/Top-75-security-tools/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/56/">&larr; Older</a>
@@ -387,6 +393,10 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
       </li>
     
@@ -400,10 +410,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
     
       <li class="post">
         <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/">Solving Maven unique and non-unique snapshot conflict</a>
       </li>
     
   </ul>
@@ -444,7 +450,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 122%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
