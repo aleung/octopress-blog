@@ -19,12 +19,13 @@ Both Jersey and Apache CXF support JSON data generated out of JAXB beans. Develo
            public int tonerRemaining = 25;
            public final Collection<JobInfoBean> jobs = new HashSet<JobInfoBean>();
        }
+       
        @Path("/status")
        public class MyResource {
            StatusInfoBean statusInfoBean = new StatusInfoBean();
-           {{
-                statusInfoBean.jobs.add(new JobInfoBean("sample.doc", "printing...", 13));
-           }}
+           {
+               statusInfoBean.jobs.add(new JobInfoBean("sample.doc", "printing...", 13));
+           }
     
            @GET
            @Produces("application/json")
