@@ -9,9 +9,9 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="《诊断 Java 代码》这组文章提到了很多种“错误模式”，有时间值得看看。
-http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml
-">
+  <meta name="description" content="Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。
+对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。
+选择文件，右键菜单 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,60 @@ http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/22/Eclipse-i18n-l10n-/">Eclipse的i18n/l10n辅助功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-22T20:15:00+08:00" pubdate data-updated="true">2003-08-22</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。<br />
+对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。<br />
+选择文件，右键菜单 source-&gt;Extenalize Strings 打开工具，能够找出源文件中的所有字符串，选择那些需要翻译，自动替换并生成properties文件。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/22/Eclipse-i18n-l10n-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -347,126 +401,6 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/13/Landsat7-/">Landsat7卫星及遥感图象处理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-13T02:49:00+08:00" pubdate data-updated="true">2003-08-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>LANDSAT是美国陆地探测卫星系统。从1972年开始发射第一颗卫星LANDSAT 1，到目前最新的LANDSAT 7。</p>
-
-<p>LANDSAT 7 卫星于99年发射，装备有Enhanced Thematic Mapper Plus(ETM+)设备，ETM+被动感应地表反射的太阳辐射和散发的热辐射，有8个波段的感应器，覆盖了从红外到可见光的不同波长范围。</p>
-
-<p>ETM+比起在LANDSAT 4、5上面装备的Thematic Mapper(TM)设备在红外波段的分辨率更高，因此有更高的准确性。</p>
-
-<p>LANDSAT 7 的一些总体数据：</p>
-
-<ul>
-  <li>7个光谱波段和一个全色波段 </li>
-  <li>观察宽度达185km </li>
-  <li>15、30、60、80米精度 </li>
-  <li>离地705km太阳同步轨道 </li>
-  <li>16天运行周期 </li>
-  <li>覆盖范围为南北纬81度之间区域</li>
-</ul>
-
-<p>ETM+的波段：</p>
-
-<ol>
-  <li>0.45-0.52微米蓝绿波段, 用于水体穿透, 土壤植被分辨 </li>
-  <li>0.52-0.60微米绿色波段, 用于植被分辨 </li>
-  <li>0.63-0.69微米红色波段, 处于叶绿素吸收区域, 用于观测道路/裸露土壤/植被种类效果很好 </li>
-  <li>0.76-0.90微米近红外波段, 用于估算生物数量, 尽管这个波段可以从植被中区分出水体，分辨潮湿土壤，但是对于道路辨认效果不如TM3。 </li>
-  <li>1.55-1.75微米中红外波段, 这被认为是所有波段中最佳的一个, 用于分辨道路/裸露土壤/水, 它还能在不同植被之间有好的对比度, 并且有较好的穿透大气、云雾的能力。 </li>
-  <li>10.5-12.5微米热红外波段, 感应发出热辐射的目标. 分辨率为60m. </li>
-  <li>2.08-2.35微米中红外波段, 对于岩石/矿物的分辨很有用, 也可用于辨识植被覆盖和湿润土壤. </li>
-  <li>0.52-0.90微米全色波段, 得到的是黑白图象, 分辨率为15m, 用于增强分辨率, 提供分辨能力. (ETM+增加了这个波段，TM没有)</li>
-</ol>
-
-<p>以上波段除6、8外分辨率均为30m。</p>
-
-<p>Landsat7 ETM+ 数据又分为多种，例如L0Rp, L1R和L1G.</p>
-
-<ul>
-  <li>L1R: radiometrically corrected but not geometrically resampled. </li>
-  <li>L1G: radiometrically corrected and resampled for geometric correction and registration to geographic map projections.</li>
-</ul>
-
-<p>在使用这些卫星图象的时候，要先进行处理。通常是用多个波段的图象进行彩色合成，得到伪彩色图象。在合成前，各波段图象还要先做图象增强处理。</p>
-
-<p>例如：MrSid卫星图象是用band7作为红色, band4作为绿色，band2作为蓝色合成的，简称为742。（MrSid用的是Landsat TM, 1987-1993拍摄数据，当时未有Landsat 7）；GeoGratis Landsat7 合成卫星图象是用743(RGB)。Terra为绿野做到北京图用的是542。</p>
-
-<p>常用的合成方法：</p>
-
-<ul>
-  <li>321：真彩合成。与肉眼所见接近；仅使用反射的可见光，受大气、云雾、阴影、散射的影响较大，通常对比度不高，感觉模糊（蓝色光散射严重）；对于海岸区域研究特别有用，因为可见光可穿透水面，观察到海底。 </li>
-  <li>432：近红外合成。颜色与肉眼所见完全不同；植被在近红外波段反射率特别高，因为叶绿素在此波段反射的能量大，因此在432图象中植被会明显表现为深浅不同的红色，不同类型植物有不同的红色色调；水会吸收差不多所有的近红外光，因此水面颜色很深近乎黑色。 </li>
-  <li>743/742：短波红外合成。包含至少一个短波红外波段，短波红外波段的反射率主要取决于物体表面的含水量，因此这类图象可用于植被保护和土地研究。</li>
-</ul>
-
-<p>图象合成可以用Photoshop之类的图象编辑软件来做，缺点是不能做出带地理信息的GeoTiff图象。<a href="http://www.geogr.ku.dk/chips/">Chips</a>（哥本哈根图象处理系统）是一个专门用于遥感图象处理的软件，标准版是免费的。用它来制作3波段合成图象很容易。以下为简单使用方法：</p>
-
-<blockquote>
-
-  <p>Open WinChips, and from the <em>File</em> menu, select <em>New Project</em>. From the <em>File</em> menu, select <em>Add Object(s)</em>, and select the three images for the three bands you want to use in your composite image, and add them as <em>Chips Image_s. From the _File</em> menu, select <em>New Object</em>, then <em>Lookup Table</em>, then save the new Lookup Table file. From the <em>View</em> menu, select <em>New Image View</em>. In the <em>Image View Configuration</em> dialog, on the <em>Image</em> tab, select <em>Display Mode</em> as RGB. For each of the <em>(Red, Green, Blue)</em> choices, select the image for the band you want to use for the respective color. For <em>Lookup Table</em> select the Lookup Table you added earlier, then click <em>OK</em>. </p>
-
-  <p>You should now have a <em>Default Image View</em> window open, showing your 3-band color composite image. From the <em>Image View</em> menu, select <em>Lookup Table</em>, then <em>Enhance using Statistics for Entire Image</em>. Once the statistics are calculated for each of the colors, a <em>Modify Lookup Table</em> dialog will be presented. To see the effect of some basic image enhancement, click on <em>Hist. Equal.</em>. You can use <em>Reset</em> to undo the enhancement. Click on <em>Cancel</em> to close the dialog window. </p>
-
-  <p>To save the 3-band color composite image, from the <em>Image View</em> menu select <em>Export View To Standard Format</em>. Once you have saved the image file, you have the option of saving geocoding for the image. </p>
-</blockquote>
-
-<p>参考：  </p>
-
-<ul>
-  <li><a href="http://imaging.geocomm.com/features/sensor/landsat7/">http://imaging.geocomm.com/features/sensor/landsat7/</a>  </li>
-  <li><a href="http://members.shaw.ca/davepatton/landsat7.html">http://members.shaw.ca/davepatton/landsat7.html</a>  </li>
-  <li><a href="http://chesapeake.towson.edu/data/composite.asp">http://chesapeake.towson.edu/data/composite.asp</a>  </li>
-  <li><a href="http://chesapeake.towson.edu/data/raw_data.asp">http://chesapeake.towson.edu/data/raw_data.asp</a></li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/13/Landsat7-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/55/">&larr; Older</a>
@@ -488,6 +422,10 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
       </li>
     
@@ -503,16 +441,12 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -526,7 +460,7 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>

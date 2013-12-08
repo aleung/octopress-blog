@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="前几个月看了些软件开发相关的书，读的时候有时有感悟就发条tweet，在这里备份一下。 梦断代码 开始阅读《梦断代码》，一个历时多年的软件项目惨败的故事。其实类似的案例很多很多，不过大家都不愿意承认失败，或者将失败轻描淡写而已。 可复用软件之梦有一悖论：几乎总能找到一段满足大部分需要的代码， &hellip;">
+  <meta name="description" content="这个blog使用的markdown解释器是kramdown，比起标准markdown有所增强。再加上Jekyll的一些插件特供的特殊功能。 Markdown基本语法 标题 标题用#开头，一个井号是一级标题，两个井号是二级标题，井号越多字体越小。 一级标题也可以通过在标题的下一行用======== &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,232 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-24T23:08:00+08:00" pubdate data-updated="true">2012-06-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这个blog使用的markdown解释器是<a href="http://kramdown.rubyforge.org/quickref.html">kramdown</a>，比起标准markdown有所增强。再加上Jekyll的一些插件特供的特殊功能。</p>
+
+<h2 id="markdown">Markdown基本语法</h2>
+
+<h3 id="section">标题</h3>
+
+<p>标题用<code>#</code>开头，一个井号是一级标题，两个井号是二级标题，井号越多字体越小。</p>
+
+<p>一级标题也可以通过在标题的下一行用<code>========</code>来标注，二级标题就是<code>---------</code>。更小的标题就不能用这种方式了。</p>
+
+<h3 id="section-1">链接</h3>
+
+<p>格式：</p>
+
+<pre><code>[text](link)
+</code></pre>
+
+<h3 id="section-2">图片</h3>
+
+<p>与链接类似，区别是前面增加叹号<code>!</code>：</p>
+
+<pre><code>![text](link)
+</code></pre>
+
+<p>另一种图片语法是由插件支持的，用<code>{</code> <code>%</code>包围的img标签，后面跟着图片URL，在URL前可以加入可选的css class名称，如：<code>left</code>, <code>right</code>，得到文字环绕效果。</p>
+
+<h3 id="blockquote">引用 (blockquote)</h3>
+
+<p>用<code>&gt;</code>开头的一个段落：</p>
+
+<blockquote>
+  <p>Stay hungry…
+stay foolish.</p>
+</blockquote>
+
+<p>用四个空格缩进的段落，会按原始格式显示，相当于HTML的<code>&lt;pre&gt;</code>的效果：</p>
+
+<pre><code>+----+
+|    |
++----+
+</code></pre>
+
+<p>也可以通过在原始格式引用段落的前后各加一行波浪号<code>~~~~~~</code>来实现。(这是kramdown特有的语法)</p>
+
+<h3 id="section-3">显示效果</h3>
+
+<p>用<code>*</code>或<code>_</code>包围的文字会用斜体显示：</p>
+
+<p>Some of these words <em>are emphasized</em>.</p>
+
+<p>如果双重符号<code>**</code>或<code>__</code>则会用粗体显示：</p>
+
+<p>Use two asterisks for <strong>strong emphasis</strong>.</p>
+
+<p>用<code>`</code>包围的文字按代码格式显示。</p>
+
+<h3 id="section-4">列表</h3>
+
+<p>用<code>*</code>, <code>+</code>, <code>-</code>开头的行都会作为列表项。子项缩进两个空格。</p>
+
+<ul>
+  <li>加号开头的段落
+    <ul>
+      <li>缩进两个空格，加号开头
+        <ul>
+          <li>再缩进两个空格，三级项目</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>其次</li>
+</ul>
+
+<h2 id="section-5">表格</h2>
+
+<p>注意第二行的分割线的冒号位置，决定了这一列的对齐方式。</p>
+
+<pre><code>No.   | Name    | Status  |
+-----:|:--------|:-------:|
+1     | Alaph   | done    |
+2     | Beta    | ongoing |
+10000 | Release | n/a     | 
+</code></pre>
+
+<p>效果：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">No.</th>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: center">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">Alaph</td>
+      <td style="text-align: center">done</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Beta</td>
+      <td style="text-align: center">ongoing</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">10000</td>
+      <td style="text-align: left">Release</td>
+      <td style="text-align: center">n/a</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-6">脚注</h3>
+
+<p>增加脚注<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>很简单，就是这样：<code>[^1]</code></p>
+
+<p>脚注定义的写法是以<code>[^1]: </code>开头，后面跟着定义。</p>
+
+<h2 id="section-7">嵌入代码</h2>
+
+<p>下面的嵌入代码的方式都是由插件提供的，并非markdown语法。</p>
+
+<h3 id="section-8">代码高亮</h3>
+
+<pre><code> ``` [language] [title] [url] [link text]
+ code snippet
+ ```
+</code></pre>
+
+<p>效果：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>HelloWorld.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</span><span class="line">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello, World&quot;</span><span class="o">);</span>
+</span><span class="line">    <span class="o">}</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="gist">嵌入Gist</h3>
+
+<div><script src="https://gist.github.com/2934603.js?file="></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+
+<p>方法是写一个用<code>{</code> <code>%</code>包围的gist标签，后面带上id。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>脚注一定会显示在最末尾。<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/06/24/try-octopress-markdown-features/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -363,63 +589,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/19/Extend-the-toilet-bowl-cleaning-treasure-blue-bubble-use-of-the-time-small-skills/">延长洁厕宝(蓝泡泡)使用时间的小技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-19T23:33:00+08:00" pubdate data-updated="true">2012-02-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/life/'>Life</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前马桶放的洁厕宝（蓝泡泡）总是不耐用，声称普通使用可达一个月，但实际上头几天冲的水颜色很深，一个星期后颜色就非常淡了，根本用不到一个月，原因是溶解速度控制不了，太快了。</p>
-
-<p>为了防止过快溶解，给洁厕宝增加一个”外套”。我选的是大开口的口香糖盒子，大小比较合适，能把整块洁厕宝放进去，瓶口合上比较严实。在瓶身开上几个直径3～5mm左右的洞，洞不能太小也不能太大。开始可以先开三四个，如果实验发现洁厕宝溶解不出来再加开几个。怎么开洞就看你手上有什么工具了，我试过几种工具，发现用美工刀最容易，三刀开出一个三角形的洞。做好后把洁厕宝放进去，盖上盖子，扔马桶水箱里就行了。因为盒子里有空气，可能它不会自己沉下去，需要把它按进水里，把空气排出来。水箱里有水垢，不是那么好看，就不把照片贴出来了。</p>
-
-<p><img src="https://lh4.googleusercontent.com/-c5HKYk_j34o/T0EL4Y6tMcI/AAAAAAAAAnY/YnGOTSAfDBY/s800/toilet_%201%20%281%29.jpg" alt="" /><img src="https://lh4.googleusercontent.com/-xujCGkefLQY/T0EL5g-crrI/AAAAAAAAAng/aVK2tmecsC0/s800/toilet_%202%20%281%29.jpg" alt="" /><img src="https://lh3.googleusercontent.com/-lDnmsRQFEiQ/T0EL7i1DpCI/AAAAAAAAAno/GCn5dEHM9dc/s800/toilet_%203%20%281%29.jpg" alt="" /></p>
-
-<p>加了”外套”后，效果相当显著，一颗洁厕宝大概能用三个月。去年家人出差多，竟然用了半年！</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/02/19/Extend-the-toilet-bowl-cleaning-treasure-blue-bubble-use-of-the-time-small-skills/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/8/">&larr; Older</a>
@@ -441,6 +610,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
       </li>
     
@@ -456,16 +629,12 @@
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -479,7 +648,7 @@
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>

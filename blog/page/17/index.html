@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="JAX-RS is the Java API for RESTful web services. JSON is the most popular data binding of RESTful web service. In JAX-RS, Entity Providers supply &hellip;">
+  <meta name="description" content="订阅bypassgfw邮件列表后，可通过email定期会收到翻墙软件更新版本。订阅方法有两种： 访问https://groups.google.de/group/bypassgfw?hl=zh-CN(此地址已被墙)，用Google/GMail账号登录，点击右侧”加入此论坛” 发邮件至 jsmith &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/">推荐一个介绍翻墙知识的邮件列表</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-24T00:59:00+08:00" pubdate data-updated="true">2010-02-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>订阅bypassgfw邮件列表后，可通过email定期会收到翻墙软件更新版本。订阅方法有两种：</p>
+
+<ol>
+  <li>访问<a href="https://groups.google.de/group/bypassgfw?hl=zh-CN">https://groups.google.de/group/bypassgfw?hl=zh-CN</a>(此地址已被墙)，用Google/GMail账号登录，点击右侧”加入此论坛”</li>
+  <li>发邮件至 jsmith.email2009@googlemail.com 申请加入(请在标题中标明”申请加入Bypass GFW Google Group)</li>
+</ol>
+
+<p>以下内容摘自bypassgfw的介绍：</p>
+
+<blockquote>
+  <p>更多翻墙软件和翻墙技巧 <a href="http://twitbrowser.net/blog">http://twitbrowser.net/blog</a>墙内镜像：<a href="http://tbm001.mooo.com/">http://tbm001.mooo.com/</a></p>
+
+  <p>加入小组需Google/GMail账号，没有Google/GMail账号也可以直接发邮件至jsmith.email2009@googlemail.com申请加入(请在标题中标明”申请加入Bypass GFW Google Group)，我会手动添加到邮件列表中</p>
+
+  <p>163和Hotmail会将小组邮件标为垃圾邮件，请尽量不要使用这两个邮箱订阅小组邮件</p>
+
+  <p>本小组仅为发送邮件所创建，每周会发送两封附件包含有效翻墙软件的邮件至所有组员邮箱，问题讨论请到<a href="http://groups.google.com/group/bypassgfwdiscussions">http://groups.google.com/group/bypassgfwdiscussions</a></p>
+
+  <p>如果您有任何问题或无法收到邮件，请发送邮件到 jsmith.email2009@googlemail.com</p>
+</blockquote>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -505,61 +575,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/01/The-reason-for-explorer-crash-tools/">查找explorer Crash原因的工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-01T06:59:00+08:00" pubdate data-updated="true">2010-01-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>不知道装了什么软件之后，只要在文件管理器中点击鼠标右键，Windows Explorer就会崩溃，重新启动依然如是。</p>
-
-<p>找到<a href="http://www.nirsoft.net/">Nir Sofer</a>出品的小工具 ShellExView，这个工具分析注册表，列出所有注册到explorer的shell extension及相关信息，并能够enable/disable选定的extension。找到可疑的extension，将它disable，然后再进行一次右键操作，看看还会不会crash。如此排除法很快就定位出什么软件是罪魁祸首，将它卸载或者将extension disable，问题就解决了。</p>
-
-<p>比较有用的信息是extension type，file extensions，file created time。首先关注文件创建时间，找出最近新增的extension，因为以前正常，最近才出问题，那引起问题通常是新装的软件。不过也不能一概而论，也有可能是以前安装的软件，因为最近的环境更改而出现了问题。另外可以根据extension type和file extensions进行过滤，例如我遇到的问题是右键菜单引发崩溃，那重点关注extension type为Context Menu的那些项。还有，在任何类型文件上按右键菜单都会引发崩溃，所以不大可能是由只针对特定文件类型的extension引发的。虽然系统注册的shell extension很多，例如我这个新装没多久的Vista系统就已经有三百多项，但是大部分都是Microsoft出品的，一般来说还是比较可靠的，只要关注非Microsoft的就可以了，找起问题来还是很快的。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/01/01/The-reason-for-explorer-crash-tools/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/18/">&larr; Older</a>
@@ -581,6 +596,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
       </li>
     
@@ -596,16 +615,12 @@
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -619,7 +634,7 @@
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>

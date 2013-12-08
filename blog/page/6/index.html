@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="简约至上，原作名为 Simple and Usable Web,Mobile,and Interaction Design，不错的关于交互设计的书籍。 ">
+  <meta name="description" content="昨天中午拿到国行 Sony Xperia U (ST25i) 手机，开机试了一下，索尼(原来的索尼爱立信)在Android 2.3基础上的定制系统做得还可以，但大陆行货里好多功能都被阉割得不成样子。Google系列的任何东西都去掉了就不用说了，很奇怪的是居然系统里没有自带任何应用市场， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/21/flashing-xperia-u/">Xperia U 刷机</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-21T23:20:00+08:00" pubdate data-updated="true">2012-07-21</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天中午拿到国行 <a href="http://www.sonymobile.com/global-en/products/phones/xperia-u/">Sony Xperia U</a> (ST25i) 手机，开机试了一下，索尼(原来的索尼爱立信)在Android 2.3基础上的定制系统做得还可以，但大陆行货里好多功能都被阉割得不成样子。Google系列的任何东西都去掉了就不用说了，很奇怪的是居然系统里没有自带任何应用市场，国内的山寨市场也没有。可以想象一个不熟悉IT的用户买到手机后就会局限在预装的那几个应用，连升级都没有途径。比较一下SonyMobile英文与中文网站对这款手机的介绍，就会发现中文产品介绍缩水不少，好多卖点都没有了。</p>
+
+<p>这样的智能手机简直就是残废，于是下班后就开始研究怎么刷机。先是在国内的一些论坛上搜索，但国内论坛真是很没有营养，里面的信息的价值很低。Android hacker的大本营在XDA，相关问题还是要到<a href="http://www.xda-developers.com/">XDA论坛</a>找靠谱。</p>
+
+<p>关于Xperia系列刷机需要了解的基础知识，这篇 <a href="http://forum.xda-developers.com/showthread.php?t=1526866">All that u need to know before u begin</a> 讲得比较清楚。</p>
+
+<p>无论要刷什么，前提条件是先将 bootloader 解锁。关于解锁的教程很多，SonyMobile网站上就有详细步骤，XDA上的 <a href="http://forum.xda-developers.com/showthread.php?t=1527159">Xperia S/P/U/Sola Bootloader Unlocking &amp; Relocking</a> 附带了所需工具的下载。还有一个国产软件，号称是一键自动解锁。</p>
+
+<p>但是，就在第一步，将手机boot到fastboot模式，就花了我好几个小时。按教程，手机在关机状态按着音量+键的同时将USB连接上电脑，就会进入fastboot模式，并且亮起蓝灯。但是无论我怎么反复重试，手机都不会亮起蓝灯，电脑上弹出对话框提示安装驱动程序，但当我选择操作时它又说USB设备已经断开，显示这样的错误信息：s1boot fastboot device unplugged。网上搜索，有人说是驱动没有装好的原因，最后还是从XDA里找到了<a href="http://forum.xda-developers.com/showthread.php?t=1554632">解决方案</a>。原来，Xperia手机在进入fastboot模式时，会检测电脑是否已经装上了正确的驱动程序，如果没有，就会退出fastboot模式。而电脑端刚刚提示用户安装驱动，就发现手机已经关闭了连接，就取消了驱动的安装。这种问题可以用来做经典反面案例了。XDA帖子里的解决方法还是要拼手快：预先打开设备管理器，一插上手机后，里面会出现s1boot这个设备，赶紧鼠标右键选择升级驱动，升级驱动的对话框打开后，即使设备断开了还是可以继续进行驱动程序的安装。终于看到传说中的蓝灯了，原来是在下面透明发光条发出很亮的蓝光，我之前还一直以为是右上角摄像头旁边的小灯。</p>
+
+<p>接下来就非常顺利了，解锁bootloader后，用fastboot安装了ROM和Kernel。我都没有另外用其他工具了，感觉fastboot用起来就很简单，很多人不喜欢可能是因为命令行操作吧。关于fastboot使用，推荐看cyanogenmod的wiki里的<a href="http://wiki.cyanogenmod.com/wiki/Fastboot">介绍</a>。</p>
+
+<p>我刷的ROM是<a href="http://forum.xda-developers.com/showthread.php?t=1684062">KA02 Xperia SSpeed</a>， 还是Android 2.3.7，Sony还没有为Xperia U 提供Android 4.0 ICS。Kernel是<a href="http://forum.xda-developers.com/showthread.php?t=1688147">Advanced Stock Kernel</a>。刷完开机，见到熟悉Google账号绑定，然后Gmail、通信录、日历同步、Google Play都回来了。Root也有了，收工。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/07/21/flashing-xperia-u/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -387,232 +450,6 @@ We deliver our product in uniform installation package for all customers. A mech
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/24/try-octopress-markdown-features/">试验 Octopress 的各种特性</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-24T23:08:00+08:00" pubdate data-updated="true">2012-06-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这个blog使用的markdown解释器是<a href="http://kramdown.rubyforge.org/quickref.html">kramdown</a>，比起标准markdown有所增强。再加上Jekyll的一些插件特供的特殊功能。</p>
-
-<h2 id="markdown">Markdown基本语法</h2>
-
-<h3 id="section">标题</h3>
-
-<p>标题用<code>#</code>开头，一个井号是一级标题，两个井号是二级标题，井号越多字体越小。</p>
-
-<p>一级标题也可以通过在标题的下一行用<code>========</code>来标注，二级标题就是<code>---------</code>。更小的标题就不能用这种方式了。</p>
-
-<h3 id="section-1">链接</h3>
-
-<p>格式：</p>
-
-<pre><code>[text](link)
-</code></pre>
-
-<h3 id="section-2">图片</h3>
-
-<p>与链接类似，区别是前面增加叹号<code>!</code>：</p>
-
-<pre><code>![text](link)
-</code></pre>
-
-<p>另一种图片语法是由插件支持的，用<code>{</code> <code>%</code>包围的img标签，后面跟着图片URL，在URL前可以加入可选的css class名称，如：<code>left</code>, <code>right</code>，得到文字环绕效果。</p>
-
-<h3 id="blockquote">引用 (blockquote)</h3>
-
-<p>用<code>&gt;</code>开头的一个段落：</p>
-
-<blockquote>
-  <p>Stay hungry…
-stay foolish.</p>
-</blockquote>
-
-<p>用四个空格缩进的段落，会按原始格式显示，相当于HTML的<code>&lt;pre&gt;</code>的效果：</p>
-
-<pre><code>+----+
-|    |
-+----+
-</code></pre>
-
-<p>也可以通过在原始格式引用段落的前后各加一行波浪号<code>~~~~~~</code>来实现。(这是kramdown特有的语法)</p>
-
-<h3 id="section-3">显示效果</h3>
-
-<p>用<code>*</code>或<code>_</code>包围的文字会用斜体显示：</p>
-
-<p>Some of these words <em>are emphasized</em>.</p>
-
-<p>如果双重符号<code>**</code>或<code>__</code>则会用粗体显示：</p>
-
-<p>Use two asterisks for <strong>strong emphasis</strong>.</p>
-
-<p>用<code>`</code>包围的文字按代码格式显示。</p>
-
-<h3 id="section-4">列表</h3>
-
-<p>用<code>*</code>, <code>+</code>, <code>-</code>开头的行都会作为列表项。子项缩进两个空格。</p>
-
-<ul>
-  <li>加号开头的段落
-    <ul>
-      <li>缩进两个空格，加号开头
-        <ul>
-          <li>再缩进两个空格，三级项目</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>其次</li>
-</ul>
-
-<h2 id="section-5">表格</h2>
-
-<p>注意第二行的分割线的冒号位置，决定了这一列的对齐方式。</p>
-
-<pre><code>No.   | Name    | Status  |
------:|:--------|:-------:|
-1     | Alaph   | done    |
-2     | Beta    | ongoing |
-10000 | Release | n/a     | 
-</code></pre>
-
-<p>效果：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right">No.</th>
-      <th style="text-align: left">Name</th>
-      <th style="text-align: center">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">1</td>
-      <td style="text-align: left">Alaph</td>
-      <td style="text-align: center">done</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">2</td>
-      <td style="text-align: left">Beta</td>
-      <td style="text-align: center">ongoing</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">10000</td>
-      <td style="text-align: left">Release</td>
-      <td style="text-align: center">n/a</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="section-6">脚注</h3>
-
-<p>增加脚注<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>很简单，就是这样：<code>[^1]</code></p>
-
-<p>脚注定义的写法是以<code>[^1]: </code>开头，后面跟着定义。</p>
-
-<h2 id="section-7">嵌入代码</h2>
-
-<p>下面的嵌入代码的方式都是由插件提供的，并非markdown语法。</p>
-
-<h3 id="section-8">代码高亮</h3>
-
-<pre><code> ``` [language] [title] [url] [link text]
- code snippet
- ```
-</code></pre>
-
-<p>效果：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>HelloWorld.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
-</span><span class="line">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello, World&quot;</span><span class="o">);</span>
-</span><span class="line">    <span class="o">}</span>
-</span><span class="line"><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="gist">嵌入Gist</h3>
-
-<div><script src="https://gist.github.com/2934603.js?file="></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
-    default-autowire=&quot;byType&quot;&gt;
-
-    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
-
-    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
-    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
-    
-    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
-        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-
-<p>方法是写一个用<code>{</code> <code>%</code>包围的gist标签，后面带上id。</p>
-
-<hr />
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>脚注一定会显示在最末尾。<a href="#fnref:1" rel="reference">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/06/24/try-octopress-markdown-features/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/7/">&larr; Older</a>
@@ -634,6 +471,10 @@ stay foolish.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
       </li>
     
@@ -649,16 +490,12 @@ stay foolish.</p>
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -672,7 +509,7 @@ stay foolish.</p>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>

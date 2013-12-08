@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="去年写下关于 “I Love” audio player的想法，曾想过自己开发的，但我没有开发这方面软件的经验，要学习的东西太多了，也没有时间精力来做。前段时间xlla朋友给我留言，介绍iPod的智能播放列表，我一下子兴趣又上来了，上网再次搜索一番， &hellip;">
+  <meta name="description" content="要定制一个Eclipse特别版本非常简单，由于它是完全”绿色”安装的，只需要解开原始发布包，修改里面的配置，重新打包即可。重新打包前，要将configuration目录中的子目录都删除，只保留config.ini文件。 添加plugin，通过菜单的Help - Software Updates &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/03/How-to-customize-Eclipse/">How to Customize Eclipse</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-03T21:18:00+08:00" pubdate data-updated="true">2007-07-03</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>要定制一个Eclipse特别版本非常简单，由于它是完全”绿色”安装的，只需要解开原始发布包，修改里面的配置，重新打包即可。重新打包前，要将configuration目录中的子目录都删除，只保留config.ini文件。</p>
+
+<p>添加plugin，通过菜单的Help - Software Updates - Find and Install进行。</p>
+
+<p>对于eclipse网站下载的Eclipse SDK, 客户化配置应该修改plugins/org.eclipse.sdk目录里面的东西.</p>
+
+<ul>
+  <li>About窗口的内容对应于plugin.properties文件中的设置。(删除configuration目录内容后才能看到变化)</li>
+  <li>Splash screen 的图片所在目录是在configuration/config.ini的osgi.splashPath中指定的。应该是 plugins/org.eclipse.platform 目录中的splash.bmp。</li>
+  <li>Perference选项缺省值的定制在plugin_customization.ini文件中指定。在Eclipse的perference 对话框中将需要改变的值改好，然后在File:Export将perference export到一个efp文件。这个文件是properties文件格式的，用文本编辑器打开它，找出需要定制的项目，去掉前面的/instance/， copy到plugin_customization.ini文件中。</li>
+</ul>
+
+<p>Reference:</p>
+
+<ul>
+  <li>Eclipse help : Platform Plug-in Developer Guide : Programmer’s Guide : Packaging and delivering Eclipse based product</li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/07/03/How-to-customize-Eclipse/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -328,82 +395,6 @@ Possible to get good knowledge of the system. Large funding. Main motive to get 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/05/28/Finally-find-the-most-appropriate-file-synchronization-backup-tools/">终于找到了最合适的文件同步/备份工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-05-28T06:06:00+08:00" pubdate data-updated="true">2007-05-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>很长时间以来，都为怎么在多台电脑之间同步文件而头痛。使用过不少的同步软件，都有或多或少的不足之处。因为两边的文件都可能被编辑，同步软件必须要足够自动化，能够自动判断同步的方向，只进行增量同步，并且要能够识别出文件的删除，别删了之后一同步又回来了。 </p>
-
-<p>现在终于找到了一个满足要求的软件：<a href="http://www.cis.upenn.edu/~bcpierce/unison/">Unison</a>，经过差不多三个月的使用，感觉相当满意，可以介绍出来了。 </p>
-
-<p>在我看来，Unison的优点有这些： </p>
-
-<ul>
-  <li>除了本机磁盘同步外，还支持网络同步，可以通过socket通讯方式，而不是靠windows文件共享。我的laptop通过共享copy文件时，偶然会出现出错。Unison还支持ssh，在unix上可以用安全程度较高的ssh。 </li>
-  <li>有命令行模式，可以通过脚本自动运行。其实Unison本来就是命令行程序，只是提供了GTK的GUI。GTK的界面虽然不太漂亮，但还是很好用的，在GUI模式下，会先把各个文件的同步方向显出出来，可以修改，点击go才执行。 </li>
-  <li>自动化程度比较高，每次同步完成后会将文件状态记录下来，下次同步的时候就能自动进行增量同步了。只要不是两边同时发生了修改，基本不需要人工干预。 </li>
-  <li>配置比较灵活，可以按照通配符来忽略某些文件/目录。因为Unison原来是unix平台的软件，所以配置也是文件方式的，只习惯于Windows图形界面的人也许会不喜欢。 </li>
-  <li>支持跨平台同步，包括windows，各种unix，OS-X。这点我用不着，但对于同时使用不同操作系统的人会很有用。 </li>
-  <li>免费，开源(GPL)。</li>
-</ul>
-
-<p>我的工作环境有一台desktop和一台laptop，desktop的性能好些，所以一般都会在desktop上干活，但不在座位上时就只能用laptop，故此两台电脑都要有相同的文件，并且保持同步。现在保持同步的方法是：在desktop上以socket server模式运行unison，一直保持运行；laptop上通过cron在后台定时调用命令行的Unison，一天可以运行多次；如果我需要立即进行同步，就手工运行Unison GUI。 </p>
-
-<p>一些tips： </p>
-
-<ul>
-  <li>第一次同步会耗很多时间，因为unison要先对所有文件内容进行一次比较。以后的同步，如果在fastcheck模式下就会很快了。一定要记得在配置文件中加上配置：fastcheck = yes，否则每次都还是会做全文比较。非windows平台就没有这样的问题，具体看软件文档。 </li>
-  <li>作为socket server运行：unison -socket <port /></li>
-  <li>命令行模式自动运行(无需人工干预，如果文件有冲突就skip)：unison -batch <profile_name /></li>
-</ul>
-
-<p>顺便推荐一下这个Windows平台下的<a href="http://aleung.blogbus.com/files/11892516220.zip">cron</a>，一个几十k的小程序，使用起来跟unix的几乎一模一样，很好用。（2007-9-8 补充: 网上cron的页面已经没有了，我已将链接改为本地下载） </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2007/05/28/Finally-find-the-most-appropriate-file-synchronization-backup-tools/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/30/">&larr; Older</a>
@@ -425,6 +416,10 @@ Possible to get good knowledge of the system. Large funding. Main motive to get 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
       </li>
     
@@ -440,16 +435,12 @@ Possible to get good knowledge of the system. Large funding. Main motive to get 
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -463,7 +454,7 @@ Possible to get good knowledge of the system. Large funding. Main motive to get 
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>

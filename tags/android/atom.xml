@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/android/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2013-12-03T00:23:24+08:00</updated>
+  <updated>2013-12-08T19:15:17+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
+    <link href="http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic/"/>
+    <updated>2013-12-08T15:03:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic</id>
+    <content type="html"><![CDATA[<p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
+
+<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
+
+<p>下面记录大致操作过程。</p>
+
+<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
+
+<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
+
+<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
+
+<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
+</code></pre>
+
+<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
+
+<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
+
+<p><img src="/attachments/2013/12/burp.png"></p>
+
+<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
+
+<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[看老罗的锤子发布会]]></title>
@@ -68,7 +100,7 @@
 
 <p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
 
-<p>{%img /attachments/2012/12/osx_usb.jpg %}</p>
+<p><img src="/attachments/2012/12/osx_usb.jpg"></p>
 ]]></content>
   </entry>
   
@@ -77,7 +109,7 @@
     <link href="http://aleung.github.io/blog/2012/12/23/mi2/"/>
     <updated>2012-12-23T14:03:00+08:00</updated>
     <id>http://aleung.github.io/blog/2012/12/23/mi2</id>
-    <content type="html"><![CDATA[<p>{%img /attachments/2012/12/mi2<em>focus</em>01s.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/attachments/2012/12/mi2<em>focus</em>01s.jpg"></p>
 
 <p>Xperia U 手機用了半年，<a href="/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
 
@@ -90,152 +122,6 @@
 <p>剛到手時，對尺寸不太適應，讓我覺得蘋果說的3.5寸是最適合的手機屏幕尺寸不無道理。現在慢慢有些習慣了，但是單手操作始終還是有些彆扭，比如用右手操作，左上角和右下角的按鈕都不容易按到，還是雙手會方便些。</p>
 
 <p>當然啦，新手機最爽的事情就是2G的RAM，運行的順暢程度跟舊手機比真是一個天一個地，看到什麼應用都想裝就裝啦。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android: 在應用中設定locale]]></title>
-    <link href="http://aleung.github.io/blog/2012/10/06/change-locale-in-android-application/"/>
-    <updated>2012-10-06T00:25:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2012/10/06/change-locale-in-android-application</id>
-    <content type="html"><![CDATA[<p>近幾天把以前做的跑步步频训练软件 <a href="https://play.google.com/store/apps/details?id=leoliang.runningcadence">RunningCadence</a> 加上了多語言支持，可以在應用中設定界面以及語音播報所用的語言。</p>
-
-<p>對多語言的支持，Android已經做得很完善，開發者只需要在應用中加入各種locale的資源文件。但是，應用只會使用系統全局設置的locale，而要在應用自己的設定中選擇locale，以及要讓設定立即生效，就需要開發者自己去實現了。</p>
-
-<p>本來，一般應用並沒必要自己提供語言設定，用系統全局設定就好了。但這個 RunningCadence 使用了語音合成(TTS)功能，而一般手機上安裝的TTS引擎支持的語言都有限，如果TTS不支持系統locale的語言，那就聽不到聲音了，所以需要花力氣去搞這個應用內的語言選擇。</p>
-
-<h2 id="localelocale">讓應用啓動時使用自己設定的locale，而非系統locale</h2>
-
-<p>開發應用時要爲不同locale準備不同的資源，在應用中通過 <a href="http://developer.android.com/reference/android/content/res/Resources.html">Resources</a> 類來加載資源，各個界面組件的構建都需要用到資源。而具體資源如何選擇是受 <a href="http://developer.android.com/reference/android/content/res/Configuration.html">Configuration</a> 影響的，Configuration帶有設備的硬件相關配置信息（如屏幕分辨率，屏幕方向）和系統全局配置信息（如locale），由系統底層框架提供。</p>
-
-<p>應用啓動時，Configuration中的locale會被設置爲系統locale。應用若要使用自己的locale，就必須在創建界面之前，將Resources裏的Configuration更改。</p>
-
-<p>這個更改在application的 onCreate() 裏面做最合適，對應用全局生效，因爲它在任何activity創建之前就執行了，不再需要在各個activity裏做任何事情。</p>
-
-<p>``` java
-	@Override
-	public void onCreate() {
-		setLocale();
-	}</p>
-
-<pre><code>public void setLocale() {
-	Locale locale = getLocaleFromPref();
-	Locale.setDefault(locale);
-	Configuration config = getBaseContext().getResources().getConfiguration();
-	overwriteConfigurationLocale(config, locale);
-}
-
-private void overwriteConfigurationLocale(Configuration config, Locale locale) {
-	config.locale = locale;
-	getBaseContext().getResources()
-			.updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-} ```
-</code></pre>
-
-<p>加了這段代碼後，應用啓動時就會根據 getLocaleFromPref() 返回的語言來顯示了，但是你會發現如果將手機屏幕轉一下，例如豎屏變爲橫屏，界面又會變回系統缺省語言，爲什麼呢？</p>
-
-<p>系統底層框架會在configuration發生了變化時通知應用<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。對application是調用 Application.onConfigurationChanged() 方法。對activity的處理採用那種方式，就與manifest文件中&lt;Activity&gt;的 android:configChanges 屬性配置相關：</p>
-
-<ul>
-  <li>如果發生的是configChanges中指定的事件，調用 Activity.onConfigurationChanged()，不重啓activity；</li>
-  <li>否則重啓activity。</li>
-</ul>
-
-<p>屏幕的旋轉就是一種 runtime change，缺省情況下會觸發activity的重啓，也就是銷毀並重新創建activity<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，重新創建時使用的是新的Configuration，裏面帶的又是系統locale，因此就造成了界面變回系統缺省語言。</p>
-
-<p>爲了避免這種情況，需要在Application的 onConfigurationChanged() 裏面也對Configuration做修改。</p>
-
-<p><code>java
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		Locale locale = getLocaleFromPref();
-		Locale.setDefault(locale);
-		overwriteConfigurationLocale(newConfig, locale);
-		super.onConfigurationChanged(newConfig);
-	}
-</code></p>
-
-<p>做了這些後，應用就能使用自己的locale設定，而不是系統locale了。完整代碼例子可以參考RunningCadence源碼 <a href="https://github.com/aleung/RunningCadence/blob/c658e00bd24a23bd95369bf6e3d87254776ae2cb/RunningCadence/src/leoliang/runningcadence/Application.java">Application.java</a>。</p>
-
-<h2 id="preferencelocale">讓應用preference中的locale設定修改立即生效</h2>
-
-<p>應用通常會使用 Preference API 來構造用戶設定界面，在上一步完成後，用戶可以在應用preference裏設置locale，在應用重新啓動時會使用選定的locale。但是用戶在preference裏修改locale後是不會立即生效的，因爲修改沒有反映到 configuration 中去，而且對於已經存在的activity，界面組件都已經創建好了，界面上的文字不可能自動改變。</p>
-
-<p>一種方案是讓整個應用重新啓動，所有資源都重新加載，所有界面都重新創建。我留意了一下，大部分提供應用內語言設定的應用都是這樣做的——在彈出對話框裏選擇語言並確認後，不會返回到設定頁面，而是顯示應用的入口界面——應用已經重啓了。在 RunningCadence 中，我不想用這種方法，因爲用戶體驗會不好——用戶在修改語言後，通常還要選擇另一個選項進行語音合成測試，看看TTS對新選擇的語言能否正常工作——如果應用重啓返回主界面，用戶就得再進入設定界面才能進行測試，一方面是操作麻煩了，另一方面界面無緣無故跳轉也會帶來困惑。</p>
-
-<h3 id="configuration">在用戶修改設定後，更新Configuration</h3>
-
-<p>更新Configuration的方法跟應用啓動時的做法一樣，可以重用 setLocale() 方法，問題是要能在合適的時機去調用。使用SharedPreference的修改通知機制可以做到這點。</p>
-
-<p>``` java
-    public class PreferenceActivity extends android.preference.PreferenceActivity implements
-    		OnSharedPreferenceChangeListener {</p>
-
-<pre><code>	// ...
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if (key.equals("pref_language")) {
-			((Application) getApplication()).setLocale();
-			restartActivity();
-		}
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.preferences);
-		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-	}
-} ```
-</code></pre>
-
-<p>要注意這個listener的寫法，如果按照通常Android程序風格，使用匿名內部類來實現，就會發生詭異的問題，總是不會被回調。這個問題花了我好長時間，誤打誤撞解決了也沒明白什麼回事，寫這篇文章時才看見StackOverflow上有這個問題的<a href="http://stackoverflow.com/a/3104265/94148">根源解答</a>。</p>
-
-<h3 id="locale">將已經存在的界面按照新locale重新顯示</h3>
-
-<p>先分析哪些activity是需要重新顯示的，這需要對應用的 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html">task stack</a> 結構有一個審視。要知道在locale更改的時刻，哪些activity還在生存着，會在後續操作中重新變爲可見狀態，這些activity的界面需要重建。在RunningCadence裏比較簡單，就是PreferenceActivity本身和調用它的主activity。</p>
-
-<p>要讓activity的界面按新locale重新顯示，最簡單的方法應該就是讓它重啓，這比起對每個界面元件都用重新加載資源去重設要簡單得多。</p>
-
-<p><code>java
-	private void restartActivity() {
-		Intent intent = getIntent();
-		finish();
-		startActivity(intent);
-	}
-</code></p>
-
-<p>PreferenceActivity的重啓是在OnSharedPreferenceChangeListener得知設定發生了改變的時候進行，在上面的代碼例子裏已經顯示出來了。而主activity的重啓是在當用戶從PreferenceActivity中返回到主activity時，在onActivityResult() 中觸發。</p>
-
-<p>完整代碼例子可以參考RunningCadence源碼 <a href="https://github.com/aleung/RunningCadence/blob/f0cdb98b42a94caa5c7e2cec1a8aa6abf91e73b9/RunningCadence/src/leoliang/runningcadence/PreferenceActivity.java">PreferenceActivity.java</a>。</p>
-
-<h2 id="section">總結</h2>
-
-<p>現在將思路理清了寫下來，感覺不算複雜，但是在做的過程中費了好多腦筋繞了不少彎路，邊上網查資料邊嘗試。Android的API Guides在ICS發佈後改進了好多，很多內容重寫過更清晰容易理解了，另外一個非常有價值的資源是<a href="StackOverflow.com">StackOverflow.com</a>。</p>
-
-<p>我感覺，對於一般應用沒有太大必要去實現應用內的語言選擇。系統裏所有應用都使用統一的locale本來就挺好的。</p>
-
-<p>如果應用的task stack結構複雜，需要重新顯示的activity很多，可能用重啓整個應用的方法更簡單一些。我不知道重啓應用是怎麼做到的，Android API裏面沒有現成的方法。不過若實現了應用重啓，應用內部各個Activity都不需要做任何額外處理了。</p>
-
-<hr />
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>詳細機制見 <a href="http://developer.android.com/guide/topics/resources/runtime-changes.html">Handling Runtime Changes</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>在 <a href="/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram">Android Activity Lifecycle in UML</a> 文中的狀態圖可以見到configChanged引發的狀態遷移。<a href="#fnref:2" rel="reference">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 ]]></content>
   </entry>
   

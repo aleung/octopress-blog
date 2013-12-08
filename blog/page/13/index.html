@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="第一次到荷兰的时候，同行同事就说，荷兰人开车怎么都不让行人啊。住的酒店附近几条路都不宽，也就是广州小区里的道路的宽度，车也不多，路口没有交通灯也没有斑马线，但是我们过马路的时候汽车都不让我们，跟在瑞典受到的礼遇差远了。当时我们就说，看来荷兰人不如瑞典人谦让啊。 但后来呆的时间长了，发现也不全是这样 &hellip;">
+  <meta name="description" content="前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,275 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/">Tiny HTTP Server by Java</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2010-12-10T06:56:00+08:00" pubdate data-updated="true">2010-12-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法，URL必须指向一个文件。我顺手修改了一下，让它可以列出目录，这样用起来更加方便一些。</p>
+
+<div><script src="https://gist.github.com/1347769.js?file="></script>
+<noscript><pre><code>import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.StringTokenizer;
+
+public class HttpServer {
+  public static void main(String args[]) {
+    int port;
+    try {
+      port = Integer.parseInt(args[0]);
+    } catch (Exception e) {
+      port = 80;
+    }
+
+    String root;
+    try {
+      root = args[1];
+    } catch (Exception e) {
+      root = &quot;../&quot;;
+    }
+    
+    try {
+
+      ServerSocket server_socket = new ServerSocket(port);
+      System.out.println(&quot;HttpServer running on port &quot;
+          + server_socket.getLocalPort() + &quot;, root directory is &quot; + root);
+
+      // server infinite loop
+      while (true) {
+        Socket socket = server_socket.accept();
+        System.out.println(&quot;New connection accepted &quot;
+            + socket.getInetAddress() + &quot;:&quot; + socket.getPort());
+
+        // Construct handler to process the HTTP request message.
+        try {
+          HttpRequestHandler request = new HttpRequestHandler(socket, root);
+          // Create a new thread to process the request.
+          Thread thread = new Thread(request);
+          thread.start();
+        } catch (Exception e) {
+          System.out.println(e);
+        }
+      }
+    } catch (IOException e) {
+      System.out.println(e);
+    }
+  }
+}
+
+class HttpRequestHandler implements Runnable {
+  final static String CRLF = &quot;\r\n&quot;;
+
+  Socket socket;
+  InputStream input;
+  OutputStream output;
+  BufferedReader br;
+  private String root;
+
+  public HttpRequestHandler(Socket socket, String root) throws Exception {
+    this.root = root;
+    this.socket = socket;
+    this.input = socket.getInputStream();
+    this.output = socket.getOutputStream();
+    this.br = new BufferedReader(new InputStreamReader(socket
+        .getInputStream()));
+  }
+
+  public void run() {
+    try {
+      processRequest();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void processRequest() throws Exception {
+    while (true) {
+      String headerLine = br.readLine();
+      System.out.println(&quot;&gt;&gt;&gt;Request&quot;);
+      System.out.println(headerLine);
+      if (headerLine.equals(CRLF) || headerLine.equals(&quot;&quot;))
+        break;
+
+      StringTokenizer s = new StringTokenizer(headerLine);
+      String temp = s.nextToken();
+
+      if (temp.equals(&quot;GET&quot;)) {
+
+        String serverLine = &quot;Server: Simple Java Http Server&quot;;
+        String statusLine = null;
+        String contentTypeLine = &quot;text/html&quot;;
+        String entityBody = null;
+        String contentLengthLine = &quot;&quot;;
+        FileInputStream fis = null;
+        boolean fileExists = false;
+      
+        String requestedPath = s.nextToken();
+        if (requestedPath.equals(&quot;/&quot;)) {
+          requestedPath = &quot;&quot;;
+        }
+        String fileName = root + requestedPath;
+        System.out.println(&quot;===Debug&quot;);
+        System.out.println(fileName);
+        File file = new File(fileName);
+        if (!file.exists()) {
+          statusLine = &quot;HTTP/1.0 404 Not Found&quot; + CRLF;
+          entityBody = &quot;&lt;HTML&gt;&quot;
+              + &quot;&lt;HEAD&gt;&lt;TITLE&gt;404 Not Found&lt;/TITLE&gt;&lt;/HEAD&gt;&quot;
+              + &quot;&lt;BODY&gt;404 Not Found&quot;
+              + &quot;&lt;br&gt;usage:http://yourHostName:port/&quot;
+              + &quot;fileName.html&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
+        } else {
+          statusLine = &quot;HTTP/1.0 200 OK&quot; + CRLF;
+
+          if (file.isDirectory()) {
+            String[] files = file.list();
+            entityBody = &quot;&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;&quot; + file.getPath() 
+                + &quot;&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;&lt;UL&gt;&quot;;
+            for (String entry : files) {
+              entityBody += &quot;&lt;LI&gt;&lt;a href='&quot; + requestedPath + &quot;/&quot; + entry + &quot;'&gt;&quot; 
+                + entry +&quot;&lt;/a&gt;&lt;/LI&gt;&quot;;
+            }
+            entityBody += &quot;&lt;/UL&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
+          } else {
+            try {
+              fis = new FileInputStream(file);
+              fileExists = true;
+            } catch (FileNotFoundException e) {
+              e.printStackTrace();
+            }
+            contentTypeLine = &quot;Content-type: &quot; + contentType(fileName) + CRLF;
+            contentLengthLine = &quot;Content-Length: &quot;
+              + (new Integer(fis.available())).toString() + CRLF;
+          }
+        }
+
+        if (!fileExists) {
+            contentLengthLine = &quot;Content-Length: &quot;
+              + (new Integer(entityBody.getBytes().length)).toString() + CRLF;
+        }
+        
+        System.out.println(&quot;&lt;&lt;&lt;Response&quot;);
+
+        output.write(statusLine.getBytes());
+        System.out.println(statusLine);
+        output.write(serverLine.getBytes());
+        System.out.println(serverLine);
+        output.write(contentTypeLine.getBytes());
+        System.out.println(contentTypeLine);
+        output.write(contentLengthLine.getBytes());
+        System.out.println(contentLengthLine);
+
+        // Send a blank line to indicate the end of the header lines.
+        output.write(CRLF.getBytes());
+        System.out.println(CRLF);
+
+        // Send the entity body.
+        if (fileExists) {
+          sendBytes(fis, output);
+          fis.close();
+        } else {
+          output.write(entityBody.getBytes());
+          System.out.println(entityBody);
+        }
+
+      }
+    }
+
+    try {
+      output.close();
+      br.close();
+      socket.close();
+    } catch (Exception e) {
+    }
+  }
+
+  private static void sendBytes(FileInputStream fis, OutputStream os)
+      throws Exception {
+
+    byte[] buffer = new byte[1024];
+    int bytes = 0;
+
+    while ((bytes = fis.read(buffer)) != -1) {
+      os.write(buffer, 0, bytes);
+    }
+  }
+
+  private static String contentType(String fileName) {
+    if (fileName.endsWith(&quot;.htm&quot;) || fileName.endsWith(&quot;.html&quot;)
+        || fileName.endsWith(&quot;.txt&quot;)) {
+      return &quot;text/html&quot;;
+    } else if (fileName.endsWith(&quot;.jpg&quot;) || fileName.endsWith(&quot;.jpeg&quot;)) {
+      return &quot;image/jpeg&quot;;
+    } else if (fileName.endsWith(&quot;.gif&quot;)) {
+      return &quot;image/gif&quot;;
+    } else {
+      return &quot;application/octet-stream&quot;;
+    }
+  }
+}</code></pre></noscript></div>
+
+<p>运行时可带两个参数：port, http root directory。例如:</p>
+
+<pre><code>$JAVA_HOME/bin/java httpServer 8080 /tmp/test-report
+</code></pre>
+
+<p>P.S. 网上搜索一下，我的同事应该是从这里找到这段代码的：<a href="http://www.java2s.com/Code/Java/Tiny-Application/HttpServer.htm">http://www.java2s.com/Code/Java/Tiny-Application/HttpServer.htm</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/12/10/Tiny-HTTP-Server-by-Java/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -352,61 +621,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/07/30/Swimming-feeling/">游泳感想</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-30T22:49:00+08:00" pubdate data-updated="true">2010-07-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。</p>
-
-<p>首先是想为什么没有音乐听听呢？跑步的时候可以戴着耳机听音乐，游泳也应该可以才对。做防水的播放器和防水的耳机，难度应该不大，说不定已经有这样的产品了，只是没有普及。</p>
-
-<p>第二个想法有意思些。我在海里看过珊瑚，离岸不远的浅水，只要把头沉入水中，就能见到海底犹如大花园一般的珊瑚世界。如果整个游泳池底铺上大显示屏，游泳池也可以变身为虚拟海底世界。五彩斑斓的珊瑚随着水波微微摇曳，鱼群在其中穿梭。假若结合电脑控制的虚拟现实系统，加上感应器，还可让鱼群在你游近时飞快逃开，而海豚就伴在你左右。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/07/30/Swimming-feeling/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/14/">&larr; Older</a>
@@ -428,6 +642,10 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
       </li>
     
@@ -443,16 +661,12 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
         <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
@@ -466,7 +680,7 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
