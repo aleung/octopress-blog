@@ -417,17 +417,15 @@ First functional release.</li>
 
 <p>JVM启动后，保留一段地址空间，这个空间的大小由-Xmx指定。这块空间的大小就是heap可能的最大值，但一开始不一定全都分配了物理内存，初始分配的heap大小由-Xms指定，如果-Xms小于-Xmx，剩余部分是virtual的，当需要的时候，再向OS申请。</p>
 
-<p>绿色部分是young generation的内存，由一块Eden(伊甸园，有意思)和两块Survivor Space(1.4文档中称为semi-space)构成。新创建的对象的内存都分配自eden。两块Survivor Space总有会一块是空闲的，用作copying collection的目标空间。Minor collection的过程就是将eden和在用survivor space中的活对象copy到空闲survivor space中。所谓survivor，也就是大部分对象在伊甸园出生后，根本活不过一次GC。对象在young generation里经历了一定次数的minor collection后，年纪大了，就会被移到old generation中，称为tenuring。(是否仅当survivor space不足的时候才会将老对象tenuring? 目前资料中没有找到描述)</p>
+<p>Young generation 内存由一块Eden(伊甸园，有意思)和两块Survivor Space(1.4文档中称为semi-space)构成。新创建的对象的内存都分配自eden。两块Survivor Space总有会一块是空闲的，用作copying collection的目标空间。Minor collection的过程就是将eden和在用survivor space中的活对象copy到空闲survivor space中。所谓survivor，也就是大部分对象在伊甸园出生后，根本活不过一次GC。对象在young generation里经历了一定次数的minor collection后，年纪大了，就会被移到old generation中，称为tenuring。(是否仅当survivor space不足的时候才会将老对象tenuring? 目前资料中没有找到描述)</p>
 
-<p>浅蓝色部分是old generation的内存。</p>
-
-<p>深蓝色部分称为_permanent generation_，是JVM用来保存class object和meta data，大小由-XX:PermSize和-XX:MaxPermSize指定。大量动态生成(编译)和加载class会增加这部分内存的耗用。</p>
+<p>Permanent generation 是JVM用来保存class object和meta data，大小由-XX:PermSize和-XX:MaxPermSize指定。大量动态生成(编译)和加载class会增加这部分内存的耗用。</p>
 
 <p>剩余内存空间不足会触发GC，如eden空间不够了就要进行minor collection，old generation空间不够要进行major collection，permanent generation空间不足会引发full GC。</p>
 
 <p>很多参数会影响里面各部分空间的分配。-XX:MinHeapFreeRatio与-XX:MaxHeapFreeRatio设定空闲内存占总内存的比例范围，这两个参数会影响GC的频率和单次GC的耗时。-XX:NewRatio决定young与old generation的比例。Young generation空间越大，minor collection频率越低，但是old generation空间小了，又可能导致major collection频率增加。-XX:NewSize和-XX:MaxNewSize直接指定了young generation的缺省大小和最大大小。</p>
 
-<p><a href="http://java.sun.com/docs/hotspot/gc/fig4.gif"><img src="http://java.sun.com/docs/hotspot/gc/fig4.gif" alt="fig4.gif" /></a></p>
+<p><img src="/blog/attachments/2007/3/java_memory.jpg" /></p>
 
 <p>-Xmx<br />
 set maximum Java heap size</p>
@@ -585,7 +583,7 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Leo Liang -
+  Copyright &copy; 2014 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
