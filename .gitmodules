@@ -4,3 +4,6 @@
 [submodule "submodules/octopress-tag-cloud"]
 	path = submodules/octopress-tag-cloud
 	url = https://github.com/robbyedwards/octopress-tag-cloud.git
+[submodule "plugins/plantuml"]
+	path = plugins/plantuml
+	url = https://github.com/yjpark/jekyll-plantuml.git

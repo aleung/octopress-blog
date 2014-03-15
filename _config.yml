@@ -110,3 +110,7 @@ facebook_like: false
 
 # octopress-tag-pages
 tag_dir: tags
+
+# PlantUML
+plantuml_dotpath: /usr/local/bin/dot
+plantuml_jar: _lib/plantuml.jar
