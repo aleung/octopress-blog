@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Statistics | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/statistics/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:34:06+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[R初略学习笔记]]></title>
+    <link href="http://aleung.github.io/blog/2013/02/09/beginning-r/"/>
+    <updated>2013-02-09T14:18:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/02/09/beginning-r</id>
+    <content type="html"><![CDATA[<h2 id="section">包管理</h2>
+
+<p>从CRAN安装一个包：<code>install.packages("pkg_name")</code></p>
+
+<p>加载包：<code>library(package)</code></p>
+
+<h2 id="r">R的基本数据类型</h2>
+
+<p>在R里面一个元素的基本数据类型称为 mode。每个对象都有mode属性。</p>
+
+<p>基本数据类型包括：数值(实数) numeric，复数 complex，字符(串) character，逻辑(布尔) logical 和 raw。NA表示没有值。</p>
+
+<p>基本数据类型之间的转换通过 as.<em>something</em>() 函数进行，例如 <code>as.character()</code>, <code>as.integer()</code>。</p>
+
+<h2 id="r-1">R的数据对象类型</h2>
+
+<h3 id="vector">向量 vector</h3>
+
+<p>向量由一组相同类型的元素组成。</p>
+
+<p>用函数 c() 可以构造出向量：</p>
+
+<pre><code>x &lt;- c(10.4, 5.6, 3.1, 21.7)
+</code></pre>
+
+<p>如果要生成元素为序列的向量，简单的方法是用冒号，如 1:7，复杂的方法是函数 seq()。另外，函数 rep() 可以根据已有向量的元素重复来生成新向量。</p>
+
+<p>向量中的某个元素通过 [] 访问，如 <code>x[3]</code>，注意，下标从1开始！方括号中下标位置放的可以是向量，称为索引向量 index vector，这时候会根据索引取出特定元素构成新的向量。例如 <code>x[1:10]</code> 取出x的前10个元素。</p>
+
+<p>对向量做运算，是对向量的每个元素做独立运算，结果是一个相同元素个数的新向量。</p>
+
+<h3 id="factor">因子 factor</h3>
+
+<p><strong>TODO</strong>：没懂</p>
+
+<h3 id="array">数组 array</h3>
+
+<p>数组是多维的一组相同类型数据。特别地，二维数组称为矩阵 matrix。</p>
+
+<p>通过指定维度属性 dim，向量可以转换为数组。例如z为有1500个元素的向量，<code>dim(z) &lt;- c(3, 5, 100)</code> 将z变作3<em>5</em>100的三维数组。另外一种构造数组的方法是用函数 array()： <code>Z &lt;- array(data_vector, dim_vector)</code>。向量中元素是按照首下标优先的顺序来遍历的，如 <code>z[1,1,1], z[2,1,1], …, z[2,5,100], z[3,5,100]</code>。</p>
+
+<p>可以通过 <code>a[2,,]</code> 这样的方法访问子数组，得到的是指定了第一维为2后剩余维数的数组。正如可以用向量为下标来访问向量，也可以用索引矩阵 index matrix 作为下标来访问数组，这样可以根据索引矩阵的值为下标取出数组中的特定一组元素。</p>
+
+<p>通过 <code>as.vector(X)</code> 或者 <code>c(X)</code> 可以将数组X变回向量。</p>
+
+<h3 id="list">列表 list</h3>
+
+<p>文档里叫list，但实际上更象其他语言里的map，或者叫hash。列表里的每个元素是一个对象，称为组件 componet，列表里的组件的类型不需要一致。</p>
+
+<p>生成列表的方法：<code>Lst &lt;- list(name_1=object_1, …, name_m=object_m)</code>。组件名字是可忽略的。构成列表的对象会复制一个副本到列表里面，而不是引用。</p>
+
+<p>用 <code>[[n]]</code> 来访问列表中的第n个组件。如果组件有名字，用 <code>list$component_name</code> 的方法更简便。组件名可以简写为名字的前几个字母，只要不引起歧义就行。</p>
+
+<h3 id="data-frame">数据帧 data frame</h3>
+
+<p>数据帧是特殊的列表：</p>
+
+<ul>
+  <li>组件为向量(数值型,字符形,逻辑型)，因子，数值矩阵，列表或其他数据帧</li>
+  <li>数据帧中作为变量的向量结构必须具有相同的长度,而矩阵结构应当具有相同的行大小</li>
+</ul>
+
+<p>很多情况下,数据帧会被当作各列具有不同模式和属性的矩阵。</p>
+
+<p>数据帧同样可以用下标来获取子集，例如看前三行数据：<code>data[1:3,]</code>，根据某列的值做过滤：<code>filtered_frame &lt;- full_frame[full_frame$country=="cn",]</code></p>
+
+<p>通过 <code>as.matrix(X)</code> 将数据帧转换为矩阵。</p>
+
+<h2 id="section-1">读取数据</h2>
+
+<p>函数 <code>read.table()</code> 读取文本文件的数据，产生一个数据帧。更常用的是 <code>read.csv()</code> 和 <code>read.delim()</code>，它们是 read.table() 的缺省参数版本，后者读取tab分隔的文件。文件的每个列被保存到数据帧的一个组件中，组件名字就是列的名字，如果列名里有空格会被转换成句点。</p>
+
+<h2 id="section-2">绘图</h2>
+
+<h3 id="section-3">高级绘图函数</h3>
+
+<p>下面是R中高级绘图函数的概括:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">函数</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">plot(x)</td>
+      <td style="text-align: left">以x的元素值为纵坐标、以序号为横坐标绘图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">plot(x, y)</td>
+      <td style="text-align: left">x(在x-轴上)与y(在y-轴上)的二元作图。根据type参数可以画出多种类型的图。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sunflowerplot(x,y)</td>
+      <td style="text-align: left">同上 但是以相似坐标的点作为花朵,其花瓣数目为点的个数</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pie(x)</td>
+      <td style="text-align: left">饼图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">boxplot(x)</td>
+      <td style="text-align: left">盒形图(“box-and-whiskers”)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stripchart(x)</td>
+      <td style="text-align: left">把x的值画在一条线段上,样本量较小时可作为盒形图的替代</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">coplot(x~y|z)</td>
+      <td style="text-align: left">关于z的每个数值(或数值区间)绘制x与y的二元图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">interaction.plot(f1, f2, y)</td>
+      <td style="text-align: left">如果f1和f2是因子,作y的均值图,以f1的不同值作为x轴, 而f2的不同值对应不同曲线;可以用选项fun指定y的其他的统计量(缺省计算均值,fun=mean)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">matplot(x,y)</td>
+      <td style="text-align: left">二元图,其中x的第一列对应y的第一列,x的第二列对应y的第二 列,依次类推。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dotchart(x)</td>
+      <td style="text-align: left">如果x是数据框,作Cleveland点图(逐行逐列累加图)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fourfoldplot(x)</td>
+      <td style="text-align: left">用四个四分之一圆显示2X2列联表情况(x必须是dim=c(2, 2, k)的数组,或者是dim=c(2, 2)的矩阵,如果k = 1)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">assocplot(x)</td>
+      <td style="text-align: left">Cohen–Friendly图,显示在二维列联表中行、列变量偏离独立性 的程度</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mosaicplot(x)</td>
+      <td style="text-align: left">列联表的对数线性回归残差的马赛克图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pairs(x)</td>
+      <td style="text-align: left">如果x是矩阵或是数据框,作x的各列之间的二元图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">plot.ts(x)</td>
+      <td style="text-align: left">如果x是类”ts”的对象,作x的时间序列曲线,x可以是多元的, 但是序列必须有相同的频率和时间</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ts.plot(x)</td>
+      <td style="text-align: left">同上,但如果x是多元的,序列可有不同的时间但须有相同的频 率</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hist(x)</td>
+      <td style="text-align: left">x的频率直方图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">barplot(x)</td>
+      <td style="text-align: left">x的值的条形图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">qqnorm(x)</td>
+      <td style="text-align: left">正态分位数-分位数图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">qqplot(x, y)</td>
+      <td style="text-align: left">y对x的分位数-分位数图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">contour(x, y, z)</td>
+      <td style="text-align: left">等高线图(画曲线时用内插补充空白的值),x和y必须为向量 ,z必须为矩阵 , 使得dim(z)=c(length(x), length(y))(x和y可以省略)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">filled.contour (x,y, z)</td>
+      <td style="text-align: left">同上,等高线之间的区域是彩色的,并且绘制彩色对应的值的图 例</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">image(x, y, z)</td>
+      <td style="text-align: left">同上,但是实际数据大小用不同色彩表示</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">persp(x, y, z)</td>
+      <td style="text-align: left">同上,但为透视图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stars(x)</td>
+      <td style="text-align: left">如果x是矩阵或者数据框,用星形和线段画出</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">symbols(x, y, …)</td>
+      <td style="text-align: left">在由x和y给定坐标画符号(圆,正方形,长方形,星,温度计式 或者盒形图),符号的类型、大小、颜色等由另外的变量指定</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">termplot(mod.obj)</td>
+      <td style="text-align: left">回归模型(mod.obj)的(偏)影响图</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">heatmap(x)</td>
+      <td style="text-align: left">热度图</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="section-4">需要工具包支持的高级绘图</h4>
+
+<p><strong>板块层级图 tree map</strong></p>
+
+<p>用矩形面积来表示数值，可用于分析磁盘空间占用</p>
+
+<pre><code>library(portfolio)
+map.market(id, area, group, color)
+</code></pre>
+
+<p><strong>平行坐标图</strong></p>
+
+<pre><code>library(lattice)
+parallel(data)
+</code></pre>
+
+<h3 id="section-5">低级绘图命令</h3>
+
+<p>R里面有一套绘图函数是作用于现存的图形上的:称为低级作图命 令(low-level plotting commands)。下面有一些主要的:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">函数</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">scatter.smooth(x, y, …)</td>
+      <td style="text-align: left">LOESS(局部加权散点平滑)拟合曲线</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">points(x, y)</td>
+      <td style="text-align: left">添加点(可以使用选项type=)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">lines(x, y)</td>
+      <td style="text-align: left">同上,但是添加线</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">text(x, y, labels,…)</td>
+      <td style="text-align: left">在(x,y)处添加用labels指定的文字;典型的用法是: plot(x, y, type=”n”); text(x, y, names)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mtext(text,side=3, line=0,…)</td>
+      <td style="text-align: left">在边空添加用text指定的文字,用side指定添加到哪一边(参照 下面的axis());line指定添加的文字距离绘图区域的行数</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">segments(x0, y0,x1, y1)</td>
+      <td style="text-align: left">从(x0,y0)各点到(x1,y1)各点画线段</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">arrows(x0, y0,x1, y1, angle= 30,code=2)</td>
+      <td style="text-align: left">同上但加画箭头,如果code=2则在各(x0,y0)处画箭头,如 果code=1则在各(x1,y1)处画箭头,如果code=3则在两端都画箭头; angle控制箭头轴到箭头边的角度</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">abline(a,b)</td>
+      <td style="text-align: left">绘制斜率为b和截距为a的直线</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">abline(h=y)</td>
+      <td style="text-align: left">在纵坐标y处画水平线</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">abline(v=x)</td>
+      <td style="text-align: left">在横坐标x处画垂直线</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">abline(lm.obj)</td>
+      <td style="text-align: left">画由lm.obj确定的回归线(参照第五章)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rect(x1, y1, x2, y2)</td>
+      <td style="text-align: left">绘制长方形,(x1, y1)为左下角,(x2,y2)为右上角</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">polygon(x, y)</td>
+      <td style="text-align: left">绘制连接各x,y坐标确定的点的多边形</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">legend(x, y, legend)</td>
+      <td style="text-align: left">在点(x,y)处添加图例,说明内容由legend给定</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">title()</td>
+      <td style="text-align: left">添加标题,也可添加一个副标题</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">axis(side, vect)</td>
+      <td style="text-align: left">画坐标轴,side=1时画在下边,side=2时画在左边,side=3时画在上边,side=4时画在右边。可选参数at指定画刻度线的位置坐标</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">box()</td>
+      <td style="text-align: left">在当前的图上加上边框</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rug(x)</td>
+      <td style="text-align: left">在x-轴上用短线画出x数据的位置</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">locator(n, type=”n”, …)</td>
+      <td style="text-align: left">在用户用鼠标在图上点击n次后返回n次点击的坐标(x, y);并可以在点击处绘制符号(type=”p”时)或连线(type=”l”时),缺省情 况下不画符号或连线</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>R for Beginners</li>
+  <li>An Introduction to R</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[利用Excel进行分组统计及生成直方图]]></title>
+    <link href="http://aleung.github.io/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/"/>
+    <updated>2007-03-17T02:19:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram</id>
+    <content type="html"><![CDATA[<p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
+
+<p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>
+
+<p>先把要处理的目标数据准备好：一列是输入数据A3:A66（在例子中为了清晰，已经排序，实际没有必要），另外一列是分组间隔D3:D21，在这里每个区间的大小是10。</p>
+
+<p>对于每个区间的频率，我希望输出在E3:E21区域。用鼠标将这个区域框起来，然后输入公式 =FREQUENCY(A3:A66,D3:D21)。FREQUENCY函数有两个参数，第一个是要分析的目标数据，第二个是分组间隔值，都需要是数组。输出也是一个数组，因此需要按 Ctrl-Shift-Enter 来结束公式的输入，表明这是数组公式。(数组公式会显示为有个花括号括起来)</p>
+
+<p>公式输入后，马上就能看到计算的结果了，如果希望更清晰些，可以做一张图。依然是选中E3:E21区域，菜单中选中插入图表，照着向导操作。在第二步选择DataSource中，需要在”Serials”中指定X轴区域为C3:C21(或D3:D21)，否则X轴数据会变成1、2、3…</p>
+
+<p><img src="http://farm1.static.flickr.com/162/422940441_9279aaa292_o.jpg" alt="" /></p>
+
+<p>从图中，可以明显看出大部分数据范围在50-120之间，峰值为90-100。</p>
+
+<p><a href="http://soft.yesky.com/office/283/2639283.shtml">这个网页</a>介绍了另外一种方法，通过Excel数据分析功能来实现上面做的事情，更加简单。但是Excel缺省安装中没有数据分析功能。</p>
+
+<p>Reference：<a href="http://www0.ccidnet.com/school/office//2001/06/26/70_4531.html">Excel统计函数</a></p>
+]]></content>
+  </entry>
+  
+</feed>

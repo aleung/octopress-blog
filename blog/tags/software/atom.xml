@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Software | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/software/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:34:06+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[查找explorer crash原因的工具]]></title>
+    <link href="http://aleung.github.io/blog/2010/01/01/The-reason-for-explorer-crash-tools/"/>
+    <updated>2010-01-01T06:59:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2010/01/01/The-reason-for-explorer-crash-tools</id>
+    <content type="html"><![CDATA[<p>不知道装了什么软件之后，只要在文件管理器中点击鼠标右键，Windows Explorer就会崩溃，重新启动依然如是。</p>
+
+<p>找到<a href="http://www.nirsoft.net/">Nir Sofer</a>出品的小工具 ShellExView，这个工具分析注册表，列出所有注册到explorer的shell extension及相关信息，并能够enable/disable选定的extension。找到可疑的extension，将它disable，然后再进行一次右键操作，看看还会不会crash。如此排除法很快就定位出什么软件是罪魁祸首，将它卸载或者将extension disable，问题就解决了。</p>
+
+<p>比较有用的信息是extension type，file extensions，file created time。首先关注文件创建时间，找出最近新增的extension，因为以前正常，最近才出问题，那引起问题通常是新装的软件。不过也不能一概而论，也有可能是以前安装的软件，因为最近的环境更改而出现了问题。另外可以根据extension type和file extensions进行过滤，例如我遇到的问题是右键菜单引发崩溃，那重点关注extension type为Context Menu的那些项。还有，在任何类型文件上按右键菜单都会引发崩溃，所以不大可能是由只针对特定文件类型的extension引发的。虽然系统注册的shell extension很多，例如我这个新装没多久的Vista系统就已经有三百多项，但是大部分都是Microsoft出品的，一般来说还是比较可靠的，只要关注非Microsoft的就可以了，找起问题来还是很快的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Robocopy]]></title>
+    <link href="http://aleung.github.io/blog/2009/02/03/Robocopy/"/>
+    <updated>2009-02-03T00:57:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2009/02/03/Robocopy</id>
+    <content type="html"><![CDATA[<p>自从使用Windows Vista之后，通过共享网络copy大文件时就经常会出现错误。以前的错误信息是什么没有留意，今天出错后上网搜索了一下错误代码0x800705aa，看到有人说用xcopy的/Z参数可以解决。</p>
+
+<p>在Vista中，xcopy被robocopy代替了，两者都是命令行工具。看了一下robocopy的功能挺强，参数很多，不过太不好记了。再找一下，有<a href="http://www.softpedia.com/get/System/OS-Enhancements/RoboCopy-GUI.shtml">Robocopy GUI</a>，将参数按功能归类了，鼠标指上去还有简要说明，这就方便多了。</p>
+
+<p>使用robocopy来copy原来出错那些文件，果然就没有问题了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[摄像头做自动监控]]></title>
+    <link href="http://aleung.github.io/blog/2009/01/19/Cameras-do-automatic-monitoring/"/>
+    <updated>2009-01-19T02:46:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2009/01/19/Cameras-do-automatic-monitoring</id>
+    <content type="html"><![CDATA[<p>我有个摄像头，但我从不视频聊天，没有什么用。今天琢磨着可以用它来搞些什么玩玩，例如做视频监视器。试了几个软件，都可以控制摄像头定时拍摄，或者在检测到画面中有东西中移动的时候启动拍摄，并且可以启动web服务。</p>
+
+<ul>
+  <li><a href="http://www.supervisioncam.com/">SupervisionCam</a> —- 是共享软件，不注册也可以永久使用，但保存的画面下方叠加了大大的软件名称，还算可以用吧。功能比较全面。 </li>
+  <li><a href="http://dorgem.sourceforge.net/">Dorgem</a> —- Open source，作者停止开发了，但最后的版本功能也很实用了。 </li>
+  <li><a href="http://www.yawcam.com/">YAWCAM</a>—- 免费软件。在我的系统中运行出错。</li>
+</ul>
+
+<p>Motion detect比较好玩，把摄像头架在阳台，开启软件，然后出门。回来发现拍下了几张照片，邻居出阳台晾衣服被拍摄下来了。其实也就是玩玩，没有什么真正用途。我们普通人也没有什么需要监控的，而且要连着电脑，使用很受限。</p>
+
+<p>定时拍摄，如果画质好的话倒是可以拍些有意思的摄影作品出来，例如环境光线的变化、开花之类，只是摄像头的拍摄效果太差了。想起我的数码相机，查了一下Nikon D70s是支持用电脑通过USB来控制拍摄的，迟些可以试试。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[打造统一的网络信息阅读入口]]></title>
+    <link href="http://aleung.github.io/blog/2009/01/16/Make-unified-network-information-reading-entrance/"/>
+    <updated>2009-01-16T06:26:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2009/01/16/Make-unified-network-information-reading-entrance</id>
+    <content type="html"><![CDATA[<p>自从<a href="http://9.douban.com/">豆瓣9点</a>推出以来，一直都使用9点来阅读blog，都算是忠实用户了。喜欢用9点是因为它具有一定的社会化功能，我可以推荐喜欢的文章，可以看到友邻的推荐，也可以看到9点分类汇总的热点文章，不会错过网络的热点话题。</p>
+
+<p>可是，最近9点的改版确让我不得不放弃它。放弃的原因一方面是我不喜欢新版本中个人订阅的阅读界面的用户体验，另一方面更重要的原因是新版本在移动设备上无非正常阅读，包括手机上的UCWEB，OperaMini和PDA上的Opera for Windows Mobile。阅读blog是我利用上下班以及其他在外的零碎时间的重要手段，因此9点不能在移动设备阅读对我来说是不可接受的。</p>
+
+<p>向豆瓣反馈了意见，但是没有得到回应。不得不另外寻找阅读器了。很多人都喜欢使用<a href="https://www.google.com/reader/">Google Reader</a>，我以前也稍微尝试过，但当时觉得不是很习惯，没有真正使用。这次认真的用了一下，感觉熟悉了之后还是不错的，包括手机上的访问效果也还行。从9点上将订阅列表导入到Google Reader中，打算用一段时间试试效果如何，如果好以后就用它了。</p>
+
+<p>不用9点，就不能在豆瓣上推荐文章了，不过我豆瓣上的友邻也没有几个看9点的，关系不大。Google Reader现在也有了share，但我除了<a href="http://flyisland.blogbus.com/">flyisland</a>外好像也没有别的友邻。另外就是Google Reader没有做热点推荐，这个要看还是可以回去9点看吧。</p>
+
+<p>今天还花了一些时间整理了订阅的feed的tag。我以前为大部分feed都加了tag，是按类别分的，例如”软件开发”、”时评”、”科学”之类，但实际上这些tag的用处不大，因为基本上不会根据分类来阅读。为了在有限时间里面让阅读更有效，这次我为所有订阅的feed都加上了优先级标签，目前分为：Priority High, Priority Middle, Priority Low, PC only Priority High, PC only Priority Middle, PC only Priority Low。PC only的类别是不适合在移动设备上阅读的feed，例如包含很多摄影、图片的，或者是带有很多链接，又或者是需要静下心来阅读的。Google Reader似乎有一定的阅读行为分析功能，使用一段时间之后也许可以根据分析数据调整不同feed的优先级。</p>
+
+<p>Blog是我目前获取信息的很重要的一个途径。我不上门户网站看新闻，那些网站太乱七八糟了；专业门户也看到很少；有些论坛会看一下，也不算太多。基本上，上网看的信息来源除了搜索引擎就是blog了。RSS阅读器可以将blog的内容聚合在一起，阅读的效率和方便程度都提高了很多。现在提供RSS的专业门户网站也越来越多了，虽然一般都只提供摘要信息，但这样也已经可以将RSS阅读器作为一个统一的入口来阅读这些散落在不同网站上的文章。有些论坛也开始提供帖子RSS，这样的论坛还不多，不知道能否成为趋势。我很希望能够将RSS阅读器作为网络上各种信息来源的统一阅读入口，结合优先级设定，可以节省时间也不容易遗漏重要的信息。</p>
+
+<p>目前试用过程中感觉Google Reader的抓取速度好像比9点要快一些，这边看到的新文章9点上还没有。Google应该也不会象豆瓣一样把一些文章给和谐掉，但是，Google Reader本身很可能被整体和谐，这是用Google服务的最大风险。要尽量用HTTPS来访问，降低风险。</p>
+
+<p>另外，推荐一个Firefox插件<a href="https://addons.mozilla.org/en-US/firefox/addon/3362">Update Scanner</a>，它可以监视你指定的网页是否发生了变化，利用它就不需要经常去打开bookmark看关心的网页是否有更新了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows Vista无法登录招商银行网上银行的问题]]></title>
+    <link href="http://aleung.github.io/blog/2009/01/04/Windows-Vista-/"/>
+    <updated>2009-01-04T06:27:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2009/01/04/Windows-Vista-</id>
+    <content type="html"><![CDATA[<p>手提电脑升级到Vista操作系统后，在家里通过ADSL上网，招商银行网上银行无法登录，报告通信出错。运行自带测试程序，发现是与服务器无法进行SSL通信。但是在办公室上网时登录招行网银又很正常。打招行的服务热线，客服让我设置了IE的一些SSL相关选项，没有用。因为办公室网络可用，根据中国电信一贯的不佳记录，我第一时间就是怀疑电信封了ADSL的某些端口，造成ADSL无法使用招行网银。向中国电信投诉，接case的小伙子检查来检查去，都没有发现问题，他说帮我把局端可以换的东西都换过了，设置也全重设过，但都没有用。</p>
+
+<p>跟同事说起，有人告诉我是IE7新增的一个安全选项的影响，将Advance Settings - Security - Check for server certificate revocation选项disable就可以正常使用招行网银了。回家一试，果然就正常了。可是，为什么呢？上网查了一下certificate revocation check的作用，大概的意思就是，SSL通信建立时，服务器需要有有效的安全证书，这个证书是由认证中心(CA)签发的，但是由于某种原因CA会撤销某些已经签发的证书，当IE的这个选项打开时，浏览器就会去CA检查一下服务器的证书是否已经被撤销。那么，看来还是招商银行的问题了，<strong>为什么招行网银服务器的证书会在已撤销列表中？这应该是个很大的安全问题啊</strong>。</p>
+
+<p>至于为什么同样打开Check for server certificate revocation选项，在办公室网络可以正常访问招行网银，我估计那是由于办公室上网要经过proxy，很可能是公司内部的proxy屏蔽了CA的访问，造成浏览器无法得知证书已被撤销。</p>
+
+<p>用Wireshark抓网银登录时的网络流，发现当选项打开时，确实出现了一个HTTP GET <a href="http://crl.verisign.com/Class3InternationalServer.crl">http://crl.verisign.com/Class3InternationalServer.crl</a>请求，请求者是Microsoft-CryptoAPI/6.0</p>
+]]></content>
+  </entry>
+  
+</feed>

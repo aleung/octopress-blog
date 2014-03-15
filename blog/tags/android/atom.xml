@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/android/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:34:06+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
+    <link href="http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic/"/>
+    <updated>2013-12-08T15:03:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic</id>
+    <content type="html"><![CDATA[<p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
+
+<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
+
+<p>下面记录大致操作过程。</p>
+
+<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
+
+<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
+
+<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
+
+<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
+</code></pre>
+
+<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
+
+<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
+
+<p><img src="/attachments/2013/12/burp.png"></p>
+
+<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
+
+<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[看老罗的锤子发布会]]></title>
+    <link href="http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os/"/>
+    <updated>2013-04-03T13:05:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os</id>
+    <content type="html"><![CDATA[<p>两个小时，演讲太啰嗦，时间压缩一半可能会精炼很多，乔布斯有这么多废话吗？另外就是老罗一贯的自恋。我突然想找小米首次发布会来看看，看雷布斯的表现如何。老罗已经是名嘴，雷布斯更惨不忍睹？</p>
+
+<p>从发布会的信息上看，锤子是一个做了UI / HI (Human Interface) 优化的Android系统：</p>
+
+<ol>
+  <li>更换了System UI（风格基调是iOS的）</li>
+  <li>提供以九宫格无背景为特色的Launcher（Android UI优点之一的widget无处容身了）</li>
+  <li>替换了所有应用自带的图标</li>
+  <li>提供了一些重新设计的系统自带应用，如相机、通讯录、拨号等（里面加入不少体贴用户的细节）</li>
+  <li>语音控制功能的整合（还没做好）</li>
+</ol>
+
+<p>这样看来，锤子做的事情跟很多基于Android的定制系统是一个层面的，类似的系统太多太多了：最早但死掉的中国移动OMS，各手机厂商为自己手机定制的系统（HTC SenseUI，联想乐OS，魅族Flyme），已经放弃的点心OS，很火的MIUI……。顺便说一下，MIUI为应用图标硬加的圆角矩形背景极为难看，希望被老罗炮轰一下后能改过来。</p>
+
+<p>从整体设计风格来说，锤子追随的是iOS的UI风格和人机界面设计规范，从各个UI组件的样子可以看得出来，还有交互操作的方式，也包括拟物化的设计、仿真的视觉反馈等。</p>
+
+<p>对于一些操作细节的打磨，带来更人性化的体验，是很多人对锤子称道的地方。的确是做得不错，但演示到的几乎每一个改进／做法，都能够在其他系统／第三方应用中找到已经真实应用的范本。老罗团队做得好是在于关注到需要改进的地方，将它们集中到一起。发现哪里操作细节需要改进比起作出改进更难。</p>
+
+<p>因此，看完两个小时的发布会，这个锤子系统没有带来什么耳目一新的感觉。老罗太高调了，说什么要做最好的手机系统，吹嘘的跟现实的落差太大。也许这是营销手段，反正我就不喜欢这种营销了。</p>
+
+<p>发布会最后一段，老罗说得很清楚：锤子将会是一个极其封闭的系统，因为只有封闭，才能为小白用户提供最完美、一致的用户体验。听起来很耳熟是不？这不就是苹果说的吗？但是，智能手机系统更重要的角色是一个平台，各种应用才是上面的主角。应用的图标跟系统风格不搭配，锤子给出的解决方案是给你换掉，可是进入应用后，应用的UI、操作方式呢？这才是更重要的。UX不仅仅是美工，是整个人机交互。苹果是怎么做到的？苹果制定了一套系统详尽的人机界面设计规范(HIG)，苹果有很强的控制力，它可以通过App Store发布审核制度强制要求只有符合的应用才能上架。我看不到锤子能有这样的能力去控制第三方应用，也不觉得一个团队有能力(和有必要)在系统里自带所有主要的功能而抛弃第三方应用，因此觉得锤子找的这个提供更佳用户界面的切入点恐怕走不了多远。</p>
+
+<p>在手机平台这个层面的用户体验上，要作出革新，非小打小闹可以做到。我虽然不做用户交互端的开发，但也有关注移动应用的UX的发展。真正意义的智能手机应用自iPhone革命性发布开始，并没有好多年的时间，这些年来，UX design在迅猛发展。iOS以高度拟物仿真的特点一直独领风骚，但走入了过分繁杂的极端；Android一路在摸索，历年Google IO都带出新的UI/UX design pattern，每次都推翻之前的方案，但可以看到一路在改善，到了Android 4.x，已经有一整套成熟的设计规范；微软的Metro UI可以称得上是一个大的革新。近年的设计趋势都是简约化，去年底苹果工业设计师的更替后，苹果的设计理念也许也会往这个方向走。在我看来，大气的设计是定义出一整套设计语汇，自成体系，并且背后要有设计哲学所支撑（Metro的定位是一种设计语言）。读完iOS的HIG，Android SDK文档里的设计指南，Windows phone的设计指南，就有所体会。另外顺便说说Android应用，普遍比较丑的原因不在于Android自己的设计理念，而是应用开发者没有跟随这个理念，不少依照Android 4.x的设计风格的应用都很漂亮很好用的。</p>
+
+<p>最后总结我看到的锤子：老罗崇尚苹果的整套理念，另外也看到了一些可以改进的地方（例如他说的iPhone设计上的妥协），于是要将它搬到Android平台上来，按照自己的理解重现实现一遍。这将是一个很有趣的尝试，期望能为国内手机应用UX僵化老土的设计带来新鲜的风气。只是别把自己过分拔高就好了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[怎么处理Android耗电严重的问题]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/"/>
+    <updated>2013-03-10T21:49:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery</id>
+    <content type="html"><![CDATA[<p>Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程，也只会在必要的时候唤醒进行短时间工作。但有些应用开发者不懂怎么合理设计应用后台任务，造成耗电问题。</p>
+
+<p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
+
+<p>找到罪魁祸首后，最简单处理手段就是卸载它。但如果这个应用非装不可没有替代品，怎么办？Kill不是办法，若应用因后台服务而耗电，后台服务kill掉也能自动重启的。每次用完都要去kill用起来也不方便。这时 <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Greenify</a> 就派上用场了，当你将一个应用加入greenify列表中，它能够在你不使用这个应用时将它进入冬眠状态，但又不影响其正常使用。除了用来对付耗电应用，对付耗内存应用也不错，当应用冬眠时，也不会占用内存(RAM)。至于它的工作原理，作者没有透露过，我还没有见到有解释。Greenify只能用于Android 3.1+，需要root。Android手机要玩好，root基本上是不可少的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[怎样在OSX上adb连接小米2]]></title>
+    <link href="http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
+    <updated>2012-12-30T20:24:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx</id>
+    <content type="html"><![CDATA[<p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
+
+<p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
+
+<p><img src="/attachments/2012/12/osx_usb.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[四儿子无望，粗粮也好吧]]></title>
+    <link href="http://aleung.github.io/blog/2012/12/23/mi2/"/>
+    <updated>2012-12-23T14:03:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2012/12/23/mi2</id>
+    <content type="html"><![CDATA[<p><img src="/attachments/2012/12/mi2<em>focus</em>01s.jpg"></p>
+
+<p>Xperia U 手機用了半年，<a href="/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
+
+<p>對於國產手機，最關心的是能不能用Google服務，有沒有ROM可以刷。行貨的閹割系統對於我來說是根本不能用的。小米做得還不錯，保留了Google Service Framework，可以添加Google帳號同步，Google Play等應用自己裝上就可以了。小米手機不算開放，沒有找到任何第三方的ROM，但好在小米除了MIUI外還是提供了原生Android系統ROM，如果不喜歡MIUI還是可以用回native Android。小米2的操作系统已經超越了ICS，是Android 4.1 Jelly Bean，除了四儿子是4.2，小米2也算是版本最高的一款Android手机了吧。手機到手後，刷了個MIUI開發版，因為穩定版不提供root權限。個人感覺MIUI的定製的度把握得比較合適，把很多系統級的有用的功能集成進去了，例如來電短信攔截，LBE的權限管理，通知欄開關等等，而又沒有像其他廠商那樣內置一大堆用不著又刪不掉的應用。因此我試了一下還是決定保留MIUI。</p>
+
+<p>唯一不喜欢的是MIUI的launcher。仿照iOS将图标全平铺在桌面上，用起来不方便；它为第三方应用的图标都缩小并加上一块灰绿色背景，难看死了，本来应用精心设计的透明背景图标都被它搞成一块块牛粪。MIUI的设计风格不错的，真不知道为什么这个launcher会搭配得那么丑，即使自己创建主题将那个灰绿背景改成透明，图标还是被缩小了不好看。我另外找到了一個launcher：<a href="https://play.google.com/store/apps/details?id=com.dlto.atom.launcher">Atom Launcher</a>，界面風格簡潔，功能細節也很好，這下就完美了。</p>
+
+<p>小米2給我最大的感受是显示非常细腻，特别是低磅数的Roboto字体特别干净秀气。342ppi的屏幕达到视网膜屏的标准，其实现在新出的好多手机都是视网膜屏了，只不过现在已经不再新鲜，厂商也不会拿这来做特别宣传。Android从ICS起缺省的是Holo蓝色主题，MIUI换成了自己标志性的亮橙色，大片白色背景，黑色/灰色字体加上亮橙的点缀，整个风格很现代和清新。</p>
+
+<p>剛到手時，對尺寸不太適應，讓我覺得蘋果說的3.5寸是最適合的手機屏幕尺寸不無道理。現在慢慢有些習慣了，但是單手操作始終還是有些彆扭，比如用右手操作，左上角和右下角的按鈕都不容易按到，還是雙手會方便些。</p>
+
+<p>當然啦，新手機最爽的事情就是2G的RAM，運行的順暢程度跟舊手機比真是一個天一個地，看到什麼應用都想裝就裝啦。</p>
+]]></content>
+  </entry>
+  
+</feed>

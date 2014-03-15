@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Geek | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/geek/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:34:06+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[超级玩具小车]]></title>
+    <link href="http://aleung.github.io/blog/2003/08/26/Super-toy-car/"/>
+    <updated>2003-08-26T20:17:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2003/08/26/Super-toy-car</id>
+    <content type="html"><![CDATA[<p>一个神奇的project, 使用了各种流行的前沿技术, 令人炫目的技术列表:  </p>
+
+<p><a href="http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html">http://www.idealliance.org/papers/xml02/dx_xml02/papers/05-05-05/05-05-05.html</a>  </p>
+
+<p>Mobile GPS Demonstration Platform, 演示了移动通讯/GPS/WebService/XML技术的结合, 一辆装备了GPS、GPRS mobile、Java Embeded Board的玩具小车。  </p>
+
+]]></content>
+  </entry>
+  
+</feed>
