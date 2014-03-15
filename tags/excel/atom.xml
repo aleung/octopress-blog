@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Excel | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/excel/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:59:47+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[利用Excel进行分组统计及生成直方图]]></title>
+    <link href="http://aleung.github.io/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/"/>
+    <updated>2007-03-17T02:19:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram</id>
+    <content type="html"><![CDATA[<p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
+
+<p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>
+
+<p>先把要处理的目标数据准备好：一列是输入数据A3:A66（在例子中为了清晰，已经排序，实际没有必要），另外一列是分组间隔D3:D21，在这里每个区间的大小是10。</p>
+
+<p>对于每个区间的频率，我希望输出在E3:E21区域。用鼠标将这个区域框起来，然后输入公式 =FREQUENCY(A3:A66,D3:D21)。FREQUENCY函数有两个参数，第一个是要分析的目标数据，第二个是分组间隔值，都需要是数组。输出也是一个数组，因此需要按 Ctrl-Shift-Enter 来结束公式的输入，表明这是数组公式。(数组公式会显示为有个花括号括起来)</p>
+
+<p>公式输入后，马上就能看到计算的结果了，如果希望更清晰些，可以做一张图。依然是选中E3:E21区域，菜单中选中插入图表，照着向导操作。在第二步选择DataSource中，需要在”Serials”中指定X轴区域为C3:C21(或D3:D21)，否则X轴数据会变成1、2、3…</p>
+
+<p><img src="http://farm1.static.flickr.com/162/422940441_9279aaa292_o.jpg" alt="" /></p>
+
+<p>从图中，可以明显看出大部分数据范围在50-120之间，峰值为90-100。</p>
+
+<p><a href="http://soft.yesky.com/office/283/2639283.shtml">这个网页</a>介绍了另外一种方法，通过Excel数据分析功能来实现上面做的事情，更加简单。但是Excel缺省安装中没有数据分析功能。</p>
+
+<p>Reference：<a href="http://www0.ccidnet.com/school/office//2001/06/26/70_4531.html">Excel统计函数</a></p>
+]]></content>
+  </entry>
+  
+</feed>

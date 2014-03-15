@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SysAdmin | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/sysadmin/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:59:47+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[查找explorer crash原因的工具]]></title>
+    <link href="http://aleung.github.io/blog/2010/01/01/The-reason-for-explorer-crash-tools/"/>
+    <updated>2010-01-01T06:59:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2010/01/01/The-reason-for-explorer-crash-tools</id>
+    <content type="html"><![CDATA[<p>不知道装了什么软件之后，只要在文件管理器中点击鼠标右键，Windows Explorer就会崩溃，重新启动依然如是。</p>
+
+<p>找到<a href="http://www.nirsoft.net/">Nir Sofer</a>出品的小工具 ShellExView，这个工具分析注册表，列出所有注册到explorer的shell extension及相关信息，并能够enable/disable选定的extension。找到可疑的extension，将它disable，然后再进行一次右键操作，看看还会不会crash。如此排除法很快就定位出什么软件是罪魁祸首，将它卸载或者将extension disable，问题就解决了。</p>
+
+<p>比较有用的信息是extension type，file extensions，file created time。首先关注文件创建时间，找出最近新增的extension，因为以前正常，最近才出问题，那引起问题通常是新装的软件。不过也不能一概而论，也有可能是以前安装的软件，因为最近的环境更改而出现了问题。另外可以根据extension type和file extensions进行过滤，例如我遇到的问题是右键菜单引发崩溃，那重点关注extension type为Context Menu的那些项。还有，在任何类型文件上按右键菜单都会引发崩溃，所以不大可能是由只针对特定文件类型的extension引发的。虽然系统注册的shell extension很多，例如我这个新装没多久的Vista系统就已经有三百多项，但是大部分都是Microsoft出品的，一般来说还是比较可靠的，只要关注非Microsoft的就可以了，找起问题来还是很快的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在线备份]]></title>
+    <link href="http://aleung.github.io/blog/2008/09/15/Online-backup/"/>
+    <updated>2008-09-15T18:20:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2008/09/15/Online-backup</id>
+    <content type="html"><![CDATA[<p>以前介绍过文件同步/备份工具<a href="http://aleung.blogbus.com/logs/5545100.html">Unison</a>，那是一个在两台电脑之间进行文件双向同步的好工具。不过，Unison同步时需要两台电脑同时开机，并且可以通过网络直接通信。我以前用于办公室内两台电脑的同步，非常方便，不过想将办公室和家里的电脑进行同步(备份)，就做不到了。</p>
+
+<p>尝试了网上的在线文件同步/备份/分析工具，这样的网站有好多，我并没有仔细研究比较过，现在用的是<a href="http://syncplicity.com/">Syncplicity</a>，感觉功能不错，速度也可以。</p>
+
+<p>使用相当简便，在要同步的电脑上安装一个client，指定哪些目录需要同步，它就会自动将文件上传服务器，或者从服务器下载，就看哪边的版本更新一点。只要连上网，它就在后台运行，不用费心。如果是要手工执行备份的话，往往会忘记的，自动就没有这个问题。一个帐号可以连接多个client(免费账号限制2个)，相当于星形连接，由服务器分发改变了的文件。备份在服务器上的文件可以通过web界面访问。它的FAQ介绍了它有处理冲突的能力：保留所有不同的版本，让用户自己选择。不过，我没有试过，目前我只是用它来做单向备份。Syncplicity能够与GoogleDoc同步，我没有使用GoogleDoc的需要，也懒得试了。</p>
+
+<p>Syncplicity对免费用户提供2GB空间，允许两台电脑进行同步，当然收费版本的限制会放宽了。免费的服务基本上都够用的，需要备份的是些比较重要又经常变化的文件，如果是备份旧东西，不变的，用刻光盘的方式更合适。</p>
+
+<p>给Syncplicity做了这么多广告，是因为：如果我邀请新用户注册，我可以增加100M空间。所以各位记得填写我的邀请信中的号码啊，呵呵。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to allow remote application setting display to the SUSE linux desktop]]></title>
+    <link href="http://aleung.github.io/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/"/>
+    <updated>2008-06-17T20:59:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop</id>
+    <content type="html"><![CDATA[<ol>
+  <li>Allow remote TCP connection to the X server. You need root privilege to config it. </li>
+</ol>
+
+<p>Just run gdmsetup. This will open a window with multiple tabs. In the Security tab, disabled the line that says “Deny TCP connections to the X server”. Close the window and then log out of your current X session. You need to restart gdm for this to work.  The easiest way to do that is to go to a console login, login as root, change to run level 3 (just type “init 3”) and then return to run level 5 (“init 5”) to restart gdm. <br />
+Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.org/wp/?p=69</a></p>
+
+<ol>
+  <li>Add remote host into X server access control</li>
+</ol>
+
+<p>Run xhost <em>remote_host_ip</em></p>
+
+<ol>
+  <li>Set DISPLAY environment variable in remote host before execute the application</li>
+</ol>
+
+<p>setenv DISPLAY <em>display_host_ip</em>:0.0</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux的cut命令]]></title>
+    <link href="http://aleung.github.io/blog/2008/04/15/Linux-cut-/"/>
+    <updated>2008-04-15T20:54:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2008/04/15/Linux-cut-</id>
+    <content type="html"><![CDATA[<p>原来有个这么好用的命令：cut</p>
+
+<p>经常都需要分析一个字符串或者文本文件，根据一些规则提取出其中某部分的内容。以前都是用awk来做，但awk太复杂了，每次都要拿手册查半天。今天才知道原来GNU有个叫cut的命令，就可以做这个事情。</p>
+
+<p>例如，获取当前机器的IP地址：</p>
+
+<pre><code>/sbin/ifconfig | grep 'inet addr' | grep -v '127.0.0.1' | cut -d: -f2 | cut -d' ' -f1
+</code></pre>
+
+<p>这个命令在linux和windows的unixutils里都有。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows的symbolic link支持]]></title>
+    <link href="http://aleung.github.io/blog/2007/03/15/Windows-symbolic-link-/"/>
+    <updated>2007-03-15T21:32:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2007/03/15/Windows-symbolic-link-</id>
+    <content type="html"><![CDATA[<p>UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。</p>
+
+<p>虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西，因为OS并没有管理它，要靠应用程序来处理。在DOS窗口里面dir看看一个shortcut是什么样子的，就知道有什么不同了。</p>
+
+<p>其实，windows在NTFS 3.0开始支持一种叫做 junction point 的特性[3]，可以看作为目录的symbolic link。可是微软总是喜欢把一些东西藏起来，比如这种junction point，你就无法直接通过windows自带工具来建立、管理。我是使用<a href="http://www.zabkat.com/">xplorer2</a>这个explorer替代工具的时候，才发现有”Folder Junction”的功能(Edit - Paste Special - Folder junction)。在[1]中介绍了很多可以管理junction point的工具。不过，使用时还是要小心，它跟UNIX的symbolic link还是不完全相同，特别是删除的时候，junction point的行为有点怪异的[1][3]。据说Vista会提供与UNIX兼容的symbolic link支持。</p>
+
+<p>利用junction point，可以在D盘建立一个目录，link到C盘来使用；也可以将分布在不同地方的多个子目录link到同一个目录底下，方便备份。</p>
+
+<p>另外，Windows NTFS也支持hard link的[5]，但实际使用中symbolic link的作用更大。</p>
+
+<p>Reference:</p>
+
+<ol>
+  <li>Windows Symbolic and Hard Links: <a href="http://www.shell-shocked.org/article.php?id=284">http://www.shell-shocked.org/article.php?id=284</a></li>
+  <li>Symbolic Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>NTFS Junction Point: <a href="http://en.wikipedia.org/wiki/NTFS_junction_point">http://en.wikipedia.org/wiki/NTFS_junction_point</a></li>
+  <li>Hard Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>Hard Link in Windows: <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true">http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true</a></li>
+</ol>
+]]></content>
+  </entry>
+  
+</feed>

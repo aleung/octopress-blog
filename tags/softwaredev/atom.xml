@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-03-15T13:59:47+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
+    <link href="http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic/"/>
+    <updated>2013-12-08T15:03:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic</id>
+    <content type="html"><![CDATA[<p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
+
+<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
+
+<p>下面记录大致操作过程。</p>
+
+<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
+
+<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
+
+<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
+
+<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
+</code></pre>
+
+<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
+
+<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
+
+<p>{%img /attachments/2013/12/burp.png %}</p>
+
+<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
+
+<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[软件设计之度]]></title>
+    <link href="http://aleung.github.io/blog/2013/10/21/du-of-software-design/"/>
+    <updated>2013-10-21T22:30:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/10/21/du-of-software-design</id>
+    <content type="html"><![CDATA[<p>上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/26482993" width="595" height="487" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <updated>2013-03-30T00:04:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
+
+<p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
+
+<p>Before I changed the configuration, there were SNAPSHOT artifacts in the repository. After configuration changed, the continuous integration jobs running on CI server redeployed artifacts to the repository, and those new files have time stamp in file names, and the version is the same. That caused the problem.</p>
+
+<p>To solve the problem, I should delete the *-SNAPSHOT file, if and only if there are both unique snapshot and non-unique snapshot of the same version.</p>
+
+<p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
+
+<p>{%gist https://gist.github.com/aleung/5260512 %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
+    <updated>2013-03-22T23:21:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
+    <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
+
+<p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
+
+<p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
+
+<p>{% gist https://gist.github.com/aleung/5203736 %}</p>
+
+<p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
+    <updated>2013-03-19T21:32:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts</id>
+    <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
+
+<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
+
+<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
+
+<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
+
+<p>{%gist https://gist.github.com/aleung/5194777 %}</p>
+
+<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
+
+<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
+]]></content>
+  </entry>
+  
+</feed>
