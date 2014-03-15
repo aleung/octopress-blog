@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-03-15T13:59:47+08:00</updated>
+  <updated>2014-03-15T20:07:43+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Text to UML diagram]]></title>
+    <link href="http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram/"/>
+    <updated>2014-01-20T22:10:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram</id>
+    <content type="html"><![CDATA[<p>Usually I used <a href="http://astah.net/">Astah</a> to draw UML diagram to put into design document in MS Word or PowerPoint format. The separation of the source and generated file making management of the UML model file a problem. And also it’s annoying to adjust a large amount of elements by dragging with mouse whenever you add something in the diagram. For a coder, typing on keyboard is faster than drawing with mouse.</p>
+
+<p>Now I switch to <a href="http://plantuml.com/">PlantUML</a>. Just write UML in its <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> and PlantUML generates the diagram. It supports most of the frequent used UML diagrams, which I use most are sequence diagram, class diagram and state diagram. Then I paste the generated diagram into slides (design document) and keep the “source” in note. No need to wonder where to find original UML model file when I need to update the diagram.</p>
+
+<p>The core of PlantUML is simply a jar file. It parses the text input and depends on <em>dot</em> tool from <a href="http://www.graphviz.org/">Graphviz</a> for graph generation (except sequence diagram). </p>
+
+<p>There are <a href="http://www.plantuml.com/running.html">a bunch of ways</a> to run PlantUML. I highlight some of them I prefer:</p>
+
+<ul>
+  <li>Online editor. Best choice if you’re too lazy to install anything on your computer.</li>
+  <li>Desktop (Windows): <a href="https://code.google.com/p/plant-uml-file-watcher/">PlantUML File Watcher</a></li>
+  <li>Embedded into Octopress blog platform. The below examples are using it.</li>
+  <li>IDE plugin. Easy way to keep UML together with source code.</li>
+</ul>
+
+<p>The syntax of PlantUML’s DSL is quite intuitional, you can start to use it by following example.</p>
+
+<p>```
+package ConsentObject «Rect» {
+  Consent : id
+  Scope : key
+}</p>
+
+<p>Client - User
+(Client, User) . Consent</p>
+
+<p>Consent - “*” Scope</p>
+
+<p>Consent “1” – “1..*” AccessToken
+```</p>
+
+<p>The generated diagram:</p>
+
+<p><center><img src='/images/plantuml/aa654ab10cd77969eaef52fa8b70576f.png'></center> </p>
+
+<p>A sequence diagram example:</p>
+
+<p>```
+title OAuth 2.0 Authorization Code Grant</p>
+
+<p>actor    UserAgent       as UA
+participant Application     as APP
+participant OAuthServer     as OAuth
+participant ResourceServer  as RS</p>
+
+<p>== Application requests authorization from user ==
+UA-&gt;APP: 
+APP–&gt;UA:redirect to OAuth Server
+UA-&gt;OAuth: GET /authorize?response_type=code
+ref over UA, OAuth: user authentication\nuser confirms reqest
+OAuth–&gt;UA: redirect to App with authorization_code
+UA-&gt;APP: authorization_code</p>
+
+<p>== Application retrieve access token ==
+APP-&gt;OAuth: POST /token with authorization_code
+ref over APP, OAuth: client authentication
+APP&lt;–OAuth: access_token</p>
+
+<p>== Application access protected resource ==
+APP-&gt;RS: getResource with access_token
+RS-&gt;OAuth: validateToken(access_token)
+RS–&gt;APP: result
+```</p>
+
+<p><center><img src='/images/plantuml/be23d4813dfec870f068ecda2f4ba44f.png'></center></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
@@ -37,7 +110,7 @@
 
 <p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
 
-<p>{%img /attachments/2013/12/burp.png %}</p>
+<p><img src="/attachments/2013/12/burp.png"></p>
 
 <p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
 
@@ -71,7 +144,9 @@
 
 <p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
 
-<p>{%gist https://gist.github.com/aleung/5260512 %}</p>
+<p><div><script src='https://gist.github.com/5260512.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
@@ -86,36 +161,11 @@
 
 <p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
 
-<p>{% gist https://gist.github.com/aleung/5203736 %}</p>
+<p><div><script src='https://gist.github.com/5203736.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
 
 <p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
-    <link href="http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
-    <updated>2013-03-19T21:32:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts</id>
-    <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
-
-<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
-
-<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
-
-<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
-
-<p>{%gist https://gist.github.com/aleung/5194777 %}</p>
-
-<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
-
-<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
-
-<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
-
-<p><strong>Update</strong> 2013-3-29:</p>
-
-<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
 ]]></content>
   </entry>
   

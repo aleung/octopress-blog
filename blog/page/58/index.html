@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常. 检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时. 解决办法: 确认邮件服务器使用本机作为DNS ( /etc &hellip;">
+  <meta name="description" content="为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/">解决Solaris中sendmail不断报错的方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-04-05T00:12:00+08:00" pubdate data-updated="true">2003-04-05</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>为解决sendmail不断报出unable to qualify domain name问题，修改/etc/hosts文件，在本机主机名后面加上一个点。但是引起了另外的问题，当程序调用gethostbyname()时失败。解决方法是在/etc/hosts为本机IP指定两个名字，一个仅仅是主机名，另一个是主机名加域名（在这里没有域名，只是加个点）。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/04/05/Solve-Solaris-sendmail-constantly-in-the-method-of-error/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -359,6 +410,10 @@ readonly / writeable (两种写法都可以) <br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
       </li>
     
@@ -374,10 +429,6 @@ readonly / writeable (两种写法都可以) <br />
         <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/04/03/my-opinion-on-smartisan-os/">看老罗的锤子发布会</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -388,7 +439,7 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 116%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -424,6 +475,7 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SpringFramework | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/springframework/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-03-15T13:59:47+08:00</updated>
+  <updated>2014-03-15T20:07:43+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -30,7 +30,26 @@ We deliver our product in uniform installation package for all customers. A mech
 <p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
 
 <p>Here is a sample code snippet:
-{% gist https://gist.github.com/2934603 %}</p>
+<div><script src='https://gist.github.com/2934603.js'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
@@ -45,24 +64,185 @@ We deliver our product in uniform installation package for all customers. A mech
 
 <p>Inspired by a StackOverflow <a href="http://stackoverflow.com/questions/5850639/how-to-keep-track-of-all-the-autowired-stuff-while-using-spring-ioc/5851872#5851872">answer</a>, I created an ApplicationContextDumper. Add it into application context, it will dump all beans and their dependencies in the current context and parent contexts (if any) into log file when the application context initialization finishes. It also lists the beans which aren’t referenced.</p>
 
-<p>{% gist 1347171 ApplicationContextDumper.java %}</p>
+<p><div><script src='https://gist.github.com/1347171.js?file=ApplicationContextDumper.java'></script>
+<noscript><pre><code>package leoliang.springtest;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.support.AbstractRefreshableApplicationContext;
+
+public class ApplicationContextDumper implements ApplicationContextAware {
+
+    private Map&lt;String, Integer&gt; beanReferenceCounter = new HashMap&lt;String, Integer&gt;();
+    private StringBuilder outputMessage;
+
+    @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        outputMessage = new StringBuilder();
+        beanReferenceCounter.clear();
+        outputMessage.append(&quot;--- ApplicationContextDumper begin ---\n&quot;);
+        dumpApplicationContext(context);
+        dumpBeansWithoutReference();
+        outputMessage.append(&quot;--- ApplicationContextDumper end ---\n&quot;);
+        System.out.print(outputMessage);
+    }
+
+    private void dumpBeansWithoutReference() {
+        outputMessage.append(&quot;Beans without reference:\n&quot;);
+        for (String bean : beanReferenceCounter.keySet()) {
+            if (beanReferenceCounter.get(bean) == 0) {
+                outputMessage.append(&quot;  &quot;).append(bean).append('\n');
+            }
+        }
+    }
+
+    private void initBeanReferenceIfNotExist(String beanName) {
+        Integer count = beanReferenceCounter.get(beanName);
+        if (count == null) {
+            beanReferenceCounter.put(beanName, 0);
+        }
+    }
+
+    private void increaseBeanReference(String beanName) {
+        Integer count = beanReferenceCounter.get(beanName);
+        if (count == null) {
+            count = new Integer(0);
+        }
+        beanReferenceCounter.put(beanName, ++count);
+    }
+
+    private void dumpApplicationContext(ApplicationContext context) {
+        // Read context id isn't available. https://jira.springsource.org/browse/SPR-8816
+        String appContextInfo = String.format(&quot;ApplicationContext %s : %s&quot;, context.getId(), context.getClass()
+                .getName());
+        ApplicationContext parent = context.getParent();
+        if (parent != null) {
+            appContextInfo += String.format(&quot; -&gt; %s&quot;, parent.getId());
+        }
+        outputMessage.append(appContextInfo).append('\n');
+
+        ConfigurableListableBeanFactory factory = ((AbstractRefreshableApplicationContext) context).getBeanFactory();
+        for (String beanName : factory.getBeanDefinitionNames()) {
+            if (factory.getBeanDefinition(beanName).isAbstract()) {
+                continue;
+            }
+            initBeanReferenceIfNotExist(beanName);
+            Object bean = factory.getBean(beanName);
+            outputMessage.append(String.format(&quot;  %s : %s\n&quot;, beanName, bean.getClass().getName()));
+            for (String dependency : factory.getDependenciesForBean(beanName)) {
+                outputMessage.append(String.format(&quot;    -&gt; %s\n&quot;, dependency));
+                increaseBeanReference(dependency);
+            }
+        }
+
+        if (parent != null) {
+            outputMessage.append(&quot;Parent:\n&quot;);
+            dumpApplicationContext(parent);
+        }
+    }
+
+}</code></pre></noscript></div>
+</p>
 
 <p>Here is an example. We have two application contexts. Please be noticed that the ApplicationContextDumper has been added into applicationContext.xml.</p>
 
-<p>{% gist 1347171 applicationContext.xml %}
-{% gist 1347171 parentContext.xml %}</p>
+<p><div><script src='https://gist.github.com/1347171.js?file=applicationContext.xml'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;
+    default-lazy-init=&quot;false&quot; default-autowire=&quot;byName&quot;&gt;
+
+    &lt;!-- Enable @Autowired --&gt;
+    &lt;context:annotation-config/&gt;
+    
+    &lt;!-- Load all beans with @Repository --&gt;
+    &lt;context:component-scan base-package=&quot;leoliang.springtest&quot;/&gt;
+
+    &lt;bean id=&quot;aNormalBean&quot; class=&quot;leoliang.springtest.NormalBean&quot;&gt;
+        &lt;property name=&quot;anotherBean&quot; ref=&quot;anotherBean&quot;/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean class=&quot;leoliang.springtest.ApplicationContextDumper&quot; /&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1347171.js?file=parentContext.xml'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+    &lt;bean id=&quot;abstractBean&quot;  abstract=&quot;true&quot; /&gt;
+    &lt;bean id=&quot;anotherBean&quot; class=&quot;leoliang.springtest.AnotherBean&quot; parent=&quot;abstractBean&quot; /&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
 
 <p>parentBeanFactory is the parent of myBeanFactory:</p>
 
-<p>{% gist 1347171 beanRefContext.xml %}</p>
+<p><div><script src='https://gist.github.com/1347171.js?file=beanRefContext.xml'></script>
+<noscript><pre><code>&lt;beans&gt;
+    &lt;bean id=&quot;parentBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
+        &lt;constructor-arg&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:**/parentContext.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+    &lt;bean id=&quot;myBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
+        &lt;constructor-arg&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:**/applicationContext.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/constructor-arg&gt;
+        &lt;constructor-arg&gt;
+            &lt;ref bean=&quot;parentBeanFactory&quot; /&gt;
+        &lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
 
 <p>In main, loads application context from beanRefContext.xml. </p>
 
-<p>{% gist 1347171 main.java %}</p>
+<p><div><script src='https://gist.github.com/1347171.js?file=main.java'></script>
+<noscript><pre><code>    public static void main(String[] args) {
+        String[] paths = { &quot;classpath:**/beanRefContext.xml&quot; };
+        new ClassPathXmlApplicationContext(paths);
+    }
+</code></pre></noscript></div>
+</p>
 
 <p>The application context is dumped in log:</p>
 
-<p>{% gist 1347171 output %}</p>
+<p><div><script src='https://gist.github.com/1347171.js?file=output'></script>
+<noscript><pre><code>--- ApplicationContextDumper begin ---
+ApplicationContext org.springframework.context.support.ClassPathXmlApplicationContext@e1d5ea : org.springframework.context.support.ClassPathXmlApplicationContext -&gt; parentBeanFactory
+  org.springframework.context.annotation.internalConfigurationAnnotationProcessor : org.springframework.context.annotation.ConfigurationClassPostProcessor
+  org.springframework.context.annotation.internalAutowiredAnnotationProcessor : org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+  org.springframework.context.annotation.internalRequiredAnnotationProcessor : org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
+  org.springframework.context.annotation.internalCommonAnnotationProcessor : org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
+  repositoryBean : leoliang.springtest.RepositoryBean
+    -&gt; aNormalBean
+  aNormalBean : leoliang.springtest.NormalBean
+    -&gt; anotherBean
+  leoliang.springtest.ApplicationContextDumper#0 : leoliang.springtest.ApplicationContextDumper
+Parent:
+ApplicationContext parentBeanFactory : org.springframework.context.support.ClassPathXmlApplicationContext
+  anotherBean : leoliang.springtest.AnotherBean
+Beans without reference:
+  repositoryBean
+  org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+  org.springframework.context.annotation.internalCommonAnnotationProcessor
+  org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+  org.springframework.context.annotation.internalRequiredAnnotationProcessor
+  leoliang.springtest.ApplicationContextDumper#0
+--- ApplicationContextDumper end ---</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
