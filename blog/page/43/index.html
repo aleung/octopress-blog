@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="家里的显示器比较老了，用起来总是感觉不爽。我的电脑除去上网文字处理等日常使用外，用途主要是两个，照片编辑和GPS/GIS应用。现在的显示器两个不爽：一个是尺寸问题，15寸只能上800*600，用photoshop调整照片时就算把工具panel全部关闭也看不全， &hellip;">
+  <meta name="description" content="操作系统刚重装才一天，就出现了莫名其妙的问题。svchost进程就会把CPU全占满，使得系统几乎没有响应。用procexp（Process Explorer）来查看进程，这个svchost.exe确实是系统自带的，是系统服务的宿主进程。 Reboot机器，重试几次，发现不连上网的时候一切正常， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/11/02/Encounter-virus-Trojan/">遭遇病毒(木马)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-11-02T22:45:00+08:00" pubdate data-updated="true">2004-11-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>操作系统刚重装才一天，就出现了莫名其妙的问题。svchost进程就会把CPU全占满，使得系统几乎没有响应。用procexp（Process Explorer）来查看进程，这个svchost.exe确实是系统自带的，是系统服务的宿主进程。</p>
+
+<p>Reboot机器，重试几次，发现不连上网的时候一切正常，一旦网络连上了，CPU就被那个svchost占满，如果把那个进程杀死，系统就不能正常工作。当时刚刚安装了Norton AntiVirus，它的auto update服务会在网络连上的时候自动开始，所以我怀疑是NAV update服务引起的。把NAV卸载了，问题依然存在。因为那个svchost是RPC服务的，我又以为是操作系统的问题，什么文件的版本乱了，就用安装盘采用重装式修复，可是还是不正常。</p>
+
+<p>毫无头绪之际，再度用procexp监视进程树。这次发现一些异常了：svchost启动了一些tftp进程。这些tftp在做什么？从219.137.217.181下载文件，下载的文件名为atiphexx.exe、winupdatez.exe等，还有不少没有记下来。很奇怪啊，是否系统中了木马？检查一下tftp，也是系统自己的东西，没有异常，那是谁启动这些进程的呢？</p>
+
+<p>安装spybot，检查系统，没有查出木马程序。但是，过了一会，注册表监视器报警了，有进程要往注册表的系统启动run项目里写入新内容，居然就是winupdatez.exe。这不用说都是木马了。在winnt\system32目录下找到这个winupdatez.exe，删除。再检查注册表，把相关项目都删除。重启系统，正常了。</p>
+
+<p>开始时太大意了，居然没有第一时间检查注册表的run里面有没有异常，白白浪费了两晚时间。不过，当初进程树里面看到的都是系统的进程，没发现这个winupdatez进程，所以才没有怀疑是病毒/木马。是否还有其他名称的木马存在呢？我心里还是没有底。不过系统现在运行正常了。新装系统，真的是要把所有防护措施都做好才能上网:(</p>
+
+<p>这次用到工具软件Process Explorer很不错，能够看到很多Task Manager没有的进程信息，是<a href="http://www.sysinternals.com/"> www.sysinternals.com</a> 的出品。Sysinternals还有好几个不错的小软件，都是监视系统运行情况的，包括tcpview、filemon、regmon等。</p>
+
+<p>系统除了安装防火墙之外，还应该装上一个可以监视注册表改动的工具。现在修改注册表的网页太多了。我用的是Spybot，兼有木马查找和注册表防护的功能，我喜欢它能够从网上update规则。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/11/02/Encounter-virus-Trojan/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -334,68 +397,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/08/04/The-poor-who-newsletter/">可怜的腾迅</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-08-04T21:43:00+08:00" pubdate data-updated="true">2004-08-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>所谓树大招风，腾迅这回可是中招了，面对愤青们打着爱国主义和民族主义旗号的攻势，却是苦水只能往肚子里咽。QQ的主要用户群是青少年学生，正是最热血沸腾的年龄，看来这次事件对腾迅的影响不可谓不大。</p>
-
-<p>看看QQ游戏里面都过滤些什么单词吧，在QQ安装目录里面找出COMToolKit.dll这个文件，用VC把它打开（或者其它的能查看资源的工具，实在没有，用UltraEdit也可以，不过会夹杂着很多乱码），就可以看到有两个叫做“DIRTYWORD”的资源，id分别为9001和9002，在鼠标右键菜单中选择导出，把它们存入文件，用文本编辑器打开，怎样，大开眼界吧？好多词，我们这些良民百姓都不知道有什么含意。</p>
-
-<p>可以看看 <a href="http://forum.future.org.cn/showthread.php?p=618922">http://forum.future.org.cn/showthread.php?p=618922</a>的21楼（不知道最初出自哪里），有详细一点的介绍。作者是个反日派，他的结论也挺有意思：</p>
-
-<blockquote>
-  <p>从这个过滤词表看，可以得出几个结论：第一个结论，大家说话都不怎么流畅，全是他妈的弱势群体，谁也别笑话谁。以后坛子上的反腐斗士和自由派，别老拿这个来数落俺们反日派。俺们也互相体谅。第二个结论，政府对民族主义算是比较纵容的了，虽然也提防着，但主要也就提防大家上 街，网上骂骂，一般来说是安全的。第三个结论，别骂腾讯。尽管腾讯的发家有那么些不光彩的地方，但这事怪不了它。不负责任胡乱攻击只会给我们多树敌人。</p>
-
-  <p>最后一段是奉劝我们自己人的。第一句话是奉劝新网友的。新网友别每天就知道灌水起哄，“把腾讯移交有关部门处理”啥的，惹人家笑话。不管你将来准备加入什么思潮流派，第一步应该是了解自己的处境，别以为教科书上说你是国家的主人，你就真的信了。了解了自己的处境，才能改变它。第二句话是奉劝老网友的，过滤词什么的，大家在网上混那么多年的，都知道是谁干的，老虎谁都不敢打不敢骂，这也没什么丢脸的，不敢骂就不敢呗，抓住一只小猫暴扁干嘛？充英雄吗？表演自己的怯懦而已。   </p>
-</blockquote>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/08/04/The-poor-who-newsletter/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/44/">&larr; Older</a>
@@ -417,6 +418,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/15/pebble/">Pebble</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
@@ -430,10 +435,6 @@
     
       <li class="post">
         <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/27/first-long-run/">今年首次长跑训练</a>
       </li>
     
   </ul>
@@ -456,7 +457,7 @@
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
-<a style="font-size: 70%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
