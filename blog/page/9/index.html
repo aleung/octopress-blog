@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="java.lang.NoClassDefFoundError 是个很讨厌的错误，你会发现明明它报告的class已经打包进应用里，没可能在classpath中找不到，然后百思不得其解。其实这个exception跟 ClassNotFoundException 不同，后者报告的类是真的找不到， &hellip;">
+  <meta name="description" content="在10km跑总结里提到：这次10km跑成绩的提高最重要因素是步频的提高。 在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/">跑步步频训练软件 RunningCadence 开发小记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-24T00:16:00+08:00" pubdate data-updated="true">2011-12-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>, <a class='tag' href='/blog/tags/running/'>Running</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在<a href="http://good-good-study.appspot.com/blog/posts/156002">10km跑总结</a>里提到：这次10km跑成绩的提高最重要因素是步频的提高。</p>
+
+<p>在网上看了一些资料，提到提高步频的好处，并指出长跑理想的步频应该在每分钟180步左右，就开始尝试练习提高步频。但是跑起来并不知道怎样的频率才是合适的，还需要有工具测量才行。想到可以用手机的加速度传感器来测量，跑步时把手机绑在手臂上或者拿手上，测量手的摆动周期应该就可以计算出步频。</p>
+
+<p>有了想法后，就考虑怎样实现。先要知道跑步时加速度传感器得到的数据会是怎样的，在market上找到软件Accelero-meter Log，能显出加速度传感器三轴数据的曲线。拿着手机跑了几步看看曲线，发现完全不是想象中那么简单：从曲线可以看出每跑一步的加速度变化，但并不是一步一个脉冲那么理想，而是大脉冲中包含着小脉冲，波形很不规则；更要命的是不同轴测量到的数据频率会不一样，软件应该按那个轴的数据计算？后来才想到不同轴测量数据频率不同的原因是手摆动的频率与身体重心上下移动的频率不一致，只是一半，再加上手的活动太自如了，跑动过程中会有不同的动作，都会引起加速度变化。</p>
+
+<p>上网找到一个开源的Android计步器的代码，看看它怎么做，发现它只是将三个轴的数值加在一起，然后判断变化量。根据前面看得的数据波形，我感觉这样的算法太不靠谱了，再看看这个软件的用户评价，果然不佳。</p>
+
+<p>这时想到Nike的配合iPhone使用的计步器，是藏在鞋里面的。它应该是感应脚的每次着地，而且计步器是固定在鞋里的，有特定的安装方向，因此它可以只检测垂直地面的加速度。想到这里就豁然开朗了，原来测量摆臂的想法是错误的，应该测量脚着地的冲击，也就是垂直方向的加速度。但那个轴才是垂直地面的呢？我不能规定用户使用这个软件时手机摆放的方向啊，他可以绑在臂上，拿在手里，放裤袋中。。。因此首先要解决的问题是如何判断手机的姿态，找出垂直于地面的轴。</p>
+
+<p>人在运动的时候加速度不断变化，但加速度矢量一段时间的累计应该为零，而重力加速度是恒定的，并且垂直于地面，检测出重力加速度的方向就ok了。具体实现的方法也比较简单：对传感器三个轴的数据分别做截止频率为0.25Hz的低通滤波后，数值最大的那个轴应该就是最接近于垂直地面的。</p>
+
+<p>还有个问题是手机加速度传感器的采样频率能到多高？是否能满足要求？长跑理想的着地次数是每分钟180次，相当于3Hz，一般人都只会比这个慢。实测我的Nexus One使用最短采样间隔时大约30~50ms能获取到一组数据，也就是采样频率大于20Hz，对于检测3Hz的信号完全足够。</p>
+
+<p>对于复杂波形的处理方法，同样是简单的一阶低通滤波，截止频率取了3.5Hz，相当于每分钟210次着地。高频干扰通过滤波削弱后，相邻波峰的时间间隔就是两次着地的时间间隔了。具体实现时，波峰判断会比较麻烦，采样检查是否超过阈值来代替。本来想按振幅比例来设定阈值的，但算振幅也比较麻烦，之前检测重力加速度时已经得到重力加速度在测量轴上的分量，直接拿它的1/2做阈值就好了。这样做还带来了一个没有预料到的副作用：走路时脚步比较轻，超不过阈值，因此软件还能知道当前是否处于跑步状态。</p>
+
+<p>步频数据算出来以后其他的就好办了。跑步时不方便看屏幕，通过语音合成播放出来。设定目标步频，语音提示应该加快还是减慢。还打算过增加个目标步频的节拍音，当实际步频与目标不一致时播放出来，不过软件用了这段时间，感觉有语音播报步频基本上已经足够了，暂时不做以后再说吧。</p>
+
+<p>这个软件项目的网站： <a href="http://code.google.com/p/running-cadence/">http://code.google.com/p/running-cadence/</a></p>
+
+<p>软件发布在Android Market:<a href="https://market.android.com/details?id=leoliang.runningcadence">https://market.android.com/details?id=leoliang.runningcadence</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/12/24/Running-training-software-development-XiaoJi-RunningCadence-step-frequency/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -542,142 +613,6 @@ Beans without reference:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/27/Apple-Aperture-/">Apple Aperture 数码照片处理几板斧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-27T22:04:00+08:00" pubdate data-updated="true">2011-09-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="https://lh5.googleusercontent.com/-MGOVmxQlebs/ToHSOBbvsCI/AAAAAAAAAaQ/ZgUEHwlGelk/s800/aperture3.jpg" /></p>
-
-<p>以前都用Photoshop来处理照片，刚开始用Aperture，还真不太适应，用了几天兼阅读了help，慢慢有些了解了。对于照片的后期处理，其实用什么工具都大同小异，基本上就是几板斧。没拍好的照片也没有必要费心去调，直接删除就得了。</p>
-
-<h2 id="raw">基本原则：使用RAW格式拍摄</h2>
-
-<p>RAW记录了拍摄时的原始信息，而jpg是已经经过相机处理之后的图像。用RAW格式提供了后期处理的更多可能性，例如曝光的增减（当然是小范围内了），白平衡的重新设定。</p>
-
-<h2 id="section">基本调整</h2>
-
-<ul>
-  <li><strong>图像倾斜矫正及裁剪</strong>：Viewer下方的工具栏有图标，或者用快捷键G和C。</li>
-  <li><strong>色温校准</strong>：相机的自动百平衡经常不太准确，需要在White Balance设置正确色温，常见光源的色温表在<a href="http://good-good-study.appspot.com/blog/posts/152001">这儿</a>；另外用 Enhance － Tint 可以分别调节高光／中间调／暗部的偏色。</li>
-  <li><strong>曝光调整</strong>：用快捷键Alt－Shift－H打开暗部与高光溢出显示，调节Exposure让图像曝光正常。Highlights &amp; Shadows可以挽救部分高光、暗部细节。如果要进一步调整，使用Enhance及Level。调整过程中，快捷键M可查看原始图像（Master）作对比。</li>
-</ul>
-
-<p>调整方法见<a href="http://good-good-study.appspot.com/blog/posts/153002">RAW照片后期处理的常用操作</a></p>
-
-<h2 id="section-1">其他调整</h2>
-
-<ul>
-  <li><strong>色差纠正</strong>（消除紫边）：Chromatic Aberration</li>
-  <li><strong>降噪</strong>：Noise Reduction</li>
-  <li><strong>图像锐化</strong>：Edge Sharpen</li>
-</ul>
-
-<h2 id="section-2">常用快捷键</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Key</th>
-      <th>Function</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>V</td>
-      <td>Switch view mode (browser / split view / viewer)</td>
-    </tr>
-    <tr>
-      <td>I, H</td>
-      <td>Show Inspector</td>
-    </tr>
-    <tr>
-      <td>F</td>
-      <td>Full screen</td>
-    </tr>
-    <tr>
-      <td>W</td>
-      <td>Switch Inspector tab (Library / Metadata / Adjustments)</td>
-    </tr>
-    <tr>
-      <td>Y</td>
-      <td>Show metadata</td>
-    </tr>
-    <tr>
-      <td>T</td>
-      <td>Show metadata tooltips</td>
-    </tr>
-    <tr>
-      <td>M</td>
-      <td>Show master image</td>
-    </tr>
-    <tr>
-      <td>Z</td>
-      <td>Zoom 100%</td>
-    </tr>
-    <tr>
-      <td>`</td>
-      <td>Loupe</td>
-    </tr>
-    <tr>
-      <td>Alt-Shift-H</td>
-      <td>Highlight hot &amp; cold areas</td>
-    </tr>
-    <tr>
-      <td>Alt-F</td>
-      <td>Show focus points</td>
-    </tr>
-    <tr>
-      <td>0~5</td>
-      <td>Rating</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/09/27/Apple-Aperture-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/10/">&larr; Older</a>
@@ -699,6 +634,10 @@ Beans without reference:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
@@ -712,10 +651,6 @@ Beans without reference:
     
       <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
       </li>
     
   </ul>
@@ -737,7 +672,7 @@ Beans without reference:
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>

@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content=" Android View more documents from aleung. ">
+  <meta name="description" content="以前我一直以为Google手机地图是在客户端程序内置有矫偏算法的，看了dongmeng110的blog（已被关闭）才知道Google地图偏移其实是有接口可以取到的。给定经纬度坐标，返回地图tile的偏移像素值。
+http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,183 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/26/Google-China-Map-offset-1/">Google中国地图偏移</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-26T21:37:00+08:00" pubdate data-updated="true">2009-12-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以前我一直以为Google手机地图是在客户端程序内置有矫偏算法的，看了dongmeng110的blog（已被关闭）才知道Google地图偏移其实是有接口可以取到的。给定经纬度坐标，返回地图tile的偏移像素值。
+<code>http://ditu.google.cn/maps/vp?spn=0.0,0.0&amp;amp;z=18&amp;amp;vp=39.111195,117.148067</code> （已失效）。</p>
+
+<p>没想到居然就是直接从服务器取，这样所有的偏移量其实都是公开的了。</p>
+
+<p>接下来，我对偏移数据做了一些分析。纵坐标是18级地图的偏移量。</p>
+
+<p>首先是较小尺度，在经纬度1度的范围内每0.01度取得一个偏移值。</p>
+
+<p>图一：纬度不变，经度1度变化范围内，偏移量的变化（横坐标数字为经度0.01度）</p>
+
+<p><img src="/blog/attachments/2009/12/4382500790_05a7a3af13_o.jpg" alt="" /></p>
+
+<p>图二，与图一相同的数据，可以看出偏移在平面上的变化</p>
+
+<p><img src="/blog/attachments/2009/12/4382501234_2a060a3355_o.jpg" alt="" /></p>
+
+<p>图三，经度不变，纬度1度变化范围内，偏移量的变化（横坐标数字为纬度0.01度）。可见偏移量变化不如经度变化时大。</p>
+
+<p><img src="/blog/attachments/2009/12/4382501616_0902aeee3e_o.jpg" alt="" /></p>
+
+<p>图四，与图三相同的数据，可以看出偏移在平面上的变化</p>
+
+<p><img src="/blog/attachments/2009/12/4382501968_d960178154_o.jpg" alt="" /></p>
+
+<p>图五，经度纬度均1度范围内，偏移在平面上的变化。其实是图二与图四“相乘”的结果。</p>
+
+<p><img src="/blog/attachments/2009/12/4381741057_b10a5de8ca_o.jpg" alt="" /></p>
+
+<p>接下来从大尺度上看看。</p>
+
+<p>图六，北纬40度的纬线上偏移值变化图，横坐标为经度。看得出以经度1度为周期呈现出一定的规律性，在y向偏移量上特别明显。</p>
+
+<p><img src="/blog/attachments/2009/12/4382499286_a837b8022d_o.jpg" alt="" /></p>
+
+<p>图七，东经116度的经线上偏移值变化图，横坐标为纬度。这个就没有奇怪的小波动了，而且x向偏移似乎可以非常理想的用二次曲线来拟合。</p>
+
+<p><img src="/blog/attachments/2009/12/4381742115_a15b5e01c5_o.jpg" alt="" /></p>
+
+<p>图八，刚才在图六中发现纬线上的偏移值呈现出规律性，这里放大来看看。很明显是以1度为周期的。</p>
+
+<p><img src="/blog/attachments/2009/12/4382498276_2952ffa74c_o.jpg" alt="" /></p>
+
+<p>暂无结论。请看<a href="/blog/2009/12/27/Google-China-Map-offset-2/">续篇</a>。</p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/26/Google-China-Map-offset-1/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/">比价易：逛超市的好帮手</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-12T08:33:00+08:00" pubdate data-updated="true">2009-12-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="right" src="http://farm5.static.flickr.com/4104/4987380901_97030e8f03_m.jpg" /></p>
+
+<p>逛超市，看到两款酸奶：</p>
+
+<ul>
+  <li>一种是100克装8杯，9.6元；</li>
+  <li>另一种是150克6杯加送1杯100克，10.5元。</li>
+</ul>
+
+<p>那个价钱更划算？</p>
+
+<p>如果单位不同，就更难比较了，例如纯净水：</p>
+
+<ul>
+  <li>550ml一打，10元；</li>
+  <li>10L，12元；</li>
+  <li>5 gal（加仑），18元。</li>
+</ul>
+
+<p>比价易（Unit Price Compare）就是专门解决这种问题的，它是运行在Android手机上的应用，能够比较不同包装的商品单价哪个更便宜。</p>
+
+<p>比价易支持不同单位的自动换算，对于”150克6杯加送1杯100克”这样的情况，直接输入为 150*6+100 就可以了。看看截图：</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4987380823/"><img src="http://farm5.static.flickr.com/4111/4987380823_cfb55b6633.jpg" alt="Unit Price Compare - list" /></a> <a href="http://www.flickr.com/photos/leoliang/4987981690/"><img src="http://farm5.static.flickr.com/4109/4987981690_1fae2f0784.jpg" alt="Unit Price Compare - item" /></a></p>
+
+<p>安装：在Android Market中搜索”Unit Price Compare”</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4987981626/"><img src="http://farm5.static.flickr.com/4112/4987981626_c5cfbd0307_m.jpg" alt="Unit Price Compare - download" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -260,190 +438,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/10/31/Android-Wallpaper-Label/">Android软件：Wallpaper Label</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-31T09:14:00+08:00" pubdate data-updated="true">2009-10-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="/blog/attachments/2009/10/wallpaperlabel1.jpg" /></p>
-
-<p>Android与IPhone类似，都是有多个桌面屏幕，用手指划一下就可以左右切换屏幕。Android缺省设置只有3屏，但一些mod可以修改屏幕个数，例如设置为5屏。</p>
-
-<p>在IPhone上，屏幕的数量以及当前处于第几个屏幕是通过界面中下方的小圆点来指示的。但在Android上就没有类似的指示，有时候用户不知道现在正显示的是哪一屏，应该往左还是往右翻屏。</p>
-
-<p><img class="left" src="/blog/attachments/2009/10/wallpaperlabel2.jpg" /></p>
-
-<p>我开发的这个软件 Wallpaper Label 可以为Android手机的桌面每个屏幕添加一个文字标签，这样就很清晰的知道当前打开的是哪一屏了。标签位于在屏幕下方的正中位置，并不会影响图标的显示。</p>
-
-<p>Wallpaper Label 软件的另外一个作用是设置Android手机的桌面墙纸。Android系统自带的墙纸设置工具需要把图片剪切为4:3比例，无法设置其他比例的墙纸。4:3比例对于缺省的3屏是比较合适的，但当桌面屏幕数量更多的时候，这个比例就显得太窄了，左右切换屏幕时墙纸的画面基本没有多少移动。用 Home Screen Label 来设置墙纸没有4:3比例的限制，可以设置宽屏墙纸。</p>
-
-<p>用作墙纸的图片文件需要存放在SD卡的wallpapers目录中。软件也提供了保存当前墙纸的功能，可将现在正使用的墙纸保存到SD卡上。</p>
-
-<p>这是5个屏幕合成的效果图，可以看出宽屏墙纸画面效果：</p>
-
-<p><img src="/blog/attachments/2009/10/wallpaperlabel3.jpg" alt="" /></p>
-
-<p>软件在Android Market上下载安装，搜索”Wallpaper Label”就可以找到。
-(2012-7 update: Android自身功能不断增强，这个软件已经没什么用处，早已下架)</p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/10/31/Android-Wallpaper-Label/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/27/WebLogic-classloading/">WebLogic的classloading</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-09-27T07:23:00+08:00" pubdate data-updated="true">2009-09-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4379354938/"><img src="http://farm3.static.flickr.com/2682/4379354938_dc7cd5f47e_o.png" alt="wls_classloading" /></a></p>
-
-<h3 id="section"></h3>
-
-<h3 id="classloader">各层级classloader加载的类的范围</h3>
-
-<ul>
-  <li>Bootstrap classloader
-    <ul>
-      <li>Core Java libraries (<jre>/lib)</jre></li>
-    </ul>
-  </li>
-  <li>Extension classloader
-    <ul>
-      <li>JRE extensions directory (<jre>/lib/ext)</jre></li>
-    </ul>
-  </li>
-  <li>WebLogic Server system classloader
-    <ul>
-      <li>Classpath</li>
-      <li>
-        <domain>/lib
-
-</domain>
-      </li>
-    </ul>
-  </li>
-  <li>Filtering classloader
-    <ul>
-      <li>nothing</li>
-    </ul>
-  </li>
-  <li>Application classloader
-    <ul>
-      <li>EJB JARs</li>
-      <li>APP-INF/lib</li>
-      <li>APP-INF/classes</li>
-      <li>Manifest Class-Path in EJB JARs</li>
-    </ul>
-  </li>
-  <li>Web application classloader
-    <ul>
-      <li>WAR</li>
-      <li>Manifest Class-Path in WAR</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="section-1">类加载的优先级</h3>
-
-<p>每个classloader在要加载一个class之前都会先请求它的上层classloader，如此逐级传递。因此效果就是越上层的classloader优先级越高，一个class如果在上层classloader能加载到，就不会让下面的classloader加载。</p>
-
-<p>但是web application classloader是个特例，通过在weblogic.xml中配置<prefer-web-inf-classes>，可以让web application classloader优先在自己war范围内加载类，找不到的类才会请求上层classloader。</prefer-web-inf-classes></p>
-
-<p>Filtering classloader是个特殊的classloader，它并不会加载任何类，而是起到控制类加载优先级的作用。在weblogic-application.xml中配置<prefer-application-packages>，可以限制对于指定的类不再向上层classloader请求，也就是限制在EAR的范围之内加载。</prefer-application-packages></p>
-
-<h3 id="section-2">其他</h3>
-
-<p>以上仅仅描述了缺省情况下classloading的行为。WebLogic对于一个application (EAR)内的classloader的层次结构是可以自定义的。Shared library和optional package，也会影响到classloading。另外，resource adapter (RAR)也有独立的classloader。还有其他的一些细节，需要查阅<a href="http://download.oracle.com/docs/cd/E13222_01/wls/docs100/programming/classloading.html">Understanding WebLogic Server Application Classloading</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/09/27/WebLogic-classloading/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/20/">&larr; Older</a>
@@ -465,6 +459,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
@@ -478,10 +476,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/21/du-of-software-design/">软件设计之度</a>
       </li>
     
   </ul>
@@ -503,7 +497,7 @@
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
