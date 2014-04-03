@@ -7,15 +7,15 @@ updated: 2010-02-24 00:22
 tags:
 - GPS_GIS
 ---
-接着昨天的分析：[http://good-good-study.appspot.com/blog/posts/3224](http://good-good-study.appspot.com/blog/posts/3224)
+接着[昨天的分析](/2009/12/26/Google-China-Map-offset-1/)。
 
 已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线：
 
-![](http://farm5.static.flickr.com/4009/4382498800_1bc9e586dd_o.jpg)
+![](/attachments/2009/12/4382498800_1bc9e586dd_o.jpg)
 
 看起来相当完美。那在看看将它应用到大尺度上效果如何：
 
-![](http://farm3.static.flickr.com/2795/4381740587_73cd1113fd_o.jpg)
+![](/attachments/2009/12/4381740587_73cd1113fd_o.jpg)
 
 有微小的抖动，看来参数细节还需要微调一下，不过要求不高的话其实已经可以接受了。
 
