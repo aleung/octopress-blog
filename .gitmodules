@@ -6,4 +6,4 @@
 	url = https://github.com/robbyedwards/octopress-tag-cloud.git
 [submodule "plugins/plantuml"]
 	path = plugins/plantuml
-	url = https://github.com/yjpark/jekyll-plantuml.git
+url=https://github.com/aleung/jekyll-plantuml.git

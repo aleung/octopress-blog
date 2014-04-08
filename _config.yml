@@ -112,5 +112,7 @@ facebook_like: false
 tag_dir: tags
 
 # PlantUML
-plantuml_dotpath: /usr/local/bin/dot
-plantuml_jar: _lib/plantuml.jar
+plantuml:
+  plantuml_jar: _lib/plantuml.jar     # path to plantuml jar
+  tmp_folder: _plantuml               # tmp folder to put generated image files
+  dot_exe: /usr/local/bin/dot         # [optional] path to Graphviz dot execution
