@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>怎么处理Android耗电严重的问题 - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">怎么处理Android耗电严重的问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T21:49:00+08:00" pubdate data-updated="true">2013-03-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程，也只会在必要的时候唤醒进行短时间工作。但有些应用开发者不懂怎么合理设计应用后台任务，造成耗电问题。</p>
+
+<p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
+
+<p>找到罪魁祸首后，最简单处理手段就是卸载它。但如果这个应用非装不可没有替代品，怎么办？Kill不是办法，若应用因后台服务而耗电，后台服务kill掉也能自动重启的。每次用完都要去kill用起来也不方便。这时 <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Greenify</a> 就派上用场了，当你将一个应用加入greenify列表中，它能够在你不使用这个应用时将它进入冬眠状态，但又不影响其正常使用。除了用来对付耗电应用，对付耗内存应用也不错，当应用冬眠时，也不会占用内存(RAM)。至于它的工作原理，作者没有透露过，我还没有见到有解释。Greenify只能用于Android 3.1+，需要root。Android手机要玩好，root基本上是不可少的。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T21:49:00+08:00" pubdate data-updated="true">2013-03-10</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/" data-via="acette" data-counturl="http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/09/beginning-r/" title="Previous Post: R初略学习笔记">&laquo; R初略学习笔记</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/18/stand-up-desk/" title="Next Post: 站立工作环境">站立工作环境 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/pebble/">Pebble</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/javaee/">JavaEE</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 103%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/';
+        var disqus_url = 'http://aleung.github.io/blog/2013/03/10/which-app-is-draining-your-android-bettery/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

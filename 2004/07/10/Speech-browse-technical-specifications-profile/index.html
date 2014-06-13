@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>语音浏览技术规范简介 - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="一直以来，在CTI领域语音应用的开发都是采用各厂商的专有技术的，每个平台厂商都伴随自己的平台推出一套语音业务开发的规范，有些是脚本式的语言，有些是图形化的流程，这些规范受限于平台，相互之间没有兼容性，基于这些专有规范开发出来的语音业务很难从一个厂商的平台移植到另一个厂商的平台。 另外一方面， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2004/07/10/Speech-browse-technical-specifications-profile/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">语音浏览技术规范简介</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-10T00:59:00+08:00" pubdate data-updated="true">2004-07-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>一直以来，在CTI领域语音应用的开发都是采用各厂商的专有技术的，每个平台厂商都伴随自己的平台推出一套语音业务开发的规范，有些是脚本式的语言，有些是图形化的流程，这些规范受限于平台，相互之间没有兼容性，基于这些专有规范开发出来的语音业务很难从一个厂商的平台移植到另一个厂商的平台。</p>
+
+<p>另外一方面，这些专有的语音业务开发规范的体系是非开放性的，业务控制局限在语音平台内部，与外界系统进行交互只能通过有限的途径，例如访问数据库、数据访问网关，开发COM接口组件等。造成难于与外部系统有机集成，集成成本高。在业务开发上，也因为业务处理逻辑与用户交互控制混合在一起，使得复杂业务的开发难度和维护难度都比较高。</p>
+
+<p>近年来，随着网络技术的发展，各种业务应用都纷纷往网络方向发展，充分利用internet的数据自由流动和协议标准化的优势，CTI技术与web技术融合的需求越来越大。基于web的各种开发技术也迅速发展并成熟，包括J2EE、.NET、WebService等等，web应用开发渐渐变得快捷而高效。另外一方面，随着手机、PDA等手持设备的发展，对于延伸使用者界面，多模式互动的需求越来越多，提供键盘、笔输入、语音等多种输入手段，各种文字、影音输出途径，语音应用和传统文字/图形应用的界限越来越模糊。</p>
+
+<p>在这样的趋势下，业界研究推出了多种涉及语音技术的标准规范。其中，W3C（World Wide Web Consortium）走在前面，其下的语音浏览器工作组等多个工作组进行的标准规范制定工作都涉及了语音技术。目前，对于电话和语音应用领域，重要的规范有三个，分别为VoiceXML, CCXML(Call Control eXtensible Markup Language), SALT(Speech Application Language Tags)。</p>
+
+<p>这三个规范都是基于XML的，这是因为XML作为一种可扩展的通用标记语言，有着标准化、结构化的特点，并且对于XML的生成、传输、解析、验证、查询都已经有一系列相当成熟的技术和编程开发包，存在着很大的优势。但XML本身并不说明什么，它只是用来描述规范的一种语言，支持XML跟支持VoiceXML、CCXML这些规范是完全两回事。</p>
+
+<p>这三个规范应用在系统中，部署架构基本是相同的，从高层次来看，由两个主要模块构成：文档服务器（document server）和电话语音平台（speech/telephony platform）。文档服务器由web server、database server、application server等构成，可以使用J2EE或者.NET平台。业务应用部署在文档服务器上，它响应电话语音平台发送来的请求，生成XML规范文档。电话语音平台包括了解释器、TTS、ASR等部分，它解释执行文档，负责与用户的交互界面。</p>
+
+<p>电话语音平台与PSTN接口，或者提供VoIP支持。当一个呼叫进入系统，电话语音平台分析出业务类别，通过HTTP协议向文档服务器发起请求。文档服务器执行业务应用，生成VoiceXML或者CCXML规范的文档，返回给电话语音平台。电话语音平台内置了VoiceXML或者CCXML浏览器，解释执行文档内容，控制ASR与TTS操作，与电话用户进行交互。TTS服务器将文字合成为语音，播放给用户；ASR服务器接受用户的语音输入，利用语法规则(grammar)将用户说话内容识别为文本数据，平台在脚本控制下根据输入内容判断下一步的执行。</p>
+
+<p>大多数情况下，基于web的应用都会采用易于扩展的架构，将核心服务逻辑（业务逻辑）与表示细节（VoiceXML, CCXML, SALT, HTML, WML）分离开。某些场合下还会将应用对话状态的维护与表示层分离，以实现表示语言机制的无关性，这样同一个应用可以采用web（HTML）、wap（WML）、语音（VoiceXML/CCXML）等不同的表示形式，适应PC、PDA、电话等多种用户终端。</p>
+
+<p>使用这些XML系列标准技术规范的系统与过去传统专有规范的系统在架构上有所不同，使用标准规范的系统，业务的部署与平台的部署是分离的，相互通过HTTP协议松耦合，业务采用URL进行定位。这使得业务的分布部署变得非常简单。业务的开发采用web应用开发完全相同的模式，使得语音业务开发人员可以充分利用web应用开发的技术和经验。并且，用较小的代价就可以实现语音应用与web应用集成，或者实现应用的多种表示形式，适应不同的客户终端。</p>
+
+<h4 id="voicexml">VoiceXML</h4>
+
+<p>VoiceXML可以理解为另外一种表示语言，类似于HTML和WML。它是一种表述对话（dialog）的语言，用来控制业务过程中的人机交互过程，适用于面向电话、手机等终端设备的语音应用，例如自动客户服务、自助查询系统、个人消息系统等。</p>
+
+<p>将VoiceXML与HTML对比，就能很容易理解了。浏览器解释后，HTML表示的内容是以文字图像方式显示在屏幕上的，VoiceXML的内容是以语言的方式播放给用户的。HTML接收用户的文字输入和鼠标点击，VoiceXML接受用户的语音输入，进行语音识别，或者是通过电话按键输入DTMF数据。</p>
+
+<p>VoiceXML是一种独立的语言，不能内嵌到现有的web语言中（如HTML，WML）。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;vxml</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;catch</span> <span class="na">event=</span><span class="s">&quot;event.exit&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;exit</span> <span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/catch&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;choose_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>
+</span><span class="line">You are in a demo for content services.
+</span><span class="line">To obtain stock quotes, say stocks or say 1.
+</span><span class="line">For weather information, say weather or press 2.
+</span><span class="line">For news, say news or press 3.
+</span><span class="line"><span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;1&quot;</span> <span class="na">next=</span><span class="s">&quot;#stocks_menu_option&quot;</span><span class="nt">&gt;</span>stocks<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;2&quot;</span> <span class="na">next=</span><span class="s">&quot;#weather_menu_option&quot;</span><span class="nt">&gt;</span>weather<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;3&quot;</span> <span class="na">next=</span><span class="s">&quot;#news_menu_option&quot;</span><span class="nt">&gt;</span>news<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;nomatch&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>I could not understand what you said, please try again<span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/nomatch&gt;</span>
+</span><span class="line"><span class="nt">&lt;noinput&gt;</span>
+</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/noinput&gt;</span>
+</span><span class="line"><span class="nt">&lt;/menu&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;stocks_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;block&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;/block&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;weather_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;field</span> <span class="na">name=</span><span class="s">&quot;city&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;grammar</span> <span class="na">type=</span><span class="s">&quot;application/srgs+xml&quot;</span> <span class="na">src=</span><span class="s">&quot;cities.grxml&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>Pleasesaythe city&#39;s name<span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;/field&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;filled&gt;</span>
+</span><span class="line"><span class="nt">&lt;submit</span> <span class="na">next=</span><span class="s">&quot;http://host/weather.do&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/filled&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;news_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;block&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;/block&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line"><span class="nt">&lt;/vxml&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>从例子可以看出，VoiceXML描述的是一个个对话，menu和form是对话的两种形式。menu是列出选择项，供用户选择；form是播放提示语言，接受用户输入。</p>
+
+<p>&lt;prompt&gt;、&lt;audio&gt;控制语音输出，输出有两种方式，一种是利用TTS将文本合成为语音，另一种是播放预先录制好的语音文件（如vox，wav）。为了控制合成语音的过程，提供丰富的语音表现形式，要求VoiceXML解释器支持SSML（Speech Synthesis Markup Language）语言，SSML可以控制TTS如何合成语音，例如重音、停顿、声调、数字播报方式等。</p>
+
+<p>语音输入的识别是通过语法规则控制的，&lt;grammar&gt;指定输入项采用什么语法规则进行识别，语法规则要求使用SRGS(Speech Recognition Grammar Specification)规范的格式来描述。</p>
+
+<p>VoiceXML的执行顺序是有内置的规则的，称为FIA（Form Interpretation Algorithm），解释器根据FIA选择对话，执行对话中的输入、输出操作。为了提供对例外情况的控制手段，改变执行流程，VoiceXML具备事件机制，通过&lt;throw&gt;, &lt;catch&gt;, &lt;noinput&gt;, &lt;error&gt;,&lt;help&gt;, &lt;nomatch&gt;等元素可以抛出事件和捕获事件。</p>
+
+<p>通过&lt;goto&gt;、&lt;submit&gt;等控制元素，能实现对话之间或者文档之间的转移。</p>
+
+<p>在VoiceXML中，可以嵌入ECMAScript(即通常说的JavaScript）代码，实现客户端的运算功能。</p>
+
+<p>VoiceXML提供了一些机制实现扩展和重用，&lt;object&gt;元素供实现平台定义的功能，&lt;subdialog&gt;可以实现语音组件的重用。</p>
+
+<p>VoiceXML的目的是用来控制语音方式的人机交互过程的，因而它缺乏对呼叫的控制能力。例如会议、呼叫控制、建立呼叫、拒绝呼叫等等都无法实现。</p>
+
+<h4 id="ccxml">CCXML</h4>
+
+<p>针对VoiceXML在呼叫控制方面的不足，CCXML补充了这部分的功能。它能够发起呼叫、过滤和路由进入的呼叫、处理外部的异步事件。并且它能支持多方会议，可以将VoiceXML实例作为参与者加入会议，并控制VoiceXML的执行和停止。与VoiceXML类似，由CCXML浏览器负责解释执行CCXML文档。</p>
+
+<p>CCXML可以独立使用，但很多情况下是与VoiceXML配合使用，CCXML控制整个呼叫模型，VoiceXML控制每个呼叫中的用户交互。单纯的VoiceXML是无法实现电话QQ之类的涉及到多方通话的业务的，利用CCXML就有可能实现了。</p>
+
+<p><em>（未完成）</em></p>
+
+<p><em>原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点的文章的，后来因为工作安排的原因半途而废了。CCXML日后如果需要，可能会进一步研究，到时也许会补上；SALT在我的工作中不会涉及，不打算在上面花时间了。</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-10T00:59:00+08:00" pubdate data-updated="true">2004-07-10</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2004/07/10/Speech-browse-technical-specifications-profile/" data-via="acette" data-counturl="http://aleung.github.io/blog/2004/07/10/Speech-browse-technical-specifications-profile/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2004/07/09/Intelligence-of-Google/" title="Previous Post: 智能的google">&laquo; 智能的google</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2004/08/04/The-poor-who-newsletter/" title="Next Post: 可怜的腾迅">可怜的腾迅 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/pebble/">Pebble</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/javaee/">JavaEE</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 103%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2004/07/10/Speech-browse-technical-specifications-profile/';
+        var disqus_url = 'http://aleung.github.io/blog/2004/07/10/Speech-browse-technical-specifications-profile/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。
+对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。
+选择文件，右键菜单 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/blog/page/55/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/22/Eclipse-i18n-l10n-/">Eclipse的i18n/l10n辅助功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-22T20:15:00+08:00" pubdate data-updated="true">2003-08-22</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。<br />
+对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。<br />
+选择文件，右键菜单 source-&gt;Extenalize Strings 打开工具，能够找出源文件中的所有字符串，选择那些需要翻译，自动替换并生成properties文件。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/22/Eclipse-i18n-l10n-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/20/Java-/">Java“错误模式”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-20T19:01:00+08:00" pubdate data-updated="true">2003-08-20</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/java/'>Java</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>《诊断 Java 代码》这组文章提到了很多种“错误模式”，有时间值得看看。<br />
+<a href="http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml">http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/20/Java-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/19/Swing-components-refresh/">Swing Components Refresh</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-19T19:30:00+08:00" pubdate data-updated="true">2003-08-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java swing编程，更改了一个JPanel的内部components后，需要改变一下窗口大小，新内容才能显示出来。<br />
+解决方法：调用panel.validate()。<br />
+对于container，添加或者改变了对象后，需要调用validate()才能重新布局并显示。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/19/Swing-components-refresh/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/18/MySQL-NOT-NULL-/">MySQL是不会理会字段的NOT NULL标记的!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-18T22:58:00+08:00" pubdate data-updated="true">2003-08-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原来MySQL是不会理会字段的NOT NULL标记的!<br />
+按照MySQL manual中1.8.5.2节的说法: 当插入的字段的值不符号要求的时候, 不会出错, 而是用一个最接近的”合理”值来替代. 对于NOT NULL的varchar字段, 替换的值是空字符串’’. 这不是等于没有设定NOT NULL吗? 真是莫名其妙.<br />
+只好在程序里面来控制了</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/18/MySQL-NOT-NULL-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/18/Java-/">Java字符转换问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-18T22:57:00+08:00" pubdate data-updated="true">2003-08-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/java/'>Java</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/i18n/'>i18n</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>字符编码问题一直都是令人头痛，查阅资料，写下了《java 字符转换问题的学习笔记》。</p>
+
+<h3 id="section">什么是字节流与字符流的转换? 什么时候会做转换?</h3>
+
+<p>字符就是char类型, 是双字节的, 用unicode, 一个char就是实际上的一个字符；字节就是byte类型, 是单字节的，实际的字符串根据编码不同，用单字节或者双字节来表示。<br />
+常用的String类型核心就是char[]，String.length()就是char[]数组的大小，因此当encoding没有转换错误时，String长度是字符的个数，不管是中文还是英文。做字符处理的时候也从来不会出现截断半个字符的问题。<br />
+Java内部都是用char的，但是很多时候做输入输出就要用byte stream，例如文件、数据库、网络。<br />
+当数据要从char变为byte，或者byte变成char时，就要做转换。<br />
+同样的内容，用不同的编码方式(encoding)，byte stream是不同的，转换的时候需要指定使用的encoding。<br />
+JVM的file.encoding属性确定了JVM的缺省的编码/解码方式：从而影响应用中所有字节流==&gt;字符流的解码方式 字符流==&gt;字节流的编码方式。在不同OS平台上，这是由locale决定的，缺省encoding在中文平台为GBK，英文平台为8859_1。  </p>
+
+<h3 id="java-io">Java I/O</h3>
+<p>Reader和Writer核心是char，InputStream和OutputStream核心是byte。<br />
+专门有bridge类做Reader/Writer与InputStream/OutputStream的转换：InputStreamReader/OutputStreamWriter。  </p>
+
+<h3 id="utf8unicode">UTF8与unicode</h3>
+<p>准确的说，UTF8不是unicode，它也只是一种编码方式，不过它的编码空间可以容纳unicode的所有字符。因此UTF8是一种很适合于存储unicode的外码。UTF8是变长编码，中文3字节。  </p>
+
+<h3 id="section-1">什么地方会发生转换？</h3>
+
+<ul>
+  <li>
+    <p>从数据库到java程序 byte——〉char  </p>
+  </li>
+  <li>
+    <p>从java程序到数据库 char——〉byte  </p>
+  </li>
+  <li>
+    <p>从文件到java程序 byte——〉char  </p>
+  </li>
+  <li>
+    <p>从java程序到文件 char——〉byte  </p>
+  </li>
+  <li>
+    <p>从java程序到页面显示 char——〉byte  </p>
+  </li>
+  <li>
+    <p>从页面form提交数据到java程序 byte——〉char  </p>
+  </li>
+  <li>
+    <p>从流到java程序 byte——〉char  </p>
+  </li>
+  <li>
+    <p>从java程序到流 char——〉byte  </p>
+  </li>
+</ul>
+
+<h3 id="section-2">源程序中的字符串</h3>
+<p>最早的字节流解码过程从javac的代码编译就开始了，写在源文件中的字符串是按照一定的编码方式的（如gbk），java编译器根据缺省的encoding来对源代码中的字符串做解码，在java bytecode中存储为unicode char。  </p>
+
+<h3 id="section-3">数据库中的字符编码方式</h3>
+<p>数据库中的东西都是二进制存放的，支持任何数据，理论上说，与编码并没有关系。不过，如果没有指定字符集，在排序、匹配的时候有问题，接口的地方也会出现问题。<br />
+因此就涉及到以什么编码方式来保存到数据库中了。平常我们用数据库工具或者其他程序写数据库时，都是直接用系统编码方式，也就是gbk。但是，JDBC在访问数据库时，缺省是用数据库的字符集，通常为8859<em>1的，本来应该是gbk-&gt;unicode却变成了8859</em>1-&gt;unicode,就会出现乱码。连接串中加上参数可以强制jdbc按照gbk做转换。<br />
+jdbc:mysql://localhost/test?useUnicode=true&amp;characterEncoding=GBK<br />
+不过这样数据库还是只能支持gbk，如果写入big5码，同样会出现转换错误的问题。最佳方案还是用UTF8来编码，这样可以容纳unicode所有字符，覆盖了gbk、big5等各个字符集的范围。<br />
+MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持，但目前4.1版本还在alpha阶段。  </p>
+
+<h3 id="swing">Swing的字符集问题</h3>
+<p>从目前的试验看来，swing的组件会自动根据系统encoding做转换，并不需要干预。  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/18/Java-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/blog/page/56/">&larr; Older</a>
+    
+    <a href="/blog/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/blog/page/54/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/pebble/">Pebble</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/javaee/">JavaEE</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 103%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

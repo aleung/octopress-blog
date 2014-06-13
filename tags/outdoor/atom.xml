@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Outdoor | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/outdoor/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-06-13T22:17:49+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[复旦学生黄山被困事件的感想]]></title>
+    <link href="http://aleung.github.io/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling/"/>
+    <updated>2010-12-23T19:08:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2010/12/23/Fudan-student-huangshan-trapped-events-of-feeling</id>
+    <content type="html"><![CDATA[<p>很久没有玩户外了，对相关的新闻不再关注。复旦大学生黄山遇险的事情网上流传很广，但我一直也没有点进去看过。今天在Google Reader上看到朋友转发的文章，终于知道是怎么回事了。</p>
+
+<p>关于救援技术和道德层面的东西就不说了。磨房有个<a href="http://www.doyouhike.net/forum/shrescue/476142,0,0,1.html">帖子</a>，从队伍被困就开始讨论了，可以从中了解一些细节。说说我的几个感想：</p>
+
+<ul>
+  <li>户外救援这事情上，警方的技术水平和装备水平都非常差。对于他们，应该少些政治学习，多些专业训练；少些吃喝嫖赌，买些专业装备。但明显他们是做不到的，所以还是别指望他们了。</li>
+  <li>这类事情由警方（或者政府部门）包办并不是好办法，很多民间的户外爱好者和从业人员组织起来都能够做得比他们好。但是政府视民间组织为洪水猛兽，生怕造他们的反。</li>
+  <li>被困队伍虽然说GPS落水怀疑故障，但他们其实还是定位出自己坐标的。如果配合小比例尺地图，无论是自救还是他救都会比较容易。但是我们在自欺欺人的将这个当国家机密。网上倒是有驴友根据Google Earth卫星图和美国公开的SRTM数据制作等高线图辅助分析了。 （BTW，在<a href="http://goo.gl/maps/bGmE">maps.google.com</a>和<a href="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;geocode=&amp;q=N30+07.663+E118+11.892&amp;sll=35.86166,104.195397&amp;sspn=69.767299,135.087891&amp;ie=UTF8&amp;ll=30.126087,118.203707&amp;spn=0.037712,0.065961&amp;t=h&amp;z=15&amp;brcurrent=3,0x3435b9bdd80e3bef:0x40d4f885edcbae5e,0,0x3435c43623481ccb:0x4f313f2031517549%3B5,0,0">ditu.google.cn</a>上分别输入这个坐标：N30 07.663 E118 11.892，仔细看看，标出的地点是不同的，偏差五六百米。只不过恰好在同一条沟里）</li>
+</ul>
+
+<p>贴两张Google Maps的截图，绿色箭头处是被困地点。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5284797781/"><img src="http://farm6.static.flickr.com/5006/5284797781_e71c32744a_b.jpg" alt="fudan_huangshan_1" /></a></p>
+
+<p>这张从另外一个角度看的，放大一些，都勉强可以看到山谷里面的大石了。不过这种模拟地势的精度不高，一些陡峭的局部地形都被柔和了，实际会险要得多。不要看着这张图就骂那些学生，以为小跑都可以下山。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5284797851/"><img src="http://farm6.static.flickr.com/5123/5284797851_dec842f909_b.jpg" alt="fudan_huangshan_2" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[户外活动应该选择什么型号的GPS？]]></title>
+    <link href="http://aleung.github.io/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-/"/>
+    <updated>2003-11-26T01:36:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-</id>
+    <content type="html"><![CDATA[<p>在玩户外的人中，GPS的拥有量开始增加，什么型号的GPS适合户外使用？我在买GPS之前看过不少资料，可以参考一下。</p>
+
+<p><a href="http://gpsinformation.net">GPS information</a>是一个很值得看的站点，几大GPS厂家的设备信息、GPS相关软件、使用心得等等资料非常齐全。</p>
+
+<p>该网站里面一篇文章<a href="http://gpsinformation.net/main/gpshiking.htm">Important features for a hiking GPS</a>介绍了什么GPS适合于hiking使用。</p>
+
+<p>摘录部分出来：</p>
+
+<blockquote>
+  <p>Below are my “essential hiking feature list” of GPS receiver features.</p>
+
+  <p>(I omitted features that are present in ALL receivers.)</p>
+
+  <p>1) 12 channel parallel receiver system: Needed for best reception in difficult terrain and tree cover.</p>
+
+  <p>2) WaterProofness: Unit should be rated submersible to protect it from getting wet.</p>
+
+  <p>3) Long battery life: Keeps you from having to carry so many batteries.</p>
+
+  <p>4) Built in Maps: Not absolutely essential, but big help in orientation and estimating distance to nearest roads.</p>
+
+  <p>5) Route capability: Twenty Route capability is pretty standard. Make sure you get one with at least 20 routes.</p>
+
+  <p>6) Waypoints: 500+ user entered waypoints are pretty standard. Make sure you get one of these.</p>
+
+  <p>7) Multiple Datum capability is pretty standard: Make sure all the datums you will want to use are included in the GPS you select.</p>
+
+  <p>8) Fit nicely in your pocket and lightweight: This is a very personal thing, but you should consider it when you are thinking about hauling a unit around in the wilderness.</p>
+
+  <p>9) Bearing to next waypoint: Almost universal, but essential to hiking use.</p>
+
+  <p>10) Screen Size and your ability to read it are important especially if you have problems with viewing fine detail.</p>
+
+  <p>Not ABSOLUTELY essential features, but nice to have.</p>
+
+  <p>1) “Map” screen (as opposed to just a numerical lon/lat position fix): Makes it much easier to see where you are relative to reference waypoints.</p>
+
+  <p>2) Rotatable screen: Garmin makes a couple of units capable of rotating the screen vertical (handheld use) or horizontal (car dash use). These are not the handiest for pocket use, but lots of people like this compromise for joint hiking/car use.</p>
+
+  <p>3) UTM readout may be a consideration for some. This feature is available on a limited selection of consumer GPS receivers.</p>
+
+  <p>4) Topo Maps uploaded into your GPS: The Garmin USA Topo CD maps contain contour lines and small stream data very helpful in navigating in off-road territory. Magellan has a new TOPO map offering for the M330 available late Summer 2001.</p>
+
+  <p>5) For use under heavy tree cover or difficult (multipath) terrain conditions, an external amplified antenna will generally be helpful.</p>
+
+  <p>6) A minimum of 8 megs of map memory is recommended on a mapping GPS though you can “get by” with 1.4 megs or so.</p>
+</blockquote>
+
+<p>中文站点方面，<a href="www.lvye.org">绿野</a>论坛的<a href="http://www.lvye.org/bbs/postlist.php?Board=com_gis">通讯版</a>估计是目前集中了最多户外GPS玩家的地方。</p>
+
+<p>这是绿野网友晨峰归纳的GPS选购原则：</p>
+
+<blockquote>
+  <p>户外用的GPS有特殊性，我尝试列了几点，从经验上觉得最重要到次重要的。不考虑价钱的因素。  </p>
+
+  <p>1、防水和Rocky Panel功能。（不能太娇嫩，最好可以达到军用标准）<br />
+2、电源（耗电量小，使用时间相对长，低温条件下能工作稳定）<br />
+3、考虑丛林条件的天线设计和恶劣条件下的信号捕捉能力。<br />
+4、自动记录点的时间间距可调，Trace Back功能（完整的记录和大雾条件下使用）<br />
+5、重量、体积适中。<br />
+6、大屏幕或彩屏，自制矢量化地图。</p>
+</blockquote>
+
+<p>inc的<a href="http://4tgps.yeah.net">GPS zone</a>虽然资料不算很多，但好像是目前比较好的关于GPS的中文个人站点了。</p>
+
+<p>我自己就没有仔细归纳过，根据使用经验来说，想到几点：</p>
+
+<ol>
+  <li>防水性、坚固性很重要，不能带个娇贵的东西到户外的恶劣环境</li>
+  <li>屏幕要有足够的分辨率(象素)，并且map页面zoom到最大的时候应该要能分辨出10米以内距离</li>
+  <li>track的容量越大越好，track记录间隔可设置，能够记录尽量长的航迹。waypoint、route的容量我反而觉得不是很重要，一般都够用(前提是有数据线，平常数据都保存在电脑上)</li>
+  <li>数据线很有用，可以在电脑上保存、整理资料数据。</li>
+  <li>卫星信号接收能力强，特别是树林中的接收能力很重要</li>
+  <li>如果仅仅是户外活动使用，不开车，那么地图功能是毫无用处的。</li>
+</ol>
+
+<p>有机会最好还是在购买前先试用一下，对于操作使用有感性认识，看看用起来顺不顺手，单单比较性能指标是不够的。</p>
+]]></content>
+  </entry>
+  
+</feed>

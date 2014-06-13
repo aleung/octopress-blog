@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>色彩管理 (1) - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="处理照片时，被偏色问题折磨得受不了，这一个多星期里刻苦学习色彩管理知识。无忌上面几百个跟贴的话题看得头晕脑胀，还是东一句西一句就没有系统的叙述。 总算有点头绪了，把学到的东西总结一下。主要针对怎样在显示器上显示出准确的颜色，不涉及太多打印、印刷的内容，适合普通用户啦。 一张照片，从扫描仪扫描出来， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2004/11/12/Color-management-1/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">色彩管理 (1)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2004-11-12T22:53:00+08:00" pubdate data-updated="true">2004-11-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>处理照片时，被偏色问题折磨得受不了，这一个多星期里刻苦学习色彩管理知识。无忌上面几百个跟贴的话题看得头晕脑胀，还是东一句西一句就没有系统的叙述。</p>
+
+<p>总算有点头绪了，把学到的东西总结一下。主要针对怎样在显示器上显示出准确的颜色，不涉及太多打印、印刷的内容，适合普通用户啦。</p>
+
+<p>一张照片，从扫描仪扫描出来，或者用数码相机拍摄下来，保存成文件，再放上网，在不同的电脑上查看，效果跟原始图像往往已经有很大不同了，而且不同的电脑看出来的效果还不一样，可能是暗了，或者亮了，又可能是偏红，或者偏青。色彩管理的目的，就是在图像输入、处理、输出的整个过程中，尽可能保持一致。</p>
+
+<p>色彩管理，首先要理解的概念是色彩空间。这是在色彩量化的过程中引入的概念。常用的图像格式都是用RGB三个数值来表示颜色的，但是，当说一个点的色彩是(203,45,73),这样的数值有什么意义呢？它表示什么颜色？红色，是怎样的红？如果不将数值放入一个坐标系中，数值就没有实际的含义。色彩空间就是颜色的坐标系。</p>
+
+<p>不同的色彩模型，有不同的坐标体系，例如我们最熟悉的RGB，用于印刷的CMYK，还有基于色度模型的LAB等等。就像几何学中，有直角坐标也有极坐标。下图所示的是标准色彩空间CIE XYZ。下面主要是按照大家最熟悉也是最直观的RGB模型来说吧。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5137782234/"><img src="http://farm2.static.flickr.com/1427/5137782234_27ebf3e711.jpg" alt="CIE 1931 xy chromaticity diagram" /></a></p>
+
+<p>现实世界中的色彩是异常丰富的，但是由于技术的限制，每种设备所能辨别或者重现的色彩范围有限，并不能覆盖可见光域所有的颜色。在图像数字化的转换中，由于设计原因和物理特性的不同，不同设备的量化的效果也不同。例如同样是(203,45,73)这样的数值，一台显示器会显示成鲜红，另一台会显示成暗红。这相当于不同设备的坐标轴的标定是不一样的。因此，每台设备，都有它自己的色彩空间。</p>
+
+<p>这样，问题就来了，没有一个标准，颜色怎么可能准确？扫描仪的色彩空间与显示器的色彩空间不一致，将扫描出来的数据原封不动送给显示器，颜色就会改变了。我们必须有个标准的坐标系才行。现在就要引入一个新的概念—-设备无关的色彩空间（PCS）。上面提到的CIE XYZ就是一种常用的标准的设备无关色彩空间。图像数据在不同色彩空间之间转换时，要经过特定的算法进行换算，相当于几何中的坐标系变换。</p>
+
+<p>一个图像文件，里面保存的是一堆数据，怎么知道它是哪个色彩空间？我们需要给它贴一个”标签”，在标签里说明这些数据采用的是什么色彩空间，当支持色彩管理的图像处理软件读取这个文件时，先看看标签，就知道怎么去做色彩空间的转换了。ICC profile，就是这样的”标签”，它保存着一组数据，包含了这个色彩空间与PCS之间的换算关系。把ICC profile数据嵌入到图像文件里面，图像文件就能对数据的色彩空间作出自描述。但是，千万别把profile弄错了，如果一个文件，它的数据实际上是A色彩空间的，你把B色彩空间的profile指定给它，图象处理软件就会把它当成B色彩空间来转换，造成偏色。就像一个网页，明明是GB2312编码的，你把它当成big5来打开，就会出现乱码。</p>
+
+<p>CYE XYZ够标准了，但在实际的图像处理中并不使用，常用的标准色彩空间是sRGB、Adobe RGB等，为什么？首先，xyz这样的坐标系不直观，如果是RGB坐标系，R的数值大了，你就知道是偏红了，但x增大了，但你不知道它有什么实际意义。其次，CYE XYZ色彩空间的范围太大了，远远超出设备、材料能表现的色彩范围，如果用同样的精度来量化，就需要更大的数据长度，而多出来那部分其实是没有意义的，因为不可能用到，浪费了存储空间。反正已经知道了每个色彩空间与XYZ空间的换算关系了，就可以在任意两个空间进行转换。</p>
+
+<p>空间转换过程是可能会有损失的（引起色彩变化）。一个原因是换算引起的精度损失，不过这一般可以忽略。主要的损失是发生在大空间往小空间转换时，在源空间可以表示出来的颜色，不再目标空间的范围内，转换引擎只好用一种接近的颜色来代替，造成了色彩的失真。例如，九寨沟的水那种碧中带蓝的颜色就无法在sRGB空间中表现出来。下图表示常用的色彩空间的色域。</p>
+
+<p><img src="http://www.normankoren.com/Sachs_gamut_chart_2_640.jpg" alt="" /></p>
+
+<p>ICC profile描述的是色彩空间的特性。前面说过了，每个设备都有自己的色彩空间，因此也应该有一个相应的profile。准确的profile需要采用专业仪器测试得出，普通用户是没有这样的条件的，只能采用设备厂商给出的profile。如果质量控制得好，同一个型号的产品的特性会比较相似，基本上还是可以接受的。低档设备可能厂家不提供profile，这样的设备就无法进行准确的色彩管理了。对于没有profile的设备，可以当作它的色彩空间是sRGB来处理，因为sRGB是一个比较通用的标准，设备设计时往往都会尽量符合这个标准的。</p>
+
+<p>具有色彩管理功能的软件（例如photoshop），可以根据设备的profile，先将图像转换为设备所用的色彩空间，再送给设备输出，这样颜色就能保持一致。但是有些设备（或者驱动程序）已经内置了色彩管理功能，它能够接收标准色彩空间（例如sRGB）的数据，在内部转换成设备色彩空间再输出。这时候photoshop就不应该做预转换，否则重复转换也是造成失真。</p>
+
+<p>正因为有这么多不同的情况，色彩管理才变得很复杂和难以理解，输入、处理、输出各个环节都是相关的，一个环节的错误就会引起最终结果的错误，配置的时候要非常小心。</p>
+
+<p>See also:</p>
+
+<p><a href="/blog/2012/09/15/color-management-2">色彩管理(2)</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2010-11-02T06:30:00+08:00" class="updated">Updated 2010-11-02</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2004/11/12/Color-management-1/" data-via="acette" data-counturl="http://aleung.github.io/blog/2004/11/12/Color-management-1/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2004/11/12/The-company-group-discussion-in-the-dialogue-about-personal-finance/" title="Previous Post: 公司讨论组里关于个人理财的对话">&laquo; 公司讨论组里关于个人理财的对话</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2004/11/23/To-adopt-Firefox/" title="Next Post: 转用Firefox">转用Firefox &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/pebble/">Pebble</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/javaee/">JavaEE</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 103%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2004/11/12/Color-management-1/';
+        var disqus_url = 'http://aleung.github.io/blog/2004/11/12/Color-management-1/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

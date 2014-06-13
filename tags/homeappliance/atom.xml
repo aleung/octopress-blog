@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: HomeAppliance | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/homeappliance/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-06-13T22:17:49+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[松下H540U洗衣机的设计缺陷]]></title>
+    <link href="http://aleung.github.io/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws/"/>
+    <updated>2010-06-28T18:35:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2010/06/28/Panasonic-H540U-washing-machine-design-flaws</id>
+    <content type="html"><![CDATA[<p>家里的松下H540U波轮洗衣机，使用了大概一年半左右开始出现撞桶现象，就是在洗衣的过程中，每次波轮起动（或反转）时，洗衣桶会碰撞到箱体。因为箱体相应位置贴了防撞海绵，摩擦时发出很大很难听的”吱吱”的声音。打开上盖检查过，发现是箱体吊挂系统变形所致，我觉得这属于设计上的缺陷。</p>
+
+<p>如果不清楚波轮洗衣机吊挂系统的结构，可以看看<a href="http://wenku.baidu.com/view/b996ea335a8102d276a22ff5.html">全自动波轮洗衣机培训手册</a>的3.1节。洗衣机的桶体是靠四根吊杆悬挂在箱体的四个角上的，如果吊杆的长度不一致就会造成桶体不平衡。</p>
+
+<p>从照片中可以看出，箱体前面两个角用来悬挂吊杆的角铁都已经变形下沉，而后面的两个角则正常，这样就造成桶体前倾，在洗衣的时候不平衡自然就频频撞击箱体了。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4741375101/"><img src="http://farm5.static.flickr.com/4143/4741375101_8ae3ce01eb.jpg" alt="H540U front-right" /></a> <a href="http://www.flickr.com/photos/leoliang/4741375099/"><img src="http://farm5.static.flickr.com/4093/4741375099_9191b131d3.jpg" alt="H540U front-left" /></a> <a href="http://www.flickr.com/photos/leoliang/4741375103/"><img src="http://farm5.static.flickr.com/4143/4741375103_3675a8e073.jpg" alt="H540U rear-left" /></a></p>
+
+<p>为了外形美观，箱体前面的两条边做成了大圆弧，也许是为了加工方便的缘故，悬挂吊杆的角铁在圆弧部分并没有与箱体接触，是悬空的，起到支撑作用的只有侧面的一部分，由于强度不足在使用一段时间后就变形了。这款洗衣机在最高水位时桶内的重量超过50公斤，平常洗衣就算不满也有30～40公斤。箱体后侧两条边是直角，箱体支持角铁的的长度足够长，就没有发生变形。</p>
+
+<p>如果箱体前边不要做这么大的圆弧，像后面两角一样，就不会有问题；如果圆弧不能放弃，那就应该在圆弧处也翻出一条边，与角铁焊接在一起不让其悬空，不过这样的加工难度会大很多。但无论如何，设计的时候应该要考虑到其强度是否足够支持正常使用负荷，因此我说这是设计的缺陷。</p>
+
+<p>因为箱体只保修一年，出现问题时已经过保了，不能更换。师傅给我的建议是将洗衣机前面两脚垫高，以补偿桶身的倾斜。比较奇怪的是，挂杆的长度居然是无法调节的，不知道是师傅嫌麻烦还是真的不能调。如果不能调，怎么控制生产装配过程出现的误差？</p>
+
+<p>我怀疑其他型号乃止其他厂家的洗衣机都可能会有同样问题—-如果它们的箱体做成大圆弧，选购的时候要留意一下该处的支撑结构。对于H540U，把头伸进桶口处勉强可以看到悬挂角铁，如果看不到或者光线不足，可以用相机拍摄。</p>
+
+<p>我对这款洗衣机的功能还是比较满意的，但是一些非关键性的地方的设计和质量还是有不足。除了这个变形问题，还出现过上盖连接处塑料件断开和进水盒开裂漏水，幸好都属于保修范围更换了。</p>
+]]></content>
+  </entry>
+  
+</feed>

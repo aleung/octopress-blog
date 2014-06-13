@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Gadget | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/gadget/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-06-13T22:17:49+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Pebble]]></title>
+    <link href="http://aleung.github.io/blog/2014/03/15/pebble/"/>
+    <updated>2014-03-15T21:52:22+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/03/15/pebble</id>
+    <content type="html"><![CDATA[<p><a href="http://getpebble.com/">Pebble手錶</a>戴了兩個星期，如果用一句話來總結感受，那就是：基本滿意，但還沒到愛不釋手的程度，沒有帶來驚喜。</p>
+
+<p>首先，Pebble真的是一隻手錶，可以看時間。如果你有幸用過各種『智能手環』，就會明白為什麼這麽說了。我戴過<a href="https://jawbone.com/up">Jawbone UP</a>一段時間，試過好多次下意識的擡起手腕來看，然後才想起那貨是沒有任何顯示的。</p>
+
+<p><img class="right" src="/attachments/2014/3/pebbles.jpg"></p>
+
+<p>佩戴舒適度上說，Pebble還過得去，塑料錶帶的柔軟度不錯，反正我已經習慣了24小時戴在手腕上的感覺。在這之前，我都有十幾年沒有戴過手錶了吧。</p>
+
+<p>外形應該是我最不在意的一項了，但不得不說 Pebble 外形上太普通。我的黑色版本，正面看弧形表面，與黑白顯示屏融為一體，還算有點現代感，但側面看就很『薯鈍』的樣子 —— 厚，按鈕粗曠，左邊還有很突兀的幾個充電觸點。</p>
+
+<p>手錶用的是 144x168 的低分辨率黑白e-paper屏幕，在現在手機電腦都視網膜屏的時代，這個分辨率真是超低了。E-paper的對比度很高，無論什麼光線條件下都非常清晰，雖然分辨率低，實際顯示文字的效果還是不差的。圖像？就算了吧，除了像素少，這個屏還連灰度都顯示不了。不知道這個e-paper跟Kindle之類閱讀器的屏是不是同樣的技術，但看起來還是有區別：Pebble屏的像素邊緣很銳利，顯示直接改變沒有殘影，不像Kindle要全屏反色刷一次。</p>
+
+<p>Pebble 可以安裝 app，當然了，否則就對不起 smart watch 這個名字。App 分為 watchface 和 watchapp 兩大類，無論是那種也不管大小，總共最多安裝8個，不知道它內部怎麼管理空間的。Watchface 只有一屏顯示信息，不能接受按鍵控制，最常見用途是顯示時間，當然也可以顯示其他信息，例如天氣、日曆之類。Watchapp就是可以與用戶交互的應用，可以有多屏，用戶通過菜單、控制按鈕來操作。</p>
+
+<p>Pebble 的方便之處是它作爲手機的一個延伸的信息終端，手機可以將實時的信息推送到手表上，或者是在手表上顯示濃縮的手機應用的某些信息。前者例如，我以前經常會漏接電話或者漏看短信，因爲手機放袋裏聽不到聲音，現在戴著 Pebble 就不會了，因爲手表會振動提醒。後者例如一些跑步應用，能在 Pebble 上顯示速度、距離等關鍵信息，就不用拿手機出來看。</p>
+
+<p>Pebble 最大的問題是操控不方便。表上有四個按鈕：上/下/Enter/ESC，沒有觸摸屏，任何操作都只能靠按鍵選擇菜單項，因此經常要按好多次按鈕才能完全想要的操作。而 Pebble 的按鈕按起來又不算是特別方便，總之我是不會想在手表上做按超過一兩次按鈕的操作的。這種操控的不方便限制了app可以做的事情，感覺這個比起屏幕和表的硬件處理能力的限制還要大。Pebble 也不支持 app 後台運行，要求在手錶上跑多任務，電池撐不住吧，但沒有多任務也造成一些類型的 app 沒法做了。</p>
+
+<p>至于耗電，目前還不至于很大問題。官方宣傳可以用5-7天，我實際用下來只有3天，也不知道是軟件問題還是硬件問題。但3天其實還是可以接受的。</p>
+
+<p>最後介紹一下我現在常用的app：</p>
+
+<h5 id="watchface">Watchface</h5>
+
+<p><img class="right" src="/attachments/2014/3/postage_watchface.png">
+<img class="right" src="/attachments/2014/3/agenda_watchface.png"></p>
+
+<dl>
+  <dt>Agenda Watchface</dt>
+  <dd>
+    <p>在辦公室或者需要按日程做事的時候會用這個watchface，一眼就能看到當前時間和接下來的日程安排。</p>
+  </dd>
+  <dt>Postage</dt>
+  <dd>
+    <p>當我不需要看日程安排的時候，喜歡用這個face，夠簡潔，外圍的黑色與黑色表身融為一體。實際看起來比截圖好看很多。</p>
+  </dd>
+</dl>
+
+<h5 id="watchapp">Watchapp</h5>
+
+<p><img class="right" src="/attachments/2014/3/pebbleauth.png"></p>
+
+<dl>
+  <dt>PebbleAuth </dt>
+  <dd>
+    <p>二步認證的token生成器，相當於 Google Authenticator 運行在手錶上，這樣更加安全啦。現在除了 Google，LastPass 和 EverNote 都支持二步認證了。</p>
+  </dd>
+  <dt>Sleep as Android</dt>
+  <dd>
+    <p>我買 Pebble 就是因為看到 Sleep as Android 支持 Pebble 了，才動了心的。這個應用利用 Pebble 上的運動傳感器監控睡眠的深淺度，早上能夠在合適的淺睡眠週期通過振動叫醒。我以前就在用 Sleep as Android，但要用手機的運動傳感器，所以手機要放在床墊上，現在戴著手錶就行了，手機可以放遠一些。</p>
+  </dd>
+</dl>
+
+<p><img src="/attachments/2014/3/sleepaspebble.png"></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[人體工學鍵盤鼠標組合]]></title>
+    <link href="http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse/"/>
+    <updated>2013-01-08T23:00:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse</id>
+    <content type="html"><![CDATA[<p>作為悲催的程序猿，每天的大部份時間都是陪伴鼠標鍵盤度過的，一套合適的鼠標鍵盤非常重要，可以降低得職業病的機率。尋找人體工學的鼠標鍵盤並不容易，現在這套用了好些時間了，感覺很滿意。</p>
+
+<p><img src="/attachments/2013/1/keyboard_mouse.jpg"></p>
+
+<p>先說鍵盤，普通鍵盤其實並不符合雙手自然的角度，如果要能讓雙手自然，左右手鍵盤需要分離。因此，理想的鍵盤大概是這個樣子的：</p>
+
+<p><img src="/attachments/2013/1/kb_adv-pro.jpg"></p>
+
+<p>這個是Kinesis Advantage Pro，我在荷蘭公司見過有同事用，在網上程序員社區也受到推薦。</p>
+
+<p>還有這個怪樣子的DataHand，手指已經不僅是向下敲鍵盤了，而是每個手指上下左右各個方向都是不同的鍵。</p>
+
+<p><img src="/attachments/2013/1/datahand.jpg"></p>
+
+<p>上面說的鍵盤不僅僅怪異，也买不起。前者$359，後者更是近千美元。更何況即使有錢，在國內也買不到。因此我只能選擇還算中規中矩的<a href="http://www.microsoft.com/hardware/en-us/p/natural-ergonomic-keyboard-4000">微軟人體工學鍵盤4000</a>，這款鍵盤算是評價不錯，價錢也可接受，國內可以直接買到。它的左右手鍵盤區並沒有分離得很遠，但剛好分開一個夾角，跟雙手自然擺放時的角度一樣。左右手分開鍵盤區要求指法一定要正確，還好我到手後在一個下午裏就已經適應了。</p>
+
+<p><img class="right" src="/attachments/2013/1/microsoft-mouse-6000.jpg"> 鼠標我開始用的是<a href="http://www.microsoft.com/hardware/en-us/d/natural-wireless-laser-mouse-6000">微軟人體工學霸雷鯊6000</a>（已經停產），它的好處是傾斜的表面讓手腕不需要向內旋轉。但是用了一段時間感覺還是未達理想程度，主要問題是我移動鼠標時通常前臂放在桌面上是不動的，僅靠手腕的活動，時間長了手腕還是覺得累。</p>
+
+<p>後來在網上看了不少資料，軌跡球可能可以解決這個問題，不需要手腕的動作，依靠手指移動就可以了。但是，對於軌跡球的評價好壞很極端，要麼說很好用要麼說根本沒用，估計這個東西的適應比較困難。但要真正用起來才會知道是否適合，最後還是下定決心買一個來試一下。軌跡球始終屬於小眾產品沒有推廣開來，產品甚至越出越少，市場上現在可買到的沒幾款，相對鼠標來說價錢也貴不少（其實結構、元件都差不多）。最終買的是<a href="http://www.kensington.com/kensington/us/us/p/1444/K64325/expert-mouse%C2%AE.aspx">Kensington Expert Mouse</a>（淘寶有售），明明是trackball要叫做mouse，可見trackball不受落。選擇這個是因為球體夠大，而且是可以用食指中指來滾動球體。Logitech M570 本來也不錯，但聽說拇指球用起來不夠靈活，拇指也容易累。中置球體的另外一個好處是左右手通用，我本來習慣用右手的，但那個鍵盤實在太霸氣了，把軌跡球放右邊，手在鍵盤和軌跡球間切換要移動很遠，於是就換用左手了。剛買回來，球滾動不大順滑，有點澀的感覺，真有些失望，但用了一兩個星期後就好很多了，現在操作起來絲柔順滑，阻尼感恰到好處，應該是球的三個支撐點需要一段時間磨合。軌跡球剛用起來確實不是那麼容易上手，操作會比較笨拙，比用鼠標慢很多，但是多花些時間適應，大概幾天到一周就可以上手了。</p>
+
+<p>總之，現在對這套組合非常滿意。</p>
+]]></content>
+  </entry>
+  
+</feed>

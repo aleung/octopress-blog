@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>给WebCatcher作者的建议（个人开发软件的开发管理问题） - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="WebCatcher是我非常喜欢的一个软件，作者很热情的在论坛中解答问题、了解意见。我觉得个人开发软件同样存在着软件开发管理的问题，这是我写给他的一个建议： 估计这段时间老魏也够烦的：） 问题一个接一个，用户意见也不少。。。 我对这个软件还是很欣赏的，作者的技术水平也不错。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">给WebCatcher作者的建议（个人开发软件的开发管理问题）</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-05-29T03:00:00+08:00" pubdate data-updated="true">2003-05-29</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.wizissoft.com/cn">WebCatcher</a>是我非常喜欢的一个软件，作者很热情的在论坛中解答问题、了解意见。我觉得个人开发软件同样存在着软件开发管理的问题，这是我写给他的一个建议： </p>
+
+<hr />
+
+<p>估计这段时间老魏也够烦的：）</p>
+
+<p>问题一个接一个，用户意见也不少。。。</p>
+
+<p>我对这个软件还是很欣赏的，作者的技术水平也不错。</p>
+
+<p>不过这次在版本升级的过程中暴露出了在开发管理中的问题，呵呵，一个人写程序也是要有开发管理的，因为随着软件规模增大、复杂性增加，遇到的问题也会越来越多。</p>
+
+<p>不知道作者有没有用版本管理软件来管理源代码，用版本管理软件的分支－合并功能可以做到同时维护旧版本的bug和增加新版本的功能，另可避免同样的bug重复出现。已发布版本可以不断出bug fix版本，但不包括新功能；开发中版本包含新功能，可以定时发布供测试。大多少用户还是希望软件把工作稳定放在第一位的，而不是当测试者。</p>
+
+<p>软件的发布的细节也不够细致，例如供下载的测试版本没有区分版本号，没有详细change log。无论修改得多还是少，只要是公开/半公开发布的，都必须要有不同的版本标识，小改动的发布可以只更改子版本号或者build序列号，但一定要能跟旧版本区分。change log是让用户（也是让开发者自己）知道各版本的区别的，也不应该省略。</p>
+
+<p>上次提过这个意见： <a href="http://211.92.136.88/~wsj/BBS/viewtopic.php?t=578">http://211.92.136.88/~wsj/BBS/viewtopic.php?t=578</a><br />
+其实并不是说要让用户自己去添加bug信息，这个还是应该由作者（或者找一个专人）做的，将用户反馈收集整理后添加。用不用专门软件也不是很重要，专门软件用起来方便些，不过开始的安装配置和学习使用也麻烦，重要的是有这样的流程，并且能给用户反馈。例如，用户发现了问题，一查就可以知道这个问题是否意见被别人发现了，在哪个版本已经修正，或者是有什么临时的解决方法。</p>
+
+<p>作者与用户沟通的态度很令人赞赏，回答问题、接受建议都很认真诚恳。不过有些细节上还可以更进一步，例如用户发现一个bug，作者马上说“谢谢，我会尽快改进”，用户会很高兴，因为作者重视他的意见。可是，这个bug什么时候修改了，在哪个版本中？没有了下文。用户只好一个个版本下载试用，然后发现自己提到的bug还是存在，而且还多了一些新的问题，长久下去可能就会厌烦而放弃这个软件了。作为用户，关心的是软件是否能符合自己的需求，如果他某一天在新版本change log中看到自己提出的问题意见解决了，才是真正的心满意足。个人做软件比起大公司的优势也在于可以跟最终用户更加贴近，实际上，好的个人软件的用户忠诚度往往比大公司的软件更高。</p>
+
+<p>另外给个建议，作者的免费终生升级策略以后也许要考虑改改，否则你只能靠发展新用户来获得收入，而随着用户增加，支持的压力却越来越大。用适当的金钱来换取良好的服务、功能升级，对于用户来说也是很合理的。老实说，如果作者因为经济原因不能继续软件的开发维护，对于已有用户来说是更大的损失。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-05-29T03:00:00+08:00" pubdate data-updated="true">2003-05-29</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/" data-via="acette" data-counturl="http://aleung.github.io/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2003/05/17/Garmin-Rino-110-/" title="Previous Post: Garmin Rino 110 试用">&laquo; Garmin Rino 110 试用</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/" title="Next Post: 在关系数据库中保存树状结构">在关系数据库中保存树状结构 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/pebble/">Pebble</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/javaee/">JavaEE</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
+<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 103%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/';
+        var disqus_url = 'http://aleung.github.io/blog/2003/05/29/The-author-s-suggestion-to-WebCatcher-personal-development-software-development-management-/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

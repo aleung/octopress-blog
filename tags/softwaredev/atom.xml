@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-06-13T20:07:54+08:00</updated>
+  <updated>2014-06-13T22:17:49+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -27,6 +27,143 @@
 </code></p>
 
 <p>将version改成3.0之后，一切都正常了，描述文件中声明的EJB 2.1 bean和annotation声明的EJB 3.0 bean都能正常加载。估计原来的问题是因为EJB容器在部署ejb module时，先分析部署描述文件，发现部署描述文件指定了EJB 2.1规范，就不再按照EJB 3.0规范去扫描annotation了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Text to UML diagram]]></title>
+    <link href="http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram/"/>
+    <updated>2014-01-20T22:10:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram</id>
+    <content type="html"><![CDATA[<p>Usually I used <a href="http://astah.net/">Astah</a> to draw UML diagram to put into design document in MS Word or PowerPoint format. The separation of the source and generated file making management of the UML model file a problem. And also it’s annoying to adjust a large amount of elements by dragging with mouse whenever you add something in the diagram. For a coder, typing on keyboard is faster than drawing with mouse.</p>
+
+<p>Now I switch to <a href="http://plantuml.com/">PlantUML</a>. Just write UML in its <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> and PlantUML generates the diagram. It supports most of the frequent used UML diagrams, which I use most are sequence diagram, class diagram and state diagram. Then I paste the generated diagram into slides (design document) and keep the “source” in note. No need to wonder where to find original UML model file when I need to update the diagram.</p>
+
+<p>The core of PlantUML is simply a jar file. It parses the text input and depends on <em>dot</em> tool from <a href="http://www.graphviz.org/">Graphviz</a> for graph generation (except sequence diagram). </p>
+
+<p>There are <a href="http://www.plantuml.com/running.html">a bunch of ways</a> to run PlantUML. I highlight some of them I prefer:</p>
+
+<ul>
+  <li>Online editor. Best choice if you’re too lazy to install anything on your computer.</li>
+  <li>Desktop (Windows): <a href="https://code.google.com/p/plant-uml-file-watcher/">PlantUML File Watcher</a></li>
+  <li>Embedded into Octopress blog platform. The below examples are using it.</li>
+  <li>IDE plugin. Easy way to keep UML together with source code.</li>
+</ul>
+
+<p>The syntax of PlantUML’s DSL is quite intuitional, you can start to use it by following example.</p>
+
+<p>```
+package ConsentObject «Rect» {
+  Consent : id
+  Scope : key
+}</p>
+
+<p>Client - User
+(Client, User) . Consent</p>
+
+<p>Consent - “*” Scope</p>
+
+<p>Consent “1” – “1..*” AccessToken
+```</p>
+
+<p>The generated diagram:</p>
+
+<p><img src='/images/plantuml/aa654ab10cd77969eaef52fa8b70576f.png'> </p>
+
+<p>A sequence diagram example:</p>
+
+<p>```
+title OAuth 2.0 Authorization Code Grant</p>
+
+<p>actor    UserAgent       as UA
+participant Application     as APP
+participant OAuthServer     as OAuth
+participant ResourceServer  as RS</p>
+
+<p>== Application requests authorization from user ==
+UA-&gt;APP: 
+APP–&gt;UA:redirect to OAuth Server
+UA-&gt;OAuth: GET /authorize?response_type=code
+ref over UA, OAuth: user authentication\nuser confirms reqest
+OAuth–&gt;UA: redirect to App with authorization_code
+UA-&gt;APP: authorization_code</p>
+
+<p>== Application retrieve access token ==
+APP-&gt;OAuth: POST /token with authorization_code
+ref over APP, OAuth: client authentication
+APP&lt;–OAuth: access_token</p>
+
+<p>== Application access protected resource ==
+APP-&gt;RS: getResource with access_token
+RS-&gt;OAuth: validateToken(access_token)
+RS–&gt;APP: result
+```</p>
+
+<p><img src='/images/plantuml/be23d4813dfec870f068ecda2f4ba44f.png'></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
+    <link href="http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic/"/>
+    <updated>2013-12-08T15:03:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic</id>
+    <content type="html"><![CDATA[<p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
+
+<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
+
+<p>下面记录大致操作过程。</p>
+
+<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
+
+<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
+
+<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
+
+<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
+</code></pre>
+
+<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
+
+<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
+
+<p><img src="/attachments/2013/12/burp.png"></p>
+
+<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
+
+<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[软件设计之度]]></title>
+    <link href="http://aleung.github.io/blog/2013/10/21/du-of-software-design/"/>
+    <updated>2013-10-21T22:30:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/10/21/du-of-software-design</id>
+    <content type="html"><![CDATA[<p>上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/26482993" width="595" height="487" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <updated>2013-03-30T00:04:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
+
+<p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
+
+<p>Before I changed the configuration, there were SNAPSHOT artifacts in the repository. After configuration changed, the continuous integration jobs running on CI server redeployed artifacts to the repository, and those new files have time stamp in file names, and the version is the same. That caused the problem.</p>
+
+<p>To solve the problem, I should delete the *-SNAPSHOT file, if and only if there are both unique snapshot and non-unique snapshot of the same version.</p>
+
+<p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
+
+<p><div><script src='https://gist.github.com/5260512.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Maven | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/maven/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2014-06-13T22:17:49+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Maven unique and non-unique snapshot conflict]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict/"/>
+    <updated>2013-03-30T00:04:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/30/maven-unique-non-unique-snapshot-conflict</id>
+    <content type="html"><![CDATA[<p>Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described <a href="http://wiki.jfrog.org/confluence/display/RTF/Local+Repositories">here</a>). After that, “Unable to download the artifact” error happened on some artifacts.</p>
+
+<p>When both unique snapshot and non-unique snapshot of the same version of an artifact exists, there will be problem to download it. For example, in a repository if under folder <code>/com/mycompany/test/foo/1.0.0-SNAPSHOT/</code> there are <code>foo-1.0.0-SNAPSHOT.pom</code> and <code>foo-1.0.0-20130329-231102-1.pom</code>, then downloading <code>com.mycompany.test:foo:1.0.0-SNAPSHOT:pom</code> will get error. You have to delete either the file with SNAPSHOT in name or all the files with time stamp in name.</p>
+
+<p>Before I changed the configuration, there were SNAPSHOT artifacts in the repository. After configuration changed, the continuous integration jobs running on CI server redeployed artifacts to the repository, and those new files have time stamp in file names, and the version is the same. That caused the problem.</p>
+
+<p>To solve the problem, I should delete the *-SNAPSHOT file, if and only if there are both unique snapshot and non-unique snapshot of the same version.</p>
+
+<p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
+
+<p><div><script src='https://gist.github.com/5260512.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
+    <updated>2013-03-22T23:21:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
+    <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
+
+<p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
+
+<p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
+
+<p><div><script src='https://gist.github.com/5203736.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Batch deploy artifacts to Maven repository]]></title>
+    <link href="http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts/"/>
+    <updated>2013-03-19T21:32:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2013/03/19/maven-batch-deploy-artifacts</id>
+    <content type="html"><![CDATA[<p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
+
+<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
+
+<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
+
+<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
+
+<p><div><script src='https://gist.github.com/5194777.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
+
+<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Maven Lifecycle Concepts]]></title>
+    <link href="http://aleung.github.io/blog/2011/08/26/Maven-Lifecycle-Concepts/"/>
+    <updated>2011-08-26T11:51:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2011/08/26/Maven-Lifecycle-Concepts</id>
+    <content type="html"><![CDATA[<p><img src="https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png" alt="" /></p>
+
+<p>(<a href="https://picasaweb.google.com/lh/photo/D_sskYHvn6CgEruCxN6lMdBJO7epb5AqjiUnD_coqoo?feat=directlink">大图链接</a>)</p>
+
+<p>一年前画的，把它电子化方便日后查看。看看有没有空补充些文字说明吧。</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li>DZone Refcardz: <a href="http://refcardz.dzone.com/refcardz/apache-maven-2">Apache Maven 2</a></li>
+  <li><a href="http://gavin-chen.iteye.com/blog/336607">Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Maven artifact repository setup for multiple sites team]]></title>
+    <link href="http://aleung.github.io/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team/"/>
+    <updated>2011-08-08T18:20:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2011/08/08/Maven-artifact-repository-setup-for-multiple-sites-team</id>
+    <content type="html"><![CDATA[<p>A typical way of adopting Maven to manage artifacts in an organization is to setup a repository manager locally. The repository manager proxies opensource repositories like Maven central from Internet, and hosts release and snapshot repositories for internal artifacts. It works fine in most cases, but when the team locales geographically in more than one site, and the bandwitdth between the sites is limited, or the artifacts are huge in size, the build performance will decrease, because uploading and downloading artifacts to/from the remove repository takes time.</p>
+
+<h2 id="solution-1-pubish-to-master-repository-download-from-local-repository">Solution 1: Pubish to master repository, download from local repository</h2>
+
+<p>Suppose on site A there is already a repository manager A, now site B is setup, what we need is a repository manager on site B that proxies both external repositories and internal repositories. Sonatype Nexus has the capability to aggregate serveral repositories / mirrories and provides download access from a single URL.</p>
+
+<p><img src="https://lh6.googleusercontent.com/-kQ4SwY2UV2s/Tj905hhUlJI/AAAAAAAAASc/hj_0Kxt6CQ0/s800/maven-repo-2sites-solution1.png" alt="" /></p>
+
+<p>By this solution, pom.xml of existing projects aren’t required to be modified. Simply add a <mirror> section with <mirrorof> value set to * into Maven setting.xml for all developers who work in site B. But the publishing of artifacts from site B is still cross sites over slow connection, so mvn deploy is not fully optimized though the download of dependencies is speeded up by cache on local repository manager.</mirrorof></mirror></p>
+
+<h2 id="solution-2-publish-to-local-repository-cross-caching">Solution 2: Publish to local repository, cross caching</h2>
+
+<p>This solution comes from <a href="http://www.sonatype.com/people/2011/07/video-multi-master-configuration-for-nexus/">Sonatype Blog</a>. Artifacts are always publish to repository on local site, each repository is cached by other site’s repository manager.</p>
+
+<p><img src="https://lh4.googleusercontent.com/-XJdyMrSafCM/Tj905psGecI/AAAAAAAAASg/lGJsgsjir7I/s800/maven-repo-2sites-solution2.png" alt="" /></p>
+
+<p>This solution looks good if one artifact is owned by one site. But I’m wondering if it works in the situation that both sites publish the same SNAPSHOT artifact to its local repository manager. For example, foo-1.0.0-SNAPSHOT.jar was already deployed on Repository Manger A, and then on Repository Manager B a newer edition of the jar is deployed, how can site A get the later one?</p>
+]]></content>
+  </entry>
+  
+</feed>
