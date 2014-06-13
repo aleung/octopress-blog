@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: WebLogic | Good good study, day day up]]></title>
-  <link href="http://aleung.github.io/blog/tags/weblogic/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: JavaEE | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/javaee/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
   <updated>2014-06-13T20:07:54+08:00</updated>
   <id>http://aleung.github.io/blog/</id>

@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Good good study, day day up</title>
+  <title>EJB 2 与 EJB 3 混用的问题 - Good good study, day day up</title>
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Blog Archive 2014 EJB 2 与 EJB 3 混用的问题
-Jun 13 2014 Note 中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问 Recent Posts EJB 2 与 EJB 3 混用的问题 Tags &hellip;">
+  <meta name="description" content="系统遗留代码里面大量使用了EJB 2.1 session bean，新增的代码采用EJB 3.0（该系统用的AS还不支持3.1），用annotation而没有写部署描述符ejb-jar.xml，新旧版本的EJB分别在不同module中，使用一直正常。 最近该系统又做了一些修改，增加新的EJB， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Jun 13 2014 Note 中国大陆用户可能会因为网络被屏蔽而无法访问
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aleung.github.io/blog/blog/archives/">
+  <link rel="canonical" href="http://aleung.github.io/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">
   <link href="/blog/favicon.png" rel="icon">
   <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/blog/javascripts/modernizr-2.0.js"></script>
@@ -76,32 +75,114 @@ Jun 13 2014 Note 中国大陆用户可能会因为网络被屏蔽而无法访问
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">EJB 2 与 EJB 3 混用的问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-13T19:54:33+08:00" pubdate data-updated="true">2014-06-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/javaee/'>JavaEE</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>系统遗留代码里面大量使用了EJB 2.1 session bean，新增的代码采用EJB 3.0（该系统用的AS还不支持3.1），用annotation而没有写部署描述符ejb-jar.xml，新旧版本的EJB分别在不同module中，使用一直正常。</p>
 
-  
-  <h2>2014</h2>
+<p>最近该系统又做了一些修改，增加新的EJB，但新增的bean死活找不到，似乎是根本没有部署起来。这次修改跟以前的区别是，新的EJB 3.0 bean直接放在原有EJB 2.1 bean的module里。后来发现将ejb部署描述文件ejb-jar.xml删除后，新的bean（通过annotation声明为EJB）就能正常加载。同事怀疑是不同版本的EJB不能共存在同一个module中。但我记得EJB新规范是兼容旧规范的，以前做原型的时候也试过能够混用，于是再检查一下，发现问题出自部署描述文件 ejb-jar.xml 中，该文件的version是2.1：</p>
 
-<article>
-  
-<h1><a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a></h1>
-<time datetime="2014-06-13T19:54:33+08:00" pubdate><span class='month'>Jun</span> <span class='day'>13</span> <span class='year'>2014</span></time>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;ejb-jar</span> <span class="na">version=</span><span class="s">&quot;2.1&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-</article>
-
+<p>将version改成3.0之后，一切都正常了，描述文件中声明的EJB 2.1 bean和annotation声明的EJB 3.0 bean都能正常加载。估计原来的问题是因为EJB容器在部署ejb module时，先分析部署描述文件，发现部署描述文件指定了EJB 2.1规范，就不再按照EJB 3.0规范去扫描annotation了。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+    <!--
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-13T19:54:33+08:00" pubdate data-updated="true">2014-06-13</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/javaee/'>JavaEE</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/" data-via="acette" data-counturl="http://aleung.github.io/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -149,7 +230,10 @@ Jun 13 2014 Note 中国大陆用户可能会因为网络被屏蔽而无法访问
       var disqus_shortname = 'aleung';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/';
+        var disqus_url = 'http://aleung.github.io/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

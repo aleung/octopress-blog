@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="幾年前我寫過對Google中國地圖偏移規律的分析(1)(2)，根據抓取到的偏移量數據，大概看出呈現了sin(a)+sin(3a)這樣的函數曲線規律，並且這個函數以不同頻率和幅度疊加了兩次。當時我推導出函數及其係數，利用它去校正偏移，在百公里範圍的區域內已經非常理想，但是在全國大範圍的不同區域， &hellip;">
+  <meta name="description" content="系统遗留代码里面大量使用了EJB 2.1 session bean，新增的代码采用EJB 3.0（该系统用的AS还不支持3.1），用annotation而没有写部署描述符ejb-jar.xml，新旧版本的EJB分别在不同module中，使用一直正常。 最近该系统又做了一些修改，增加新的EJB， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a></h1>
     
     
       <p class="meta">
@@ -98,13 +98,13 @@
   
 
 
-<time datetime="2014-04-03T07:43:45+08:00" pubdate data-updated="true">2014-04-03</time>
+<time datetime="2014-06-13T19:54:33+08:00" pubdate data-updated="true">2014-06-13</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+    <a class='tag' href='/blog/tags/javaee/'>JavaEE</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
   
 </span>
 
@@ -115,452 +115,21 @@
   </header>
 
 
-  <div class="entry-content"><p>幾年前我寫過對Google中國地圖偏移規律的分析(<a href="/blog/2009/12/26/Google-China-Map-offset-1/">1</a>)(<a href="/blog/2009/12/27/Google-China-Map-offset-2/">2</a>)，根據抓取到的偏移量數據，大概看出呈現了<code>sin(a)+sin(3a)</code>這樣的函數曲線規律，並且這個函數以不同頻率和幅度疊加了兩次。當時我推導出函數及其係數，利用它去校正偏移，在百公里範圍的區域內已經非常理想，但是在全國大範圍的不同區域，係數需要有點不同，也就是擬合函數還是差了一些低頻率的細節。不過當時的分析細節我也不敢在博客裏面寫，後來我也沒有再搞地圖方面的應用開發了，就把這個放下。</p>
+  <div class="entry-content"><p>系统遗留代码里面大量使用了EJB 2.1 session bean，新增的代码采用EJB 3.0（该系统用的AS还不支持3.1），用annotation而没有写部署描述符ejb-jar.xml，新旧版本的EJB分别在不同module中，使用一直正常。</p>
 
-<p>實際上這個地圖偏移並不是Google自己搞的算法，而是國家測繪局以立法的形式統一要求加的，稱為地形图非线性保密处理，所有從事國內電子地圖的廠商應該都得到了這個算法，實際上並起不到什麼所謂保護國家安全和國家利益的作用（保護行業壟斷者利益倒是真的），但是這個地圖偏移對地理信息處理和GPS技術的民用化起到了巨大的阻礙作用，近年各種與地理位置相關的應用如雨後春筍般湧現，但都為中國地圖的偏移而頭痛不已，後來由於下面提到的算法的流傳，問題得以解決，但增加很多不必要的複雜性和浪費開發、數據處理的人力。在我看來，這個地圖非線性加密處理在地理信息領域就像GFW在互聯網信息領域一樣，浪費了大量社會財富來對技術發展與應用進行封鎖。<a href="http://baike.baidu.com/view/2356807.htm#2_2">李成名</a>，你真的成名了。</p>
+<p>最近该系统又做了一些修改，增加新的EJB，但新增的bean死活找不到，似乎是根本没有部署起来。这次修改跟以前的区别是，新的EJB 3.0 bean直接放在原有EJB 2.1 bean的module里。后来发现将ejb部署描述文件ejb-jar.xml删除后，新的bean（通过annotation声明为EJB）就能正常加载。同事怀疑是不同版本的EJB不能共存在同一个module中。但我记得EJB新规范是兼容旧规范的，以前做原型的时候也试过能够混用，于是再检查一下，发现问题出自部署描述文件 ejb-jar.xml 中，该文件的version是2.1：</p>
 
-<p>感謝Internet，感謝open source，現在這個偏移算法在網上已經可以輕松找到了。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;ejb-jar</span> <span class="na">version=</span><span class="s">&quot;2.1&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>網上流傳的原始算法是<a href="http://emq.googlecode.com/svn/emq/src/Algorithm/Coords/Converter.java">這個Java文件</a>，然後有人整理過代碼，接力開發出多種語言版本。在『A Fork of Stuffs』博客裏，<a href="http://blog.csdn.net/coolypf/article/details/8686588">地球坐标系 (WGS-84) 到火星坐标系 (GCJ-02) 的转换算法</a>給出了C#實現，這個博客另外一篇<a href="http://blog.csdn.net/coolypf/article/details/8569813">火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的转换算法</a>也很有用。而使用比較方便應該是下面的github代碼庫：</p>
-
-<ul>
-  <li><a href="https://github.com/googollee/eviltransform">googollee/eviltransform</a>: C, go, JavaScript, php語言版本</li>
-  <li><a href="https://github.com/Leask/EvilTransform">Leask/EvilTransform</a>: Java和C#語言版本，似乎就是將前面介紹的代碼收集到github裏面，沒有改動。</li>
-</ul>
-
-<p>另外，github裏還有一個項目 <a href="https://github.com/fourcels/lbs">fourcels/lbs</a> 是用查表法來糾偏的，裏面的偏移數據（共9M）說不定就是早期從Google地圖服務上抓下來的。但現在有了算法，查表法的價值就不大了。</p>
+<p>将version改成3.0之后，一切都正常了，描述文件中声明的EJB 2.1 bean和annotation声明的EJB 3.0 bean都能正常加载。估计原来的问题是因为EJB容器在部署ejb module时，先分析部署描述文件，发现部署描述文件指定了EJB 2.1规范，就不再按照EJB 3.0规范去扫描annotation了。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/15/pebble/">Pebble</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-15T21:52:22+08:00" pubdate data-updated="true">2014-03-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gadget/'>Gadget</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://getpebble.com/">Pebble手錶</a>戴了兩個星期，如果用一句話來總結感受，那就是：基本滿意，但還沒到愛不釋手的程度，沒有帶來驚喜。</p>
-
-<p>首先，Pebble真的是一隻手錶，可以看時間。如果你有幸用過各種『智能手環』，就會明白為什麼這麽說了。我戴過<a href="https://jawbone.com/up">Jawbone UP</a>一段時間，試過好多次下意識的擡起手腕來看，然後才想起那貨是沒有任何顯示的。</p>
-
-<p><img class="right" src="/blog/attachments/2014/3/pebbles.jpg" /></p>
-
-<p>佩戴舒適度上說，Pebble還過得去，塑料錶帶的柔軟度不錯，反正我已經習慣了24小時戴在手腕上的感覺。在這之前，我都有十幾年沒有戴過手錶了吧。</p>
-
-<p>外形應該是我最不在意的一項了，但不得不說 Pebble 外形上太普通。我的黑色版本，正面看弧形表面，與黑白顯示屏融為一體，還算有點現代感，但側面看就很『薯鈍』的樣子 —— 厚，按鈕粗曠，左邊還有很突兀的幾個充電觸點。</p>
-
-<p>手錶用的是 144x168 的低分辨率黑白e-paper屏幕，在現在手機電腦都視網膜屏的時代，這個分辨率真是超低了。E-paper的對比度很高，無論什麼光線條件下都非常清晰，雖然分辨率低，實際顯示文字的效果還是不差的。圖像？就算了吧，除了像素少，這個屏還連灰度都顯示不了。不知道這個e-paper跟Kindle之類閱讀器的屏是不是同樣的技術，但看起來還是有區別：Pebble屏的像素邊緣很銳利，顯示直接改變沒有殘影，不像Kindle要全屏反色刷一次。</p>
-
-<p>Pebble 可以安裝 app，當然了，否則就對不起 smart watch 這個名字。App 分為 watchface 和 watchapp 兩大類，無論是那種也不管大小，總共最多安裝8個，不知道它內部怎麼管理空間的。Watchface 只有一屏顯示信息，不能接受按鍵控制，最常見用途是顯示時間，當然也可以顯示其他信息，例如天氣、日曆之類。Watchapp就是可以與用戶交互的應用，可以有多屏，用戶通過菜單、控制按鈕來操作。</p>
-
-<p>Pebble 的方便之處是它作爲手機的一個延伸的信息終端，手機可以將實時的信息推送到手表上，或者是在手表上顯示濃縮的手機應用的某些信息。前者例如，我以前經常會漏接電話或者漏看短信，因爲手機放袋裏聽不到聲音，現在戴著 Pebble 就不會了，因爲手表會振動提醒。後者例如一些跑步應用，能在 Pebble 上顯示速度、距離等關鍵信息，就不用拿手機出來看。</p>
-
-<p>Pebble 最大的問題是操控不方便。表上有四個按鈕：上/下/Enter/ESC，沒有觸摸屏，任何操作都只能靠按鍵選擇菜單項，因此經常要按好多次按鈕才能完全想要的操作。而 Pebble 的按鈕按起來又不算是特別方便，總之我是不會想在手表上做按超過一兩次按鈕的操作的。這種操控的不方便限制了app可以做的事情，感覺這個比起屏幕和表的硬件處理能力的限制還要大。Pebble 也不支持 app 後台運行，要求在手錶上跑多任務，電池撐不住吧，但沒有多任務也造成一些類型的 app 沒法做了。</p>
-
-<p>至于耗電，目前還不至于很大問題。官方宣傳可以用5-7天，我實際用下來只有3天，也不知道是軟件問題還是硬件問題。但3天其實還是可以接受的。</p>
-
-<p>最後介紹一下我現在常用的app：</p>
-
-<h5 id="watchface">Watchface</h5>
-
-<p><img class="right" src="/blog/attachments/2014/3/postage_watchface.png" />
-<img class="right" src="/blog/attachments/2014/3/agenda_watchface.png" /></p>
-
-<dl>
-  <dt>Agenda Watchface</dt>
-  <dd>
-    <p>在辦公室或者需要按日程做事的時候會用這個watchface，一眼就能看到當前時間和接下來的日程安排。</p>
-  </dd>
-  <dt>Postage</dt>
-  <dd>
-    <p>當我不需要看日程安排的時候，喜歡用這個face，夠簡潔，外圍的黑色與黑色表身融為一體。實際看起來比截圖好看很多。</p>
-  </dd>
-</dl>
-
-<h5 id="watchapp">Watchapp</h5>
-
-<p><img class="right" src="/blog/attachments/2014/3/pebbleauth.png" /></p>
-
-<dl>
-  <dt>PebbleAuth </dt>
-  <dd>
-    <p>二步認證的token生成器，相當於 Google Authenticator 運行在手錶上，這樣更加安全啦。現在除了 Google，LastPass 和 EverNote 都支持二步認證了。</p>
-  </dd>
-  <dt>Sleep as Android</dt>
-  <dd>
-    <p>我買 Pebble 就是因為看到 Sleep as Android 支持 Pebble 了，才動了心的。這個應用利用 Pebble 上的運動傳感器監控睡眠的深淺度，早上能夠在合適的淺睡眠週期通過振動叫醒。我以前就在用 Sleep as Android，但要用手機的運動傳感器，所以手機要放在床墊上，現在戴著手錶就行了，手機可以放遠一些。</p>
-  </dd>
-</dl>
-
-<p><img src="/blog/attachments/2014/3/sleepaspebble.png" /></p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/03/15/pebble/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML Diagram</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-20T22:10:00+08:00" pubdate data-updated="true">2014-01-20</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/uml/'>UML</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Usually I used <a href="http://astah.net/">Astah</a> to draw UML diagram to put into design document in MS Word or PowerPoint format. The separation of the source and generated file making management of the UML model file a problem. And also it’s annoying to adjust a large amount of elements by dragging with mouse whenever you add something in the diagram. For a coder, typing on keyboard is faster than drawing with mouse.</p>
-
-<p>Now I switch to <a href="http://plantuml.com/">PlantUML</a>. Just write UML in its <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> and PlantUML generates the diagram. It supports most of the frequent used UML diagrams, which I use most are sequence diagram, class diagram and state diagram. Then I paste the generated diagram into slides (design document) and keep the “source” in note. No need to wonder where to find original UML model file when I need to update the diagram.</p>
-
-<p>The core of PlantUML is simply a jar file. It parses the text input and depends on <em>dot</em> tool from <a href="http://www.graphviz.org/">Graphviz</a> for graph generation (except sequence diagram). </p>
-
-<p>There are <a href="http://www.plantuml.com/running.html">a bunch of ways</a> to run PlantUML. I highlight some of them I prefer:</p>
-
-<ul>
-  <li>Online editor. Best choice if you’re too lazy to install anything on your computer.</li>
-  <li>Desktop (Windows): <a href="https://code.google.com/p/plant-uml-file-watcher/">PlantUML File Watcher</a></li>
-  <li>Embedded into Octopress blog platform. The below examples are using it.</li>
-  <li>IDE plugin. Easy way to keep UML together with source code.</li>
-</ul>
-
-<p>The syntax of PlantUML’s DSL is quite intuitional, you can start to use it by following example.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">package ConsentObject &lt;&lt;Rect&gt;&gt; {
-</span><span class="line">  Consent : id
-</span><span class="line">  Scope : key
-</span><span class="line">}
-</span><span class="line"> 
-</span><span class="line">Client - User
-</span><span class="line">(Client, User) . Consent
-</span><span class="line"> 
-</span><span class="line">Consent - "*" Scope
-</span><span class="line"> 
-</span><span class="line">Consent "1" -- "1..*" AccessToken</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The generated diagram:</p>
-
-<center><img src="/blog/images/plantuml/ffe2231fbbf2c03843a63167a4e1057a.png" /></center>
-
-<p>A sequence diagram example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">title OAuth 2.0 Authorization Code Grant
-</span><span class="line">
-</span><span class="line">actor    UserAgent       as UA
-</span><span class="line">participant Application     as APP
-</span><span class="line">participant OAuthServer     as OAuth
-</span><span class="line">participant ResourceServer  as RS
-</span><span class="line">
-</span><span class="line">== Application requests authorization from user ==
-</span><span class="line">UA-&gt;APP: 
-</span><span class="line">APP--&gt;UA:redirect to OAuth Server
-</span><span class="line">UA-&gt;OAuth: GET /authorize?response_type=code
-</span><span class="line">ref over UA, OAuth: user authentication\nuser confirms reqest
-</span><span class="line">OAuth--&gt;UA: redirect to App with authorization_code
-</span><span class="line">UA-&gt;APP: authorization_code
-</span><span class="line">
-</span><span class="line">== Application retrieve access token ==
-</span><span class="line">APP-&gt;OAuth: POST /token with authorization_code
-</span><span class="line">ref over APP, OAuth: client authentication
-</span><span class="line">APP&lt;--OAuth: access_token
-</span><span class="line">
-</span><span class="line">== Application access protected resource ==
-</span><span class="line">APP-&gt;RS: getResource with access_token
-</span><span class="line">RS-&gt;OAuth: validateToken(access_token)
-</span><span class="line">RS--&gt;APP: result</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<center><img src="/blog/images/plantuml/a73e1bc6787042a73befa2944361b18c.png" /></center>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/01/20/text-to-uml-diagram/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-08T15:03:00+08:00" pubdate data-updated="true">2013-12-08</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
-
-<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
-
-<p>下面记录大致操作过程。</p>
-
-<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
-
-<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
-
-<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
-
-<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
-</code></pre>
-
-<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
-
-<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
-
-<p><img src="/blog/attachments/2013/12/burp.png" /></p>
-
-<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
-
-<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2013/12/08/intercept-android-https-traffic/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-01T20:03:00+08:00" pubdate data-updated="true">2013-12-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>11月23日，参加了2013广州马拉松的半程赛事，这是我第二次跑半程马拉松，赛会成绩1:55:11，自己按过出发点的计时是1:52:50。这个成绩比上一年要差了一些，2012广州半马的自己计时是1:49:57。但还是完成目标了，我赛前预订的是两小时内完成。</p>
-
-<p>今年的训练是从7月中旬开始的（见：<a href="2013/07/27/first-long-run">今年首次长跑训练</a>），最开始的目标是全程马拉松，但是训练断断续续了好多回：八月初去大辣甲岛坐快艇颠伤了腰；九月中旬肠胃炎病了一回体重一下掉了两公斤；十月中旬出差；十月中旬到十一月中旬咳嗽了一个月。总之一直都没有跟上训练计划，训练强度没有上去，跑全马没有可能了，报名时还是选择半马。咳嗽延续了很长时间，严重到胸口肋骨痛，虽然训练没有完全停止，但很担心这样的身体状态连半马都跑不下来了，幸好到了十一月中旬，赛前两周咳嗽逐步好转。一直都没有怎么跑长距离，都是平常的30分钟，十一月开始才将每次跑量增加到12km左右。11月16日（赛前一周）晚遇上Nike的夜跑活动，那次跑得非常轻松，13km步速5:27，就对完赛非常有信心了。赛前一周内减量，周二周四跑了两次慢速短时间维持运动状态。</p>
-
-<p>从周训练量图上看得出来：太少了，很多时候每周2小时都不够。</p>
-
-<p><img src="/blog/attachments/2013/12/run-history-weekly.png" /></p>
-
-<p>今年的路线比去年好多了，都是沿着江边跑。半程路线没有经过老城区，时间也早，观众没有那么多，但气氛也还是比去年好，观众都在热情的叫喊，特别是跑到路边跟一溜的观众一一击掌，兴奋度立马提高，特别有动力。</p>
-
-<p><img src="/blog/attachments/2013/12/marathon-route.png" /></p>
-
-<p>早上七点半起跑，我6:40到珠江新城地铁站，一出站到处都是跑手，看到这个场景人就开始有点兴奋了，虽然平日这个时间还在床上呼呼大睡。在歌剧院外面的广场脱了外套和长裤，当天气温比较暖和，没有热身也不怎么冷。跟朋友回合，时间已到7:10，看着出发区密密麻麻的人群，有点心急。幸好今年的存包工作做得很好，不需要排队，然后上厕所，倒是排了上十分钟，一切妥当已经接近起跑时间。广马的出发点空间过于狭窄，只有一条半车道的宽度，早就已经挤满了人。有人在人堆里往前钻，我也跟在他后面钻，好歹往前挪了几十米。离起跑线还是很远很远，也不知道是什么时候鸣枪的，总之听到前面有人欢呼，然后又等了好一会发现人群开始往前移动了。人群基本还是走，我已经是尽量在人缝中钻了，走走停停，到起跑线时已经两分半钟。过了起跑线，还是跑不起来，跑了一小段前面又堵住了，又得走。一直过了大半公里，路面宽了之后，才可以真正跑起来。</p>
-
-<p>起跑后几公里都没有把握好速度。按照2小时内完赛的目标，我给自己预定的配速是5’20”~5’30”之间。路面宽阔后，大家的速度都加上去了，一听 miCoach pacer 报速度，步速已经到 5’10” 左右了，于是就把速度降下来。在赛事中跟自己平常训练很不一样，平常起跑的速度都比较慢，要跑上十来分钟速度才加得上去，而在赛事中兴奋度高了，跟着其他人一下子就跑得比较快，自己一点感觉都没有，还以为慢。怕跑快，控制速度后，又压得太慢了，降到了5’40”。在四五公里左右还感觉右小腿肌肉有点僵硬感。</p>
-
-<p><img src="/blog/attachments/2013/12/first5k.png" /></p>
-
-<p>过了前半小时，大概跑顺了进入状态。特别是车陂路第一个折返点后，一路都跑得很顺畅，步速基本上都在5’20”以上。回到珠江新城路段，沿路观众也多起来，我也喜欢回应一下观众，跑近路旁，挥挥手，甚至击掌，观众喝彩得更热烈，自己也更加兴奋，明显速度会跑快一点。五公里开始有水站，以前跑我不喜欢拿运动饮料，觉得甜了反而不解渴，但这次还是都选择了喝运动饮料，因为可以补充点能量。跟去年不一样，今年饮料是用纸杯分发的，确实这样更合理不浪费，只不过一边跑一边喝的难度不小，估计是喝一半撒了一半。实际上并不感觉渴，喝一两口感觉就可以了，但每5公里的饮料站我都去拿了，而且都全喝完，以保证不缺水，毕竟当天的温度对长跑来说比较高。</p>
-
-<p><img src="/blog/attachments/2013/12/6-12km.png" /></p>
-
-<p>10km处有计时显示，已经忘了是多少，当时估算了一下，2小时内完成没什么问题了。12km开始进入猎德大桥路段，感觉依然很轻松。我记到去年到10km时也是感觉非常轻松的，但过了不久就开始疲累，因此也不敢大意。后面这一段路的速度在图上看波动比较大：12~13km猎德大道这短短一段路几个小上下坡：过猎德涌两次；13.5km左右路段是爬猎德大桥的上坡，14km左右是冲下坡；15.5km处磨碟沙隧道下坡又是一轮猛冲，16km是隧道上坡。速度下降得很厉害的地方都是饮水站或者降温海绵站。</p>
-
-<p>在猎德-花城大道折返处拐弯的时候突然听到有人喊我的名字，一看是小春天，举着写上『Leo加油』的一张纸。有点惊喜，没想到她在这里，原来我是让她们在过桥后15、16km路段等的。因为是在拐弯处，当我看到她的时候已经几乎跑过了，匆匆一眼印象中一身很灰的衣服，所以啦啦队也要穿抢眼的衣服啊。然后开始上猎德大桥，虽然比较高，坡度还算是平缓的，减速保持步频上坡，终于过了最高点了，前面有大堆摄影师拦在路上拍照，很多人经过时都摆些pose好上镜，我当时没有意识到这里是一个官方摄影点，只是一心想着下坡可以冲快些。绕过了那群摄影师，突然又听到有人喊我的名字，一看是清风在旁边，也只是来得及挥挥手就冲过去了。一长段下坡，放开脚步狂奔。</p>
-
-<p>疲累感大概是在16km后出现的，冲完磨碟沙隧道下坡后上坡感觉有点吃力了，然后后面的路程就开始没有轻松的感觉，不过这时剩下的路程已经没有多少，看着对面折返的跑全马的跑手，心想：我再跑几公里就完成了，要跑全马的话还要再跑一倍多的距离，多痛苦啊。后面的路程开始一边跑一边默算着剩下的公里数，不过状态也还是不差，可能就是心理上觉得差不多到了失去了动力。</p>
-
-<p><img src="/blog/attachments/2013/12/13-18km.png" /></p>
-
-<p>琶洲大桥脚折返后，剩下最后两公里，开始加速做最后冲刺。因为最后有个小弯，一直没有看到终点门楼，有点觉得维持不住速度，直到最后一两百米左右看到终点，这时来劲了还猛冲了一下。</p>
-
-<p><img src="/blog/attachments/2013/12/sprint.png" /></p>
-
-<p>全程的心率在缓慢的上升，大概10km后进入黄区(159-165BPM)，除了最后冲刺，基本维持在黄区内。冲线时最高心率175BPM。</p>
-
-<p><img src="/blog/attachments/2013/12/heart-rate.png" /></p>
-
-<p>下面是全程的步速与步频曲线，粗线是步频。可以看出速度虽然有波动但全程平均差别不是太大，但前半程的步频基本在180以上，而后半程就下降到180以下了，说明体力下降步伐没有那么轻快了。</p>
-
-<p><img src="/blog/attachments/2013/12/stride-rate.png" /></p>
-
-<p>几点总结：</p>
-
-<ul>
-  <li>训练量不足；</li>
-  <li>体能储备上，半程没有问题，但跑更长距离估计余量不多了，需要增加长距离训练；</li>
-  <li>配速不够平稳。miCoach pacer 只能靠语音播报，不像手表可以随时看到数值，定时播报的间隔时间有点长，在没有把握时应该多让它报一下步速。</li>
-</ul>
-
-<p>最后感谢亲友团的支持鼓励！希望明年一起跑！</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2013/12/01/2013-gz-half-marathon/#disqus_thread">Comments</a>
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -568,8 +137,6 @@
     </article>
   
   <div class="pagination">
-    
-      <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/blog/archives">Blog Archives</a>
     
@@ -586,23 +153,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/01/2013-gz-half-marathon/">2013广州马拉松半程小结</a>
+        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
       </li>
     
   </ul>
@@ -610,52 +161,9 @@
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
-<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
-<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
-<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
-<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
-<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
-<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
-<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
-<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
-<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
-<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
-<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
-<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
-<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
-<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
-<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
-<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
-<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
-<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
-<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
-<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+<a style="font-size: NaN%" href="/blog/tags/javaee/">JavaEE</a>
+<a style="font-size: NaN%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: NaN%" href="/blog/tags/weblogic/">WebLogic</a>
 
   </ul>
 </section>
