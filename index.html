@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="系统遗留代码里面大量使用了EJB 2.1 session bean，新增的代码采用EJB 3.0（该系统用的AS还不支持3.1），用annotation而没有写部署描述符ejb-jar.xml，新旧版本的EJB分别在不同module中，使用一直正常。 最近该系统又做了一些修改，增加新的EJB， &hellip;">
+  <meta name="description" content="今天難得的陰天，早上下過雨，溫度30℃出頭，沒有早幾天那麽酷熱，也有點風。
+磨磨蹭蹭，早上10點半才出發。熱身段過後，按5’30”配速，從江灣橋過河南，沿江邊一直往東跑。 過了廣州塔，就到獵德大橋，大概10km位置。這時我面臨著一個艱難的選擇：上橋，就過到珠江新城然後沿江邊往回走，穿過二沙島回家， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -25,10 +26,6 @@
   <script src="/blog/javascripts/ender.js"></script>
   <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
   <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -82,7 +79,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/06/21/run/">跑步日記</a></h1>
     
     
       <p class="meta">
@@ -98,13 +95,13 @@
   
 
 
-<time datetime="2014-06-13T19:54:33+08:00" pubdate data-updated="true">2014-06-13</time>
+<time datetime="2014-06-21T18:19:08+08:00" pubdate data-updated="true">2014-06-21</time>
         
          | 
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/javaee/'>JavaEE</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+    <a class='tag' href='/blog/tags/running/'>Running</a>
   
 </span>
 
@@ -115,21 +112,29 @@
   </header>
 
 
-  <div class="entry-content"><p>系统遗留代码里面大量使用了EJB 2.1 session bean，新增的代码采用EJB 3.0（该系统用的AS还不支持3.1），用annotation而没有写部署描述符ejb-jar.xml，新旧版本的EJB分别在不同module中，使用一直正常。</p>
+  <div class="entry-content"><p>今天難得的陰天，早上下過雨，溫度30℃出頭，沒有早幾天那麽酷熱，也有點風。
+磨磨蹭蹭，早上10點半才出發。熱身段過後，按5’30”配速，從江灣橋過河南，沿江邊一直往東跑。</p>
 
-<p>最近该系统又做了一些修改，增加新的EJB，但新增的bean死活找不到，似乎是根本没有部署起来。这次修改跟以前的区别是，新的EJB 3.0 bean直接放在原有EJB 2.1 bean的module里。后来发现将ejb部署描述文件ejb-jar.xml删除后，新的bean（通过annotation声明为EJB）就能正常加载。同事怀疑是不同版本的EJB不能共存在同一个module中。但我记得EJB新规范是兼容旧规范的，以前做原型的时候也试过能够混用，于是再检查一下，发现问题出自部署描述文件 ejb-jar.xml 中，该文件的version是2.1：</p>
+<p>過了廣州塔，就到獵德大橋，大概10km位置。這時我面臨著一個艱難的選擇：上橋，就過到珠江新城然後沿江邊往回走，穿過二沙島回家，這是跑過好多次的路線，大概十七八公里左右。如果直走，就一直要到琶洲大橋才能過橋，到了北岸往回跑，要到家路程估計有近30公里，這時我從沒有跑過的距離。在我的大腦還在激烈思想鬥爭的時候，雙腿肌肉已經作出了決定——直走。</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;ejb-jar</span> <span class="na">version=</span><span class="s">&quot;2.1&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>考慮到前路漫漫，將速度下降到5’50”。這時接近正午時分，雖然沒有太陽直射，人也比較熱，心率上升到接近160。找賣水的地方，但琶洲一帶很荒蕪，估算著也撐到過了琶洲橋後也沒問題。</p>
 
-<p>将version改成3.0之后，一切都正常了，描述文件中声明的EJB 2.1 bean和annotation声明的EJB 3.0 bean都能正常加载。估计原来的问题是因为EJB容器在部署ejb module时，先分析部署描述文件，发现部署描述文件指定了EJB 2.1规范，就不再按照EJB 3.0规范去扫描annotation了。</p>
+<p>13.5km處上橋，這橋真長，足足一公里。過了琶洲大橋下來，14.6km，去超市買運動飲料喝，停了幾分鐘。這麽一停下來，就沒法重新跑起來了，完全不想動。繼續跑後氣喘得很厲害，隔夜風爐都吹得著，腳擡不起，步頻下降了很多。將速度下降到6’30”了，希望能夠慢慢適應過來。堅持了一段，毫無起色，終於在過了華南大橋底，到了17km處放棄了。不清楚為什麼買水停了一下後狀態會突然變得那麽差，看回數據，過橋前的速度還是保持得比較平穩的5’50”左右。以前我也有經驗是不能停，一旦停下就很難重新回復狀態，但慢慢適應一段時間後還是可以的，這次完全不行。</p>
+
+<p>找不到廁所，鑽進樹叢裏面尿尿。舒暢完後渾身酥軟，一轉身沒站穩跟身後樹幹長滿刺的木棉樹來了個親密接觸。</p>
+
+<p>沿著江邊走，中午很寧靜，人不多，只有知了在不知疲倦的叫。突然覺得這個環境很舒服，享受一下時光吧，在榕樹陰下的石凳坐下，冰冷的石頭冷卻著大腿的肌肉，涼風吹拂身上的汗水。出來跑步什麼都沒有帶，不用再習慣性的拿手機來看，就讓時間的碎片留白，就是那樣靜坐著，看著開闊的江面，感覺那TMD不就是幸福麽。所以人都是自己感動自己的，要不哪來那麽多感人的事情。</p>
+
+<p>歇了一會，將運動飲料全喝完了，感覺恢復了一些，起來繼續跑一下，邊跑盤算著後面還能再跑多遠。但是，跑累了的時候就是靠內心去堅持的，原來一直習慣了喘著氣的狀態，可以一直跑下去，一旦享受過停下休息的舒服後就承受不了之前那種苦了。最後跑到珠江新城地鐵站收官，累計20.5km。後面這段其實心率還在正常範圍，肌肉沒有不適，就是步頻慢了，按理說這個狀態還可以繼續跑上好一段距離的。</p>
+
+<p>另一方面，今天跑的狀態看來確實不是那麽好，跑完幾個小時的感覺比以往跑這個距離要累。
+回來看數據，感覺步頻似乎是反應體力狀態的一個直觀指標，從8.4km起步頻明顯下降了一個台階，而14.6km買水後步頻更是嚴重下降。另一方面，心率跟狀態有什麼關聯也還不是很清晰，每次跑步隨著疲勞累積，心率都是不斷升高的。但看以往的記錄，心率到160多速度依然保持的也有。</p>
 </div>
   
   
   
     <footer>
-        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/#disqus_thread">Comments</a>
+        <a href="/blog/2014/06/21/run/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -544,7 +549,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/06/13/mix-use-of-ejb-2-and-ejb-3/">EJB 2 与 EJB 3 混用的问题</a>
+        <a href="/blog/2014/06/21/run/">跑步日記</a>
       </li>
     
       <li class="post">
@@ -591,7 +596,6 @@
 <a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
-<a style="font-size: 70%" href="/blog/tags/javaee/">JavaEE</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -601,19 +605,19 @@
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 117%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 123%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 103%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -648,14 +652,6 @@
 
 
 
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
 
 
 
