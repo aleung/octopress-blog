@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="字符编码问题一直都是令人头痛，查阅资料，写下了《java 字符转换问题的学习笔记》。 什么是字节流与字符流的转换? 什么时候会做转换? 字符就是char类型, 是双字节的, 用unicode, 一个char就是实际上的一个字符；字节就是byte类型, 是单字节的，实际的字符串根据编码不同， &hellip;">
+  <meta name="description" content="原来MySQL是不会理会字段的NOT NULL标记的!
+按照MySQL manual中1.8.5.2节的说法: 当插入的字段的值不符号要求的时候, 不会出错, 而是用一个最接近的”合理”值来替代. 对于NOT NULL的varchar字段, 替换的值是空字符串’’. 这不是等于没有设定NOT &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/18/MySQL-NOT-NULL-/">MySQL是不会理会字段的NOT NULL标记的!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-18T22:58:00+08:00" pubdate data-updated="true">2003-08-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原来MySQL是不会理会字段的NOT NULL标记的!<br />
+按照MySQL manual中1.8.5.2节的说法: 当插入的字段的值不符号要求的时候, 不会出错, 而是用一个最接近的”合理”值来替代. 对于NOT NULL的varchar字段, 替换的值是空字符串’’. 这不是等于没有设定NOT NULL吗? 真是莫名其妙.<br />
+只好在程序里面来控制了</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/18/MySQL-NOT-NULL-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -420,59 +474,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/07/21/What-is-FXP-/">What Is FXP?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-07-21T23:02:00+08:00" pubdate data-updated="true">2003-07-21</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>什么是FXP？以前就听说FlashFXP这个软件可以在两台ftp之间直接传输文件，不需要中转。  </p>
-
-<p>在网上查了一下资料，好像fxp并不是一种新的协议，而是对ftp中的proxy命令的巧妙运用。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/07/21/What-is-FXP-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/57/">&larr; Older</a>
@@ -494,6 +495,10 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
@@ -507,10 +512,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
     
       <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
   </ul>
@@ -550,16 +551,16 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

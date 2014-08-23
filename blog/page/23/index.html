@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="(注：下面的今天是指5.18，当时blogbus正被河蟹强暴中，无法发出来) 今天临下班前又有想跑步的冲动，问了平常一块跑的同事，他们怕下雨都不去，我就自己一个人跑。如果每天都能保持这样的运动欲望，能形成习惯就好了，可惜总是做不到，一天打鱼n天晒网。 其实今天确实不适合跑步，雾气太大了， &hellip;">
+  <meta name="description" content="对于GPS精度好多人有误解，我要在这里”科普”一下。 说法：GPS有两级精度权限，民用和军用。
+评论：正确。简单的说，GPS有多种信号频率和不同编码，可以提供不同的精度。民用的L1载波的C/A码是低精度的。军用的精度是米级以内，民用的精度是10米级别。 说法：现在民用GPS的精度只能到100米。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/31/About-GPS-precision-of-the-science-/">关于GPS精度的“科普”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-31T21:36:00+08:00" pubdate data-updated="true">2009-05-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>对于GPS精度好多人有误解，我要在这里”科普”一下。  </p>
+
+<p><strong>说法</strong>：<em>GPS有两级精度权限，民用和军用。</em><br />
+<strong>评论</strong>：正确。简单的说，GPS有多种信号频率和不同编码，可以提供不同的精度。民用的L1载波的C/A码是低精度的。军用的精度是米级以内，民用的精度是10米级别。  </p>
+
+<p><strong>说法</strong>：<em>现在民用GPS的精度只能到100米。</em><br />
+<strong>评论</strong>：错误。早期GPS民用信号加入了SA（Selective Availability）干扰，精度只能到100米。但自从2000年5月开始，SA就被取消了，所以现在民用GPS精度是能达到10米级别的。  </p>
+
+<p><strong>说法</strong>：<em>手机的A-GPS功能是为了提高精度。</em><br />
+<strong>评论</strong>：不完全正确。A-GPS主要的效果是提高定位速度，而不是精度。<br />
+普通GPS启动时需要搜索卫星信号，接收星历，才能定位与跟踪。卫星导航电文以30秒周期重复，GPS需要收齐4颗卫星的数据才能定位，因此在信号不好（断续）的情况下，就需要很长时间才能得到首次定位，甚至无法定位。<br />
+A-GPS（Assisted GPS）是指利用移动网络来辅助GPS定位，具体技术又分为几种，常用的方案是通过移动网络发送GPS星历等辅助数据，GPS无需从卫星下载数据，使手机GPS在弱卫星信号的情况下都能快速定位。</p>
+
+<p><strong>说法</strong>：<em>Google地图的My Location显示我的位置偏移了几百米，那是因为民用GPS精度限制造成的。</em><br />
+<strong>评论</strong>：错误。这种大尺度（几百米）的位置偏移目前只发现在中国大陆地区地图出现，这不是GPS定位的误差，而是地图本身就是偏移，不准确的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/05/31/About-GPS-precision-of-the-science-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -301,84 +367,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/19/Better-My-Location-/">Better My Location, 准确定位当前位置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-19T07:45:00+08:00" pubdate data-updated="true">2009-04-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="/blog/attachments/2009/4/HereIm.jpg" /></p>
-
-<p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>
-
-<h2 id="section">下载 / 版本更新记录</h2>
-
-<p>安装：在Android Market搜索 “HereIm”</p>
-
-<p>软件网站：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a> （需要翻墙）</p>
-
-<h2 id="section-1">使用说明</h2>
-
-<h3 id="section-2">地图校准</h3>
-
-<p>地图有多种校准模式：Manually Calibrate为手工校准模式，需要用户先自行校准地图再使用。其他为中国几大城市的预设校准数据，在它们附近的地域也大致适用，可以选择最接近的一个。<br />
-手 工校准，在菜单中选Calibrate，然后现在卫星图上找到一个你知道的标志性地点（路口是一个好的选择），拖动地图使这个地点位于十字光标正中下，接 下来切到地图模式，同样也找到这个地点，拖到光标中心。最好开始先将地图缩小一点来校准，初步找到位置后再放大地图微调位置，可能需要反复几次才能准确校 准。最后点Done。<br />
-目前软件只会保存最后一次校准的参数。<br />
-注意：模式切换或手工校准后，需要手机收到位置更新之后，新校准才会生效。如果打开了GPS，位置会更新得很快，但若没有打开GPS，也许要移动相当一段距离后才能看出效果。  </p>
-
-<h3 id="section-3">定位</h3>
-
-<p>菜单中选择 My Location，就会在地图中标记出当前所处位置，并且显示街道地址（不一定很准确，可作为参考）。<br />
-如 果定位不成功，请检查你是否已经打开了手机的定位功能。方法是：home按钮 - menu按钮 - settings - security &amp; location，将use wireless networks选上，enable GPS satellites按你自己需要决定选不选。<br />
-wirelessnetworks在任何地方只有有手机信号基本都能立即定位，但不够准确，有可能 差一两条街；GPS定位很准，能到几十米，但要在天空开阔的地方才能收到足够数量的卫星，而且也要等比较久才能锁定卫星信号，屏幕顶上的绿色卫星天线图标 长亮不闪烁时才表示GPS定位成功。  </p>
-
-<h3 id="section-4">用手机自带地图显示当前位置</h3>
-
-<p>菜单选择”open in map app”，会切换到手机自带的地图软件，这时屏幕正中间就是当前位置。要注意，它的蓝点位置还是偏的。校准仅仅在 Better My Location 中有效。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/04/19/Better-My-Location-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/24/">&larr; Older</a>
@@ -400,6 +388,10 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
@@ -413,10 +405,6 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
     
       <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
   </ul>
@@ -456,16 +444,16 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

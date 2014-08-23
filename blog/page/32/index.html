@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Java语言具备GC(垃圾回收)的能力，内存管理不需要应用程序去过问，这很方便。但是，GC是怎么进行的，JVM的内存参数应该怎么调整，如何优化，往往我们不是太清楚。看过一些资料后，对Sun JVM的内存管理以及垃圾回收的机制大概有了一个概念，这里将这些资料归纳和翻译出来。本文内容主要基于Sun &hellip;">
+  <meta name="description" content="UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。 虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,75 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/15/Windows-symbolic-link-/">Windows的symbolic Link支持</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T21:32:00+08:00" pubdate data-updated="true">2007-03-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。</p>
+
+<p>虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西，因为OS并没有管理它，要靠应用程序来处理。在DOS窗口里面dir看看一个shortcut是什么样子的，就知道有什么不同了。</p>
+
+<p>其实，windows在NTFS 3.0开始支持一种叫做 junction point 的特性[3]，可以看作为目录的symbolic link。可是微软总是喜欢把一些东西藏起来，比如这种junction point，你就无法直接通过windows自带工具来建立、管理。我是使用<a href="http://www.zabkat.com/">xplorer2</a>这个explorer替代工具的时候，才发现有”Folder Junction”的功能(Edit - Paste Special - Folder junction)。在[1]中介绍了很多可以管理junction point的工具。不过，使用时还是要小心，它跟UNIX的symbolic link还是不完全相同，特别是删除的时候，junction point的行为有点怪异的[1][3]。据说Vista会提供与UNIX兼容的symbolic link支持。</p>
+
+<p>利用junction point，可以在D盘建立一个目录，link到C盘来使用；也可以将分布在不同地方的多个子目录link到同一个目录底下，方便备份。</p>
+
+<p>另外，Windows NTFS也支持hard link的[5]，但实际使用中symbolic link的作用更大。</p>
+
+<p>Reference:</p>
+
+<ol>
+  <li>Windows Symbolic and Hard Links: <a href="http://www.shell-shocked.org/article.php?id=284">http://www.shell-shocked.org/article.php?id=284</a></li>
+  <li>Symbolic Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>NTFS Junction Point: <a href="http://en.wikipedia.org/wiki/NTFS_junction_point">http://en.wikipedia.org/wiki/NTFS_junction_point</a></li>
+  <li>Hard Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>Hard Link in Windows: <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true">http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true</a></li>
+</ol>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/15/Windows-symbolic-link-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -374,71 +443,6 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/08/27/Read-excerpts-city/">读书摘录 - 城市</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-08-27T14:45:00+08:00" pubdate data-updated="true">2006-08-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>读书摘录：<a href="http://www.douban.com/subject/1861730/">Stockholm Horizons</a></p>
-
-<p>Introduction</p>
-
-<p>What makes a city? … A city is principally a forum for mankind’s countless activities. We live, think, work, buy, sell, study, love, enjoy and suffer in the city.(P9)</p>
-
-<p>读书摘录：<a href="http://www.douban.com/subject/1451694/">城市的形成</a></p>
-
-<p>“有机”模式</p>
-
-<p>许多城市在初始时是很粗陋的；它们的形成是在含蓄和渐进中形成的。…住宅在扩展的过程中将会变得稠密，并且编辑出肌理。建筑物将尽其所能爬上山坡，占领河湾。到了某个阶段，这种自然的布局将会获得一种自我意识。…画境式郊区的出现是因为城市回过头来欣赏它自己那自然的初始时期，同时，也是对过去曾经拥有的美德的一种眷恋。(P64)</p>
-
-<p>只要将散步者的足迹描摹出来便可以获得画境式的效果。我们可以在乡间发现这些优雅的弧线，而模仿这些弧线是“一种荣誉的事”。(P82)</p>
-
-<p>我们经历了可怕的20世纪二三十年代，当时的老城一方面被法西斯所破坏，另一方面又饱尝了现代主义的狂热；我们也经历了20世纪五六十年代，当时剧烈的城市更新风暴毁坏了无数城市中心，而今天我们已经开始学习如何去接纳城市的完整性。(P90)</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/08/27/Read-excerpts-city/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/33/">&larr; Older</a>
@@ -460,6 +464,10 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
@@ -473,10 +481,6 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
     
       <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
   </ul>
@@ -516,16 +520,16 @@ Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larg
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

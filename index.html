@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="读书笔记摘抄：《众妙之门——网页排版设计制胜秘诀》 版式设计 正文字号常见为12~14px。 标题与正文字号（font-size）的比例，比较流行的平均值是1.96。也就是将正文文字字号乘以2，就得到标题文字的字号。字号从传统值（6,7,8,9,10,11,12,14,16,18,21,24,36 &hellip;">
+  <meta name="description" content="关于PlantUML的简介。 PlantUML from aleung ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/23/plantuml/">PlantUML</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-23T16:57:33+08:00" pubdate data-updated="true">2014-08-23</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/uml/'>UML</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>关于PlantUML的简介。</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/38238529" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/aleung/plantuml" title="PlantUML" target="_blank">PlantUML</a> </strong> from <strong><a href="http://www.slideshare.net/aleung" target="_blank">aleung</a></strong> </div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2014/08/23/plantuml/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -455,152 +509,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML Diagram</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-20T22:10:00+08:00" pubdate data-updated="true">2014-01-20</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/uml/'>UML</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Usually I used <a href="http://astah.net/">Astah</a> to draw UML diagram to put into design document in MS Word or PowerPoint format. The separation of the source and generated file making management of the UML model file a problem. And also it’s annoying to adjust a large amount of elements by dragging with mouse whenever you add something in the diagram. For a coder, typing on keyboard is faster than drawing with mouse.</p>
-
-<p>Now I switch to <a href="http://plantuml.com/">PlantUML</a>. Just write UML in its <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> and PlantUML generates the diagram. It supports most of the frequent used UML diagrams, which I use most are sequence diagram, class diagram and state diagram. Then I paste the generated diagram into slides (design document) and keep the “source” in note. No need to wonder where to find original UML model file when I need to update the diagram.</p>
-
-<p>The core of PlantUML is simply a jar file. It parses the text input and depends on <em>dot</em> tool from <a href="http://www.graphviz.org/">Graphviz</a> for graph generation (except sequence diagram). </p>
-
-<p>There are <a href="http://www.plantuml.com/running.html">a bunch of ways</a> to run PlantUML. I highlight some of them I prefer:</p>
-
-<ul>
-  <li>Online editor. Best choice if you’re too lazy to install anything on your computer.</li>
-  <li>Desktop (Windows): <a href="https://code.google.com/p/plant-uml-file-watcher/">PlantUML File Watcher</a></li>
-  <li>Embedded into Octopress blog platform. The below examples are using it.</li>
-  <li>IDE plugin. Easy way to keep UML together with source code.</li>
-</ul>
-
-<p>The syntax of PlantUML’s DSL is quite intuitional, you can start to use it by following example.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">package ConsentObject &lt;&lt;Rect&gt;&gt; {
-</span><span class="line">  Consent : id
-</span><span class="line">  Scope : key
-</span><span class="line">}
-</span><span class="line"> 
-</span><span class="line">Client - User
-</span><span class="line">(Client, User) . Consent
-</span><span class="line"> 
-</span><span class="line">Consent - "*" Scope
-</span><span class="line"> 
-</span><span class="line">Consent "1" -- "1..*" AccessToken</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The generated diagram:</p>
-
-<p><img src="/blog/images/plantuml/ffe2231fbbf2c03843a63167a4e1057a.png" /> </p>
-
-<p>A sequence diagram example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">title OAuth 2.0 Authorization Code Grant
-</span><span class="line">
-</span><span class="line">actor    UserAgent       as UA
-</span><span class="line">participant Application     as APP
-</span><span class="line">participant OAuthServer     as OAuth
-</span><span class="line">participant ResourceServer  as RS
-</span><span class="line">
-</span><span class="line">== Application requests authorization from user ==
-</span><span class="line">UA-&gt;APP: 
-</span><span class="line">APP--&gt;UA:redirect to OAuth Server
-</span><span class="line">UA-&gt;OAuth: GET /authorize?response_type=code
-</span><span class="line">ref over UA, OAuth: user authentication\nuser confirms reqest
-</span><span class="line">OAuth--&gt;UA: redirect to App with authorization_code
-</span><span class="line">UA-&gt;APP: authorization_code
-</span><span class="line">
-</span><span class="line">== Application retrieve access token ==
-</span><span class="line">APP-&gt;OAuth: POST /token with authorization_code
-</span><span class="line">ref over APP, OAuth: client authentication
-</span><span class="line">APP&lt;--OAuth: access_token
-</span><span class="line">
-</span><span class="line">== Application access protected resource ==
-</span><span class="line">APP-&gt;RS: getResource with access_token
-</span><span class="line">RS-&gt;OAuth: validateToken(access_token)
-</span><span class="line">RS--&gt;APP: result</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><img src="/blog/images/plantuml/a73e1bc6787042a73befa2944361b18c.png" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/01/20/text-to-uml-diagram/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -620,6 +528,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
@@ -633,10 +545,6 @@
     
       <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
   </ul>
@@ -676,16 +584,16 @@
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

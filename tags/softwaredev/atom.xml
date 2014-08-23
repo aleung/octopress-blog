@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-08-23T14:16:21+08:00</updated>
+  <updated>2014-08-23T17:12:02+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PlantUML]]></title>
+    <link href="http://aleung.github.io/blog/2014/08/23/plantuml/"/>
+    <updated>2014-08-23T16:57:33+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/08/23/plantuml</id>
+    <content type="html"><![CDATA[<p>关于PlantUML的简介。</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/38238529" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/aleung/plantuml" title="PlantUML" target="_blank">PlantUML</a> </strong> from <strong><a href="http://www.slideshare.net/aleung" target="_blank">aleung</a></strong> </div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Text to UML diagram]]></title>
@@ -51,7 +63,19 @@ package ConsentObject «Rect» {
 
 <p>The generated diagram:</p>
 
-<p><img src='/images/plantuml/aa654ab10cd77969eaef52fa8b70576f.png'> </p>
+<p>{% plantuml %} 
+package ConsentObject «Rect» {
+  Consent : id
+  Scope : key
+}</p>
+
+<p>Client - User
+(Client, User) . Consent</p>
+
+<p>Consent - “*” Scope</p>
+
+<p>Consent “1” – “1..*” AccessToken
+{% endplantuml %} </p>
 
 <p>A sequence diagram example:</p>
 
@@ -82,7 +106,31 @@ RS-&gt;OAuth: validateToken(access_token)
 RS–&gt;APP: result
 ```</p>
 
-<p><img src='/images/plantuml/be23d4813dfec870f068ecda2f4ba44f.png'></p>
+<p>{% plantuml %}
+title OAuth 2.0 Authorization Code Grant</p>
+
+<p>actor       UserAgent       as UA
+participant Application     as APP
+participant OAuthServer     as OAuth
+participant ResourceServer  as RS</p>
+
+<p>== Application requests authorization from user ==
+UA-&gt;APP: 
+APP–&gt;UA:redirect to OAuth Server
+UA-&gt;OAuth: GET /authorize?response_type=code
+ref over UA, OAuth: user authentication\nuser confirms reqest
+OAuth–&gt;UA: redirect to App with authorization_code
+UA-&gt;APP: authorization_code</p>
+
+<p>== Application retrieve access token ==
+APP-&gt;OAuth: POST /token with authorization_code
+ref over APP, OAuth: client authentication
+APP&lt;–OAuth: access_token
+== Application access protected resource ==
+APP-&gt;RS: getResource with access_token
+RS-&gt;OAuth: validateToken(access_token)
+RS–&gt;APP: result
+{% endplantuml %}</p>
 ]]></content>
   </entry>
   
@@ -110,7 +158,7 @@ RS–&gt;APP: result
 
 <p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
 
-<p><img src="/attachments/2013/12/burp.png"></p>
+<p>{%img /attachments/2013/12/burp.png %}</p>
 
 <p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
 
@@ -144,28 +192,7 @@ RS–&gt;APP: result
 
 <p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
 
-<p><div><script src='https://gist.github.com/5260512.js'></script>
-<noscript><pre><code></code></pre></noscript></div>
-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Clean aged artifacts from Artifactory]]></title>
-    <link href="http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory/"/>
-    <updated>2013-03-22T23:21:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/03/22/clean-aged-artifacts-from-artifactory</id>
-    <content type="html"><![CDATA[<p><a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> has no feature to automatically remove old artifacts from local repository. Once the disk is full, manually remove unused artifacts is painful. Moveover, you’re not sure which artifacts are unused and can be safely deleted.</p>
-
-<p>Artifactory has a set of <a href="http://wiki.jfrog.org/confluence/display/RTF/Artifactory's+REST+API">REST API</a>. One of the API is to search artifacts not downloaded since a specified date. In our projects, there are CI jobs which keep building the software for each branch. If a SNAPSHOT artifact hasn’t been downloaded for a time, we can make sure that this artifact is no use any more, a newer version should be existing.</p>
-
-<p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
-
-<p><div><script src='https://gist.github.com/5203736.js'></script>
-<noscript><pre><code></code></pre></noscript></div>
-</p>
-
-<p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
+<p>{%gist https://gist.github.com/aleung/5260512 %}</p>
 ]]></content>
   </entry>
   

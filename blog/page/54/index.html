@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="如果用JTextArea来做信息窗口，不断用append()显示新信息，通常会希望内容能自动滚动，保持最后增加的信息能够显示出来。利用setCaretPosition()可以实现，这个方法是设置输入光标的位置，如果光标位置超出目前可视范围，会自动滚动以保正光标可以显示出来。 int length &hellip;">
+  <meta name="description" content="用Java对XML进行处理, 有好多种方案, 如不了解相互的关系让人很头晕. 这里介绍的都是XML processing/parsing的范畴, XML的应用还有其他的许多方面, 也有好多令人眼花缭乱的缩写. XML语法分析的方案有两种, 分别为DOM和SAX. DOM: Document &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,112 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/08/Java-XML-API/">Java的几种XML语法分析API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-08T22:42:00+08:00" pubdate data-updated="true">2003-09-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>用Java对XML进行处理, 有好多种方案, 如不了解相互的关系让人很头晕. 这里介绍的都是XML processing/parsing的范畴, XML的应用还有其他的许多方面, 也有好多令人眼花缭乱的缩写.  </p>
+
+<p>XML语法分析的方案有两种, 分别为DOM和SAX.  </p>
+
+<p><strong>DOM</strong>: Document Object Model (<a href="http://www.w3.org/DOM/">http://www.w3.org/DOM/</a>)<br />
+DOM 由 W3C 创建，并且是该协会的正式建议.<br />
+解析器读入整个文档，然后构建一个驻留内存的树结构，然后您的代码就可以使用 DOM 接口来操作这个树结构。您可以遍历树以了解原始文档包含了什么，您可以删除树的几个部分，还可以重新排列树和添加新的分支，等等。<br />
+DOM 构建整个文档驻留内存的树。如果文档很大，就会要求有极大的内存。 <br />
+DOM 创建表示原始文档中每个东西的对象，包括元素、文本、属性和空格。如果您只需关注原始文档的一小部分，那么创建那些永远不被使用的对象是极其浪费的。 <br />
+DOM 解析器必须在您的代码取得控制权之前读取整个文档。对于非常大的文档，这会引起显著的延迟。   </p>
+
+<p><strong>SAX</strong> API for XML (<a href="http://www.saxproject.org/">http://www.saxproject.org/</a>) <br />
+SAX 采用事件驱动的模式, 解释器读入XML文档, 进行扫描, 当发现符合指定条件的数据时, 向您的代码发送一个事件。SAX 不能修改 XML 文档.<br />
+SAX 事件是无状态的。当 SAX 解析器在 XML 文档中发现文本时，它就向您的代码发送一个事件。该事件仅仅给您发现的文本；它不告诉您什么元素包含那个文本。如果您想知道这一点，则必须自己编写状态管理代码。 <br />
+SAX 事件不是持久的。如果应用程序需要一个数据结构来对 XML 文档建模，则必须自己编写那样的代码。如果您需要从 SAX 事件访问数据，并且没有把那个数据存储在代码中，那么您不得不再次解析该文档。 <br />
+SAX 的速度相当快, 而且节省内存, 因为它不会保存数据在内存之中.   </p>
+
+<p>DOM/SAX 是两种不同的解析方法, 各有侧重点, 用于不同用途. 它们都可以用不同的编程语言来实现, 不同的供应商会提供各自的解释器版本. 例如Microsoft提供了DOM分析器msxml.dll, Apache的xerces, SUN的crimson等.   </p>
+
+<p>DOM与SAX, 如何选择?   </p>
+
+<ul>
+  <li>
+    <p>应用程序将如何部署？<br />
+如果您的应用程序将要作为 Java applet 部署，那么您会希望使要下载的代码数量最小，SAX 解析器比 DOM 解析器小。   </p>
+  </li>
+  <li>
+    <p>一旦解析了 XML 文档，还需要多次访问那些数据吗？<br />
+如果您需要回过头来访问 XML 文件的已解析版本，DOM 可能是正确的选择。而 SAX 事件被触发时，如果您以后需要它，则由您（开发人员）自己决定以某种方式保存它。如果您需要访问不曾保存的事件，则必须再次解析该文件。而 DOM 自动保存所有的数据。   </p>
+  </li>
+  <li>
+    <p>只需要 XML 源文件的少量内容吗？<br />
+如果您只需要 XML 源文件的少量内容，那么 SAX 可能是正确的选择。SAX 不会为源文件中的每个东西创建对象；您要确定什么是重要的。使用 SAX，您要检查每个事件以了解它是否与您的需要有关，然后相应地处理它。更妙的是，一旦找到您正在寻找的东西，您的代码就会抛出一个异常来完全停止 SAX 解析器。   </p>
+  </li>
+  <li>
+    <p>您正在一台内存很少的机器上工作吗？<br />
+若是的话，不管您可能考虑到的其它因素是什么，SAX 是您的最佳选择。  </p>
+  </li>
+</ul>
+
+<p>在Java语言中, 要处理XML, 除了直接使用DOM/SAX, 还有高层次一点的API可以使用, 比较常见的是JAXP和JDOM.   </p>
+
+<p><strong>JAXP</strong>: Java API for XML Processing<br />
+是 Sun 提供的标准API, 包含在JDK中. <br />
+但它更多的是一套接口, 将DOM和SAX的接口规范起来, 并没有在易操作性方面提供太多的方便.  </p>
+
+<p><strong>JDOM</strong>: 由Brett McLaughlin, Jason Hunter两人创立的open source项目 (<a href="http://www.jdom.org">http://www.jdom.org</a>)<br />
+JDOM的设计目的不是要做万能的解析器, 而是能提供常用的大部分的功能. 它的使用相对简单, 容易理解, 使用它开发代码量会比较少.<br />
+JDOM 的速度也比较高, 仅仅比SAX慢一点. 它主要是使用SAX来实现功能, 当需要用到DOM的时候才使用DOM.   </p>
+
+<p>还有不少类似的API, 某些甚至已经比JDOM更好, 不过都不如JDOM使用范围广.  </p>
+
+<p>JAXP/JDOM 都是建立在 DOM/SAX 之上的API, 也可认为是抽象层, 需要通过具体供应商提供 DOM/SAX 实现来完成 XML 解析工作. 作为一个相对高层的接口, 隐藏了具体厂商实现, 减低复杂性, 降低开发的工作量.   </p>
+
+<p>一般来说, 在我们开发程序的时候, 从开发效率,兼容性,移植性等方面考虑, 都是选择使用高层的API更好些. JAXP已经附带在JDK中, 由SUN所支持, 应该标准化/延续性方面会比较好; 而根据网上开发者反映, 普遍都喜欢用JDOM, 因为使用简单方便.  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/08/Java-XML-API/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -360,73 +466,6 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/27/Some-GPS-related-software-and-project/">一些与GPS相关的软件项目</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-27T01:11:00+08:00" pubdate data-updated="true">2003-08-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>想写个GPS有关的软件，网上找到一些相关的项目: </p>
-
-<ul>
-  <li>Java framework for GPS <a href="http://www.aasted.org/gps/">http://www.aasted.org/gps/</a><br />
-这个项目的目标是为各种应用程序加入GPS功能提供framework. 目前提供的是与Garmin GPS通讯的功能. </li>
-  <li>Chaeron GPS library <a href="http://www.chaeron.com/gps.html">http://www.chaeron.com/gps.html</a><br />
-类似的项目,也是作为支持库，但功能更强/完善. 支持多种平台, 包括多种PDA. 而且这看来是一个active的项目, 由一个公司支持. </li>
-  <li>JavaGPS <a href="http://javagps.sourceforge.net/">http://javagps.sourceforge.net/</a><br />
-这个项目的范围似乎比前两个窄一些, 局限于从GPS中取得当前位置数据. 从代码看来，设计也不如前两个项目规范。</li>
-</ul>
-
-<p>但是，这些项目看来都是只支持从GPS取数据，而不支持传送数据给GPS。</p>
-
-<ul>
-  <li>EPS <a href="http://eps.sourceforge.net/">http://eps.sourceforge.net/</a><br />
-这是一个小应用程序，能够下载GPS数据并显示。这个程序能与Garmin GPS通讯，有上传/下载功能, 不过代码风格很差。</li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/27/Some-GPS-related-software-and-project/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/55/">&larr; Older</a>
@@ -448,6 +487,10 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
@@ -461,10 +504,6 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
     
       <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
   </ul>
@@ -504,16 +543,16 @@ GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准. 
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>

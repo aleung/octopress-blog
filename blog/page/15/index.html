@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="几天前去游泳，连续游了四十分钟，没有感觉到累，倒是游得很无聊。一路就是看着池底白晃晃的瓷片和黑色的泳道线，到头了转个身一蹬池壁，又是单调的白与黑。见不到养眼的泳装美女来分散一下注意力，一路只好默念着这是第十个来回，第十一个来回，目标是十五个，目标是十五个……游得无聊，倒是有了两个想法。 &hellip;">
+  <meta name="description" content="在上次写下进展之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。 首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,92 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/">Android手机上使用SSH Tunnel：prototype</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2010-07-31T00:17:00+08:00" pubdate data-updated="true">2010-07-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在上次写下<a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-">进展</a>之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。</p>
+
+<ol>
+  <li>首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行</li>
+  <li>将transocks_ev放到Android系统中，目录随你喜欢。这里<a href="http://cid-e1c6bc07e3f505a3.office.live.com/self.aspx/.Public/transocks%5E_ev-android.zip">下载</a>已编译的transocks_ev for Android可执行文件，解压后文件的MD5：6a0c3500bcd24ab7b706c8caf34f15ba</li>
+  <li>从Android Market下载ConnectBot，配置好你的ssh帐号，记得设置port forwarding，端口为9050</li>
+  <li>在ConnectBot中连接ssh</li>
+  <li>在shell中运行transocks_ev:  </li>
+</ol>
+
+<pre><code>transocks_ev -S 127.0.0.1 -s 9050
+</code></pre>
+
+<ol>
+  <li>在shell中执行iptables命令： </li>
+</ol>
+
+<pre><code>iptables -t nat -F 
+iptables -t nat -A OUTPUT -m owner --cmd-owner transocks_ev -j RETURN 
+iptables -t nat -A OUTPUT -m owner --cmd-owner org.connectbot -j RETURN 
+iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-ports 1211 
+iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
+</code></pre>
+
+<ol>
+  <li>这时所有的HTTP/HTTPS流量都会通过ssh tunnel了，但DNS查询不会，所以依然无法访问被DNS污染的网站</li>
+  <li>断开ConnectBot连接</li>
+  <li>在shell中kill掉transocks_ev进程</li>
+  <li>在shell中执行iptables命令：</li>
+</ol>
+
+<pre><code>iptables -t nat -F
+</code></pre>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -331,72 +417,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/">Android手机上使用SSH Tunnel的进展 (2010-06-06)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-07T13:22:00+08:00" pubdate data-updated="true">2010-06-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在上一篇博客中，我提出了<a href="http://good-good-study.appspot.com/blog/posts/20001">在Android手机上使用SSH tunnel的想法</a>。几天下来有了一些进展。</p>
-
-<p>首先，非常感谢<a href="http://sunner.cn/">Sunner</a>，他帮忙编译出Android平台的transocks_ev binary，并且解决了一些在Android平台上运行的问题。</p>
-
-<p>在实验中，用ConnectBot + transocks_ev + iptables，HTTP和HTTPS请求都能重定向到SSH tunnel了，测试了浏览器和其他一些应用，无需任何额外设置就可正常访问网络。不过目前没有考虑使用非HTTP/HTTPS的应用。但现在还有两个问题：</p>
-
-<ol>
-  <li>DNS查询还是直接出去，不能避免DNS污染</li>
-  <li>现在用ConnectBot作为ssh client，并不合适： 
-    * 在port forwarding时ConnectBot CPU占用非常高，达到99%，估计是有bug。
-    * ConnectBot的连接和断开需要手动控制，密码也要在界面输入，无法做到整个翻墙过程单击执行。</li>
-</ol>
-
-<p>对于第一个问题，transocks_ev 不支持UDP，因此无法tunnel DNS查询请求。我在考虑参考<a href="http://code.google.com/p/cmwrap/">CMWrap</a>的方案，做一个DNS proxy，转成TCP请求发出去。  </p>
-
-<p>对于第二个问题，想用一个命令行ssh来代替ConnectBot。目前在Android上常用的是dropbear，但dropbear不支持SOCKS。查了linux上支持SOCKS的ssh client有OpenSSH和lsh（还有没有其他？），但是Sunner尝试了编译OpenSSH和lsh都不成功，因为它俩都太依赖gnu的一些东西了，比如glibc、glib等，而android上所有的对应的库都是从简的。因此暂时还是先用着ConnectBot，并将CPU高的问题反馈给开发者，看看有没有什么回应。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/16/">&larr; Older</a>
@@ -418,6 +438,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
@@ -431,10 +455,6 @@
     
       <li class="post">
         <a href="/blog/2014/03/15/pebble/">Pebble</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
       </li>
     
   </ul>
@@ -474,16 +494,16 @@
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 125%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 136%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
-<a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
