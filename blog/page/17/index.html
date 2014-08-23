@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Issue SOAP WS client which uses CXF can’t run on GlassFish AS. Getting ClassCastException on invoking some CXF API. The problem was described as CXF- &hellip;">
+  <meta name="description" content="Android是基于Linux的系统，这是对开发者很方便的。今天手机上网不太正常，想到抓些包来看看，于是上网google一下，就找到教程了：Debugging with Tcpdump。我的ROM没有预装tcpdump（据说cm的rom有），自己编译也太麻烦了，网上也可以找到编译好的包，搜索” &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,102 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/03/19/Grab-Android-system-on-network-communication/">抓取Android系统上的网络通信</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-19T13:33:00+08:00" pubdate data-updated="true">2010-03-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Android是基于Linux的系统，这是对开发者很方便的。今天手机上网不太正常，想到抓些包来看看，于是上网google一下，就找到教程了：<a href="http://pdk.android.com/online-pdk/guide/tcpdump.html">Debugging with Tcpdump</a>。我的ROM没有预装tcpdump（据说cm的rom有），自己编译也太麻烦了，网上也可以找到编译好的包，搜索”tcpdump-arm”可找到。</p>
+
+<p>有了tcpdump，要分析别人的应用干了些什么也方便多了。例如这是 Google Maps 获取network location的包：</p>
+
+<pre><code>POST /loc/m/api HTTP/1.1
+Connection: close
+Content-Type: application/binary
+Content-Length: 496
+Host: www.google.com
+User-Agent: GMM/3.0 (dream ERE27); gzip
+
+...."location,1.0,android,android,en_US... I.....g...........g:loc/ql......
+..
+.1.0.Iandroid/google/passion/passion/mahimahi:2.1/ERD72/22132:user/release-keys.#2:l-7Yxu1UHhuUZlb5:F_iqbZnw84bV2J0q*.zh_CN2
+....CMCC .(...
+.voicesearch..
+.com.diddo.diddo.diddo..
+.apps.maps..
+.com.lim.android.automemman"..
+..
+...I...... ..(.......$....I...... ..(.....I...... ..(.....I...... ..(.....I...... ..(.....I...... ..(."...I...... ..(.0..K"...I...... ..(.0..J"...I...... ..(.0..."...I...... ..(.0...(......
+
+
+HTTP/1.1 200 OK
+Content-Type: application/binary
+Content-Disposition: attachment
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: Fri, 01 Jan 1990 00:00:00 GMT
+Date: Fri, 19 Mar 2010 04:49:31 GMT
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Content-Length: 188
+Server: GSE
+X-XSS-Protection: 0
+Connection: close
+
+..............g...)...........`.Z... $...k.......fg./,
+.....,.."....cZ
+....(.
+!'....S`..F...3..BP.n..j...`Q{..V..v...Z'yT;.j...]..Q+.U.d.Pm.,6..aj..j_....=..T...
+goB. .U....s7.......#
+)...
+</code></pre>
+
+<p>不过payload是binary的，没法直接看出里面是些什么东西。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/03/19/Grab-Android-system-on-network-communication/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -484,76 +580,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/">推荐一个介绍翻墙知识的邮件列表</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-24T00:59:00+08:00" pubdate data-updated="true">2010-02-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>订阅bypassgfw邮件列表后，可通过email定期会收到翻墙软件更新版本。订阅方法有两种：</p>
-
-<ol>
-  <li>访问<a href="https://groups.google.de/group/bypassgfw?hl=zh-CN">https://groups.google.de/group/bypassgfw?hl=zh-CN</a>(此地址已被墙)，用Google/GMail账号登录，点击右侧”加入此论坛”</li>
-  <li>发邮件至 jsmith.email2009@googlemail.com 申请加入(请在标题中标明”申请加入Bypass GFW Google Group)</li>
-</ol>
-
-<p>以下内容摘自bypassgfw的介绍：</p>
-
-<blockquote>
-  <p>更多翻墙软件和翻墙技巧 <a href="http://twitbrowser.net/blog">http://twitbrowser.net/blog</a>墙内镜像：<a href="http://tbm001.mooo.com/">http://tbm001.mooo.com/</a></p>
-
-  <p>加入小组需Google/GMail账号，没有Google/GMail账号也可以直接发邮件至jsmith.email2009@googlemail.com申请加入(请在标题中标明”申请加入Bypass GFW Google Group)，我会手动添加到邮件列表中</p>
-
-  <p>163和Hotmail会将小组邮件标为垃圾邮件，请尽量不要使用这两个邮箱订阅小组邮件</p>
-
-  <p>本小组仅为发送邮件所创建，每周会发送两封附件包含有效翻墙软件的邮件至所有组员邮箱，问题讨论请到<a href="http://groups.google.com/group/bypassgfwdiscussions">http://groups.google.com/group/bypassgfwdiscussions</a></p>
-
-  <p>如果您有任何问题或无法收到邮件，请发送邮件到 jsmith.email2009@googlemail.com</p>
-</blockquote>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/02/24/Recommend-a-introduced-over-the-wall-knowledge-of-the-mailing-list/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/18/">&larr; Older</a>
@@ -575,6 +601,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/21/run/">跑步日記</a>
       </li>
     
@@ -588,10 +618,6 @@
     
       <li class="post">
         <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML diagram</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a>
       </li>
     
   </ul>
@@ -609,7 +635,7 @@
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
-<a style="font-size: 70%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
@@ -631,7 +657,7 @@
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
-<a style="font-size: 118%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 125%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 136%" href="/blog/tags/software/">Software</a>
@@ -641,7 +667,7 @@
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 120%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 70%" href="/blog/tags/uml/">UML</a>
-<a style="font-size: 93%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

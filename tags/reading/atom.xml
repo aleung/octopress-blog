@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Reading | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/reading/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-06-21T18:41:21+08:00</updated>
+  <updated>2014-08-23T14:16:21+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,110 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Getting the Hang of Web Typography]]></title>
+    <link href="http://aleung.github.io/blog/2014/08/23/getting-the-hang-of-web-typography/"/>
+    <updated>2014-08-23T10:34:11+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/08/23/getting-the-hang-of-web-typography</id>
+    <content type="html"><![CDATA[<p>读书笔记摘抄：《<a href="http://book.douban.com/subject/25741532/">众妙之门——网页排版设计制胜秘诀</a>》</p>
+
+<h1 id="section">版式设计</h1>
+
+<p>正文字号常见为12~14px。</p>
+
+<p>标题与正文字号（font-size）的比例，比较流行的平均值是1.96。也就是将正文文字字号乘以2，就得到标题文字的字号。字号从传统值（6,7,8,9,10,11,12,14,16,18,21,24,36,48,60,72）或者斐波那契数列（8,13,21,34,55）中选择，可以得到更自然的版式效果。</p>
+
+<p>计算行宽的简单方法：行宽=字号*30。如果字号是10px，行宽就是300px，差不多等于一行65个字。</p>
+
+<p>行高（line-height）受多种因素的影响：字体、字号、粗细、样式、行宽、字距等。行宽越宽，行高就需越大；字号越大，行高就需要越小。比较流行的行高与字号的比例是1.5。</p>
+
+<p>段间距通常是行高的75%左右。</p>
+
+<h1 id="section-1">字体分类</h1>
+
+<p>网页设计中大多数字体可以分为五大类别：</p>
+
+<h3 id="geometric-sans-">Geometric Sans 无衬线几何字体</h3>
+
+<p><img src="/attachments/2014/8/geometric.jpg"></p>
+
+<p>这个类别实际包括了几何风格（Geometric）、现实风格（Realist）和奇异风格（Grotesk）三类字体。它们基于精准几何形体，每个字母笔画的宽度都是一样的，这种设计生动体现了“少即是多”的极简派的设计思想。</p>
+
+<ul>
+  <li>运用得当：干净、感性、现代而通用；</li>
+  <li>运用不当：冰冷、理性、枯燥。</li>
+</ul>
+
+<p><em>Examples of Geometric/Realist/Grotesk Sans:</em> Helvetica, Univers, Futura, Avant Garde, Akzidenz Grotesk, Franklin Gothic, Gotham.</p>
+
+<h3 id="humanist-sans-">Humanist Sans 无衬线人文字体</h3>
+
+<p><img src="/attachments/2014/8/humanist.jpg"></p>
+
+<p>由手写体衍化而来，它们中的一些可能看上去干净而现代，但仍旧保留了一些手写体的特点。一般具有更多细节、更少的一致性，而且字体较窄笔画偏粗。</p>
+
+<ul>
+  <li>运用得当：既现代又人文；</li>
+  <li>运用不当：缺乏力度，不够权威。</li>
+</ul>
+
+<p><em>Examples of Humanist Sans:</em> Gill Sans, Frutiger, Myriad, Optima, Verdana.</p>
+
+<h3 id="old-style-">Old Style 古体字</h3>
+
+<p><img src="/attachments/2014/8/old-style.jpg"></p>
+
+<p>特点是粗细笔画间的对比微妙，还有字母的弧度朝左偏。</p>
+
+<ul>
+  <li>运用得当：古典，传统而易读；</li>
+  <li>运用不当：依然是古典和传统（与其他不协调）。</li>
+</ul>
+
+<p><em>Examples of Old Style:</em> Jenson, Bembo, Palatino, Garamond(尤其显得传统)</p>
+
+<h3 id="transitional-and-modern-">Transitional and Modern 过渡体和现代体</h3>
+
+<p><img src="/attachments/2014/8/trans.jpg"><img src="/attachments/2014/8/modern.jpg"></p>
+
+<p>这两类字体是启蒙思想的产物，字体设计师尝试改变平凡而低调的古体字的字形，使其变得更具几何特点、更锐利、更艺术。</p>
+
+<ul>
+  <li>运用得当：展现出力量感、时尚感和活力；</li>
+  <li>运用不当：不伦不类——若说古典，又过于显眼和繁复；若说现代，又显得有点俗气。</li>
+</ul>
+
+<p><em>Examples of transitional typefaces:</em> Times New Roman, Baskerville.</p>
+
+<p><em>Examples of Modern serifs:</em> Bodoni, Didot.</p>
+
+<h3 id="slab-serifs-">Slab Serifs 带衬线的板式字体</h3>
+
+<p><img src="/attachments/2014/8/slab.jpg"></p>
+
+<p>笔画与其他衬线字体很像（形式简洁，笔画粗细对比相对微弱），但较为特别的是笔画末端有又方又硬的衬线。</p>
+
+<p>这类字体可以传达出一种权威感，如Rockwell字体的粗体；也可以展现出友好的感觉，如Archer。独特的块状衬线能为版面带来特别的气息，不过一旦用错也尤为显眼。</p>
+
+<p><em>Examples of Slab Serifs:</em> Clarendon, Rockwell, Courier, Lubalin Graph, Archer.</p>
+
+<h3 id="reference">Reference:</h3>
+
+<ul>
+  <li><a href="what-font">What Font Should I Use?</a></li>
+  <li>Making Sense of Type Classification (<a href="type-class-1">part 1</a>) (<a href="type-class-2">part 2</a>)</li>
+</ul>
+
+<h1 id="css-font-stack">CSS Font Stack</h1>
+
+<p>创建字体栈的基本公式：最佳字体 + 次佳字体 + 常见的相似字体 + 相似的网页安全字体 + 通用字体。</p>
+
+<p>在字体栈中要注意字体的字形比例。例如网页安全字体中，Verdana字形很宽，Arial/Helvetica相对较窄，它们不应该同时存在于版式中；Times和Georgia也是同理。</p>
+
+<p>常见的字体栈参看 <a href="http://www.smashingmagazine.com/2009/09/22/complete-guide-to-css-font-stacks/">Guide to CSS Font Stacks</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[《简约至上》读书笔记]]></title>
@@ -126,23 +230,6 @@
 <p>一个理想的居住空间应该是既有足够的私人空间，也有良好的可活动的公共空间。现在我们的居住环境是普遍提高了，但公共空间却几乎没有。回家关上双重防盗门，窗户阳台还有防盗网，基本与外界隔绝。有小区花园的也没有多少可闲坐的地方。比起以前小孩可在街头玩耍，街坊在门前聊天，我们城市离宜居更远了。</p>
 
 <p>我们这里一些郊区大盘算是有些公共空间，但还不是有活力的空间。因为开发的思路是纯住宅区，像祈福要买点东西都要跑到外头去。适当的商业其实是有益的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[建筑的生与灭]]></title>
-    <link href="http://aleung.github.io/blog/2009/02/01/The-life-of-the-building-and-destroyed/"/>
-    <updated>2009-02-01T23:02:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2009/02/01/The-life-of-the-building-and-destroyed</id>
-    <content type="html"><![CDATA[<p>不知道从什么时候开始，喜欢上阅读关于建筑、城市规划之类的书。</p>
-
-<p>但市面上的建筑类的普及性读物基本上都是从美学方面进行介绍的，例如建筑的历史、流派，著名建筑的形态、立面的特色等等。至于建筑的结构、工程、材料、工艺方面的知识就说得甚少。也许是著书者觉得这些知识太过于专业了，外行人不感兴趣，又或者是没有办法将专业知识讲得让外行人也能够明白。</p>
-
-<p>其实，这些工程方面的知识，普通人也会感兴趣的。例如从建筑欣赏方面，结构、材料对建筑美学的影响，为什么有些建筑的形态可以做得那么夸张；地震灾害的时候什么位置是比较安全的，为什么有些房子会倒塌有些没事；甚至具体到自家房子的装修，那些是结构性的不能改动，那些可以做改动而不影响安全，这些有了了解都是很有好处的。在电视上，也看过BBC、Discovery的一些很好的科学节目关于建筑工程的，例如摩天大楼，超级桥梁怎么建造的。</p>
-
-<p>最近终于发现关于建筑技术方面的非常好的普及书籍：《建筑的生与灭》。在图书馆找到的时候发现是一套两册厚厚的书，有点害怕是否能够读得下去。当我翻开第一章开始阅读时，就发现这担心完全是多余的。作者将概念讲得清晰易懂，没有用任何晦涩的专业语汇，对基本概念都作了专门解释，贯穿以大量的经典建筑例子、插图，读起来非常轻松。虽然行文通俗，但是对知识的表达还是非常准确和严谨。能够写出这样的水平的科普文章的作者可是很难得。</p>
-
-<p>书分为两册，分别是《<a href="http://www.douban.com/subject/2066550/">建筑物怎么站起来</a>》和《<a href="http://www.douban.com/subject/2066529/">建筑物怎么倒下去</a>》，我刚刚看完第一册，书从金字塔，大教堂到摩天大楼，大桥，介绍了建筑的结构（通俗的说就是建筑的骨架）的基本知识以及常见的结构类型，兼有对建筑材料（结构用的）和建造方法的介绍。接下来准备看的第二册要讲的就是建筑史上轰动的事故背后的原因。</p>
 ]]></content>
   </entry>
   
