@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Nexus One 手机用了两年多，升过几次系统，到现在用起来还是挺满意，但唯一的问题是内部存储(ROM)太小了，只有512M，留给安装应用的空间不足200M，而现在的应用又越来越大，已经到了当想装新应用必须先卸载其他一些的地步了。尝试过A2SD，效果不大理想，卡顿感比较明显， &hellip;">
+  <meta name="description" content="Apigee is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,134 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/31/apigee/">Apigee</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-31T23:20:00+08:00" pubdate data-updated="true">2012-07-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/web/'>Web</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://apigee.com/">Apigee</a> is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it.</p>
+
+<p>Apigee is an API management platform and services company. It benefits both API providers and developers who build their apps with APIs.</p>
+
+<h2 id="apigee-enterprise">Apigee Enterprise</h2>
+
+<p>Apigee Enterprise product is an API proxy plus developer portal.</p>
+
+<p>Usually when an organization open its internal services or data to external, it develops the API and exposure it, with necessary document published. Application developers learn the API by reading the document, and then code to use the API.</p>
+
+<p><img src="/blog/attachments/2012/7/api.png" alt="" /></p>
+
+<p>Apigee helps API provider by providing API management, security, analytics etc. It provides developer portal for API provider to management developer onboarding, and also help developer to learn the API by playing with it.</p>
+
+<p><img src="/blog/attachments/2012/7/api_with_apigee.png" alt="" /></p>
+
+<h2 id="console-to-go">Console To-Go</h2>
+
+<p>Apigee Enterprise features are not available to free subscriber of Apigee, excepts the console that let developer learn an API by playing with it. Apigee opens this service to free subscriber as Console To-Go.</p>
+
+<p>I try to create my own Console To-Go:</p>
+
+<p>Create an API on Google Application Engine: <a href="http://api-playground.appspot.com/time">time API</a> , it simply return the current time since epoch.</p>
+
+<p>Write the WADL for the API.</p>
+<div><script src="https://gist.github.com/3214300.js"></script>
+<noscript><pre><code>&lt;application xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+             xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+             xmlns:apigee=&quot;http://api.apigee.com/wadl/2010/07/&quot;
+             xmlns=&quot;http://wadl.dev.java.net/2009/02&quot;
+             xsi:schemaLocation=&quot;http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd&quot;&gt;
+
+    &lt;resources base=&quot;http://api-playground.appspot.com&quot;&gt;
+
+        &lt;resource path=&quot;/time&quot;&gt;
+            &lt;method id=&quot;getTime&quot; name=&quot;GET&quot; apigee:displayName=&quot;Get time since epoch&quot;&gt;
+                &lt;apigee:tags&gt;
+                    &lt;apigee:tag primary=&quot;true&quot;&gt;Time&lt;/apigee:tag&gt;
+                &lt;/apigee:tags&gt;            
+                &lt;apigee:authentication required=&quot;false&quot;/&gt;
+                &lt;apigee:example url=&quot;/time&quot;/&gt;
+            &lt;/method&gt;
+        &lt;/resource&gt;
+
+    &lt;/resources&gt;
+
+&lt;/application&gt;
+</code></pre></noscript></div>
+
+<p>Create a new console on <a href="https://apigee.com/togo">Apigee Console To-Go</a>, upload the WADL file for my playground API.</p>
+
+<p>That’s all I need to do. Now the console is ready and anyone can try my time API on the console. This is a snapshot of API request-response:</p>
+
+<iframe src="https://snap.apigee.com/NRNmNb" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+
+<h2 id="usergrid">Usergrid</h2>
+
+<p>A cloud-based <strong>data service</strong> for application developer, especially for mobile application developer. It provides a core set of <em>commonly used social media application objects</em>, including a rich user model, as well as the ability to create new objects. </p>
+
+<p>REST API is provided, with data model in JSON.  </p>
+
+<p>Features includes:</p>
+
+<ul>
+  <li>
+    <p><em>User model</em>. Organize users into groups, teams or other structures. User authentication via Facebook, Twitter or other OAuth services. User profile synchronization.</p>
+  </li>
+  <li>
+    <p><em>Collections</em>. Any type of application data in JSON. Data sharing between users and applications.</p>
+  </li>
+  <li>
+    <p><em>Messages and activities</em>. Automates user interaction e.g. status updates, check-ins, comments in the form of activity streams. Support messaging (application internal) and notifications by delivering activities to connected users.</p>
+  </li>
+  <li>
+    <p><em>Data analytics</em>. Log events generated by application. Store, search and analyze at any level of scale.</p>
+  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/07/31/apigee/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -366,77 +494,6 @@ We deliver our product in uniform installation package for all customers. A mech
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/30/redesign-of-software-development-workspace/">软件团队工作空间再设计</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-30T22:24:00+08:00" pubdate data-updated="true">2012-06-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>软件团队的办公室空间可以分为三大类：团队工作空间，会议空间，公共区域。</p>
-
-<p>敏捷团队在工作过程中需要有比较多沟通，团队工作空间需要为此准备必要的设施，例如带有白板的讨论区域，这样就不需要讨论一些事情都要跑很远找会议室；供张贴东西的墙面；公共信息显示屏，显示CI状态之类。</p>
-
-<p>每个人的座位当然是越宽敞越好，即使条件限制，最低限度也需要保证可以增加一个人并排坐一起结对编程或讨论问题。因此应该用长条型的桌子，而不是曲尺型的桌子。</p>
-
-<p>不同团队之间的空间有一定的隔离，减少相互影响，因为团队内的讨论对他人是噪音。并且，空间的尺度对心理也有影响，需要合适的尺度，过大的大厅一排排整齐排列的桌子的心理效果不好。</p>
-
-<p>将公共区域，例如休息区、茶水间、打印机等，放在各个区域空间的交汇点，一方面是方便各个区域的人的到达，另外是形成汇聚点，成为人们的交流场所。公司里面需要创造让不同团队成员见面交流的机会。公共区域特别应该是开放性的，不带有物理边界，才能彰显公共属性，例如茶水间休息区与走廊不应该设墙，让它们融合起来，这样大家路过的时候就能够打个招呼聊上几句。休息家具款式可以多样化，颜色也可选择鲜明多彩的，让空间生动有活力。</p>
-
-<p>其实不仅是公共区域，团队区域之间也应该是柔性边界。柔性边界会鼓励人们进入不同的区域，在软件公司里并没有什么理由要为员工进入一个普通区域造成障碍。人从一个大厅进入另一个大厅，心理不会有异样感，但如果要穿过一个门进入一个坐了人的封闭的房间，那他必须是有专门目的才会这样做。</p>
-
-<p>会议室相对团队空间来说，私密性会强一些。在软件公司里开会，白板是很重要的，会议室的白板（或者用玻璃）的面积应该尽量的大，越大越好，画不下要擦掉影响思路，有可能的话将整面墙都做白版。会议室面积小，密闭空间的压抑感会特别严重，用玻璃做墙面可以改善空间感。由于团队工作空间是开放性的，需要多留一些小会议室(quite room)，或者半开放小隔间作为不受干扰的环境来临时使用。</p>
-
-<p>人喜欢在窗户旁边工作：与外界空间的连通感，扩大心理空间，不会有幽闭压抑感；自然采光与通风。因此有窗的空间应该留作给人长时间活动的空间，而不是用作偶然才有人使用的用途，如果用作储物、机房就更浪费了。</p>
-
-<p><em>后记：</em></p>
-
-<p><em>差不多两年前在荷兰工作的时候，对于欧洲的办公环境深有感触，回到国内后就有了这些想法，不过一直没有动笔写下来。期望在国内有类似欧洲的环境在目前显然是不现实的，但如果是在一开始设计办公环境的时候考虑更多人的因素，其实在不增加成本的情况下也能有所改善。最重要的是观念。</em></p>
-
-<p><em>另外还有更早的一篇<a href="/blog/2006/05/12/Each-have-independent-office-with-the-Windows">每人都有带窗户的独立办公室</a>，是在瑞典工作的时候写的。</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/06/30/redesign-of-software-development-workspace/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/8/">&larr; Older</a>
@@ -458,7 +515,11 @@ We deliver our product in uniform installation package for all customers. A mech
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -471,10 +532,6 @@ We deliver our product in uniform installation package for all customers. A mech
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -493,7 +550,7 @@ We deliver our product in uniform installation package for all customers. A mech
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -508,7 +565,7 @@ We deliver our product in uniform installation package for all customers. A mech
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>

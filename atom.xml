@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-08-23T17:08:52+08:00</updated>
+  <updated>2014-09-17T00:12:55+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -14,13 +14,26 @@
 
   
   <entry>
-    <title type="html"><![CDATA[PlantUML]]></title>
+    <title type="html"><![CDATA[是灰霾吗？]]></title>
+    <link href="http://aleung.github.io/blog/2014/09/16/smog/"/>
+    <updated>2014-09-16T23:53:29+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/09/16/smog</id>
+    <content type="html"><![CDATA[<p>看 Google Maps 上面的卫星图，珠江新城一带一片灰蒙蒙，但是有个奇怪的现象：高层建筑的楼顶似乎会清晰一些。</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2014/9/smog.png" /></p>
+
+<p>在图上最显眼的超高层建筑就是东塔和西塔了，东塔目前仍在建（好像已经封顶了），不知道卫星图是什么时候的，看起来也起码建得跟西塔一样高了。查了一下西塔（IFC-广州国际金融中心）的高度是440米。在图上看出西塔的2/3高度以下要灰一些，另外在建的东塔和旁边一个同样在建但高度只有1/3左右的建筑的屋顶的清晰度也有对比。是不是因为接近地面的灰霾影响了通透度，而灰霾主要沉积在距离地表二三百米以内的低空？</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PlantUML 简介]]></title>
     <link href="http://aleung.github.io/blog/2014/08/23/plantuml/"/>
     <updated>2014-08-23T16:57:33+08:00</updated>
     <id>http://aleung.github.io/blog/2014/08/23/plantuml</id>
     <content type="html"><![CDATA[<p>关于PlantUML的简介。</p>
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/38238529" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<iframe src="//www.slideshare.net/slideshow/embed_code/38238529" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
 <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/aleung/plantuml" title="PlantUML" target="_blank">PlantUML</a> </strong> from <strong><a href="http://www.slideshare.net/aleung" target="_blank">aleung</a></strong> </div>
 ]]></content>
   </entry>
@@ -998,19 +1011,6 @@ parallel(data)
 <p>後來在網上看了不少資料，軌跡球可能可以解決這個問題，不需要手腕的動作，依靠手指移動就可以了。但是，對於軌跡球的評價好壞很極端，要麼說很好用要麼說根本沒用，估計這個東西的適應比較困難。但要真正用起來才會知道是否適合，最後還是下定決心買一個來試一下。軌跡球始終屬於小眾產品沒有推廣開來，產品甚至越出越少，市場上現在可買到的沒幾款，相對鼠標來說價錢也貴不少（其實結構、元件都差不多）。最終買的是<a href="http://www.kensington.com/kensington/us/us/p/1444/K64325/expert-mouse%C2%AE.aspx">Kensington Expert Mouse</a>（淘寶有售），明明是trackball要叫做mouse，可見trackball不受落。選擇這個是因為球體夠大，而且是可以用食指中指來滾動球體。Logitech M570 本來也不錯，但聽說拇指球用起來不夠靈活，拇指也容易累。中置球體的另外一個好處是左右手通用，我本來習慣用右手的，但那個鍵盤實在太霸氣了，把軌跡球放右邊，手在鍵盤和軌跡球間切換要移動很遠，於是就換用左手了。剛買回來，球滾動不大順滑，有點澀的感覺，真有些失望，但用了一兩個星期後就好很多了，現在操作起來絲柔順滑，阻尼感恰到好處，應該是球的三個支撐點需要一段時間磨合。軌跡球剛用起來確實不是那麼容易上手，操作會比較笨拙，比用鼠標慢很多，但是多花些時間適應，大概幾天到一周就可以上手了。</p>
 
 <p>總之，現在對這套組合非常滿意。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[怎样在OSX上adb连接小米2]]></title>
-    <link href="http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx/"/>
-    <updated>2012-12-30T20:24:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2012/12/30/mi2-usb-debug-on-osx</id>
-    <content type="html"><![CDATA[<p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
-
-<p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
-
-<p><img src="http://aleung.github.io/blog/attachments/2012/12/osx_usb.jpg" /></p>
 ]]></content>
   </entry>
   

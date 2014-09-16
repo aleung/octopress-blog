@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Lifecycle of Android activity is always confusing beginners. The Activity class has defined dozens of callback functions, all begin with “on”. Some &hellip;">
+  <meta name="description" content="现在已经有好些智能手机应用可以用来帮助追踪丢失了的手机。有些是当插入不同的SIM卡时触发跟踪，有些是在网络上触发跟踪。我想到另外一个方法：每当手机打开屏幕离开休眠状态时，前置摄像头自动拍摄一幅图像，对画面中的人面进行识别，如果判断不是机主，就将图像上传服务器，并且开启定位跟踪，不断将轨迹上传。这样 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,95 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/21/Tracking-lost-cell-phone/">追踪丢失了的手机</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-21T17:21:00+08:00" pubdate data-updated="true">2010-12-21</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>现在已经有好些智能手机应用可以用来帮助追踪丢失了的手机。有些是当插入不同的SIM卡时触发跟踪，有些是在网络上触发跟踪。我想到另外一个方法：每当手机打开屏幕离开休眠状态时，前置摄像头自动拍摄一幅图像，对画面中的人面进行识别，如果判断不是机主，就将图像上传服务器，并且开启定位跟踪，不断将轨迹上传。这样，不但可以知道手机在哪里，还获得了拿着手机的人的相貌，因为一般人打开手机的时候都是拿在手上，正好前置摄像头就可以拍下面部照片了。</p>
+
+<p>Answer to questions:</p>
+
+<ul>
+  <li><em>只有前面有摄像头的手机才能支持这个功能？</em></li>
+</ul>
+
+<p>没有前置摄像头的手机不能用，这也是这个idea区别于已有应用的唯一区别。有前置摄像头的智能手机会越来越多的，iPhone推facetime， Android下个版本也会在GTalk里支持视频聊天，硬件肯定要跟上。</p>
+
+<ul>
+  <li><em>朋友用了这个功能的手机怎么办？</em></li>
+</ul>
+
+<p>机主看到是认识的人，忽略就是啦；如果想做得更少打扰用户，可以让应用在重新”见到”机主时关闭跟踪，见下。</p>
+
+<ul>
+  <li><em>检测到其他人用手机之后，这个人是否可以关闭定位功能？</em></li>
+</ul>
+
+<p>手机上不能手动关闭，否则就没用了；机主可以通过远程手段关闭；也可以通过面部识别，在重新识别到机主使用手机的时候自动关闭。</p>
+
+<ul>
+  <li><em>即使定位到一定范围了，但还不能确认是谁。是否可以与”其他人”打电话协商？</em></li>
+</ul>
+
+<p>这个应用是可以控制手机上的所有功能的（如果手机OS允许），因此可以加很多东西，除了定位之外，可以记录通话信息、短信记录、自动发送短信、后台录音等等。但具体还要看OS，例如iOS在不越狱的情况下能做的事情就非常少，Android上有些操作也需要取得root权限才能做。如果这个应用由手机厂商内置进系统里，权限就不是问题了。</p>
+
+<ul>
+  <li><em>调用摄像头拍照，通常是没办法影藏的吧，也就是拿着手机的人会知道这种动作</em></li>
+</ul>
+
+<p>我不知道现在常用的手机OS是否支持拍照时不在屏幕上显示，摄像头拍照与屏幕显示并没有联系，只是一般情况下都需要实时将摄像头的输入在屏幕上输出，给用户反馈而已。记得Android上有个应用就是用来偷拍的。况且这只是一个idea，真想做或许要对系统做一些调整的。</p>
+
+<ul>
+  <li><em>拍得图像亮度，对比度，分辨率差异巨大，在手持设备上进行人脸识别，判断机主，这个实现难度很大。</em></li>
+</ul>
+
+<p>拍摄的时候，亮度、对比度是能够调节的，在环境光线不太恶劣的情况下（大逆光、光线暗就没办法了），获得合适对比度的影像是很简单的事情。人脸识别的算法我没有了解，但有<a href="http://hubpages.com/hub/Kodak-Z981-can-automatically-recognize-the-faces-of-20-specific-individuals">数码相机都内置这个功能</a>了，已经不是很难实现的东西了吧？要说处理能力，现在手机的CPU都上1GHz了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/12/21/Tracking-lost-cell-phone/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -535,61 +624,6 @@ class HttpRequestHandler implements Runnable {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/09/28/Andriod-TransProxy/">Andriod TransProxy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-09-28T06:13:00+08:00" pubdate data-updated="true">2010-09-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>关注我之前写的Android翻墙系列文章<a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">1</a>, <a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-">2</a>, <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype">3</a>的朋友请留意一下这个应用：<a href="http://forum.xda-developers.com/showthread.php?t=766569">TransProxy</a>。这个应用的v3版本集成了HTTP transparent proxy (使用<a href="http://transproxy.sourceforge.net/">Transproxy</a>)、HTTPS/SOCKS redirector (使用<a href="http://darkk.net.ru/redsocks/">redsocks</a>) 、iptables script 并提供了配置、控制的界面。理论上，结合TransProxy和ConnectBot就可以实现Android上通过SSH tunnel翻墙，请参考<a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall">这里</a>的第二张图片：ConnectBot实现了SSH client，TransProxy提供了transparent socks proxy并且设置iptables。</p>
-
-<p>不过，我刚刚将TransProxy和ConnectBot配合运行起来试了一下，并没有成功，并且手机又遇到了100% CPU占用的问题，只能手工将ConnectBot kill了。ConnectBot当前最新的snapshot版本都还是没有解决这个<a href="http://code.google.com/p/connectbot/issues/detail?id=299">bug</a>，大家快去给这个bug加星，促使开发者优先解决吧。</p>
-
-<p>鉴于我目前暂时处于肉身翻墙状态，没有积极性去进一步实验了，各位动手试试吧，有结果记得共享出来。另外，目前TransProxy的作者还在相当勤快的改进这个应用，不妨到xda-developers论坛与他交流。  </p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/09/28/Andriod-TransProxy/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/15/">&larr; Older</a>
@@ -611,7 +645,11 @@ class HttpRequestHandler implements Runnable {
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -624,10 +662,6 @@ class HttpRequestHandler implements Runnable {
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -646,7 +680,7 @@ class HttpRequestHandler implements Runnable {
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -661,7 +695,7 @@ class HttpRequestHandler implements Runnable {
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>

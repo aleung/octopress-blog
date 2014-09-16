@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="将blog的rss feed改了一下，使用了FeedBurner提供的rss扩展服务。大家可以留意页面右下角的rss图标。如果是用RSS Reader阅读我的blog的朋友，麻烦更换一下地址吧。 FeedBurner提供的功能不错的，我只使用了其中的一部分，其中比较特别的就是自动将del.icio &hellip;">
+  <meta name="description" content="Yesterday, I discussed with Alex whether “delete this” in C++ is legal code. In some case, only the object itself knows when its life is to the end &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,121 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/02/18/Member-function-call-delete-this-legal/">成员函数调用delete This合法吗？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-18T21:18:00+08:00" pubdate data-updated="true">2005-02-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Yesterday, I discussed with Alex whether “delete this” in C++ is legal code.</p>
+
+<p>In some case, only the object itself knows when its life is to the end and should be destroyed, the owner of object doesn’t know it, or the object has no explicit owner. The most easy way to manger the life time of this kind of object is let it delete itself.</p>
+
+<p>But we doubted that “delete this” isn’t legal in C++: after the object is released, how does the execution continue?</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line"><span class="err"> </span> <span class="kt">void</span> <span class="n">foo</span><span class="p">();</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">void</span> <span class="n">A</span><span class="o">::</span><span class="n">foo</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line"><span class="err"> </span> <span class="c1">// do something  </span>
+</span><span class="line"><span class="err"> </span> <span class="k">delete</span> <span class="k">this</span><span class="p">;</span>
+</span><span class="line"><span class="err"> </span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;I commit suicide!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line"><span class="err"> </span> <span class="n">A</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line"><span class="err"> </span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">foo</span><span class="p">();</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I find the answer now, it’s legal, but must be careful when using it. </p>
+
+<p>The following <a href="http://www.sunistudio.com/cppfaq/freestore-mgmt.html#[16.14]">faq</a> explain it clearly:</p>
+
+<blockquote>
+  <p>只要你小心，一个对象请求自杀(<code>delete</code> <code>this</code>).是可以的。</p>
+
+  <p>以下是我对“小心”的定义：</p>
+
+  <ol>
+    <li>你必须100%的确定，<code>this</code>对象是用 <code>new</code>分配的（不是用<code>new[]</code>，也不是用<a href="http://www.sunistudio.com/cppfaq/dtors.html#[11.10]">定位放置 <code>new</code></a>，也不是一个栈上的局部对象，也不是全局的，也不是另一个对象的成员，而是明白的普通的<code>new</code>）。</li>
+    <li>你必须100%的确定，该成员函数是<code>this</code>对象最后调用的的成员函数。</li>
+    <li>你必须100%的确定，剩下的成员函数（<code>delete</code> <code>this</code>之后的）不接触到 <code>this</code>对象任何一块（包括调用任何其他成员函数或访问任何数据成员）。</li>
+    <li>你必须 100%的确定，在<code>delete</code> <code>this</code>之后不再去访问<code>this</code>指针。换句话说，你不能去检查它，将它和其他指针比较，和 <code>NULL</code>比较，打印它，转换它，对它做任何事。</li>
+  </ol>
+
+  <p>自然，对于这种情况还要习惯性地告诫：当你的指针是一个指向基类类型的指针，而没有<a href="http://www.sunistudio.com/cppfaq/virtual-functions.html#[20.4]">虚析构函数</a>时（也不可以 <code>delete</code> <code>this</code>）。 </p>
+</blockquote>
+
+<p>And these ariticles also take about “delete this”:</p>
+
+<p><a href="http://info.tlw.cn/6079.htm">http://info.tlw.cn/6079.htm</a><br />
+<a href="http://blog.csdn.net/foxmail/archive/2004/09/22/113060.aspx">http://blog.csdn.net/foxmail/archive/2004/09/22/113060.aspx</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2005/02/18/Member-function-call-delete-this-legal/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -289,61 +404,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/12/09/Eye-control-the-mouse/">眼控鼠标</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-12-09T08:44:00+08:00" pubdate data-updated="true">2004-12-09</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近日看了报道，说长期使用鼠标，很容易导致手腕疾病。以前一直右手用鼠标的，于是换了左手，避免老是一只手过于劳累。不过刚开始还真不习惯，左手总是笨笨的。</p>
-
-<p>鼠标的功能是为了给用户提供一个全屏幕定位的手段，但是，要能准确地选定屏幕的位置，还是需要一个反馈的过程：手移动鼠标，屏幕鼠标指针反映出当前的位置，手调整鼠标移动的方向和速度，直到鼠标指针移动到期望的位置。在这个过程中，要选择的地方就是目光集中所在的地方，故此，如果能够监测到眼球注视的位置，就能获取到用户需要定位的地方，这将是一种最为直观的手段——看哪指哪。这样带来好处，一方面是定位直观快速，另一方面是能将手从鼠标上解放出来，不需要在键盘与鼠标之间来回移动，减少疲劳了。</p>
-
-<p>我想，这“眼控鼠标”应该不算什么天方夜谭的想法吧，canon单反相机的眼控对焦技术已经商用化很多年了，起码说明在技术原理上是可行的。当然，相机取景时眼睛是紧贴取景框的，而使用电脑时距离会远很多，而且头部会移动，所以实现难度可能不小。但是，在这个技术飞速发展的年代，只要能想到，有什么不可能？</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/12/09/Eye-control-the-mouse/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/43/">&larr; Older</a>
@@ -365,7 +425,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -378,10 +442,6 @@
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -400,7 +460,7 @@
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -415,7 +475,7 @@
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>

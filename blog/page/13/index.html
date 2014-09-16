@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="之前我写过一系列文章介绍Android系统用ssh翻墙的想法，现在有人把整合的软件做出来了：sshtunnel 与TransProxy类似，sshtunnel也是内置了redsocks作为HTTPS/SOCKS redirector，使用iptables重定向网络流， &hellip;">
+  <meta name="description" content="Good good study, day day up 这个博客从2001年就开始写，正如副标题所说，定位为记录学习心得和一些想法（之前我还有另外一个摄影、旅行主题的博客），基本上谈的就是理科生的话题。原来一直是放在BlogBus上的，直到去年初，实在忍受不了BlogBus疯狂的内容审查， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/14/Independent-blog-of-a-week/">独立博客一周年纪念</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-14T01:34:00+08:00" pubdate data-updated="true">2011-02-14</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Good good study, day day up 这个博客从2001年就开始写，正如副标题所说，定位为记录学习心得和一些想法（之前我还有另外一个摄影、旅行主题的博客），基本上谈的就是理科生的话题。原来一直是放在BlogBus上的，直到去年初，实在忍受不了BlogBus疯狂的内容审查，搬出来做独立博客。</p>
+
+<p>查看历史记录，在这个搭建于Google App Engine上的新blog上发的<a href="http://good-good-study.appspot.com/blog/posts/1001">第一篇文章</a>是在去年的2月14日，居然是在情人节！今天是2月13日，也就是这个独立博客已经一周岁了。</p>
+
+<p>统计一下新blog这一年里发布的文章有30篇（不包括更新的旧文章），平均两周一篇，比我自己印象中的多了。希望自己今后能够继续保持这样一个习惯。最热门的文章是”<a href="http://good-good-study.appspot.com/blog/posts/20001">在Android手机上使用SSH tunnel翻墙</a>“，其次是”<a href="http://good-good-study.appspot.com/blog/posts/3224">Google中国地图偏移</a>“。</p>
+
+<p>新的blog留言需要用Google帐号登录，spam是全没有了，但是留言也冷清了好多。没想到什么办法既方便又能杜绝spam的。不知道有没有方法通过Google Buzz或者Twitter来留言呢。另外一个问题是搬家之后搜索引擎的收录不理想，一些关键字的搜索结果还是指向我原来的blog。</p>
+
+<p>搬到GAE上，就已经准备好要被墙，一年下来appspot.com被封被解封反复多次，似乎到目前为止这个blog还能直接访问（不知道不同地区的情况）。但是，即使被封也不会再搬回墙内，作为一个软件开发者，受困于信息封锁就意味着被技术发展所抛弃，我的博客读者不应该是这样的人。有人说翻墙太麻烦，老想找免费的方法当然麻烦，还是花点钱买个ssh帐号吧，便宜的就是一年几美元。每个月上百的ADSL费用都舍得花了，就不要吝啬这一年几十块钱了，无障碍获取信息的价值就远远值回来了。</p>
+
+<p>就写到这里吧。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/02/14/Independent-blog-of-a-week/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -339,95 +400,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/21/Tracking-lost-cell-phone/">追踪丢失了的手机</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-21T17:21:00+08:00" pubdate data-updated="true">2010-12-21</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>现在已经有好些智能手机应用可以用来帮助追踪丢失了的手机。有些是当插入不同的SIM卡时触发跟踪，有些是在网络上触发跟踪。我想到另外一个方法：每当手机打开屏幕离开休眠状态时，前置摄像头自动拍摄一幅图像，对画面中的人面进行识别，如果判断不是机主，就将图像上传服务器，并且开启定位跟踪，不断将轨迹上传。这样，不但可以知道手机在哪里，还获得了拿着手机的人的相貌，因为一般人打开手机的时候都是拿在手上，正好前置摄像头就可以拍下面部照片了。</p>
-
-<p>Answer to questions:</p>
-
-<ul>
-  <li><em>只有前面有摄像头的手机才能支持这个功能？</em></li>
-</ul>
-
-<p>没有前置摄像头的手机不能用，这也是这个idea区别于已有应用的唯一区别。有前置摄像头的智能手机会越来越多的，iPhone推facetime， Android下个版本也会在GTalk里支持视频聊天，硬件肯定要跟上。</p>
-
-<ul>
-  <li><em>朋友用了这个功能的手机怎么办？</em></li>
-</ul>
-
-<p>机主看到是认识的人，忽略就是啦；如果想做得更少打扰用户，可以让应用在重新”见到”机主时关闭跟踪，见下。</p>
-
-<ul>
-  <li><em>检测到其他人用手机之后，这个人是否可以关闭定位功能？</em></li>
-</ul>
-
-<p>手机上不能手动关闭，否则就没用了；机主可以通过远程手段关闭；也可以通过面部识别，在重新识别到机主使用手机的时候自动关闭。</p>
-
-<ul>
-  <li><em>即使定位到一定范围了，但还不能确认是谁。是否可以与”其他人”打电话协商？</em></li>
-</ul>
-
-<p>这个应用是可以控制手机上的所有功能的（如果手机OS允许），因此可以加很多东西，除了定位之外，可以记录通话信息、短信记录、自动发送短信、后台录音等等。但具体还要看OS，例如iOS在不越狱的情况下能做的事情就非常少，Android上有些操作也需要取得root权限才能做。如果这个应用由手机厂商内置进系统里，权限就不是问题了。</p>
-
-<ul>
-  <li><em>调用摄像头拍照，通常是没办法影藏的吧，也就是拿着手机的人会知道这种动作</em></li>
-</ul>
-
-<p>我不知道现在常用的手机OS是否支持拍照时不在屏幕上显示，摄像头拍照与屏幕显示并没有联系，只是一般情况下都需要实时将摄像头的输入在屏幕上输出，给用户反馈而已。记得Android上有个应用就是用来偷拍的。况且这只是一个idea，真想做或许要对系统做一些调整的。</p>
-
-<ul>
-  <li><em>拍得图像亮度，对比度，分辨率差异巨大，在手持设备上进行人脸识别，判断机主，这个实现难度很大。</em></li>
-</ul>
-
-<p>拍摄的时候，亮度、对比度是能够调节的，在环境光线不太恶劣的情况下（大逆光、光线暗就没办法了），获得合适对比度的影像是很简单的事情。人脸识别的算法我没有了解，但有<a href="http://hubpages.com/hub/Kodak-Z981-can-automatically-recognize-the-faces-of-20-specific-individuals">数码相机都内置这个功能</a>了，已经不是很难实现的东西了吧？要说处理能力，现在手机的CPU都上1GHz了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/12/21/Tracking-lost-cell-phone/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/14/">&larr; Older</a>
@@ -449,7 +421,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -462,10 +438,6 @@
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -484,7 +456,7 @@
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -499,7 +471,7 @@
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>

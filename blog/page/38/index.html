@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在8个双内核CPU的SUN 4900上运行多线程程序居然比起2个CPU的440更慢，发现原因在于memory allocator的问题，缺省的malloc库只适合于单线程，内存操作是序列化进行的。更换了mtmalloc就正常了。另外还有一个选择是用libumem。 http:// &hellip;">
+  <meta name="description" content="我们程序的IRI backend使用了ACE Proactor作为TCP client的框架，proactor实质上是使用了asynchronous IO(aio)从socket上读写数据。异步IO将速度慢的I/O过程留在操作系统内部进行，不会阻塞用户线程， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,169 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/11/20/Solaris-aio-/">Solaris上使用aio的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-20T02:17:00+08:00" pubdate data-updated="true">2005-11-20</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我们程序的IRI backend使用了ACE Proactor作为TCP client的框架，proactor实质上是使用了asynchronous IO(aio)从socket上读写数据。异步IO将速度慢的I/O过程留在操作系统内部进行，不会阻塞用户线程，因此在应用中无需使用多线程也可以达到较高的效率。AIO在windows平台上使用比较广泛，称为CPIO。Solaris 9是支持aio的，按理说不会有什么问题，可是我们的程序就出现了很多奇怪的问题。</p>
+
+<ul>
+  <li>有时CPU占用莫名其妙的很高，即使没有从网络收发数据 </li>
+  <li>进程的lwp数量会变化，某些时候不断增加 </li>
+  <li>用truss跟踪程序的时候，CPU就会降低</li>
+</ul>
+
+<p>反复检查过程序，都没有发现问题，程序只有一个线程进入了proactor，怀疑是ACE的proactor内部创建了线程，但看过ACE代码，里面也没有spawn线程。而且aio就是为了提高用户线程效率，让单线程可以处理大量并发IO的，没有理由需要再创建多线程。</p>
+
+<p>我们的鬼佬chief architect是hacker出身的，他跟我们一起查找问题，最终找到了原因。</p>
+
+<blockquote>
+  <p>Some notes for us on AIO to help us better understand:</p>
+
+  <p>[1] <a href="http://sunsite.uakom.sk/sunworldonline/swol-03-1996/swol-03-aio.html">http://sunsite.uakom.sk/sunworldonline/swol-03-1996/swol-03-aio.html</a></p>
+
+  <p>[2] Keep in mind that any major improvement over standard read/write system calls requires the use of multi-processor machines, since AIOs are executed via light weight processes (LWPs). </p>
+
+  <p>[3] aiorandom syiorandom<br />
+Both programs read 262,144 data blocks. Each block is 4,096 bytes. aiorandom submits a batch of 30 asynchronous reads at a time. Whenever the number of outstanding AIO operations falls below 15, it submits another batch. Results were recorded from the command timex. </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th> </th>
+        <th style="text-align: right"> aiorandom </th>
+        <th style="text-align: right">syiorandom</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>real </td>
+        <td style="text-align: right">42:43.92 </td>
+        <td style="text-align: right">1:02:48.68</td>
+      </tr>
+      <tr>
+        <td>user </td>
+        <td style="text-align: right">5:35.57  </td>
+        <td style="text-align: right">  4:39.38</td>
+      </tr>
+      <tr>
+        <td>sys </td>
+        <td style="text-align: right">5:24.02  </td>
+        <td style="text-align: right">  2:41.23</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>For aiorandom, this is a speed-up of close to 30 percent in real (elapsed) time. Note how aiorandom consumed more user CPU time due to the extra work associated with managing the AIO-related data structures. System CPU time doubled thanks to aiorandom running multiple LWPs. Keep this in mind on busy, multi-user systems since heavy AIO applications will depress the performance of other apps. </p>
+
+  <p>[4]  However, libaio is different; it implements system functions. Depending on the numbers of submitted AIO requests, libaio creates so-called “workers” (as implemented as LWP’s) to process the IO requests. </p>
+
+  <p>THIS IS WHAT IS KAIO .. [next line]</p>
+
+  <p>[1]  Solaris 2.5 implements kernel-supported asynchronous I/O. The kernel has implemented special, efficient AIO assists for the libaio. </p>
+
+  <p>[2] <a href="http://developers.sun.com/solaris/articles/thread_pools.html">http://developers.sun.com/solaris/articles/thread_pools.html</a></p>
+
+  <p>Here is the code from aio.so:</p>
+
+  <p><a href="http://cvs.opensolaris.org/source/xref/on/usr/src/uts/common/os/aio.c">aio.c</a></p>
+
+  <p>    394 /*<br />
+    395  * wake up LWPs in this process that are sleeping in<br />
+    396  * aiowait().<br />
+    397  <em>/<br />
+    398 static int<br />
+    399 aionotify(void)<br />
+    400 {<br />
+    401  aio_t </em>aiop;<br />
+    402 <br />
+    403  aiop = curproc-&gt;p_aio;<br />
+    404  if (aiop == NULL)<br />
+    405   return (0);<br />
+    406 <br />
+    407  mutex_enter(&amp;aiop-&gt;aio_mutex);<br />
+    408  aiop-&gt;aio_notifycnt++;<br />
+    409  <strong>cv_broadcast(&amp;aiop-&gt;aio_waitcv);</strong><br />
+    410  mutex_exit(&amp;aiop-&gt;aio_mutex);<br />
+    411 <br />
+    412  return (0);<br />
+    413 }</p>
+
+  <p>If the application uses a third party library that implements asynchronous operations, this may not be the best solution. This is because of the “anonymous” nature of aiowait(), which returns the result of any asynchronous read or write operation. And if a third party AIO library is used in the application, this means that aiowait() could return result sets of the third party library AIO calls as well. Due to obvious interface disparities, this could lead to unpredictable behavior. </p>
+
+  <p>.. i find out some very interesting things about the aio … especially<br />
+the CPU usage being high is very normal .. good if you want<br />
+to make a high capacity/performance server that will run on <br />
+its own on a SMP machine .. then aio gives a very strong <br />
+efficiency and raw performance .. but use extra CPU because<br />
+the process have very high granularity of checking all async <br />
+operations .. much higher than a user space thread .. </p>
+
+  <p>however this kind of server will hog CPU and if used in a mixed<br />
+environment with many other systems on same host will not be<br />
+a good solution .. also such process have no ability to define <br />
+filters on the async events they listen for .. they will always get<br />
+interrupts from any kind of asynch event in the system . .then <br />
+have to go through that array of 1024 pointers and check if any<br />
+of the non-null pointers in there will contain an event for them …. <br />
+(thats why if you connect truss -p the CPU goes down .. all sigs<br />
+are blocked for a process inside truss) </p>
+
+  <p>the behaviour with CPU etc. that we see in ismapserver seems<br />
+quite ‘normal’ for the aio .. from what i can read the last days and<br />
+from what you can see in the solaris os code. (you can also look <br />
+in kernel.c and condvar.c) </p>
+</blockquote>
+
+<p>看来aio并不是那么好用，对于我们的程序而言，IRI接口的网络吞吐量并不是瓶颈，而且我们的程序本来就是多线程程序，其实并不需要使用aio。程序中的其他网络接口使用的TP Reactor（基于多线程，select）就工作得很好，效率也远超出需求了。对于IRI backend，甚至用一个线程收一个线程发就够了，因为不需要处理太多connection，线程数量在这里不是问题。</p>
+
+<p>还是应该遵循用最简单的方法来解决问题的原则。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2005/11/20/Solaris-aio-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -1599,66 +1762,6 @@ EMAIL与网络论坛中其实隐藏着不少耐人寻味的细节，就好象那
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2005/06/29/Google-Earth/">Google Earth</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-06-29T21:10:00+08:00" pubdate data-updated="true">2005-06-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Google earth是google收购keyhole后推出的软件，我没有用过以前的keyhole，反正感觉这个很好用，符合google用户界面的一贯风格，比NASA的WorldWind易用多了。 <br />
-GIS应用越来越走向大众了，刚看到新闻，MSN也要推出Virtual Earth，竞争吧，我喜欢:)   </p>
-
-<p>深圳滨海公园</p>
-
-<p><img src="/blog/attachments/2005/6/GoogleEarth1.jpg" alt="Shenzhen on Google Earth" /></p>
-
-<p>NewYork, 真是数字城市啊  </p>
-
-<p><img src="/blog/attachments/2005/6/GoogleEarth2.jpg" alt="NewYork on Google Earth" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2005/06/29/Google-Earth/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/39/">&larr; Older</a>
@@ -1680,7 +1783,11 @@ GIS应用越来越走向大众了，刚看到新闻，MSN也要推出Virtual Ear
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -1693,10 +1800,6 @@ GIS应用越来越走向大众了，刚看到新闻，MSN也要推出Virtual Ear
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -1715,7 +1818,7 @@ GIS应用越来越走向大众了，刚看到新闻，MSN也要推出Virtual Ear
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -1730,7 +1833,7 @@ GIS应用越来越走向大众了，刚看到新闻，MSN也要推出Virtual Ear
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>

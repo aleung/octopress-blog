@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: UML | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/uml/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-08-23T17:12:02+08:00</updated>
+  <updated>2014-09-17T00:12:55+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[PlantUML]]></title>
+    <title type="html"><![CDATA[PlantUML 简介]]></title>
     <link href="http://aleung.github.io/blog/2014/08/23/plantuml/"/>
     <updated>2014-08-23T16:57:33+08:00</updated>
     <id>http://aleung.github.io/blog/2014/08/23/plantuml</id>
@@ -63,19 +63,7 @@ package ConsentObject «Rect» {
 
 <p>The generated diagram:</p>
 
-<p>{% plantuml %} 
-package ConsentObject «Rect» {
-  Consent : id
-  Scope : key
-}</p>
-
-<p>Client - User
-(Client, User) . Consent</p>
-
-<p>Consent - “*” Scope</p>
-
-<p>Consent “1” – “1..*” AccessToken
-{% endplantuml %} </p>
+<p><img src='/images/plantuml/aa654ab10cd77969eaef52fa8b70576f.png'> </p>
 
 <p>A sequence diagram example:</p>
 
@@ -106,31 +94,7 @@ RS-&gt;OAuth: validateToken(access_token)
 RS–&gt;APP: result
 ```</p>
 
-<p>{% plantuml %}
-title OAuth 2.0 Authorization Code Grant</p>
-
-<p>actor       UserAgent       as UA
-participant Application     as APP
-participant OAuthServer     as OAuth
-participant ResourceServer  as RS</p>
-
-<p>== Application requests authorization from user ==
-UA-&gt;APP: 
-APP–&gt;UA:redirect to OAuth Server
-UA-&gt;OAuth: GET /authorize?response_type=code
-ref over UA, OAuth: user authentication\nuser confirms reqest
-OAuth–&gt;UA: redirect to App with authorization_code
-UA-&gt;APP: authorization_code</p>
-
-<p>== Application retrieve access token ==
-APP-&gt;OAuth: POST /token with authorization_code
-ref over APP, OAuth: client authentication
-APP&lt;–OAuth: access_token
-== Application access protected resource ==
-APP-&gt;RS: getResource with access_token
-RS-&gt;OAuth: validateToken(access_token)
-RS–&gt;APP: result
-{% endplantuml %}</p>
+<p><img src='/images/plantuml/be23d4813dfec870f068ecda2f4ba44f.png'></p>
 ]]></content>
   </entry>
   

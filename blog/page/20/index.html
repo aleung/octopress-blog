@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content=" Android View more documents from aleung. ">
+  <meta name="description" content="逛超市，看到两款酸奶： 一种是100克装8杯，9.6元； 另一种是150克6杯加送1杯100克，10.5元。 那个价钱更划算？ 如果单位不同，就更难比较了，例如纯净水： 550ml一打，10元； 10L，12元； 5 gal（加仑），18元。 比价易（Unit Price Compare） &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/">比价易：逛超市的好帮手</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-12T08:33:00+08:00" pubdate data-updated="true">2009-12-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="right" src="http://farm5.static.flickr.com/4104/4987380901_97030e8f03_m.jpg" /></p>
+
+<p>逛超市，看到两款酸奶：</p>
+
+<ul>
+  <li>一种是100克装8杯，9.6元；</li>
+  <li>另一种是150克6杯加送1杯100克，10.5元。</li>
+</ul>
+
+<p>那个价钱更划算？</p>
+
+<p>如果单位不同，就更难比较了，例如纯净水：</p>
+
+<ul>
+  <li>550ml一打，10元；</li>
+  <li>10L，12元；</li>
+  <li>5 gal（加仑），18元。</li>
+</ul>
+
+<p>比价易（Unit Price Compare）就是专门解决这种问题的，它是运行在Android手机上的应用，能够比较不同包装的商品单价哪个更便宜。</p>
+
+<p>比价易支持不同单位的自动换算，对于”150克6杯加送1杯100克”这样的情况，直接输入为 150*6+100 就可以了。看看截图：</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4987380823/"><img src="http://farm5.static.flickr.com/4111/4987380823_cfb55b6633.jpg" alt="Unit Price Compare - list" /></a> <a href="http://www.flickr.com/photos/leoliang/4987981690/"><img src="http://farm5.static.flickr.com/4109/4987981690_1fae2f0784.jpg" alt="Unit Price Compare - item" /></a></p>
+
+<p>安装：在Android Market中搜索”Unit Price Compare”</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4987981626/"><img src="http://farm5.static.flickr.com/4112/4987981626_c5cfbd0307_m.jpg" alt="Unit Price Compare - download" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -327,119 +407,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/27/WebLogic-classloading/">WebLogic的classloading</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-09-27T07:23:00+08:00" pubdate data-updated="true">2009-09-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4379354938/"><img src="http://farm3.static.flickr.com/2682/4379354938_dc7cd5f47e_o.png" alt="wls_classloading" /></a></p>
-
-<h3 id="section"></h3>
-
-<h3 id="classloader">各层级classloader加载的类的范围</h3>
-
-<ul>
-  <li>Bootstrap classloader
-    <ul>
-      <li>Core Java libraries (<jre>/lib)</jre></li>
-    </ul>
-  </li>
-  <li>Extension classloader
-    <ul>
-      <li>JRE extensions directory (<jre>/lib/ext)</jre></li>
-    </ul>
-  </li>
-  <li>WebLogic Server system classloader
-    <ul>
-      <li>Classpath</li>
-      <li>
-        <domain>/lib
-
-</domain>
-      </li>
-    </ul>
-  </li>
-  <li>Filtering classloader
-    <ul>
-      <li>nothing</li>
-    </ul>
-  </li>
-  <li>Application classloader
-    <ul>
-      <li>EJB JARs</li>
-      <li>APP-INF/lib</li>
-      <li>APP-INF/classes</li>
-      <li>Manifest Class-Path in EJB JARs</li>
-    </ul>
-  </li>
-  <li>Web application classloader
-    <ul>
-      <li>WAR</li>
-      <li>Manifest Class-Path in WAR</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="section-1">类加载的优先级</h3>
-
-<p>每个classloader在要加载一个class之前都会先请求它的上层classloader，如此逐级传递。因此效果就是越上层的classloader优先级越高，一个class如果在上层classloader能加载到，就不会让下面的classloader加载。</p>
-
-<p>但是web application classloader是个特例，通过在weblogic.xml中配置<prefer-web-inf-classes>，可以让web application classloader优先在自己war范围内加载类，找不到的类才会请求上层classloader。</prefer-web-inf-classes></p>
-
-<p>Filtering classloader是个特殊的classloader，它并不会加载任何类，而是起到控制类加载优先级的作用。在weblogic-application.xml中配置<prefer-application-packages>，可以限制对于指定的类不再向上层classloader请求，也就是限制在EAR的范围之内加载。</prefer-application-packages></p>
-
-<h3 id="section-2">其他</h3>
-
-<p>以上仅仅描述了缺省情况下classloading的行为。WebLogic对于一个application (EAR)内的classloader的层次结构是可以自定义的。Shared library和optional package，也会影响到classloading。另外，resource adapter (RAR)也有独立的classloader。还有其他的一些细节，需要查阅<a href="http://download.oracle.com/docs/cd/E13222_01/wls/docs100/programming/classloading.html">Understanding WebLogic Server Application Classloading</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/09/27/WebLogic-classloading/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/21/">&larr; Older</a>
@@ -461,7 +428,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -474,10 +445,6 @@
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -496,7 +463,7 @@
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -511,7 +478,7 @@
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>

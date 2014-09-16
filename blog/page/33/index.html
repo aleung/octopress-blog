@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="读书摘录：Stockholm Horizons Introduction What makes a city? … A city is principally a forum for mankind’s countless activities. We live, think, work, buy &hellip;">
+  <meta name="description" content="对于”I Love” audio player的想法, flyisland的批阅建议是请jobs同志执行。我也很希望jobs同志能够欣赏这个想法，更希望的是我也能有flyisland同志同样的运气，能得到一个赠送的iPod。在此之前，还是继续自我陶醉一下，下面是想到的初步设计： UI负责用户界面； &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/08/29/I-Love-Audio-Player-Basic-Design/">‘I Love’ Audio Player - Basic Design</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2006-08-29T02:19:00+08:00" pubdate data-updated="true">2006-08-29</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>对于”I Love” audio player的想法, flyisland的批阅建议是请jobs同志执行。我也很希望jobs同志能够欣赏这个想法，更希望的是我也能有flyisland同志同样的运气，能得到一个赠送的iPod。在此之前，还是继续自我陶醉一下，下面是想到的初步设计：</p>
+
+<p><img src="/blog/attachments/2006/8/227012217_2b9c0d6ecd.jpg" alt="audioplayer" /></p>
+
+<p>UI负责用户界面；Control接受UI的命令，进行播放控制；作品的选择、喜爱度的累积是profile的任务；媒体文件的播放是委托给player进行的。</p>
+
+<p><img src="/blog/attachments/2006/8/227012224_56936e3643.jpg" alt="audioplayer.control" /></p>
+
+<p>JavaZoom.com的<a href="http://www.javazoom.net/jlgui/developerguide.html">jlGui</a>是一个opensource的music player，它提供了一个很简洁实用的BasicPlayer API，用在这里正合适。</p>
+
+<p><img src="/blog/attachments/2006/8/227012248_2ce4e0e4e8.jpg" alt="basicplayer" /></p>
+
+<p>UI，应该就是GUI了吧，有人会需要command line吗？甚至是外接LED显示屏？</p>
+
+<p><img src="/blog/attachments/2006/8/227012242_fa610759ef.jpg" alt="audioplayer.ui" /></p>
+
+<p>Profile部分将是最重要也是最复杂的了，现在考虑得还不成熟，只有个大概。</p>
+
+<p><img src="/blog/attachments/2006/8/227012232_3c57a934d1.jpg" alt="audioplayer.profile" /></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2006/08/29/I-Love-Audio-Player-Basic-Design/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -402,75 +473,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/07/22/What-is-a-moment-how-long-/">一刹那到底是多久？</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-07-22T04:17:00+08:00" pubdate data-updated="true">2006-07-22</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我们在表达非常非常短的时间的时候，经常会用“刹那”这个词，例如：刹那间的感动。如果有人偏偏要跟你较劲，问你“刹那之间”，那到底是多长时间啊？你肯定会骂他太无聊、钻牛角尖。</p>
-
-<p>那就来钻钻牛角尖吧：</p>
-
-<p>“刹那”来自梵文 ksana，</p>
-
-<ul>
-  <li>120 刹那 = 1坦刹那（tatksana) </li>
-  <li>60 坦刹那 = 1 腊缚(lava) </li>
-  <li>30 腊缚 = 1 牟呼栗多 (murhutar) </li>
-  <li>5 牟呼栗多 = 1 时 (大时，kala) </li>
-  <li>6 时 = 1 昼夜 (即1日)。</li>
-</ul>
-
-<p>据此，可以推算出：1 刹那 = 1/75 秒 = 13.33 毫秒</p>
-
-<p>看来刹那间的感动确实没有感动多久啊。</p>
-
-<p>呵呵，不是我这么无聊去研究这些东西，是在<a href="http://zh.wikipedia.org/">维基百科</a>无意中<a href="http://zh.wikipedia.org/wiki/%E5%88%B9%E9%82%A3">看到</a>的。现在维基百科已经成为我除了google以外的另外一个重要的学习工具了，遇到不了解的概念，先去维基百科看看(包括<a href="http://zh.wikipedia.org/">中文</a>、<a href="http://en.wikipedia.org/">英文</a>)，再在<a href="http://www.google.com/">google</a>搜索。还有就是每天去看看维基首页的新闻动态、特色条目，可真了解不少东西。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/07/22/What-is-a-moment-how-long-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/34/">&larr; Older</a>
@@ -492,7 +494,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML</a>
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
       </li>
     
       <li class="post">
@@ -505,10 +511,6 @@
     
       <li class="post">
         <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/15/pebble/">Pebble</a>
       </li>
     
   </ul>
@@ -527,7 +529,7 @@
 <a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
-<a style="font-size: 70%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
 <a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
@@ -542,7 +544,7 @@
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
