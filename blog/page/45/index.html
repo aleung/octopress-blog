@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Mind map，中文翻译为”思维导图”。听起来有点玄乎，说白了就是以图像方式记录思路或者描述事物的一种方法。（看看下面的图就有直观了解了）。在我的理解中，mind map是辅助整理思路和思维扩展的一个工具，一方面以层次化的形式将思路条理化，另一方面能快速记录下头脑中闪现的想法， &hellip;">
+  <meta name="description" content="Bayesian过滤已经广泛用于邮件系统的anti-spam功能中，通过统计分析出spam邮件词语的统计特征，实现自动识别。 根据这个思路，也可以将bayesian过滤用在论坛的发言检查中，以减少版主工作量。 考虑到要易于与现有论坛系统集成，发言过滤器可以做成webservice之类的服务， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/09/07/Bayesian-filter-with-to-achieve-the-BBS-speech-to-be-automatic-check/">用bayesian过滤来实现论坛发言自动检查</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-09-07T07:21:00+08:00" pubdate data-updated="true">2004-09-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Bayesian过滤已经广泛用于邮件系统的anti-spam功能中，通过统计分析出spam邮件词语的统计特征，实现自动识别。</p>
+
+<p>根据这个思路，也可以将bayesian过滤用在论坛的发言检查中，以减少版主工作量。</p>
+
+<p>考虑到要易于与现有论坛系统集成，发言过滤器可以做成webservice之类的服务，提供两个功能调用：</p>
+
+<ul>
+  <li>void train(String content, boolean isMatch) </li>
+  <li>boolean filter(String content)</li>
+</ul>
+
+<p>前者让发言过滤系统学习，分析content特征；后者让系统分析content是否应该被过滤，返回值也可以是一个浮点数，表示分析出是敏感内容的可能性（确定性）。</p>
+
+<p>对于论坛系统，如果本来已经支持版主审核功能的话，改造很简单。用户发言，调用filter方法，如果返回false，直接设置为已审核状态，直接显示；如果返回true，设置为待审核状态，等待版主人工审核。版主审核时，将选择是否需要过滤此内容，调用train方法，让过滤器学习。</p>
+
+<p><a href="http://classifier4j.sourceforge.net/">Classifier4J</a>可以用于过滤器的开发，已经提供了Bayesian分类功能，需要补充的是中文分词的实现。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/09/07/Bayesian-filter-with-to-achieve-the-BBS-speech-to-be-automatic-check/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -460,61 +526,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/07/07/Windows-/">Windows系统错误的查找</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-07-07T17:17:00+08:00" pubdate data-updated="true">2004-07-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近两次启动windows 2000, 启动时间莫名其妙的长, 居然要5分钟, 我还以为死机了:(</p>
-
-<p>实在忍受不了, 查看”事件管理器”, 发现有几个错误. 在网上搜索一下, 发现了一个好网站<a href="http://www.eventid.net">eventid.net</a>, 可以查找到事件的详细解释和解决办法.</p>
-
-<p>一查才知道, 原来好几个错误都是由于DNS没有正确设置引起的, 晕:( 昨天改过IP, 把DNS设错了, 居然会造成启动慢的问题.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/07/07/Windows-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/46/">&larr; Older</a>
@@ -536,6 +547,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
       </li>
     
@@ -549,10 +564,6 @@
     
       <li class="post">
         <a href="/blog/2014/06/21/run/">跑步日記</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/03/zhong-guo-di-tu-pian-yi/">中國電子地圖偏移</a>
       </li>
     
   </ul>
@@ -593,7 +604,7 @@
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 124%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 135%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>

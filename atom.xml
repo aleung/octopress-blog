@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-09-17T00:12:55+08:00</updated>
+  <updated>2014-11-26T09:22:39+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2014广马数据分析]]></title>
+    <link href="http://aleung.github.io/blog/2014/11/26/2014-guangzhou-marathon-analysis/"/>
+    <updated>2014-11-26T07:38:06+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/11/26/2014-guangzhou-marathon-analysis</id>
+    <content type="html"><![CDATA[<p>2014广州马拉松在网上可以根据号码查询成绩和名次了，但是没有开放完整成绩册的数据下载。出于好奇，想知道成绩的分布：跑330以内的有多少人？400呢？有多少人最后关门一刻才冲线的？于是写了个程序把数据抓下来分析。</p>
+
+<p><img class="right" src="http://aleung.github.io/blog/attachments/2014/11/groups.png" /></p>
+
+<p>数据不包含号码以0开头的专业选手（大概几十人）。由于不知道确切号码段，没完赛选手的数据有可能会漏了。</p>
+
+<p>首先是各组的人数，半程全程都不足5000人，男女比例全马约7:1，半马约5:1，跑步的妹子相对还是比较少。女子只要完赛了，总能够拿到个几百名的名次的 :)</p>
+
+<p>然后看成绩分布。</p>
+
+<p>半程组里有15%男选手和22%女选手未能完成比赛，而全程组不能完赛的男女选手比例分别是14%和21%。不一定是女子毅力不行，是相同的关门时间对女子更困难些吧。但有意思的是虽然全程更痛苦，但完成率跟半程是基本上一样的。</p>
+
+<p>半马组，一半的男选手在2:30内跑完，一半的女选手在2:45内跑完。全马组，这个数字是男子5:00，女子5:20。有能力5小时内跑完全程的，已经强过一半的人了。</p>
+
+<p>有几十人是过了关门时间才冲线的，依然有成绩，看来组委会还不是那么不近人情。</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2014/11/half-marathon.png" /></p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2014/11/marathon.png" /></p>
+
+<p>能跑330是什么水平？400呢？看看下面的表格，比例是表示有多少人在这个时间内完赛。</p>
+
+<ul>
+  <li>男子全程</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">时间</th>
+      <th style="text-align: right">比例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">3:30</td>
+      <td style="text-align: right">3.9%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:00</td>
+      <td style="text-align: right">15.5%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:30</td>
+      <td style="text-align: right">32.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:00</td>
+      <td style="text-align: right">52.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:30</td>
+      <td style="text-align: right">67.3%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6:00</td>
+      <td style="text-align: right">85.7%</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>女子全程</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">时间</th>
+      <th style="text-align: right">比例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">3:30</td>
+      <td style="text-align: right">1.3%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:00</td>
+      <td style="text-align: right">5.7%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:30</td>
+      <td style="text-align: right">17.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:00</td>
+      <td style="text-align: right">38.6%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:30</td>
+      <td style="text-align: right">58.0%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6:00</td>
+      <td style="text-align: right">78.2%</td>
+    </tr>
+  </tbody>
+</table>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[是灰霾吗？]]></title>
@@ -982,35 +1089,6 @@ parallel(data)
   <li>An Introduction to R</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[人體工學鍵盤鼠標組合]]></title>
-    <link href="http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse/"/>
-    <updated>2013-01-08T23:00:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/01/08/keyboard-and-mouse</id>
-    <content type="html"><![CDATA[<p>作為悲催的程序猿，每天的大部份時間都是陪伴鼠標鍵盤度過的，一套合適的鼠標鍵盤非常重要，可以降低得職業病的機率。尋找人體工學的鼠標鍵盤並不容易，現在這套用了好些時間了，感覺很滿意。</p>
-
-<p><img src="http://aleung.github.io/blog/attachments/2013/1/keyboard_mouse.jpg" /></p>
-
-<p>先說鍵盤，普通鍵盤其實並不符合雙手自然的角度，如果要能讓雙手自然，左右手鍵盤需要分離。因此，理想的鍵盤大概是這個樣子的：</p>
-
-<p><img src="http://aleung.github.io/blog/attachments/2013/1/kb_adv-pro.jpg" /></p>
-
-<p>這個是Kinesis Advantage Pro，我在荷蘭公司見過有同事用，在網上程序員社區也受到推薦。</p>
-
-<p>還有這個怪樣子的DataHand，手指已經不僅是向下敲鍵盤了，而是每個手指上下左右各個方向都是不同的鍵。</p>
-
-<p><img src="http://aleung.github.io/blog/attachments/2013/1/datahand.jpg" /></p>
-
-<p>上面說的鍵盤不僅僅怪異，也买不起。前者$359，後者更是近千美元。更何況即使有錢，在國內也買不到。因此我只能選擇還算中規中矩的<a href="http://www.microsoft.com/hardware/en-us/p/natural-ergonomic-keyboard-4000">微軟人體工學鍵盤4000</a>，這款鍵盤算是評價不錯，價錢也可接受，國內可以直接買到。它的左右手鍵盤區並沒有分離得很遠，但剛好分開一個夾角，跟雙手自然擺放時的角度一樣。左右手分開鍵盤區要求指法一定要正確，還好我到手後在一個下午裏就已經適應了。</p>
-
-<p><img class="right" src="http://aleung.github.io/blog/attachments/2013/1/microsoft-mouse-6000.jpg" /> 鼠標我開始用的是<a href="http://www.microsoft.com/hardware/en-us/d/natural-wireless-laser-mouse-6000">微軟人體工學霸雷鯊6000</a>（已經停產），它的好處是傾斜的表面讓手腕不需要向內旋轉。但是用了一段時間感覺還是未達理想程度，主要問題是我移動鼠標時通常前臂放在桌面上是不動的，僅靠手腕的活動，時間長了手腕還是覺得累。</p>
-
-<p>後來在網上看了不少資料，軌跡球可能可以解決這個問題，不需要手腕的動作，依靠手指移動就可以了。但是，對於軌跡球的評價好壞很極端，要麼說很好用要麼說根本沒用，估計這個東西的適應比較困難。但要真正用起來才會知道是否適合，最後還是下定決心買一個來試一下。軌跡球始終屬於小眾產品沒有推廣開來，產品甚至越出越少，市場上現在可買到的沒幾款，相對鼠標來說價錢也貴不少（其實結構、元件都差不多）。最終買的是<a href="http://www.kensington.com/kensington/us/us/p/1444/K64325/expert-mouse%C2%AE.aspx">Kensington Expert Mouse</a>（淘寶有售），明明是trackball要叫做mouse，可見trackball不受落。選擇這個是因為球體夠大，而且是可以用食指中指來滾動球體。Logitech M570 本來也不錯，但聽說拇指球用起來不夠靈活，拇指也容易累。中置球體的另外一個好處是左右手通用，我本來習慣用右手的，但那個鍵盤實在太霸氣了，把軌跡球放右邊，手在鍵盤和軌跡球間切換要移動很遠，於是就換用左手了。剛買回來，球滾動不大順滑，有點澀的感覺，真有些失望，但用了一兩個星期後就好很多了，現在操作起來絲柔順滑，阻尼感恰到好處，應該是球的三個支撐點需要一段時間磨合。軌跡球剛用起來確實不是那麼容易上手，操作會比較笨拙，比用鼠標慢很多，但是多花些時間適應，大概幾天到一周就可以上手了。</p>
-
-<p>總之，現在對這套組合非常滿意。</p>
 ]]></content>
   </entry>
   

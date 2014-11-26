@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Running | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/running/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-09-17T00:12:55+08:00</updated>
+  <updated>2014-11-26T09:22:39+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2014广马数据分析]]></title>
+    <link href="http://aleung.github.io/blog/2014/11/26/2014-guangzhou-marathon-analysis/"/>
+    <updated>2014-11-26T07:38:06+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/11/26/2014-guangzhou-marathon-analysis</id>
+    <content type="html"><![CDATA[<p>2014广州马拉松在网上可以根据号码查询成绩和名次了，但是没有开放完整成绩册的数据下载。出于好奇，想知道成绩的分布：跑330以内的有多少人？400呢？有多少人最后关门一刻才冲线的？于是写了个程序把数据抓下来分析。</p>
+
+<p><img class="right" src="/attachments/2014/11/groups.png"></p>
+
+<p>数据不包含号码以0开头的专业选手（大概几十人）。由于不知道确切号码段，没完赛选手的数据有可能会漏了。</p>
+
+<p>首先是各组的人数，半程全程都不足5000人，男女比例全马约7:1，半马约5:1，跑步的妹子相对还是比较少。女子只要完赛了，总能够拿到个几百名的名次的 :)</p>
+
+<p>然后看成绩分布。</p>
+
+<p>半程组里有15%男选手和22%女选手未能完成比赛，而全程组不能完赛的男女选手比例分别是14%和21%。不一定是女子毅力不行，是相同的关门时间对女子更困难些吧。但有意思的是虽然全程更痛苦，但完成率跟半程是基本上一样的。</p>
+
+<p>半马组，一半的男选手在2:30内跑完，一半的女选手在2:45内跑完。全马组，这个数字是男子5:00，女子5:20。有能力5小时内跑完全程的，已经强过一半的人了。</p>
+
+<p>有几十人是过了关门时间才冲线的，依然有成绩，看来组委会还不是那么不近人情。</p>
+
+<p><img src="/attachments/2014/11/half-marathon.png"></p>
+
+<p><img src="/attachments/2014/11/marathon.png"></p>
+
+<p>能跑330是什么水平？400呢？看看下面的表格，比例是表示有多少人在这个时间内完赛。</p>
+
+<ul>
+  <li>男子全程</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">时间</th>
+      <th style="text-align: right">比例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">3:30</td>
+      <td style="text-align: right">3.9%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:00</td>
+      <td style="text-align: right">15.5%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:30</td>
+      <td style="text-align: right">32.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:00</td>
+      <td style="text-align: right">52.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:30</td>
+      <td style="text-align: right">67.3%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6:00</td>
+      <td style="text-align: right">85.7%</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>女子全程</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">时间</th>
+      <th style="text-align: right">比例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">3:30</td>
+      <td style="text-align: right">1.3%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:00</td>
+      <td style="text-align: right">5.7%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4:30</td>
+      <td style="text-align: right">17.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:00</td>
+      <td style="text-align: right">38.6%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5:30</td>
+      <td style="text-align: right">58.0%</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6:00</td>
+      <td style="text-align: right">78.2%</td>
+    </tr>
+  </tbody>
+</table>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[跑步日記]]></title>
@@ -172,31 +279,6 @@
     </li>
   </ol>
 </div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[广州跑步路线：二沙岛]]></title>
-    <link href="http://aleung.github.io/blog/2012/09/10/running-route-ersha/"/>
-    <updated>2012-09-10T22:13:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2012/09/10/running-route-ersha</id>
-    <content type="html"><![CDATA[<p><img src="/attachments/2012/9/ersha_sat.jpg" alt="" /></p>
-
-<p>环岛一周约4.4km，其实只能算环半岛，因为岛西面一大段的沿江堤岸是公众不能进入的。车道大部分是沥青路面，晴澜路段水泥路面，人行道是铺石路面。环岛道路汽车不多，在注意安全的前提下可以靠边跑车道。</p>
-
-<p>虽然算不上有什么景观，但二沙岛上的都是别墅和高级会所，环境幽静，江边视野开阔，跑起来挺舒服。</p>
-
-<p>晚上晴波路音乐厅美术馆一段江边比较热闹点，有游客、玩单车和玩音乐的，其他路段都比较僻静，特别的北面晴澜路段。但每隔一段距离就有保安坐在路旁，毕竟这里是富人区，治安有保障。</p>
-
-<p>岛中央是几个大草坪，上面有橡胶铺设的步道，跑步也不错，但就是拐弯多，断断续续，总长度也不够长。</p>
-
-<p>岛中央大通路/烟雨路有公交车途经。往东过广州大桥可以接着跑珠江新城临江大道，往西沿大通路过桥也可以接着沿江边跑，因此二沙岛可以作为沿珠江跑路线的一段。</p>
-
-<p>总体来说也是可以推荐的跑步路线。</p>
-
-<p><img src="/attachments/2012/9/ersha_map.jpg" alt="" /></p>
-
-<p>其他跑步路线介绍：<a href="/2012/09/09/running-route">广州跑步路线：索引</a></p>
 ]]></content>
   </entry>
   
