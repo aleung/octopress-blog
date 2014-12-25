@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="WebCatcher是我非常喜欢的一个软件，作者很热情的在论坛中解答问题、了解意见。我觉得个人开发软件同样存在着软件开发管理的问题，这是我写给他的一个建议： 估计这段时间老魏也够烦的：） 问题一个接一个，用户意见也不少。。。 我对这个软件还是很欣赏的，作者的技术水平也不错。 &hellip;">
+  <meta name="description" content="看了 Trees in SQL 这篇文章, 提出了一个巧妙的方法来在关系数据库中保存树状结构. 在记录中不是保存父子关系, 而是记录着树的遍历的编号, 通过利用编号可以在单个SQL语句中获取某个节点的所有子节点等操作. 据介绍, 著名论坛jive在2.5版本起增加了catalog, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/">在关系数据库中保存树状结构</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-06-03T00:07:00+08:00" pubdate data-updated="true">2003-06-03</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/database/'>Database</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看了 <a href="http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html">Trees in SQL</a> 这篇文章, 提出了一个巧妙的方法来在关系数据库中保存树状结构. 在记录中不是保存父子关系, 而是记录着树的遍历的编号, 通过利用编号可以在单个SQL语句中获取某个节点的所有子节点等操作. <br />
+据介绍, 著名论坛jive在2.5版本起增加了catalog, 就是用这种方法实现树状关系帖子的保存.  </p>
+
+<p><a href="http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html">http://searchdatabase.techtarget.com/tip/1,289483,sid13_gci537290,00.html</a>  </p>
+
+<p><em>需要注册一个帐号才能进入上面的连接. 本来想直接帖出来, 可是转贴后格式会乱</em></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/06/03/In-the-relationship-between-database-to-store-the-tree-structure/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -392,67 +448,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/">邮件系统发信缓慢问题的解决</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2002-03-13T00:13:00+08:00" pubdate data-updated="true">2002-03-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常.  </p>
-
-<p>检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时.  </p>
-
-<p>解决办法:  </p>
-
-<ul>
-  <li>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </li>
-  <li>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </li>
-</ul>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/60/">&larr; Older</a>
@@ -474,6 +469,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
       </li>
     
@@ -489,19 +488,15 @@
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/21/run/">跑步日記</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
@@ -518,13 +513,13 @@
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
@@ -540,9 +535,9 @@
 <a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
-<a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

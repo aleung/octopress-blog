@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Updated 2014-11-27: 之前漏了一些号码段，重新补上更新了。 2014广州马拉松在网上可以根据号码查询成绩和名次了，但是没有开放完整成绩册的数据下载。出于好奇，想知道成绩的分布：跑330以内的有多少人？400呢？有多少人最后关门一刻才冲线的？于是写了个程序把数据抓下来分析。 &hellip;">
+  <meta name="description" content="由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。 共同点 Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T01:11:52+08:00" pubdate data-updated="true">2014-12-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。</p>
+
+<h2 id="section">共同点</h2>
+
+<p>Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、功能等方面都还是比较相似的。</p>
+
+<p>对于 artifact 的标识，都是使用 groupID, artifactID, version 三元组，不过 Ivy 叫它们为 organization, module name, revision。Ivy 兼容 Maven 2 metadata，可以直接使用 Maven 2 repository。</p>
+
+<h2 id="configuration--scope">Configuration / Scope</h2>
+
+<p>Ivy 有个重要的概念叫 configuration，在 Maven 里类似的对应是 scope，但是 Ivy 的 configuration 比 Maven 的 scope 要灵活得多。</p>
+
+<p>一个模块可以有多个 configuration，每个 configuration 包含一组外部模块依赖的声明（实际的配置是反过来的，每个依赖声明会标识自己在那种 configuration 中生效）。Configuration 可以是跟 Maven scope 类似的 compile, runtime 和 test，也可以任意定义。例如，某个模块既可以支持 Oracle 也可以支持 MySQL，当使用不同数据库时，需要依赖的模块是不同的，就可以分别在 oracle 和 mysql 两个 configuration 中定义各自需要的依赖。</p>
+
+<p>Ivy 的 configuration 在依赖传递管理方面，比 Maven 要强。除了可以定义在一个 configuation 中需要依赖某个模块，还可以定义依赖这个模块时，会使用它的哪个 configuration，只有指定的 configuration 中的依赖才会传递进来。这个机制称为 configuration mapping。</p>
+
+<p>下面的例子中，声明了在 default configuration 中需要依赖 hibernate，并且包含 hibernate 的 proxool 和 oscache 这两种 configuration 中的依赖。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;dependency</span> <span class="na">org=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">name=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">rev=</span><span class="s">&quot;2.1.8&quot;</span> <span class="na">conf=</span><span class="s">&quot;default-&gt;proxool,oscache&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Configuration 可以扩展（继承）另一个 configuration，可以设置外部可见性。</p>
+
+<h2 id="repository">Repository</h2>
+
+<p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
+
+<p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -479,73 +558,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/21/run/">跑步日記</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-21T18:19:08+08:00" pubdate data-updated="true">2014-06-21</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天難得的陰天，早上下過雨，溫度30℃出頭，沒有早幾天那麽酷熱，也有點風。
-磨磨蹭蹭，早上10點半才出發。熱身段過後，按5’30”配速，從江灣橋過河南，沿江邊一直往東跑。</p>
-
-<p>過了廣州塔，就到獵德大橋，大概10km位置。這時我面臨著一個艱難的選擇：上橋，就過到珠江新城然後沿江邊往回走，穿過二沙島回家，這是跑過好多次的路線，大概十七八公里左右。如果直走，就一直要到琶洲大橋才能過橋，到了北岸往回跑，要到家路程估計有近30公里，這時我從沒有跑過的距離。在我的大腦還在激烈思想鬥爭的時候，雙腿肌肉已經作出了決定——直走。</p>
-
-<p>考慮到前路漫漫，將速度下降到5’50”。這時接近正午時分，雖然沒有太陽直射，人也比較熱，心率上升到接近160。找賣水的地方，但琶洲一帶很荒蕪，估算著也撐到過了琶洲橋後也沒問題。</p>
-
-<p>13.5km處上橋，這橋真長，足足一公里。過了琶洲大橋下來，14.6km，去超市買運動飲料喝，停了幾分鐘。這麽一停下來，就沒法重新跑起來了，完全不想動。繼續跑後氣喘得很厲害，隔夜風爐都吹得著，腳擡不起，步頻下降了很多。將速度下降到6’30”了，希望能夠慢慢適應過來。堅持了一段，毫無起色，終於在過了華南大橋底，到了17km處放棄了。不清楚為什麼買水停了一下後狀態會突然變得那麽差，看回數據，過橋前的速度還是保持得比較平穩的5’50”左右。以前我也有經驗是不能停，一旦停下就很難重新回復狀態，但慢慢適應一段時間後還是可以的，這次完全不行。</p>
-
-<p>找不到廁所，鑽進樹叢裏面尿尿。舒暢完後渾身酥軟，一轉身沒站穩跟身後樹幹長滿刺的木棉樹來了個親密接觸。</p>
-
-<p>沿著江邊走，中午很寧靜，人不多，只有知了在不知疲倦的叫。突然覺得這個環境很舒服，享受一下時光吧，在榕樹陰下的石凳坐下，冰冷的石頭冷卻著大腿的肌肉，涼風吹拂身上的汗水。出來跑步什麼都沒有帶，不用再習慣性的拿手機來看，就讓時間的碎片留白，就是那樣靜坐著，看著開闊的江面，感覺那TMD不就是幸福麽。所以人都是自己感動自己的，要不哪來那麽多感人的事情。</p>
-
-<p>歇了一會，將運動飲料全喝完了，感覺恢復了一些，起來繼續跑一下，邊跑盤算著後面還能再跑多遠。但是，跑累了的時候就是靠內心去堅持的，原來一直習慣了喘著氣的狀態，可以一直跑下去，一旦享受過停下休息的舒服後就承受不了之前那種苦了。最後跑到珠江新城地鐵站收官，累計20.5km。後面這段其實心率還在正常範圍，肌肉沒有不適，就是步頻慢了，按理說這個狀態還可以繼續跑上好一段距離的。</p>
-
-<p>另一方面，今天跑的狀態看來確實不是那麽好，跑完幾個小時的感覺比以往跑這個距離要累。
-回來看數據，感覺步頻似乎是反應體力狀態的一個直觀指標，從8.4km起步頻明顯下降了一個台階，而14.6km買水後步頻更是嚴重下降。另一方面，心率跟狀態有什麼關聯也還不是很清晰，每次跑步隨著疲勞累積，心率都是不斷升高的。但看以往的記錄，心率到160多速度依然保持的也有。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/06/21/run/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -565,6 +577,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
       </li>
     
@@ -580,19 +596,15 @@
         <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/21/run/">跑步日記</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 139%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
-<a style="font-size: 99%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
@@ -609,13 +621,13 @@
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 139%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 93%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 139%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
@@ -631,9 +643,9 @@
 <a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
-<a style="font-size: 99%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
-<a style="font-size: 99%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>

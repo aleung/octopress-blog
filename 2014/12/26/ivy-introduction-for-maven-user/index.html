@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ivy Introduction for Maven User - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。 共同点 Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ivy Introduction for Maven User</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T01:11:52+08:00" pubdate data-updated="true">2014-12-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。</p>
+
+<h2 id="section">共同点</h2>
+
+<p>Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、功能等方面都还是比较相似的。</p>
+
+<p>对于 artifact 的标识，都是使用 groupID, artifactID, version 三元组，不过 Ivy 叫它们为 organization, module name, revision。Ivy 兼容 Maven 2 metadata，可以直接使用 Maven 2 repository。</p>
+
+<h2 id="configuration--scope">Configuration / Scope</h2>
+
+<p>Ivy 有个重要的概念叫 configuration，在 Maven 里类似的对应是 scope，但是 Ivy 的 configuration 比 Maven 的 scope 要灵活得多。</p>
+
+<p>一个模块可以有多个 configuration，每个 configuration 包含一组外部模块依赖的声明（实际的配置是反过来的，每个依赖声明会标识自己在那种 configuration 中生效）。Configuration 可以是跟 Maven scope 类似的 compile, runtime 和 test，也可以任意定义。例如，某个模块既可以支持 Oracle 也可以支持 MySQL，当使用不同数据库时，需要依赖的模块是不同的，就可以分别在 oracle 和 mysql 两个 configuration 中定义各自需要的依赖。</p>
+
+<p>Ivy 的 configuration 在依赖传递管理方面，比 Maven 要强。除了可以定义在一个 configuation 中需要依赖某个模块，还可以定义依赖这个模块时，会使用它的哪个 configuration，只有指定的 configuration 中的依赖才会传递进来。这个机制称为 configuration mapping。</p>
+
+<p>下面的例子中，声明了在 default configuration 中需要依赖 hibernate，并且包含 hibernate 的 proxool 和 oscache 这两种 configuration 中的依赖。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;dependency</span> <span class="na">org=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">name=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">rev=</span><span class="s">&quot;2.1.8&quot;</span> <span class="na">conf=</span><span class="s">&quot;default-&gt;proxool,oscache&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Configuration 可以扩展（继承）另一个 configuration，可以设置外部可见性。</p>
+
+<h2 id="repository">Repository</h2>
+
+<p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
+
+<p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T01:11:52+08:00" pubdate data-updated="true">2014-12-26</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user/" data-via="" data-counturl="http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/" title="Previous Post: 2014广马数据分析">&laquo; 2014广马数据分析</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 84%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/r/">R</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user/';
+        var disqus_url = 'http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
