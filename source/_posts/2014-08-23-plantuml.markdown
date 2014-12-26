@@ -1,0 +1,12 @@
+---
+layout: post
+title: "PlantUML 简介"
+date: 2014-08-23 16:57:33 +0800
+comments: true
+tags:
+- UML 
+- SoftwareDev
+---
+关于PlantUML的简介。
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/38238529" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/aleung/plantuml" title="PlantUML" target="_blank">PlantUML</a> </strong> from <strong><a href="http://www.slideshare.net/aleung" target="_blank">aleung</a></strong> </div>
