@@ -5,6 +5,7 @@ comments: true
 date: 2004-07-07 17:17
 tags:
 - SysAdmin
+- Windows
 ---
 最近两次启动windows 2000, 启动时间莫名其妙的长, 居然要5分钟, 我还以为死机了:(
 

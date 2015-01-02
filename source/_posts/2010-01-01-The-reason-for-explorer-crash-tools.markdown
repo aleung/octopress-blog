@@ -6,6 +6,7 @@ date: 2010-01-01 06:59
 tags:
 - Software
 - SysAdmin
+- Windows
 ---
 不知道装了什么软件之后，只要在文件管理器中点击鼠标右键，Windows Explorer就会崩溃，重新启动依然如是。
 

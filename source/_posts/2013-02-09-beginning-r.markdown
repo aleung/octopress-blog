@@ -4,7 +4,6 @@ title: "R初略学习笔记"
 date: 2013-02-09 14:18
 comments: true
 tags: 
-- R 
 - Statistics
 - DataVisualization
 ---

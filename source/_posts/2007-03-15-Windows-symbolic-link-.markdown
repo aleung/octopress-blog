@@ -4,8 +4,8 @@ title: "Windows的symbolic link支持"
 comments: true
 date: 2007-03-15 21:32
 tags:
-- Software
 - SysAdmin
+- Windows
 ---
 UNIX类的操作系统支持symbolic link [2]，可以通过"ln -s"命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。
 
