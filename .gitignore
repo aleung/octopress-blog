@@ -5,6 +5,7 @@
 .pygments-cache
 _deploy
 _plantuml
+_site
 public
 sass.old
 source.old
