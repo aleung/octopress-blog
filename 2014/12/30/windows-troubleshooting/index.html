@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Trouble shooting: Windows响应缓慢 - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="最近一个星期，电脑出现了缓慢的现象：打开任何应用，窗口都要等待上一段时间才能出现。 在 Process Explorer 中看到进程已经出现，也没有什么CPU占用，但窗口就是不出来，好像是要等到什么操作超时。这里如果能够查看调用栈，应该就能知道程序卡在什么地方。 上网搜索一下，看到一些文章提到 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2014/12/30/windows-troubleshooting/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Trouble Shooting: Windows响应缓慢</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-30T16:24:15+08:00" pubdate data-updated="true">2014-12-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>, <a class='tag' href='/blog/tags/windows/'>Windows</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>最近一个星期，电脑出现了缓慢的现象：打开任何应用，窗口都要等待上一段时间才能出现。</p>
+
+<p>在 <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a> 中看到进程已经出现，也没有什么CPU占用，但窗口就是不出来，好像是要等到什么操作超时。这里如果能够查看调用栈，应该就能知道程序卡在什么地方。</p>
+
+<p>上网搜索一下，看到一些文章提到 troubleshoot Windows 问题，都用到了 WinDbg 来分析进程调用栈。这篇<a href="http://www.codeproject.com/Articles/6084/Windows-Debuggers-Part-A-WinDbg-Tutorial">文章</a>简要介绍了 WinDbg 的使用方法（不过可能文章年代过于久远，有些细节已经对不上了）。于是安装相应软件，实操一下。</p>
+
+<p>只是用到 WinDbg 的一些皮毛功能，包括这些命令：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>~</td>
+      <td>列出所有线程</td>
+    </tr>
+    <tr>
+      <td>k <em>5</em></td>
+      <td>显示当前线程的stack trace，如果附带数字则限制打印条数</td>
+    </tr>
+    <tr>
+      <td>kb</td>
+      <td>显示stack trace，包含前三个调用参数</td>
+    </tr>
+    <tr>
+      <td>~n[cmd]</td>
+      <td>对n号线程执行 <em>cmd</em> 操作</td>
+    </tr>
+    <tr>
+      <td>~*[cmd]</td>
+      <td>对所有线程执行操作，如 <code>~*k 5</code></td>
+    </tr>
+    <tr>
+      <td>~ns</td>
+      <td>切换到n号线程</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>WinDbg 可以 attach 到一个执行中的进程。但我只是想看看某个时刻那个进程在干什么，用 Process Explorer 创建进程的 minidump 更加简单，在 GUI 中选择进程，右键菜单选择 dump 就能创建出 dump 文件，可以多 dump 几次，然后用WinDbg 打开 dump 文件查看。</p>
+
+<pre><code>Loading Dump File [C:\tmp\2014-12\notepad++.dmp]
+User Mini Dump File: Only registers, stack and portions of memory are available
+
+Symbol search path is: srv*c:\LocalSymbols* http://msdl.microsoft.com/download/symbols
+Executable search path is:
+Windows 7 Version 7601 (Service Pack 1) MP (4 procs) Free x86 compatible
+Product: WinNt, suite: SingleUserTS
+Machine Name:
+Debug session time: Tue Dec 30 15:53:27.000 2014 (UTC + 8:00)
+System Uptime: not available
+Process Uptime: 0 days 0:00:06.000
+</code></pre>
+
+<p>这是 notepad++ 启动6秒钟后的 dump，看看这时有些什么线程，分别在干什么：</p>
+
+<pre><code>0:000&gt; ~*k 6
+
+.  0  Id: 1894.d54 Suspend: 0 Teb: 7efdd000 Unfrozen
+ChildEBP RetAddr 
+00137980 74c314ab ntdll!NtWaitForSingleObject+0x15
+001379ec 764b1194 KERNELBASE!WaitForSingleObjectEx+0x98
+00137a04 764b1148 kernel32!WaitForSingleObjectExImplementation+0x75
+00137a18 74a5098c kernel32!WaitForSingleObject+0x12
+00137a28 74a4fcdc msctf!CCicEvent::Wait+0x15
+00137ca4 74a4fbd9 msctf!CAssemblyList::LoadFromCache+0x94
+
+   1  Id: 1894.107c Suspend: 0 Teb: 7efda000 Unfrozen
+ChildEBP RetAddr 
+WARNING: Frame IP not in any known module. Following frames may be wrong.
+00b4ff88 764b338a 0x1e02d1
+00b4ff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
+00b4ffd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
+00b4ffec 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   2  Id: 1894.4bc Suspend: 0 Teb: 7efd7000 Unfrozen
+ChildEBP RetAddr 
+02ecfe28 76ee1ad0 ntdll!NtWaitForWorkViaWorkerFactory+0x12
+02ecff88 764b338a ntdll!TppWorkerThread+0x216
+02ecff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
+02ecffd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
+02ecffec 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   3  Id: 1894.f30 Suspend: 0 Teb: 7ef9f000 Unfrozen
+ChildEBP RetAddr 
+033afe28 76ee1ad0 ntdll!NtWaitForWorkViaWorkerFactory+0x12
+033aff88 764b338a ntdll!TppWorkerThread+0x216
+033aff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
+033affd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
+033affec 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   4  Id: 1894.2034 Suspend: 0 Teb: 7ef9c000 Unfrozen
+ChildEBP RetAddr 
+04d1fdf4 76ecc6c5 ntdll!NtWaitForMultipleObjects+0x15
+04d1ff88 764b338a ntdll!TppWaiterpThread+0x33d
+04d1ff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
+04d1ffd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
+04d1ffec 00000000 ntdll!_RtlUserThreadStart+0x1b
+</code></pre>
+
+<p>共有5个线程，只有0号线程在干活。看0号线程的完整调用栈：</p>
+
+<pre><code>0:000&gt; k
+ChildEBP RetAddr 
+00137980 74c314ab ntdll!NtWaitForSingleObject+0x15
+001379ec 764b1194 KERNELBASE!WaitForSingleObjectEx+0x98
+00137a04 764b1148 kernel32!WaitForSingleObjectExImplementation+0x75
+00137a18 74a5098c kernel32!WaitForSingleObject+0x12
+00137a28 74a4fcdc msctf!CCicEvent::Wait+0x15
+00137ca4 74a4fbd9 msctf!CAssemblyList::LoadFromCache+0x94
+00137cd0 74a4e045 msctf!CAssemblyList::Load+0x39
+00137d00 74a4e863 msctf!EnsureAssemblyList+0xe9
+00137d28 74a4e30a msctf!CLangBarItemMgr::GetCurrentCategoryList+0x14
+00137d44 74a4e67d msctf!CLangBarItemMgr::_Init+0xea
+00137d58 74a7d0c4 msctf!CLangBarItemMgr::CreateInstance+0xea
+00137d78 74a57f99 msctf!CLangBarItemMgr_Ole::CreateInstance+0x6e
+00137d8c 76038ca6 msctf!CClassFactory::CreateInstance+0x14
+00137e14 76053170 ole32!CServerContextActivator::CreateInstance+0x172 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1000]
+00137e54 76038dca ole32!ActivationPropertiesIn::DelegateCreateInstance+0x108 [d:\w7rtm\com\ole32\actprops\actprops.cxx @ 1917]
+00137ea8 76038d3f ole32!CApartmentActivator::CreateInstance+0x112 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 2268]
+00137ec8 76038ac2 ole32!CProcessActivator::CCICallback+0x6d [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1737]
+00137ee8 76038a73 ole32!CProcessActivator::AttemptActivation+0x2c [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1630]
+00137f24 76038e2d ole32!CProcessActivator::ActivateByContext+0x4f [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1487]
+00137f4c 76053170 ole32!CProcessActivator::CreateInstance+0x49 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1377]
+00137f8c 76052ef4 ole32!ActivationPropertiesIn::DelegateCreateInstance+0x108 [d:\w7rtm\com\ole32\actprops\actprops.cxx @ 1917]
+001381ec 76053170 ole32!CClientContextActivator::CreateInstance+0xb0 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 685]
+0013822c 76053098 ole32!ActivationPropertiesIn::DelegateCreateInstance+0x108 [d:\w7rtm\com\ole32\actprops\actprops.cxx @ 1917]
+001389fc 76059e25 ole32!ICoCreateInstanceEx+0x404 [d:\w7rtm\com\ole32\com\objact\objact.cxx @ 1334]
+00138a5c 76059d86 ole32!CComActivator::DoCreateInstance+0xd9 [d:\w7rtm\com\ole32\com\objact\immact.hxx @ 343]
+00138a80 76059d3f ole32!CoCreateInstanceEx+0x38 [d:\w7rtm\com\ole32\com\objact\actapi.cxx @ 157]
+Unable to load image C:\Windows\System32\kunlun.ime, Win32 error 0n2
+*** WARNING: Unable to verify timestamp for kunlun.ime
+*** ERROR: Module load completed but symbols could not be loaded for kunlun.ime
+00138ab0 71a86801 ole32!CoCreateInstance+0x37 [d:\w7rtm\com\ole32\com\objact\actapi.cxx @ 110]
+WARNING: Stack unwind information not available. Following frames may be wrong.
+00138ad4 71a86722 kunlun+0xf6801
+00138b0c 71a8648c kunlun+0xf6722
+00138bf0 71a4fb9e kunlun+0xf648c
+00138c58 71a51e63 kunlun+0xbfb9e
+00138c8c 71a51efc kunlun+0xc1e63
+00138cc4 71a51b90 kunlun+0xc1efc
+00138d34 71a4fc81 kunlun+0xc1b90
+00138d74 762d459a kunlun+0xbfc81
+00138d90 762d2900 imm32!CreateInputContext+0x195
+00138db8 762d1e8c imm32!InternalImmLockIMC+0xca
+00138dc8 762d34ae imm32!ImmLockIMC+0xf
+00138dec 750cd9e7 imm32!ImmSetActiveContext+0x62
+00138e08 750cadf9 user32!FocusSetIMCContext+0x28
+0013905c 750c75b7 user32!ImeSystemHandler+0x31f
+00139084 750c75ed user32!ImeWndProcWorker+0x2c9
+001390a4 750c62fa user32!ImeWndProcW+0x29
+001390d0 750c6d3a user32!InternalCallWinProc+0x23
+00139148 750c6de8 user32!UserCallWinProcCheckWow+0x109
+001391a4 750c6e44 user32!DispatchClientMessage+0xe0
+001391e0 76ea010a user32!__fnDWORD+0x2b
+001391f4 00fe7ae0 ntdll!KiUserCallbackDispatcher+0x2e
+001392d8 750f10d3 0xfe7ae0
+001392fc 750f1125 user32!CreateDialogIndirectParamAorW+0x33
+*** ERROR: Module load completed but symbols could not be loaded for notepad++.exe
+00139328 00516a73 user32!CreateDialogParamW+0x49
+0013934c 750caa3c notepad__+0x116a73
+00139400 750c8a5c user32!_CreateWindowEx+0x210
+0013943c 0041ee1c user32!CreateWindowExW+0x33
+0013a7cc 00584fd4 notepad__+0x1ee1c
+0013a7e4 00584fa0 notepad__+0x184fd4
+0013a7e8 00400000 notepad__+0x184fa0
+0013a7ec 00040d60 notepad__
+0013a7f0 00110d3c 0x40d60
+0013a7f4 00000000 0x110d3c
+</code></pre>
+
+<p>最后的操作在msctf中等待某个事件，msctf 是 Microsoft Text Service；回溯调用栈，看见imm32（Input Method Manager）相关的调用，看来这个无响应的现象与输入法有关系。而 stack 中出现的 kunlun.ime 是必应输入法。</p>
+
+<p>试试把正在使用的必应输入法卸载后重启，系统就正常了。重新安装必应输入法，重启后系统又出现无响应现象。</p>
+
+<p>但比应输入法已经使用了一段时间了，为什么开始没有出现问题呢？回忆了一下，大概是在安装了 <a href="http://synergy-project.org/">Synergy</a> 之后出现的，Synergy共享鼠标键盘，也许有可能与输入法产生冲突。尝试一下，卸载synergy后，即使安装必应，系统也正常。看来可以确认是两者冲突，试了 Synergy 1.4.16/17/18 几个64bit版本都不能与 Bing IME 1.6.98.04 工作。</p>
+
+<p>Ok，对我来说问题解决了，进一步的不再深究。这次学会了使用 WinDbg 查看调用栈的简单操作。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-30T16:24:15+08:00" pubdate data-updated="true">2014-12-30</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>, <a class='tag' href='/blog/tags/windows/'>Windows</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2014/12/30/windows-troubleshooting/" data-via="" data-counturl="http://aleung.github.io/blog/2014/12/30/windows-troubleshooting/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/26/getting-start-with-sbt/" title="Previous Post: Getting start with sbt">&laquo; Getting start with sbt</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/01/02/da-peng-new-year-marathon/" title="Next Post: 大鹏新年马拉松">大鹏新年马拉松 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 84%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2014/12/30/windows-troubleshooting/';
+        var disqus_url = 'http://aleung.github.io/blog/2014/12/30/windows-troubleshooting/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

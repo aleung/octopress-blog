@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Google出品，必属精品。我发现我对google已经产生了一种不由自主的崇拜，从google search到gmail，blogger（可惜在国内被封），和这个picasa。也许，google是另外一个apple——拥有自己一群忠实的fans，形成了独特的文化。 &hellip;">
+  <meta name="description" content="处理照片时，被偏色问题折磨得受不了，这一个多星期里刻苦学习色彩管理知识。无忌上面几百个跟贴的话题看得头晕脑胀，还是东一句西一句就没有系统的叙述。 总算有点头绪了，把学到的东西总结一下。主要针对怎样在显示器上显示出准确的颜色，不涉及太多打印、印刷的内容，适合普通用户啦。 一张照片，从扫描仪扫描出来， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,285 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2004/11/12/Color-management-1/">色彩管理 (1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2004-11-12T22:53:00+08:00" pubdate data-updated="true">2004-11-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>处理照片时，被偏色问题折磨得受不了，这一个多星期里刻苦学习色彩管理知识。无忌上面几百个跟贴的话题看得头晕脑胀，还是东一句西一句就没有系统的叙述。</p>
+
+<p>总算有点头绪了，把学到的东西总结一下。主要针对怎样在显示器上显示出准确的颜色，不涉及太多打印、印刷的内容，适合普通用户啦。</p>
+
+<p>一张照片，从扫描仪扫描出来，或者用数码相机拍摄下来，保存成文件，再放上网，在不同的电脑上查看，效果跟原始图像往往已经有很大不同了，而且不同的电脑看出来的效果还不一样，可能是暗了，或者亮了，又可能是偏红，或者偏青。色彩管理的目的，就是在图像输入、处理、输出的整个过程中，尽可能保持一致。</p>
+
+<p>色彩管理，首先要理解的概念是色彩空间。这是在色彩量化的过程中引入的概念。常用的图像格式都是用RGB三个数值来表示颜色的，但是，当说一个点的色彩是(203,45,73),这样的数值有什么意义呢？它表示什么颜色？红色，是怎样的红？如果不将数值放入一个坐标系中，数值就没有实际的含义。色彩空间就是颜色的坐标系。</p>
+
+<p>不同的色彩模型，有不同的坐标体系，例如我们最熟悉的RGB，用于印刷的CMYK，还有基于色度模型的LAB等等。就像几何学中，有直角坐标也有极坐标。下图所示的是标准色彩空间CIE XYZ。下面主要是按照大家最熟悉也是最直观的RGB模型来说吧。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5137782234/"><img src="http://farm2.static.flickr.com/1427/5137782234_27ebf3e711.jpg" alt="CIE 1931 xy chromaticity diagram" /></a></p>
+
+<p>现实世界中的色彩是异常丰富的，但是由于技术的限制，每种设备所能辨别或者重现的色彩范围有限，并不能覆盖可见光域所有的颜色。在图像数字化的转换中，由于设计原因和物理特性的不同，不同设备的量化的效果也不同。例如同样是(203,45,73)这样的数值，一台显示器会显示成鲜红，另一台会显示成暗红。这相当于不同设备的坐标轴的标定是不一样的。因此，每台设备，都有它自己的色彩空间。</p>
+
+<p>这样，问题就来了，没有一个标准，颜色怎么可能准确？扫描仪的色彩空间与显示器的色彩空间不一致，将扫描出来的数据原封不动送给显示器，颜色就会改变了。我们必须有个标准的坐标系才行。现在就要引入一个新的概念—-设备无关的色彩空间（PCS）。上面提到的CIE XYZ就是一种常用的标准的设备无关色彩空间。图像数据在不同色彩空间之间转换时，要经过特定的算法进行换算，相当于几何中的坐标系变换。</p>
+
+<p>一个图像文件，里面保存的是一堆数据，怎么知道它是哪个色彩空间？我们需要给它贴一个”标签”，在标签里说明这些数据采用的是什么色彩空间，当支持色彩管理的图像处理软件读取这个文件时，先看看标签，就知道怎么去做色彩空间的转换了。ICC profile，就是这样的”标签”，它保存着一组数据，包含了这个色彩空间与PCS之间的换算关系。把ICC profile数据嵌入到图像文件里面，图像文件就能对数据的色彩空间作出自描述。但是，千万别把profile弄错了，如果一个文件，它的数据实际上是A色彩空间的，你把B色彩空间的profile指定给它，图象处理软件就会把它当成B色彩空间来转换，造成偏色。就像一个网页，明明是GB2312编码的，你把它当成big5来打开，就会出现乱码。</p>
+
+<p>CYE XYZ够标准了，但在实际的图像处理中并不使用，常用的标准色彩空间是sRGB、Adobe RGB等，为什么？首先，xyz这样的坐标系不直观，如果是RGB坐标系，R的数值大了，你就知道是偏红了，但x增大了，但你不知道它有什么实际意义。其次，CYE XYZ色彩空间的范围太大了，远远超出设备、材料能表现的色彩范围，如果用同样的精度来量化，就需要更大的数据长度，而多出来那部分其实是没有意义的，因为不可能用到，浪费了存储空间。反正已经知道了每个色彩空间与XYZ空间的换算关系了，就可以在任意两个空间进行转换。</p>
+
+<p>空间转换过程是可能会有损失的（引起色彩变化）。一个原因是换算引起的精度损失，不过这一般可以忽略。主要的损失是发生在大空间往小空间转换时，在源空间可以表示出来的颜色，不再目标空间的范围内，转换引擎只好用一种接近的颜色来代替，造成了色彩的失真。例如，九寨沟的水那种碧中带蓝的颜色就无法在sRGB空间中表现出来。下图表示常用的色彩空间的色域。</p>
+
+<p><img src="http://www.normankoren.com/Sachs_gamut_chart_2_640.jpg" alt="" /></p>
+
+<p>ICC profile描述的是色彩空间的特性。前面说过了，每个设备都有自己的色彩空间，因此也应该有一个相应的profile。准确的profile需要采用专业仪器测试得出，普通用户是没有这样的条件的，只能采用设备厂商给出的profile。如果质量控制得好，同一个型号的产品的特性会比较相似，基本上还是可以接受的。低档设备可能厂家不提供profile，这样的设备就无法进行准确的色彩管理了。对于没有profile的设备，可以当作它的色彩空间是sRGB来处理，因为sRGB是一个比较通用的标准，设备设计时往往都会尽量符合这个标准的。</p>
+
+<p>具有色彩管理功能的软件（例如photoshop），可以根据设备的profile，先将图像转换为设备所用的色彩空间，再送给设备输出，这样颜色就能保持一致。但是有些设备（或者驱动程序）已经内置了色彩管理功能，它能够接收标准色彩空间（例如sRGB）的数据，在内部转换成设备色彩空间再输出。这时候photoshop就不应该做预转换，否则重复转换也是造成失真。</p>
+
+<p>正因为有这么多不同的情况，色彩管理才变得很复杂和难以理解，输入、处理、输出各个环节都是相关的，一个环节的错误就会引起最终结果的错误，配置的时候要非常小心。</p>
+
+<p>See also:</p>
+
+<p><a href="/blog/2012/09/15/color-management-2">色彩管理(2)</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/11/12/Color-management-1/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/11/12/The-company-group-discussion-in-the-dialogue-about-personal-finance/">公司讨论组里关于个人理财的对话</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-11-12T20:11:00+08:00" pubdate data-updated="true">2004-11-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>我</em>：这个表格不算很细了:) 个人理财有不少好软件，国产的财智家庭理财做得不错，我就喜欢microsoft money</p>
+
+<p><em>同事</em>：请问你用了多久？我就用过一些PDA和电脑上的理财软件，还可以同步的，不过最后发现：所有这些都不过是自找麻烦，还是在白纸上写下来的最好_</p>
+
+<p><em>我</em>：用纸写下来，只是记录，但是不能管理啊？你想知道现在净资产是多少，要算半天；想知道最近什么方面花钱多了，看不出来；比较一下今年总支出跟去年总支出差多少，很难算吧？而这些在软件上面有直观的图表曲线显示出来。MS money的强大之处是report很丰富和灵活，其他理财软件要差远了</p>
+
+<p><em>同事</em>：想问个私人的问题：你用了多久？因为刚用的时候我也这么想啊，可是后来数据丢失……不是拆台，只是想求证一下。或者我应该两种方式都采用。只是每天就比较烦，要记两次。我经常过了十天才发现：我又忘记记账了_</p>
+
+<p><em>我</em>：我用了好几年，具体记不清了，起码超过3年。欢迎交流。</p>
+
+<p>数据要自己经常备份，ms money每次exit都会写一个backup文件的。</p>
+
+<p>刚开始使用，要先规划好怎么分类。这很重要，也影响着你日后能否坚持记录下去。<br />
+如果你怕麻烦或者不想记太细，可以只分一些大类，把日常的费用记入日常支出分类就行了，每次记帐时点点钱，除去大笔的支出要记录明细账，剩余的差值就是日常支出。如果想有更详细的信息，就要把分类分细一点。<br />
+其实主要关心的还是大数，例如供房、投资、旅游、购物、吃大餐之类的，其他日常的消费每个月都差不了太多的。<br />
+如果用钱不多，不需要天天记录，两三天一次也可以，但不要超过一周，记不起来的:) 消费的时候把单据留下来，例如购物小票，柜员机的账单，这样就不怕忘记。你有pda，那就更方便了，可以先记下来，到时再记入电脑。我是用palm的。如果间隔时间长了，很大的账目缺口却实在想不起来花到什么地方，可以建立一个独立分类叫做“unknow”，把帐记到这个分类里面，这样可以保持账目的一致，重要的是要坚持下去。</p>
+
+<p>ms money功能很强，也比较可靠，毕竟是microsoft的产品。但是刚开始学习曲线会比较陡，不容易上手，还有就是英文的。但学会怎么用后，就会觉得它非常好用了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/11/12/The-company-group-discussion-in-the-dialogue-about-personal-finance/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/11/02/Encounter-virus-Trojan/">遭遇病毒(木马)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-11-02T22:45:00+08:00" pubdate data-updated="true">2004-11-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>操作系统刚重装才一天，就出现了莫名其妙的问题。svchost进程就会把CPU全占满，使得系统几乎没有响应。用procexp（Process Explorer）来查看进程，这个svchost.exe确实是系统自带的，是系统服务的宿主进程。</p>
+
+<p>Reboot机器，重试几次，发现不连上网的时候一切正常，一旦网络连上了，CPU就被那个svchost占满，如果把那个进程杀死，系统就不能正常工作。当时刚刚安装了Norton AntiVirus，它的auto update服务会在网络连上的时候自动开始，所以我怀疑是NAV update服务引起的。把NAV卸载了，问题依然存在。因为那个svchost是RPC服务的，我又以为是操作系统的问题，什么文件的版本乱了，就用安装盘采用重装式修复，可是还是不正常。</p>
+
+<p>毫无头绪之际，再度用procexp监视进程树。这次发现一些异常了：svchost启动了一些tftp进程。这些tftp在做什么？从219.137.217.181下载文件，下载的文件名为atiphexx.exe、winupdatez.exe等，还有不少没有记下来。很奇怪啊，是否系统中了木马？检查一下tftp，也是系统自己的东西，没有异常，那是谁启动这些进程的呢？</p>
+
+<p>安装spybot，检查系统，没有查出木马程序。但是，过了一会，注册表监视器报警了，有进程要往注册表的系统启动run项目里写入新内容，居然就是winupdatez.exe。这不用说都是木马了。在winnt\system32目录下找到这个winupdatez.exe，删除。再检查注册表，把相关项目都删除。重启系统，正常了。</p>
+
+<p>开始时太大意了，居然没有第一时间检查注册表的run里面有没有异常，白白浪费了两晚时间。不过，当初进程树里面看到的都是系统的进程，没发现这个winupdatez进程，所以才没有怀疑是病毒/木马。是否还有其他名称的木马存在呢？我心里还是没有底。不过系统现在运行正常了。新装系统，真的是要把所有防护措施都做好才能上网:(</p>
+
+<p>这次用到工具软件Process Explorer很不错，能够看到很多Task Manager没有的进程信息，是<a href="http://www.sysinternals.com/"> www.sysinternals.com</a> 的出品。Sysinternals还有好几个不错的小软件，都是监视系统运行情况的，包括tcpview、filemon、regmon等。</p>
+
+<p>系统除了安装防火墙之外，还应该装上一个可以监视注册表改动的工具。现在修改注册表的网页太多了。我用的是Spybot，兼有木马查找和注册表防护的功能，我喜欢它能够从网上update规则。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/11/02/Encounter-virus-Trojan/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/09/19/A-luxury-buy-a-LCD-it/">奢侈一下，买台液晶吧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-09-19T06:36:00+08:00" pubdate data-updated="true">2004-09-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>家里的显示器比较老了，用起来总是感觉不爽。我的电脑除去上网文字处理等日常使用外，用途主要是两个，照片编辑和GPS/GIS应用。现在的显示器两个不爽：一个是尺寸问题，15寸只能上800*600，用photoshop调整照片时就算把工具panel全部关闭也看不全，在OziExplorer里面看地图也嫌显示范围不够大。另一个是显示效果不佳，感觉不锐，总有点灰蒙蒙似的，颜色也不够艳丽。</p>
+
+<p>最初想法是换个好些的CRT，不考虑液晶。一方面是液晶贵，另外“专业人士”都说在图像处理方面液晶比CRT还差得远。年初的时候了解过市场行情，才发现17寸的特丽珑已经停产了，钻石珑的好显示器也没有几款，CRT市场变成了高端和底端两个断层。贵的买不起，便宜的又不见得比现在用的好太多，就算了。</p>
+
+<p>前几天在整理一些照片的时候，又被刺激了一下神经，更换显示器再次提上日程来。17寸CRT没有什么好选择，那么看看19寸，象点样子的都要三四千，而且这么大的显示器又笨重又占地方，再看看现在好些的LCD，效果也比以前改进不少了，不如还是LCD吧。还有，虽然现在都在宣传多少毫秒17寸液晶跌破3000元了，但是那些货色实际效果都只是一般的。看看人家推荐的型号，一查价格，哇，都是七八千的。一路看下来，将我的心理承受价位不断推高。我知道了，很多人就是这样一步步“中毒”的:)</p>
+
+<p>网上看得不少了，今天去逛电脑城，看看实物是怎样的。每进一个店面，伙计都热情招呼，“想看些什么？CRT还是液晶”，“液晶，17寸的”，“哦，17寸液晶就是这款了，正在做特价……”，伙计往往都是指着最低档的一款向我介绍。显然，我的样貌打扮都象个学生。样品演示的大多都是严重ps过头的图片，艳丽无比，却毫无层次，每个LCD都像灯箱一样，看不出什么区别，估计大部分人也就是看看外形挑便宜的买吧。店员的水平通常也麻麻，除了不断重复12毫秒500比1之类的话外就说不出产品的其他优点了。也是的，懂得多的人也不会在电脑城买东西。有意思的是在一家店看sony的样品，我让店员放些图片来看效果，她找遍硬盘都没有找到，居然想到个点子，登录自己的163邮箱，把私人邮件里面的数码照片拿出来show。</p>
+
+<p>我不玩游戏，也不打算用电脑来看电影，应用都是静态图像为主，因此刷新速度什么的并不重要，关键是色彩还原效果。主要看两方面，暗部层次表现和可视角度范围。如果观看位置上下偏一点，画面的明暗就有变化，这就不可接受了，调整照片的时候根本不知道应该以什么亮度为准。依照这个标准，电脑城里有样品演示的17寸主流产品几乎没有一个及格:( 唯一感觉很好的是samsung 173p，看来TN面版的可视角度都不行，PVA面版的才可以接受。至于暗部的表现能力，LCD比起CRT始终还是差一些，看灰阶都还比不上我现在用的这台低档CRT。</p>
+
+<p>本来想看看高档产品的效果比较一下的，例如EIZO之类的无忌毒友老挂在嘴边的品牌，可是走了几个电脑城都没有看到有样品摆出来，卖的都是三星LG菲利浦等大众品牌。</p>
+
+<p>看来选定的是173p了，就等广州市场什么时候降价——人家上海都卖4200了，广州还报五千多。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/09/19/A-luxury-buy-a-LCD-it/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2004/09/14/Picasa-/">Picasa, 适合家用的图片管理软件</a></h1>
     
     
@@ -128,408 +407,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/09/07/Bayesian-filter-with-to-achieve-the-BBS-speech-to-be-automatic-check/">用bayesian过滤来实现论坛发言自动检查</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-09-07T07:21:00+08:00" pubdate data-updated="true">2004-09-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Bayesian过滤已经广泛用于邮件系统的anti-spam功能中，通过统计分析出spam邮件词语的统计特征，实现自动识别。</p>
-
-<p>根据这个思路，也可以将bayesian过滤用在论坛的发言检查中，以减少版主工作量。</p>
-
-<p>考虑到要易于与现有论坛系统集成，发言过滤器可以做成webservice之类的服务，提供两个功能调用：</p>
-
-<ul>
-  <li>void train(String content, boolean isMatch) </li>
-  <li>boolean filter(String content)</li>
-</ul>
-
-<p>前者让发言过滤系统学习，分析content特征；后者让系统分析content是否应该被过滤，返回值也可以是一个浮点数，表示分析出是敏感内容的可能性（确定性）。</p>
-
-<p>对于论坛系统，如果本来已经支持版主审核功能的话，改造很简单。用户发言，调用filter方法，如果返回false，直接设置为已审核状态，直接显示；如果返回true，设置为待审核状态，等待版主人工审核。版主审核时，将选择是否需要过滤此内容，调用train方法，让过滤器学习。</p>
-
-<p><a href="http://classifier4j.sourceforge.net/">Classifier4J</a>可以用于过滤器的开发，已经提供了Bayesian分类功能，需要补充的是中文分词的实现。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/09/07/Bayesian-filter-with-to-achieve-the-BBS-speech-to-be-automatic-check/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/08/26/Mind-map-FreeMind/">Mind Map, FreeMind</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-08-26T02:08:00+08:00" pubdate data-updated="true">2004-08-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Mind map，中文翻译为”思维导图”。听起来有点玄乎，说白了就是以图像方式记录思路或者描述事物的一种方法。（看看下面的图就有直观了解了）。在我的理解中，mind map是辅助整理思路和思维扩展的一个工具，一方面以层次化的形式将思路条理化，另一方面能快速记录下头脑中闪现的想法，特别适合于头脑风暴的场合。</p>
-
-<p>两年前看到有关mind map的介绍，当时非常感兴趣，跑去图书馆把Tony Buzan的书借来看。惭愧的是，书放到过期都没有看几页，因为对那些心理学的理论不感兴趣。Tony Buzan在书中把这个方法吹嘘得神乎其神，我总觉得他有黄婆卖瓜之嫌。Mind map从本质上与outline（大纲）差不多，它的很多长处用outline也可以实现。但他说到人的大脑对于文字、图像、声音是由不同的区域处理的，图像的方式可以刺激大脑的特定区域，比单纯文字要好，对此我是很有体会的，一向以来我都比较喜欢以画图的方式来思考问题。</p>
-
-<p>当时试用过几款mind map软件，最好的应当算是MindManager了，但用了一段时间，没有养成习惯，也就没有感觉到什么特别的好处，还是放弃了。后来我在需要整理思路的时候都是采用outline：如果写文档，在word里面采用大纲视图；日常的笔记，我喜欢用CyberArticle，它是使用HTML格式的，用列表或者项目符号也很方便的组织大纲；palm上也有类似的工具，但用得不多。如果需要记录思维，而不希望因为记录的过程而束缚思路，我更习惯用纸和笔。</p>
-
-<p>其实不是mind map不好，而是这些软件在人机交互界面上都未能突破电脑与纸笔之间的隔阂。用手写画，眼睛看着纸上的图像获得反馈，是我们最习惯的方式。使用电脑之后，中间环节插入到这个过程中，大脑需要处理如何进行电脑录入，特别是当软件设计得不好，操作复杂，或者响应速度慢时，反馈过程立马被打断了，造成了思维的障碍。从这个角度看，tablet PC应当是优于键盘鼠标输入的普通电脑的，以前我曾经写过<a href="http://www.blogbus.com/blogbus/blog/diary.php?diaryid=52190">这方面的想法</a>。</p>
-
-<p>今天<a href="http://www.blogbus.com/blogbus/blog/diary.php?diaryid=348523">flyisland</a>推荐的软件<a href="http://freemind.sourceforge.net/">FreeMind</a>，试用了一下，感觉很不错。</p>
-
-<ul>
-  <li>首先，功能简洁实用，虽然并没有MindManager那么强大，但是常用的都有了 </li>
-  <li>使用简单，试了一个小时左右，大部分的功能都已经掌握了。学习曲线平缓，对于这样一种通用型工具很重要 </li>
-  <li>使用非常方便，常用功能用键盘就可以控制，不需要鼠标，这样的操作界面可以进行快速记录，减少对思路的阻碍 </li>
-  <li>虽然是用java开发的，内存占用不算多，运行速度也快。对mind map软件来说速度是很重要的，如果经常出现用户察觉到的等待，就没有什么使用价值了 </li>
-  <li>Open source！</li>
-</ul>
-
-<p>有关mind map和FreeMind，还可以看看flyisland的介绍。<a href="http://www.blogbus.com/blogbus/blog/diary.php?diaryid=348523">http://flyisland.blogbus.com/logs/348523.html</a></p>
-
-<p>这个就是我试用FreeMind时做的练习，同时也归纳出它的基本使用方法，希望能再进一步减少你的学习时间吧:)</p>
-
-<p><img src="http://sunnyday.cn2k.net/photo/freemind_usage.gif" alt="" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/08/26/Mind-map-FreeMind/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/08/04/The-poor-who-newsletter/">可怜的腾迅</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-08-04T21:43:00+08:00" pubdate data-updated="true">2004-08-04</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>所谓树大招风，腾迅这回可是中招了，面对愤青们打着爱国主义和民族主义旗号的攻势，却是苦水只能往肚子里咽。QQ的主要用户群是青少年学生，正是最热血沸腾的年龄，看来这次事件对腾迅的影响不可谓不大。</p>
-
-<p>看看QQ游戏里面都过滤些什么单词吧，在QQ安装目录里面找出COMToolKit.dll这个文件，用VC把它打开（或者其它的能查看资源的工具，实在没有，用UltraEdit也可以，不过会夹杂着很多乱码），就可以看到有两个叫做“DIRTYWORD”的资源，id分别为9001和9002，在鼠标右键菜单中选择导出，把它们存入文件，用文本编辑器打开，怎样，大开眼界吧？好多词，我们这些良民百姓都不知道有什么含意。</p>
-
-<p>可以看看 <a href="http://forum.future.org.cn/showthread.php?p=618922">http://forum.future.org.cn/showthread.php?p=618922</a>的21楼（不知道最初出自哪里），有详细一点的介绍。作者是个反日派，他的结论也挺有意思：</p>
-
-<blockquote>
-  <p>从这个过滤词表看，可以得出几个结论：第一个结论，大家说话都不怎么流畅，全是他妈的弱势群体，谁也别笑话谁。以后坛子上的反腐斗士和自由派，别老拿这个来数落俺们反日派。俺们也互相体谅。第二个结论，政府对民族主义算是比较纵容的了，虽然也提防着，但主要也就提防大家上 街，网上骂骂，一般来说是安全的。第三个结论，别骂腾讯。尽管腾讯的发家有那么些不光彩的地方，但这事怪不了它。不负责任胡乱攻击只会给我们多树敌人。</p>
-
-  <p>最后一段是奉劝我们自己人的。第一句话是奉劝新网友的。新网友别每天就知道灌水起哄，“把腾讯移交有关部门处理”啥的，惹人家笑话。不管你将来准备加入什么思潮流派，第一步应该是了解自己的处境，别以为教科书上说你是国家的主人，你就真的信了。了解了自己的处境，才能改变它。第二句话是奉劝老网友的，过滤词什么的，大家在网上混那么多年的，都知道是谁干的，老虎谁都不敢打不敢骂，这也没什么丢脸的，不敢骂就不敢呗，抓住一只小猫暴扁干嘛？充英雄吗？表演自己的怯懦而已。   </p>
-</blockquote>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/08/04/The-poor-who-newsletter/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/07/10/Speech-browse-technical-specifications-profile/">语音浏览技术规范简介</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-07-10T00:59:00+08:00" pubdate data-updated="true">2004-07-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一直以来，在CTI领域语音应用的开发都是采用各厂商的专有技术的，每个平台厂商都伴随自己的平台推出一套语音业务开发的规范，有些是脚本式的语言，有些是图形化的流程，这些规范受限于平台，相互之间没有兼容性，基于这些专有规范开发出来的语音业务很难从一个厂商的平台移植到另一个厂商的平台。</p>
-
-<p>另外一方面，这些专有的语音业务开发规范的体系是非开放性的，业务控制局限在语音平台内部，与外界系统进行交互只能通过有限的途径，例如访问数据库、数据访问网关，开发COM接口组件等。造成难于与外部系统有机集成，集成成本高。在业务开发上，也因为业务处理逻辑与用户交互控制混合在一起，使得复杂业务的开发难度和维护难度都比较高。</p>
-
-<p>近年来，随着网络技术的发展，各种业务应用都纷纷往网络方向发展，充分利用internet的数据自由流动和协议标准化的优势，CTI技术与web技术融合的需求越来越大。基于web的各种开发技术也迅速发展并成熟，包括J2EE、.NET、WebService等等，web应用开发渐渐变得快捷而高效。另外一方面，随着手机、PDA等手持设备的发展，对于延伸使用者界面，多模式互动的需求越来越多，提供键盘、笔输入、语音等多种输入手段，各种文字、影音输出途径，语音应用和传统文字/图形应用的界限越来越模糊。</p>
-
-<p>在这样的趋势下，业界研究推出了多种涉及语音技术的标准规范。其中，W3C（World Wide Web Consortium）走在前面，其下的语音浏览器工作组等多个工作组进行的标准规范制定工作都涉及了语音技术。目前，对于电话和语音应用领域，重要的规范有三个，分别为VoiceXML, CCXML(Call Control eXtensible Markup Language), SALT(Speech Application Language Tags)。</p>
-
-<p>这三个规范都是基于XML的，这是因为XML作为一种可扩展的通用标记语言，有着标准化、结构化的特点，并且对于XML的生成、传输、解析、验证、查询都已经有一系列相当成熟的技术和编程开发包，存在着很大的优势。但XML本身并不说明什么，它只是用来描述规范的一种语言，支持XML跟支持VoiceXML、CCXML这些规范是完全两回事。</p>
-
-<p>这三个规范应用在系统中，部署架构基本是相同的，从高层次来看，由两个主要模块构成：文档服务器（document server）和电话语音平台（speech/telephony platform）。文档服务器由web server、database server、application server等构成，可以使用J2EE或者.NET平台。业务应用部署在文档服务器上，它响应电话语音平台发送来的请求，生成XML规范文档。电话语音平台包括了解释器、TTS、ASR等部分，它解释执行文档，负责与用户的交互界面。</p>
-
-<p>电话语音平台与PSTN接口，或者提供VoIP支持。当一个呼叫进入系统，电话语音平台分析出业务类别，通过HTTP协议向文档服务器发起请求。文档服务器执行业务应用，生成VoiceXML或者CCXML规范的文档，返回给电话语音平台。电话语音平台内置了VoiceXML或者CCXML浏览器，解释执行文档内容，控制ASR与TTS操作，与电话用户进行交互。TTS服务器将文字合成为语音，播放给用户；ASR服务器接受用户的语音输入，利用语法规则(grammar)将用户说话内容识别为文本数据，平台在脚本控制下根据输入内容判断下一步的执行。</p>
-
-<p>大多数情况下，基于web的应用都会采用易于扩展的架构，将核心服务逻辑（业务逻辑）与表示细节（VoiceXML, CCXML, SALT, HTML, WML）分离开。某些场合下还会将应用对话状态的维护与表示层分离，以实现表示语言机制的无关性，这样同一个应用可以采用web（HTML）、wap（WML）、语音（VoiceXML/CCXML）等不同的表示形式，适应PC、PDA、电话等多种用户终端。</p>
-
-<p>使用这些XML系列标准技术规范的系统与过去传统专有规范的系统在架构上有所不同，使用标准规范的系统，业务的部署与平台的部署是分离的，相互通过HTTP协议松耦合，业务采用URL进行定位。这使得业务的分布部署变得非常简单。业务的开发采用web应用开发完全相同的模式，使得语音业务开发人员可以充分利用web应用开发的技术和经验。并且，用较小的代价就可以实现语音应用与web应用集成，或者实现应用的多种表示形式，适应不同的客户终端。</p>
-
-<h4 id="voicexml">VoiceXML</h4>
-
-<p>VoiceXML可以理解为另外一种表示语言，类似于HTML和WML。它是一种表述对话（dialog）的语言，用来控制业务过程中的人机交互过程，适用于面向电话、手机等终端设备的语音应用，例如自动客户服务、自助查询系统、个人消息系统等。</p>
-
-<p>将VoiceXML与HTML对比，就能很容易理解了。浏览器解释后，HTML表示的内容是以文字图像方式显示在屏幕上的，VoiceXML的内容是以语言的方式播放给用户的。HTML接收用户的文字输入和鼠标点击，VoiceXML接受用户的语音输入，进行语音识别，或者是通过电话按键输入DTMF数据。</p>
-
-<p>VoiceXML是一种独立的语言，不能内嵌到现有的web语言中（如HTML，WML）。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class="line"><span class="nt">&lt;vxml</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;catch</span> <span class="na">event=</span><span class="s">&quot;event.exit&quot;</span><span class="nt">&gt;</span>
-</span><span class="line"><span class="nt">&lt;exit</span> <span class="nt">/&gt;</span>
-</span><span class="line"><span class="nt">&lt;/catch&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;choose_menu_option&quot;</span><span class="nt">&gt;</span>
-</span><span class="line"><span class="nt">&lt;prompt&gt;</span>
-</span><span class="line">You are in a demo for content services.
-</span><span class="line">To obtain stock quotes, say stocks or say 1.
-</span><span class="line">For weather information, say weather or press 2.
-</span><span class="line">For news, say news or press 3.
-</span><span class="line"><span class="nt">&lt;/prompt&gt;</span>
-</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;1&quot;</span> <span class="na">next=</span><span class="s">&quot;#stocks_menu_option&quot;</span><span class="nt">&gt;</span>stocks<span class="nt">&lt;/choice&gt;</span>
-</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;2&quot;</span> <span class="na">next=</span><span class="s">&quot;#weather_menu_option&quot;</span><span class="nt">&gt;</span>weather<span class="nt">&lt;/choice&gt;</span>
-</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;3&quot;</span> <span class="na">next=</span><span class="s">&quot;#news_menu_option&quot;</span><span class="nt">&gt;</span>news<span class="nt">&lt;/choice&gt;</span>
-</span><span class="line"><span class="nt">&lt;nomatch&gt;</span>
-</span><span class="line"><span class="nt">&lt;prompt&gt;</span>I could not understand what you said, please try again<span class="nt">&lt;/prompt&gt;</span>
-</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
-</span><span class="line"><span class="nt">&lt;/nomatch&gt;</span>
-</span><span class="line"><span class="nt">&lt;noinput&gt;</span>
-</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
-</span><span class="line"><span class="nt">&lt;/noinput&gt;</span>
-</span><span class="line"><span class="nt">&lt;/menu&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;stocks_menu_option&quot;</span><span class="nt">&gt;</span>
-</span><span class="line"><span class="nt">&lt;block&gt;</span>
-</span><span class="line">...
-</span><span class="line"><span class="nt">&lt;/block&gt;</span>
-</span><span class="line"><span class="nt">&lt;/form&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;weather_menu_option&quot;</span><span class="nt">&gt;</span>
-</span><span class="line"><span class="nt">&lt;field</span> <span class="na">name=</span><span class="s">&quot;city&quot;</span><span class="nt">&gt;</span>
-</span><span class="line"><span class="nt">&lt;grammar</span> <span class="na">type=</span><span class="s">&quot;application/srgs+xml&quot;</span> <span class="na">src=</span><span class="s">&quot;cities.grxml&quot;</span><span class="nt">/&gt;</span>
-</span><span class="line"><span class="nt">&lt;prompt&gt;</span>Pleasesaythe city&#39;s name<span class="nt">&lt;/prompt&gt;</span>
-</span><span class="line"><span class="nt">&lt;/field&gt;</span>
-</span><span class="line">...
-</span><span class="line"><span class="nt">&lt;filled&gt;</span>
-</span><span class="line"><span class="nt">&lt;submit</span> <span class="na">next=</span><span class="s">&quot;http://host/weather.do&quot;</span><span class="nt">/&gt;</span>
-</span><span class="line"><span class="nt">&lt;/filled&gt;</span>
-</span><span class="line"><span class="nt">&lt;/form&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;news_menu_option&quot;</span><span class="nt">&gt;</span>
-</span><span class="line"><span class="nt">&lt;block&gt;</span>
-</span><span class="line">...
-</span><span class="line"><span class="nt">&lt;/block&gt;</span>
-</span><span class="line"><span class="nt">&lt;/form&gt;</span>
-</span><span class="line"><span class="nt">&lt;/vxml&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>从例子可以看出，VoiceXML描述的是一个个对话，menu和form是对话的两种形式。menu是列出选择项，供用户选择；form是播放提示语言，接受用户输入。</p>
-
-<p>&lt;prompt&gt;、&lt;audio&gt;控制语音输出，输出有两种方式，一种是利用TTS将文本合成为语音，另一种是播放预先录制好的语音文件（如vox，wav）。为了控制合成语音的过程，提供丰富的语音表现形式，要求VoiceXML解释器支持SSML（Speech Synthesis Markup Language）语言，SSML可以控制TTS如何合成语音，例如重音、停顿、声调、数字播报方式等。</p>
-
-<p>语音输入的识别是通过语法规则控制的，&lt;grammar&gt;指定输入项采用什么语法规则进行识别，语法规则要求使用SRGS(Speech Recognition Grammar Specification)规范的格式来描述。</p>
-
-<p>VoiceXML的执行顺序是有内置的规则的，称为FIA（Form Interpretation Algorithm），解释器根据FIA选择对话，执行对话中的输入、输出操作。为了提供对例外情况的控制手段，改变执行流程，VoiceXML具备事件机制，通过&lt;throw&gt;, &lt;catch&gt;, &lt;noinput&gt;, &lt;error&gt;,&lt;help&gt;, &lt;nomatch&gt;等元素可以抛出事件和捕获事件。</p>
-
-<p>通过&lt;goto&gt;、&lt;submit&gt;等控制元素，能实现对话之间或者文档之间的转移。</p>
-
-<p>在VoiceXML中，可以嵌入ECMAScript(即通常说的JavaScript）代码，实现客户端的运算功能。</p>
-
-<p>VoiceXML提供了一些机制实现扩展和重用，&lt;object&gt;元素供实现平台定义的功能，&lt;subdialog&gt;可以实现语音组件的重用。</p>
-
-<p>VoiceXML的目的是用来控制语音方式的人机交互过程的，因而它缺乏对呼叫的控制能力。例如会议、呼叫控制、建立呼叫、拒绝呼叫等等都无法实现。</p>
-
-<h4 id="ccxml">CCXML</h4>
-
-<p>针对VoiceXML在呼叫控制方面的不足，CCXML补充了这部分的功能。它能够发起呼叫、过滤和路由进入的呼叫、处理外部的异步事件。并且它能支持多方会议，可以将VoiceXML实例作为参与者加入会议，并控制VoiceXML的执行和停止。与VoiceXML类似，由CCXML浏览器负责解释执行CCXML文档。</p>
-
-<p>CCXML可以独立使用，但很多情况下是与VoiceXML配合使用，CCXML控制整个呼叫模型，VoiceXML控制每个呼叫中的用户交互。单纯的VoiceXML是无法实现电话QQ之类的涉及到多方通话的业务的，利用CCXML就有可能实现了。</p>
-
-<p><em>（未完成）</em></p>
-
-<p><em>原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点的文章的，后来因为工作安排的原因半途而废了。CCXML日后如果需要，可能会进一步研究，到时也许会补上；SALT在我的工作中不会涉及，不打算在上面花时间了。</em></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/07/10/Speech-browse-technical-specifications-profile/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/46/">&larr; Older</a>
@@ -551,23 +428,23 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -576,14 +453,14 @@
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -597,7 +474,7 @@
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -606,20 +483,21 @@
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -631,7 +509,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

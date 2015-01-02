@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="MySQL的数据表访问锁定：读操作、写操作分别要申请读锁和写锁，读锁可以并发，写锁是唯一的。通过配置或者一些命令可以改变读、写的优先级。在MySQL手册中关于性能部分有说明。 普通的表类型，如MyISAM表是采用table级锁定；InnoDB和BDB是支持transaction的表类型， &hellip;">
+  <meta name="description" content="下载ASTER L1B数据，AST09(或者AST07,未知有何区别)格式。数据包括两个文件，hdf0是15m VNIR(band 1-3)，hdf1是30m SWIR(band 4-9)，一般只需要hdf0。 用MultiSpecWin打开hdf文件，将各个band分别保存为tif文件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,312 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2003/12/04/Used-as-a-OziExplorer-for-reproduction-of-the-production-of-ASTER-presents-the-satellite/">用作OziExplorer底图的ASTER卫星遥感图的制作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-12-04T18:04:00+08:00" pubdate data-updated="true">2003-12-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+  <li>下载ASTER L1B数据，AST<em>09(或者AST</em>07,未知有何区别)格式。数据包括两个文件，hdf0是15m VNIR(band 1-3)，hdf1是30m SWIR(band 4-9)，一般只需要hdf0。 </li>
+  <li>用MultiSpecWin打开hdf文件，将各个band分别保存为tif文件 </li>
+  <li>用photoshop打开三个band的tif文件，按照RGB模式通道合成为一个文件，采用231合成的效果比较好。 </li>
+  <li>在photoshop中对图像进行直方图调整、锐化，保存为jpg </li>
+  <li>用ECW compressser将jpg转换为ecw格式 </li>
+  <li>在OziExplorer中校准, 投影设为UTM，然后用META FILE里面的四个点来作为校准点，分别是图像（包括黑色部分）的四个角。  </li>
+</ol>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/12/04/Used-as-a-OziExplorer-for-reproduction-of-the-production-of-ASTER-presents-the-satellite/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/12/03/Social-software/">社会性软件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2003-12-03T04:09:00+08:00" pubdate data-updated="true">2003-12-03</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今来在blog中比较关注的一个热点是社会性软件，似乎现在中文blog群体中比较活跃的一些人是做教育的，因此对这方面的探讨比较多。</p>
+
+<p>对于社会学方面的东西我不大懂，对社会性软件的概念也是一知半解，不过有个软件是很令我感兴趣的：<a href="http://www.codingmonkeys.de/subethaedit/">SubEthaEdit</a>。这个软件提供了通过网络多人共同进行文本编辑的功能，从<a href="http://wwwbruegge.in.tum.de/projects/hydra/subethaedit/screenshots.html">screenshot</a>上看，有点象IM聊天的多个参与者，共同对文件进行修改，通过不同颜色可以区别出不同人改动的部分。</p>
+
+<p>软件的说明中提及了此软件可以用于pair programming，我想如果这样的软件真的能够达到实用化的话，基于网络的远程PP也是有可能的。即使不是远程PP，对于工作小组内部的商讨事情也会带来很大的方便。</p>
+
+<p>可惜软件是用于Mac OS X的，没有办法试用。</p>
+
+<p>交流真是工作中非常重要的一部分，想想每天多少人在天空飞来飞去，就是为了参加半天的会议，能有一次见面交流的机会。电话、网络等等各种先进科技，目前都还是未能让人们能自如的交流，提供真切的体验。这是一个极具潜力的领域。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/12/03/Social-software/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/26/Garmin-GPS-map76s-/">Garmin GPS Map76s 解剖</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-11-26T23:49:00+08:00" pubdate data-updated="true">2003-11-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>EE times 的一篇<a href="http://www.eet.com/sys/uth/OEG20020710S0026">文章</a>介绍了Garmin GPS map76s的内部模块结构，下图是引自该文章的。</p>
+
+<p><img src="http://img.cmpnet.com/eet/news/02/July/UTH1226.gif" alt="" /></p>
+
+<p>据分析，这样一个GPS的成本价不足100美圆，可是现在市场价是差不多400美圆！好赚吧？:)</p>
+
+<p>从照片中可以看到，四螺旋天线垂直安装在顶部，因此GPS在直立放置时的信号接收效果是最好的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/26/Garmin-GPS-map76s-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-/">户外活动应该选择什么型号的GPS？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2003-11-26T01:36:00+08:00" pubdate data-updated="true">2003-11-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/outdoor/'>Outdoor</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在玩户外的人中，GPS的拥有量开始增加，什么型号的GPS适合户外使用？我在买GPS之前看过不少资料，可以参考一下。</p>
+
+<p><a href="http://gpsinformation.net">GPS information</a>是一个很值得看的站点，几大GPS厂家的设备信息、GPS相关软件、使用心得等等资料非常齐全。</p>
+
+<p>该网站里面一篇文章<a href="http://gpsinformation.net/main/gpshiking.htm">Important features for a hiking GPS</a>介绍了什么GPS适合于hiking使用。</p>
+
+<p>摘录部分出来：</p>
+
+<blockquote>
+  <p>Below are my “essential hiking feature list” of GPS receiver features.</p>
+
+  <p>(I omitted features that are present in ALL receivers.)</p>
+
+  <p>1) 12 channel parallel receiver system: Needed for best reception in difficult terrain and tree cover.</p>
+
+  <p>2) WaterProofness: Unit should be rated submersible to protect it from getting wet.</p>
+
+  <p>3) Long battery life: Keeps you from having to carry so many batteries.</p>
+
+  <p>4) Built in Maps: Not absolutely essential, but big help in orientation and estimating distance to nearest roads.</p>
+
+  <p>5) Route capability: Twenty Route capability is pretty standard. Make sure you get one with at least 20 routes.</p>
+
+  <p>6) Waypoints: 500+ user entered waypoints are pretty standard. Make sure you get one of these.</p>
+
+  <p>7) Multiple Datum capability is pretty standard: Make sure all the datums you will want to use are included in the GPS you select.</p>
+
+  <p>8) Fit nicely in your pocket and lightweight: This is a very personal thing, but you should consider it when you are thinking about hauling a unit around in the wilderness.</p>
+
+  <p>9) Bearing to next waypoint: Almost universal, but essential to hiking use.</p>
+
+  <p>10) Screen Size and your ability to read it are important especially if you have problems with viewing fine detail.</p>
+
+  <p>Not ABSOLUTELY essential features, but nice to have.</p>
+
+  <p>1) “Map” screen (as opposed to just a numerical lon/lat position fix): Makes it much easier to see where you are relative to reference waypoints.</p>
+
+  <p>2) Rotatable screen: Garmin makes a couple of units capable of rotating the screen vertical (handheld use) or horizontal (car dash use). These are not the handiest for pocket use, but lots of people like this compromise for joint hiking/car use.</p>
+
+  <p>3) UTM readout may be a consideration for some. This feature is available on a limited selection of consumer GPS receivers.</p>
+
+  <p>4) Topo Maps uploaded into your GPS: The Garmin USA Topo CD maps contain contour lines and small stream data very helpful in navigating in off-road territory. Magellan has a new TOPO map offering for the M330 available late Summer 2001.</p>
+
+  <p>5) For use under heavy tree cover or difficult (multipath) terrain conditions, an external amplified antenna will generally be helpful.</p>
+
+  <p>6) A minimum of 8 megs of map memory is recommended on a mapping GPS though you can “get by” with 1.4 megs or so.</p>
+</blockquote>
+
+<p>中文站点方面，<a href="www.lvye.org">绿野</a>论坛的<a href="http://www.lvye.org/bbs/postlist.php?Board=com_gis">通讯版</a>估计是目前集中了最多户外GPS玩家的地方。</p>
+
+<p>这是绿野网友晨峰归纳的GPS选购原则：</p>
+
+<blockquote>
+  <p>户外用的GPS有特殊性，我尝试列了几点，从经验上觉得最重要到次重要的。不考虑价钱的因素。  </p>
+
+  <p>1、防水和Rocky Panel功能。（不能太娇嫩，最好可以达到军用标准）<br />
+2、电源（耗电量小，使用时间相对长，低温条件下能工作稳定）<br />
+3、考虑丛林条件的天线设计和恶劣条件下的信号捕捉能力。<br />
+4、自动记录点的时间间距可调，Trace Back功能（完整的记录和大雾条件下使用）<br />
+5、重量、体积适中。<br />
+6、大屏幕或彩屏，自制矢量化地图。</p>
+</blockquote>
+
+<p>inc的<a href="http://4tgps.yeah.net">GPS zone</a>虽然资料不算很多，但好像是目前比较好的关于GPS的中文个人站点了。</p>
+
+<p>我自己就没有仔细归纳过，根据使用经验来说，想到几点：</p>
+
+<ol>
+  <li>防水性、坚固性很重要，不能带个娇贵的东西到户外的恶劣环境</li>
+  <li>屏幕要有足够的分辨率(象素)，并且map页面zoom到最大的时候应该要能分辨出10米以内距离</li>
+  <li>track的容量越大越好，track记录间隔可设置，能够记录尽量长的航迹。waypoint、route的容量我反而觉得不是很重要，一般都够用(前提是有数据线，平常数据都保存在电脑上)</li>
+  <li>数据线很有用，可以在电脑上保存、整理资料数据。</li>
+  <li>卫星信号接收能力强，特别是树林中的接收能力很重要</li>
+  <li>如果仅仅是户外活动使用，不开车，那么地图功能是毫无用处的。</li>
+</ol>
+
+<p>有机会最好还是在购买前先试用一下，对于操作使用有感性认识，看看用起来顺不顺手，单单比较性能指标是不够的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/11/26/Outdoor-activities-should-choose-what-types-of-GPS-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2003/11/08/MySQL-/">MySQL的锁</a></h1>
     
     
@@ -126,370 +432,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/">GPS数据管理软件EasyGPS和格式转换工具GPSBabel</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-11-01T01:17:00+08:00" pubdate data-updated="true">2003-11-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>EasyGPS是很好用的GPS数据管理器，能管理waypoint、route资料，它支持的文件格式是文件格式是gpx/loc。我使用过程中感觉它有以下优点：   </p>
-
-<p>※ GPS waypoint的名称、说明字段的文字个数有限制，通常只能输入缩写。waypoint多了之后缩写很难理解，管理十分困难。在EasyGPS中，可以输入额外的信息，如中文说明、类别信息等，利用资料的整理。 <br />
-※ 双击选定一个点作为active point，程序会计算出所有其他点与active point的距离、方位角。如果用距离来排序，就能够快速找出某距离范围以内的waypoint。这是我认为这个软件最好用的功能。 <br />
-※ 软件提供检索功能，能够根据多种条件查找、选定符合条件的waypoint <br />
-※ 可以打印waypoint清单。GPS中保存的waypoint没有详细说明，只要在出发前先打印一张单，名字具体对应的是什么地点就一清二楚了。英文机也不用愁啦。 <br />
-※ 从GPS上传、下载waypoint也是十分方便的   </p>
-
-<p>我以前是用ozi文件分地区存放waypoint的，管理起来非常麻烦，先按大的地区分目录，再按小地区建立文件。而且在GPS多次导入导出，都分不清那些是新增那些是旧，有些还重复了。 <br />
-现在用了EasyGPS不用这么麻烦了，把所有点都放一个gpx文件里面，需要的时候利用搜索很容易就能找到，只要找到一个，按范围排序马上就把附近整个区域的所有点都找出来了，然后另存文件或者直接传到GPS。   </p>
-
-<p>因此强烈推荐大家使用这种格式交换waypoint! :)   </p>
-
-<p>EasyGPS是免费软件，在<a href="http://www.easygps.com/">http://www.easygps.com/</a> 可下载；另外有ExpertGPS，功能更加多些，对route、track的管理更全面，不过是要钱买的。   </p>
-
-<p>另一个推荐的是GPSBabel软件，可以在gpx / ozi / mapsource / mapsend 等几十种文件格式之间转换，除了格式转换之外，还有过滤waypoint的功能，例如可以将重名的、距离很接近的waypoint过滤掉，或者是只输出某个座标范围内的waypoint。 <br />
-这个是命令行工具，但同时也提供了GUI界面，方便使用。（GUI界面只能做格式转换，不能过滤） <br />
-GPSBabel是open source软件，在<a href="http://gpsbabel.sourceforge.net/">http://gpsbabel.sourceforge.net</a> 可下载。 </p>
-
-<p>这里是ExpertGPS的<a href="http://www.lvye.org/uploadfiles/597018-easygps_introduce.gif">screen shot</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/11/01/GPS-EasyGPS-GPSBabel/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/10/31/GPS-/">GPS定向游戏</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-10-31T02:35:00+08:00" pubdate data-updated="true">2003-10-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这些GPS游戏与定向越野有点类似：定向越野是根据地图指南针在最短的时间内到达预先布好的若干个check point；GPS定向是依靠GPS、电子地图到达（尽量靠近）预先设定的点。  </p>
-
-<p>GPS定向是相当有趣的活动。它是对参加者的野外行进、找路的能力是一个考验，你知道目标的方位、距离，但是怎么才能到达？中间可能隔着树林、山头、池塘或者建筑物。对于识别地图的能力也有要求，出发前要先找寻资料，确定目标的大致位置，在地图上研究通过什么路线才能靠近到达。  </p>
-
-<p>对于目标座标是电脑随机生成的游戏，更加有意思。不是人工布的点，因此目标不一定在有路可达的地方，参加者预先根本不知道目标在什么地形，可能在田野里，可能山坡上，可能在湖中央，也可能在别人屋子里。如果目标是不可到达的（例如在湖中，又没有船），还要考虑湖边的哪个位置才能离目标最近。因此这个游戏充满未知的刺激。</p>
-
-<p><strong>Geocaching - 寻宝</strong> <a href="http://www.geocaching.com">www.geocaching.com</a></p>
-
-<p>在一个地方藏起一个“宝箱”，记录下精确坐标，发布到网站上。<br />
-其他参与者根据坐标寻找这个宝箱。找到后可以取走里面的一件礼物，当然了，为了让游戏可以继续玩下去，他也应该放一件礼物进去留给后来者。</p>
-
-<p><strong>Degree confluence - 座标整点计划</strong> <a href="http://www.confluence.org/">http://www.confluence.org/</a></p>
-
-<p>这是一个有趣的计划，计划发起人将地球上陆地（或者靠近陆地）的所有经纬度为整数的点列出来，参与者要到达这个点（精确到100米以内），拍下照片，写下记录。</p>
-
-<p><strong>Geodashing</strong></p>
-
-<p>这个游戏与 <em>整数座标点计划</em> 有点类似，也是要访问特定的座标点，但是座标点是随机生成的，而且比较密，在你居住的地区数十公里内就应该就会有几个。也是在网上登记成功的访问，计算积分，看谁的积分高。可以个人玩，也可以组队，以队伍为单位计算积分。每月进行一轮比赛，每轮的座标点都重新生成的。  </p>
-
-<p>在<a href="http://geodashing.org/">http://geodashing.org/</a> 或<a href="http://geodashing.gpsgames.org/">http://geodashing.gpsgames.org/</a> 下载座标点数据，<br />
-压缩包中有很多个文件的，包括全世界的点，我们选择dashpoints_neasia.wpt，这是亚洲东北部分。<br />
-选择你附近的点，成功到达（100米范围）后发一封邮件给这个游戏的专门讨论组，报告你成功访问了，如果你不打算积分只是自己玩玩也可以不发邮件的。</p>
-
-<p><strong>Gps Golf － 高尔夫</strong> <a href="http://golf.gpsgames.org/">http://golf.gpsgames.org/</a>  </p>
-
-<p>这个游戏非常简单，受条件限制也少，下班有时间都可以玩:)  </p>
-
-<p>高尔夫球是要把球打进18个洞；而这个GPS高尔夫，是随机生成18个waypoints，要求参与者到访这18个点（球洞），根据到“球洞”的距离计算分数，越近分数越低，最后算总分，最低的为赢。  </p>
-
-<p>在游戏网站上，注册用户都可以自己设立赛局，指定赛区中心座标和范围半径，程序会随后随机产生球洞座标。用户也可以随便参与别人设立的赛局，走完全部18个点后，在网站上登记自己到达各个点的最近距离，程序就会计算你的分数。  </p>
-
-<p>设定的赛区半径不同，游戏就有不同玩法：例如在几十公里范围，就需要自驾车参赛了；十来公里范围，可以自行车参赛；几公里范围，步行。<br />
-在城市里面的小范围赛区，下班就可以玩了；也可以在某个公园、或者某座山头作为赛区。</p>
-
-<p>在我的另外一个blog <a href="http://sunnyday.cn2k.net">清风白云艳阳天</a> 里面有一些参与GPS定向的记录。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/10/31/GPS-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/10/24/Nikon-Coolpix-series-camera-to-generate-rawformat-method/">使Nikon Coolpix系列相机生成raw格式文件的方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-10-24T02:53:00+08:00" pubdate data-updated="true">2003-10-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>使Nikon Coolpix系列相机生成raw格式文件的方法：将机器的id字符串由”NIKON DIGITAL CAMERA”改为”DIAG RAW”。利用photopc软件，通过串口数据线可以发送命令给相机实现修改</p>
-
-<pre><code>photopc id"DIAG RAW" query 
-photopc id "NIKON DIGITAL CAMERA" query
-</code></pre>
-
-<p>打开DIAG RAW模式后，每次拍摄会生成两个文件，一个是正常的jpg，另外一个是raw格式文件，在950上大概文件大小是2.35M左右。</p>
-
-<p>photopc软件可以控制相机的操作，例如设置光圈快门、拍摄照片等。</p>
-
-<p>RAW2NEF工具可以将raw格式文件转换为Nikon的NEF文件格式，这是nikon的公开raw格式，photoshop plugin可以打开。<a href="http://e2500.narod.ru/raw2nef_e.htm">http://e2500.narod.ru/raw2nef_e.htm</a></p>
-
-<p>好像另一个dcraw软件也是做这工作的：<a href="http://www.cybercom.net/~dcoffin/dcraw/">http://www.cybercom.net/~dcoffin/dcraw/</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/10/24/Nikon-Coolpix-series-camera-to-generate-rawformat-method/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/09/26/In-OziExplorer-use-of-NASA-LandCover-MrSID-data-method/">在OziExplorer中使用NASA LandCover MrSID数据的方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-09-26T20:57:00+08:00" pubdate data-updated="true">2003-09-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1)<br />
-This refers to the satellite images available from Nasa’s<br />
-Earth Science Applications Directorate MrSID Image Server:<br />
-<a href="https://zulu.ssc.nasa.gov/mrsid/">https://zulu.ssc.nasa.gov/mrsid/</a><br />
-Note that this is using secure HTTP, and the old URL<br />
-no longer works. They do not have their server set up<br />
-properly, so you may get warnings about the site’s<br />
-security certificate.  </p>
-
-<p>从 <a href="https://zulu.ssc.nasa.gov/mrsid/">https://zulu.ssc.nasa.gov/mrsid/</a> 下载数据  </p>
-
-<p>2)<br />
-Initially you use your mouse and the options at the<br />
-bottom of the map webpage(In/Out, zoom level, map size) to<br />
-find the map you want, then you select the “Select Image”<br />
-radiobutton and click on the map to get a popup window,<br />
-and on that you select “Download MrSID Image”.<br />
-You have to zoom in a couple of levels from the world map<br />
-before the image names are shown, and you won’t get the popup<br />
-window if you have Javascript disabled.  </p>
-
-<p>用鼠标点出你需要的区块，选择”Select Image”，弹出区块窗口，下载  </p>
-
-<p>3)<br />
-The downloaded file will have a “.tar” extension. Programs<br />
-such as WinZip that work with ZIP files should be able to<br />
-open the ‘tarball’(the name used for tar archives) file.<br />
-Typically it contains four files - the MrSid image(.sid),<br />
-it’s “world file”(.sdw), it’s metadata file(.met), and a<br />
-small JPEG thumbnail image(.jpg).  </p>
-
-<p>下载的是tar文件，用winzip、winrar可解压。包含4个文件，后缀为 sid, sdw, met, jpg  </p>
-
-<p>4)<br />
-The only files you need from the tarball are the image(.sid)<br />
-and it’s “world file”, which has a “.sdw” extension. Extract<br />
-them from the tarball, and save them into the same directory.  </p>
-
-<p>有用的文件是 sid 和 sdw，解开放到同一目录中  </p>
-
-<p>5)<br />
-Make sure you have the correct version of OziExplorer.<br />
-Older versions did not support the use of MrSid images.<br />
-As explained on Ozi’s Optional Extras page:<br />
-<a href="http://216.40.224.145/eng/optional_extras.html">http://216.40.224.145/eng/optional_extras.html</a><br />
-you need to have the MrSid DLL.<br />
-I would suggest using OziExplorer version 3.90.4j or newer,<br />
-because prior to that the filename was not shown on the<br />
-“DRG Import Defaults” dialog box.  </p>
-
-<p>在 <a href="http://216.40.224.145/eng/optional_extras.html">http://216.40.224.145/eng/optional_extras.html</a> 下载MrSid.dll并安装，这是OziExplorer的MrSID pluggin。<br />
-最好用OziExplorer 3.90.4j以后的版本。  </p>
-
-<p>6)<br />
-All the Nasa MrSid images use the WGS84 datum.<br />
-There is no need for the associated “.met” file when importing<br />
-into Ozi, and there is no need to look at the contents of the<br />
-“.met” or “.sdw” files.<br />
-The first character of the MrSid file’s name is the hemisphere(N or S).<br />
-The first pair of digits is the file’s UTM zone.<br />
-The second pair of digits is the latitude of the lower edge<br />
-of the image in the Northern hemisphere, and the upper edge of the<br />
-image in the Southern hemisphere - the images span 5 degrees of latitude, <br />
-with a slight bit of overlap to the north and south.<br />
-For example, N-10-45_loc.sid is for the Northern hemisphere,<br />
-UTM zone 10, and covers between 45 and 50 degrees North.  </p>
-
-<p>MrSid图象使用WGS84座标系，文件名首字母为南/北半球，第一组数字为UTM zone，第二组数字为区块靠近赤道一边的纬度，每个文件覆盖纬度5度的区域。如N-10-45_loc.sid表示北半球，UTM 10区，北纬45-50度。  </p>
-
-<p>7)<br />
-In Ozi select “Import Map” from the File menu, then either<br />
-“Single DRG Map” or “All DRG Maps on a CD or in a Folder”.<br />
-If you are going to import multiple Nasa MrSid images at the<br />
-same time from one directory, arrange it so that all the images<br />
-are for the same hemisphere and same UTM zone.<br />
-On the “DRG Import Defaults” dialog box:<br />
-Map Datum = WGS84<br />
-Map Grid Zone = UTM zone of the map image(s)<br />
-Hemisphere = first letter of image file(s) name(s)<br />
-Map Projection = UTM  </p>
-
-<p>在Ozi的File菜单选择”Import Map”，然后选择”Single DRG Map”或”All DRG Maps on a CD or in a Folder”.<br />
-如果打算一次导入同一目录中的多个MrSid图象，应该是同一个半球同一个zone的。（我试过没有成功，如果不怕麻烦还是一次一个好了）<br />
-在”DRG Import Defaults”对话框中，按以下填写：<br />
-Map Datum = WGS84<br />
-Map Grid Zone = 图象的UTM zone<br />
-Hemisphere = 图象文件名的首字母<br />
-Map Projection = UTM  </p>
-
-<p>That’s it - you should now be able to use the MrSid images in Ozi.<br />
-You no longer need the “.sdw” file(s), but they are small, so I<br />
-would keep them in case you ever need to re-do the import.  </p>
-
-<p>OK了，以后在Ozi中打开map文件就行了。<br />
-sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/09/26/In-OziExplorer-use-of-NASA-LandCover-MrSID-data-method/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/54/">&larr; Older</a>
@@ -511,23 +453,23 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -536,14 +478,14 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -557,7 +499,7 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -566,20 +508,21 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -591,7 +534,7 @@ sdw文件其实也不再需要，不过它很小，留着也不占空间。  </p
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

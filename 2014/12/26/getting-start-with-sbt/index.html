@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Getting start with sbt - Good good study, day day up</title>
+  <meta name="author" content="Leo Liang">
+
+  
+  <meta name="description" content="A shortened sbt tutorial for beginner and quick reference. Directory structure 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+lib/
+project/ Build.scala plugins.sbt
+src/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="alternate" title="Good good study, day day up" type="application/atom+xml">
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2827715-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">Good good study, day day up</a></h1>
+  
+    <h2>aleung的学习笔记, aleung的idea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/GoodGoodStudyDayDayUp" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aleung.github.io/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Getting Start With Sbt</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T17:17:50+08:00" pubdate data-updated="true">2014-12-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/scala/'>Scala</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A shortened sbt tutorial for beginner and quick reference.</p>
+
+<h2 id="directory-structure">Directory structure</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">lib/
+</span><span class="line">project/
+</span><span class="line">  Build.scala
+</span><span class="line">  plugins.sbt
+</span><span class="line">src/
+</span><span class="line">  main/
+</span><span class="line">    resources/
+</span><span class="line">    scala/
+</span><span class="line">    java/
+</span><span class="line">  test/
+</span><span class="line">built.sbt</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Source code can be placed in the project’s base directory. But usually people organize them into directory structure.</p>
+
+<p>sbt by default uses the same directory structure as Maven for source files, all under <code>src/</code>.</p>
+
+<p>sbt build definition files include <code>build.sbt</code> in project’s base drectory and other <code>.sbt</code> or <code>.scala</code> files in <code>project/</code> subdirectory.</p>
+
+<p>The <code>project</code> directory <em>is another project embedded</em> which knows how to build the outer project. So it may have its <code>build.sbt</code> and <code>project</code> directory structure, which is recursive. <em>The build definition is an sbt project.</em></p>
+
+<h2 id="running">Running</h2>
+
+<p>Common sbt commands:</p>
+
+<ul>
+  <li>clean</li>
+  <li>compile</li>
+  <li>test</li>
+  <li>testOnly &lt;testcase&gt;*</li>
+  <li>run &lt;argument&gt;*</li>
+  <li>package</li>
+  <li>reload</li>
+</ul>
+
+<p>sbt can ran in interactive mode or batch mode. In batch mode, specifying a space-seperated list of commands. For commands that take arguments, enclosing the command and arguments in quotes.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sbt clean compile <span class="s2">&quot;testOnly TestA TestB&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Prefixing a command with <code>~</code> will make the command run when any source files change. Press enter to stop watching for changes.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">&gt; ~ compile
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="build-definition">Build definition</h2>
+
+<h3 id="sbt-build-definition-basic">.sbt build definition basic</h3>
+
+<h4 id="project">Project</h4>
+
+<p><code>build.sbt</code> defines one or more <code>Project</code>s, which hold a list of Scala expressions called <code>settings</code>.</p>
+
+<p>Top-level objects and classes are not allowed in <code>build.sbt</code>. Those should go in the <code>project/</code> directory as full Scala source files.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">commonSettings</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
+</span><span class="line">  <span class="n">organization</span> <span class="o">:=</span> <span class="s">&quot;com.example&quot;</span><span class="o">,</span>
+</span><span class="line">  <span class="n">version</span> <span class="o">:=</span> <span class="s">&quot;0.1.0&quot;</span><span class="o">,</span>
+</span><span class="line">  <span class="n">scalaVersion</span> <span class="o">:=</span> <span class="s">&quot;2.11.4&quot;</span>
+</span><span class="line"><span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
+</span><span class="line">  <span class="n">settings</span><span class="o">(</span><span class="n">commonSettings</span><span class="k">:</span> <span class="k">_</span><span class="kt">*</span><span class="o">).</span>
+</span><span class="line">  <span class="n">settings</span><span class="o">(</span>
+</span><span class="line">    <span class="n">name</span> <span class="o">:=</span> <span class="s">&quot;hello&quot;</span>
+</span><span class="line">  <span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>On the left, <code>name</code>, <code>version</code> and <code>scalaVersion</code> are <em>keys</em>. Keys have a method called <code>:=</code>, which returns a <code>Setting[T]</code>, where <code>T</code> is the value type.</p>
+
+<h4 id="keys">Keys</h4>
+
+<p>There are three flavors of key: <code>SettingKey[T]</code>, <code>TaskKey[T]</code> and <code>InputKey[T]</code>.</p>
+
+<p>A <code>TaskKey[T]</code> is said to define a <em>task</em>. </p>
+
+<p>A <code>InputKey[T]</code> defines a <em>input task</em>, which parses user input and produce a task to run.</p>
+
+<p>For a setting, the value will be computed once at project load time. For a task, the computation will be re-run each time the task is executed.</p>
+
+<p>Built-in keys are fields in object <code>sbt.Keys</code>, which are implicitly imported so can be directly referred.</p>
+
+<p>Custom keys may be defined with their respective creation methods: <code>settingKey</code>, <code>taskKey</code>, and <code>inputKey</code>. </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">hello</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">&quot;An example task&quot;</span><span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
+</span><span class="line">  <span class="n">settings</span><span class="o">(</span>
+</span><span class="line">    <span class="n">hello</span> <span class="o">:=</span> <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello!&quot;</span><span class="o">)</span> <span class="o">}</span>
+</span><span class="line">  <span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="bare-sbt-build-definition">Bare .sbt build definition</h3>
+
+<p><em>Bare .sbt build definition</em> is an old style which is not recommended to use.</p>
+
+<p>Bare .sbt build definition doesn’t explicitly define a <code>Project</code>, it implicitly deines one based on the location of the <code>.sbt</code> file. The <code>.sbt</code> file consists of a list of <code>Setting[_]</code> expressions.</p>
+
+<p>Before sbt 0.13.7, settings must be separated by blank lines.</p>
+
+<h2 id="library-dependencies">Library dependencies</h2>
+
+<p>To add unmanaged dependencies, simplily drop jar files in <code>lib/</code>.</p>
+
+<p>Managed dependencies are specified by <code>libraryDependencies</code> key in <code>build.sbt</code>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">groupID</span> <span class="o">%</span> <span class="n">artifactID</span> <span class="o">%</span> <span class="n">revision</span> <span class="o">%</span> <span class="n">configuration</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>If you use double %% between the groupID and artifactID, sbt will add your project’s Scala version to the artifact name.</p>
+
+<p>Assuming the scalaVersion for your build is 2.11.1, the following adds <code>org.scala-tools:scala-stm_2.11.1:0.3</code>:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&quot;org.scala-tools&quot;</span> <span class="o">%%</span> <span class="s">&quot;scala-stm&quot;</span> <span class="o">%</span> <span class="s">&quot;0.3&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>By default, if omitted, configuration is “compile”. A common used value is “test”.</p>
+
+<p>sbt uses Apache Ivy to implement managed dependencies. Advanced usage of revision and configuration can follow Ivy document.</p>
+
+<p>sbt uses the standard Maven2 repository by default. To add additional repository, add a <code>resolver</code>:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">resolvers</span> <span class="o">+=</span> <span class="s">&quot;Local Maven Repository&quot;</span> <span class="n">at</span> <span class="s">&quot;file://&quot;</span><span class="o">+</span><span class="nc">Path</span><span class="o">.</span><span class="n">userHome</span><span class="o">.</span><span class="n">absolutePath</span><span class="o">+</span><span class="s">&quot;/.m2/repository&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="n">resolvers</span> <span class="o">+=</span> <span class="s">&quot;Sonatype OSS Snapshots&quot;</span> <span class="n">at</span> <span class="s">&quot;https://oss.sonatype.org/content/repositories/snapshots&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="multiple-projects">Multiple projects</h2>
+
+<p>Multiple projects can be grouped under one project. </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
+</span><span class="line">  <span class="n">aggregate</span><span class="o">(</span><span class="n">util</span><span class="o">,</span> <span class="n">core</span><span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">util</span> <span class="k">=</span> <span class="n">project</span>
+</span><span class="line">
+</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Each sub-project has its own directory. In above example the directory name is same as the project’s ID. The following is a more explicit way: </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;core&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>If a project is not defined for the root directory in the build, sbt creates a default one that aggregates all other projects in the build. </p>
+
+<p>A project may depend on other projects:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">dependsOn</span><span class="o">(</span><span class="n">util</span><span class="o">,</span> <span class="n">api</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code>foo dependsOn(bar)</code> means that the <code>compile</code> configuration in foo depends on the <code>compile</code> configuration in bar. You can declare other configuraiton dependency, for example, <code>dependsOn(bar % "test-&gt;test;compile-&gt;compile")</code>.</p>
+
+<h2 id="using-plugins">Using plugins</h2>
+
+<p>Declares the plugin dependency in <code>project/plugins.sbt</code>. The file name can be different, you may create one sbt file for one plugin.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&quot;com.typesafe.sbt&quot;</span> <span class="o">%</span> <span class="s">&quot;sbt-site&quot;</span> <span class="o">%</span> <span class="s">&quot;0.7.0&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+    <!--
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leo Liang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T17:17:50+08:00" pubdate data-updated="true">2014-12-26</time>
+      
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/scala/'>Scala</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+    -->
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/" data-via="" data-counturl="http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/26/ivy-introduction-for-maven-user/" title="Previous Post: Ivy Introduction for Maven User">&laquo; Ivy Introduction for Maven User</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/12/30/windows-troubleshooting/" title="Next Post: Trouble shooting: Windows响应缓慢">Trouble shooting: Windows响应缓慢 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Note</h1>
+  <p>中国大陆用户可能会因为网络被屏蔽而无法访问本网站或部分内容(文字/图片), 如遇到这种情况, 请翻墙访问</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
+<a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
+<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 70%" href="/blog/tags/database/">Database</a>
+<a style="font-size: 84%" href="/blog/tags/design/">Design</a>
+<a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
+<a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
+<a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
+<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
+<a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
+<a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
+<a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
+<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
+<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
+<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
+<a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
+<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
+<a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
+<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
+<a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
+
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Leo Liang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'aleung';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/';
+        var disqus_url = 'http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

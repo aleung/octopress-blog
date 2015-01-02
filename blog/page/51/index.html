@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在Getting Things Done中看到的最能够立即起作用的就是这个“两分钟原则”了：在两分钟内可以完成的事情，马上去解决。其实很多事情并不是做起来又多困难，只是出于惰性不想去做而已。遵循两分钟原则，不给自己逃避的借口，将会大大减少todo list中的事务的数量，从百事缠身中解脱出来。 &hellip;">
+  <meta name="description" content="同事推荐Office2003的joural功能，能够自动统计在office上做的各项工作的时间记录，如写Word文档，写PPT文档，用Visio作图，处理Email等。
+很方便进行工作量的统计。 对工作时间做记录，不光可以对工作量做统计，对于个人的时间管理、有效利用时间都很有好处。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,258 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2004/02/13/Work-time-statistics/">工作时间统计</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-02-13T17:18:00+08:00" pubdate data-updated="true">2004-02-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>同事推荐Office2003的joural功能，能够自动统计在office上做的各项工作的时间记录，如写Word文档，写PPT文档，用Visio作图，处理Email等。<br />
+很方便进行工作量的统计。</p>
+
+<p>对工作时间做记录，不光可以对工作量做统计，对于个人的时间管理、有效利用时间都很有好处。</p>
+
+<p>我的pda上就有个小程序做时间记录的，我现在设置了 工作、学习、事务、消遣 几个分类，做事情前点一点，做完之后点一点，就会把花费的时间记录下来。这样可以统计出有多少时间是用于工作，多少时间看书学习，阅读邮件之类的事务耗了多少时间，上网看新闻等消遣又用了多少时间。掌握了这些数据，可帮助改善个人的时间利用效率。</p>
+
+<p>如果要用来统计各项目的工作时间，再按项目细分就可以了。虽然看起来记录有点麻烦，其实习惯了就好，不就是点个按钮嘛。</p>
+
+<p>Palm上的这个工具叫Punch Time Clock， PC上应该也有类似的程序的。</p>
+
+<p>不过真要按时间统计计算工作量，还有个观念问题。我今天工作了一天，统计出来的工作时间是4小时，要提交上去上司怎么说？偷懒？不行，怎么也得填个8小时。要真的按4小时算了，下次有同样任务，哦，你上次4小时做出来的，好，给你半天时间!实际上，真正有效的工作时间能占总工作时间的一半，已经不错了，各研究资料都是这么说的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/02/13/Work-time-statistics/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/01/06/Use-GPSMap-76-firmware-to-GPS-76-upgrade/">用GPSMap 76 firmware给GPS 76升级</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-01-06T22:49:00+08:00" pubdate data-updated="true">2004-01-06</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>根据网上新闻组有关“用legend firmware update venture”讨论的提示，今天冒险进行试验，成功的用GPSMap 76 v3.3 firmware将我的GPS 76升级。</p>
+
+<p>升级的好处：</p>
+
+<ul>
+  <li>Number of waypoints from 500 to 1000</li>
+  <li>Number of track points in active tracklog from 2000 to 10000</li>
+  <li>Number of Routes / number of waypoints per route from 50/50 to 50/125</li>
+</ul>
+
+<p>升级的坏处：</p>
+
+<ul>
+  <li>Not support POI database anymore</li>
+  <li>Warranty void</li>
+</ul>
+
+<p>Steps:</p>
+
+<ol>
+  <li>Download a firmware update for GPSMap 76 from Garmin website or from the following URL: <br />
+<a href="http://www.tramsoft.ch/gps/garmin_gpsmap76-firmware-upgrades_en.html">http://www.tramsoft.ch/gps/garmin_gpsmap76-firmware-upgrades_en.html</a></li>
+  <li>Extract the downloaded self-extractarchive file to a folder. There should be three files: a ROM image (rgn file), an update tool (exe file) and a readme file. </li>
+  <li>Notice that the ROM image is named as 017702000xxx.rgn,xxx is the firmware version number, 177 is the product number of GPSMap 76. You can’t direct use this file to update the GPS 76 because of the incorrect product number. Change the rgn file name from 177 to 173 which is the product number of GPS 76. </li>
+  <li>Backup all date in your GPS 76. </li>
+  <li>The exciting time comes. Do it as a normal firmware update. </li>
+  <li>After about 2 minutes nervous waiting, it done. Enjoy your GPS 76 with 1000 waypoints and 10000track points!</li>
+</ol>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/01/06/Use-GPSMap-76-firmware-to-GPS-76-upgrade/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/12/30/Time-management-goals/">时间管理的目标</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-12-30T18:26:00+08:00" pubdate data-updated="true">2003-12-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>不遗忘任何要做的事情，不让要做的事情太多</strong>。两者好像矛盾，实际不然。不遗忘任何要做的事情，就是要把任何要做的事，不分大小不分轻重，通通纳入到一个系统中管理。事情到底是否重要，留待后边归类和用优先级来判别，全部收集的目的就在于不让自己害怕遗忘了什么事情而造成压力，并且统一管理要做的事情后，才可能实现其他的时间管理目标。不让要做的事情太多，是指通过对事情分类，划分场合，来减少具体某一时间要做的事情。例如目前暂时不需要处理的事情，放到someday maybe分类中，就可以从心头中抛开了，等到定期review时再来考虑它。把事情划分成需要在不同场合完成，在具体的一个场合只看到当前要做的事情，这样就能减少纷乱。比如在@home这个场合，需要做的事情是搞卫生、看书之类的，不要让工作的事情烦着；要去银行取钱、购买东西什么的，记录在@out这个场合的待办事宜中，上班时就不需要惦记着它。</p>
+
+<p><strong>让时间使用得更有效率</strong>。不是想起什么就做什么，而是做最有价值的事情。按照四象限法则，事情的优先级可以按照重要性和紧急性两个坐标划分为四象限。重要性是指事情的作用，是否完成它引起的后果是否重要；紧急性是指时间，要求立刻完成还是可以延迟。其中以紧急性优先，重要性次之，因此应该是先做“紧急且重要”的事情，然后是“紧急但不那么重要”，再做“重要但不紧急”，“既不重要又不紧急”的事情最后才做。优先级是并不加入完成难易的因素在里面的。如果做事情不按优先级来选择，就会终日忙碌于优先级低的小事情，而重要的事情还是没有完成。</p>
+
+<p><strong>平衡人生中的各个方面</strong>。想要做的事和需要做的事通常是不完全一致的，想要做的事是出于自己内在的驱动力，可能是兴趣、可能是习惯，需要做的事是出于外在的要求，例如谋生、人际关系。大家都希望从事的工作就是自己的兴趣，实际上哪有这么理想呢，而且内在驱动力和外在要求都在不断变化中，这就要求在两者间取得平衡。如果不加以管理，往往在兴趣爱好方面情会放越来越多的时间精力进去，而忽视了其他方面。</p>
+
+<p>要让时间管理达到效果，可能还有很重要的一点就是要<strong><em>信任</em></strong>自己的时间管理系统，相信这样的管理是有效的，遵循它的建议去做。在使用的过程中再不断调整，让它越来越符合自己的情况。</p>
+
+<p>目前有关时间管理的书籍、工具，似乎比较偏向于从事管理、商务工作的人士，他们是工作往往是在与人沟通的比重比较大，事务性的事情较多；而我们这些从事技术工作的人，工作重点与他们不一样，在运用时间管理方法时还不能照搬，到底该怎样调整，还是比较伤脑筋的:(</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/12/30/Time-management-goals/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/12/17/Idea-/">Idea的记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-12-17T00:47:00+08:00" pubdate data-updated="true">2003-12-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/personaldevelopment/'>PersonalDevelopment</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>记录idea最有效的方法应该是纸和笔，比较符合思维习惯。电脑是好工具，但是电脑不一定在身边，思维最有创造性的时候往往是在非工作状态中，例如洗澡、走在路上的时候。有idea的时候必须尽快记录下来，即使打断了当前的工作。有idea的时候是最有价值的。另一方面，电脑输入的速度也不一定赶得上思维，还有可能因为软件人机界面而局限了思维（Tablet PC是一个好的方向，我以前写过一点有关的<a href="http://blogbus.com/blogbus/blog/diary.php?diaryid=52190">东西</a>）。我也打算尝试用palm来做记录，不知道这样的小机器是否能够提供象纸笔一样足够灵活的记录手段。</p>
+
+<p>电子化是资料整理利用的有力途径，在一定的时间，必须把笔记本中的记录整理输入到电脑中。我习惯是以日期排列，日记的形式。资料整理应该是作为必做的任务，例如在todo list中加入一项：<em>整理记事本xx页的记录</em>。网上的blog可以说是个副产品，我并不会用internet上的blog来作为主要记录手段，太不可靠；在网上公布出来，是希望知识与思维能够共享。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/12/17/Idea-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2003/12/17/Two-minutes-principle/">两分钟原则</a></h1>
     
     
@@ -124,303 +377,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/12/12/SRTM-/">SRTM数据中国部分终于可以下载了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-12-12T23:43:00+08:00" pubdate data-updated="true">2003-12-12</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>SRTM数据中国部分终于可以下载了，盼望了几年啊。精度比GTOPO30的高多了。</p>
-
-<p><a href="ftp://edcsgs9.cr.usgs.gov/pub/data/srtm">ftp://edcsgs9.cr.usgs.gov/pub/data/srtm</a> <br />
-Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米。</p>
-
-<p>在OZI的DEM数据格式中选择GLOBE（ARCVIEW）格式就可以打开；用MicroDEM可以对多种DEM数据进行处理。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/12/12/SRTM-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/12/10/Crazy-download-a-movie/">疯狂下载电影吧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-12-10T21:32:00+08:00" pubdate data-updated="true">2003-12-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在<a href="http://sourceforge.net">sourceforge</a>上无意中留意到<a href="http://sourceforge.net/top/toplist.php?type=downloads_week">top download list</a>, 看看什么软件最热门？这是前20位：</p>
-
-<p>1</p>
-
-<p><a href="http://sourceforge.net/projects/emule/">eMule</a></p>
-
-<p>2</p>
-
-<p><a href="http://sourceforge.net/projects/bittorrent/">BitTorrent</a></p>
-
-<p>3</p>
-
-<p><a href="http://sourceforge.net/projects/dcplusplus/">DC++</a></p>
-
-<p>4</p>
-
-<p><a href="http://sourceforge.net/projects/virtualdub/">VirtualDub</a></p>
-
-<p>5</p>
-
-<p><a href="http://sourceforge.net/projects/azureus/">Azureus - BitTorrent Client</a></p>
-
-<p>6</p>
-
-<p><a href="http://sourceforge.net/projects/cdexos/">CDex</a></p>
-
-<p>7</p>
-
-<p><a href="http://sourceforge.net/projects/guliverkli/">guliverkli</a></p>
-
-<p>8</p>
-
-<p><a href="http://sourceforge.net/projects/phpbb/">phpBB</a></p>
-
-<p>9</p>
-
-<p><a href="http://sourceforge.net/projects/gordianknot/">Gordian Knot</a></p>
-
-<p>10</p>
-
-<p><a href="http://sourceforge.net/projects/gaim/">Gaim</a></p>
-
-<p>11</p>
-
-<p><a href="http://sourceforge.net/projects/emuleplus/">eMule Plus</a></p>
-
-<p>12</p>
-
-<p><a href="http://sourceforge.net/projects/ffdshow/">ffdshow</a></p>
-
-<p>13</p>
-
-<p><a href="http://sourceforge.net/projects/ac3filter/">AC3Filter</a></p>
-
-<p>14</p>
-
-<p><a href="http://sourceforge.net/projects/btplusplus/">BitTorrent++</a></p>
-
-<p>15</p>
-
-<p><a href="http://sourceforge.net/projects/vnc-tight/">TightVNC</a></p>
-
-<p>16</p>
-
-<p><a href="http://sourceforge.net/projects/flaskmpeg/">FlasKMPEG</a></p>
-
-<p>17</p>
-
-<p><a href="http://sourceforge.net/projects/pingpong-abc/">ABC [Yet Another Bittorrent Client]</a></p>
-
-<p>18</p>
-
-<p><a href="http://sourceforge.net/projects/phpmyadmin/">phpMyAdmin</a></p>
-
-<p>19</p>
-
-<p><a href="http://sourceforge.net/projects/zsnes/">ZSNES</a></p>
-
-<p>20</p>
-
-<p><a href="http://sourceforge.net/projects/winscp/">WinSCP</a></p>
-
-<p>与P2P相关的是1,2,3,5,11,14,17，占了35%；与media(audio/video)相关的是4,6,7,9,12,13,16，也占了35%。</p>
-
-<p>可见，现在网络的大热点是什么？大家都在疯狂的下载电影，哈哈！</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/12/10/Crazy-download-a-movie/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/12/09/Use-Google-do-calculator/">用google做计算器</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-12-09T23:05:00+08:00" pubdate data-updated="true">2003-12-09</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>google总是令人赞叹，各种出色的idea。</p>
-
-<p><a href="http://www.google.com/intl/zh-CN/help/features.html#calculator">google计算器</a>，不是什么技术，却给用户带来很大的方便。</p>
-
-<p>我用的是MyIE，设置了google作为缺省搜索，因此只要把运算表达式在地址栏上输入，回车，结果就出来了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/12/09/Use-Google-do-calculator/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/12/09/SQuirrel-Java-GUI-client-for-JDBC-compliant-database/">SQuirrel : Java GUI Client for JDBC Compliant Database</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-12-09T20:33:00+08:00" pubdate data-updated="true">2003-12-09</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong><a href="http://squirrel-sql.sourceforge.net/">SQuirreL</a></strong> SQL Client is a graphical Java program that will allow you to view the structure of a JDBC compliant database, browse the data in tables, issue SQL commands etc.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/12/09/SQuirrel-Java-GUI-client-for-JDBC-compliant-database/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/52/">&larr; Older</a>
@@ -442,23 +398,23 @@ Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -467,14 +423,14 @@ Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米�
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -488,7 +444,7 @@ Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米�
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -497,20 +453,21 @@ Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米�
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -522,7 +479,7 @@ Eurasia目录下是亚欧大陆的数据，是SRTM-3，3arc精度，大概90米�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

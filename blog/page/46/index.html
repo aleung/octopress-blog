@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="今天偶然发现，google搜索能够识别同义词。输入“优点”作为搜索关键字，它会帮你把带有“好处”这个关键字的页面都搜索出来。
-">
+  <meta name="description" content="Bayesian过滤已经广泛用于邮件系统的anti-spam功能中，通过统计分析出spam邮件词语的统计特征，实现自动识别。 根据这个思路，也可以将bayesian过滤用在论坛的发言检查中，以减少版主工作量。 考虑到要易于与现有论坛系统集成，发言过滤器可以做成webservice之类的服务， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,408 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2004/09/07/Bayesian-filter-with-to-achieve-the-BBS-speech-to-be-automatic-check/">用bayesian过滤来实现论坛发言自动检查</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-09-07T07:21:00+08:00" pubdate data-updated="true">2004-09-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Bayesian过滤已经广泛用于邮件系统的anti-spam功能中，通过统计分析出spam邮件词语的统计特征，实现自动识别。</p>
+
+<p>根据这个思路，也可以将bayesian过滤用在论坛的发言检查中，以减少版主工作量。</p>
+
+<p>考虑到要易于与现有论坛系统集成，发言过滤器可以做成webservice之类的服务，提供两个功能调用：</p>
+
+<ul>
+  <li>void train(String content, boolean isMatch) </li>
+  <li>boolean filter(String content)</li>
+</ul>
+
+<p>前者让发言过滤系统学习，分析content特征；后者让系统分析content是否应该被过滤，返回值也可以是一个浮点数，表示分析出是敏感内容的可能性（确定性）。</p>
+
+<p>对于论坛系统，如果本来已经支持版主审核功能的话，改造很简单。用户发言，调用filter方法，如果返回false，直接设置为已审核状态，直接显示；如果返回true，设置为待审核状态，等待版主人工审核。版主审核时，将选择是否需要过滤此内容，调用train方法，让过滤器学习。</p>
+
+<p><a href="http://classifier4j.sourceforge.net/">Classifier4J</a>可以用于过滤器的开发，已经提供了Bayesian分类功能，需要补充的是中文分词的实现。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/09/07/Bayesian-filter-with-to-achieve-the-BBS-speech-to-be-automatic-check/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/08/26/Mind-map-FreeMind/">Mind Map, FreeMind</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-08-26T02:08:00+08:00" pubdate data-updated="true">2004-08-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Mind map，中文翻译为”思维导图”。听起来有点玄乎，说白了就是以图像方式记录思路或者描述事物的一种方法。（看看下面的图就有直观了解了）。在我的理解中，mind map是辅助整理思路和思维扩展的一个工具，一方面以层次化的形式将思路条理化，另一方面能快速记录下头脑中闪现的想法，特别适合于头脑风暴的场合。</p>
+
+<p>两年前看到有关mind map的介绍，当时非常感兴趣，跑去图书馆把Tony Buzan的书借来看。惭愧的是，书放到过期都没有看几页，因为对那些心理学的理论不感兴趣。Tony Buzan在书中把这个方法吹嘘得神乎其神，我总觉得他有黄婆卖瓜之嫌。Mind map从本质上与outline（大纲）差不多，它的很多长处用outline也可以实现。但他说到人的大脑对于文字、图像、声音是由不同的区域处理的，图像的方式可以刺激大脑的特定区域，比单纯文字要好，对此我是很有体会的，一向以来我都比较喜欢以画图的方式来思考问题。</p>
+
+<p>当时试用过几款mind map软件，最好的应当算是MindManager了，但用了一段时间，没有养成习惯，也就没有感觉到什么特别的好处，还是放弃了。后来我在需要整理思路的时候都是采用outline：如果写文档，在word里面采用大纲视图；日常的笔记，我喜欢用CyberArticle，它是使用HTML格式的，用列表或者项目符号也很方便的组织大纲；palm上也有类似的工具，但用得不多。如果需要记录思维，而不希望因为记录的过程而束缚思路，我更习惯用纸和笔。</p>
+
+<p>其实不是mind map不好，而是这些软件在人机交互界面上都未能突破电脑与纸笔之间的隔阂。用手写画，眼睛看着纸上的图像获得反馈，是我们最习惯的方式。使用电脑之后，中间环节插入到这个过程中，大脑需要处理如何进行电脑录入，特别是当软件设计得不好，操作复杂，或者响应速度慢时，反馈过程立马被打断了，造成了思维的障碍。从这个角度看，tablet PC应当是优于键盘鼠标输入的普通电脑的，以前我曾经写过<a href="http://www.blogbus.com/blogbus/blog/diary.php?diaryid=52190">这方面的想法</a>。</p>
+
+<p>今天<a href="http://www.blogbus.com/blogbus/blog/diary.php?diaryid=348523">flyisland</a>推荐的软件<a href="http://freemind.sourceforge.net/">FreeMind</a>，试用了一下，感觉很不错。</p>
+
+<ul>
+  <li>首先，功能简洁实用，虽然并没有MindManager那么强大，但是常用的都有了 </li>
+  <li>使用简单，试了一个小时左右，大部分的功能都已经掌握了。学习曲线平缓，对于这样一种通用型工具很重要 </li>
+  <li>使用非常方便，常用功能用键盘就可以控制，不需要鼠标，这样的操作界面可以进行快速记录，减少对思路的阻碍 </li>
+  <li>虽然是用java开发的，内存占用不算多，运行速度也快。对mind map软件来说速度是很重要的，如果经常出现用户察觉到的等待，就没有什么使用价值了 </li>
+  <li>Open source！</li>
+</ul>
+
+<p>有关mind map和FreeMind，还可以看看flyisland的介绍。<a href="http://www.blogbus.com/blogbus/blog/diary.php?diaryid=348523">http://flyisland.blogbus.com/logs/348523.html</a></p>
+
+<p>这个就是我试用FreeMind时做的练习，同时也归纳出它的基本使用方法，希望能再进一步减少你的学习时间吧:)</p>
+
+<p><img src="http://sunnyday.cn2k.net/photo/freemind_usage.gif" alt="" /></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/08/26/Mind-map-FreeMind/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/08/04/The-poor-who-newsletter/">可怜的腾迅</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-08-04T21:43:00+08:00" pubdate data-updated="true">2004-08-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>所谓树大招风，腾迅这回可是中招了，面对愤青们打着爱国主义和民族主义旗号的攻势，却是苦水只能往肚子里咽。QQ的主要用户群是青少年学生，正是最热血沸腾的年龄，看来这次事件对腾迅的影响不可谓不大。</p>
+
+<p>看看QQ游戏里面都过滤些什么单词吧，在QQ安装目录里面找出COMToolKit.dll这个文件，用VC把它打开（或者其它的能查看资源的工具，实在没有，用UltraEdit也可以，不过会夹杂着很多乱码），就可以看到有两个叫做“DIRTYWORD”的资源，id分别为9001和9002，在鼠标右键菜单中选择导出，把它们存入文件，用文本编辑器打开，怎样，大开眼界吧？好多词，我们这些良民百姓都不知道有什么含意。</p>
+
+<p>可以看看 <a href="http://forum.future.org.cn/showthread.php?p=618922">http://forum.future.org.cn/showthread.php?p=618922</a>的21楼（不知道最初出自哪里），有详细一点的介绍。作者是个反日派，他的结论也挺有意思：</p>
+
+<blockquote>
+  <p>从这个过滤词表看，可以得出几个结论：第一个结论，大家说话都不怎么流畅，全是他妈的弱势群体，谁也别笑话谁。以后坛子上的反腐斗士和自由派，别老拿这个来数落俺们反日派。俺们也互相体谅。第二个结论，政府对民族主义算是比较纵容的了，虽然也提防着，但主要也就提防大家上 街，网上骂骂，一般来说是安全的。第三个结论，别骂腾讯。尽管腾讯的发家有那么些不光彩的地方，但这事怪不了它。不负责任胡乱攻击只会给我们多树敌人。</p>
+
+  <p>最后一段是奉劝我们自己人的。第一句话是奉劝新网友的。新网友别每天就知道灌水起哄，“把腾讯移交有关部门处理”啥的，惹人家笑话。不管你将来准备加入什么思潮流派，第一步应该是了解自己的处境，别以为教科书上说你是国家的主人，你就真的信了。了解了自己的处境，才能改变它。第二句话是奉劝老网友的，过滤词什么的，大家在网上混那么多年的，都知道是谁干的，老虎谁都不敢打不敢骂，这也没什么丢脸的，不敢骂就不敢呗，抓住一只小猫暴扁干嘛？充英雄吗？表演自己的怯懦而已。   </p>
+</blockquote>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/08/04/The-poor-who-newsletter/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/07/10/Speech-browse-technical-specifications-profile/">语音浏览技术规范简介</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-10T00:59:00+08:00" pubdate data-updated="true">2004-07-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一直以来，在CTI领域语音应用的开发都是采用各厂商的专有技术的，每个平台厂商都伴随自己的平台推出一套语音业务开发的规范，有些是脚本式的语言，有些是图形化的流程，这些规范受限于平台，相互之间没有兼容性，基于这些专有规范开发出来的语音业务很难从一个厂商的平台移植到另一个厂商的平台。</p>
+
+<p>另外一方面，这些专有的语音业务开发规范的体系是非开放性的，业务控制局限在语音平台内部，与外界系统进行交互只能通过有限的途径，例如访问数据库、数据访问网关，开发COM接口组件等。造成难于与外部系统有机集成，集成成本高。在业务开发上，也因为业务处理逻辑与用户交互控制混合在一起，使得复杂业务的开发难度和维护难度都比较高。</p>
+
+<p>近年来，随着网络技术的发展，各种业务应用都纷纷往网络方向发展，充分利用internet的数据自由流动和协议标准化的优势，CTI技术与web技术融合的需求越来越大。基于web的各种开发技术也迅速发展并成熟，包括J2EE、.NET、WebService等等，web应用开发渐渐变得快捷而高效。另外一方面，随着手机、PDA等手持设备的发展，对于延伸使用者界面，多模式互动的需求越来越多，提供键盘、笔输入、语音等多种输入手段，各种文字、影音输出途径，语音应用和传统文字/图形应用的界限越来越模糊。</p>
+
+<p>在这样的趋势下，业界研究推出了多种涉及语音技术的标准规范。其中，W3C（World Wide Web Consortium）走在前面，其下的语音浏览器工作组等多个工作组进行的标准规范制定工作都涉及了语音技术。目前，对于电话和语音应用领域，重要的规范有三个，分别为VoiceXML, CCXML(Call Control eXtensible Markup Language), SALT(Speech Application Language Tags)。</p>
+
+<p>这三个规范都是基于XML的，这是因为XML作为一种可扩展的通用标记语言，有着标准化、结构化的特点，并且对于XML的生成、传输、解析、验证、查询都已经有一系列相当成熟的技术和编程开发包，存在着很大的优势。但XML本身并不说明什么，它只是用来描述规范的一种语言，支持XML跟支持VoiceXML、CCXML这些规范是完全两回事。</p>
+
+<p>这三个规范应用在系统中，部署架构基本是相同的，从高层次来看，由两个主要模块构成：文档服务器（document server）和电话语音平台（speech/telephony platform）。文档服务器由web server、database server、application server等构成，可以使用J2EE或者.NET平台。业务应用部署在文档服务器上，它响应电话语音平台发送来的请求，生成XML规范文档。电话语音平台包括了解释器、TTS、ASR等部分，它解释执行文档，负责与用户的交互界面。</p>
+
+<p>电话语音平台与PSTN接口，或者提供VoIP支持。当一个呼叫进入系统，电话语音平台分析出业务类别，通过HTTP协议向文档服务器发起请求。文档服务器执行业务应用，生成VoiceXML或者CCXML规范的文档，返回给电话语音平台。电话语音平台内置了VoiceXML或者CCXML浏览器，解释执行文档内容，控制ASR与TTS操作，与电话用户进行交互。TTS服务器将文字合成为语音，播放给用户；ASR服务器接受用户的语音输入，利用语法规则(grammar)将用户说话内容识别为文本数据，平台在脚本控制下根据输入内容判断下一步的执行。</p>
+
+<p>大多数情况下，基于web的应用都会采用易于扩展的架构，将核心服务逻辑（业务逻辑）与表示细节（VoiceXML, CCXML, SALT, HTML, WML）分离开。某些场合下还会将应用对话状态的维护与表示层分离，以实现表示语言机制的无关性，这样同一个应用可以采用web（HTML）、wap（WML）、语音（VoiceXML/CCXML）等不同的表示形式，适应PC、PDA、电话等多种用户终端。</p>
+
+<p>使用这些XML系列标准技术规范的系统与过去传统专有规范的系统在架构上有所不同，使用标准规范的系统，业务的部署与平台的部署是分离的，相互通过HTTP协议松耦合，业务采用URL进行定位。这使得业务的分布部署变得非常简单。业务的开发采用web应用开发完全相同的模式，使得语音业务开发人员可以充分利用web应用开发的技术和经验。并且，用较小的代价就可以实现语音应用与web应用集成，或者实现应用的多种表示形式，适应不同的客户终端。</p>
+
+<h4 id="voicexml">VoiceXML</h4>
+
+<p>VoiceXML可以理解为另外一种表示语言，类似于HTML和WML。它是一种表述对话（dialog）的语言，用来控制业务过程中的人机交互过程，适用于面向电话、手机等终端设备的语音应用，例如自动客户服务、自助查询系统、个人消息系统等。</p>
+
+<p>将VoiceXML与HTML对比，就能很容易理解了。浏览器解释后，HTML表示的内容是以文字图像方式显示在屏幕上的，VoiceXML的内容是以语言的方式播放给用户的。HTML接收用户的文字输入和鼠标点击，VoiceXML接受用户的语音输入，进行语音识别，或者是通过电话按键输入DTMF数据。</p>
+
+<p>VoiceXML是一种独立的语言，不能内嵌到现有的web语言中（如HTML，WML）。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;vxml</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;catch</span> <span class="na">event=</span><span class="s">&quot;event.exit&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;exit</span> <span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/catch&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;choose_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>
+</span><span class="line">You are in a demo for content services.
+</span><span class="line">To obtain stock quotes, say stocks or say 1.
+</span><span class="line">For weather information, say weather or press 2.
+</span><span class="line">For news, say news or press 3.
+</span><span class="line"><span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;1&quot;</span> <span class="na">next=</span><span class="s">&quot;#stocks_menu_option&quot;</span><span class="nt">&gt;</span>stocks<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;2&quot;</span> <span class="na">next=</span><span class="s">&quot;#weather_menu_option&quot;</span><span class="nt">&gt;</span>weather<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;choice</span> <span class="na">dtmf=</span><span class="s">&quot;3&quot;</span> <span class="na">next=</span><span class="s">&quot;#news_menu_option&quot;</span><span class="nt">&gt;</span>news<span class="nt">&lt;/choice&gt;</span>
+</span><span class="line"><span class="nt">&lt;nomatch&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>I could not understand what you said, please try again<span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/nomatch&gt;</span>
+</span><span class="line"><span class="nt">&lt;noinput&gt;</span>
+</span><span class="line"><span class="nt">&lt;reprompt/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/noinput&gt;</span>
+</span><span class="line"><span class="nt">&lt;/menu&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;stocks_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;block&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;/block&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;weather_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;field</span> <span class="na">name=</span><span class="s">&quot;city&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;grammar</span> <span class="na">type=</span><span class="s">&quot;application/srgs+xml&quot;</span> <span class="na">src=</span><span class="s">&quot;cities.grxml&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;prompt&gt;</span>Pleasesaythe city&#39;s name<span class="nt">&lt;/prompt&gt;</span>
+</span><span class="line"><span class="nt">&lt;/field&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;filled&gt;</span>
+</span><span class="line"><span class="nt">&lt;submit</span> <span class="na">next=</span><span class="s">&quot;http://host/weather.do&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/filled&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;news_menu_option&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;block&gt;</span>
+</span><span class="line">...
+</span><span class="line"><span class="nt">&lt;/block&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line"><span class="nt">&lt;/vxml&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>从例子可以看出，VoiceXML描述的是一个个对话，menu和form是对话的两种形式。menu是列出选择项，供用户选择；form是播放提示语言，接受用户输入。</p>
+
+<p>&lt;prompt&gt;、&lt;audio&gt;控制语音输出，输出有两种方式，一种是利用TTS将文本合成为语音，另一种是播放预先录制好的语音文件（如vox，wav）。为了控制合成语音的过程，提供丰富的语音表现形式，要求VoiceXML解释器支持SSML（Speech Synthesis Markup Language）语言，SSML可以控制TTS如何合成语音，例如重音、停顿、声调、数字播报方式等。</p>
+
+<p>语音输入的识别是通过语法规则控制的，&lt;grammar&gt;指定输入项采用什么语法规则进行识别，语法规则要求使用SRGS(Speech Recognition Grammar Specification)规范的格式来描述。</p>
+
+<p>VoiceXML的执行顺序是有内置的规则的，称为FIA（Form Interpretation Algorithm），解释器根据FIA选择对话，执行对话中的输入、输出操作。为了提供对例外情况的控制手段，改变执行流程，VoiceXML具备事件机制，通过&lt;throw&gt;, &lt;catch&gt;, &lt;noinput&gt;, &lt;error&gt;,&lt;help&gt;, &lt;nomatch&gt;等元素可以抛出事件和捕获事件。</p>
+
+<p>通过&lt;goto&gt;、&lt;submit&gt;等控制元素，能实现对话之间或者文档之间的转移。</p>
+
+<p>在VoiceXML中，可以嵌入ECMAScript(即通常说的JavaScript）代码，实现客户端的运算功能。</p>
+
+<p>VoiceXML提供了一些机制实现扩展和重用，&lt;object&gt;元素供实现平台定义的功能，&lt;subdialog&gt;可以实现语音组件的重用。</p>
+
+<p>VoiceXML的目的是用来控制语音方式的人机交互过程的，因而它缺乏对呼叫的控制能力。例如会议、呼叫控制、建立呼叫、拒绝呼叫等等都无法实现。</p>
+
+<h4 id="ccxml">CCXML</h4>
+
+<p>针对VoiceXML在呼叫控制方面的不足，CCXML补充了这部分的功能。它能够发起呼叫、过滤和路由进入的呼叫、处理外部的异步事件。并且它能支持多方会议，可以将VoiceXML实例作为参与者加入会议，并控制VoiceXML的执行和停止。与VoiceXML类似，由CCXML浏览器负责解释执行CCXML文档。</p>
+
+<p>CCXML可以独立使用，但很多情况下是与VoiceXML配合使用，CCXML控制整个呼叫模型，VoiceXML控制每个呼叫中的用户交互。单纯的VoiceXML是无法实现电话QQ之类的涉及到多方通话的业务的，利用CCXML就有可能实现了。</p>
+
+<p><em>（未完成）</em></p>
+
+<p><em>原来计划写成一篇介绍VoiceXML、CCXML和SALT，并且比较异同点的文章的，后来因为工作安排的原因半途而废了。CCXML日后如果需要，可能会进一步研究，到时也许会补上；SALT在我的工作中不会涉及，不打算在上面花时间了。</em></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/07/10/Speech-browse-technical-specifications-profile/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2004/07/09/Intelligence-of-Google/">智能的google</a></h1>
     
     
@@ -125,242 +526,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/07/07/Windows-/">Windows系统错误的查找</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-07-07T17:17:00+08:00" pubdate data-updated="true">2004-07-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近两次启动windows 2000, 启动时间莫名其妙的长, 居然要5分钟, 我还以为死机了:(</p>
-
-<p>实在忍受不了, 查看”事件管理器”, 发现有几个错误. 在网上搜索一下, 发现了一个好网站<a href="http://www.eventid.net">eventid.net</a>, 可以查找到事件的详细解释和解决办法.</p>
-
-<p>一查才知道, 原来好几个错误都是由于DNS没有正确设置引起的, 晕:( 昨天改过IP, 把DNS设错了, 居然会造成启动慢的问题.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/07/07/Windows-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/07/01/Doxygen-/">Doxygen不能支持中文文件名/路径:(</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-07-01T03:44:00+08:00" pubdate data-updated="true">2004-07-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.stack.nl/~dimitri/doxygen">Doxygen</a>是一个很不错的文档生成程序，类似于JavaDoc的功能，但是能支持C++/C/Java和其他的好些语言。今天在使用的时候，发现doxygen不能处理带有中文的文件名或者路径，就把源代码下载回来，看看是什么问题。</p>
-
-<p>问题很容易定位出来，又是unicode和字符集转换的问题，字符集真是让人头痛的东西:(。当在windows平台上运行时，它使用了WideCharToMultiByte来转换字符集，但没有判断当前locale，只是用了CP_ACP(ANSI)code page，故此对于中文就转换成为乱码了（其他multi-byte字符集也会有问题）。</p>
-
-<p>本来想改的，发现doxygen底层用的都是QT的代码，什么QString, QCString，完全是自己独立的一套东西，好些地方似乎都没有考虑mbs字符集的问题，实在跟不下去了，也不知道它的国际化是怎么做的，KDE也是基于QT函数库的呀，也许是windows版本的问题？放弃，给doxygen作者写了个bug report，看看他会不会去修改吧。</p>
-
-<p>ps.</p>
-
-<p>忍不住又再看了一下代码：不从根本上解决问题，只做个临时解决方案，把code page写死为936（简体中文），该可以吧？谁知还是不行:( 再跟踪一下，发现这个程序一点都不i18n friendly，虽然内部使用unicode，但是输入/输出转换都只是按照ascii/Latin1编码来做转换，在英文环境下就正常，一旦使用了非拉丁字符集就出问题了。这样用unicode跟不用有什么区别啊？！</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/07/01/Doxygen-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/06/30/MicroDEM-/">MicroDEM制图所需地理数据转换方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-06-30T01:23:00+08:00" pubdate data-updated="true">2004-06-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。</p>
-
-<p>其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector data为shapefile, 会生成3个文件, 其中一个是dbf, MicroDEM可读取的格式.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/06/30/MicroDEM-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw/">图像格式介绍: Jpg, Gif, Bmp, Png, Ecw&#8230;&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-06-29T21:39:00+08:00" pubdate data-updated="true">2004-06-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>图像格式介绍在网上有很多资料, 随便google一下都能找到. 这是我在论坛上回复别人的帖子, 顺手也帖到这儿.</em></p>
-
-<p>这几种格式都是光栅图像格式(除了光栅格式还有一种是矢量格式), 描述的是图像点阵的色彩数据.</p>
-
-<p>BMP格式是最简单的格式，基本就是图像点阵的内存拷贝。没有任何压缩，也无法表示格外的数据。现在很少用BMP来做图像数据交换了。</p>
-
-<p>GIF和PNG都是索引色彩, 也就是不直接描述象素的颜色, 只是说这个点是几号颜色, 另外有个索引表（调色板）给出颜色号对应的RGB颜色。有简单的压缩算法，但这种压缩仅对于连续色彩的象素（例如大块色块的图形）才有效，适用于颜色有限的图像(如商业图形/地图/漫画), 对真彩色图像(如照片)不太合适. GIF的LZW压缩算法是有专利限制的（好像是在去年已经过期失效）, 需要授权才能使用, 故此w3c组织另起炉灶订立PNG格式, 对于使用而言两者差不多.</p>
-
-<p>JPG是有损压缩, 利用人眼对高频细节分辨不是很敏感的特性, 将数据量减少。当压缩率过大时, 会在图像色彩变化的边界出现马赛克的现象. 但是作有限度的压缩时, 图像质量损失并不明显, 往往不能察觉。它的压缩率是可以调节的，让制图者可以在图象质量与图像文件大小间取得一个平衡点，因此是很有用的一种格式, 基本上网上的照片都是用jpg格式.</p>
-
-<p>相比起以上的各种格式，TIFF格式更多的是一个框架，它规定了文件的数据段结构，但是对图像数据的具体编码算法没有定义，是可扩展定义的，因此其下发展出很多的子格式。例如原始的TIFF格式是无压缩的，现在也有多种压缩算法的扩展；将地理数据也保存到数据段中，就是GeoTIF格式。因为子格式很多，不是所有图像处理软件都支持，一般都只是支持无压缩的基本格式，故此有时会出现无法打开文件，或者显示图像不正确的现象。TIFF格式在出版业得到比较广的应用，作为标准的图像交换格式。</p>
-
-<p>在地理信息领域，还使用一些其他的有损压缩格式，例如基于小波算法的ecw和MrSID格式。但是这些格式目前还基本是用于专业领域，不如jpg通用，支持的图像处理软件也不多。</p>
-
-<p>对于卫星影像的最终输出，我觉得还是采用有损压缩格式比较好，因为图像数据量实在太大了，如果不压缩或者压缩过小，对于存储、传送都不方便。采用合适的压缩率，图像质量基本不会受到影响，看看网上的漂亮mm照片，都是jpg有损压缩的:) 如果是在oziexplorer中观看，建议使用ecw格式，ecw的好处在于可以局部加载数据，减少内存占用，对于超大图像有好处；它不像其他格式，即使只显示图像其中一小快，也要将整个图像数据全部解码放入内存。但是能处理ecw的软件很少, 只能在最后输出最终结果时转换.</p>
-
-<p>地图制作，看什么图，如果是色块为主的图，用gif/png比较合适，如果色彩都是过渡的，就还是用jpg或者ecw好。</p>
-
-<p>图像压缩：<a href="http://media.cs.tsinghua.edu.cn/~ahz/digitalimageprocess/chapter14/chapt14_ahz.htm">http://media.cs.tsinghua.edu.cn/~ahz/digitalimageprocess/chapter14/chapt14_ahz.htm</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/06/29/Image-format-is-introduced-JPG-GIF-BMP-PNG-ecw/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/47/">&larr; Older</a>
@@ -382,23 +547,23 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -407,14 +572,14 @@
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -428,7 +593,7 @@
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -437,20 +602,21 @@
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -462,7 +628,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

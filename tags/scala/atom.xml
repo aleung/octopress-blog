@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Scala | Good good study, day day up]]></title>
+  <link href="http://aleung.github.io/blog/tags/scala/atom.xml" rel="self"/>
+  <link href="http://aleung.github.io/blog/"/>
+  <updated>2015-01-02T19:04:38+08:00</updated>
+  <id>http://aleung.github.io/blog/</id>
+  <author>
+    <name><![CDATA[Leo Liang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Getting start with sbt]]></title>
+    <link href="http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/"/>
+    <updated>2014-12-26T17:17:50+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt</id>
+    <content type="html"><![CDATA[<p>A shortened sbt tutorial for beginner and quick reference.</p>
+
+<h2 id="directory-structure">Directory structure</h2>
+
+<p><code>
+lib/
+project/
+  Build.scala
+  plugins.sbt
+src/
+  main/
+    resources/
+    scala/
+    java/
+  test/
+built.sbt
+</code></p>
+
+<p>Source code can be placed in the project’s base directory. But usually people organize them into directory structure.</p>
+
+<p>sbt by default uses the same directory structure as Maven for source files, all under <code>src/</code>.</p>
+
+<p>sbt build definition files include <code>build.sbt</code> in project’s base drectory and other <code>.sbt</code> or <code>.scala</code> files in <code>project/</code> subdirectory.</p>
+
+<p>The <code>project</code> directory <em>is another project embedded</em> which knows how to build the outer project. So it may have its <code>build.sbt</code> and <code>project</code> directory structure, which is recursive. <em>The build definition is an sbt project.</em></p>
+
+<h2 id="running">Running</h2>
+
+<p>Common sbt commands:</p>
+
+<ul>
+  <li>clean</li>
+  <li>compile</li>
+  <li>test</li>
+  <li>testOnly &lt;testcase&gt;*</li>
+  <li>run &lt;argument&gt;*</li>
+  <li>package</li>
+  <li>reload</li>
+</ul>
+
+<p>sbt can ran in interactive mode or batch mode. In batch mode, specifying a space-seperated list of commands. For commands that take arguments, enclosing the command and arguments in quotes.</p>
+
+<p><code>sh
+$ sbt clean compile "testOnly TestA TestB"
+</code></p>
+
+<p>Prefixing a command with <code>~</code> will make the command run when any source files change. Press enter to stop watching for changes.</p>
+
+<p><code>
+&gt; ~ compile
+</code></p>
+
+<h2 id="build-definition">Build definition</h2>
+
+<h3 id="sbt-build-definition-basic">.sbt build definition basic</h3>
+
+<h4 id="project">Project</h4>
+
+<p><code>build.sbt</code> defines one or more <code>Project</code>s, which hold a list of Scala expressions called <code>settings</code>.</p>
+
+<p>Top-level objects and classes are not allowed in <code>build.sbt</code>. Those should go in the <code>project/</code> directory as full Scala source files.</p>
+
+<p>``` scala
+lazy val commonSettings = Seq(
+  organization := “com.example”,
+  version := “0.1.0”,
+  scalaVersion := “2.11.4”
+)</p>
+
+<p>lazy val root = (project in file(“.”)).
+  settings(commonSettings: _*).
+  settings(
+    name := “hello”
+  )
+```</p>
+
+<p>On the left, <code>name</code>, <code>version</code> and <code>scalaVersion</code> are <em>keys</em>. Keys have a method called <code>:=</code>, which returns a <code>Setting[T]</code>, where <code>T</code> is the value type.</p>
+
+<h4 id="keys">Keys</h4>
+
+<p>There are three flavors of key: <code>SettingKey[T]</code>, <code>TaskKey[T]</code> and <code>InputKey[T]</code>.</p>
+
+<p>A <code>TaskKey[T]</code> is said to define a <em>task</em>. </p>
+
+<p>A <code>InputKey[T]</code> defines a <em>input task</em>, which parses user input and produce a task to run.</p>
+
+<p>For a setting, the value will be computed once at project load time. For a task, the computation will be re-run each time the task is executed.</p>
+
+<p>Built-in keys are fields in object <code>sbt.Keys</code>, which are implicitly imported so can be directly referred.</p>
+
+<p>Custom keys may be defined with their respective creation methods: <code>settingKey</code>, <code>taskKey</code>, and <code>inputKey</code>. </p>
+
+<p>``` scala
+lazy val hello = taskKey<a href="&quot;An example task&quot;">Unit</a></p>
+
+<p>lazy val root = (project in file(“.”)).
+  settings(
+    hello := { println(“Hello!”) }
+  )
+```</p>
+
+<h3 id="bare-sbt-build-definition">Bare .sbt build definition</h3>
+
+<p><em>Bare .sbt build definition</em> is an old style which is not recommended to use.</p>
+
+<p>Bare .sbt build definition doesn’t explicitly define a <code>Project</code>, it implicitly deines one based on the location of the <code>.sbt</code> file. The <code>.sbt</code> file consists of a list of <code>Setting[_]</code> expressions.</p>
+
+<p>Before sbt 0.13.7, settings must be separated by blank lines.</p>
+
+<h2 id="library-dependencies">Library dependencies</h2>
+
+<p>To add unmanaged dependencies, simplily drop jar files in <code>lib/</code>.</p>
+
+<p>Managed dependencies are specified by <code>libraryDependencies</code> key in <code>build.sbt</code>.</p>
+
+<p><code>scala
+libraryDependencies += groupID % artifactID % revision % configuration
+</code></p>
+
+<p>If you use double %% between the groupID and artifactID, sbt will add your project’s Scala version to the artifact name.</p>
+
+<p>Assuming the scalaVersion for your build is 2.11.1, the following adds <code>org.scala-tools:scala-stm_2.11.1:0.3</code>:</p>
+
+<p><code>scala
+libraryDependencies += "org.scala-tools" %% "scala-stm" % "0.3"
+</code></p>
+
+<p>By default, if omitted, configuration is “compile”. A common used value is “test”.</p>
+
+<p>sbt uses Apache Ivy to implement managed dependencies. Advanced usage of revision and configuration can follow Ivy document.</p>
+
+<p>sbt uses the standard Maven2 repository by default. To add additional repository, add a <code>resolver</code>:</p>
+
+<p>``` scala
+resolvers += “Local Maven Repository” at “file://”+Path.userHome.absolutePath+”/.m2/repository”</p>
+
+<p>resolvers += “Sonatype OSS Snapshots” at “https://oss.sonatype.org/content/repositories/snapshots”
+```</p>
+
+<h2 id="multiple-projects">Multiple projects</h2>
+
+<p>Multiple projects can be grouped under one project. </p>
+
+<p>``` scala
+lazy val root = (project in file(“.”)).
+  aggregate(util, core)</p>
+
+<p>lazy val util = project</p>
+
+<p>lazy val core = project
+```</p>
+
+<p>Each sub-project has its own directory. In above example the directory name is same as the project’s ID. The following is a more explicit way: </p>
+
+<p><code>scala
+lazy val core = project in file("core")
+</code></p>
+
+<p>If a project is not defined for the root directory in the build, sbt creates a default one that aggregates all other projects in the build. </p>
+
+<p>A project may depend on other projects:</p>
+
+<p><code>scala
+lazy val core = project.dependsOn(util, api)
+</code></p>
+
+<p><code>foo dependsOn(bar)</code> means that the <code>compile</code> configuration in foo depends on the <code>compile</code> configuration in bar. You can declare other configuraiton dependency, for example, <code>dependsOn(bar % "test-&gt;test;compile-&gt;compile")</code>.</p>
+
+<h2 id="using-plugins">Using plugins</h2>
+
+<p>Declares the plugin dependency in <code>project/plugins.sbt</code>. The file name can be different, you may create one sbt file for one plugin.</p>
+
+<p><code>scala
+addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.7.0")
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

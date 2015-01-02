@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="刚刚上豆瓣去找书的时候，发现豆瓣新增了一个叫做”九点”的栏目，还是与”我看”“我读”“我听”并列的。好奇的打开来看看，原来是blog的聚合，将原来”我上”的功能扩展了，通过RSS将各个blog的内容直接聚合过来。
-试了一下，相当喜欢，虽然这个功能上线才几天，但做到很不错了。 &hellip;">
+  <meta name="description" content="ClearCaseWeb is a simple web-based utility for browsing files stored in ClearCase. With it you can get the list of recent changed files and find out &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,336 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2007/03/31/ClearCaseWeb/">ClearCaseWeb</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-31T05:16:00+08:00" pubdate data-updated="true">2007-03-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ClearCaseWeb is a simple web-based utility for browsing files stored in ClearCase. With it you can get the list of recent changed files and find out who is the last modifier of each line in a file in a very handy maner. The original idea to develop ClearCaseWeb is to overcome the lack of GUI for cleartool annotation. It’s inspired by <a href="http://www.freebsd.org/projects/cvsweb.html">CVSWeb</a>, which is widely used in open source community.</p>
+
+<p>Screenshots: </p>
+
+<p>Annotation View</p>
+
+<p><img src="http://farm1.static.flickr.com/186/439704788_26969d28be.jpg" alt="" /></p>
+
+<p>Browse View</p>
+
+<p><img src="http://farm1.static.flickr.com/168/439704790_204c0d2c98.jpg" alt="" /></p>
+
+<p>Recent Changes View</p>
+
+<p><img src="http://farm1.static.flickr.com/175/439704792_3da1066a9b.jpg" alt="" /></p>
+
+<p>ClearCaseWeb is developed in php. Currently it only works on Windows with ClearCase dynamic view successfully configurated.</p>
+
+<p>Download:</p>
+
+<ul>
+  <li>2007-3-30: <a href="http://aleung.blogbus.com/files/11752618700.zip">ClearCaseWeb_0.2</a><br />
+First functional release.</li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/31/ClearCaseWeb/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/">利用Excel进行分组统计及生成直方图</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2007-03-17T02:19:00+08:00" pubdate data-updated="true">2007-03-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/excel/'>Excel</a>, <a class='tag' href='/blog/tags/statistics/'>Statistics</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>统计分析时经常需要统计一组数据处于各个区间的数量分别有多少，也称为数据的频率分布。例如考试成绩出来了，老师要统计不及格(&lt;60)、及格(60~80)、良好(80~90)、优(90~100)的人数有多少。</p>
+
+<p>使用Excel的FREQUENCY函数，可以很简单的实现这个目标：</p>
+
+<p>先把要处理的目标数据准备好：一列是输入数据A3:A66（在例子中为了清晰，已经排序，实际没有必要），另外一列是分组间隔D3:D21，在这里每个区间的大小是10。</p>
+
+<p>对于每个区间的频率，我希望输出在E3:E21区域。用鼠标将这个区域框起来，然后输入公式 =FREQUENCY(A3:A66,D3:D21)。FREQUENCY函数有两个参数，第一个是要分析的目标数据，第二个是分组间隔值，都需要是数组。输出也是一个数组，因此需要按 Ctrl-Shift-Enter 来结束公式的输入，表明这是数组公式。(数组公式会显示为有个花括号括起来)</p>
+
+<p>公式输入后，马上就能看到计算的结果了，如果希望更清晰些，可以做一张图。依然是选中E3:E21区域，菜单中选中插入图表，照着向导操作。在第二步选择DataSource中，需要在”Serials”中指定X轴区域为C3:C21(或D3:D21)，否则X轴数据会变成1、2、3…</p>
+
+<p><img src="http://farm1.static.flickr.com/162/422940441_9279aaa292_o.jpg" alt="" /></p>
+
+<p>从图中，可以明显看出大部分数据范围在50-120之间，峰值为90-100。</p>
+
+<p><a href="http://soft.yesky.com/office/283/2639283.shtml">这个网页</a>介绍了另外一种方法，通过Excel数据分析功能来实现上面做的事情，更加简单。但是Excel缺省安装中没有数据分析功能。</p>
+
+<p>Reference：<a href="http://www0.ccidnet.com/school/office//2001/06/26/70_4531.html">Excel统计函数</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/17/Use-of-Excel-grouping-statistics-and-generate-histogram/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/15/Windows-symbolic-link-/">Windows的symbolic Link支持</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T21:32:00+08:00" pubdate data-updated="true">2007-03-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>, <a class='tag' href='/blog/tags/windows/'>Windows</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>UNIX类的操作系统支持symbolic link [2]，可以通过”ln -s”命令来创建。但是在Windows操作系统中，却没有提供这样的功能，文件管理就不如UNIX方便。</p>
+
+<p>虽然Windows的shortcut在功能上有点类似于symbolic link，但还不是一个层面的东西，因为OS并没有管理它，要靠应用程序来处理。在DOS窗口里面dir看看一个shortcut是什么样子的，就知道有什么不同了。</p>
+
+<p>其实，windows在NTFS 3.0开始支持一种叫做 junction point 的特性[3]，可以看作为目录的symbolic link。可是微软总是喜欢把一些东西藏起来，比如这种junction point，你就无法直接通过windows自带工具来建立、管理。我是使用<a href="http://www.zabkat.com/">xplorer2</a>这个explorer替代工具的时候，才发现有”Folder Junction”的功能(Edit - Paste Special - Folder junction)。在[1]中介绍了很多可以管理junction point的工具。不过，使用时还是要小心，它跟UNIX的symbolic link还是不完全相同，特别是删除的时候，junction point的行为有点怪异的[1][3]。据说Vista会提供与UNIX兼容的symbolic link支持。</p>
+
+<p>利用junction point，可以在D盘建立一个目录，link到C盘来使用；也可以将分布在不同地方的多个子目录link到同一个目录底下，方便备份。</p>
+
+<p>另外，Windows NTFS也支持hard link的[5]，但实际使用中symbolic link的作用更大。</p>
+
+<p>Reference:</p>
+
+<ol>
+  <li>Windows Symbolic and Hard Links: <a href="http://www.shell-shocked.org/article.php?id=284">http://www.shell-shocked.org/article.php?id=284</a></li>
+  <li>Symbolic Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>NTFS Junction Point: <a href="http://en.wikipedia.org/wiki/NTFS_junction_point">http://en.wikipedia.org/wiki/NTFS_junction_point</a></li>
+  <li>Hard Link in Unix: <a href="http://kb.iu.edu/data/aibc.html">http://kb.iu.edu/data/aibc.html</a></li>
+  <li>Hard Link in Windows: <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true">http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/fsutil_hardlink.mspx?mfr=true</a></li>
+</ol>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/15/Windows-symbolic-link-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/08/Understand-the-JVM-memory-management-and-garbage-collection/">了解JVM的内存管理与垃圾回收</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-08T04:31:00+08:00" pubdate data-updated="true">2007-03-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java语言具备GC(垃圾回收)的能力，内存管理不需要应用程序去过问，这很方便。但是，GC是怎么进行的，JVM的内存参数应该怎么调整，如何优化，往往我们不是太清楚。看过一些资料后，对Sun JVM的内存管理以及垃圾回收的机制大概有了一个概念，这里将这些资料归纳和翻译出来。本文内容主要基于Sun JVM 1.3.1，在后续版本中有不少优化措施，但是这些基本概念还是不变的。</p>
+
+<p>这里假设大家对GC的概念和基本原理都已经了解，不详细叙述了。</p>
+
+<p>当JVM进行GC的时候，是要消耗CPU资源和需要一定时间的，这会影响到程序的正常运行，因此需要尽可能减少GC消耗的时间。Java程序运行过程中，对象的生命周期有长有短，其中相当大部分是都是比较短命的，例如局部的对象一用完就可以回收了。在大多数情况下，只要能够及时回收这些短命对象的内存，就能够确保JVM有足够内存来分配给新的对象。因此JVM采用一种分代回收(<em>generational collection</em>) 的策略，用较高的频率对年轻的对象(young generation)进行扫描和回收，这种叫做minor collection，而对老对象(old generation)的检查回收频率要低很多，称为major collection。这样就不需要每次GC都将内存中所有对象都检查一遍。</p>
+
+<p>Sun JVM 1.3 有两种最基本的内存收集方式：一种称为copying或scavenge，将所有仍然生存的对象搬到另外一块内存后，整块内存就可回收。这种方法有效率，但需要有一定的空闲内存，拷贝也有开销。这种方法用于minor collection。另外一种称为mark-compact，将活着的对象标记出来，然后搬迁到一起连成大块的内存，其他内存就可以回收了。这种方法不需要占用额外的空间，但速度相对慢一些。这种方法用于major collection.</p>
+
+<p>在JVM 1.3及以后的版本中，还有其他可选的内存收集方法，通过特定的参数来设定。例如：增量式回收，每次只处理一小部分；替代单线程copying的多线程并行回收；替代mark-compact的concurrent mark-sweep回收等等。参考资料[4][5]中有更多描述。</p>
+
+<p>JVM管理的内存，通常叫做堆(heap)，可以用下面的图来描述。</p>
+
+<p>JVM启动后，保留一段地址空间，这个空间的大小由-Xmx指定。这块空间的大小就是heap可能的最大值，但一开始不一定全都分配了物理内存，初始分配的heap大小由-Xms指定，如果-Xms小于-Xmx，剩余部分是virtual的，当需要的时候，再向OS申请。</p>
+
+<p>Young generation 内存由一块Eden(伊甸园，有意思)和两块Survivor Space(1.4文档中称为semi-space)构成。新创建的对象的内存都分配自eden。两块Survivor Space总有会一块是空闲的，用作copying collection的目标空间。Minor collection的过程就是将eden和在用survivor space中的活对象copy到空闲survivor space中。所谓survivor，也就是大部分对象在伊甸园出生后，根本活不过一次GC。对象在young generation里经历了一定次数的minor collection后，年纪大了，就会被移到old generation中，称为tenuring。(是否仅当survivor space不足的时候才会将老对象tenuring? 目前资料中没有找到描述)</p>
+
+<p>Permanent generation 是JVM用来保存class object和meta data，大小由-XX:PermSize和-XX:MaxPermSize指定。大量动态生成(编译)和加载class会增加这部分内存的耗用。</p>
+
+<p>剩余内存空间不足会触发GC，如eden空间不够了就要进行minor collection，old generation空间不够要进行major collection，permanent generation空间不足会引发full GC。</p>
+
+<p>很多参数会影响里面各部分空间的分配。-XX:MinHeapFreeRatio与-XX:MaxHeapFreeRatio设定空闲内存占总内存的比例范围，这两个参数会影响GC的频率和单次GC的耗时。-XX:NewRatio决定young与old generation的比例。Young generation空间越大，minor collection频率越低，但是old generation空间小了，又可能导致major collection频率增加。-XX:NewSize和-XX:MaxNewSize直接指定了young generation的缺省大小和最大大小。</p>
+
+<p><img src="/blog/attachments/2007/3/java_memory.jpg" /></p>
+
+<p>-Xmx<br />
+set maximum Java heap size</p>
+
+<p>-Xms<br />
+set initial Java heap size</p>
+
+<p>-XX:MinHeapFreeRatio=40<br />
+Minimum percentage of heap free after GC to avoid expansion.</p>
+
+<p>-XX:MaxHeapFreeRatio=70<br />
+Maximum percentage of heap free after GC to avoid shrinking.</p>
+
+<p>-XX:NewRatio=2<br />
+Ratio of new/old generation sizes. [Sparc -client:8; x86 -server:8; x86 -client:12.]-client:8 (1.3.1+), x86:12]</p>
+
+<p>-XX:NewSize=2.125m<br />
+Default size of new generation (in bytes) [5.0 and newer: 64 bit VMs are scaled 30% larger; x86:1m; x86, 5.0 and older: 640k]</p>
+
+<p>-XX:MaxNewSize=<br />
+Maximum size of new generation (in bytes). Since 1.4, MaxNewSize is computed as a function of NewRatio.</p>
+
+<p>-XX:SurvivorRatio=25<br />
+Ratio of eden/survivor space size [Solaris amd64: 6; Sparc in 1.3.1: 25; other Solaris platforms in 5.0 and earlier: 32]</p>
+
+<p>-XX:PermSize=<br />
+Initial size of permanent generation</p>
+
+<p>-XX:MaxPermSize=64m<br />
+Size of the Permanent Generation. [5.0 and newer: 64 bit VMs are scaled 30% larger; 1.4 amd64: 96m; 1.3.1 -client: 32m.]</p>
+
+<p>(上面给出的缺省值不一定准确，不同JVM版本和不同OS环境下会有不同)</p>
+
+<p>这里给出的只是基本的介绍，下面reference中的文章都很不错，对进一步了解或者查找性能优化参数都有帮助。</p>
+
+<p>Reference</p>
+
+<ol>
+  <li><a href="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</a></li>
+  <li><a href="http://java.sun.com/docs/hotspot/gc/">http://java.sun.com/docs/hotspot/gc/</a></li>
+  <li><a href="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</a></li>
+  <li><a href="http://builder.zdnet.com.cn/2003/0415/85798.shtml">http://builder.zdnet.com.cn/2003/0415/85798.shtml</a></li>
+  <li><a href="http://java.sun.com/developer/technicalArticles/Programming/turbo/">http://java.sun.com/developer/technicalArticles/Programming/turbo/</a></li>
+  <li><a href="http://developers.sun.com/techtopics/mobility/midp/articles/garbagecollection2/">http://developers.sun.com/techtopics/mobility/midp/articles/garbagecollection2/</a></li>
+</ol>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2007/03/08/Understand-the-JVM-memory-management-and-garbage-collection/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2007/02/03/Web-2-0-/">Web 2.0 渐入佳境</a></h1>
     
     
@@ -133,345 +462,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/27/No-update-for-a-long-long-time/">很久很久没有更新了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-27T03:41:00+08:00" pubdate data-updated="true">2007-01-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>好像没有什么好写的，贴张照片吧<br />
-<img src="http://farm1.static.flickr.com/136/369778069_a78a5ac873.jpg" alt="" />  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2007/01/27/No-update-for-a-long-long-time/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/08/29/I-Love-Audio-Player-Basic-Design/">‘I Love’ Audio Player - Basic Design</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2006-08-29T02:19:00+08:00" pubdate data-updated="true">2006-08-29</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>对于”I Love” audio player的想法, flyisland的批阅建议是请jobs同志执行。我也很希望jobs同志能够欣赏这个想法，更希望的是我也能有flyisland同志同样的运气，能得到一个赠送的iPod。在此之前，还是继续自我陶醉一下，下面是想到的初步设计：</p>
-
-<p><img src="/blog/attachments/2006/8/227012217_2b9c0d6ecd.jpg" alt="audioplayer" /></p>
-
-<p>UI负责用户界面；Control接受UI的命令，进行播放控制；作品的选择、喜爱度的累积是profile的任务；媒体文件的播放是委托给player进行的。</p>
-
-<p><img src="/blog/attachments/2006/8/227012224_56936e3643.jpg" alt="audioplayer.control" /></p>
-
-<p>JavaZoom.com的<a href="http://www.javazoom.net/jlgui/developerguide.html">jlGui</a>是一个opensource的music player，它提供了一个很简洁实用的BasicPlayer API，用在这里正合适。</p>
-
-<p><img src="/blog/attachments/2006/8/227012248_2ce4e0e4e8.jpg" alt="basicplayer" /></p>
-
-<p>UI，应该就是GUI了吧，有人会需要command line吗？甚至是外接LED显示屏？</p>
-
-<p><img src="/blog/attachments/2006/8/227012242_fa610759ef.jpg" alt="audioplayer.ui" /></p>
-
-<p>Profile部分将是最重要也是最复杂的了，现在考虑得还不成熟，只有个大概。</p>
-
-<p><img src="/blog/attachments/2006/8/227012232_3c57a934d1.jpg" alt="audioplayer.profile" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/08/29/I-Love-Audio-Player-Basic-Design/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/08/27/Read-excerpts-city/">读书摘录 - 城市</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-08-27T14:45:00+08:00" pubdate data-updated="true">2006-08-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/architecture/'>Architecture</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>读书摘录：<a href="http://www.douban.com/subject/1861730/">Stockholm Horizons</a></p>
-
-<p>Introduction</p>
-
-<p>What makes a city? … A city is principally a forum for mankind’s countless activities. We live, think, work, buy, sell, study, love, enjoy and suffer in the city.(P9)</p>
-
-<p>读书摘录：<a href="http://www.douban.com/subject/1451694/">城市的形成</a></p>
-
-<p>“有机”模式</p>
-
-<p>许多城市在初始时是很粗陋的；它们的形成是在含蓄和渐进中形成的。…住宅在扩展的过程中将会变得稠密，并且编辑出肌理。建筑物将尽其所能爬上山坡，占领河湾。到了某个阶段，这种自然的布局将会获得一种自我意识。…画境式郊区的出现是因为城市回过头来欣赏它自己那自然的初始时期，同时，也是对过去曾经拥有的美德的一种眷恋。(P64)</p>
-
-<p>只要将散步者的足迹描摹出来便可以获得画境式的效果。我们可以在乡间发现这些优雅的弧线，而模仿这些弧线是“一种荣誉的事”。(P82)</p>
-
-<p>我们经历了可怕的20世纪二三十年代，当时的老城一方面被法西斯所破坏，另一方面又饱尝了现代主义的狂热；我们也经历了20世纪五六十年代，当时剧烈的城市更新风暴毁坏了无数城市中心，而今天我们已经开始学习如何去接纳城市的完整性。(P90)</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/08/27/Read-excerpts-city/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2006/08/23/I-Love-Audio-Player/">‘I Love’ Audio Player</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2006-08-23T15:06:00+08:00" pubdate data-updated="true">2006-08-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>下载的mp3越来越多之后，总想怎样才能将喜欢的与不太喜欢的区分出来呢。渐渐的有一个想法，就是在播放的时候统计自己的喜好。基本思路其实跟以前想过的”什么时候电视机可以变得聪明一些”差不多。</p>
-
-<p>下面就设想一下这个音乐播放器应该是怎样的：如果觉得一首歌不好听/不想听，就跳过它放下一首。如果觉得特别喜欢，可以投一票。根据用户的动作，可以统计出对歌曲的喜爱程度。歌曲全都是随机播放，越是喜欢的歌曲播放出来的机会会越大，但是其它歌曲也会偶然播放出来，不会永远埋没起来。原本喜欢的听多了后也许会有点腻，没关系，不想听就跳过好了，播放器会不断”学习”你的喜好。只要曲库里有足够多的歌曲，总能保证听到的大部分都是喜欢的歌曲。</p>
-
-<p>假设要开发这样一个软件，就叫它”I love”吧，将它的功能用user story描述出来，应该有这些（还可能增加好多）：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>description</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>播放MP3</td>
-      <td>能够播放mp3格式的音频文件</td>
-      <td>最高</td>
-    </tr>
-    <tr>
-      <td>播放WMV</td>
-      <td>能够播放wmv格式的音频文件</td>
-      <td>最低</td>
-    </tr>
-    <tr>
-      <td>Copy profile</td>
-      <td>将现有的profile copy成一个新的profile</td>
-      <td>低</td>
-    </tr>
-    <tr>
-      <td>Switch profile</td>
-      <td>在软件中可以存在很多个profile，但只能有一个profile生效。所有对喜爱值的操作都是对当前profile进行的。用户选择一个profile，将这个profile设置成为当前active的profile。切换profile时不停止当前歌曲的播放。</td>
-      <td>中</td>
-    </tr>
-    <tr>
-      <td>I like it</td>
-      <td>当歌曲正在播放时，用户按下”I love”按钮，将这首歌的喜爱度增加一个数值，如果同一首歌，用户再次按下，忽略这个操作</td>
-      <td>中</td>
-    </tr>
-    <tr>
-      <td>Don’t like it, next</td>
-      <td>当歌曲正在播放时，用户按下”I don’t like it”按钮，停止播放这首歌，并且将这首歌的喜爱度减少一个数值。然后 随机播放下一首歌</td>
-      <td>高</td>
-    </tr>
-    <tr>
-      <td>歌曲播放结束</td>
-      <td>如果歌曲播放到结尾，并且在这个过程中用户没有按下过”I like it”按钮，将这首歌的喜爱度增加一个数值。然后 随机播放下一首歌</td>
-      <td>高</td>
-    </tr>
-    <tr>
-      <td>随机播放一首歌(shuffle)</td>
-      <td>profile是保存了所有歌曲信息的一组数据，每首歌曲都有一个喜爱度的值。从profile中按照喜爱度加权来随机的挑选一首歌来播放，歌曲的喜爱度越高，被选中的概率越大。</td>
-      <td>最高</td>
-    </tr>
-    <tr>
-      <td>暂停/继续</td>
-      <td>当用户按下”暂停/播放”按钮，暂停当前歌曲的播放；再按一次，从上次暂停的地方继续播放。</td>
-      <td>中</td>
-    </tr>
-    <tr>
-      <td>Rename profile</td>
-      <td> </td>
-      <td>中</td>
-    </tr>
-    <tr>
-      <td>程序启动</td>
-      <td>选择最后一次使用的profile，如果配置为”启动立即播放”，随机播放一首歌</td>
-      <td>低</td>
-    </tr>
-    <tr>
-      <td>显示歌曲信息</td>
-      <td>显示当前播放歌曲的信息，包括歌名、专辑、艺人等</td>
-      <td>中</td>
-    </tr>
-    <tr>
-      <td>off-line media library</td>
-      <td>将off-line媒体库（例如光盘）的曲目也加入profile中，同步的时候按照喜爱度加权的原则随机copy一部分曲目到硬盘中，换掉旧的一些。</td>
-      <td>最低</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>只要把播放mp3、shuffle、don’t like it、播放结束这四个user story实现了，基本就能用了；再将优先级为”中”也实现了，设想的目标就基本都能达到。</p>
-
-<p>整个播放器的界面将会非常简洁：三个按钮：喜欢/不喜欢/暂停或继续，不喜欢（下一首）的按钮应该是最大的；音量控制；正在播放的歌曲显示。切换profile放在菜单里面。这些按钮都必须能够用键盘快捷键控制。</p>
-
-<p>不过，我只是想想而已，真的去写这样一个软件的可能性微乎其微。媒体播放、用户界面这些都是我不熟悉的东西。不知道是不是已经有类似功能的软件？如果有就太好了。</p>
-
-<p>这样的播放器其实更适合用硬件实现，上面这些user story可以完完全全在随身听上实现。不过，软件还有可能自己写，要自己做硬件的门槛就高多了。现在市面的mp3品种多得眼花缭乱，大部分功能都是一个样，有创意的厂商非常少。写下自己的想法后，上网查了一下，发现apple ipod shuffle和sony的walkman A系列有类似的功能，但从介绍来看都没有完全满足我的要求，不知道用起来怎样。在我看来，以下两点是最重要的：</p>
-
-<p>第一是歌曲的喜爱度必须是在播放过程中日积月累的更新，而不是通过什么操作界面来评级。对于用户，只有最简单直接的操作：喜欢，按一下（可别要进什么菜单）；不喜欢，跳下一首。我认为甚至不应该提供任何机会给用户直接更改喜爱度。</p>
-
-<p>第二是需要有profile切换，在不同环境、不同心情下喜欢的音乐是不一样的，有了profile功能就可以独立累计喜爱度。Profile也可以用来区分不同的使用者。</p>
-
-<p>也许过不了多久就会有这样的产品出现了，到时是不是要考虑买一个呢？ :)</p>
-
-<p><strong>Update 2012-7-5:</strong> 这样的产品真的有了，不过不是本地播放器，而是在线播放，就是<a href="http://douban.fm">豆瓣电台</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2006/08/23/I-Love-Audio-Player/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/34/">&larr; Older</a>
@@ -493,23 +483,23 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -518,14 +508,14 @@
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -539,7 +529,7 @@
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -548,20 +538,21 @@
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -573,7 +564,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

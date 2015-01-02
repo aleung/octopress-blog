@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2014-12-26T01:53:02+08:00</updated>
+  <updated>2015-01-02T19:04:38+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,189 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Getting start with sbt]]></title>
+    <link href="http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt/"/>
+    <updated>2014-12-26T17:17:50+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/12/26/getting-start-with-sbt</id>
+    <content type="html"><![CDATA[<p>A shortened sbt tutorial for beginner and quick reference.</p>
+
+<h2 id="directory-structure">Directory structure</h2>
+
+<p><code>
+lib/
+project/
+  Build.scala
+  plugins.sbt
+src/
+  main/
+    resources/
+    scala/
+    java/
+  test/
+built.sbt
+</code></p>
+
+<p>Source code can be placed in the project’s base directory. But usually people organize them into directory structure.</p>
+
+<p>sbt by default uses the same directory structure as Maven for source files, all under <code>src/</code>.</p>
+
+<p>sbt build definition files include <code>build.sbt</code> in project’s base drectory and other <code>.sbt</code> or <code>.scala</code> files in <code>project/</code> subdirectory.</p>
+
+<p>The <code>project</code> directory <em>is another project embedded</em> which knows how to build the outer project. So it may have its <code>build.sbt</code> and <code>project</code> directory structure, which is recursive. <em>The build definition is an sbt project.</em></p>
+
+<h2 id="running">Running</h2>
+
+<p>Common sbt commands:</p>
+
+<ul>
+  <li>clean</li>
+  <li>compile</li>
+  <li>test</li>
+  <li>testOnly &lt;testcase&gt;*</li>
+  <li>run &lt;argument&gt;*</li>
+  <li>package</li>
+  <li>reload</li>
+</ul>
+
+<p>sbt can ran in interactive mode or batch mode. In batch mode, specifying a space-seperated list of commands. For commands that take arguments, enclosing the command and arguments in quotes.</p>
+
+<p><code>sh
+$ sbt clean compile "testOnly TestA TestB"
+</code></p>
+
+<p>Prefixing a command with <code>~</code> will make the command run when any source files change. Press enter to stop watching for changes.</p>
+
+<p><code>
+&gt; ~ compile
+</code></p>
+
+<h2 id="build-definition">Build definition</h2>
+
+<h3 id="sbt-build-definition-basic">.sbt build definition basic</h3>
+
+<h4 id="project">Project</h4>
+
+<p><code>build.sbt</code> defines one or more <code>Project</code>s, which hold a list of Scala expressions called <code>settings</code>.</p>
+
+<p>Top-level objects and classes are not allowed in <code>build.sbt</code>. Those should go in the <code>project/</code> directory as full Scala source files.</p>
+
+<p>``` scala
+lazy val commonSettings = Seq(
+  organization := “com.example”,
+  version := “0.1.0”,
+  scalaVersion := “2.11.4”
+)</p>
+
+<p>lazy val root = (project in file(“.”)).
+  settings(commonSettings: _*).
+  settings(
+    name := “hello”
+  )
+```</p>
+
+<p>On the left, <code>name</code>, <code>version</code> and <code>scalaVersion</code> are <em>keys</em>. Keys have a method called <code>:=</code>, which returns a <code>Setting[T]</code>, where <code>T</code> is the value type.</p>
+
+<h4 id="keys">Keys</h4>
+
+<p>There are three flavors of key: <code>SettingKey[T]</code>, <code>TaskKey[T]</code> and <code>InputKey[T]</code>.</p>
+
+<p>A <code>TaskKey[T]</code> is said to define a <em>task</em>. </p>
+
+<p>A <code>InputKey[T]</code> defines a <em>input task</em>, which parses user input and produce a task to run.</p>
+
+<p>For a setting, the value will be computed once at project load time. For a task, the computation will be re-run each time the task is executed.</p>
+
+<p>Built-in keys are fields in object <code>sbt.Keys</code>, which are implicitly imported so can be directly referred.</p>
+
+<p>Custom keys may be defined with their respective creation methods: <code>settingKey</code>, <code>taskKey</code>, and <code>inputKey</code>. </p>
+
+<p>``` scala
+lazy val hello = taskKey<a href="&quot;An example task&quot;">Unit</a></p>
+
+<p>lazy val root = (project in file(“.”)).
+  settings(
+    hello := { println(“Hello!”) }
+  )
+```</p>
+
+<h3 id="bare-sbt-build-definition">Bare .sbt build definition</h3>
+
+<p><em>Bare .sbt build definition</em> is an old style which is not recommended to use.</p>
+
+<p>Bare .sbt build definition doesn’t explicitly define a <code>Project</code>, it implicitly deines one based on the location of the <code>.sbt</code> file. The <code>.sbt</code> file consists of a list of <code>Setting[_]</code> expressions.</p>
+
+<p>Before sbt 0.13.7, settings must be separated by blank lines.</p>
+
+<h2 id="library-dependencies">Library dependencies</h2>
+
+<p>To add unmanaged dependencies, simplily drop jar files in <code>lib/</code>.</p>
+
+<p>Managed dependencies are specified by <code>libraryDependencies</code> key in <code>build.sbt</code>.</p>
+
+<p><code>scala
+libraryDependencies += groupID % artifactID % revision % configuration
+</code></p>
+
+<p>If you use double %% between the groupID and artifactID, sbt will add your project’s Scala version to the artifact name.</p>
+
+<p>Assuming the scalaVersion for your build is 2.11.1, the following adds <code>org.scala-tools:scala-stm_2.11.1:0.3</code>:</p>
+
+<p><code>scala
+libraryDependencies += "org.scala-tools" %% "scala-stm" % "0.3"
+</code></p>
+
+<p>By default, if omitted, configuration is “compile”. A common used value is “test”.</p>
+
+<p>sbt uses Apache Ivy to implement managed dependencies. Advanced usage of revision and configuration can follow Ivy document.</p>
+
+<p>sbt uses the standard Maven2 repository by default. To add additional repository, add a <code>resolver</code>:</p>
+
+<p>``` scala
+resolvers += “Local Maven Repository” at “file://”+Path.userHome.absolutePath+”/.m2/repository”</p>
+
+<p>resolvers += “Sonatype OSS Snapshots” at “https://oss.sonatype.org/content/repositories/snapshots”
+```</p>
+
+<h2 id="multiple-projects">Multiple projects</h2>
+
+<p>Multiple projects can be grouped under one project. </p>
+
+<p>``` scala
+lazy val root = (project in file(“.”)).
+  aggregate(util, core)</p>
+
+<p>lazy val util = project</p>
+
+<p>lazy val core = project
+```</p>
+
+<p>Each sub-project has its own directory. In above example the directory name is same as the project’s ID. The following is a more explicit way: </p>
+
+<p><code>scala
+lazy val core = project in file("core")
+</code></p>
+
+<p>If a project is not defined for the root directory in the build, sbt creates a default one that aggregates all other projects in the build. </p>
+
+<p>A project may depend on other projects:</p>
+
+<p><code>scala
+lazy val core = project.dependsOn(util, api)
+</code></p>
+
+<p><code>foo dependsOn(bar)</code> means that the <code>compile</code> configuration in foo depends on the <code>compile</code> configuration in bar. You can declare other configuraiton dependency, for example, <code>dependsOn(bar % "test-&gt;test;compile-&gt;compile")</code>.</p>
+
+<h2 id="using-plugins">Using plugins</h2>
+
+<p>Declares the plugin dependency in <code>project/plugins.sbt</code>. The file name can be different, you may create one sbt file for one plugin.</p>
+
+<p><code>scala
+addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.7.0")
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ivy Introduction for Maven User]]></title>
@@ -47,6 +230,131 @@
 <p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
 
 <p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[API metrics demo]]></title>
+    <link href="http://aleung.github.io/blog/2014/12/14/api-metrics-demo/"/>
+    <updated>2014-12-14T17:21:17+08:00</updated>
+    <id>http://aleung.github.io/blog/2014/12/14/api-metrics-demo</id>
+    <content type="html"><![CDATA[<p>This demo uses Graphite and Grafana to store and present API metrics. The demo environment is installed on Ubuntu.</p>
+
+<h2 id="graphite">Graphite</h2>
+
+<p>Graphite has two major components. </p>
+
+<p>The first is <code>carbon-cache</code>, which is a daemon process to receive metrics data from client through TCP connection and store into filesystem via <code>whisper</code> database library.</p>
+
+<p>Another one is a webapp. It provides HTTP API for generating graphs and retrieving raw data.</p>
+
+<p>Since Ubuntu 14.04, it’s easy to install graphite with <code>apt-get</code>:</p>
+
+<p><code>sh
+sudo apt-get update
+sudo apt-get install graphite-web graphite-carbon
+</code></p>
+
+<p>Both <code>carbon</code> and <code>graphite-web</code> are installed as python module. </p>
+
+<p>Start carbon:</p>
+
+<p><code>sh
+sudo service carbon-cache start
+</code></p>
+
+<p>Graphite-web is base on django framework. Read <code>/usr/share/doc/graphite-web/README</code> for how to setup graphite-web. A major steps is to create database and default data:</p>
+
+<p><code>sh
+sudo graphite-manage syncdb
+sudo chown _graphite:_graphite /var/lib/graphite/graphite.db
+</code></p>
+
+<p>For testing Graphite, you can start Graphite with the Django lightweight Web server for development:</p>
+
+<p><code>sh
+sudo -u _graphite /usr/bin/django-admin runserver --settings graphite.settings 0.0.0.0:8080
+</code></p>
+
+<p>To install on Apache, follow the guide in <code>/usr/share/doc/graphite-web/README</code>. </p>
+
+<p><code>sh
+sudo apt-get install libapache2-mod-wsgi
+sudo cp /usr/share/graphite-web/apache2-graphite.conf /etc/apache2/sites-available/graphite-web.conf
+sudo a2ensite graphite-web
+sudo service apache2 restart
+</code></p>
+
+<p>Graphite-web 0.9.12 only works under URL root path, it conflict with Apache default site setting. I modify <code>/etc/apache2/sites-enabled/graphite-web.conf</code> to make it work in a virtual host on port 81.</p>
+
+<p><code>apache
+Listen 81
+&lt;VirtualHost *:81&gt;
+ ...
+&lt;/VirtualHost&gt;
+</code></p>
+
+<p>Reference:</p>
+
+<ul>
+  <li>https://www.digitalocean.com/community/tutorials/how-to-install-and-use-graphite-on-an-ubuntu-14-04-server</li>
+</ul>
+
+<h2 id="grafana">Grafana</h2>
+
+<p>Download grafana package and extract to a directory. Configure Apache web server to make the grafana directory accessable.</p>
+
+<p>Edit <code>config.js</code> (copy from <code>config.sample.js</code>) to enable graphite as datasource.</p>
+
+<p>Because graphite-web is hosting on virtual host on port 81, which is different than where grafana is hosting, there is cross site script access restriction. Have to enable CORS (cross origin resource sharing) on graphite-web side.</p>
+
+<p>Enable Apache mod_headers:</p>
+
+<p>~~~ sh
+sudo a2enmod headers
+~~~</p>
+
+<p>Add into <code>/etc/apache2/sites-enabled/graphite-web.conf</code>:</p>
+
+<p>~~~ apache
+Header set Access-Control-Allow-Origin “*”
+Header set Access-Control-Allow-Methods “GET, OPTIONS”
+Header set Access-Control-Allow-Headers “origin, authorization, accept”
+~~~</p>
+
+<h2 id="elasticsearch">Elasticsearch</h2>
+
+<p>Elasticsearch is used by Granfan as a database to persistent dashboard configuration. Search and analystics features of Elasticsearch isn’t used in this case. Without Elasticsearch Grafana still works, but unable to save any change to dashboard design. You have to export dashboard JSON and import next time you want to use it.</p>
+
+<p><code>sh
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.1.deb
+sudo dpkg -i elasticsearch-1.4.1.deb
+</code></p>
+
+<p>Elasticsearch is not starting on bootup by default. To setup as service, run:</p>
+
+<p><code>sh
+sudo update-rc.d elasticsearch defaults 95 10
+</code></p>
+
+<p>To start manually, run:</p>
+
+<p><code>sh
+sudo /etc/init.d/elasticsearch start
+</code></p>
+
+<p>To enable CORS (cross origin resource sharing), add below into <code>/etc/elasticsearch/elasticsearch.yml</code>:</p>
+
+<p><code>yml
+http.cors.enabled: true
+</code></p>
+
+<h2 id="demo">Demo</h2>
+
+<p>The scala script <code>feed_graphite.scala</code> generates mock API metrics data for demo. The Grafana portal is defined as <code>api.json</code>. Both files are stored in this <a href="https://gist.github.com/aleung/1ec7e56bfa9448af920b">gist</a>.</p>
+
+<p><img src="/attachments/2014/12/api-metrics-demo.png" alt="" /></p>
+
 ]]></content>
   </entry>
   
@@ -132,49 +440,6 @@ RS–&gt;APP: result
 ```</p>
 
 <p><img src='/images/plantuml/be23d4813dfec870f068ecda2f4ba44f.png'></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
-    <link href="http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic/"/>
-    <updated>2013-12-08T15:03:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic</id>
-    <content type="html"><![CDATA[<p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
-
-<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
-
-<p>下面记录大致操作过程。</p>
-
-<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
-
-<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
-
-<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
-
-<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
-</code></pre>
-
-<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
-
-<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
-
-<p><img src="/attachments/2013/12/burp.png"></p>
-
-<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
-
-<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[软件设计之度]]></title>
-    <link href="http://aleung.github.io/blog/2013/10/21/du-of-software-design/"/>
-    <updated>2013-10-21T22:30:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/10/21/du-of-software-design</id>
-    <content type="html"><![CDATA[<p>上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。</p>
-
-<iframe src="http://www.slideshare.net/slideshow/embed_code/26482993" width="595" height="487" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe>
 ]]></content>
   </entry>
   

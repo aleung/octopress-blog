@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="我也学学hary用这样的标题 :) 周末在家有点闷，于是傍晚出去跑步。没想到刚到楼下，就开始下雨。难得有跑步的好心情，还是继续吧，幸好雨不是太大，一路上的榕树树荫浓密，其实也没淋多少雨。只是糟蹋了那双跑鞋，第一次穿居然就是在雨中跑。其实雨中跑步也没什么问题，上一次在天河公园突然下起了倾盆大雨， &hellip;">
+  <meta name="description" content="在为共享校准数据做准备: 这个版本会将手工校准的数据上传到google app engine, 不过还仅仅是上传。我现在还没有决定是做成在线获取校准参数还是将新校准参数固化到新版本中。 也不需要在菜单中选择采用那个地方的预设校准数据了，会自动选择距离最近的一个。 https://sites. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,238 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2009/06/07/HereIm-1-4-2-beta/">HereIm 1.4.2 Beta</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-07T09:46:00+08:00" pubdate data-updated="true">2009-06-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在为共享校准数据做准备: </p>
+
+<p>这个版本会将手工校准的数据上传到google app engine, 不过还仅仅是上传。我现在还没有决定是做成在线获取校准参数还是将新校准参数固化到新版本中。</p>
+
+<p>也不需要在菜单中选择采用那个地方的预设校准数据了，会自动选择距离最近的一个。</p>
+
+<p><a href="https://sites.google.com/site/hereimapp/">https://sites.google.com/site/hereimapp/</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/06/07/HereIm-1-4-2-beta/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/06/04/Know-the-sound/">噤声</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-04T20:16:00+08:00" pubdate data-updated="true">2009-06-04</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/civilsociety/'>CivilSociety</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>如果一件事情发生后，有人千方百计不想让别人知道，不允许别人谈论，那很可能是因为他在里面是个不光彩的角色，做了不见得人的事。</p>
+
+<p>这段时间内，到众多国外网站的访问被切断，<a href="http://bit.ly/hvbm3">大批国内网站被迫停止服务</a>，为的就是不让大家谈论廿年前今日发生的事情。</p>
+
+<p>但是，我们依然记得。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/06/04/Know-the-sound/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/31/About-GPS-precision-of-the-science-/">关于GPS精度的“科普”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-31T21:36:00+08:00" pubdate data-updated="true">2009-05-31</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>对于GPS精度好多人有误解，我要在这里”科普”一下。  </p>
+
+<p><strong>说法</strong>：<em>GPS有两级精度权限，民用和军用。</em><br />
+<strong>评论</strong>：正确。简单的说，GPS有多种信号频率和不同编码，可以提供不同的精度。民用的L1载波的C/A码是低精度的。军用的精度是米级以内，民用的精度是10米级别。  </p>
+
+<p><strong>说法</strong>：<em>现在民用GPS的精度只能到100米。</em><br />
+<strong>评论</strong>：错误。早期GPS民用信号加入了SA（Selective Availability）干扰，精度只能到100米。但自从2000年5月开始，SA就被取消了，所以现在民用GPS精度是能达到10米级别的。  </p>
+
+<p><strong>说法</strong>：<em>手机的A-GPS功能是为了提高精度。</em><br />
+<strong>评论</strong>：不完全正确。A-GPS主要的效果是提高定位速度，而不是精度。<br />
+普通GPS启动时需要搜索卫星信号，接收星历，才能定位与跟踪。卫星导航电文以30秒周期重复，GPS需要收齐4颗卫星的数据才能定位，因此在信号不好（断续）的情况下，就需要很长时间才能得到首次定位，甚至无法定位。<br />
+A-GPS（Assisted GPS）是指利用移动网络来辅助GPS定位，具体技术又分为几种，常用的方案是通过移动网络发送GPS星历等辅助数据，GPS无需从卫星下载数据，使手机GPS在弱卫星信号的情况下都能快速定位。</p>
+
+<p><strong>说法</strong>：<em>Google地图的My Location显示我的位置偏移了几百米，那是因为民用GPS精度限制造成的。</em><br />
+<strong>评论</strong>：错误。这种大尺度（几百米）的位置偏移目前只发现在中国大陆地区地图出现，这不是GPS定位的误差，而是地图本身就是偏移，不准确的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/05/31/About-GPS-precision-of-the-science-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/18/5km-29-17/">5km, 29:17</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-18T21:18:00+08:00" pubdate data-updated="true">2009-05-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/running/'>Running</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>(注：下面的今天是指5.18，当时blogbus正被河蟹强暴中，无法发出来)</p>
+
+<p>今天临下班前又有想跑步的冲动，问了平常一块跑的同事，他们怕下雨都不去，我就自己一个人跑。如果每天都能保持这样的运动欲望，能形成习惯就好了，可惜总是做不到，一天打鱼n天晒网。</p>
+
+<p>其实今天确实不适合跑步，雾气太大了，树林茂密的地方特别是低洼处明显一层雾气。这样的环境下运动对呼吸系统可能不是太好。跑到第二圈真的开始下雨了，还好只是中雨，眼镜还不至于蒙上。一个人跑，自己感觉速度比往日跟同事一起跑快了一点，气也喘得大一点，但最后看时间也就是29分钟多。状态始终与去年底时差远了，那时跟Stico一起跑，跑两圈也是大概30分钟左右，但基本上可以一边跑一边聊天。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/05/18/5km-29-17/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2009/05/18/6km-38-50/">6km 38:50</a></h1>
     
     
@@ -130,271 +362,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/24/Building-wastewater-with-system-again/">楼宇废水再用系统</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-24T21:35:00+08:00" pubdate data-updated="true">2009-04-24</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/environmentalprotection/'>EnvironmentalProtection</a>, <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我一直都觉得用干净的水冲厕所很耗费水资源，但用过的水又很难收集起来，即使想重用也没办法或者很不方便。</p>
-
-<p>有些城市是专门铺设了另一套水网，用海水来冲厕所。但这受地理条件限制，另外管网铺设、加压等等的建设维护成本都不低。</p>
-
-<p>网上看到一个<a href="http://sites.google.com/site/simonspagesproject/Home/grey-water-system">Home Made Grey Water System</a>方案，将住宅内的废水收集再用。但它需要用水泵将废水抽上屋顶水箱，需要额外的能源。受到这个方案的启发，我想到了用于高层（多层）楼宇的废水再用方案。</p>
-
-<p>在高层楼宇中，每层在天花板位置都设置一个废水收集箱，可重用的废水进入专门的排水管道，这些水会注入下一层的收集箱，当下一层的收集箱满了之后，注入再下一层的收集箱，直到最底层的收集箱都满了之后，才会排入市政排污管道。楼宇顶层的收集箱可以收集天台的雨水。有了这套系统后，每个楼层的洗手间都使用本层的收集箱的水来冲马桶，如果收集箱中没有水了，才会使用自来水。由于是楼上的水流到楼下，无需水泵等额外耗能的设备。</p>
-
-<p>比起现有的废水重用方案，这套系统的建造和维护成本都不高，相当于增设一套下水系统。出于卫生的考虑，系统只收集洗衣机的排水和雨水。除了楼宇最顶的几层不能保证有足够的废水供应，下面的楼层应该在大部分情况下都有足够的废水而无需使用自来水来冲马桶。因此，楼层越多，节水效果越显著。现今水资源越来越珍贵，这套系统可以带来很大的经济效益和社会效益。</p>
-
-<p>（写完后没有立即发出来，回头再想了一下，最大的问题应该是卫生安全，因为这些废水会流入每家的马桶，如何保证进入再用系统的水没有受到生物污染？是否要先消毒过滤？）</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/04/24/Building-wastewater-with-system-again/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/20/Inserted-liu-had-no-intention-of/">无意插柳</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-20T08:05:00+08:00" pubdate data-updated="true">2009-04-20</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为<a href="http://aleung.blogbus.com/logs/37558170.html">用得不爽一时兴起而写</a>的校正中国地图偏移的软件不断添加新功能发布新版本。</p>
-
-<p>今天把软件改了个名字，由 Better My Location 改为 Here I’m!，应该会更顺口和好记一些。不过，这个名字不好的地方就是太常用了，肯定无法出现在搜索引擎的开头几页。另外也把软件介绍的文案更新了一部分，目的是要把软件的功能更清晰的表达出来（不知道是否达到效果了，欢迎提意见）。还花了几个小时弄了个漂亮一些的logo，不是搞设计的，真是赶鸭子上架啊。</p>
-
-<p>考虑到blog的形式不是太合适做软件的发布，到Google Sites上为它做个了site：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a>。HereIm这个名字不能注册，只好用HereImApp。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/04/20/Inserted-liu-had-no-intention-of/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/19/Better-My-Location-/">Better My Location, 准确定位当前位置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-19T07:45:00+08:00" pubdate data-updated="true">2009-04-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="/blog/attachments/2009/4/HereIm.jpg" /></p>
-
-<p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>
-
-<h2 id="section">下载 / 版本更新记录</h2>
-
-<p>安装：在Android Market搜索 “HereIm”</p>
-
-<p>软件网站：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a> （需要翻墙）</p>
-
-<h2 id="section-1">使用说明</h2>
-
-<h3 id="section-2">地图校准</h3>
-
-<p>地图有多种校准模式：Manually Calibrate为手工校准模式，需要用户先自行校准地图再使用。其他为中国几大城市的预设校准数据，在它们附近的地域也大致适用，可以选择最接近的一个。<br />
-手 工校准，在菜单中选Calibrate，然后现在卫星图上找到一个你知道的标志性地点（路口是一个好的选择），拖动地图使这个地点位于十字光标正中下，接 下来切到地图模式，同样也找到这个地点，拖到光标中心。最好开始先将地图缩小一点来校准，初步找到位置后再放大地图微调位置，可能需要反复几次才能准确校 准。最后点Done。<br />
-目前软件只会保存最后一次校准的参数。<br />
-注意：模式切换或手工校准后，需要手机收到位置更新之后，新校准才会生效。如果打开了GPS，位置会更新得很快，但若没有打开GPS，也许要移动相当一段距离后才能看出效果。  </p>
-
-<h3 id="section-3">定位</h3>
-
-<p>菜单中选择 My Location，就会在地图中标记出当前所处位置，并且显示街道地址（不一定很准确，可作为参考）。<br />
-如 果定位不成功，请检查你是否已经打开了手机的定位功能。方法是：home按钮 - menu按钮 - settings - security &amp; location，将use wireless networks选上，enable GPS satellites按你自己需要决定选不选。<br />
-wirelessnetworks在任何地方只有有手机信号基本都能立即定位，但不够准确，有可能 差一两条街；GPS定位很准，能到几十米，但要在天空开阔的地方才能收到足够数量的卫星，而且也要等比较久才能锁定卫星信号，屏幕顶上的绿色卫星天线图标 长亮不闪烁时才表示GPS定位成功。  </p>
-
-<h3 id="section-4">用手机自带地图显示当前位置</h3>
-
-<p>菜单选择”open in map app”，会切换到手机自带的地图软件，这时屏幕正中间就是当前位置。要注意，它的蓝点位置还是偏的。校准仅仅在 Better My Location 中有效。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/04/19/Better-My-Location-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/07/To-write-software-expected-to-solve-the-problem-of-migration-in-Android-map/">写了个软件，期望可解决Android中地图偏移的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-07T08:08:00+08:00" pubdate data-updated="true">2009-04-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这两天用着G1的my location功能，发现真是很爽，即使不开GPS，单独依靠移动网络来定位在很多地方都已经相当准确，往往已经到了一个住宅小区的精度。但是地图模式的人为偏移就令人非常懊恼，在广州区域内偏差600多米，明明在天河公园东面它显示到西门那边。</p>
-
-<p>Google地图加入的人为偏移是由于中国测绘法规的限制而加入的，这样造成my location定出来的位置在地图上偏差太远，已经失去使用价值了。而卫星图是没有偏差的，这就是为什么大家发现地图(map)模式误差大，卫星模式误差小的原因。  </p>
-
-<p>在电脑上打开Google Map，对于一个标志性地方，在地图与卫星图上各标一个waypoint，比较两个坐标，就可以知道地图的偏差有多大。经过试验，发现在一个区域内（例如整个广州市），偏差基本上是固定的，而不同城市的偏差就不同了。  </p>
-
-<p>利用这个特性，对一个区域的偏差进行测量校准后，整个区域的定位都能够根据这个校准值来校准。如果能够将各人在不同地方测得的校准值共享在网络上，这个手机的定位功能就会有实用价值了。  </p>
-
-<p><img class="right" src="/blog/attachments/2009/4/HereIm.jpg" /></p>
-
-<p>今天先写了个程序实现了my location的校准显示，将广州市的校准值（初步测试发现对广东省范围都适用）内置在程序里了。后面我会继续改进这个程序，让校准值可以设置，期望最后能做到在网络上同步。</p>
-
-<p>程序的功能很简单，就是显示地图，并且将校准后的my location蓝点显示在地图上，也可以打开系统Map软件，打开后校准后的my location在屏幕正中心。</p>
-
-<p>Update 2009-4-20：</p>
-
-<p>软件改名为Here I’m!，并已建立专门的网站。下载和更新请到 <a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a></p>
-
-<p>Update 2012-7:</p>
-
-<p>后来版本的 Google Maps 已内置纠正偏移（好像是只对中国大陆手机用户生效），HereI’m! 软件已下架很久了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/04/07/To-write-software-expected-to-solve-the-problem-of-migration-in-Android-map/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/25/">&larr; Older</a>
@@ -416,23 +383,23 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -441,14 +408,14 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -462,7 +429,7 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -471,20 +438,21 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -496,7 +464,7 @@ wirelessnetworks在任何地方只有有手机信号基本都能立即定位，�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

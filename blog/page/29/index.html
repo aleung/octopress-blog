@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Allow remote TCP connection to the X server. You need root privilege to config it. Just run gdmsetup. This will open a window with multiple tabs. In &hellip;">
+  <meta name="description" content="看豆瓣的图书馆小组，有人抱怨乱架率太高，找书不容易。我去图书馆的时候也有这样的烦恼，当时就想过，图书馆的乱架问题和找书问题，能不能用科技手段来帮助解决呢？ 目前国内的图书馆藏书都是用条形码标识，如果改用RFID之类的无线标签，除了可以满足外借系统借书还书只用，还可以用来做书架管理，防盗。 防盗 ： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,255 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/24/Will-the-wireless-tags-used-in-the-library/">将无线标签用在图书馆中</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-24T07:32:00+08:00" pubdate data-updated="true">2008-10-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/idea/'>Idea</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看豆瓣的图书馆小组，有人抱怨乱架率太高，找书不容易。我去图书馆的时候也有这样的烦恼，当时就想过，图书馆的乱架问题和找书问题，能不能用科技手段来帮助解决呢？  </p>
+
+<p>目前国内的图书馆藏书都是用条形码标识，如果改用RFID之类的无线标签，除了可以满足外借系统借书还书只用，还可以用来做书架管理，防盗。</p>
+
+<p><strong>防盗</strong> ：在书库出口设置感应器，就像现有的磁条感应一样，假如未办借阅手续的书籍经过，引发告警。不过我不知道RFID的感应距离怎样，还有不知道是否很容易屏蔽，所以可行性不确定。</p>
+
+<p><strong>借书还书</strong>：现在都是需要工作人员手工进行的，用条形码阅读器扫描书籍的条形码以及借书证条形码，完成借书或还书的登记。采用RFID后，会更加简单，只需要将书经过感应区域就可以了。假如书和借书证都带有RFID，甚至可以做到无需工作人员。我想到的有两个方案。</p>
+
+<p>一个是离开书库时将要借的书和书证放上传送带，传送带自动将书送进感应区完成登记，然后送出书库后，读者出库后在外面就可以取回，好像超市收银台一样。如果登记过程出错，例如书证过期或已经借满，机器可以将书推送到一旁，进行人工处理。还书就更简单了，把书往传送带一放就行了。如果过期，自然会记录在书证上，下次借书时交罚款。</p>
+
+<p>另外一种方案是结合防盗系统（假如防盗是可行的），由读者自助操作。读者出书库前，自己将要借的书籍拿到自助借书机前感应一下，完成借书操作，然后直接带出库。如果没办借书手续的书带出库，防盗系统会报警。不过，从成本、安全等方面考虑，书籍上用的应该是只读标签，外借记录不直接保存在标签上，那就要求防盗系统要即时查询一次数据库才能确定这本书是否已经办理了借书手续，查询时间要够快才行。</p>
+
+<p><strong>帮忙找书</strong>：目前找书都是根据图书分类号，到相应的书架寻找。但是同一分类号的书还是很多，往往占了多个书架，看得眼花缭乱都很难找到。图书馆可提供一些手持的寻书器，读者将要找的书的书号输入到寻书器中（或者由电脑查询系统自动输入），读者拿着寻书器到相应书架前，在每排书旁边都扫一遍，当要找的书进入感应范围时，寻书器可通过灯光显示来告之，这样需要肉眼寻找的范围就大大缩小。这个方案的可行的前提是标签的有效感应距离比较短，或者寻书器的感应区域有定向性。</p>
+
+<p><strong>书架整理</strong>：与寻书器类似，图书馆工作人员需要整理书架，找出乱架图书时，将分类号输入扫描器，对书架的每排书扫一遍。当发现不符合分类号的书籍时，扫描器进行提醒， 工作人员就能将这些书挑出来，重新正确归架。</p>
+
+<p>甚至可能在书架上安装感应器，变成智能书架。不过还是有感应距离的问题，距离太大定位不准确，距离太小，需要很多感应器，成本也太高。这个想法似乎不大可行。</p>
+
+<p>我对无线标签并没有什么了解，不知道上面的想法到底有多少是技术上可行的，只不过想到了就记下来。也许早已经有这样的研究甚至应用了，反正我又不是干图书馆这行，我就不去了解了，呵呵。 </p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/10/24/Will-the-wireless-tags-used-in-the-library/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/09/15/Online-backup/">在线备份</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-15T18:20:00+08:00" pubdate data-updated="true">2008-09-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以前介绍过文件同步/备份工具<a href="http://aleung.blogbus.com/logs/5545100.html">Unison</a>，那是一个在两台电脑之间进行文件双向同步的好工具。不过，Unison同步时需要两台电脑同时开机，并且可以通过网络直接通信。我以前用于办公室内两台电脑的同步，非常方便，不过想将办公室和家里的电脑进行同步(备份)，就做不到了。</p>
+
+<p>尝试了网上的在线文件同步/备份/分析工具，这样的网站有好多，我并没有仔细研究比较过，现在用的是<a href="http://syncplicity.com/">Syncplicity</a>，感觉功能不错，速度也可以。</p>
+
+<p>使用相当简便，在要同步的电脑上安装一个client，指定哪些目录需要同步，它就会自动将文件上传服务器，或者从服务器下载，就看哪边的版本更新一点。只要连上网，它就在后台运行，不用费心。如果是要手工执行备份的话，往往会忘记的，自动就没有这个问题。一个帐号可以连接多个client(免费账号限制2个)，相当于星形连接，由服务器分发改变了的文件。备份在服务器上的文件可以通过web界面访问。它的FAQ介绍了它有处理冲突的能力：保留所有不同的版本，让用户自己选择。不过，我没有试过，目前我只是用它来做单向备份。Syncplicity能够与GoogleDoc同步，我没有使用GoogleDoc的需要，也懒得试了。</p>
+
+<p>Syncplicity对免费用户提供2GB空间，允许两台电脑进行同步，当然收费版本的限制会放宽了。免费的服务基本上都够用的，需要备份的是些比较重要又经常变化的文件，如果是备份旧东西，不变的，用刻光盘的方式更合适。</p>
+
+<p>给Syncplicity做了这么多广告，是因为：如果我邀请新用户注册，我可以增加100M空间。所以各位记得填写我的邀请信中的号码啊，呵呵。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/09/15/Online-backup/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/13/The-opening-ceremony-of-the-Beijing-Olympic-Games-feel/">北京奥运开幕式感受</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-13T21:36:00+08:00" pubdate data-updated="true">2008-08-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/misc/'>Misc</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看北京奥运开幕式的感觉就像第一次看好莱坞大片 True Lie 时的感觉一样，新奇，刺激。高科技的声光器械加上集权国家一向擅长的大型团体操，确实非常吸引眼球。<br />
+也许过两届后回头再看，这些声光手段都是司空见惯，就会觉得平淡无奇了，但至少在现在看来，张艺谋是做得很好的。上次雅典奥运开幕式，我觉得是一个难以逾越的高度，很为张艺谋担心，现在看来他还是很好的完成了任务。<br />
+这开幕式就相当于一部商业大片，看得观众很爽。至于说到艺术性和内涵，我还是喜欢雅典的。</p>
+
+<p>技术方面，这次开幕式LED与大型投影的大量应用到了无处不在的地步。相信相关的应用在将来会越来越普遍，屏幕会越来越大，出现在各种想像不到的地方，随时随地都是绚丽的视频。如果以后街上每个人的衣服上都是不停变幻的图案，也许我们会怀念只有素色的那个年代。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/08/13/The-opening-ceremony-of-the-Beijing-Olympic-Games-feel/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/18/Line-break-in-MANIFEST-class-path/">Line Break in MANIFEST Class-path</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-18T08:00:00+08:00" pubdate data-updated="true">2008-06-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+  <li>
+    <p>NO space (at all) after the last jar name of each line; and  </p>
+  </li>
+  <li>
+    <p>TWO spaces on the next line.<br />
+This will work:</p>
+  </li>
+</ol>
+
+<p>Class-path: lib/1.jar<br />
+lib/2.jar</p>
+
+<p>Anything different from that will cause an exception or some of your jars will not be found on the classpath. </p>
+
+<p>From: <a href="http://www.jroller.com/sgm/entry/manifest_class_path_too_long">http://www.jroller.com/sgm/entry/manifest_class_path_too_long</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/06/18/Line-break-in-MANIFEST-class-path/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -141,250 +390,6 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/16/Attention-to-wenchuan-earthquake-relief-forces-folk-some-support/">关注汶川地震——给民间救援力量一些支持</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-16T21:31:00+08:00" pubdate data-updated="true">2008-05-16</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/civilsociety/'>CivilSociety</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>地震发生后，我所在的公司组织捐款。公司承诺员工总共捐出多少钱，公司会再捐出一个同样的数额。员工捐款非常的踊跃，到目前为止，已经募集到很大一笔数额（具体数字就不说了，现在捐款数量的多少在网上变成了道德评判的对象）。</p>
-
-<p>不过我没有选择通过公司的途径来捐款。同事问我为什么呢，通过公司捐，公司会再多出一份钱，灾民能得到更多的帮助啊。我想过这个问题。公司募集到的款项会转交给中国红十字会或者中华慈善总会，这两个机构都基本上是官方性质的，现在社会各界的捐款大部分也是会转交给他们，他们收到的捐款将会非常多。而我选择了<a href="http://www.bullog.cn/blogs/liuyanban/">牛博</a>发起的捐款，我希望能够给民间的救援力量一些微薄的支持。</p>
-
-<p>有时候民间的救援力量可以帮助到一些官方渠道关注不到的地方和人，对于他们，这种帮助不是多一点或者少一点的区别，而是有和没有的区别。</p>
-
-<p>牛博这次捐款的组织者包括了罗永浩（老罗）、<a href="http://www.lianyue.net/blogs/rosu/">连岳</a>、<a href="http://wenyc1230.blog.163.com/">北风</a>、<a href="http://blog.sina.com.cn/twocold">韩寒</a>等等，这些人我虽然不认识，但是可以说熟悉他们。在网络上我知道他们曾经说过什么做过什么，知道他们的想法和他们的做事风格。比起红十字会或者政府部门的那些我不知道的官老爷们，我觉得牛博这帮人更靠谱。而且，他们有人亲临灾区前线去了解信息，组织协调，发放物资，并且不断从前线发回消息，让大家知道情况的进展。</p>
-
-<p>从国际上救援成熟国家的经验看，民间救援力量是很重要的一环，可以补充官方力量的不足，优势互补。而在我们这里连基础都没有。这次牛博的人估计也没有太多的救援经验，因此不一定能在第一线发挥很大作用，但是这可以积累经验推动民间救援的发展。民间救援的发展另一方面会给官方机构带来压力，促进他们的进步。观念的转变总需要一个过程。</p>
-
-<p>牛博捐款的具体信息请看<a href="http://www.bullog.cn/blogs/liuyanban/">牛博公告板</a>，我就不转载过来了，大家需要自行核实信息。</p>
-
-<p>前方发回的信息请关注这几个blog：<a href="http://siyi123123123.spaces.live.com">创造社新任社长宋石男</a>， <a href="http://blog.sina.com.cn/twocold">韩寒</a>  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/05/16/Attention-to-wenchuan-earthquake-relief-forces-folk-some-support/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/13/Wenchuan-county-sichuan-M7-8-earthquake-happened/">四川汶川县发生M7.8级地震</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-13T05:06:00+08:00" pubdate data-updated="true">2008-05-13</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>四川汶川县境内今天14:28发生7.8级地震，震中距离成都市区约90km，距离彭州市区约66km。14:54发生的5.7级余震距离彭州市区约22km。</p>
-
-<p><img src="http://photo1.bababian.com/upload11/20080512/02D8796E47266104909DE6C9CD15F921.jpg" alt="" /></p>
-
-<p>上图数据来自USGS（US Geological Survey，美国地质勘探局），<a href="http://earthquake.usgs.gov/eqcenter/recenteqsww/Maps/10/105_30.php">这里</a>可以看到此次地震以及余震的信息(一周内有效)。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/05/13/Wenchuan-county-sichuan-M7-8-earthquake-happened/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/11/How-does-Google-Map-My-Location-work-/">How Does Google Map My Location Work?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-11T08:22:00+08:00" pubdate data-updated="true">2008-05-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在今年初推出的<a href="http://www.google.com/mobile/gmm/index.html">Google Map for Mobile</a>新版本中提供了称为My Location的功能，不需要GPS的支持，也能在地图上显示出当前手机所在的位置。这个功能着实让人眼前一亮。虽然移动网络本身就可以提供定位的能力，但是Google的My Location并不依赖于移动网络定位能力，完全绕开了运营商的控制。</p>
-
-<p>My Location是怎样实现的呢？Google网站上介绍了大致的<a href="http://www.google.com/mobile/gmm/mylocation/index.html">原理</a>：手机接收到移动基站的信号，根据基站的信息可以知道当前处于哪个基站的信号覆盖范围，如果基站的位置是已知的，就可以确定当前的大概位置了。</p>
-
-<p>具体点说，这是一种叫做Cell-Id Positioning Method的技术。GSM网络（3G网络也一样）覆盖由Location Area组成，（Location Area是指mobile terminal可以任意移动而不需要进行location update的区域）。Location Area由LAI（Location Area Id）来标识，LAI由MCC，MNC，LAC组成。其中MCC是3位的Mobile Country Code，中国为460；MNC是2位Mobile Network Code，在国家内分配，中国移动为00；LAC为Location Area Code，在network内分配；可见LAI是全世界唯一的。在一个location area中设置一个或多个基站，基站天线的信号覆盖一定的区域，称为cell（小区）；根据天线的不同，每个基站可能包含1个或多个cell，定向天线的信号覆盖一个扇形范围，多个天线的扇区为不同的cell。每个cell有自己的Cell-Id，结合LAI和Cell-Id，就可以在全球范围内唯一确定一个cell。要进行定位，需要有一个cell坐标数据库，根据cell-id来查找位置信息。</p>
-
-<p>Google的My Location表示格式为myl:MCC:MNC:LAC:CI。在Google Map for Mobile的about信息末尾可以看到。如果显示为myl:n/a，那就是手机不能提供cell-id信息。很不幸，我正在用的SonyEricsson w810c就不支持:(</p>
-
-<p>下一个问题就是cell坐标数据是怎么来的？移动网络运营商提供，不是太现实。Google不可能与全球所有的运营商达成协议。特别是在中国，凡是涉及精确地理坐标的数据都属于机密范畴，然而我们发现My Location在广州是可用的，估计其他城市也可以。于是我猜Google是自己采集这些信息的，例如开辆车周围转，记录各处的cell-id。但有点奇怪的是，在广州我们发现在天河软件园得到的位置比较准确，但是在其他地方的就误差很大，并且表示精确度范围的圆圈半径非常大，将半个天河区都包含在内。难道Google只在天河软件园采集了数据，而其他地方没有？</p>
-
-<p>最近，一个同事开发了一个程序，利用手机自带的GPS定位，将cell-id与坐标记录下来。我们讨论的时候才恍然大悟，Google很可能就是这样做的！有些Google Map for Mobile用户的手机是支持GPS的，当这些用户运行Google Map时打开了GPS，坐标数据以及cell-id就会发送到Google的服务器，等于有许多用户在替Google采集数据。在天河软件园的定位准确，就因为我们（当然也可能有其他人）在这里试验Google Map时打开过GPS。在我们这里，支持GPS的手机的拥有率不高，同时又使用Google Map的更少，因此Google掌握到的数据很有限。在没有采集到数据的地方，定位就不准确了。</p>
-
-<p>为了求证，到Google网站上查看，在GoogleMobile的Privacy Policy中找到这样一段话：<em>If you use location-based products and services, such as Google Maps for mobile, you may be sending us location information. This information may reveal your actual location, such as GPS data, or it may not, such as when you submit a partial address to look at a map of the area</em>. 在help中又找到一段话：<em>Google takes geo-contextual information [from anonymous GPS-readings, etc] and associates this information with the cell at that location to develop a database of cell locations</em>. 看来我们的猜想是成立的。其实还可以通过做实验来证明：找一台支持GPS的手机，到一个定位有非常大误差的地方，在Google Map中enable GPS。过一段时间后，例如几天，因为Google处理数据可能有延迟，在关闭GPS的状态下看My Location，如果定位变得准确了就是Google使用了用户手机GPS采集的数据。不过我没有GPS手机，无法做这个实验。</p>
-
-<p>在网上查找资料的过程中发现，其实Cell-id定位并不是一项新技术，不过它与Google Map的海量高清晰度地图结合起来，给业界带来了震撼。在Treo智能手机上，2006年就有国内的爱好者开发了<a href="http://www.palm119.net/blogview.asp?logID=42">手机定位软件</a>，根据cell-id查询到当前位置，不过位置信息是地名，而不是经纬度坐标；Cell-Id对照地名信息的数据库是由用户补充完善的。在网上搜索一下，也可以找到好几个开放的cell-id坐标数据库，例如<a href="http://www.opencellid.org/">OpenCellID</a>，只不过几乎都没有中国大陆的数据。Flickr为了配合ZoneTag（用手机拍照时记录下cell-id，从而可以知道照片拍摄的位置），还提供了<a href="http://developer.yahoo.com/yrb/zonetag/locatecell.html">Cell Location API</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/05/11/How-does-Google-Map-My-Location-work-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/04/15/Linux-cut-/">Linux的cut命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-15T20:54:00+08:00" pubdate data-updated="true">2008-04-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>原来有个这么好用的命令：cut</p>
-
-<p>经常都需要分析一个字符串或者文本文件，根据一些规则提取出其中某部分的内容。以前都是用awk来做，但awk太复杂了，每次都要拿手册查半天。今天才知道原来GNU有个叫cut的命令，就可以做这个事情。</p>
-
-<p>例如，获取当前机器的IP地址：</p>
-
-<pre><code>/sbin/ifconfig | grep 'inet addr' | grep -v '127.0.0.1' | cut -d: -f2 | cut -d' ' -f1
-</code></pre>
-
-<p>这个命令在linux和windows的unixutils里都有。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/04/15/Linux-cut-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/30/">&larr; Older</a>
@@ -406,23 +411,23 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -431,14 +436,14 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -452,7 +457,7 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -461,20 +466,21 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -486,7 +492,7 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

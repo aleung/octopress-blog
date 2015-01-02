@@ -9,8 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="8 November 1989 9 November 1989, the wall fell. 柏林人民踊跃翻墙的塲景： 当年柏林是被这样的高墻分隔的： 如今残存的墙上的壁画，反映了当年翻墙的种种途径： —— 纪念柏林墙倒下20周年
-">
+  <meta name="description" content="以前我一直以为Google手机地图是在客户端程序内置有矫偏算法的，看了dongmeng110的blog（已被关闭）才知道Google地图偏移其实是有接口可以取到的。给定经纬度坐标，返回地图tile的偏移像素值。
+http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +73,295 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/26/Google-China-Map-offset-1/">Google中国地图偏移</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-26T21:37:00+08:00" pubdate data-updated="true">2009-12-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以前我一直以为Google手机地图是在客户端程序内置有矫偏算法的，看了dongmeng110的blog（已被关闭）才知道Google地图偏移其实是有接口可以取到的。给定经纬度坐标，返回地图tile的偏移像素值。
+<code>http://ditu.google.cn/maps/vp?spn=0.0,0.0&amp;amp;z=18&amp;amp;vp=39.111195,117.148067</code> （已失效）。</p>
+
+<p>没想到居然就是直接从服务器取，这样所有的偏移量其实都是公开的了。</p>
+
+<p>接下来，我对偏移数据做了一些分析。纵坐标是18级地图的偏移量。</p>
+
+<p>首先是较小尺度，在经纬度1度的范围内每0.01度取得一个偏移值。</p>
+
+<p>图一：纬度不变，经度1度变化范围内，偏移量的变化（横坐标数字为经度0.01度）</p>
+
+<p><img src="/blog/attachments/2009/12/4382500790_05a7a3af13_o.jpg" alt="" /></p>
+
+<p>图二，与图一相同的数据，可以看出偏移在平面上的变化</p>
+
+<p><img src="/blog/attachments/2009/12/4382501234_2a060a3355_o.jpg" alt="" /></p>
+
+<p>图三，经度不变，纬度1度变化范围内，偏移量的变化（横坐标数字为纬度0.01度）。可见偏移量变化不如经度变化时大。</p>
+
+<p><img src="/blog/attachments/2009/12/4382501616_0902aeee3e_o.jpg" alt="" /></p>
+
+<p>图四，与图三相同的数据，可以看出偏移在平面上的变化</p>
+
+<p><img src="/blog/attachments/2009/12/4382501968_d960178154_o.jpg" alt="" /></p>
+
+<p>图五，经度纬度均1度范围内，偏移在平面上的变化。其实是图二与图四“相乘”的结果。</p>
+
+<p><img src="/blog/attachments/2009/12/4381741057_b10a5de8ca_o.jpg" alt="" /></p>
+
+<p>接下来从大尺度上看看。</p>
+
+<p>图六，北纬40度的纬线上偏移值变化图，横坐标为经度。看得出以经度1度为周期呈现出一定的规律性，在y向偏移量上特别明显。</p>
+
+<p><img src="/blog/attachments/2009/12/4382499286_a837b8022d_o.jpg" alt="" /></p>
+
+<p>图七，东经116度的经线上偏移值变化图，横坐标为纬度。这个就没有奇怪的小波动了，而且x向偏移似乎可以非常理想的用二次曲线来拟合。</p>
+
+<p><img src="/blog/attachments/2009/12/4381742115_a15b5e01c5_o.jpg" alt="" /></p>
+
+<p>图八，刚才在图六中发现纬线上的偏移值呈现出规律性，这里放大来看看。很明显是以1度为周期的。</p>
+
+<p><img src="/blog/attachments/2009/12/4382498276_2952ffa74c_o.jpg" alt="" /></p>
+
+<p>暂无结论。请看<a href="/blog/2009/12/27/Google-China-Map-offset-2/">续篇</a>。</p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/26/Google-China-Map-offset-1/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/">比价易：逛超市的好帮手</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-12T08:33:00+08:00" pubdate data-updated="true">2009-12-12</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="right" src="http://farm5.static.flickr.com/4104/4987380901_97030e8f03_m.jpg" /></p>
+
+<p>逛超市，看到两款酸奶：</p>
+
+<ul>
+  <li>一种是100克装8杯，9.6元；</li>
+  <li>另一种是150克6杯加送1杯100克，10.5元。</li>
+</ul>
+
+<p>那个价钱更划算？</p>
+
+<p>如果单位不同，就更难比较了，例如纯净水：</p>
+
+<ul>
+  <li>550ml一打，10元；</li>
+  <li>10L，12元；</li>
+  <li>5 gal（加仑），18元。</li>
+</ul>
+
+<p>比价易（Unit Price Compare）就是专门解决这种问题的，它是运行在Android手机上的应用，能够比较不同包装的商品单价哪个更便宜。</p>
+
+<p>比价易支持不同单位的自动换算，对于”150克6杯加送1杯100克”这样的情况，直接输入为 150*6+100 就可以了。看看截图：</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4987380823/"><img src="http://farm5.static.flickr.com/4111/4987380823_cfb55b6633.jpg" alt="Unit Price Compare - list" /></a> <a href="http://www.flickr.com/photos/leoliang/4987981690/"><img src="http://farm5.static.flickr.com/4109/4987981690_1fae2f0784.jpg" alt="Unit Price Compare - item" /></a></p>
+
+<p>安装：在Android Market中搜索”Unit Price Compare”</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4987981626/"><img src="http://farm5.static.flickr.com/4112/4987981626_c5cfbd0307_m.jpg" alt="Unit Price Compare - download" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/12/Parity-easy-the-supermarket-good-helper/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/11/Introduction-of-Android-slides/">介绍Android的slides</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-11T05:55:00+08:00" pubdate data-updated="true">2009-12-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div id="__ss_2689852" style="width: 425px; text-align: left;">
+	<a href="http://www.slideshare.net/aleung/android-2689852" style="font:14px Helvetica,Arial,Sans-serif;display:block;margin:12px 0 3px 0;text-decoration:underline;" title="Android">Android</a> <object data="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=android-091210073738-phpapp01&amp;stripped_title=android-2689852" height="355" type="application/x-shockwave-flash" width="425"> <param name="allowFullScreen" value="true" /> <param name="allowScriptAccess" value="always" /> <param name="src" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=android-091210073738-phpapp01&amp;stripped_title=android-2689852" /> <param name="allowfullscreen" value="true" /> </object>
+	<div style="font-size: 11px; font-family: tahoma,arial; height: 26px; padding-top: 2px;">
+		View more <a href="http://www.slideshare.net/" style="text-decoration:underline;">documents</a> from <a href="http://www.slideshare.net/aleung" style="text-decoration:underline;">aleung</a>.</div>
+</div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/11/Introduction-of-Android-slides/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/03/Restore-the-wind-baiyun-sunny-days-blog/">重拾 “清风白云艳阳天” Blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-03T08:05:00+08:00" pubdate data-updated="true">2009-12-03</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>, <a class='tag' href='/blog/tags/life/'>Life</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>“清风白云艳阳天: 摄影-旅行-生活” 是我的第一个blog，大概是在2000/2001年左右开始的吧，搬过好多次家，最初放在公司的服务器上，又放过在绿野上，后来放在朋友的服务器。2006年朋友的服务器关了，这个blog就没有着落了。随着对摄影的兴趣减淡，也一直没有提起心情来把它重新建起来。反倒是后来的 “Goog good study day day up” 断断续续的一直坚持了下来。</p>
+
+<p>Blogbus用了这么久，感觉还不错，就在这里再安一个家吧。不一定会更新得多勤快，反正想写就写，想贴就贴。及时性是肯定不能保证的了，我好多照片都是等一年后才扫描出来，再不知道等多久才会处理好。</p>
+
+<p>下面是链接，建议用RSS订阅，免得每次打开都看不到新内容 :)</p>
+
+<h1 id="sunnyday--feelingwindhttpsunnywindblogbuscom"><a href="http://sunnywind.blogbus.com/">SunnyDay &amp; FeelingWind</a></h1>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/03/Restore-the-wind-baiyun-sunny-days-blog/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -145,349 +434,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/10/31/Android-Wallpaper-Label/">Android软件：Wallpaper Label</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-31T09:14:00+08:00" pubdate data-updated="true">2009-10-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="/blog/attachments/2009/10/wallpaperlabel1.jpg" /></p>
-
-<p>Android与IPhone类似，都是有多个桌面屏幕，用手指划一下就可以左右切换屏幕。Android缺省设置只有3屏，但一些mod可以修改屏幕个数，例如设置为5屏。</p>
-
-<p>在IPhone上，屏幕的数量以及当前处于第几个屏幕是通过界面中下方的小圆点来指示的。但在Android上就没有类似的指示，有时候用户不知道现在正显示的是哪一屏，应该往左还是往右翻屏。</p>
-
-<p><img class="left" src="/blog/attachments/2009/10/wallpaperlabel2.jpg" /></p>
-
-<p>我开发的这个软件 Wallpaper Label 可以为Android手机的桌面每个屏幕添加一个文字标签，这样就很清晰的知道当前打开的是哪一屏了。标签位于在屏幕下方的正中位置，并不会影响图标的显示。</p>
-
-<p>Wallpaper Label 软件的另外一个作用是设置Android手机的桌面墙纸。Android系统自带的墙纸设置工具需要把图片剪切为4:3比例，无法设置其他比例的墙纸。4:3比例对于缺省的3屏是比较合适的，但当桌面屏幕数量更多的时候，这个比例就显得太窄了，左右切换屏幕时墙纸的画面基本没有多少移动。用 Home Screen Label 来设置墙纸没有4:3比例的限制，可以设置宽屏墙纸。</p>
-
-<p>用作墙纸的图片文件需要存放在SD卡的wallpapers目录中。软件也提供了保存当前墙纸的功能，可将现在正使用的墙纸保存到SD卡上。</p>
-
-<p>这是5个屏幕合成的效果图，可以看出宽屏墙纸画面效果：</p>
-
-<p><img src="/blog/attachments/2009/10/wallpaperlabel3.jpg" alt="" /></p>
-
-<p>软件在Android Market上下载安装，搜索”Wallpaper Label”就可以找到。
-(2012-7 update: Android自身功能不断增强，这个软件已经没什么用处，早已下架)</p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/10/31/Android-Wallpaper-Label/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/27/WebLogic-classloading/">WebLogic的classloading</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-09-27T07:23:00+08:00" pubdate data-updated="true">2009-09-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一直对classloading的了解不是很清晰，每次遇到涉及WebLogic的classpath设置、classloading问题debug时都要去网上搜索资料。现在把资料整理下来。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4379354938/"><img src="http://farm3.static.flickr.com/2682/4379354938_dc7cd5f47e_o.png" alt="wls_classloading" /></a></p>
-
-<h3 id="section"></h3>
-
-<h3 id="classloader">各层级classloader加载的类的范围</h3>
-
-<ul>
-  <li>Bootstrap classloader
-    <ul>
-      <li>Core Java libraries (<jre>/lib)</jre></li>
-    </ul>
-  </li>
-  <li>Extension classloader
-    <ul>
-      <li>JRE extensions directory (<jre>/lib/ext)</jre></li>
-    </ul>
-  </li>
-  <li>WebLogic Server system classloader
-    <ul>
-      <li>Classpath</li>
-      <li>
-        <domain>/lib
-
-</domain>
-      </li>
-    </ul>
-  </li>
-  <li>Filtering classloader
-    <ul>
-      <li>nothing</li>
-    </ul>
-  </li>
-  <li>Application classloader
-    <ul>
-      <li>EJB JARs</li>
-      <li>APP-INF/lib</li>
-      <li>APP-INF/classes</li>
-      <li>Manifest Class-Path in EJB JARs</li>
-    </ul>
-  </li>
-  <li>Web application classloader
-    <ul>
-      <li>WAR</li>
-      <li>Manifest Class-Path in WAR</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="section-1">类加载的优先级</h3>
-
-<p>每个classloader在要加载一个class之前都会先请求它的上层classloader，如此逐级传递。因此效果就是越上层的classloader优先级越高，一个class如果在上层classloader能加载到，就不会让下面的classloader加载。</p>
-
-<p>但是web application classloader是个特例，通过在weblogic.xml中配置<prefer-web-inf-classes>，可以让web application classloader优先在自己war范围内加载类，找不到的类才会请求上层classloader。</prefer-web-inf-classes></p>
-
-<p>Filtering classloader是个特殊的classloader，它并不会加载任何类，而是起到控制类加载优先级的作用。在weblogic-application.xml中配置<prefer-application-packages>，可以限制对于指定的类不再向上层classloader请求，也就是限制在EAR的范围之内加载。</prefer-application-packages></p>
-
-<h3 id="section-2">其他</h3>
-
-<p>以上仅仅描述了缺省情况下classloading的行为。WebLogic对于一个application (EAR)内的classloader的层次结构是可以自定义的。Shared library和optional package，也会影响到classloading。另外，resource adapter (RAR)也有独立的classloader。还有其他的一些细节，需要查阅<a href="http://download.oracle.com/docs/cd/E13222_01/wls/docs100/programming/classloading.html">Understanding WebLogic Server Application Classloading</a>。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/09/27/WebLogic-classloading/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/25/Prepare-10-km-run/">准备10km跑</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-09-25T05:21:00+08:00" pubdate data-updated="true">2009-09-25</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一直都想体验一下正式的长跑活动，也可以给自己跑步一个动力。得知10月24日在广州大学城<a href="https://www.nike.com.cn/humanrace2009/index.html">Nike举办10公里跑</a>活动，就报名参加了。</p>
-
-<p>上个月感觉腰椎的问题有一点点要复发的迹象，就停止了跑步。接下来9月份都在北京出差，跑鞋也没有带过来。算下来一个月没有跑步了。离活动只剩1个月了，怎么也得训练一下，于是今天去迪卡侬把T-shirt、短裤、袜子、跑鞋买了一套回来，去附近的公园跑步。</p>
-
-<p>开始从住处到公园的500多米没有记录时间，从公园里跑了4.5km平均步速6’03”/km，看来这样的状态10km一小时都进不了 :( 不过速度慢点就慢点，这次我没有速度目标，只是体验一下。我至今还只是跑过两次十公里，平常都是跑5公里距离。但最担心的还是膝痛的问题，最近几个月来每次跑完步左膝外侧都有疼痛的现象。</p>
-
-<p>Updated 2009-10-26:</p>
-
-<p>58:30，完成了自己跑进1小时的目标，状态还好，跑完也不觉得辛苦。之前一段时间训练时一直受膝盖痛和小腿肌肉酸硬的困扰，但正式跑时一点问题都没有。第一次参加这样的活动，算比较满意了。</p>
-
-<p>看了成绩，发现5km计时是29:48，前半程比后半程还要慢。主要是刚起跑那两公里太慢了，起跑时才发现手机GPS不知为什么不工作了，一边跑一边弄，后来重启了一次才正常。随着人潮慢腾腾往前挪，很多人都不是跑的，像逛花市。后来觉得这个速度受不了，才开始钻人缝。</p>
-
-<p>以后有经验，起跑位置要尽量靠前才行。下次的目标定在55:00吧。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/09/25/Prepare-10-km-run/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/17/How-to-setup-hg-Mercurial-web-access/">How to Setup Hg (Mercurial) Web Access</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-17T03:08:00+08:00" pubdate data-updated="true">2009-09-17</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>(Platform: Windows Vista)</p>
-
-<ol>
-  <li>Mercurial is already installed. </li>
-  <li>Install Apache. </li>
-  <li>Download mercurial source package to get the file hgwebdir.cgi. This file isn’t included in the Windows binary package. </li>
-  <li>Copy hgwebdir.cgi into Apache’s cgi-bin folder and rename to hgwebdir.py </li>
-  <li>Create a file named hgweb.config in the same folder. Config the name and the path of therepositories in this file. </li>
-  <li>Install python 2.5 and make sure to check the option to registerit as the default handler of .py file.<br />
-The hgwebdir.cgi from Mercurial 1.xrequires python 2.5. Error “Invalid Magic Number” will be got when running on other version python. </li>
-  <li>Extract the file library.zip in Mercurial installation folder into a directory. Use 7zip to unzip, other zip tools might fail. </li>
-  <li>In Mercurial installation directory there is a foldernamed Templates.Moveit into thelibrary folder. </li>
-  <li>Edit hgwebdir.py, add followinglines to add the library folderinto python library path:<br />
-import sys<br />
-sys.path.insert(0, “C:\Program Files\Mercurial\library”)</li>
-  <li>Start apache, try to access in browser<br />
-<a href="http://localhost/cgi-bin/hgwebdir.py">http://localhost/cgi-bin/hgwebdir.py</a></li>
-  <li>If the repositories index page can shown, that’s fine. If got 500 internal error, check apache error log.<br />
-If the error information is like this:<br />
-<em>The system cannot find the path specified. : couldn’t create child process: 720003: hgwebdir.py</em><br />
-it means Apache can’t locate the python executer. 
-    1. Edit Apache’s config file httpd.conf,uncomment theline:<br />
-ScriptInterpreterSource registry<br />
-This will enable Apache to skip the script’s shebang line and use default registered handler.</li>
-  <li>When the index is successfully shown in browser, edit the .hg\hgrc file in each repositories to add following lines. It will enable push to repository by web access (default is read only) and enable push by http (default is requiring ssl).<br />
-[web]<br />
-allow_push = *<br />
-push_ssl = false</li>
-  <li>Try to clone a repository by web access and modify something then push back. It should be ok. </li>
-  <li>Add a line in Apache http.conf to make the URL more friendly:<br />
-ScriptAliasMatch ^/hg(.*) “C:/Program Files/Apache2.2/cgi-bin/hgwebdir.py$1”<br />
-Now the url will be:<br />
-<a href="http://localhost/hg">http://localhost/hg</a></li>
-</ol>
-
-<p>Just record the installation steps in case I need to do it againsome time in the furture. Hope thatIhaven’t missed any step :)</p>
-
-<p>Reference:</p>
-
-<ul>
-  <li><a href="http://mercurial.selenic.com/wiki/PublishingRepositories">http://mercurial.selenic.com/wiki/PublishingRepositories</a></li>
-  <li><a href="http://mercurial.selenic.com/wiki/HgWebDirStepByStep">http://mercurial.selenic.com/wiki/HgWebDirStepByStep</a></li>
-  <li><a href="http://www.imladris.com/Scripts/PythonForWindows.html">http://www.imladris.com/Scripts/PythonForWindows.html</a></li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/09/17/How-to-setup-hg-Mercurial-web-access/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/22/">&larr; Older</a>
@@ -509,23 +455,23 @@ Now the url will be:<br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/11/26/2014-guangzhou-marathon-analysis/">2014广马数据分析</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/smog/">是灰霾吗？</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a>
+        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -534,14 +480,14 @@ Now the url will be:<br />
   <h1>Tags</h1>
   <ul class="tag-cloud">
 <a style="font-size: 138%" href="/blog/tags/android/">Android</a>
-<a style="font-size: 113%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
-<a style="font-size: 93%" href="/blog/tags/appserver/">AppServer</a>
+<a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
+<a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
-<a style="font-size: 113%" href="/blog/tags/civilsociety/">CivilSociety</a>
+<a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
-<a style="font-size: 70%" href="/blog/tags/datavisualization/">DataVisualization</a>
+<a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
@@ -555,7 +501,7 @@ Now the url will be:<br />
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
-<a style="font-size: 93%" href="/blog/tags/java/">Java</a>
+<a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
@@ -564,20 +510,21 @@ Now the url will be:<br />
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/r/">R</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 135%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
-<a style="font-size: 93%" href="/blog/tags/springframework/">SpringFramework</a>
+<a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
-<a style="font-size: 124%" href="/blog/tags/sysadmin/">SysAdmin</a>
+<a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 107%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
+<a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
 
   </ul>
@@ -589,7 +536,7 @@ Now the url will be:<br />
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Leo Liang -
+  Copyright &copy; 2015 - Leo Liang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
