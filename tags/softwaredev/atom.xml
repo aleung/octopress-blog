@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-02T19:04:38+08:00</updated>
+  <updated>2015-01-07T00:01:53+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Haskell]]></title>
+    <link href="http://aleung.github.io/blog/2015/01/06/haskell/"/>
+    <updated>2015-01-06T22:03:35+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/01/06/haskell</id>
+    <content type="html"><![CDATA[<p>2014年断断续续学了一阵子 Scala 语言，Scala 真的不错，将面向对象和函数式编程两种范式结合得很好，对 Java 程序员非常友好。不过，从学编程开始就受命令式编程的思想的浸淫，要使用函数式编程的思想相当困难，思路转不过来，而 Scala 又不强迫你用 FP，所以写出来的程序基本上还是命令式的。不少人都推荐学 Haskell 作为函数式编程的入门，作为一门学院派的语言，它非常纯粹，有助于掌握函数式编程的思维方式。于是开始读 <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great Good</a>，这真是本入门好书，从头开始一点点的理解接受函数式编程的思路。学 Haskell 的感觉非常<em>有趣</em>。</p>
+
+<p>不过那本书只是讲语言特性和思想，没有讲 Haskell 的运行环境和使用。上网收集了一些资料，记录下来。</p>
+
+<p>Haskell (缺省)是编译成 native code，并非运行在托管环境下，因此开发出来的程序就像 C 的一样直接可执行的 binary。Haskell 程序需要依赖于 Runtime System (RTS)，RTS 提供了内存管理，GC，轻量线程，并发等等功能的支持。包括 RTS 和其他的依赖到的 library，缺省都是静态链接到可执行程序中的，因此编译出来的程序体积会比较大。但现在 GHC 也已经支持动态链接了，如果使用动态链接，则要求运行环境中需要已经安装了 GHC（有 RTS）。在这方面，Haskell 跟 Go 差不多，都是直接得到 native 可执行程序，分发和部署会简单一些。</p>
+
+<p>Haskell 的编译器叫做 Glasgow Haskell Compiler (GHC)，它包括了 compiler，boot library 和 runtime system (RTS)。编译器支持多种 backend，除了可以生成 native code (机器码)，也可以产生 C 语言源代码（供跨平台移植），或者 LLVM code，（供后面接 LLVM toolchain 使用）。</p>
+
+<p>做应用开发不太可能什么都从头做起，必然要依赖第三方的函数库。Haskell 世界里的包管理系统叫 Cabal。Cabal 负责下载 Haskell package 源代码、编译、安装和注册到 GHC 的整个过程。共享的包存放在 <a href="http://hackage.haskell.org/">Hackage</a> 这个在线仓库中。</p>
+
+<p>Reference: <a href="http://www.aosabook.org/en/ghc.html">The Architecture of Open Source Applications - GHC</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Getting start with sbt]]></title>
@@ -367,79 +386,6 @@ http.cors.enabled: true
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/38238529" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
 <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/aleung/plantuml" title="PlantUML" target="_blank">PlantUML</a> </strong> from <strong><a href="http://www.slideshare.net/aleung" target="_blank">aleung</a></strong> </div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Text to UML diagram]]></title>
-    <link href="http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram/"/>
-    <updated>2014-01-20T22:10:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram</id>
-    <content type="html"><![CDATA[<p>Usually I used <a href="http://astah.net/">Astah</a> to draw UML diagram to put into design document in MS Word or PowerPoint format. The separation of the source and generated file making management of the UML model file a problem. And also it’s annoying to adjust a large amount of elements by dragging with mouse whenever you add something in the diagram. For a coder, typing on keyboard is faster than drawing with mouse.</p>
-
-<p>Now I switch to <a href="http://plantuml.com/">PlantUML</a>. Just write UML in its <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> and PlantUML generates the diagram. It supports most of the frequent used UML diagrams, which I use most are sequence diagram, class diagram and state diagram. Then I paste the generated diagram into slides (design document) and keep the “source” in note. No need to wonder where to find original UML model file when I need to update the diagram.</p>
-
-<p>The core of PlantUML is simply a jar file. It parses the text input and depends on <em>dot</em> tool from <a href="http://www.graphviz.org/">Graphviz</a> for graph generation (except sequence diagram). </p>
-
-<p>There are <a href="http://www.plantuml.com/running.html">a bunch of ways</a> to run PlantUML. I highlight some of them I prefer:</p>
-
-<ul>
-  <li>Online editor. Best choice if you’re too lazy to install anything on your computer.</li>
-  <li>Desktop (Windows): <a href="https://code.google.com/p/plant-uml-file-watcher/">PlantUML File Watcher</a></li>
-  <li>Embedded into Octopress blog platform. The below examples are using it.</li>
-  <li>IDE plugin. Easy way to keep UML together with source code.</li>
-</ul>
-
-<p>The syntax of PlantUML’s DSL is quite intuitional, you can start to use it by following example.</p>
-
-<p>```
-package ConsentObject «Rect» {
-  Consent : id
-  Scope : key
-}</p>
-
-<p>Client - User
-(Client, User) . Consent</p>
-
-<p>Consent - “*” Scope</p>
-
-<p>Consent “1” – “1..*” AccessToken
-```</p>
-
-<p>The generated diagram:</p>
-
-<p><img src='/images/plantuml/aa654ab10cd77969eaef52fa8b70576f.png'> </p>
-
-<p>A sequence diagram example:</p>
-
-<p>```
-title OAuth 2.0 Authorization Code Grant</p>
-
-<p>actor    UserAgent       as UA
-participant Application     as APP
-participant OAuthServer     as OAuth
-participant ResourceServer  as RS</p>
-
-<p>== Application requests authorization from user ==
-UA-&gt;APP: 
-APP–&gt;UA:redirect to OAuth Server
-UA-&gt;OAuth: GET /authorize?response_type=code
-ref over UA, OAuth: user authentication\nuser confirms reqest
-OAuth–&gt;UA: redirect to App with authorization_code
-UA-&gt;APP: authorization_code</p>
-
-<p>== Application retrieve access token ==
-APP-&gt;OAuth: POST /token with authorization_code
-ref over APP, OAuth: client authentication
-APP&lt;–OAuth: access_token</p>
-
-<p>== Application access protected resource ==
-APP-&gt;RS: getResource with access_token
-RS-&gt;OAuth: validateToken(access_token)
-RS–&gt;APP: result
-```</p>
-
-<p><img src='/images/plantuml/be23d4813dfec870f068ecda2f4ba44f.png'></p>
 ]]></content>
   </entry>
   

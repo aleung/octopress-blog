@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="http://www.zaval.org/ 这个网站有好几个java开发辅助工具,library. 包括了: Java Resource Editor: 用于i18n/l10n的翻译 Light-Weight Visual Components Library (LwVCL): &hellip;">
+  <meta name="description" content="Unicode: unicode.org制定的编码机制, 要将全世界常用文字都函括进去.
+在1.0中是16位编码, 由U+0000到U+FFFF. 每个2byte码对应一个字符; 在2.0开始抛弃了16位限制, 原来的16位作为基本位平面, 另外增加了16个位平面, 相当于20位编码, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,106 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/09/02/Unicode-/">Unicode与字符编码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-02T22:55:00+08:00" pubdate data-updated="true">2003-09-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="unicode">Unicode:</h3>
+
+<p>unicode.org制定的编码机制, 要将全世界常用文字都函括进去.<br />
+在1.0中是16位编码, 由U+0000到U+FFFF. 每个2byte码对应一个字符; 在2.0开始抛弃了16位限制, 原来的16位作为基本位平面, 另外增加了16个位平面, 相当于20位编码, 编码范围0到0x10FFFF.  </p>
+
+<h3 id="ucs">UCS:</h3>
+
+<p>ISO制定的ISO10646标准所定义的 Universal Character Set, 采用4byte编码.  </p>
+
+<h3 id="unicodeucs">Unicode与UCS的关系:</h3>
+
+<p>ISO与unicode.org是两个不同的组织, 因此最初制定了不同的标准; 但自从unicode2.0开始, unicode采用了与ISO 10646-1相同的字库和字码, ISO也承诺ISO10646将不会给超出0x10FFFF的UCS-4编码赋值, 使得两者保持一致.  </p>
+
+<h3 id="ucs-1">UCS的编码方式:</h3>
+
+<ul>
+  <li>UCS-2, 与unicode的2byte编码基本一样.   </li>
+  <li>UCS-4, 4byte编码, 目前是在UCS-2前加上2个全零的byte.  </li>
+</ul>
+
+<h3 id="utf-unicodeucs-transformation-format">UTF: Unicode/UCS Transformation Format</h3>
+
+<ul>
+  <li>UTF-8, 8bit编码, ASCII不作变换, 其他字符做变长编码, 每个字符1-3 byte. 通常作为外码. 有以下优点:<br />
+    <ul>
+      <li>与CPU字节顺序无关, 可以在不同平台之间交流  </li>
+      <li>容错能力高, 任何一个字节损坏后, 最多只会导致一个编码码位损失, 不会链锁错误(如GB码错一个字节就会整行乱码)   </li>
+    </ul>
+  </li>
+  <li>UTF-16, 16bit编码, 是变长码, 大致相当于20位编码, 值在0到0x10FFFF之间, 基本上就是unicode编码的实现. 它是变长码, 与CPU字序有关, 但因为最省空间, 常作为网络传输的外码.<br />
+UTF-16是unicode的preferred encoding.   </li>
+  <li>UTF-32, 仅使用了unicode范围(0到0x10FFFF)的32位编码, 相当于UCS-4的子集.  </li>
+</ul>
+
+<h3 id="utfunicode">UTF与unicode的关系:</h3>
+
+<p>Unicode是一个字符集, 可以看作为内码.<br />
+而UTF是一种编码方式, 它的出现是因为unicode不适宜在某些场合直接传输和处理. UTF-16直接就是unicode编码, 没有变换, 但它包含了0x00在编码内, 头256字节码的第一个byte都是0x00, 在操作系统(C语言)中有特殊意义, 会引起问题. 采用UTF-8编码对unicode的直接编码作些变换可以避免这问题, 并带来一些优点.  </p>
+
+<h3 id="section">中国国标编码:</h3>
+
+<ul>
+  <li>GB 13000: 完全等同于ISO 10646-1/Unicode 2.1, 今后也将随ISO 10646/Unicode的标准更改而同步更改.  </li>
+  <li>GBK: 对GB2312的扩充, 以容纳GB2312字符集范围以外的Unicode 2.1的统一汉字部分, 并且增加了部分unicode中没有的字符.   </li>
+  <li>GB 18030-2000: 基于GB 13000, 作为Unicode 3.0的GBK扩展版本, 覆盖了所有unicode编码, 地位等同于UTF-8, UTF-16, 是一种unicode编码形式. 变长编码, 用单字节/双字节/4字节对字符编码. GB18030向下兼容GB2312/GBK. <br />
+GB 18030是中国所有非手持/嵌入式计算机系统的强制实施标准.  </li>
+</ul>
+
+<p><em>2001-11-14 (2003-9-2 补充)</em>  </p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/09/02/Unicode-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -318,60 +419,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/22/Eclipse-i18n-l10n-/">Eclipse的i18n/l10n辅助功能</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-22T20:15:00+08:00" pubdate data-updated="true">2003-08-22</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Java程序的本地化，做法都是在程序中不直接写死字符串，而是通过ResourceBoundle的getString()方法，在本地语言的properties文件中读取出翻译后的字串。<br />
-对于已经开发好的程序，找出源代码中写死的字符串工作相当繁琐，Eclipse有这方面的辅助工具。<br />
-选择文件，右键菜单 source-&gt;Extenalize Strings 打开工具，能够找出源文件中的所有字符串，选择那些需要翻译，自动替换并生成properties文件。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/22/Eclipse-i18n-l10n-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/57/">&larr; Older</a>
@@ -393,6 +440,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/06/haskell/">Haskell</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
@@ -406,10 +457,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -431,7 +478,7 @@
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
@@ -444,12 +491,12 @@
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
-<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
@@ -460,7 +507,7 @@
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 106%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

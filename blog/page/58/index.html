@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Robocode的每个机器人都是一个线程，线程调度为非强占式，由战斗管理线程依次调度运行。每个线程执行到一个阻塞函数的时候，交出cpu占用权。对于AdvancedRobot，阻塞函数是excute()。 从这个角度而言，可以把robocode看作是回合制的游戏， &hellip;">
+  <meta name="description" content="LANDSAT是美国陆地探测卫星系统。从1972年开始发射第一颗卫星LANDSAT 1，到目前最新的LANDSAT 7。 LANDSAT 7 卫星于99年发射，装备有Enhanced Thematic Mapper Plus(ETM+)设备，ETM+被动感应地表反射的太阳辐射和散发的热辐射， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,126 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/13/Landsat7-/">Landsat7卫星及遥感图象处理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-13T02:49:00+08:00" pubdate data-updated="true">2003-08-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>LANDSAT是美国陆地探测卫星系统。从1972年开始发射第一颗卫星LANDSAT 1，到目前最新的LANDSAT 7。</p>
+
+<p>LANDSAT 7 卫星于99年发射，装备有Enhanced Thematic Mapper Plus(ETM+)设备，ETM+被动感应地表反射的太阳辐射和散发的热辐射，有8个波段的感应器，覆盖了从红外到可见光的不同波长范围。</p>
+
+<p>ETM+比起在LANDSAT 4、5上面装备的Thematic Mapper(TM)设备在红外波段的分辨率更高，因此有更高的准确性。</p>
+
+<p>LANDSAT 7 的一些总体数据：</p>
+
+<ul>
+  <li>7个光谱波段和一个全色波段 </li>
+  <li>观察宽度达185km </li>
+  <li>15、30、60、80米精度 </li>
+  <li>离地705km太阳同步轨道 </li>
+  <li>16天运行周期 </li>
+  <li>覆盖范围为南北纬81度之间区域</li>
+</ul>
+
+<p>ETM+的波段：</p>
+
+<ol>
+  <li>0.45-0.52微米蓝绿波段, 用于水体穿透, 土壤植被分辨 </li>
+  <li>0.52-0.60微米绿色波段, 用于植被分辨 </li>
+  <li>0.63-0.69微米红色波段, 处于叶绿素吸收区域, 用于观测道路/裸露土壤/植被种类效果很好 </li>
+  <li>0.76-0.90微米近红外波段, 用于估算生物数量, 尽管这个波段可以从植被中区分出水体，分辨潮湿土壤，但是对于道路辨认效果不如TM3。 </li>
+  <li>1.55-1.75微米中红外波段, 这被认为是所有波段中最佳的一个, 用于分辨道路/裸露土壤/水, 它还能在不同植被之间有好的对比度, 并且有较好的穿透大气、云雾的能力。 </li>
+  <li>10.5-12.5微米热红外波段, 感应发出热辐射的目标. 分辨率为60m. </li>
+  <li>2.08-2.35微米中红外波段, 对于岩石/矿物的分辨很有用, 也可用于辨识植被覆盖和湿润土壤. </li>
+  <li>0.52-0.90微米全色波段, 得到的是黑白图象, 分辨率为15m, 用于增强分辨率, 提供分辨能力. (ETM+增加了这个波段，TM没有)</li>
+</ol>
+
+<p>以上波段除6、8外分辨率均为30m。</p>
+
+<p>Landsat7 ETM+ 数据又分为多种，例如L0Rp, L1R和L1G.</p>
+
+<ul>
+  <li>L1R: radiometrically corrected but not geometrically resampled. </li>
+  <li>L1G: radiometrically corrected and resampled for geometric correction and registration to geographic map projections.</li>
+</ul>
+
+<p>在使用这些卫星图象的时候，要先进行处理。通常是用多个波段的图象进行彩色合成，得到伪彩色图象。在合成前，各波段图象还要先做图象增强处理。</p>
+
+<p>例如：MrSid卫星图象是用band7作为红色, band4作为绿色，band2作为蓝色合成的，简称为742。（MrSid用的是Landsat TM, 1987-1993拍摄数据，当时未有Landsat 7）；GeoGratis Landsat7 合成卫星图象是用743(RGB)。Terra为绿野做到北京图用的是542。</p>
+
+<p>常用的合成方法：</p>
+
+<ul>
+  <li>321：真彩合成。与肉眼所见接近；仅使用反射的可见光，受大气、云雾、阴影、散射的影响较大，通常对比度不高，感觉模糊（蓝色光散射严重）；对于海岸区域研究特别有用，因为可见光可穿透水面，观察到海底。 </li>
+  <li>432：近红外合成。颜色与肉眼所见完全不同；植被在近红外波段反射率特别高，因为叶绿素在此波段反射的能量大，因此在432图象中植被会明显表现为深浅不同的红色，不同类型植物有不同的红色色调；水会吸收差不多所有的近红外光，因此水面颜色很深近乎黑色。 </li>
+  <li>743/742：短波红外合成。包含至少一个短波红外波段，短波红外波段的反射率主要取决于物体表面的含水量，因此这类图象可用于植被保护和土地研究。</li>
+</ul>
+
+<p>图象合成可以用Photoshop之类的图象编辑软件来做，缺点是不能做出带地理信息的GeoTiff图象。<a href="http://www.geogr.ku.dk/chips/">Chips</a>（哥本哈根图象处理系统）是一个专门用于遥感图象处理的软件，标准版是免费的。用它来制作3波段合成图象很容易。以下为简单使用方法：</p>
+
+<blockquote>
+
+  <p>Open WinChips, and from the <em>File</em> menu, select <em>New Project</em>. From the <em>File</em> menu, select <em>Add Object(s)</em>, and select the three images for the three bands you want to use in your composite image, and add them as <em>Chips Image_s. From the _File</em> menu, select <em>New Object</em>, then <em>Lookup Table</em>, then save the new Lookup Table file. From the <em>View</em> menu, select <em>New Image View</em>. In the <em>Image View Configuration</em> dialog, on the <em>Image</em> tab, select <em>Display Mode</em> as RGB. For each of the <em>(Red, Green, Blue)</em> choices, select the image for the band you want to use for the respective color. For <em>Lookup Table</em> select the Lookup Table you added earlier, then click <em>OK</em>. </p>
+
+  <p>You should now have a <em>Default Image View</em> window open, showing your 3-band color composite image. From the <em>Image View</em> menu, select <em>Lookup Table</em>, then <em>Enhance using Statistics for Entire Image</em>. Once the statistics are calculated for each of the colors, a <em>Modify Lookup Table</em> dialog will be presented. To see the effect of some basic image enhancement, click on <em>Hist. Equal.</em>. You can use <em>Reset</em> to undo the enhancement. Click on <em>Cancel</em> to close the dialog window. </p>
+
+  <p>To save the 3-band color composite image, from the <em>Image View</em> menu select <em>Export View To Standard Format</em>. Once you have saved the image file, you have the option of saving geocoding for the image. </p>
+</blockquote>
+
+<p>参考：  </p>
+
+<ul>
+  <li><a href="http://imaging.geocomm.com/features/sensor/landsat7/">http://imaging.geocomm.com/features/sensor/landsat7/</a>  </li>
+  <li><a href="http://members.shaw.ca/davepatton/landsat7.html">http://members.shaw.ca/davepatton/landsat7.html</a>  </li>
+  <li><a href="http://chesapeake.towson.edu/data/composite.asp">http://chesapeake.towson.edu/data/composite.asp</a>  </li>
+  <li><a href="http://chesapeake.towson.edu/data/raw_data.asp">http://chesapeake.towson.edu/data/raw_data.asp</a></li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/13/Landsat7-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -301,73 +421,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/07/16/The-bus-operation-monitoring-system/">公交车运行监控系统</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-07-16T03:13:00+08:00" pubdate data-updated="true">2003-07-16</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>现在广州某些线路的公交车已经开始使用GPS跟踪调度，并且在站牌上实时显示车辆位置、预计到站时间。不知道什么时候能够推广到所有线路。</p>
-
-<p>根据网上的资料，城市公交GPS定位调度系统由车载终端分系统，信息传输分系统，中心及线路调度管理分系统，信息发布分系统及电子站牌分系统五大部分组成。车载系统与中心的数据传输是通过电台或者手机短信进行。</p>
-
-<p>不过，公交车的定位一定要靠GPS吗？我也有另外一个idea。</p>
-
-<p>公交车是沿着固定路线行驶的，在路线上分布着大量站点，站点的距离都不太远，如果能够确定某车辆在哪个站点区间，一般来说这样的定位信息也足够了。</p>
-
-<p>可以在各个车站设立无线电通讯基站，基站与中心有通讯链路（目前的GPS系统在车站有电子站牌，与中心也需要通讯链路）；车载系统为一个无线应答机。使用小功率通讯，通讯范围在数百米之内，即车站周边区域。这样，车辆行驶到一个车站附近，就能与此车站的基站联络上，基站根据车载系统发送的身份信息可以知道那些车辆进入了本站点范围，将信息传送给控制中心；电子站牌能将当前车辆位置显示出来（相比GPS系统，就不能给出预计到站时间，不过候车者知道车辆目前在哪个站也基本能估计出时间来）；车辆也能得到当前的车站信息，报站系统能自动报站。</p>
-
-<p>GPS系统的优势：定位准确，实时性强，能随时传送其他大量信息。缺点：在城市的高楼、立交、高架桥中，GPS信号常会受到遮挡；无线传输系统的频率资源分配是个问题。</p>
-
-<p>站点定位系统的优势：无线通讯仅在近距离区域，不受环境影响，频率资源占用少；车载系统相对简单。缺点：需要在各个车站安装无线基站系统，分散维护；定位只能精确到车站区间；在车站范围外无法与中心交换信息。</p>
-
-<p>如果车辆与中心的实时信息传输非常重要，可以采用与GPS系统相同的车辆直接与中心无线通讯的方法，车站安装的是简单的无线信标，当收到车辆发出的查询信号时，自动返回车站身份信息，这样车辆就可知道目前在哪个车站范围。不过这个方案与GPS方案的区别就不大了，仅仅在于将GPS定位改为车站无线信标定位。</p>
-
-<p>此外，目前的电子站牌设计也不尽合理，面积很大，显示信息量少。如果所有线路都用了电子站牌，不知道要多大才够。其实在现有站牌的每个站名下加个指示灯指示车辆位置就够了，最多就再加一个最近车辆到站时间的双7段LED。这样通用性强，不同线路、站名更改只需将上面标签换掉就行了，成本应该也可以低一些。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/07/16/The-bus-operation-monitoring-system/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/59/">&larr; Older</a>
@@ -389,6 +442,10 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/06/haskell/">Haskell</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
@@ -402,10 +459,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
     
       <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -427,7 +480,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
@@ -440,12 +493,12 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
-<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
@@ -456,7 +509,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 106%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

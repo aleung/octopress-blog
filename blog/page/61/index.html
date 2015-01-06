@@ -9,40 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="根据实践的经验，基本了解了samba配置方法，将它记录下来。 一个基本的配置文件： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-[global]
-netbios &hellip;">
+  <meta name="description" content="公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常. 检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时. 解决办法: 确认邮件服务器使用本机作为DNS ( /etc &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +72,67 @@ netbios &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/">邮件系统发信缓慢问题的解决</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2002-03-13T00:13:00+08:00" pubdate data-updated="true">2002-03-13</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>公司的邮件系统, 从内部网(10.x.x.x)连接SMTP端口非常慢, 但使用webmail或者从internet连接就一切正常.  </p>
+
+<p>检查发现缓慢是是smtpd对client IP进行DNS lookup引起的, 需要等待lookup超时.  </p>
+
+<p>解决办法:  </p>
+
+<ul>
+  <li>确认邮件服务器使用本机作为DNS ( /etc/resolve.conf, /var/spool/postfix/etc/resolve.conf )  </li>
+  <li>在本机配置DNS服务, 在本机DNS上负责解析反向域 10.in-addr.arpa. 其余域名forward给外部DNS解析.  </li>
+</ul>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2002/03/13/Mail-system-mail-the-letter-slow-solution-of-the-problems/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -327,6 +355,10 @@ readonly / writeable (两种写法都可以) <br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/06/haskell/">Haskell</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
@@ -340,10 +372,6 @@ readonly / writeable (两种写法都可以) <br />
     
       <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -365,7 +393,7 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
@@ -378,12 +406,12 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
-<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
@@ -394,7 +422,7 @@ readonly / writeable (两种写法都可以) <br />
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 106%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>

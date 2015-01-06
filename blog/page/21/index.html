@@ -9,8 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="以前我一直以为Google手机地图是在客户端程序内置有矫偏算法的，看了dongmeng110的blog（已被关闭）才知道Google地图偏移其实是有接口可以取到的。给定经纬度坐标，返回地图tile的偏移像素值。
-http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
+  <meta name="description" content="接着昨天的分析。 已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线： 看起来相当完美。那在看看将它应用到大尺度上效果如何： 有微小的抖动，看来参数细节还需要微调一下，不过要求不高的话其实已经可以接受了。 接下来， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +72,73 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/27/Google-China-Map-offset-2/">Google中国地图偏移 (续)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2009-12-27T22:04:00+08:00" pubdate data-updated="true">2009-12-27</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>接着<a href="/blog/2009/12/26/Google-China-Map-offset-1/">昨天的分析</a>。</p>
+
+<p>已经发现在纬线上的偏移值呈现出明显的规律性，这个规律不难拟合出来。利用拟合出来的函数将这个高频扰动抵消之后，得到了这样的曲线：</p>
+
+<p><img src="/blog/attachments/2009/12/4382498800_1bc9e586dd_o.jpg" alt="" /></p>
+
+<p>看起来相当完美。那在看看将它应用到大尺度上效果如何：</p>
+
+<p><img src="/blog/attachments/2009/12/4381740587_73cd1113fd_o.jpg" alt="" /></p>
+
+<p>有微小的抖动，看来参数细节还需要微调一下，不过要求不高的话其实已经可以接受了。</p>
+
+<p>接下来，在这张图上又发现了规律…… 嗯，我不能继续写下去了。</p>
+
+<p>其实对于离线应用，进一步的分析不做也没有关系了，并不需要将整个函数拟合出来，剩余的工作可以通过查表法来做，然后插值再加回高频扰动。因为知道了高频扰动的函数后，就能够用较低的采样频率来记录偏移量，即使将整个表放内存里，占用的空间大小也可以接受。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/12/27/Google-China-Map-offset-2/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -363,77 +429,6 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/11/03/The-world-can-change-in-a-day/">The World Can Change in a Day</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-03T08:39:00+08:00" pubdate data-updated="true">2009-11-03</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/civilsociety/'>CivilSociety</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>8 November 1989</p>
-
-<p><img src="/blog/attachments/2009/11/CapeTimes-BerlinWall.jpg" alt="" /></p>
-
-<p>9 November 1989, the wall fell. </p>
-
-<p>柏林人民踊跃翻墙的塲景：</p>
-
-<p><img src="/blog/attachments/2009/11/OverBerlinWall.jpg" alt="" /></p>
-
-<p>当年柏林是被这样的高墻分隔的：</p>
-
-<p><img src="/blog/attachments/2009/11/BerlinWallMap.jpg" alt="" /></p>
-
-<p>如今残存的墙上的壁画，反映了当年翻墙的种种途径：</p>
-
-<p><img src="/blog/attachments/2009/11/BerlinWallPicture1.jpg" alt="" /></p>
-
-<p><img src="/blog/attachments/2009/11/BerlinWallPicture2.jpg" alt="" /></p>
-
-<p>—— 纪念柏林墙倒下20周年</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/11/03/The-world-can-change-in-a-day/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/22/">&larr; Older</a>
@@ -455,6 +450,10 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/06/haskell/">Haskell</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
@@ -468,10 +467,6 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
     
       <li class="post">
         <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/14/api-metrics-demo/">API metrics demo</a>
       </li>
     
   </ul>
@@ -493,7 +488,7 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
 <a style="font-size: 84%" href="/blog/tags/environmentalprotection/">EnvironmentalProtection</a>
 <a style="font-size: 70%" href="/blog/tags/excel/">Excel</a>
 <a style="font-size: 84%" href="/blog/tags/funny/">Funny</a>
-<a style="font-size: 143%" href="/blog/tags/gps-gis/">GPS_GIS</a>
+<a style="font-size: 142%" href="/blog/tags/gps-gis/">GPS_GIS</a>
 <a style="font-size: 84%" href="/blog/tags/gadget/">Gadget</a>
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
@@ -506,12 +501,12 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
 <a style="font-size: 110%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
-<a style="font-size: 107%" href="/blog/tags/mywork/">MyWork</a>
+<a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
-<a style="font-size: 127%" href="/blog/tags/running/">Running</a>
+<a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
@@ -522,7 +517,7 @@ http://ditu.google.cn/maps/vp?spn=0.0,0.0& &hellip;">
 <a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
-<a style="font-size: 107%" href="/blog/tags/web/">Web</a>
+<a style="font-size: 106%" href="/blog/tags/web/">Web</a>
 <a style="font-size: 98%" href="/blog/tags/weblogic/">WebLogic</a>
 <a style="font-size: 98%" href="/blog/tags/windows/">Windows</a>
 <a style="font-size: 70%" href="/blog/tags/i18n/">i18n</a>
