@@ -116,7 +116,7 @@
 
 <p>Haskell 的编译器叫做 Glasgow Haskell Compiler (GHC)，它包括了 compiler，boot library 和 runtime system (RTS)。编译器支持多种 backend，除了可以生成 native code (机器码)，也可以产生 C 语言源代码（供跨平台移植），或者 LLVM code，（供后面接 LLVM toolchain 使用）。</p>
 
-<p>做应用开发不太可能什么都从头做起，必然要依赖第三方的函数库。Haskell 世界里的包管理系统叫 Cabal。Cabal 负责下载 Haskell package 源代码、编译、安装和注册到 GHC 的整个过程。共享的包存放在 <a href="http://hackage.haskell.org/">Hackage</a> 这个在线仓库中。</p>
+<p>做应用开发不太可能什么都从头做起，必然要依赖第三方的函数库。Haskell 世界里的包管理和 build 系统叫 Cabal。另外有个工具 Cabal-Install 负责下载 Haskell package 源代码、编译、安装和注册到 GHC 的整个过程。共享的包存放在 <a href="http://hackage.haskell.org/">Hackage</a> 这个在线仓库中。</p>
 
 <p>Reference: <a href="http://www.aosabook.org/en/ghc.html">The Architecture of Open Source Applications - GHC</a></p>
 </div>

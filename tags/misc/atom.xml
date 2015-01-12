@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Misc | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/misc/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-07T00:01:53+08:00</updated>
+  <updated>2015-01-12T23:15:57+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -20,7 +20,7 @@
     <id>http://aleung.github.io/blog/2014/09/16/smog</id>
     <content type="html"><![CDATA[<p>看 Google Maps 上面的卫星图，珠江新城一带一片灰蒙蒙，但是有个奇怪的现象：高层建筑的楼顶似乎会清晰一些。</p>
 
-<p><img src="/attachments/2014/9/smog.png"></p>
+<p>{% img /attachments/2014/9/smog.png %}</p>
 
 <p>在图上最显眼的超高层建筑就是东塔和西塔了，东塔目前仍在建（好像已经封顶了），不知道卫星图是什么时候的，看起来也起码建得跟西塔一样高了。查了一下西塔（IFC-广州国际金融中心）的高度是440米。在图上看出西塔的2/3高度以下要灰一些，另外在建的东塔和旁边一个同样在建但高度只有1/3左右的建筑的屋顶的清晰度也有对比。是不是因为接近地面的灰霾影响了通透度，而灰霾主要沉积在距离地表二三百米以内的低空？</p>
 ]]></content>

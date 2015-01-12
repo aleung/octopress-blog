@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Android | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/android/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-07T00:01:53+08:00</updated>
+  <updated>2015-01-12T23:15:57+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -37,7 +37,7 @@
 
 <p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
 
-<p><img src="/attachments/2013/12/burp.png"></p>
+<p>{%img /attachments/2013/12/burp.png %}</p>
 
 <p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
 
@@ -100,7 +100,7 @@
 
 <p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
 
-<p><img src="/attachments/2012/12/osx_usb.jpg"></p>
+<p>{%img /attachments/2012/12/osx_usb.jpg %}</p>
 ]]></content>
   </entry>
   
@@ -109,7 +109,7 @@
     <link href="http://aleung.github.io/blog/2012/12/23/mi2/"/>
     <updated>2012-12-23T14:03:00+08:00</updated>
     <id>http://aleung.github.io/blog/2012/12/23/mi2</id>
-    <content type="html"><![CDATA[<p><img src="/attachments/2012/12/mi2<em>focus</em>01s.jpg"></p>
+    <content type="html"><![CDATA[<p>{%img /attachments/2012/12/mi2<em>focus</em>01s.jpg %}</p>
 
 <p>Xperia U 手機用了半年，<a href="/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
 
