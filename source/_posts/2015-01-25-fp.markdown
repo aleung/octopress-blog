@@ -1,0 +1,244 @@
+---
+layout: post
+title: " 同事们关于 FP 语言的讨论"
+date: 2015-01-25 12:41:14 +0800
+comments: true
+tags:
+- Haskell
+- Scala
+- SoftwareDev
+---
+_之前在公司里一来一往的邮件讨论，被江南白衣集成一篇收录到[他的博客](http://calvin1978.blogcn.com/articles/haskell.html)里，读下来还蛮有意思，转过来，以下为全文引用。其中的梁君就是我啦。_
+
+## 缘起
+ 
+**达夫君**： 
+
+[利用 GitHub 统计分析编程语言发展趋势](http://segmentfault.com/a/1190000000502996)
+
+## 第一轮讨论
+
+**梁君**：
+
+增加的Java的项目里，不知道有多少是与Android相关的呢？
+
+Scala最热门都是在意大利城市（Milan, Rome, Florence, Naples,Turin），很奇怪，意大利软件业不发达。于是查了字典在意大利语里scala是scale(英语)的意思，应该跟编程语言无关。排除之后排首位的就是 San Francisco和San Jose，硅谷地区。
+
+最近几天在看 Haskell，真是非常有趣的一门语言。
+于是也在Google Trends上看一下，搜索Haskell最热的城市是 Gothenburg，第二是Utrecht (因为乌特勒支大学？)。
+
+2014年热度，按国家排序，Haskell最热也是China! 考虑到中国已经屏蔽了Google，这个结果令人吃惊。在国内Scala, Haskell也不是那么热门吧？程序员人口基数大？
+
+**雄君**：
+
+Haskell应该是所有程序语言里面被神化的最厉害的吧。有种说法，Haskell可以让你变成一个更好的程序员，即便你不用它，好像还有本书名就是这个。感觉看几本Haskell书就能变成高手似的，快变成宗教了都。。。。
+
+**梁君**：
+
+Haskell应该是一种研究型/教学型语言吧。
+
+据说是纯粹的FP，我现在看它是想试试强迫一下自己使用FP的思维模式。
+
+那篇 [WhyWhyFP](http://raganwald.com/2014/12/20/why-why-functional-programming-matters-matters.html) 不错。 里面，看到一些话（虽然不算是那篇文字的主题）：
+
+> The key is the word better. It is not the same as the phrase more powerful.
+it is possible to make a language “better” by removing features that are considered harmful, if by doing so it makes programs in the language better programs.
+
+关于 better 与 powerful 的思考，不是功能越多就越好。用在我们的产品上也是一样啊。
+
+## 哥德堡的Haskell教授
+
+**赵君**：
+
+Gothenburg研究Haskell的那个人好像是Richard君的教授。感兴趣的可以问问Richard的感受。
+
+**范君**：
+
+Richard说的:
+
+> Mr Hughes is a very smart guy. And his homepage hasn’t changed since I had him as a professor : http://www.cse.chalmers.se/~rjmh/ 
+
+国外大学很多都是用Haskell，大老板之前去大英帝国读研也是用它。
+
+## FP做题大赛
+
+**韶君**：
+
+我好奇看一下，“证明即程序、命题为类型”，这就是一门数学领域的领域语言，难怪学院派对它宠爱有加，一边证明一边编程，逼格高啊
+
+有个网站号称趣味学Haskell: [HASKELL 趣學指南](http://learnyouahaskell-zh-tw.csie.org/) [^1]
+
+[^1]: 英文原版为 [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/)。有电子书，简体中文纸板也出版了。
+
+Step by step 学了一下Haskell，居然停不下来，无论写还是读，都像在玩puzzle game，都想找回以前的数学课本来复习一下。我想不用也能让你成为更好的程序员此话不假，就是让你恶补一下已经还给老师的数学概念。
+
+给个零零漆的经典应用题大家思考一下：有一个农场，鸡的数目是鸭的四倍，但是鸭又比猪少九只，鸭和猪的数目是六十七只，请问农场所有动物的脚加起来共多少只？
+
+**雄君**：
+
+感觉这跟你的学习方式关系更大，跟语言关系不大的。你也可以用Scala去做SICP的习题，同样有这种感觉。
+
+**梁君**：
+
+不挑起具体语言之争。韶君的例子应该是说明FP给人带来耳目一新的感觉。
+
+另外，我感觉那本书 (Learn You a Haskell) 用来做FP入门真的很好，之前看过一些Scala的书都没有那么清晰的理解。
+
+顺便做做那道题目：
+
+``` haskell
+Prelude> head [c*2+d*2+p*4 | d<-[0..], let c=d*4, let p=d+9, d+p==67] 
+442
+```
+
+**韶君**：
+
+我原来写的是
+
+``` haskell
+head [a*2+b*2+c*4|a <-[1,2..], b <-[1,2..], c <- [1,2..], a=4*b, b=c-9, b+c=67]
+```
+
+结果不会结束，除非数组加上限，有空找你理解一下。
+
+确实是FP带来的感觉，相信Scala也可以带来这个感觉，只不过如果我用Scala就不自觉地当Java来做了。
+
+**达夫君**：
+
+我原来也是将Scala当Java来写。但是当你将Java的语法忘了差不多了，Scala就入门了：）
+
+其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
+看别人的代码多了，也就习惯了。
+
+_达夫君也写了一段 Scala 代码，好多行，省略_
+
+**梁君**：
+
+Scala应该增加一种纯FP模式，当打开这个选项的时候，任何不符合FP的写法都报错（或者warning）。
+
+**米君**：
+
+沒電腦，裸寫一段 Python，不知道對不對：
+
+``` python
+print map(lambda x: ‎x*2 + x*4*2 + (x+9)*4, filter(lambda x: x+x+9 == 67, range(0,67)))[0]
+```
+
+看起來還是 Haskell 的最有數學味。
+
+邊打邊爐邊研究，或者還可以這樣（不知道對不對，大意如此）：
+
+``` python
+print (x*2 + x*4*2 + (x+9)*4 for x in range(0, 67) if x+x+9 == 67‎)[0]
+```
+
+據說這樣有 lazy evaluation，map 和 filter 不知道有沒有。有明白人指點一下嗎？
+
+**韶君**：
+
+FP的思路就是“是什么”，指令编程的思路是“做什么”，从这个角度看
+`head [c*2+d*2+p*4 | d<-[0..], let c=d*4, let p=d+9, d+p==67]` 这个最优雅了，基本上把题目复述一遍而已
+
+**雄君**：
+
+米君，你已经线下把三元方程转成一元了，这个是作弊吧，不算。
+
+Haskell的 lazy evaluation 在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。
+
+我发一个Clojure的，也符合数据的解方程思路。
+
+``` clojure
+(first (for [p (range 1 67)
+             :let [d (- 67 p) c (* 4 d)]
+             :when (= d (- p 9))]
+         (+ (* p 4) (* d 2) (* c 2))))
+```
+
+**梁君**：
+
+这个我忍不住要说说了，上限没有在原题中给出，需要推理才能得到的。Haskell的程序里是没有设上限的：`a <-[1..], b <-[1..], c <- [1..]`。
+你们写的其他程序都是有上限的：`p (range 1 67)`，`x in range(0, 67)`，`(1 to 67)`。
+
+用这个来说Haskell会搞出无限循环的bug是不是有点冤枉了？
+
+p.s. FP的理论在那里，现代的语言都或多或少吸取进去了，只是用什么语法形式的问题，纯粹一些还是要跟原来的特性做妥协，大家也都相互借鉴。除了Java最不思上进。
+
+看上去Clojure的语法最像Lisp。
+
+**米君**：
+
+不服上訴。哈哈。
+
+這樣呢？算不算真三元？（已經盡力了。除非改成一元，否則range 好像是繞不過的坎，如果改成無限列表也是一樣會死循環。）
+
+``` python
+print iter( c*2 + d*2 + p*4 for c in range(67*4) for d in range(67) for p in range(67) if c == d*4 and d == p-9 and d+p == 67).next()
+```
+
+Clojure的版本和Java看上去很像啊。唯一不同大概就是 lazy evaluation 吧。
+另外，雖然定義了三個變量，但其實只有一個是真正的“變”量，所以還是一元。
+
+``` java
+for ( int p = 1; p <=67; d++) { 
+  int d = 67 - p; 
+  int c = d * 4; 
+  if ( d == p - 9 ) 
+    System.out.println( c*2 + d*2 + p*4 ) 
+}
+```
+
+**雄君**：
+
+其实完全不是那么一回事，Scala和Clojure里面的for不是循环的意思，达夫之前解释过。这是Java程序员转FP的第一重障碍。另外，Clojure这段代码绝对没有lazy evaluation，如果需要Lazy，Clojure必须要明确指定使用Lazy seq。
+
+Python和Java的表达能力不可能赶上Lisp的，超过Lisp表达能力的语言还没有发明出来。
+
+## 最后一轮讨论
+
+**雄君**：
+
+Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。
+
+Haskell 是 lazy evaluation by default 的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。
+
+Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？
+
+这语言真的是只能看的。
+
+**韶君**：
+
+Haskell我觉得商业上想取得成功确实不容易，但我不觉得作者想这样做，说商用，有哪种语言比Java更成功呢，指令语言也没那么容易出错，因为指令语言只有想不到，没有做不到，想取得商业成功就意味着妥协，从这个角度，我更看好Scala。
+
+**达夫君**：
+
+估计等大家要看Java8的时候就需要考虑是升级JDK到8呢还是换Scala了。
+
+**梁君**：
+
+Haskell 就是一门教学/研究型语言，开个学术会议，几个老家伙聚在一起，说不如我们设计个语言来显示一下FP多牛B吧。商业成功不是它设计的初衷 (后来其他人怎么想是另外一回事)
+
+> At the conference on Functional Programming Languages and Computer Architecture (FPCA '87) in Portland, Oregon, a meeting was held during which participants formed a strong consensus that a committee should be formed to define an open standard for such languages. The committee's purpose was to consolidate the existing functional languages into a common one that would serve as a basis for future research in functional-language design.
+
+才发现BASIC不是我唯一的入门语言，我刚学电脑的时候还看过Logo语言，这么说我也是一开始就接触FP的啦。
+
+对Java程序员和已经大量投资于Java的软件企业来说，应该是Scala最有价值。
+
+**雄君**：
+
+我是前几年被人忽悠后花了好几个月学习Haskell，还想用它做项目，现在已经弃坑了。
+
+## 诗一首
+
+{% blockquote 余怒，2003.7.20 %}
+孤独时
+
+孤独时我不喜欢使用语言。
+一头熊和一只鹦鹉坐在
+跷跷板的两头
+跷跷板朝一头翘起。很多东西
+没办法称量，我是熊你们是鹦鹉。
+我是这头熊我不使用
+你们的语言。
+{% endblockquote %}
+
+----

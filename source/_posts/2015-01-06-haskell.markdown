@@ -5,6 +5,7 @@ date: 2015-01-06 22:03:35 +0800
 comments: true
 tags:
 - SoftwareDev 
+- Haskell
 ---
 2014年断断续续学了一阵子 Scala 语言，Scala 真的不错，将面向对象和函数式编程两种范式结合得很好，对 Java 程序员非常友好。不过，从学编程开始就受命令式编程的思想的浸淫，要使用函数式编程的思想相当困难，思路转不过来，而 Scala 又不强迫你用 FP，所以写出来的程序基本上还是命令式的。不少人都推荐学 Haskell 作为函数式编程的入门，作为一门学院派的语言，它非常纯粹，有助于掌握函数式编程的思维方式。于是开始读 [Learn You a Haskell for Great Good](http://learnyouahaskell.com/)，这真是本入门好书，从头开始一点点的理解接受函数式编程的思路。学 Haskell 的感觉非常*有趣*。
 
