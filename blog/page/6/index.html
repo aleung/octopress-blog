@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="包管理 从CRAN安装一个包：install.packages("pkg_name") 加载包：library(package) R的基本数据类型 在R里面一个元素的基本数据类型称为 mode。每个对象都有mode属性。 基本数据类型包括：数值(实数) numeric，复数 complex，字符( &hellip;">
+  <meta name="description" content="Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T21:49:00+08:00" pubdate data-updated="true">2013-03-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程，也只会在必要的时候唤醒进行短时间工作。但有些应用开发者不懂怎么合理设计应用后台任务，造成耗电问题。</p>
+
+<p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
+
+<p>找到罪魁祸首后，最简单处理手段就是卸载它。但如果这个应用非装不可没有替代品，怎么办？Kill不是办法，若应用因后台服务而耗电，后台服务kill掉也能自动重启的。每次用完都要去kill用起来也不方便。这时 <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Greenify</a> 就派上用场了，当你将一个应用加入greenify列表中，它能够在你不使用这个应用时将它进入冬眠状态，但又不影响其正常使用。除了用来对付耗电应用，对付耗内存应用也不错，当应用冬眠时，也不会占用内存(RAM)。至于它的工作原理，作者没有透露过，我还没有见到有解释。Greenify只能用于Android 3.1+，需要root。Android手机要玩好，root基本上是不可少的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -627,98 +682,6 @@ parallel(data)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/11/my-first-half-marathon/">我的首個半馬拉松</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-11T22:25:00+08:00" pubdate data-updated="true">2012-12-11</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>11月18日，廣州首屆馬拉松賽，也是我跑的第一次半馬拉松。過去大半個月了，還是記錄一下吧。</p>
-
-<p>看回以前寫的blog，應該是在2005年底開始跑步的，也不記得當時爲什麼突然有了要經常性跑步的想法。那時傍晚下班後在天河公園跑，跑步是作爲鍛鍊和放鬆，一次跑半小時左右，最多5、6公里，根本不敢想象自己能跑21公里的半馬拉松。雖然跑了好多年，但都是斷斷續續，有時一停就幾個月，跑的頻率也低，最多一週兩次，一直都是維持在只能連續跑5公里左右水平。</p>
-
-<p>2008年下半年腰椎間盤突出，最嚴重時連走路都一瘸一瘸的，當時真害怕恢復不了，沒法再做運動了。幸好恢復得很快，11月起可以慢跑鍛鍊，那兩三個月跑得比較頻密，到年底跑的狀態還不錯，同樣的距離比之前跑得更輕鬆。</p>
-
-<p>2009年開始嘗試跑長一點的距離，跑了幾次8到10公里左右，但也沒堅持訓練。10月份Nike在廣州舉辦10公里跑，第一次參加了正式的長跑活動，成績58:30，完成了自己跑進1小時的目標<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。試過後覺得參加跑步活動很好玩，打算以後都繼續參與。</p>
-
-<p>2010年亞運會，Nike沒有辦跑步活動，2011年11月，Nike又舉辦10公里跑，這次賽前就比較認真的做了兩個月的訓練計劃，專門練習了提高步頻，效果還是比較顯著的，成績比預想的好不少，48:29，步速邁進了5分鐘每公里大關<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。</p>
-
-<p>那時還報名了2012年2月的香港半程馬拉松，接下來幾個月跑的狀態都很好，週末訓練跑了幾次17、18公里，又跑了上白雲山的路線<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>，感覺信心很足，心中還在盤算着目標定在兩小時還是2:15合適。誰知臨近比賽前兩天開始出現感冒跡象，週六中午到了香港，去領取選手包後就開始發燒，下午晚上都在酒店燒得迷迷糊糊的。週日早上病好了，但也不能去跑步了，第一次半馬拉松就這樣錯過。然後對跑步的興趣又一次陷入低谷，一週跑不了一次。</p>
-
-<p>2012年初就看到廣州11月要舉辦馬拉松賽的消息，但一直到九月初都沒有見到正式籌備工作開展，正在想是否搞不成的時候，官方報名消息就出來了。接下來就維持了一個多月的訓練，11月18日開跑，總的來說比較輕鬆的完成了首次半馬拉松。</p>
-
-<p>跑完時比較興奮，發了好幾條tweets：</p>
-
-<blockquote>
-  <p>我的首个半马拉松，官方計時1:51:23，完成了两小时内的目标。前十公里留力比较多，下次可以不用那么保守。</p>
-</blockquote>
-
-<blockquote>
-  <p>參加大規模長跑活動的感覺跟平常自己跑很不一樣，喜歡跑步的朋友都值得嘗試一下，無所謂速度，能在關門時間前跑完就行了。很多人一起跑，興奮度高很多，超過自己平常速度也會覺得很輕鬆；寬闊的馬路車輛全不見了，讓你暢快的跑在路中心；路旁觀衆的鼓勵讓你心中充滿溫暖。</p>
-</blockquote>
-
-<blockquote>
-  <p>马拉松赛道上，视障参赛者由引导员陪同赛跑，两人的手用带子系在一起。路上见到好多组，男女都有。看到他们，我觉得很感动，我们跑步，再困难也难不过他们。</p>
-</blockquote>
-
-<p>跑完後，又沒有了目標了。不知道以後會不會去跑個全馬，半馬跟全馬的區別還是挺大的，對我來說最重要的是不要把膝蓋跑傷了，享受跑步的樂趣，而不是追求成績。</p>
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="/blog/2009/09/25/Prepare-10-km-run/">准备10km跑</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="/blog/2011/11/15/Nike-Lunar-Run-10-/">Nike Lunar Run 10公里跑总结</a><a href="#fnref:2" rel="reference">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="/blog/2011/12/26/Baiyun-mountain-running/">白云山跑步</a><a href="#fnref:3" rel="reference">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/12/11/my-first-half-marathon/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/7/">&larr; Older</a>
@@ -740,6 +703,10 @@ parallel(data)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
@@ -753,10 +720,6 @@ parallel(data)
     
       <li class="post">
         <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
   </ul>
@@ -783,6 +746,7 @@ parallel(data)
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
@@ -798,7 +762,7 @@ parallel(data)
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>

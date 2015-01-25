@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="11月23日，参加了2013广州马拉松的半程赛事，这是我第二次跑半程马拉松，赛会成绩1:55:11，自己按过出发点的计时是1:52:50。这个成绩比上一年要差了一些，2012广州半马的自己计时是1:49:57。但还是完成目标了，我赛前预订的是两小时内完成。 今年的训练是从7月中旬开始的（见： &hellip;">
+  <meta name="description" content="昨天在捣弄 miCoach 到 Nike+ 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 tcx2nikeplus &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,80 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/08/intercept-android-https-traffic/">拦截Android应用HTTPS通讯内容</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-08T15:03:00+08:00" pubdate data-updated="true">2013-12-08</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
+
+<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
+
+<p>下面记录大致操作过程。</p>
+
+<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
+
+<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
+
+<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
+
+<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
+</code></pre>
+
+<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
+
+<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
+
+<p><img src="/blog/attachments/2013/12/burp.png" /></p>
+
+<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
+
+<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/12/08/intercept-android-https-traffic/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -372,86 +446,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T00:34:00+08:00" pubdate data-updated="true">2013-03-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/hardware/'>Hardware</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。为此我科普了一把。</p>
-
-<hr />
-
-<p>看看Apple的网站吧： </p>
-
-<ul>
-  <li>http://www.apple.com/batteries/ </li>
-  <li>http://www.apple.com/batteries/notebooks.html </li>
-</ul>
-
-<blockquote>
-  <p>A charge cycle means using all of the battery’s power, but that doesn’t necessarily mean a single charge. For instance, you could listen to your iPod for a few hours one day, using half its power, and then recharge it fully. If you did the same thing the next day, it would count as one charge cycle, not two, so you may take several days to complete a cycle. </p>
-</blockquote>
-
-<blockquote>
-  <p>Lithium-ion polymer batteries need to be used for maximum performance. If you don’t use your device often, be sure to complete a charge cycle at least once a month. </p>
-</blockquote>
-
-<p>电池的放电循环是累计的（原文里有图），不是说要一次性用光所有的电。 </p>
-
-<p>如果你一个月用电池用不够一个放电循环，那就需要专门去把电池的电耗掉再充满。但如果你平常不时需要移动使用电脑的话，一般一个月都能用够一个电池放电循环，就没有必要专门去耗用电池的电了。 </p>
-
-<p>锂电池的正常使用寿命大概在500～1000次放电循环左右。<a href="http://support.apple.com/kb/ht1519">这里</a>有Apple官方声称的电池寿命数值，新款MBP，MBA都是1000次。 </p>
-
-<p>而且有说法是浅放电比起深放电有利于延长电池寿命[<a href="http://batteryuniversity.com/learn/article/how_to_prolong_lithium_based_batteries">来源</a>] 。特别是，过放电会严重损害电池。电脑有保护，不会让电池过放，电量低到一定程度就自动关机，但是若关机后依然长期不充电，电池的自放电也会最终使电池过放电。 </p>
-
-<p>我的MBP用了接近两年，按照有电源时就插电源的用法，现在电池也已经用了131个周期了。要知道，电脑休眠也是耗电的。 </p>
-
-<p>还有<a href="http://forums.macrumors.com/showpost.php?p=9875442&amp;postcount=23">这里</a>也整理了很多与Apple Notebook电池相关的知识。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/5/">&larr; Older</a>
@@ -473,6 +467,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
@@ -486,10 +484,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
   </ul>
@@ -516,6 +510,7 @@
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
@@ -531,7 +526,7 @@
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>

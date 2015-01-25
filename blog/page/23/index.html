@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="假设你在体检后，发现体检报告里面有一个项目的检验结果为阳性，你去问医生：这是什么意思？医生一面阴沉的告诉你：这个检查项目结果为阳性，说明你有可能患上了XXX病，虽然这个病不算常见，根据统计数据，患病率约为十万分之一，但是，患上的后果非常严重，基本上是不治之症。啊？！你抱着侥幸的心理再问医生： &hellip;">
+  <meta name="description" content="(Platform: Windows Vista) Mercurial is already installed. Install Apache. Download mercurial source package to get the file hgwebdir.cgi. This file &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,100 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/17/How-to-setup-hg-Mercurial-web-access/">How to Setup Hg (Mercurial) Web Access</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-17T03:08:00+08:00" pubdate data-updated="true">2009-09-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>(Platform: Windows Vista)</p>
+
+<ol>
+  <li>Mercurial is already installed. </li>
+  <li>Install Apache. </li>
+  <li>Download mercurial source package to get the file hgwebdir.cgi. This file isn’t included in the Windows binary package. </li>
+  <li>Copy hgwebdir.cgi into Apache’s cgi-bin folder and rename to hgwebdir.py </li>
+  <li>Create a file named hgweb.config in the same folder. Config the name and the path of therepositories in this file. </li>
+  <li>Install python 2.5 and make sure to check the option to registerit as the default handler of .py file.<br />
+The hgwebdir.cgi from Mercurial 1.xrequires python 2.5. Error “Invalid Magic Number” will be got when running on other version python. </li>
+  <li>Extract the file library.zip in Mercurial installation folder into a directory. Use 7zip to unzip, other zip tools might fail. </li>
+  <li>In Mercurial installation directory there is a foldernamed Templates.Moveit into thelibrary folder. </li>
+  <li>Edit hgwebdir.py, add followinglines to add the library folderinto python library path:<br />
+import sys<br />
+sys.path.insert(0, “C:\Program Files\Mercurial\library”)</li>
+  <li>Start apache, try to access in browser<br />
+<a href="http://localhost/cgi-bin/hgwebdir.py">http://localhost/cgi-bin/hgwebdir.py</a></li>
+  <li>If the repositories index page can shown, that’s fine. If got 500 internal error, check apache error log.<br />
+If the error information is like this:<br />
+<em>The system cannot find the path specified. : couldn’t create child process: 720003: hgwebdir.py</em><br />
+it means Apache can’t locate the python executer. 
+    1. Edit Apache’s config file httpd.conf,uncomment theline:<br />
+ScriptInterpreterSource registry<br />
+This will enable Apache to skip the script’s shebang line and use default registered handler.</li>
+  <li>When the index is successfully shown in browser, edit the .hg\hgrc file in each repositories to add following lines. It will enable push to repository by web access (default is read only) and enable push by http (default is requiring ssl).<br />
+[web]<br />
+allow_push = *<br />
+push_ssl = false</li>
+  <li>Try to clone a repository by web access and modify something then push back. It should be ok. </li>
+  <li>Add a line in Apache http.conf to make the URL more friendly:<br />
+ScriptAliasMatch ^/hg(.*) “C:/Program Files/Apache2.2/cgi-bin/hgwebdir.py$1”<br />
+Now the url will be:<br />
+<a href="http://localhost/hg">http://localhost/hg</a></li>
+</ol>
+
+<p>Just record the installation steps in case I need to do it againsome time in the furture. Hope thatIhaven’t missed any step :)</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li><a href="http://mercurial.selenic.com/wiki/PublishingRepositories">http://mercurial.selenic.com/wiki/PublishingRepositories</a></li>
+  <li><a href="http://mercurial.selenic.com/wiki/HgWebDirStepByStep">http://mercurial.selenic.com/wiki/HgWebDirStepByStep</a></li>
+  <li><a href="http://www.imladris.com/Scripts/PythonForWindows.html">http://www.imladris.com/Scripts/PythonForWindows.html</a></li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/09/17/How-to-setup-hg-Mercurial-web-access/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -401,57 +495,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/06/25/Protests-against-the-relevant-departments-blockade-Google-network-services/">抗议有关部门封锁Google网络服务</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-25T07:18:00+08:00" pubdate data-updated="true">2009-06-25</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>封锁Google网络服务（包括邮件服务、地图服务、手机服务、搜索服务等）侵犯了公民获取信息的权利，侵犯了公民的通信自由。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/06/25/Protests-against-the-relevant-departments-blockade-Google-network-services/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/24/">&larr; Older</a>
@@ -473,6 +516,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
@@ -486,10 +533,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
   </ul>
@@ -516,6 +559,7 @@
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
@@ -531,7 +575,7 @@
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>

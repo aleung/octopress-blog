@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="一直关注Google Android系统的手机，自从去年10月底首款机型HTC G1正式发售，就有购买的意欲。今年春节后开始学习Android软件的开发，本来打算坚持到首个程序开发完成后再买手机的，可最后还是没有忍住，提前买了回来。 淘宝网购，包邮包解锁价2770，美版黑色。 &hellip;">
+  <meta name="description" content="这两天用着G1的my location功能，发现真是很爽，即使不开GPS，单独依靠移动网络来定位在很多地方都已经相当准确，往往已经到了一个住宅小区的精度。但是地图模式的人为偏移就令人非常懊恼，在广州区域内偏差600多米，明明在天河公园东面它显示到西门那边。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/07/To-write-software-expected-to-solve-the-problem-of-migration-in-Android-map/">写了个软件，期望可解决Android中地图偏移的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-07T08:08:00+08:00" pubdate data-updated="true">2009-04-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这两天用着G1的my location功能，发现真是很爽，即使不开GPS，单独依靠移动网络来定位在很多地方都已经相当准确，往往已经到了一个住宅小区的精度。但是地图模式的人为偏移就令人非常懊恼，在广州区域内偏差600多米，明明在天河公园东面它显示到西门那边。</p>
+
+<p>Google地图加入的人为偏移是由于中国测绘法规的限制而加入的，这样造成my location定出来的位置在地图上偏差太远，已经失去使用价值了。而卫星图是没有偏差的，这就是为什么大家发现地图(map)模式误差大，卫星模式误差小的原因。  </p>
+
+<p>在电脑上打开Google Map，对于一个标志性地方，在地图与卫星图上各标一个waypoint，比较两个坐标，就可以知道地图的偏差有多大。经过试验，发现在一个区域内（例如整个广州市），偏差基本上是固定的，而不同城市的偏差就不同了。  </p>
+
+<p>利用这个特性，对一个区域的偏差进行测量校准后，整个区域的定位都能够根据这个校准值来校准。如果能够将各人在不同地方测得的校准值共享在网络上，这个手机的定位功能就会有实用价值了。  </p>
+
+<p><img class="right" src="/blog/attachments/2009/4/HereIm.jpg" /></p>
+
+<p>今天先写了个程序实现了my location的校准显示，将广州市的校准值（初步测试发现对广东省范围都适用）内置在程序里了。后面我会继续改进这个程序，让校准值可以设置，期望最后能做到在网络上同步。</p>
+
+<p>程序的功能很简单，就是显示地图，并且将校准后的my location蓝点显示在地图上，也可以打开系统Map软件，打开后校准后的my location在屏幕正中心。</p>
+
+<p>Update 2009-4-20：</p>
+
+<p>软件改名为Here I’m!，并已建立专门的网站。下载和更新请到 <a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a></p>
+
+<p>Update 2012-7:</p>
+
+<p>后来版本的 Google Maps 已内置纠正偏移（好像是只对中国大陆手机用户生效），HereI’m! 软件已下架很久了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/04/07/To-write-software-expected-to-solve-the-problem-of-migration-in-Android-map/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -528,65 +599,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/02/19/Schedule-management-for-where-notepad-PC-PDA-Mobile-phone-Watch-/">日程管理适合做在哪里: 记事本? PC? PDA? 手机? 手表!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-19T20:17:00+08:00" pubdate data-updated="true">2009-02-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/idea/'>Idea</a>, <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>做日常管理，传统用纸质记事本，电脑化之后是PC，便携设备出现后是PDA和现在流行的智能手机。但其实还有一个很好的途径一直被忽略了，那就是：</p>
-
-<p><a href="http://www.mrjoneswatches.com/average-day/"><img src="/blog/attachments/2009/2/watch.jpg" alt="" /></a></p>
-
-<p>这是一个很有创意的设计，相信戴起来也很cool，但恐怕实用价值不大：表盘上标的是”a breakdown of what average people do on an average day”，但每个人都有自己的行事方式，没有多少人是一个average的人吧？</p>
-
-<p>除非—-表盘是可以个性化定制的。但是，一个人的时间安排还是会变化的啊。好，扩展一下思路，引入高科技吧：想象一下，上图的表盘并不是印制出来的，而是高分辨率的电子显示屏，将一天的日程安排显示出来；日程安排是通过无线网络与服务器同步的（例如Google Calendar）。</p>
-
-<p>再想象一下使用的场景：你正在休息室喝咖啡，同事冲进去说：”啊，你躲在这里啊，我有个新idea想跟你讨论一下，有空吗？”，你抬起手一看表，”现在九点二十五分，我喝完这杯咖啡九点半要开会，下午也已经有安排了，呃，十一点到十二点是有空的，可以吗？”</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/02/19/Schedule-management-for-where-notepad-PC-PDA-Mobile-phone-Watch-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/27/">&larr; Older</a>
@@ -608,6 +620,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
@@ -621,10 +637,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
   </ul>
@@ -651,6 +663,7 @@
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
@@ -666,7 +679,7 @@
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>

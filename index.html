@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="2014年断断续续学了一阵子 Scala 语言，Scala 真的不错，将面向对象和函数式编程两种范式结合得很好，对 Java 程序员非常友好。不过，从学编程开始就受命令式编程的思想的浸淫，要使用函数式编程的思想相当困难，思路转不过来，而 Scala 又不强迫你用 FP， &hellip;">
+  <meta name="description" content="之前在公司里一来一往的邮件讨论，被江南白衣集成一篇收录到他的博客里，读下来还蛮有意思，转过来，以下为全文引用。其中的梁君就是我啦。 缘起 达夫君： 利用 GitHub 统计分析编程语言发展趋势 第一轮讨论 梁君： 增加的Java的项目里，不知道有多少是与Android相关的呢？ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,300 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/01/25/fp/">同事们关于 FP 语言的讨论</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-25T12:41:14+08:00" pubdate data-updated="true">2015-01-25</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/haskell/'>Haskell</a>, <a class='tag' href='/blog/tags/scala/'>Scala</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>之前在公司里一来一往的邮件讨论，被江南白衣集成一篇收录到<a href="http://calvin1978.blogcn.com/articles/haskell.html">他的博客</a>里，读下来还蛮有意思，转过来，以下为全文引用。其中的梁君就是我啦。</em></p>
+
+<h2 id="section">缘起</h2>
+
+<p><strong>达夫君</strong>： </p>
+
+<p><a href="http://segmentfault.com/a/1190000000502996">利用 GitHub 统计分析编程语言发展趋势</a></p>
+
+<h2 id="section-1">第一轮讨论</h2>
+
+<p><strong>梁君</strong>：</p>
+
+<p>增加的Java的项目里，不知道有多少是与Android相关的呢？</p>
+
+<p>Scala最热门都是在意大利城市（Milan, Rome, Florence, Naples,Turin），很奇怪，意大利软件业不发达。于是查了字典在意大利语里scala是scale(英语)的意思，应该跟编程语言无关。排除之后排首位的就是 San Francisco和San Jose，硅谷地区。</p>
+
+<p>最近几天在看 Haskell，真是非常有趣的一门语言。
+于是也在Google Trends上看一下，搜索Haskell最热的城市是 Gothenburg，第二是Utrecht (因为乌特勒支大学？)。</p>
+
+<p>2014年热度，按国家排序，Haskell最热也是China! 考虑到中国已经屏蔽了Google，这个结果令人吃惊。在国内Scala, Haskell也不是那么热门吧？程序员人口基数大？</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>Haskell应该是所有程序语言里面被神化的最厉害的吧。有种说法，Haskell可以让你变成一个更好的程序员，即便你不用它，好像还有本书名就是这个。感觉看几本Haskell书就能变成高手似的，快变成宗教了都。。。。</p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>Haskell应该是一种研究型/教学型语言吧。</p>
+
+<p>据说是纯粹的FP，我现在看它是想试试强迫一下自己使用FP的思维模式。</p>
+
+<p>那篇 <a href="http://raganwald.com/2014/12/20/why-why-functional-programming-matters-matters.html">WhyWhyFP</a> 不错。 里面，看到一些话（虽然不算是那篇文字的主题）：</p>
+
+<blockquote>
+  <p>The key is the word better. It is not the same as the phrase more powerful.
+it is possible to make a language “better” by removing features that are considered harmful, if by doing so it makes programs in the language better programs.</p>
+</blockquote>
+
+<p>关于 better 与 powerful 的思考，不是功能越多就越好。用在我们的产品上也是一样啊。</p>
+
+<h2 id="haskell">哥德堡的Haskell教授</h2>
+
+<p><strong>赵君</strong>：</p>
+
+<p>Gothenburg研究Haskell的那个人好像是Richard君的教授。感兴趣的可以问问Richard的感受。</p>
+
+<p><strong>范君</strong>：</p>
+
+<p>Richard说的:</p>
+
+<blockquote>
+  <p>Mr Hughes is a very smart guy. And his homepage hasn’t changed since I had him as a professor : http://www.cse.chalmers.se/~rjmh/ </p>
+</blockquote>
+
+<p>国外大学很多都是用Haskell，大老板之前去大英帝国读研也是用它。</p>
+
+<h2 id="fp">FP做题大赛</h2>
+
+<p><strong>韶君</strong>：</p>
+
+<p>我好奇看一下，“证明即程序、命题为类型”，这就是一门数学领域的领域语言，难怪学院派对它宠爱有加，一边证明一边编程，逼格高啊</p>
+
+<p>有个网站号称趣味学Haskell: <a href="http://learnyouahaskell-zh-tw.csie.org/">HASKELL 趣學指南</a> <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p>Step by step 学了一下Haskell，居然停不下来，无论写还是读，都像在玩puzzle game，都想找回以前的数学课本来复习一下。我想不用也能让你成为更好的程序员此话不假，就是让你恶补一下已经还给老师的数学概念。</p>
+
+<p>给个零零漆的经典应用题大家思考一下：有一个农场，鸡的数目是鸭的四倍，但是鸭又比猪少九只，鸭和猪的数目是六十七只，请问农场所有动物的脚加起来共多少只？</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>感觉这跟你的学习方式关系更大，跟语言关系不大的。你也可以用Scala去做SICP的习题，同样有这种感觉。</p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>不挑起具体语言之争。韶君的例子应该是说明FP给人带来耳目一新的感觉。</p>
+
+<p>另外，我感觉那本书 (Learn You a Haskell) 用来做FP入门真的很好，之前看过一些Scala的书都没有那么清晰的理解。</p>
+
+<p>顺便做做那道题目：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="haskell"><span class="line"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">head</span> <span class="p">[</span><span class="n">c</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">p</span><span class="o">*</span><span class="mi">4</span> <span class="o">|</span> <span class="n">d</span><span class="ow">&lt;-</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">],</span> <span class="kr">let</span> <span class="n">c</span><span class="ow">=</span><span class="n">d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="kr">let</span> <span class="n">p</span><span class="ow">=</span><span class="n">d</span><span class="o">+</span><span class="mi">9</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="n">p</span><span class="o">==</span><span class="mi">67</span><span class="p">]</span>
+</span><span class="line"><span class="mi">442</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>韶君</strong>：</p>
+
+<p>我原来写的是</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="haskell"><span class="line"><span class="nf">head</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="mi">4</span><span class="o">|</span><span class="n">a</span> <span class="ow">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">..</span><span class="p">],</span> <span class="n">b</span> <span class="ow">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">..</span><span class="p">],</span> <span class="n">c</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">..</span><span class="p">],</span> <span class="n">a</span><span class="ow">=</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="ow">=</span><span class="n">c</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="ow">=</span><span class="mi">67</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>结果不会结束，除非数组加上限，有空找你理解一下。</p>
+
+<p>确实是FP带来的感觉，相信Scala也可以带来这个感觉，只不过如果我用Scala就不自觉地当Java来做了。</p>
+
+<p><strong>达夫君</strong>：</p>
+
+<p>我原来也是将Scala当Java来写。但是当你将Java的语法忘了差不多了，Scala就入门了：）</p>
+
+<p>其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
+看别人的代码多了，也就习惯了。</p>
+
+<p><em>达夫君也写了一段 Scala 代码，好多行，省略</em></p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>Scala应该增加一种纯FP模式，当打开这个选项的时候，任何不符合FP的写法都报错（或者warning）。</p>
+
+<p><strong>米君</strong>：</p>
+
+<p>沒電腦，裸寫一段 Python，不知道對不對：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="err">‎</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span> <span class="o">==</span> <span class="mi">67</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">67</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>看起來還是 Haskell 的最有數學味。</p>
+
+<p>邊打邊爐邊研究，或者還可以這樣（不知道對不對，大意如此）：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">print</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">67</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span> <span class="o">==</span> <span class="mi">67</span><span class="err">‎</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>據說這樣有 lazy evaluation，map 和 filter 不知道有沒有。有明白人指點一下嗎？</p>
+
+<p><strong>韶君</strong>：</p>
+
+<p>FP的思路就是“是什么”，指令编程的思路是“做什么”，从这个角度看
+<code>head [c*2+d*2+p*4 | d&lt;-[0..], let c=d*4, let p=d+9, d+p==67]</code> 这个最优雅了，基本上把题目复述一遍而已</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>米君，你已经线下把三元方程转成一元了，这个是作弊吧，不算。</p>
+
+<p>Haskell的lazy evaluation在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
+
+<p>我发一个Clojure的，也符合数据的解方程思路。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="clojure"><span class="line"><span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">p</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">67</span><span class="p">)</span>
+</span><span class="line">             <span class="ss">:let</span> <span class="p">[</span><span class="nv">d</span> <span class="p">(</span><span class="nb">- </span><span class="mi">67</span> <span class="nv">p</span><span class="p">)</span> <span class="nv">c</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">d</span><span class="p">)]</span>
+</span><span class="line">             <span class="ss">:when</span> <span class="p">(</span><span class="nb">= </span><span class="nv">d</span> <span class="p">(</span><span class="nb">- </span><span class="nv">p</span> <span class="mi">9</span><span class="p">))]</span>
+</span><span class="line">         <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">p</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">d</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="mi">2</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>梁君</strong>：</p>
+
+<p>这个我忍不住要说说了，上限没有在原题中给出，需要推理才能得到的。Haskell的程序里是没有设上限的：<code>a &lt;-[1..], b &lt;-[1..], c &lt;- [1..]</code>。
+你们写的其他程序都是有上限的：<code>p (range 1 67)</code>，<code>x in range(0, 67)</code>，<code>(1 to 67)</code>。</p>
+
+<p>用这个来说Haskell会搞出无限循环的bug是不是有点冤枉了？</p>
+
+<p>p.s. FP的理论在那里，现代的语言都或多或少吸取进去了，只是用什么语法形式的问题，纯粹一些还是要跟原来的特性做妥协，大家也都相互借鉴。除了Java最不思上进。</p>
+
+<p>看上去Clojure的语法最像Lisp。</p>
+
+<p><strong>米君</strong>：</p>
+
+<p>不服上訴。哈哈。</p>
+
+<p>這樣呢？算不算真三元？（已經盡力了。除非改成一元，否則range 好像是繞不過的坎，如果改成無限列表也是一樣會死循環。）</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">print</span> <span class="nb">iter</span><span class="p">(</span> <span class="n">c</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="o">*</span><span class="mi">4</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">67</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">67</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">67</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="o">*</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">d</span> <span class="o">==</span> <span class="n">p</span><span class="o">-</span><span class="mi">9</span> <span class="ow">and</span> <span class="n">d</span><span class="o">+</span><span class="n">p</span> <span class="o">==</span> <span class="mi">67</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Clojure的版本和Java看上去很像啊。唯一不同大概就是 lazy evaluation 吧。
+另外，雖然定義了三個變量，但其實只有一個是真正的“變”量，所以還是一元。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="k">for</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">p</span> <span class="o">&lt;=</span><span class="mi">67</span><span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">67</span> <span class="o">-</span> <span class="n">p</span><span class="o">;</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="mi">4</span><span class="o">;</span>
+</span><span class="line">  <span class="k">if</span> <span class="o">(</span> <span class="n">d</span> <span class="o">==</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">)</span>
+</span><span class="line">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">c</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="o">*</span><span class="mi">4</span> <span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>雄君</strong>：</p>
+
+<p>其实完全不是那么一回事，Scala和Clojure里面的for不是循环的意思，达夫之前解释过。这是Java程序员转FP的第一重障碍。另外，Clojure这段代码绝对没有lazy evaluation，如果需要Lazy，Clojure必须要明确指定使用Lazy seq。</p>
+
+<p>Python和Java的表达能力不可能赶上Lisp的，超过Lisp表达能力的语言还没有发明出来。</p>
+
+<h2 id="section-2">最后一轮讨论</h2>
+
+<p><strong>雄君</strong>：</p>
+
+<p>Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。</p>
+
+<p>Haskell是lazy evaluation by default的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
+
+<p>Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？</p>
+
+<p>这语言真的是只能看的。</p>
+
+<p><strong>韶君</strong>：</p>
+
+<p>Haskell我觉得商业上想取得成功确实不容易，但我不觉得作者想这样做，说商用，有哪种语言比Java更成功呢，指令语言也没那么容易出错，因为指令语言只有想不到，没有做不到，想取得商业成功就意味着妥协，从这个角度，我更看好Scala。</p>
+
+<p><strong>达夫君</strong>：</p>
+
+<p>估计等大家要看Java8的时候就需要考虑是升级JDK到8呢还是换Scala了。</p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>Haskell 就是一门教学/研究型语言，开个学术会议，几个老家伙聚在一起，说不如我们设计个语言来显示一下FP多牛B吧。商业成功不是它设计的初衷 (后来其他人怎么想是另外一回事)</p>
+
+<blockquote>
+  <p>At the conference on Functional Programming Languages and Computer Architecture (FPCA ‘87) in Portland, Oregon, a meeting was held during which participants formed a strong consensus that a committee should be formed to define an open standard for such languages. The committee’s purpose was to consolidate the existing functional languages into a common one that would serve as a basis for future research in functional-language design.</p>
+</blockquote>
+
+<p>才发现BASIC不是我唯一的入门语言，我刚学电脑的时候还看过Logo语言，这么说我也是一开始就接触FP的啦。</p>
+
+<p>对Java程序员和已经大量投资于Java的软件企业来说，应该是Scala最有价值。</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>我是前几年被人忽悠后花了好几个月学习Haskell，还想用它做项目，现在已经弃坑了。</p>
+
+<h2 id="section-3">诗一首</h2>
+
+<blockquote><p>孤独时</p><p>孤独时我不喜欢使用语言。<br />一头熊和一只鹦鹉坐在<br />跷跷板的两头<br />跷跷板朝一头翘起。很多东西<br />没办法称量，我是熊你们是鹦鹉。<br />我是这头熊我不使用<br />你们的语言。</p><footer><strong>余怒，2003.7.20</strong></footer></blockquote>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>英文原版为 <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great Good!</a>。有电子书，简体中文纸板也出版了。<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2015/01/25/fp/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/01/06/haskell/">Haskell</a></h1>
     
     
@@ -100,7 +394,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+    <a class='tag' href='/blog/tags/haskell/'>Haskell</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
   
 </span>
 
@@ -703,85 +997,6 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-26T01:11:52+08:00" pubdate data-updated="true">2014-12-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。</p>
-
-<h2 id="section">共同点</h2>
-
-<p>Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、功能等方面都还是比较相似的。</p>
-
-<p>对于 artifact 的标识，都是使用 groupID, artifactID, version 三元组，不过 Ivy 叫它们为 organization, module name, revision。Ivy 兼容 Maven 2 metadata，可以直接使用 Maven 2 repository。</p>
-
-<h2 id="configuration--scope">Configuration / Scope</h2>
-
-<p>Ivy 有个重要的概念叫 configuration，在 Maven 里类似的对应是 scope，但是 Ivy 的 configuration 比 Maven 的 scope 要灵活得多。</p>
-
-<p>一个模块可以有多个 configuration，每个 configuration 包含一组外部模块依赖的声明（实际的配置是反过来的，每个依赖声明会标识自己在那种 configuration 中生效）。Configuration 可以是跟 Maven scope 类似的 compile, runtime 和 test，也可以任意定义。例如，某个模块既可以支持 Oracle 也可以支持 MySQL，当使用不同数据库时，需要依赖的模块是不同的，就可以分别在 oracle 和 mysql 两个 configuration 中定义各自需要的依赖。</p>
-
-<p>Ivy 的 configuration 在依赖传递管理方面，比 Maven 要强。除了可以定义在一个 configuation 中需要依赖某个模块，还可以定义依赖这个模块时，会使用它的哪个 configuration，只有指定的 configuration 中的依赖才会传递进来。这个机制称为 configuration mapping。</p>
-
-<p>下面的例子中，声明了在 default configuration 中需要依赖 hibernate，并且包含 hibernate 的 proxool 和 oscache 这两种 configuration 中的依赖。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;dependency</span> <span class="na">org=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">name=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">rev=</span><span class="s">&quot;2.1.8&quot;</span> <span class="na">conf=</span><span class="s">&quot;default-&gt;proxool,oscache&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Configuration 可以扩展（继承）另一个 configuration，可以设置外部可见性。</p>
-
-<h2 id="repository">Repository</h2>
-
-<p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
-
-<p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -801,6 +1016,10 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
@@ -814,10 +1033,6 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
     
       <li class="post">
         <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
   </ul>
@@ -844,6 +1059,7 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
@@ -859,7 +1075,7 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>

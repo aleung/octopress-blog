@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Recently I changed an Artifactory repository configuration from storing non-unique snapshots to unique snapshots (as described here). After that, “ &hellip;">
+  <meta name="description" content="在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。为此我科普了一把。 看看Apple的网站吧： http://www. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/">笔记本充满电后，是否应该拔掉电源</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-30T00:34:00+08:00" pubdate data-updated="true">2013-03-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/hardware/'>Hardware</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。为此我科普了一把。</p>
+
+<hr />
+
+<p>看看Apple的网站吧： </p>
+
+<ul>
+  <li>http://www.apple.com/batteries/ </li>
+  <li>http://www.apple.com/batteries/notebooks.html </li>
+</ul>
+
+<blockquote>
+  <p>A charge cycle means using all of the battery’s power, but that doesn’t necessarily mean a single charge. For instance, you could listen to your iPod for a few hours one day, using half its power, and then recharge it fully. If you did the same thing the next day, it would count as one charge cycle, not two, so you may take several days to complete a cycle. </p>
+</blockquote>
+
+<blockquote>
+  <p>Lithium-ion polymer batteries need to be used for maximum performance. If you don’t use your device often, be sure to complete a charge cycle at least once a month. </p>
+</blockquote>
+
+<p>电池的放电循环是累计的（原文里有图），不是说要一次性用光所有的电。 </p>
+
+<p>如果你一个月用电池用不够一个放电循环，那就需要专门去把电池的电耗掉再充满。但如果你平常不时需要移动使用电脑的话，一般一个月都能用够一个电池放电循环，就没有必要专门去耗用电池的电了。 </p>
+
+<p>锂电池的正常使用寿命大概在500～1000次放电循环左右。<a href="http://support.apple.com/kb/ht1519">这里</a>有Apple官方声称的电池寿命数值，新款MBP，MBA都是1000次。 </p>
+
+<p>而且有说法是浅放电比起深放电有利于延长电池寿命[<a href="http://batteryuniversity.com/learn/article/how_to_prolong_lithium_based_batteries">来源</a>] 。特别是，过放电会严重损害电池。电脑有保护，不会让电池过放，电量低到一定程度就自动关机，但是若关机后依然长期不充电，电池的自放电也会最终使电池过放电。 </p>
+
+<p>我的MBP用了接近两年，按照有电源时就插电源的用法，现在电池也已经用了131个周期了。要知道，电脑休眠也是耗电的。 </p>
+
+<p>还有<a href="http://forums.macrumors.com/showpost.php?p=9875442&amp;postcount=23">这里</a>也整理了很多与Apple Notebook电池相关的知识。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -335,61 +415,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/">怎么处理Android耗电严重的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-10T21:49:00+08:00" pubdate data-updated="true">2013-03-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程，也只会在必要的时候唤醒进行短时间工作。但有些应用开发者不懂怎么合理设计应用后台任务，造成耗电问题。</p>
-
-<p>要解决耗电问题，首先得找出是那个应用耗电。Android 4.0以上系统已经能够显示出系统各模块以及各个应用的耗电比例（设置－电量使用情况），不过细节信息还是不够多，往往不足以判定是什么原因耗电严重，这时候就要用到这个应用：<a href="https://play.google.com/store/apps/details?id=com.gsamlabs.bbm">GSam Battery Monitor</a>。就像Android系统的电量使用情况，GSam可以列出系统各模块（系统、电话、屏幕、Wifi等）以及各应用的耗电比例，但它可以看到每项更细节的信息，如某一应用使用各传感器的时间、屏幕不同亮度分布使用时间等等，可以帮助判断是什么模块／应用耗电严重，以及耗电的具体原因。GSam还有更多的功能，用起来也不太复杂，自己摸索一下就行。</p>
-
-<p>找到罪魁祸首后，最简单处理手段就是卸载它。但如果这个应用非装不可没有替代品，怎么办？Kill不是办法，若应用因后台服务而耗电，后台服务kill掉也能自动重启的。每次用完都要去kill用起来也不方便。这时 <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Greenify</a> 就派上用场了，当你将一个应用加入greenify列表中，它能够在你不使用这个应用时将它进入冬眠状态，但又不影响其正常使用。除了用来对付耗电应用，对付耗内存应用也不错，当应用冬眠时，也不会占用内存(RAM)。至于它的工作原理，作者没有透露过，我还没有见到有解释。Greenify只能用于Android 3.1+，需要root。Android手机要玩好，root基本上是不可少的。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2013/03/10/which-app-is-draining-your-android-bettery/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/6/">&larr; Older</a>
@@ -411,6 +436,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
@@ -424,10 +453,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a>
       </li>
     
   </ul>
@@ -454,6 +479,7 @@
 <a style="font-size: 70%" href="/blog/tags/geek/">Geek</a>
 <a style="font-size: 70%" href="/blog/tags/geocaching/">Geocaching</a>
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
+<a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
@@ -469,7 +495,7 @@
 <a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
-<a style="font-size: 70%" href="/blog/tags/scala/">Scala</a>
+<a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
 <a style="font-size: 134%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>

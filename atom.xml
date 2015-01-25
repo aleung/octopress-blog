@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-12T23:14:01+08:00</updated>
+  <updated>2015-01-25T13:57:59+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,258 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ 同事们关于 FP 语言的讨论]]></title>
+    <link href="http://aleung.github.io/blog/2015/01/25/fp/"/>
+    <updated>2015-01-25T12:41:14+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/01/25/fp</id>
+    <content type="html"><![CDATA[<p><em>之前在公司里一来一往的邮件讨论，被江南白衣集成一篇收录到<a href="http://calvin1978.blogcn.com/articles/haskell.html">他的博客</a>里，读下来还蛮有意思，转过来，以下为全文引用。其中的梁君就是我啦。</em></p>
+
+<h2 id="section">缘起</h2>
+
+<p><strong>达夫君</strong>： </p>
+
+<p><a href="http://segmentfault.com/a/1190000000502996">利用 GitHub 统计分析编程语言发展趋势</a></p>
+
+<h2 id="section-1">第一轮讨论</h2>
+
+<p><strong>梁君</strong>：</p>
+
+<p>增加的Java的项目里，不知道有多少是与Android相关的呢？</p>
+
+<p>Scala最热门都是在意大利城市（Milan, Rome, Florence, Naples,Turin），很奇怪，意大利软件业不发达。于是查了字典在意大利语里scala是scale(英语)的意思，应该跟编程语言无关。排除之后排首位的就是 San Francisco和San Jose，硅谷地区。</p>
+
+<p>最近几天在看 Haskell，真是非常有趣的一门语言。
+于是也在Google Trends上看一下，搜索Haskell最热的城市是 Gothenburg，第二是Utrecht (因为乌特勒支大学？)。</p>
+
+<p>2014年热度，按国家排序，Haskell最热也是China! 考虑到中国已经屏蔽了Google，这个结果令人吃惊。在国内Scala, Haskell也不是那么热门吧？程序员人口基数大？</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>Haskell应该是所有程序语言里面被神化的最厉害的吧。有种说法，Haskell可以让你变成一个更好的程序员，即便你不用它，好像还有本书名就是这个。感觉看几本Haskell书就能变成高手似的，快变成宗教了都。。。。</p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>Haskell应该是一种研究型/教学型语言吧。</p>
+
+<p>据说是纯粹的FP，我现在看它是想试试强迫一下自己使用FP的思维模式。</p>
+
+<p>那篇 <a href="http://raganwald.com/2014/12/20/why-why-functional-programming-matters-matters.html">WhyWhyFP</a> 不错。 里面，看到一些话（虽然不算是那篇文字的主题）：</p>
+
+<blockquote>
+  <p>The key is the word better. It is not the same as the phrase more powerful.
+it is possible to make a language “better” by removing features that are considered harmful, if by doing so it makes programs in the language better programs.</p>
+</blockquote>
+
+<p>关于 better 与 powerful 的思考，不是功能越多就越好。用在我们的产品上也是一样啊。</p>
+
+<h2 id="haskell">哥德堡的Haskell教授</h2>
+
+<p><strong>赵君</strong>：</p>
+
+<p>Gothenburg研究Haskell的那个人好像是Richard君的教授。感兴趣的可以问问Richard的感受。</p>
+
+<p><strong>范君</strong>：</p>
+
+<p>Richard说的:</p>
+
+<blockquote>
+  <p>Mr Hughes is a very smart guy. And his homepage hasn’t changed since I had him as a professor : http://www.cse.chalmers.se/~rjmh/ </p>
+</blockquote>
+
+<p>国外大学很多都是用Haskell，大老板之前去大英帝国读研也是用它。</p>
+
+<h2 id="fp">FP做题大赛</h2>
+
+<p><strong>韶君</strong>：</p>
+
+<p>我好奇看一下，“证明即程序、命题为类型”，这就是一门数学领域的领域语言，难怪学院派对它宠爱有加，一边证明一边编程，逼格高啊</p>
+
+<p>有个网站号称趣味学Haskell: <a href="http://learnyouahaskell-zh-tw.csie.org/">HASKELL 趣學指南</a> <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p>Step by step 学了一下Haskell，居然停不下来，无论写还是读，都像在玩puzzle game，都想找回以前的数学课本来复习一下。我想不用也能让你成为更好的程序员此话不假，就是让你恶补一下已经还给老师的数学概念。</p>
+
+<p>给个零零漆的经典应用题大家思考一下：有一个农场，鸡的数目是鸭的四倍，但是鸭又比猪少九只，鸭和猪的数目是六十七只，请问农场所有动物的脚加起来共多少只？</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>感觉这跟你的学习方式关系更大，跟语言关系不大的。你也可以用Scala去做SICP的习题，同样有这种感觉。</p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>不挑起具体语言之争。韶君的例子应该是说明FP给人带来耳目一新的感觉。</p>
+
+<p>另外，我感觉那本书 (Learn You a Haskell) 用来做FP入门真的很好，之前看过一些Scala的书都没有那么清晰的理解。</p>
+
+<p>顺便做做那道题目：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="haskell"><span class="line"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">head</span> <span class="p">[</span><span class="n">c</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">p</span><span class="o">*</span><span class="mi">4</span> <span class="o">|</span> <span class="n">d</span><span class="ow">&lt;-</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">],</span> <span class="kr">let</span> <span class="n">c</span><span class="ow">=</span><span class="n">d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="kr">let</span> <span class="n">p</span><span class="ow">=</span><span class="n">d</span><span class="o">+</span><span class="mi">9</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="n">p</span><span class="o">==</span><span class="mi">67</span><span class="p">]</span>
+</span><span class="line"><span class="mi">442</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>韶君</strong>：</p>
+
+<p>我原来写的是</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="haskell"><span class="line"><span class="nf">head</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="mi">4</span><span class="o">|</span><span class="n">a</span> <span class="ow">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">..</span><span class="p">],</span> <span class="n">b</span> <span class="ow">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">..</span><span class="p">],</span> <span class="n">c</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">..</span><span class="p">],</span> <span class="n">a</span><span class="ow">=</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="ow">=</span><span class="n">c</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="ow">=</span><span class="mi">67</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>结果不会结束，除非数组加上限，有空找你理解一下。</p>
+
+<p>确实是FP带来的感觉，相信Scala也可以带来这个感觉，只不过如果我用Scala就不自觉地当Java来做了。</p>
+
+<p><strong>达夫君</strong>：</p>
+
+<p>我原来也是将Scala当Java来写。但是当你将Java的语法忘了差不多了，Scala就入门了：）</p>
+
+<p>其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
+看别人的代码多了，也就习惯了。</p>
+
+<p><em>达夫君也写了一段 Scala 代码，好多行，省略</em></p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>Scala应该增加一种纯FP模式，当打开这个选项的时候，任何不符合FP的写法都报错（或者warning）。</p>
+
+<p><strong>米君</strong>：</p>
+
+<p>沒電腦，裸寫一段 Python，不知道對不對：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="err">‎</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span> <span class="o">==</span> <span class="mi">67</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">67</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>看起來還是 Haskell 的最有數學味。</p>
+
+<p>邊打邊爐邊研究，或者還可以這樣（不知道對不對，大意如此）：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">print</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">67</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span> <span class="o">==</span> <span class="mi">67</span><span class="err">‎</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>據說這樣有 lazy evaluation，map 和 filter 不知道有沒有。有明白人指點一下嗎？</p>
+
+<p><strong>韶君</strong>：</p>
+
+<p>FP的思路就是“是什么”，指令编程的思路是“做什么”，从这个角度看
+<code>head [c*2+d*2+p*4 | d&lt;-[0..], let c=d*4, let p=d+9, d+p==67]</code> 这个最优雅了，基本上把题目复述一遍而已</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>米君，你已经线下把三元方程转成一元了，这个是作弊吧，不算。</p>
+
+<p>Haskell的lazy evaluation在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
+
+<p>我发一个Clojure的，也符合数据的解方程思路。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="clojure"><span class="line"><span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">p</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">67</span><span class="p">)</span>
+</span><span class="line">             <span class="ss">:let</span> <span class="p">[</span><span class="nv">d</span> <span class="p">(</span><span class="nb">- </span><span class="mi">67</span> <span class="nv">p</span><span class="p">)</span> <span class="nv">c</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">d</span><span class="p">)]</span>
+</span><span class="line">             <span class="ss">:when</span> <span class="p">(</span><span class="nb">= </span><span class="nv">d</span> <span class="p">(</span><span class="nb">- </span><span class="nv">p</span> <span class="mi">9</span><span class="p">))]</span>
+</span><span class="line">         <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">p</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">d</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="mi">2</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>梁君</strong>：</p>
+
+<p>这个我忍不住要说说了，上限没有在原题中给出，需要推理才能得到的。Haskell的程序里是没有设上限的：<code>a &lt;-[1..], b &lt;-[1..], c &lt;- [1..]</code>。
+你们写的其他程序都是有上限的：<code>p (range 1 67)</code>，<code>x in range(0, 67)</code>，<code>(1 to 67)</code>。</p>
+
+<p>用这个来说Haskell会搞出无限循环的bug是不是有点冤枉了？</p>
+
+<p>p.s. FP的理论在那里，现代的语言都或多或少吸取进去了，只是用什么语法形式的问题，纯粹一些还是要跟原来的特性做妥协，大家也都相互借鉴。除了Java最不思上进。</p>
+
+<p>看上去Clojure的语法最像Lisp。</p>
+
+<p><strong>米君</strong>：</p>
+
+<p>不服上訴。哈哈。</p>
+
+<p>這樣呢？算不算真三元？（已經盡力了。除非改成一元，否則range 好像是繞不過的坎，如果改成無限列表也是一樣會死循環。）</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">print</span> <span class="nb">iter</span><span class="p">(</span> <span class="n">c</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="o">*</span><span class="mi">4</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">67</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">67</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">67</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="o">*</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">d</span> <span class="o">==</span> <span class="n">p</span><span class="o">-</span><span class="mi">9</span> <span class="ow">and</span> <span class="n">d</span><span class="o">+</span><span class="n">p</span> <span class="o">==</span> <span class="mi">67</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Clojure的版本和Java看上去很像啊。唯一不同大概就是 lazy evaluation 吧。
+另外，雖然定義了三個變量，但其實只有一個是真正的“變”量，所以還是一元。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="k">for</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">p</span> <span class="o">&lt;=</span><span class="mi">67</span><span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">67</span> <span class="o">-</span> <span class="n">p</span><span class="o">;</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="mi">4</span><span class="o">;</span>
+</span><span class="line">  <span class="k">if</span> <span class="o">(</span> <span class="n">d</span> <span class="o">==</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">)</span>
+</span><span class="line">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">c</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="o">*</span><span class="mi">4</span> <span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>雄君</strong>：</p>
+
+<p>其实完全不是那么一回事，Scala和Clojure里面的for不是循环的意思，达夫之前解释过。这是Java程序员转FP的第一重障碍。另外，Clojure这段代码绝对没有lazy evaluation，如果需要Lazy，Clojure必须要明确指定使用Lazy seq。</p>
+
+<p>Python和Java的表达能力不可能赶上Lisp的，超过Lisp表达能力的语言还没有发明出来。</p>
+
+<h2 id="section-2">最后一轮讨论</h2>
+
+<p><strong>雄君</strong>：</p>
+
+<p>Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。</p>
+
+<p>Haskell是lazy evaluation by default的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
+
+<p>Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？</p>
+
+<p>这语言真的是只能看的。</p>
+
+<p><strong>韶君</strong>：</p>
+
+<p>Haskell我觉得商业上想取得成功确实不容易，但我不觉得作者想这样做，说商用，有哪种语言比Java更成功呢，指令语言也没那么容易出错，因为指令语言只有想不到，没有做不到，想取得商业成功就意味着妥协，从这个角度，我更看好Scala。</p>
+
+<p><strong>达夫君</strong>：</p>
+
+<p>估计等大家要看Java8的时候就需要考虑是升级JDK到8呢还是换Scala了。</p>
+
+<p><strong>梁君</strong>：</p>
+
+<p>Haskell 就是一门教学/研究型语言，开个学术会议，几个老家伙聚在一起，说不如我们设计个语言来显示一下FP多牛B吧。商业成功不是它设计的初衷 (后来其他人怎么想是另外一回事)</p>
+
+<blockquote>
+  <p>At the conference on Functional Programming Languages and Computer Architecture (FPCA ‘87) in Portland, Oregon, a meeting was held during which participants formed a strong consensus that a committee should be formed to define an open standard for such languages. The committee’s purpose was to consolidate the existing functional languages into a common one that would serve as a basis for future research in functional-language design.</p>
+</blockquote>
+
+<p>才发现BASIC不是我唯一的入门语言，我刚学电脑的时候还看过Logo语言，这么说我也是一开始就接触FP的啦。</p>
+
+<p>对Java程序员和已经大量投资于Java的软件企业来说，应该是Scala最有价值。</p>
+
+<p><strong>雄君</strong>：</p>
+
+<p>我是前几年被人忽悠后花了好几个月学习Haskell，还想用它做项目，现在已经弃坑了。</p>
+
+<h2 id="section-3">诗一首</h2>
+
+<blockquote><p>孤独时</p><p>孤独时我不喜欢使用语言。<br />一头熊和一只鹦鹉坐在<br />跷跷板的两头<br />跷跷板朝一头翘起。很多东西<br />没办法称量，我是熊你们是鹦鹉。<br />我是这头熊我不使用<br />你们的语言。</p><footer><strong>余怒，2003.7.20</strong></footer></blockquote>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>英文原版为 <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great Good!</a>。有电子书，简体中文纸板也出版了。<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Haskell]]></title>
@@ -1258,44 +1510,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 <p>在手机平台这个层面的用户体验上，要作出革新，非小打小闹可以做到。我虽然不做用户交互端的开发，但也有关注移动应用的UX的发展。真正意义的智能手机应用自iPhone革命性发布开始，并没有好多年的时间，这些年来，UX design在迅猛发展。iOS以高度拟物仿真的特点一直独领风骚，但走入了过分繁杂的极端；Android一路在摸索，历年Google IO都带出新的UI/UX design pattern，每次都推翻之前的方案，但可以看到一路在改善，到了Android 4.x，已经有一整套成熟的设计规范；微软的Metro UI可以称得上是一个大的革新。近年的设计趋势都是简约化，去年底苹果工业设计师的更替后，苹果的设计理念也许也会往这个方向走。在我看来，大气的设计是定义出一整套设计语汇，自成体系，并且背后要有设计哲学所支撑（Metro的定位是一种设计语言）。读完iOS的HIG，Android SDK文档里的设计指南，Windows phone的设计指南，就有所体会。另外顺便说说Android应用，普遍比较丑的原因不在于Android自己的设计理念，而是应用开发者没有跟随这个理念，不少依照Android 4.x的设计风格的应用都很漂亮很好用的。</p>
 
 <p>最后总结我看到的锤子：老罗崇尚苹果的整套理念，另外也看到了一些可以改进的地方（例如他说的iPhone设计上的妥协），于是要将它搬到Android平台上来，按照自己的理解重现实现一遍。这将是一个很有趣的尝试，期望能为国内手机应用UX僵化老土的设计带来新鲜的风气。只是别把自己过分拔高就好了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[笔记本充满电后，是否应该拔掉电源]]></title>
-    <link href="http://aleung.github.io/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged/"/>
-    <updated>2013-03-30T00:34:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/03/30/should-i-keep-plugged-in-after-my-notebook-is-fully-charged</id>
-    <content type="html"><![CDATA[<p>在豆瓣小组里，有人问笔记本充满电后，是否应该拔掉电源用电池。我的回答是“否”，在有电源时应该插着电源，以延长电池寿命。我的回答遭到了某些疑似文科生的质疑（抱歉我对文科生的不敬）。现在很多中文网站、论坛的东西都是东抄西抄，以讹传讹。为此我科普了一把。</p>
-
-<hr />
-
-<p>看看Apple的网站吧： </p>
-
-<ul>
-  <li>http://www.apple.com/batteries/ </li>
-  <li>http://www.apple.com/batteries/notebooks.html </li>
-</ul>
-
-<blockquote>
-  <p>A charge cycle means using all of the battery’s power, but that doesn’t necessarily mean a single charge. For instance, you could listen to your iPod for a few hours one day, using half its power, and then recharge it fully. If you did the same thing the next day, it would count as one charge cycle, not two, so you may take several days to complete a cycle. </p>
-</blockquote>
-
-<blockquote>
-  <p>Lithium-ion polymer batteries need to be used for maximum performance. If you don’t use your device often, be sure to complete a charge cycle at least once a month. </p>
-</blockquote>
-
-<p>电池的放电循环是累计的（原文里有图），不是说要一次性用光所有的电。 </p>
-
-<p>如果你一个月用电池用不够一个放电循环，那就需要专门去把电池的电耗掉再充满。但如果你平常不时需要移动使用电脑的话，一般一个月都能用够一个电池放电循环，就没有必要专门去耗用电池的电了。 </p>
-
-<p>锂电池的正常使用寿命大概在500～1000次放电循环左右。<a href="http://support.apple.com/kb/ht1519">这里</a>有Apple官方声称的电池寿命数值，新款MBP，MBA都是1000次。 </p>
-
-<p>而且有说法是浅放电比起深放电有利于延长电池寿命[<a href="http://batteryuniversity.com/learn/article/how_to_prolong_lithium_based_batteries">来源</a>] 。特别是，过放电会严重损害电池。电脑有保护，不会让电池过放，电量低到一定程度就自动关机，但是若关机后依然长期不充电，电池的自放电也会最终使电池过放电。 </p>
-
-<p>我的MBP用了接近两年，按照有电源时就插电源的用法，现在电池也已经用了131个周期了。要知道，电脑休眠也是耗电的。 </p>
-
-<p>还有<a href="http://forums.macrumors.com/showpost.php?p=9875442&amp;postcount=23">这里</a>也整理了很多与Apple Notebook电池相关的知识。</p>
 ]]></content>
   </entry>
   
