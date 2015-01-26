@@ -110,7 +110,19 @@ head [a*2+b*2+c*4|a <-[1,2..], b <-[1,2..], c <- [1,2..], a=4*b, b=c-9, b+c=67]
 其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
 看别人的代码多了，也就习惯了。
 
-_达夫君也写了一段 Scala 代码，好多行，省略_
+用 Scala 解那道题：
+
+``` scala
+val d = (1 to 67) toStream
+val feet = for {
+  d1 <- d
+  c1 = d1 * 4
+  p1 = d1 +9 if (d1 + p1 == 67)
+} yield {
+  (c1+d1) * 2 + p1 * 4
+}
+println(feet.take(1).force)
+```
 
 **梁君**：
 
