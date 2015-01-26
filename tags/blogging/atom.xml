@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Blogging | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/blogging/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-25T14:04:23+08:00</updated>
+  <updated>2015-01-27T00:11:38+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,115 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll]]></title>
+    <link href="http://aleung.github.io/blog/2015/01/26/jekyll/"/>
+    <updated>2015-01-26T21:29:40+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/01/26/jekyll</id>
+    <content type="html"><![CDATA[<h2 id="jekyll-">用 Jekyll 作为内部技术文档库</h2>
+
+<p><img class="right" src="/attachments/2015/1/ecebook.png"></p>
+
+<p>去年在公司的产品开发团队中推行了使用 <a href="http://jekyllrb.com/">Jekyll</a> 静态网站生成工具来写内部技术文档，大半年下来，效果还不错。</p>
+
+<p>内部技术资料的共享和维护以前一直是个问题。开始用 Office Word 正正规规的写设计文档，维护成本太高了，往往是代码已经翻天覆地变化，文档里都没有反映出来，大家不愿意更新。而且查找起来也不方便。后来推行敏捷方法，不想让文档工作那么 heavy 了，于是用 wiki 来记录。Wiki 的问题是信息非常碎片化，大家很随意的添加新页面，整个 wiki 就像一个草稿本，写得很没有系统。网状的超链接导航令读者很迷茫，不知道需要的信息入口在哪儿，有些隐藏得很深的页面没有几个人知道它们的存在。Wiki 的在线编辑体验也不是那么好。</p>
+
+<p>Jekyll 是个静态网站生成工具，采用 <a href="http://zh.m.wikipedia.org/wiki/Markdown">markdown</a> 语法来写内容，根据模板生成 HTML 页面，发布到一个 web 服务器上，就可以用浏览器在线查看内容。Jekyll 通常用来做  blog 系统，但它用来做有组织的内容发布系统也是完全胜任的。我基本上就是仿照 Jekyll <a href="http://jekyllrb.com/docs/home/">官方文档</a> 的风格和结构来组织我们产品的内部技术文档库。</p>
+
+<p>使用 Jekyll 优点首先是编写方便，markdown 是个轻量的标记语言，上手简单，语法易记，而且有不少编辑工具支持。即使没有渲染成 HTML，也是直接可以阅读的，比起奇奇怪怪还各自不同的 wiki 语法好写多了。</p>
+
+<p>在模板做得好以及安装合适的插件后，生成的文档显示效果相当漂亮，格式效果也很丰富。而且，我们使用了 <a href="https://github.com/aleung/jekyll-plantuml">plantuml</a> 插件，可以直接用文字的方式<strong>写</strong>UML<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，比起以前用其他工具画图，截图，再嵌入文档这种方式方便多了。</p>
+
+<p>技术文档库的原始文件是文本格式，用 git 来做版本管理，不用担心大家同时编辑保存时会相互覆盖的问题，修改历史也很清晰。大家都是程序员，本来代码就是用 git 来管理的，文档也用 git 管理自然是很顺手的事情。使用 <a href="https://github.com/aleung/jekyll-post-revision">jekyll-post-revision</a> 这个插件，能够在生成的页面上显示修改历史记录。</p>
+
+<p>通过 <a href="https://github.com/slashdotdash/jekyll-lunr-js-search">jekyll-lunr-js-search</a> 这个插件，能为站点提供全文搜索的能力，这也是相当方便的功能。</p>
+
+<h2 id="windows--jekyll">在 Windows 上安装 Jekyll</h2>
+
+<p>Jekyll 是用 Ruby 开发的，在 Linux 和 Mac OS X 上安装使用都很简单，在系统中有 Ruby 环境的前提下（Mac 是自带的，Linux 的各种发行版都会有安装包），照着官网上的<a href="http://jekyllrb.com/docs/quickstart/">介绍</a>，几个命令就搞定了。但是，在 Windows 下就不是那么简单了（顺便再黑一下 Windows，不使用 Microsoft 技术的开发者都应该离开它）。</p>
+
+<p>在 Windows 上装过几次 Jekyll，可以写点教程减少大家摸索的时间。大致参考这篇 <a href="http://jekyll-windows.juthilo.com/">Run Jekyll on Windows</a>。</p>
+
+<h3 id="ruby">安装 Ruby</h3>
+
+<p>首先需要安装 Ruby 环境。从 <a href="http://rubyinstaller.org/downloads">http://rubyinstaller.org/downloads</a> 下载 Ruby 2.0 和 DevKit，安装 Ruby，然后将 DevKit 解压到 <code>C:/RubyDevKit</code>，在命令行运行下面指令完成安装。</p>
+
+<p><code>bat
+cd C:\RubyDevKit 
+ruby dk.rb init 
+ruby dk.rb install
+</code></p>
+
+<h3 id="jekyll--gem">安装 Jekyll 相关的 gem</h3>
+
+<p>Gem 是 Ruby 的包管理工具。在命令行执行<code>gem install</code>可从互联网的仓库直接下载和安装需要的包。如果需要代理，需要先设置环境变量<code>http_proxy</code>，如不需要则忽略第一行。其中，<code>jekyll</code>这个 gem 是必须安装的，其他的视乎环境、配置和使用的插件，可能需要装，可能不需要装。</p>
+
+<p>``` bat
+set http_proxy=http://my-proxy:8080</p>
+
+<p>gem install jekyll</p>
+
+<p>gem install kramdown
+gem install pygments
+gem install nokogiri
+gem install coderay
+gem install wdm
+gem install json
+```</p>
+
+<p>如果在安装过程中出现 SSL 错误，从<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">这里</a>可以找到解决方法。</p>
+
+<h3 id="jekyll">使用 Jekyll</h3>
+
+<p>Jekyll 的相关操作都是执行<code>jekyll</code>命令进行。后面的基本上就是看<a href="http://jekyllrb.com/docs/quickstart/">官方文档</a>慢慢折腾了。</p>
+
+<h2 id="jekyllexe">制作 jekyll.exe</h2>
+
+<p>上面的步骤还是有点繁琐。我们公司里的都是 Java 程序员，在电脑里装个 Ruby 环境也没有其他用处。为了推广使用，简化大家的操作，做一个 portable 的 Jekyll 可执行程序会更好。</p>
+
+<p>制作的步骤基本上参考这篇 <a href="http://www.nickw.it/jekyll-dot-exe/">Building Jekyll.exe for Windows</a>。</p>
+
+<p>首先要安装 OCRA。可能还需要安装 psych，bigdecimal 这些 gem。</p>
+
+<p><code>bat
+gem install ocra
+</code></p>
+
+<p>解开 jekyll 到一个临时目录：</p>
+
+<p><code>bat
+gem unpack jekyll
+</code></p>
+
+<p>修改<code>bin/jekyll</code>，在开头增加几个依赖声明：</p>
+
+<p><code>ruby
+require 'nokogiri'
+require 'jekyll-watch'
+require 'wdm'
+</code></p>
+
+<p>生成 exe 文件：</p>
+
+<p><code>bat
+ocra --add-all-core --gem-all bin/jekyll lib/jekyll/mime.types lib/site_template/**/* lib/site_template/*
+</code></p>
+
+<p>做出来的 jekyll.exe 需要测试一下，看看各种命令是否都能正常。视乎配置和使用插件的不同，可能需要增加更多的依赖声明。以上只是我的环境的例子，不一定适用于所有场景。</p>
+
+<p>最后，我知道大家都还是懒得衣来伸手饭来张口的，就提供一个编译好的 <a href="https://github.com/f5f6/f5f6.github.io/raw/master/_bin/jekyll.exe">jekyll.exe</a> 下载，支持 kramdown 和 coderay。但还是那句话：不一定符合你的环境。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>参考 <a href="/blog/2014/08/23/plantuml/">PlantUML 简介</a>, <a href="/blog/2014/01/20/text-to-uml-diagram/">Text to UML Diagram</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[migrate my blog to github]]></title>
@@ -223,7 +332,26 @@ public class HelloWorld {
 
 <h3 id="gist">嵌入Gist</h3>
 
-<p>{% gist 2934603 %}</p>
+<p><div><script src='https://gist.github.com/2934603.js'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
+    default-autowire=&quot;byType&quot;&gt;
+
+    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
+
+    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
+    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
+    
+    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
+        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre></noscript></div>
+</p>
 
 <p>方法是写一个用<code>{</code> <code>%</code>包围的gist标签，后面带上id。</p>
 
@@ -271,25 +399,6 @@ public class HelloWorld {
 <p>PS. 这个blog的页面使用了一些HTML5标签，因此需要使用新的浏览器才能正常浏览，例如使用 Firefox 3, Chrome。如果你看到的页面不是上图的样子，说明你的浏览器 out date 啦。</p>
 
 <p>PPS. 我会一如既往的使用flickr来存放照片，如果你看不到照片，或者有一天你连这个blog的页面都看不到，那说明你上的只是局域网，根本不是Internet。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[基本功能完备，可以公开了]]></title>
-    <link href="http://aleung.github.io/blog/2010/02/14/Basic-function-complete-can-open/"/>
-    <updated>2010-02-14T18:16:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2010/02/14/Basic-function-complete-can-open</id>
-    <content type="html"><![CDATA[<p>一个blog所需要的功能的最小集合已经完备了，可以投入使用，再边用边改进了：</p>
-
-<ul>
-  <li>发文章</li>
-  <li>文章分页显示</li>
-  <li>Tag</li>
-  <li>评论</li>
-  <li>用户认证通过Google account进行</li>
-</ul>
-
-<p><a href="https://appengine.google.com/">Google Application Engine</a> 提供了强大的平台，<a href="http://www.playframework.org">Play Framework</a>使得Java web开发变得很简便。开发这个应用用了几天时间，不算快，但作为第一次，学习、查资料花的时间不少，上手之后的工作效率将会提高很多。另外，对我来说，HTML+CSS才是最困难的部分，基本没有做前端的经验。现在的界面是从sample里面copy出来改的，每改一点就要看看效果，边试边改。</p>
 ]]></content>
   </entry>
   

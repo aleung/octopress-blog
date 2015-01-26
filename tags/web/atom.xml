@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Web | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/web/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-25T14:04:23+08:00</updated>
+  <updated>2015-01-27T00:11:38+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -43,7 +43,30 @@
 <p>Create an API on Google Application Engine: <a href="http://api-playground.appspot.com/time">time API</a> , it simply return the current time since epoch.</p>
 
 <p>Write the WADL for the API.
-{% gist 3214300 %}</p>
+<div><script src='https://gist.github.com/3214300.js'></script>
+<noscript><pre><code>&lt;application xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+             xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+             xmlns:apigee=&quot;http://api.apigee.com/wadl/2010/07/&quot;
+             xmlns=&quot;http://wadl.dev.java.net/2009/02&quot;
+             xsi:schemaLocation=&quot;http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd&quot;&gt;
+
+    &lt;resources base=&quot;http://api-playground.appspot.com&quot;&gt;
+
+        &lt;resource path=&quot;/time&quot;&gt;
+            &lt;method id=&quot;getTime&quot; name=&quot;GET&quot; apigee:displayName=&quot;Get time since epoch&quot;&gt;
+                &lt;apigee:tags&gt;
+                    &lt;apigee:tag primary=&quot;true&quot;&gt;Time&lt;/apigee:tag&gt;
+                &lt;/apigee:tags&gt;            
+                &lt;apigee:authentication required=&quot;false&quot;/&gt;
+                &lt;apigee:example url=&quot;/time&quot;/&gt;
+            &lt;/method&gt;
+        &lt;/resource&gt;
+
+    &lt;/resources&gt;
+
+&lt;/application&gt;
+</code></pre></noscript></div>
+</p>
 
 <p>Create a new console on <a href="https://apigee.com/togo">Apigee Console To-Go</a>, upload the WADL file for my playground API.</p>
 

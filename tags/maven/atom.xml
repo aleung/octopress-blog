@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Maven | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/maven/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-25T14:04:23+08:00</updated>
+  <updated>2015-01-27T00:11:38+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -28,7 +28,9 @@
 
 <p>I wrote a Ruby script to do that. It scans all recent deployed artifacts (they have time stamp in file name because of the new configuration) and try to delete the same version non-unique snapshot (-SNAPSHOT) file if any. It uses Artifactory’s REST API. This script need to be run periodically till all artifacts have been rebuilt and deployed to repository. </p>
 
-<p>{%gist https://gist.github.com/aleung/5260512 %}</p>
+<p><div><script src='https://gist.github.com/5260512.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
@@ -43,7 +45,9 @@
 
 <p>I made a Ruby script to do the clean up job automatically. It searches artifacts which weren’t downloaded in specific days and deletes them. It can be invoked in a CI job to run periodically. </p>
 
-<p>{% gist https://gist.github.com/aleung/5203736 %}</p>
+<p><div><script src='https://gist.github.com/5203736.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
 
 <p>The script can also be used to clean unused release (non-SNAPSHOT) artifacts. However a good practice is to keep releases forever. </p>
 ]]></content>
@@ -62,7 +66,9 @@
 
 <p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
 
-<p>{%gist https://gist.github.com/aleung/5194777 %}</p>
+<p><div><script src='https://gist.github.com/5194777.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
 
 <p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
 

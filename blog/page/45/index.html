@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="现在的linux安装盘通常都有几张，要找一个rpm包在哪张盘就很麻烦了，要一张张放进光驱里面看。在sourceforge.net上面找到whichcd这个小工具，能够告诉你某个rpm在第几张光盘，也能告诉你当需要某个文件/命令时应该安装哪个rpm。 &hellip;">
+  <meta name="description" content="ozi提供了一个地图合并的工具ozimapmerge, 能够将不同区域、不同比例、不同投影方式的多个地图合并生成新的地图。使用很简单，输入可以是所有ozi支持的地图，带有map文件就可以了；选取一定的区域，指定生成地图的线数，就能输出合并后的地图，格式为ozi专用的ozfx3， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/12/07/ozi-/">Ozi提供了地图拼合的工具</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-12-07T09:03:00+08:00" pubdate data-updated="true">2004-12-07</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ozi提供了一个地图合并的工具ozimapmerge, 能够将不同区域、不同比例、不同投影方式的多个地图合并生成新的地图。使用很简单，输入可以是所有ozi支持的地图，带有map文件就可以了；选取一定的区域，指定生成地图的线数，就能输出合并后的地图，格式为ozi专用的ozfx3，并且会生成配套的map文件。如果地图重叠，生成图会选择最精细那幅。</p>
+
+<p>根据我现在的摸索，这个工具有两个用途：</p>
+
+<ul>
+  <li>我拥有低精度的大区域地图和高精度的局部地图，利用ozimapmerge，可以把高精度地图镶嵌到低精度地图中。 </li>
+  <li>多幅相邻的地图拼合成一张大图。</li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/12/07/ozi-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -354,69 +412,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/11/02/Encounter-virus-Trojan/">遭遇病毒(木马)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-11-02T22:45:00+08:00" pubdate data-updated="true">2004-11-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>操作系统刚重装才一天，就出现了莫名其妙的问题。svchost进程就会把CPU全占满，使得系统几乎没有响应。用procexp（Process Explorer）来查看进程，这个svchost.exe确实是系统自带的，是系统服务的宿主进程。</p>
-
-<p>Reboot机器，重试几次，发现不连上网的时候一切正常，一旦网络连上了，CPU就被那个svchost占满，如果把那个进程杀死，系统就不能正常工作。当时刚刚安装了Norton AntiVirus，它的auto update服务会在网络连上的时候自动开始，所以我怀疑是NAV update服务引起的。把NAV卸载了，问题依然存在。因为那个svchost是RPC服务的，我又以为是操作系统的问题，什么文件的版本乱了，就用安装盘采用重装式修复，可是还是不正常。</p>
-
-<p>毫无头绪之际，再度用procexp监视进程树。这次发现一些异常了：svchost启动了一些tftp进程。这些tftp在做什么？从219.137.217.181下载文件，下载的文件名为atiphexx.exe、winupdatez.exe等，还有不少没有记下来。很奇怪啊，是否系统中了木马？检查一下tftp，也是系统自己的东西，没有异常，那是谁启动这些进程的呢？</p>
-
-<p>安装spybot，检查系统，没有查出木马程序。但是，过了一会，注册表监视器报警了，有进程要往注册表的系统启动run项目里写入新内容，居然就是winupdatez.exe。这不用说都是木马了。在winnt\system32目录下找到这个winupdatez.exe，删除。再检查注册表，把相关项目都删除。重启系统，正常了。</p>
-
-<p>开始时太大意了，居然没有第一时间检查注册表的run里面有没有异常，白白浪费了两晚时间。不过，当初进程树里面看到的都是系统的进程，没发现这个winupdatez进程，所以才没有怀疑是病毒/木马。是否还有其他名称的木马存在呢？我心里还是没有底。不过系统现在运行正常了。新装系统，真的是要把所有防护措施都做好才能上网:(</p>
-
-<p>这次用到工具软件Process Explorer很不错，能够看到很多Task Manager没有的进程信息，是<a href="http://www.sysinternals.com/"> www.sysinternals.com</a> 的出品。Sysinternals还有好几个不错的小软件，都是监视系统运行情况的，包括tcpview、filemon、regmon等。</p>
-
-<p>系统除了安装防火墙之外，还应该装上一个可以监视注册表改动的工具。现在修改注册表的网页太多了。我用的是Spybot，兼有木马查找和注册表防护的功能，我喜欢它能够从网上update规则。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/11/02/Encounter-virus-Trojan/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/46/">&larr; Older</a>
@@ -438,6 +433,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
@@ -453,10 +452,6 @@
         <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -467,7 +462,7 @@
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-25T13:57:59+08:00</updated>
+  <updated>2015-01-27T00:11:38+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,128 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll]]></title>
+    <link href="http://aleung.github.io/blog/2015/01/26/jekyll/"/>
+    <updated>2015-01-26T21:29:40+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/01/26/jekyll</id>
+    <content type="html"><![CDATA[<h2 id="jekyll-">用 Jekyll 作为内部技术文档库</h2>
+
+<p><img class="right" src="http://aleung.github.io/blog/attachments/2015/1/ecebook.png" /></p>
+
+<p>去年在公司的产品开发团队中推行了使用 <a href="http://jekyllrb.com/">Jekyll</a> 静态网站生成工具来写内部技术文档，大半年下来，效果还不错。</p>
+
+<p>内部技术资料的共享和维护以前一直是个问题。开始用 Office Word 正正规规的写设计文档，维护成本太高了，往往是代码已经翻天覆地变化，文档里都没有反映出来，大家不愿意更新。而且查找起来也不方便。后来推行敏捷方法，不想让文档工作那么 heavy 了，于是用 wiki 来记录。Wiki 的问题是信息非常碎片化，大家很随意的添加新页面，整个 wiki 就像一个草稿本，写得很没有系统。网状的超链接导航令读者很迷茫，不知道需要的信息入口在哪儿，有些隐藏得很深的页面没有几个人知道它们的存在。Wiki 的在线编辑体验也不是那么好。</p>
+
+<p>Jekyll 是个静态网站生成工具，采用 <a href="http://zh.m.wikipedia.org/wiki/Markdown">markdown</a> 语法来写内容，根据模板生成 HTML 页面，发布到一个 web 服务器上，就可以用浏览器在线查看内容。Jekyll 通常用来做  blog 系统，但它用来做有组织的内容发布系统也是完全胜任的。我基本上就是仿照 Jekyll <a href="http://jekyllrb.com/docs/home/">官方文档</a> 的风格和结构来组织我们产品的内部技术文档库。</p>
+
+<p>使用 Jekyll 优点首先是编写方便，markdown 是个轻量的标记语言，上手简单，语法易记，而且有不少编辑工具支持。即使没有渲染成 HTML，也是直接可以阅读的，比起奇奇怪怪还各自不同的 wiki 语法好写多了。</p>
+
+<p>在模板做得好以及安装合适的插件后，生成的文档显示效果相当漂亮，格式效果也很丰富。而且，我们使用了 <a href="https://github.com/aleung/jekyll-plantuml">plantuml</a> 插件，可以直接用文字的方式<strong>写</strong>UML<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，比起以前用其他工具画图，截图，再嵌入文档这种方式方便多了。</p>
+
+<p>技术文档库的原始文件是文本格式，用 git 来做版本管理，不用担心大家同时编辑保存时会相互覆盖的问题，修改历史也很清晰。大家都是程序员，本来代码就是用 git 来管理的，文档也用 git 管理自然是很顺手的事情。使用 <a href="https://github.com/aleung/jekyll-post-revision">jekyll-post-revision</a> 这个插件，能够在生成的页面上显示修改历史记录。</p>
+
+<p>通过 <a href="https://github.com/slashdotdash/jekyll-lunr-js-search">jekyll-lunr-js-search</a> 这个插件，能为站点提供全文搜索的能力，这也是相当方便的功能。</p>
+
+<h2 id="windows--jekyll">在 Windows 上安装 Jekyll</h2>
+
+<p>Jekyll 是用 Ruby 开发的，在 Linux 和 Mac OS X 上安装使用都很简单，在系统中有 Ruby 环境的前提下（Mac 是自带的，Linux 的各种发行版都会有安装包），照着官网上的<a href="http://jekyllrb.com/docs/quickstart/">介绍</a>，几个命令就搞定了。但是，在 Windows 下就不是那么简单了（顺便再黑一下 Windows，不使用 Microsoft 技术的开发者都应该离开它）。</p>
+
+<p>在 Windows 上装过几次 Jekyll，可以写点教程减少大家摸索的时间。大致参考这篇 <a href="http://jekyll-windows.juthilo.com/">Run Jekyll on Windows</a>。</p>
+
+<h3 id="ruby">安装 Ruby</h3>
+
+<p>首先需要安装 Ruby 环境。从 <a href="http://rubyinstaller.org/downloads">http://rubyinstaller.org/downloads</a> 下载 Ruby 2.0 和 DevKit，安装 Ruby，然后将 DevKit 解压到 <code>C:/RubyDevKit</code>，在命令行运行下面指令完成安装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line"><span class="k">cd</span> C:\RubyDevKit
+</span><span class="line">ruby dk.rb init
+</span><span class="line">ruby dk.rb install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="jekyll--gem">安装 Jekyll 相关的 gem</h3>
+
+<p>Gem 是 Ruby 的包管理工具。在命令行执行<code>gem install</code>可从互联网的仓库直接下载和安装需要的包。如果需要代理，需要先设置环境变量<code>http_proxy</code>，如不需要则忽略第一行。其中，<code>jekyll</code>这个 gem 是必须安装的，其他的视乎环境、配置和使用的插件，可能需要装，可能不需要装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line"><span class="k">set</span> <span class="nv">http_proxy</span><span class="o">=</span>http:<span class="n">//my-proxy:8080</span>
+</span><span class="line">
+</span><span class="line">gem install jekyll
+</span><span class="line">
+</span><span class="line">gem install kramdown
+</span><span class="line">gem install pygments
+</span><span class="line">gem install nokogiri
+</span><span class="line">gem install coderay
+</span><span class="line">gem install wdm
+</span><span class="line">gem install json
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果在安装过程中出现 SSL 错误，从<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">这里</a>可以找到解决方法。</p>
+
+<h3 id="jekyll">使用 Jekyll</h3>
+
+<p>Jekyll 的相关操作都是执行<code>jekyll</code>命令进行。后面的基本上就是看<a href="http://jekyllrb.com/docs/quickstart/">官方文档</a>慢慢折腾了。</p>
+
+<h2 id="jekyllexe">制作 jekyll.exe</h2>
+
+<p>上面的步骤还是有点繁琐。我们公司里的都是 Java 程序员，在电脑里装个 Ruby 环境也没有其他用处。为了推广使用，简化大家的操作，做一个 portable 的 Jekyll 可执行程序会更好。</p>
+
+<p>制作的步骤基本上参考这篇 <a href="http://www.nickw.it/jekyll-dot-exe/">Building Jekyll.exe for Windows</a>。</p>
+
+<p>首先要安装 OCRA。可能还需要安装 psych，bigdecimal 这些 gem。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">gem install ocra
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>解开 jekyll 到一个临时目录：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">gem unpack jekyll
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>修改<code>bin/jekyll</code>，在开头增加几个依赖声明：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;nokogiri&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;jekyll-watch&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;wdm&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>生成 exe 文件：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">ocra --add-all-core --gem-all bin<span class="n">/jekyll</span> lib<span class="n">/jekyll/mime.types</span> lib<span class="n">/site_template/**/*</span> lib<span class="n">/site_template/*</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>做出来的 jekyll.exe 需要测试一下，看看各种命令是否都能正常。视乎配置和使用插件的不同，可能需要增加更多的依赖声明。以上只是我的环境的例子，不一定适用于所有场景。</p>
+
+<p>最后，我知道大家都还是懒得衣来伸手饭来张口的，就提供一个编译好的 <a href="https://github.com/f5f6/f5f6.github.io/raw/master/_bin/jekyll.exe">jekyll.exe</a> 下载，支持 kramdown 和 coderay。但还是那句话：不一定符合你的环境。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>参考 <a href="http://aleung.github.io/blog/blog/2014/08/23/plantuml/">PlantUML 简介</a>, <a href="http://aleung.github.io/blog/blog/2014/01/20/text-to-uml-diagram/">Text to UML Diagram</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ 同事们关于 FP 语言的讨论]]></title>
@@ -123,7 +245,27 @@ it is possible to make a language “better” by removing features that are con
 <p>其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
 看别人的代码多了，也就习惯了。</p>
 
-<p><em>达夫君也写了一段 Scala 代码，好多行，省略</em></p>
+<p>用 Scala 解那道题：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">val</span> <span class="n">d</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">67</span><span class="o">)</span> <span class="n">toStream</span>
+</span><span class="line"><span class="k">val</span> <span class="n">feet</span> <span class="k">=</span> <span class="k">for</span> <span class="o">{</span>
+</span><span class="line">  <span class="n">d1</span> <span class="k">&lt;-</span> <span class="n">d</span>
+</span><span class="line">  <span class="n">c1</span> <span class="k">=</span> <span class="n">d1</span> <span class="o">*</span> <span class="mi">4</span>
+</span><span class="line">  <span class="n">p1</span> <span class="k">=</span> <span class="n">d1</span> <span class="o">+</span><span class="mi">9</span> <span class="k">if</span> <span class="o">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">p1</span> <span class="o">==</span> <span class="mi">67</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+</span><span class="line">  <span class="o">(</span><span class="n">c1</span><span class="o">+</span><span class="n">d1</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">p1</span> <span class="o">*</span> <span class="mi">4</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="n">feet</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">force</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>梁君</strong>：</p>
 
@@ -156,7 +298,7 @@ it is possible to make a language “better” by removing features that are con
 
 <p>米君，你已经线下把三元方程转成一元了，这个是作弊吧，不算。</p>
 
-<p>Haskell的lazy evaluation在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
+<p>Haskell的 lazy evaluation 在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
 
 <p>我发一个Clojure的，也符合数据的解方程思路。</p>
 
@@ -220,7 +362,7 @@ it is possible to make a language “better” by removing features that are con
 
 <p>Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。</p>
 
-<p>Haskell是lazy evaluation by default的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
+<p>Haskell 是 lazy evaluation by default 的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
 
 <p>Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？</p>
 
@@ -1477,39 +1619,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 <p>其实最后步姿还不错，膝盖等关节状态良好，呼吸也还可以，就是大腿抬不起，要坚持在身体上应该还可以的，就是没有战胜自己。有人跑完马拉松后总结：在你感觉已经崩溃的时候，其实至少还可以再跑已经跑过的一半的距离。如果不是出现伤痛，唯一决定性的就是自己的意志。</p>
 
 <p>回家在地图上测了路线距离，大约13.5公里，1小时30分钟，算下来pace 6’40”。同以前的成绩比慢了不少。但这是恢复训练一周半后的第一次long run，算正常，本应该先跑个一小时循序渐进的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[看老罗的锤子发布会]]></title>
-    <link href="http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os/"/>
-    <updated>2013-04-03T13:05:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/04/03/my-opinion-on-smartisan-os</id>
-    <content type="html"><![CDATA[<p>两个小时，演讲太啰嗦，时间压缩一半可能会精炼很多，乔布斯有这么多废话吗？另外就是老罗一贯的自恋。我突然想找小米首次发布会来看看，看雷布斯的表现如何。老罗已经是名嘴，雷布斯更惨不忍睹？</p>
-
-<p>从发布会的信息上看，锤子是一个做了UI / HI (Human Interface) 优化的Android系统：</p>
-
-<ol>
-  <li>更换了System UI（风格基调是iOS的）</li>
-  <li>提供以九宫格无背景为特色的Launcher（Android UI优点之一的widget无处容身了）</li>
-  <li>替换了所有应用自带的图标</li>
-  <li>提供了一些重新设计的系统自带应用，如相机、通讯录、拨号等（里面加入不少体贴用户的细节）</li>
-  <li>语音控制功能的整合（还没做好）</li>
-</ol>
-
-<p>这样看来，锤子做的事情跟很多基于Android的定制系统是一个层面的，类似的系统太多太多了：最早但死掉的中国移动OMS，各手机厂商为自己手机定制的系统（HTC SenseUI，联想乐OS，魅族Flyme），已经放弃的点心OS，很火的MIUI……。顺便说一下，MIUI为应用图标硬加的圆角矩形背景极为难看，希望被老罗炮轰一下后能改过来。</p>
-
-<p>从整体设计风格来说，锤子追随的是iOS的UI风格和人机界面设计规范，从各个UI组件的样子可以看得出来，还有交互操作的方式，也包括拟物化的设计、仿真的视觉反馈等。</p>
-
-<p>对于一些操作细节的打磨，带来更人性化的体验，是很多人对锤子称道的地方。的确是做得不错，但演示到的几乎每一个改进／做法，都能够在其他系统／第三方应用中找到已经真实应用的范本。老罗团队做得好是在于关注到需要改进的地方，将它们集中到一起。发现哪里操作细节需要改进比起作出改进更难。</p>
-
-<p>因此，看完两个小时的发布会，这个锤子系统没有带来什么耳目一新的感觉。老罗太高调了，说什么要做最好的手机系统，吹嘘的跟现实的落差太大。也许这是营销手段，反正我就不喜欢这种营销了。</p>
-
-<p>发布会最后一段，老罗说得很清楚：锤子将会是一个极其封闭的系统，因为只有封闭，才能为小白用户提供最完美、一致的用户体验。听起来很耳熟是不？这不就是苹果说的吗？但是，智能手机系统更重要的角色是一个平台，各种应用才是上面的主角。应用的图标跟系统风格不搭配，锤子给出的解决方案是给你换掉，可是进入应用后，应用的UI、操作方式呢？这才是更重要的。UX不仅仅是美工，是整个人机交互。苹果是怎么做到的？苹果制定了一套系统详尽的人机界面设计规范(HIG)，苹果有很强的控制力，它可以通过App Store发布审核制度强制要求只有符合的应用才能上架。我看不到锤子能有这样的能力去控制第三方应用，也不觉得一个团队有能力(和有必要)在系统里自带所有主要的功能而抛弃第三方应用，因此觉得锤子找的这个提供更佳用户界面的切入点恐怕走不了多远。</p>
-
-<p>在手机平台这个层面的用户体验上，要作出革新，非小打小闹可以做到。我虽然不做用户交互端的开发，但也有关注移动应用的UX的发展。真正意义的智能手机应用自iPhone革命性发布开始，并没有好多年的时间，这些年来，UX design在迅猛发展。iOS以高度拟物仿真的特点一直独领风骚，但走入了过分繁杂的极端；Android一路在摸索，历年Google IO都带出新的UI/UX design pattern，每次都推翻之前的方案，但可以看到一路在改善，到了Android 4.x，已经有一整套成熟的设计规范；微软的Metro UI可以称得上是一个大的革新。近年的设计趋势都是简约化，去年底苹果工业设计师的更替后，苹果的设计理念也许也会往这个方向走。在我看来，大气的设计是定义出一整套设计语汇，自成体系，并且背后要有设计哲学所支撑（Metro的定位是一种设计语言）。读完iOS的HIG，Android SDK文档里的设计指南，Windows phone的设计指南，就有所体会。另外顺便说说Android应用，普遍比较丑的原因不在于Android自己的设计理念，而是应用开发者没有跟随这个理念，不少依照Android 4.x的设计风格的应用都很漂亮很好用的。</p>
-
-<p>最后总结我看到的锤子：老罗崇尚苹果的整套理念，另外也看到了一些可以改进的地方（例如他说的iPhone设计上的妥协），于是要将它搬到Android平台上来，按照自己的理解重现实现一遍。这将是一个很有趣的尝试，期望能为国内手机应用UX僵化老土的设计带来新鲜的风气。只是别把自己过分拔高就好了。</p>
 ]]></content>
   </entry>
   

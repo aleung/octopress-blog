@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Haskell | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/haskell/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-25T14:04:23+08:00</updated>
+  <updated>2015-01-27T00:11:38+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -122,7 +122,19 @@ head [a*2+b*2+c*4|a &lt;-[1,2..], b &lt;-[1,2..], c &lt;- [1,2..], a=4*b, b=c-9,
 <p>其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
 看别人的代码多了，也就习惯了。</p>
 
-<p><em>达夫君也写了一段 Scala 代码，好多行，省略</em></p>
+<p>用 Scala 解那道题：</p>
+
+<p><code>scala
+val d = (1 to 67) toStream
+val feet = for {
+  d1 &lt;- d
+  c1 = d1 * 4
+  p1 = d1 +9 if (d1 + p1 == 67)
+} yield {
+  (c1+d1) * 2 + p1 * 4
+}
+println(feet.take(1).force)
+</code></p>
 
 <p><strong>梁君</strong>：</p>
 
@@ -211,7 +223,7 @@ for ( int p = 1; p &lt;=67; d++) {
 
 <p>Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。</p>
 
-<p>Haskell是lazy evaluation by default的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
+<p>Haskell 是 lazy evaluation by default 的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
 
 <p>Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？</p>
 
@@ -243,17 +255,7 @@ for ( int p = 1; p &lt;=67; d++) {
 
 <h2 id="section-3">诗一首</h2>
 
-<p>{% blockquote 余怒，2003.7.20 %}
-孤独时</p>
-
-<p>孤独时我不喜欢使用语言。
-一头熊和一只鹦鹉坐在
-跷跷板的两头
-跷跷板朝一头翘起。很多东西
-没办法称量，我是熊你们是鹦鹉。
-我是这头熊我不使用
-你们的语言。
-{% endblockquote %}</p>
+<p><blockquote><p>孤独时</p></p><p><p>孤独时我不喜欢使用语言。<br/>一头熊和一只鹦鹉坐在<br/>跷跷板的两头<br/>跷跷板朝一头翘起。很多东西<br/>没办法称量，我是熊你们是鹦鹉。<br/>我是这头熊我不使用<br/>你们的语言。</p><footer><strong>余怒，2003.7.20</strong></footer></blockquote></p>
 
 <hr />
 <div class="footnotes">

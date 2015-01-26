@@ -213,7 +213,27 @@ it is possible to make a language “better” by removing features that are con
 <p>其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
 看别人的代码多了，也就习惯了。</p>
 
-<p><em>达夫君也写了一段 Scala 代码，好多行，省略</em></p>
+<p>用 Scala 解那道题：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">val</span> <span class="n">d</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">67</span><span class="o">)</span> <span class="n">toStream</span>
+</span><span class="line"><span class="k">val</span> <span class="n">feet</span> <span class="k">=</span> <span class="k">for</span> <span class="o">{</span>
+</span><span class="line">  <span class="n">d1</span> <span class="k">&lt;-</span> <span class="n">d</span>
+</span><span class="line">  <span class="n">c1</span> <span class="k">=</span> <span class="n">d1</span> <span class="o">*</span> <span class="mi">4</span>
+</span><span class="line">  <span class="n">p1</span> <span class="k">=</span> <span class="n">d1</span> <span class="o">+</span><span class="mi">9</span> <span class="k">if</span> <span class="o">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">p1</span> <span class="o">==</span> <span class="mi">67</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+</span><span class="line">  <span class="o">(</span><span class="n">c1</span><span class="o">+</span><span class="n">d1</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">p1</span> <span class="o">*</span> <span class="mi">4</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="n">feet</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">force</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>梁君</strong>：</p>
 
@@ -246,7 +266,7 @@ it is possible to make a language “better” by removing features that are con
 
 <p>米君，你已经线下把三元方程转成一元了，这个是作弊吧，不算。</p>
 
-<p>Haskell的lazy evaluation在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
+<p>Haskell的 lazy evaluation 在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
 
 <p>我发一个Clojure的，也符合数据的解方程思路。</p>
 
@@ -310,7 +330,7 @@ it is possible to make a language “better” by removing features that are con
 
 <p>Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。</p>
 
-<p>Haskell是lazy evaluation by default的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
+<p>Haskell 是 lazy evaluation by default 的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
 
 <p>Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？</p>
 
@@ -405,6 +425,8 @@ it is possible to make a language “better” by removing features that are con
         <a class="basic-alignment left" href="/blog/2015/01/06/haskell/" title="Previous Post: Haskell">&laquo; Haskell</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/01/26/jekyll/" title="Next Post: Jekyll">Jekyll &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -428,6 +450,10 @@ it is possible to make a language “better” by removing features that are con
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
@@ -443,10 +469,6 @@ it is possible to make a language “better” by removing features that are con
         <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -457,7 +479,7 @@ it is possible to make a language “better” by removing features that are con
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>

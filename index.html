@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="之前在公司里一来一往的邮件讨论，被江南白衣集成一篇收录到他的博客里，读下来还蛮有意思，转过来，以下为全文引用。其中的梁君就是我啦。 缘起 达夫君： 利用 GitHub 统计分析编程语言发展趋势 第一轮讨论 梁君： 增加的Java的项目里，不知道有多少是与Android相关的呢？ &hellip;">
+  <meta name="description" content="用 Jekyll 作为内部技术文档库 去年在公司的产品开发团队中推行了使用 Jekyll 静态网站生成工具来写内部技术文档，大半年下来，效果还不错。 内部技术资料的共享和维护以前一直是个问题。开始用 Office Word 正正规规的写设计文档，维护成本太高了，往往是代码已经翻天覆地变化， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,170 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/26/jekyll/">Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-26T21:29:40+08:00" pubdate data-updated="true">2015-01-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="jekyll-">用 Jekyll 作为内部技术文档库</h2>
+
+<p><img class="right" src="/blog/attachments/2015/1/ecebook.png" /></p>
+
+<p>去年在公司的产品开发团队中推行了使用 <a href="http://jekyllrb.com/">Jekyll</a> 静态网站生成工具来写内部技术文档，大半年下来，效果还不错。</p>
+
+<p>内部技术资料的共享和维护以前一直是个问题。开始用 Office Word 正正规规的写设计文档，维护成本太高了，往往是代码已经翻天覆地变化，文档里都没有反映出来，大家不愿意更新。而且查找起来也不方便。后来推行敏捷方法，不想让文档工作那么 heavy 了，于是用 wiki 来记录。Wiki 的问题是信息非常碎片化，大家很随意的添加新页面，整个 wiki 就像一个草稿本，写得很没有系统。网状的超链接导航令读者很迷茫，不知道需要的信息入口在哪儿，有些隐藏得很深的页面没有几个人知道它们的存在。Wiki 的在线编辑体验也不是那么好。</p>
+
+<p>Jekyll 是个静态网站生成工具，采用 <a href="http://zh.m.wikipedia.org/wiki/Markdown">markdown</a> 语法来写内容，根据模板生成 HTML 页面，发布到一个 web 服务器上，就可以用浏览器在线查看内容。Jekyll 通常用来做  blog 系统，但它用来做有组织的内容发布系统也是完全胜任的。我基本上就是仿照 Jekyll <a href="http://jekyllrb.com/docs/home/">官方文档</a> 的风格和结构来组织我们产品的内部技术文档库。</p>
+
+<p>使用 Jekyll 优点首先是编写方便，markdown 是个轻量的标记语言，上手简单，语法易记，而且有不少编辑工具支持。即使没有渲染成 HTML，也是直接可以阅读的，比起奇奇怪怪还各自不同的 wiki 语法好写多了。</p>
+
+<p>在模板做得好以及安装合适的插件后，生成的文档显示效果相当漂亮，格式效果也很丰富。而且，我们使用了 <a href="https://github.com/aleung/jekyll-plantuml">plantuml</a> 插件，可以直接用文字的方式<strong>写</strong>UML<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，比起以前用其他工具画图，截图，再嵌入文档这种方式方便多了。</p>
+
+<p>技术文档库的原始文件是文本格式，用 git 来做版本管理，不用担心大家同时编辑保存时会相互覆盖的问题，修改历史也很清晰。大家都是程序员，本来代码就是用 git 来管理的，文档也用 git 管理自然是很顺手的事情。使用 <a href="https://github.com/aleung/jekyll-post-revision">jekyll-post-revision</a> 这个插件，能够在生成的页面上显示修改历史记录。</p>
+
+<p>通过 <a href="https://github.com/slashdotdash/jekyll-lunr-js-search">jekyll-lunr-js-search</a> 这个插件，能为站点提供全文搜索的能力，这也是相当方便的功能。</p>
+
+<h2 id="windows--jekyll">在 Windows 上安装 Jekyll</h2>
+
+<p>Jekyll 是用 Ruby 开发的，在 Linux 和 Mac OS X 上安装使用都很简单，在系统中有 Ruby 环境的前提下（Mac 是自带的，Linux 的各种发行版都会有安装包），照着官网上的<a href="http://jekyllrb.com/docs/quickstart/">介绍</a>，几个命令就搞定了。但是，在 Windows 下就不是那么简单了（顺便再黑一下 Windows，不使用 Microsoft 技术的开发者都应该离开它）。</p>
+
+<p>在 Windows 上装过几次 Jekyll，可以写点教程减少大家摸索的时间。大致参考这篇 <a href="http://jekyll-windows.juthilo.com/">Run Jekyll on Windows</a>。</p>
+
+<h3 id="ruby">安装 Ruby</h3>
+
+<p>首先需要安装 Ruby 环境。从 <a href="http://rubyinstaller.org/downloads">http://rubyinstaller.org/downloads</a> 下载 Ruby 2.0 和 DevKit，安装 Ruby，然后将 DevKit 解压到 <code>C:/RubyDevKit</code>，在命令行运行下面指令完成安装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line"><span class="k">cd</span> C:\RubyDevKit
+</span><span class="line">ruby dk.rb init
+</span><span class="line">ruby dk.rb install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="jekyll--gem">安装 Jekyll 相关的 gem</h3>
+
+<p>Gem 是 Ruby 的包管理工具。在命令行执行<code>gem install</code>可从互联网的仓库直接下载和安装需要的包。如果需要代理，需要先设置环境变量<code>http_proxy</code>，如不需要则忽略第一行。其中，<code>jekyll</code>这个 gem 是必须安装的，其他的视乎环境、配置和使用的插件，可能需要装，可能不需要装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line"><span class="k">set</span> <span class="nv">http_proxy</span><span class="o">=</span>http:<span class="n">//my-proxy:8080</span>
+</span><span class="line">
+</span><span class="line">gem install jekyll
+</span><span class="line">
+</span><span class="line">gem install kramdown
+</span><span class="line">gem install pygments
+</span><span class="line">gem install nokogiri
+</span><span class="line">gem install coderay
+</span><span class="line">gem install wdm
+</span><span class="line">gem install json
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果在安装过程中出现 SSL 错误，从<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">这里</a>可以找到解决方法。</p>
+
+<h3 id="jekyll">使用 Jekyll</h3>
+
+<p>Jekyll 的相关操作都是执行<code>jekyll</code>命令进行。后面的基本上就是看<a href="http://jekyllrb.com/docs/quickstart/">官方文档</a>慢慢折腾了。</p>
+
+<h2 id="jekyllexe">制作 jekyll.exe</h2>
+
+<p>上面的步骤还是有点繁琐。我们公司里的都是 Java 程序员，在电脑里装个 Ruby 环境也没有其他用处。为了推广使用，简化大家的操作，做一个 portable 的 Jekyll 可执行程序会更好。</p>
+
+<p>制作的步骤基本上参考这篇 <a href="http://www.nickw.it/jekyll-dot-exe/">Building Jekyll.exe for Windows</a>。</p>
+
+<p>首先要安装 OCRA。可能还需要安装 psych，bigdecimal 这些 gem。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">gem install ocra
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>解开 jekyll 到一个临时目录：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">gem unpack jekyll
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>修改<code>bin/jekyll</code>，在开头增加几个依赖声明：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;nokogiri&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;jekyll-watch&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;wdm&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>生成 exe 文件：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">ocra --add-all-core --gem-all bin<span class="n">/jekyll</span> lib<span class="n">/jekyll/mime.types</span> lib<span class="n">/site_template/**/*</span> lib<span class="n">/site_template/*</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>做出来的 jekyll.exe 需要测试一下，看看各种命令是否都能正常。视乎配置和使用插件的不同，可能需要增加更多的依赖声明。以上只是我的环境的例子，不一定适用于所有场景。</p>
+
+<p>最后，我知道大家都还是懒得衣来伸手饭来张口的，就提供一个编译好的 <a href="https://github.com/f5f6/f5f6.github.io/raw/master/_bin/jekyll.exe">jekyll.exe</a> 下载，支持 kramdown 和 coderay。但还是那句话：不一定符合你的环境。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>参考 <a href="/blog/blog/2014/08/23/plantuml/">PlantUML 简介</a>, <a href="/blog/blog/2014/01/20/text-to-uml-diagram/">Text to UML Diagram</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2015/01/26/jekyll/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -216,7 +380,27 @@ it is possible to make a language “better” by removing features that are con
 <p>其实只是个老问题，就是平常没机会看Scala的代码，没有好的example参考而已。
 看别人的代码多了，也就习惯了。</p>
 
-<p><em>达夫君也写了一段 Scala 代码，好多行，省略</em></p>
+<p>用 Scala 解那道题：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">val</span> <span class="n">d</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">67</span><span class="o">)</span> <span class="n">toStream</span>
+</span><span class="line"><span class="k">val</span> <span class="n">feet</span> <span class="k">=</span> <span class="k">for</span> <span class="o">{</span>
+</span><span class="line">  <span class="n">d1</span> <span class="k">&lt;-</span> <span class="n">d</span>
+</span><span class="line">  <span class="n">c1</span> <span class="k">=</span> <span class="n">d1</span> <span class="o">*</span> <span class="mi">4</span>
+</span><span class="line">  <span class="n">p1</span> <span class="k">=</span> <span class="n">d1</span> <span class="o">+</span><span class="mi">9</span> <span class="k">if</span> <span class="o">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">p1</span> <span class="o">==</span> <span class="mi">67</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+</span><span class="line">  <span class="o">(</span><span class="n">c1</span><span class="o">+</span><span class="n">d1</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">p1</span> <span class="o">*</span> <span class="mi">4</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="n">feet</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">force</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>梁君</strong>：</p>
 
@@ -249,7 +433,7 @@ it is possible to make a language “better” by removing features that are con
 
 <p>米君，你已经线下把三元方程转成一元了，这个是作弊吧，不算。</p>
 
-<p>Haskell的lazy evaluation在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
+<p>Haskell的 lazy evaluation 在这么小的程序里面也会搞出无限循环的bug，这是它没法商用的最大原因之一。</p>
 
 <p>我发一个Clojure的，也符合数据的解方程思路。</p>
 
@@ -313,7 +497,7 @@ it is possible to make a language “better” by removing features that are con
 
 <p>Clojure是一个Lisp变种，也是目前唯一的一个商业化的Lisp系语言。</p>
 
-<p>Haskell是lazy evaluation by default的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
+<p>Haskell 是 lazy evaluation by default 的语言，全世界几乎独此一家了。这个特性导致程序运行时，时间和空间都是不可预期的，基本上没有企业敢用。</p>
 
 <p>Haskell又为了程序在逻辑上的predictable，从语言成面回避side effect，结果连个随机数生成都搞不定，发明monad来解决这个问题。问题是monad这么复杂的东西，用Haskell开发竟然是必须掌握的技巧，这很恐怖啊，哪找程序员？</p>
 
@@ -741,262 +925,6 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/26/getting-start-with-sbt/">Getting Start With Sbt</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-26T17:17:50+08:00" pubdate data-updated="true">2014-12-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/scala/'>Scala</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A shortened sbt tutorial for beginner and quick reference.</p>
-
-<h2 id="directory-structure">Directory structure</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">lib/
-</span><span class="line">project/
-</span><span class="line">  Build.scala
-</span><span class="line">  plugins.sbt
-</span><span class="line">src/
-</span><span class="line">  main/
-</span><span class="line">    resources/
-</span><span class="line">    scala/
-</span><span class="line">    java/
-</span><span class="line">  test/
-</span><span class="line">built.sbt</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Source code can be placed in the project’s base directory. But usually people organize them into directory structure.</p>
-
-<p>sbt by default uses the same directory structure as Maven for source files, all under <code>src/</code>.</p>
-
-<p>sbt build definition files include <code>build.sbt</code> in project’s base drectory and other <code>.sbt</code> or <code>.scala</code> files in <code>project/</code> subdirectory.</p>
-
-<p>The <code>project</code> directory <em>is another project embedded</em> which knows how to build the outer project. So it may have its <code>build.sbt</code> and <code>project</code> directory structure, which is recursive. <em>The build definition is an sbt project.</em></p>
-
-<h2 id="running">Running</h2>
-
-<p>Common sbt commands:</p>
-
-<ul>
-  <li>clean</li>
-  <li>compile</li>
-  <li>test</li>
-  <li>testOnly &lt;testcase&gt;*</li>
-  <li>run &lt;argument&gt;*</li>
-  <li>package</li>
-  <li>reload</li>
-</ul>
-
-<p>sbt can ran in interactive mode or batch mode. In batch mode, specifying a space-seperated list of commands. For commands that take arguments, enclosing the command and arguments in quotes.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sbt clean compile <span class="s2">&quot;testOnly TestA TestB&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Prefixing a command with <code>~</code> will make the command run when any source files change. Press enter to stop watching for changes.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">&gt; ~ compile
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="build-definition">Build definition</h2>
-
-<h3 id="sbt-build-definition-basic">.sbt build definition basic</h3>
-
-<h4 id="project">Project</h4>
-
-<p><code>build.sbt</code> defines one or more <code>Project</code>s, which hold a list of Scala expressions called <code>settings</code>.</p>
-
-<p>Top-level objects and classes are not allowed in <code>build.sbt</code>. Those should go in the <code>project/</code> directory as full Scala source files.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">commonSettings</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
-</span><span class="line">  <span class="n">organization</span> <span class="o">:=</span> <span class="s">&quot;com.example&quot;</span><span class="o">,</span>
-</span><span class="line">  <span class="n">version</span> <span class="o">:=</span> <span class="s">&quot;0.1.0&quot;</span><span class="o">,</span>
-</span><span class="line">  <span class="n">scalaVersion</span> <span class="o">:=</span> <span class="s">&quot;2.11.4&quot;</span>
-</span><span class="line"><span class="o">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
-</span><span class="line">  <span class="n">settings</span><span class="o">(</span><span class="n">commonSettings</span><span class="k">:</span> <span class="k">_</span><span class="kt">*</span><span class="o">).</span>
-</span><span class="line">  <span class="n">settings</span><span class="o">(</span>
-</span><span class="line">    <span class="n">name</span> <span class="o">:=</span> <span class="s">&quot;hello&quot;</span>
-</span><span class="line">  <span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>On the left, <code>name</code>, <code>version</code> and <code>scalaVersion</code> are <em>keys</em>. Keys have a method called <code>:=</code>, which returns a <code>Setting[T]</code>, where <code>T</code> is the value type.</p>
-
-<h4 id="keys">Keys</h4>
-
-<p>There are three flavors of key: <code>SettingKey[T]</code>, <code>TaskKey[T]</code> and <code>InputKey[T]</code>.</p>
-
-<p>A <code>TaskKey[T]</code> is said to define a <em>task</em>. </p>
-
-<p>A <code>InputKey[T]</code> defines a <em>input task</em>, which parses user input and produce a task to run.</p>
-
-<p>For a setting, the value will be computed once at project load time. For a task, the computation will be re-run each time the task is executed.</p>
-
-<p>Built-in keys are fields in object <code>sbt.Keys</code>, which are implicitly imported so can be directly referred.</p>
-
-<p>Custom keys may be defined with their respective creation methods: <code>settingKey</code>, <code>taskKey</code>, and <code>inputKey</code>. </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">hello</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">&quot;An example task&quot;</span><span class="o">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
-</span><span class="line">  <span class="n">settings</span><span class="o">(</span>
-</span><span class="line">    <span class="n">hello</span> <span class="o">:=</span> <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello!&quot;</span><span class="o">)</span> <span class="o">}</span>
-</span><span class="line">  <span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="bare-sbt-build-definition">Bare .sbt build definition</h3>
-
-<p><em>Bare .sbt build definition</em> is an old style which is not recommended to use.</p>
-
-<p>Bare .sbt build definition doesn’t explicitly define a <code>Project</code>, it implicitly deines one based on the location of the <code>.sbt</code> file. The <code>.sbt</code> file consists of a list of <code>Setting[_]</code> expressions.</p>
-
-<p>Before sbt 0.13.7, settings must be separated by blank lines.</p>
-
-<h2 id="library-dependencies">Library dependencies</h2>
-
-<p>To add unmanaged dependencies, simplily drop jar files in <code>lib/</code>.</p>
-
-<p>Managed dependencies are specified by <code>libraryDependencies</code> key in <code>build.sbt</code>.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">groupID</span> <span class="o">%</span> <span class="n">artifactID</span> <span class="o">%</span> <span class="n">revision</span> <span class="o">%</span> <span class="n">configuration</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If you use double %% between the groupID and artifactID, sbt will add your project’s Scala version to the artifact name.</p>
-
-<p>Assuming the scalaVersion for your build is 2.11.1, the following adds <code>org.scala-tools:scala-stm_2.11.1:0.3</code>:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&quot;org.scala-tools&quot;</span> <span class="o">%%</span> <span class="s">&quot;scala-stm&quot;</span> <span class="o">%</span> <span class="s">&quot;0.3&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>By default, if omitted, configuration is “compile”. A common used value is “test”.</p>
-
-<p>sbt uses Apache Ivy to implement managed dependencies. Advanced usage of revision and configuration can follow Ivy document.</p>
-
-<p>sbt uses the standard Maven2 repository by default. To add additional repository, add a <code>resolver</code>:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">resolvers</span> <span class="o">+=</span> <span class="s">&quot;Local Maven Repository&quot;</span> <span class="n">at</span> <span class="s">&quot;file://&quot;</span><span class="o">+</span><span class="nc">Path</span><span class="o">.</span><span class="n">userHome</span><span class="o">.</span><span class="n">absolutePath</span><span class="o">+</span><span class="s">&quot;/.m2/repository&quot;</span>
-</span><span class="line">
-</span><span class="line"><span class="n">resolvers</span> <span class="o">+=</span> <span class="s">&quot;Sonatype OSS Snapshots&quot;</span> <span class="n">at</span> <span class="s">&quot;https://oss.sonatype.org/content/repositories/snapshots&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="multiple-projects">Multiple projects</h2>
-
-<p>Multiple projects can be grouped under one project. </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
-</span><span class="line">  <span class="n">aggregate</span><span class="o">(</span><span class="n">util</span><span class="o">,</span> <span class="n">core</span><span class="o">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">util</span> <span class="k">=</span> <span class="n">project</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Each sub-project has its own directory. In above example the directory name is same as the project’s ID. The following is a more explicit way: </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;core&quot;</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If a project is not defined for the root directory in the build, sbt creates a default one that aggregates all other projects in the build. </p>
-
-<p>A project may depend on other projects:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">dependsOn</span><span class="o">(</span><span class="n">util</span><span class="o">,</span> <span class="n">api</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><code>foo dependsOn(bar)</code> means that the <code>compile</code> configuration in foo depends on the <code>compile</code> configuration in bar. You can declare other configuraiton dependency, for example, <code>dependsOn(bar % "test-&gt;test;compile-&gt;compile")</code>.</p>
-
-<h2 id="using-plugins">Using plugins</h2>
-
-<p>Declares the plugin dependency in <code>project/plugins.sbt</code>. The file name can be different, you may create one sbt file for one plugin.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&quot;com.typesafe.sbt&quot;</span> <span class="o">%</span> <span class="s">&quot;sbt-site&quot;</span> <span class="o">%</span> <span class="s">&quot;0.7.0&quot;</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/12/26/getting-start-with-sbt/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -1016,6 +944,10 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
@@ -1031,10 +963,6 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
         <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -1045,7 +973,7 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>

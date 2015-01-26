@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="前两天在项目的测试环境中发现有一个Java实现的 Tiny HTTP server，就一个Java文件，不知道同事从哪里找来的。用来临时从服务器上下载些文件，或者查看HTML文档（例如 JUnit test report, JavaDoc）之类的非常方便。它只支持HTTP GET方法， &hellip;">
+  <meta name="description" content="Lifecycle of Android activity is always confusing beginners. The Activity class has defined dozens of callback functions, all begin with “on”. Some &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/">Android Activity Lifecycle in UML State Machine Diagram</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-16T06:25:00+08:00" pubdate data-updated="true">2010-12-16</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lifecycle of Android activity is always confusing beginners. The <code>Activity</code> class has defined dozens of callback functions, all begin with “on”. Some of them are triggered by UI events, some are lifecycle related. It isn’t easy for developer to remember the usage of them.</p>
+
+<p>An activity has essentially four states, when some event happens, like user navigates between different activities, state transites. There are lots of callback functions which will be called by framework when an activity transites between states. So the activity lifecyle is ideally modeled in state machine. However in <a href="http://developer.android.com/reference/android/app/Activity.html#ActivityLifecycle">Android SDK document</a>, the Activity Lifecycle is descripted by a diagram and table of callback functions. It explains the order of the callback functions being called, but a developer can’t clearly understand in whatcircumstance each callback function will be called.</p>
+
+<p>I tried to draw an UML state machine diagram for Android activity lifecycle:</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5264062473/"><img src="http://farm6.static.flickr.com/5241/5264062473_22989eacb7_b.jpg" alt="Android Activity Lifecycle" /></a></p>
+
+<p>If you aren’t familiar with UML state machine diagram, read the <a href="http://en.wikipedia.org/wiki/UML_state_machine">introduction</a> on Wikipedia.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/12/16/Android-activity-lifecycle-in-UML-state-machine-diagram/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -531,92 +590,6 @@ class HttpRequestHandler implements Runnable {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/">Android手机上使用SSH Tunnel：prototype</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2010-07-31T00:17:00+08:00" pubdate data-updated="true">2010-07-31</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在上次写下<a href="/blog/2010/06/07/Android-SSH-tunnel-2010-06-06-">进展</a>之后，就真的没有任何进展了。本来打算完成之后会发布成开源软件的，但现在看来遥遥无期。有人问我iptables命令怎么写，就把简要介绍放这里吧。</p>
-
-<ol>
-  <li>首先确认你有Android系统的root权限，下面的操作要以root身份登录到shell进行</li>
-  <li>将transocks_ev放到Android系统中，目录随你喜欢。这里<a href="http://cid-e1c6bc07e3f505a3.office.live.com/self.aspx/.Public/transocks%5E_ev-android.zip">下载</a>已编译的transocks_ev for Android可执行文件，解压后文件的MD5：6a0c3500bcd24ab7b706c8caf34f15ba</li>
-  <li>从Android Market下载ConnectBot，配置好你的ssh帐号，记得设置port forwarding，端口为9050</li>
-  <li>在ConnectBot中连接ssh</li>
-  <li>在shell中运行transocks_ev:  </li>
-</ol>
-
-<pre><code>transocks_ev -S 127.0.0.1 -s 9050
-</code></pre>
-
-<ol>
-  <li>在shell中执行iptables命令： </li>
-</ol>
-
-<pre><code>iptables -t nat -F 
-iptables -t nat -A OUTPUT -m owner --cmd-owner transocks_ev -j RETURN 
-iptables -t nat -A OUTPUT -m owner --cmd-owner org.connectbot -j RETURN 
-iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-ports 1211 
-iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
-</code></pre>
-
-<ol>
-  <li>这时所有的HTTP/HTTPS流量都会通过ssh tunnel了，但DNS查询不会，所以依然无法访问被DNS污染的网站</li>
-  <li>断开ConnectBot连接</li>
-  <li>在shell中kill掉transocks_ev进程</li>
-  <li>在shell中执行iptables命令：</li>
-</ol>
-
-<pre><code>iptables -t nat -F
-</code></pre>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/07/31/Android-SSH-tunnel-prototype/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/17/">&larr; Older</a>
@@ -638,6 +611,10 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
@@ -653,10 +630,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
         <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/26/getting-start-with-sbt/">Getting start with sbt</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -667,7 +640,7 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 115%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
