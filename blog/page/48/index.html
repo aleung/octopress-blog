@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。 其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector &hellip;">
+  <meta name="description" content="Doxygen是一个很不错的文档生成程序，类似于JavaDoc的功能，但是能支持C++/C/Java和其他的好些语言。今天在使用的时候，发现doxygen不能处理带有中文的文件名或者路径，就把源代码下载回来，看看是什么问题。 问题很容易定位出来，又是unicode和字符集转换的问题， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/07/01/Doxygen-/">Doxygen不能支持中文文件名/路径:(</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-01T03:44:00+08:00" pubdate data-updated="true">2004-07-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.stack.nl/~dimitri/doxygen">Doxygen</a>是一个很不错的文档生成程序，类似于JavaDoc的功能，但是能支持C++/C/Java和其他的好些语言。今天在使用的时候，发现doxygen不能处理带有中文的文件名或者路径，就把源代码下载回来，看看是什么问题。</p>
+
+<p>问题很容易定位出来，又是unicode和字符集转换的问题，字符集真是让人头痛的东西:(。当在windows平台上运行时，它使用了WideCharToMultiByte来转换字符集，但没有判断当前locale，只是用了CP_ACP(ANSI)code page，故此对于中文就转换成为乱码了（其他multi-byte字符集也会有问题）。</p>
+
+<p>本来想改的，发现doxygen底层用的都是QT的代码，什么QString, QCString，完全是自己独立的一套东西，好些地方似乎都没有考虑mbs字符集的问题，实在跟不下去了，也不知道它的国际化是怎么做的，KDE也是基于QT函数库的呀，也许是windows版本的问题？放弃，给doxygen作者写了个bug report，看看他会不会去修改吧。</p>
+
+<p>ps.</p>
+
+<p>忍不住又再看了一下代码：不从根本上解决问题，只做个临时解决方案，把code page写死为936（简体中文），该可以吧？谁知还是不行:( 再跟踪一下，发现这个程序一点都不i18n friendly，虽然内部使用unicode，但是输入/输出转换都只是按照ascii/Latin1编码来做转换，在英文环境下就正常，一旦使用了非拉丁字符集就出问题了。这样用unicode跟不用有什么区别啊？！</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/07/01/Doxygen-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -315,61 +374,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/06/08/And-always-remember-not-directly-in-the-browser-writing/">千万要记住，不能直接在浏览器上写东西</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-06-08T08:26:00+08:00" pubdate data-updated="true">2004-06-08</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>刚才写的东西一个误操作就没有了:(</p>
-
-<p>其实我一般都比较小心的，重要的东西通常都先写好再贴到web page上。刚才丢掉的东西虽然觉得不是很重要，但丢了还是觉得很可惜——浪费了时间和心情啊，肯定不会重新再写一次了。</p>
-
-<p>以后要记住，不能再直接在浏览器上写东西了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/06/08/And-always-remember-not-directly-in-the-browser-writing/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/49/">&larr; Older</a>
@@ -391,6 +395,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
       </li>
     
@@ -406,10 +414,6 @@
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -420,7 +424,7 @@
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>

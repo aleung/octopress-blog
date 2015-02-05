@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-01-27T00:53:58+08:00</updated>
+  <updated>2015-02-06T00:11:47+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[几条基础排版规则，让文档显得专业]]></title>
+    <link href="http://aleung.github.io/blog/2015/02/05/typesetting-basic/"/>
+    <updated>2015-02-05T00:00:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/02/05/typesetting-basic</id>
+    <content type="html"><![CDATA[<p>虽然我不是处女座的，但在有些事情上会表现得比较处女座，例如对于文档格式，我常会跟各种细节纠缠不休，为的是看起来显得完美一些。</p>
+
+<p>作为软件开发者，写文档是必备的技能，而且文档里常常会出现大量英文。这里介绍一些很基本的规则，使得文档的显得专业一些。这些规则在其他类型的文章里也是适用的。</p>
+
+<h2 id="section">规则</h2>
+
+<h3 id="section-1">用段落，不要强制换行</h3>
+
+<p>在我看来，禁止使用强制换行，是没有特例的（我们不写诗歌）。在必须保留原始换行的地方，应该作为 preformatted text block（HTML 的 <code>PRE</code>，markdown 的 4 空格缩进段落）出现。</p>
+
+<h3 id="section-2">保持一致性</h3>
+
+<p>保持标点、字体等元素的一致性，整篇文档看起来清晰整齐，可读性高。</p>
+
+<p>在这方面常见问题有：</p>
+
+<dl>
+  <dt>中文英文标点混用</dt>
+  <dd>
+    <p>写技术文章，经常会出现中文英文（西文）混合的场景。原则应该是在中文句子中使用中文标点，西文句子中使用西文标点。至于中文句子中嵌入西文引文，那么嵌入的西文内容中应该遵循西文引文这个“亚环境”的规则，用西文标点，但用来包裹嵌入内容的引号或者括号还是属于中文句子的环境，因此用中文标点。</p>
+  </dd>
+  <dt>简体繁体中文混用</dt>
+  <dd>这个如果不考虑海外用户，问题也不算大，对大陆读者来说，混合简体繁体阅读起来基本上没有违和感。</dd>
+  <dt>全角半角混用</dt>
+  <dd>除了中文标点外，西文字母和数字这些字符是不应该出现全角的。</dd>
+  <dt>成对的符号没有对称</dt>
+  <dd>例如引号，是区分左引号和右引号的，一般输入法会正确识别方向，但在拷贝粘贴或者插入编辑的时候要小心方向不要弄错。</dd>
+</dl>
+
+<h3 id="section-3">空格的使用</h3>
+
+<p>中文标点不需要加空格。西文标点后需要加一个空格；成对的符号，开始的要在前面加空格，结束的在后面加空格。</p>
+
+<p>西文单词之间要用空格分隔，这个不容易错。但是单词与数字之间也要加空格，例如“iPhone 6”。</p>
+
+<p>中文与西文混排时，中文与西文之间可能要添加空格，以保证有一定间距，具体视乎显示效果而定。有人习惯一律加空格。<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<h3 id="section-4">西文大小写不要误用</h3>
+
+<p>强调以下的规则似乎有点小题大做，但确实还是经常会见到这样的错误。</p>
+
+<ul>
+  <li>句子首字母大写，句子内不应该用大写，除非下面的情况；</li>
+  <li>有些专有名词首字母大写的，即使用在句子中间也要保留大写；</li>
+  <li>全部大写的缩写，放在哪里都不能变成小写。</li>
+</ul>
+
+<h3 id="section-5">西文没有书名号</h3>
+
+<p>书名号是中文特有的。在西文中，书名用斜体表示，篇名用引号。</p>
+
+<h3 id="section-6">使用样式，不要在文字上添加格式</h3>
+
+<p>同样语义的文字，就应该有同样的显示效果，这也是一致性的体现。把文字变得五颜六色，再插一段超大字体，这种做法还是留在小毛孩的论坛里吧。</p>
+
+<h3 id="section-7">不要滥用强调</h3>
+
+<p>强调会吸引注意力，打破文档视觉结构，只应该用在真正需要的地方。满篇的强调等于没有强调。</p>
+
+<p>若要突出文档架构，应该使用标题（headings）。当文章中有些整行文字需要强调时，往往是应该将它们作为小标题。</p>
+
+<p>在西文中，按照强调的程度不同，一般强调用斜体，特别强调用加粗。但是，斜体只适合西文，中文不好看，在印刷中可以用楷体或者加着重号代替，不过在一般电子文档中不方便使用（在 web 上可以用 CSS 来控制），没有什么好方法，所以在中文中就没法区分一般强调和特别强调了。 <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+
+<p>改颜色改字体大小之类的奇淫技巧不可使用。</p>
+
+<h3 id="section-8">合理使用格式</h3>
+
+<p>通过合理使用语义化的格式，可以达到需要的显示效果，而不用去直接指定如何显示。HTML 和 markdown 都支持以下几种格式：</p>
+
+<dl>
+  <dt>引用 （blockquote）</dt>
+  <dd>整段文字引用自其他地方。</dd>
+  <dt>Preformatted text block</dt>
+  <dd>保留原始格式，包括换行，空格等。</dd>
+  <dt>代码格式</dt>
+  <dd>用等宽字体（monospaced font）显示。要做得漂亮一点就是加上自动语法高亮渲染了。</dd>
+  <dt>定义列表 (definition list)</dt>
+  <dd>适用于一个名词，后面一段解释的场合，就像现在这段文字。也就是 key-value map 在文本中的体现。在HTML 里是 <code>DL</code>, <code>DT</code> 和 <code>DD</code> 标签，不属于基本的 markdown 格式，有些引擎会支持。</dd>
+</dl>
+
+<h2 id="section-9">总结</h2>
+
+<p>保证各种元素的一致性。关注内容的层次结构，段落或文字的语义属性，而不是显示效果。显示效果由样式来控制。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://www.geekpark.net/topics/193278">空格杂谈</a>  <a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><a href="http://blog.acgtyrant.com/chinese-western-mixed-typesetting.html">中西文混排</a><a href="#fnref:2" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p><a href="http://blog.justfont.com/2014/01/popular-typography-4/">大眾字型學：理想的排版強調法</a><a href="#fnref:3" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jekyll]]></title>
@@ -1591,34 +1697,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
     <content type="html"><![CDATA[<p>上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。</p>
 
 <iframe src="http://www.slideshare.net/slideshow/embed_code/26482993" width="595" height="487" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[今年首次长跑训练]]></title>
-    <link href="http://aleung.github.io/blog/2013/07/27/first-long-run/"/>
-    <updated>2013-07-27T20:24:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/07/27/first-long-run</id>
-    <content type="html"><![CDATA[<p>去年底跑完广州马拉松半程后，一直都没有怎么认真跑步，经常一停就几个星期。转眼间到了7月中，算一下离今年广州马拉松不够四个月了，是时候开始训练。用miCoach做训练计划，选择了全程马拉松，居然第一次训练就是要2小时long run，太狠了。想着之前已经隔天跑，跑了一个半星期，身体应该能承受，那就按计划来吧。</p>
-
-<p>半小时左右，跑到二沙岛过广州大桥，开始有累感。然后是各种累各种想停下的感觉，但好歹步速还在五分多六分多左右。</p>
-
-<p>经过广州塔，江堤上很多游人，景色不错。五十多分钟时过猎德桥，过完桥就开始回程了。
-猎德大桥上竟然铺了橡胶，但太软了跑起来反而不好用力。</p>
-
-<p>下桥后停下来吃了根蕉，这一停不得了，再也跑不动了，真是宁可慢不可停。跑了几百米，虽然很慢，但都还是恢复不了跑步状态，大腿小腿都动不起来。才刚回程这样的状态不是办法，只好再停下来做了一轮腿部拉伸。拉伸完之后跑步的状态恢复了，虽然腿还是累。</p>
-
-<p>然后水袋饮水软管和耳机线又在胸前晃来晃去，每跑一步就拍一下身体，很不舒服。前半程卡在背包带上好好的，后面就总卡不稳了，可能是累了后身体晃动厉害了。又得停下来倒弄一番，还不小心把软件弄停了，后面都没有了记录。</p>
-
-<p>这时候刚好跑了一小时。手机不再有跑速语音提醒了，不知道自己的速度。但即使软件不断提醒我要提高速度到绿区，也加不了速了。这时候把步伐稳定下来，控制着小步幅，自我感觉姿态还是保持住的，但步频就提不上去了。一路跑一路在默念着：宁可慢，不可停。一旦停下来，就很难很难再恢复回跑的状态了。我的目标只是时间，不是距离。</p>
-
-<p>就这样默念着，不知不觉也就跑完了花城广场到广州大桥一段，上广州大桥到二沙岛。其实也不远，就两公里。跑着跑着就开始考虑起路线的问题了。先是想：一定要按计划跑够两小时！然后想，按这速度，两小时估计回不到家了，大概到江湾酒店。那么就跑到江湾就停吧。随着疲劳感一波一波袭来，思想斗争不断：看来跑不了这么远了；不行！起码也要到江湾；就到海印吧；现在先别想，撑过下一个路口再说！天啊，这么累，怎么可能跑马拉松啊。在差不多到音乐厅的前一个路口，思想还是放弃了，就坚持跑到二沙中医院的公交车站吧。</p>
-
-<p>当我跑步时，我在想些什么——哪有那么多人生哲理思考，想得只有一件事：什么时候可以停下来！</p>
-
-<p>其实最后步姿还不错，膝盖等关节状态良好，呼吸也还可以，就是大腿抬不起，要坚持在身体上应该还可以的，就是没有战胜自己。有人跑完马拉松后总结：在你感觉已经崩溃的时候，其实至少还可以再跑已经跑过的一半的距离。如果不是出现伤痛，唯一决定性的就是自己的意志。</p>
-
-<p>回家在地图上测了路线距离，大约13.5公里，1小时30分钟，算下来pace 6’40”。同以前的成绩比慢了不少。但这是恢复训练一周半后的第一次long run，算正常，本应该先跑个一小时循序渐进的。</p>
 ]]></content>
   </entry>
   

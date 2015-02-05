@@ -9,8 +9,10 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="原来MySQL是不会理会字段的NOT NULL标记的!
-按照MySQL manual中1.8.5.2节的说法: 当插入的字段的值不符号要求的时候, 不会出错, 而是用一个最接近的”合理”值来替代. 对于NOT NULL的varchar字段, 替换的值是空字符串’’. 这不是等于没有设定NOT &hellip;">
+  <meta name="description" content="Java swing编程，更改了一个JPanel的内部components后，需要改变一下窗口大小，新内容才能显示出来。
+解决方法：调用panel.validate()。
+对于container，添加或者改变了对象后，需要调用validate()才能重新布局并显示。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +75,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/19/Swing-components-refresh/">Swing Components Refresh</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-19T19:30:00+08:00" pubdate data-updated="true">2003-08-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java swing编程，更改了一个JPanel的内部components后，需要改变一下窗口大小，新内容才能显示出来。<br />
+解决方法：调用panel.validate()。<br />
+对于container，添加或者改变了对象后，需要调用validate()才能重新布局并显示。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/19/Swing-components-refresh/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -415,65 +470,6 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/07/22/PHP-/">PHP代码的格式化工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-07-22T23:00:00+08:00" pubdate data-updated="true">2003-07-22</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>寻找一个PHP代码的格式化工具, chedong的主页上介绍了phpCodeBeautify, 下载试用一下, 还是开发版, 效果不是很满意.  </p>
-
-<p>以前我用过astyle,并且自己改成phpstyle, 但它毕竟只是为C++/Java设计, 对PHP处理不是很全面.<br />
-在google上搜索, 有些是要付钱买的, 不感兴趣.<br />
-BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.org/beautify/</a>)有个online demo, 感觉还不错. 而且它直接就是php写的!<br />
-另一个是PHPIndent(<a href="http://www.palfrader.org/phpindent/">http://www.palfrader.org/phpindent/</a>), 用perl写的, 没有试, 因为BeautifyPHP感觉可以了.  </p>
-
-<p>顺便还发现了一个工具GNU Source-highlight <a href="http://www.gnu.org/software/src-highlite/">http://www.gnu.org/software/src-highlite/</a>, 能够将多种源程序生成HTML文件,并且语法加亮.  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/07/22/PHP-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/59/">&larr; Older</a>
@@ -495,6 +491,10 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
       </li>
     
@@ -510,10 +510,6 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -524,7 +520,7 @@ BeautifyPHP(<a href="http://www.bierkandt.org/beautify/">http://www.bierkandt.or
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>

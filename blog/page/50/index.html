@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在SAX和DOM两种paser API中，均提供了EntityResolver接口，应用程序可通过实现这个接口的resolveEntity()方法来实现对外部实体访问的控制，例如将对网络URL的访问重定向为对本地文件或者数据库的访问。Xerces软件包提供了例子redirect来演示这个功能。 &hellip;">
+  <meta name="description" content="Subversion这个以替代CVS为目标的版本管理工具，看来已经开始获得广泛支持了。经历了4年开发，大概1个月一次小版本发布，今年年初终于发布了version 1.0 release，开发过程平稳而谨慎。我去年曾经试用过一个interim release版本，作为本地个人使用的版本管理工具， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/04/30/Promising-subversion/">前景光明的subversion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-04-30T23:47:00+08:00" pubdate data-updated="true">2004-04-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://subversion.tigris.org/">Subversion</a>这个以替代CVS为目标的版本管理工具，看来已经开始获得广泛支持了。经历了4年开发，大概1个月一次小版本发布，今年年初终于发布了version 1.0 release，开发过程平稳而谨慎。我去年曾经试用过一个interim release版本，作为本地个人使用的版本管理工具，已经感觉相当满意，基本可替代CVS。现在release版本发行后，更是在网上看到一些人说打算从CVS迁移到SVN了。在网上可以找到一些达到实用阶段的兼容subversion的软件工具、plugin，从另一个侧面也反映出subversion正在一步步迈向自己的目标。</p>
+
+<p>以前公司的开发团队使用CVS，配合使用<a href="http://www.cvstrac.org/">CVStrac</a>，对于这样的搭配我感到比较满意。CVStrac作为轻量级的issue tracking工具，确实做得很到位，issue/bug record、CVS track-in record和wiki的无缝整合，构成了简单而实用的web base软件项目管理系统，对于小型项目非常合适。</p>
+
+<p>现在，与SVN配合的类似工具也有了，<a href="http://www.edgewall.com/products/trac/">Trac</a>，完全就是CVStrac的一个clone，不过是用python开发的，从screenshot上看很漂亮，细节上似乎做得比CVStrac要好。不过现在公司用ClearCase，没有机会试用这些轻量级工具了。我觉得ClearCase的client并不好用，缺乏象cvsweb这样的直观的文件、目录浏览、trac这样的check-in浏览功能。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/04/30/Promising-subversion/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -491,57 +546,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/03/01/MeeSoft-/">MeeSoft的软件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-03-01T03:11:00+08:00" pubdate data-updated="true">2004-03-01</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>MeeSoft(<a href="http://meesoft.logicnet.dk/">http://meesoft.logicnet.dk/</a>)这个网站有不少有意思的免费软件，包括Command(还记得DOS时代的NC吗？)、SmartMorph、图象增强(可以修复对焦不准的照片啊!)、图表制作、mp3管理、HTML优化等等。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/03/01/MeeSoft-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/51/">&larr; Older</a>
@@ -563,6 +567,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
       </li>
     
@@ -578,10 +586,6 @@
         <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/12/30/windows-troubleshooting/">Trouble shooting: Windows响应缓慢</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -592,7 +596,7 @@
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 117%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
