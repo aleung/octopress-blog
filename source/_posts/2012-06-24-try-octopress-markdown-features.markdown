@@ -20,9 +20,17 @@ Markdown基本语法
 
 ### 链接
 
-格式：
+行内式链接：
 
-    [text](link)
+    This is a [link](http://example.com).
+
+参考式链接：在链接文字的方括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记（若省略则与链接文字相同），接着，在文件的任意处，把这个标记的链接内容定义出来。
+
+    This is [an example][1] reference-style link.
+
+    [1]: http://example.com
+
+参考式链接可以提高 markdown 文本的易读性。
 
 ### 图片
 
