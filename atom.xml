@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-02-06T00:11:47+08:00</updated>
+  <updated>2015-04-03T23:17:30+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -14,10 +14,31 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Jekyll 与 Swagger UI 集成]]></title>
+    <link href="http://aleung.github.io/blog/2015/04/03/jekyll-swagger-ui/"/>
+    <updated>2015-04-03T00:00:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/04/03/jekyll-swagger-ui</id>
+    <content type="html"><![CDATA[<p><a href="http://swagger.io/">Swagger</a> 是被广泛使用的用于 REST API 描述和文档化的框架。它制定了一个用于描述 REST API 的规范，提供了一组工具用于编辑 API 描述文件、生成测试客户端、生成文档等等。<a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> 是其中的用于生成文档的工具。</p>
+
+<p><a href="http://jekyllrb.com/">Jekyll</a> 是深受程序员喜爱的静态网站生成工具，通常用来做 blog 站点，我们的工作团队也<a href="http://aleung.github.io/blog/blog/2015/01/26/jekyll/">用它来做内部的技术文档库</a>。</p>
+
+<p>在 Jekyll 里描述我们产品的 REST API，编辑排版是比较繁琐的事情，不同的 API 描述也没有统一的风格，因此考虑到引入 Swagger 来规范化 API 定义。</p>
+
+<p>为此，写了一个简单的 <a href="https://github.com/aleung/jekyll-swagger-ui">Jekyll 插件</a>，只要在 markdown 中简单的插入 <code>swagger</code> tag，指定 API 描述文件，相应的 API 文档就会由 Swagger UI 生成并嵌入在页面中。</p>
+
+<pre><code>{% swagger /api/my-api.json %}
+</code></pre>
+
+<p>安装使用方法请参看 <a href="https://github.com/aleung/jekyll-swagger-ui">README</a>。另外，Swagger UI 没有考虑到在一个页面中显示多组 API，会有些显示问题，已经提交 pull request，下个版本有望修复，暂时可以先下载我的修改版本，详见 README。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[几条基础排版规则，让文档显得专业]]></title>
-    <link href="http://aleung.github.io/blog/2015/02/05/typesetting-basic/"/>
+    <link href="http://aleung.github.io/blog/2015/02/05/typesetting-basic+copy/"/>
     <updated>2015-02-05T00:00:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2015/02/05/typesetting-basic</id>
+    <id>http://aleung.github.io/blog/2015/02/05/typesetting-basic copy</id>
     <content type="html"><![CDATA[<p>虽然我不是处女座的，但在有些事情上会表现得比较处女座，例如对于文档格式，我常会跟各种细节纠缠不休，为的是看起来显得完美一些。</p>
 
 <p>作为软件开发者，写文档是必备的技能，而且文档里常常会出现大量英文。这里介绍一些很基本的规则，使得文档的显得专业一些。这些规则在其他类型的文章里也是适用的。</p>
@@ -1686,17 +1707,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 </ul>
 
 <p>最后感谢亲友团的支持鼓励！希望明年一起跑！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[软件设计之度]]></title>
-    <link href="http://aleung.github.io/blog/2013/10/21/du-of-software-design/"/>
-    <updated>2013-10-21T22:30:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/10/21/du-of-software-design</id>
-    <content type="html"><![CDATA[<p>上个月在公司里分享的主题。Slideshare上看不到页面的动画效果，页面里的东西混一起了，要下载原PowerPoint文件看才行。</p>
-
-<iframe src="http://www.slideshare.net/slideshow/embed_code/26482993" width="595" height="487" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe>
 ]]></content>
   </entry>
   

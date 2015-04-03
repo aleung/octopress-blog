@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Blogging | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/blogging/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-02-06T00:11:47+08:00</updated>
+  <updated>2015-04-03T23:19:20+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[几条基础排版规则，让文档显得专业]]></title>
-    <link href="http://aleung.github.io/blog/2015/02/05/typesetting-basic/"/>
+    <link href="http://aleung.github.io/blog/2015/02/05/typesetting-basic+copy/"/>
     <updated>2015-02-05T00:00:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2015/02/05/typesetting-basic</id>
+    <id>http://aleung.github.io/blog/2015/02/05/typesetting-basic copy</id>
     <content type="html"><![CDATA[<p>虽然我不是处女座的，但在有些事情上会表现得比较处女座，例如对于文档格式，我常会跟各种细节纠缠不休，为的是看起来显得完美一些。</p>
 
 <p>作为软件开发者，写文档是必备的技能，而且文档里常常会出现大量英文。这里介绍一些很基本的规则，使得文档的显得专业一些。这些规则在其他类型的文章里也是适用的。</p>
@@ -126,7 +126,7 @@
     <id>http://aleung.github.io/blog/2015/01/26/jekyll</id>
     <content type="html"><![CDATA[<h2 id="jekyll-">用 Jekyll 作为内部技术文档库</h2>
 
-<p><img class="right" src="/attachments/2015/1/ecebook.png"></p>
+<p>{% img right /attachments/2015/1/ecebook.png %}</p>
 
 <p>去年在公司的产品开发团队中推行了使用 <a href="http://jekyllrb.com/">Jekyll</a> 静态网站生成工具来写内部技术文档，大半年下来，效果还不错。</p>
 
@@ -438,26 +438,7 @@ public class HelloWorld {
 
 <h3 id="gist">嵌入Gist</h3>
 
-<p><div><script src='https://gist.github.com/2934603.js'></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
-    default-autowire=&quot;byType&quot;&gt;
-
-    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
-
-    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
-    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
-    
-    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
-        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-</p>
+<p>{% gist 2934603 %}</p>
 
 <p>方法是写一个用<code>{</code> <code>%</code>包围的gist标签，后面带上id。</p>
 

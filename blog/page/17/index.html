@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="关注我之前写的Android翻墙系列文章1, 2, 3的朋友请留意一下这个应用：TransProxy。这个应用的v3版本集成了HTTP transparent proxy (使用Transproxy)、HTTPS/SOCKS redirector (使用redsocks) 、iptables &hellip;">
+  <meta name="description" content="JCA 1.5 规范定义了WorkManager API，能方便的进行任务的(多线程)并行处理。按照JCA规范的原意，WorkManager是仅提供给Resource Adapter使用的，容器会提供WorkManager实例并通过BootstrapContext注入到adapter中。可是， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,75 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/">WebLogic在非Resource Adapter里直接使用JCA WorkManager的失败尝试</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-02T05:43:00+08:00" pubdate data-updated="true">2010-11-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JCA 1.5 规范定义了WorkManager API，能方便的进行任务的(多线程)并行处理。按照JCA规范的原意，WorkManager是仅提供给Resource Adapter使用的，容器会提供WorkManager实例并通过BootstrapContext注入到adapter中。可是，有时在其他场合，例如EJB、Servlet中，也希望能将请求拆分，使用WorkManager并行处理，但JEE规范中并没有提供这样的机制。</p>
+
+<p>WebLogic提供了CommonJ WorkManager API，可用于任意应用中，但这个API不在JEE规范之中，因此GlassFish是不支持的。而且，使用WebLogic CommonJ WorkManager时需要在ejb-jar.xml中加入一个类型为commonj.work.WorkManager的resource reference，这样同一个ejb包就不能在不同application server间通用了，因此我还是希望能找到一种通用的方法。</p>
+
+<p>SpringFramework的org.springframework.jca.work包为GlassFish和JBoss提供了在Resource Adapter外部使用JCA 1.5 WorkManager的简便方法。看了for GlassFish的源代码，发现它其实是调用了GlassFish内部的factory去直接创建WorkManager，那么对GlassFish是否也可以这样做呢？</p>
+
+<p>反编译WebLogic的jar包，发现commonj WorkManager和connector WorkManager实际上都是delegate到一个weblogic.work.WorkManager实现的，也就是说在WebLogic里，CommonJ和JCA的WorkManager的底层实现其实都是同样的。接下来找到了weblogic.work.WorkManagerFactory，它有find和findOrCreate方法可返回weblogic.work.WorkManager实例，也许就是可以拿到weblogic-ejb-jar.xml里面定义的weblogic WorkManager。拿到了内部的weblogic.work.WorkManager实例后，再调用weblogic.connector.work.WorkManager的create方法，将这个内部WorkManger包裹到JCA WorkManager中，那么我们的应用就可以使用这个JCA WorkManager了，通过Spring的WorkManagerTaskExecutor来很方便的调度任务，上层的逻辑就可以做到与应用服务器无关。看起来很美。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5137622842/"><img src="http://farm2.static.flickr.com/1208/5137622842_a9b4e5fda8_b.jpg" alt="WLS-WorkManager" /></a></p>
+
+<p>可是结果是残酷的。写了一个测试程序，结果是通过这个WorkManagerFactory可以成功的获取到weblogic.work.WorkManager实例，也能够创建出包裹的JCA WorkManager，可是真正要使用它来执行work时，它很坚定的拒绝了，抛出异常信息：Attempt to create Work outside the context of the Connector container。</p>
+
+<p>查看代码，发现weblogic.connector.work.WorkManager及WorkImpl内部会寻找相应的RAInstanceManager，并且WorkImpl需要用到rarClassloader，看来它设计上还是与resource adapter相关的。一涉及到classloader，我无心恋战了，算了，就此打住。</p>
+
+<p>P.S. 既然说到WorkManager，就推荐一下我的同事写的相关的一篇blog：<a href="http://www.javaeye.com/topic/623825">application server 下的任务异步/并行执行方案</a></p>
+
+<p>P.P.S. 我后来采用的解决方案是让build system可以根据需要为不同的 target application server 选择不同的 deployment descriptor 来build相应的artifacts。</p>
+
+<p>P.P.P.S. 回头再读一下，发现文章里中文英文混杂得很厉害。没办法了，那些专业术语都是看惯英文了，用中文翻译了反而别扭。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/11/02/WebLogic-Resource-Adapter-JCA-WorkManager-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -336,69 +405,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/06/28/Amazing-I-got-the-geocoin-which-was-sent-to-me-from-Italy-two-years-ago-/">Amazing, I Got the Geocoin Which Was Sent to Me From Italy Two Years Ago!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-28T16:35:00+08:00" pubdate data-updated="true">2010-06-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/geocaching/'>Geocaching</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/leoliang/4741853682/"><img src="http://farm5.static.flickr.com/4121/4741853682_e9e93e2010.jpg" alt="Geocoin ALEUNG 1" /></a></p>
-
-<p>This picture was taken at 18:44 18-Jun-2010, when I picked up the geocoin <a href="http://www.geocaching.com/track/details.aspx?id=1007428">ALEUNG 1</a> from the cache <a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f4f03572-94c5-440a-ae7e-ce1f755a069b">Golden Triangle</a>. The coin has traveled for two and a half years and over 21 thousand kilometers fromVeneto, Italy before it came to Guangzhou, China.</p>
-
-<p>If you don’t know what is Geocaching, please refer to the definition on <a href="http://en.wikipedia.org/wiki/Geocaching">Wikipedia</a>. In simple saying, it’s a game that someone hide something (a cache) and publish the coordinate (latitude and longitude) on Internet and then other players seek it with help of a GPS receiver. <a href="http://en.wikipedia.org/wiki/Geocoin">Geocoin</a> is a special kind of coin each has an unique number that can be traced on geocaching website. Geocaching players pick up a coin from one cache and drop it into another cache, so that the coin can travel from cache to cache, even around the world.</p>
-
-<p>The story began from Oct 2006, Italian geocacher <a href="http://www.geocaching.com/profile/?guid=b160e421-bca1-4b08-9c48-7944b4f019dc">i5fzi</a> came to Guangzhou for the Canton Fair. He contacted me on <a href="http://www.geocaching.com/">geocaching.com</a>.He didn’t know me before, but I was almost the only cacher in Guangzhou at that time. So it was geocaching that make us know each other. He kindly invited me for dinner and I suggested him some caches to find.</p>
-
-<p>After i5fzi came back to Italy, he sent out several geocoins as present to me and Cherrie, who was his translator in Guangzhou. The goal of these coins are to reach my caches in Guangzhou. But unfortunately most of the geocoins were missed in there trip, this one I got is the only survival – I am so lucky to get it.</p>
-
-<p>From this <a href="http://www.geocaching.com/track/map_gm.aspx?ID=1007428">map</a> you can see where the coin has been in. It visited some places in Europe then flied to HongKong, and then held by AirQ for a long time, until it was put in Guangzhou. I also thank AirQ, if AirQ didn’t hold and take it to Guangzhou, I guess this coin would have been lost as its friends. The last hotel the coin slept was KowloonW’s <a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f4f03572-94c5-440a-ae7e-ce1f755a069b">Golden Triangle</a>, but it isn’t shown on the map because not recorded on the website. KowloonW was very nice to keep the coin to avoid loss until I have time to fetch it.</p>
-
-<p>Geocaching is so an amazing game. Thank you, all my friends in this game!</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/06/28/Amazing-I-got-the-geocoin-which-was-sent-to-me-from-Italy-two-years-ago-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/18/">&larr; Older</a>
@@ -420,7 +426,11 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a>
+        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
       </li>
     
       <li class="post">
@@ -435,10 +445,6 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -451,7 +457,7 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
@@ -466,10 +472,10 @@ iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-ports 1211
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>

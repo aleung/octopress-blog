@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Haskell | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/haskell/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-02-06T00:11:47+08:00</updated>
+  <updated>2015-04-03T23:19:20+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -255,7 +255,17 @@ for ( int p = 1; p &lt;=67; d++) {
 
 <h2 id="section-3">诗一首</h2>
 
-<p><blockquote><p>孤独时</p></p><p><p>孤独时我不喜欢使用语言。<br/>一头熊和一只鹦鹉坐在<br/>跷跷板的两头<br/>跷跷板朝一头翘起。很多东西<br/>没办法称量，我是熊你们是鹦鹉。<br/>我是这头熊我不使用<br/>你们的语言。</p><footer><strong>余怒，2003.7.20</strong></footer></blockquote></p>
+<p>{% blockquote 余怒，2003.7.20 %}
+孤独时</p>
+
+<p>孤独时我不喜欢使用语言。
+一头熊和一只鹦鹉坐在
+跷跷板的两头
+跷跷板朝一头翘起。很多东西
+没办法称量，我是熊你们是鹦鹉。
+我是这头熊我不使用
+你们的语言。
+{% endblockquote %}</p>
 
 <hr />
 <div class="footnotes">

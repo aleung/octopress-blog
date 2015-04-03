@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="近日看了报道，说长期使用鼠标，很容易导致手腕疾病。以前一直右手用鼠标的，于是换了左手，避免老是一只手过于劳累。不过刚开始还真不习惯，左手总是笨笨的。 鼠标的功能是为了给用户提供一个全屏幕定位的手段，但是，要能准确地选定屏幕的位置，还是需要一个反馈的过程：手移动鼠标，屏幕鼠标指针反映出当前的位置， &hellip;">
+  <meta name="description" content="一直以为explorer是与windows结合得很紧密的程序，不可缺少。因为它是windows的shell，桌面、菜单、文件浏览窗口都是由它拥有的，如果explorer没有运行，整个屏幕就是空空如也，什么都控制不了。 没有想到，explorer也是可以替换的， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/12/11/Relaxed-and-desktop/">清爽的桌面</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-12-11T02:37:00+08:00" pubdate data-updated="true">2004-12-11</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/software/'>Software</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一直以为explorer是与windows结合得很紧密的程序，不可缺少。因为它是windows的shell，桌面、菜单、文件浏览窗口都是由它拥有的，如果explorer没有运行，整个屏幕就是空空如也，什么都控制不了。</p>
+
+<p>没有想到，explorer也是可以替换的，<a href="www.geoshell.com">GeoShell</a>就是这样一个explorer的替代品。而且，它是open source的。安装geoshell替换了explorer之后，屏幕界面清爽了很多，可以替换skin，可以安装plugin，最适合那些疯狂的DIYer了，例如可以把系统装扮成MacOS。据说，geoshell占用内存比起explorer要小，稳定性也很不错。我装起来用了半天，确实占内存比explorer少，不过还要用的时间长一点才能确认。</p>
+
+<p><a href="http://www.flickr.com/photos/aleung/2075928/"><img src="http://photos2.flickr.com/2075928_d0c94036cb.jpg" alt="geoshell" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/12/11/Relaxed-and-desktop/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -314,91 +369,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/11/12/Color-management-1/">色彩管理 (1)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2004-11-12T22:53:00+08:00" pubdate data-updated="true">2004-11-12</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>处理照片时，被偏色问题折磨得受不了，这一个多星期里刻苦学习色彩管理知识。无忌上面几百个跟贴的话题看得头晕脑胀，还是东一句西一句就没有系统的叙述。</p>
-
-<p>总算有点头绪了，把学到的东西总结一下。主要针对怎样在显示器上显示出准确的颜色，不涉及太多打印、印刷的内容，适合普通用户啦。</p>
-
-<p>一张照片，从扫描仪扫描出来，或者用数码相机拍摄下来，保存成文件，再放上网，在不同的电脑上查看，效果跟原始图像往往已经有很大不同了，而且不同的电脑看出来的效果还不一样，可能是暗了，或者亮了，又可能是偏红，或者偏青。色彩管理的目的，就是在图像输入、处理、输出的整个过程中，尽可能保持一致。</p>
-
-<p>色彩管理，首先要理解的概念是色彩空间。这是在色彩量化的过程中引入的概念。常用的图像格式都是用RGB三个数值来表示颜色的，但是，当说一个点的色彩是(203,45,73),这样的数值有什么意义呢？它表示什么颜色？红色，是怎样的红？如果不将数值放入一个坐标系中，数值就没有实际的含义。色彩空间就是颜色的坐标系。</p>
-
-<p>不同的色彩模型，有不同的坐标体系，例如我们最熟悉的RGB，用于印刷的CMYK，还有基于色度模型的LAB等等。就像几何学中，有直角坐标也有极坐标。下图所示的是标准色彩空间CIE XYZ。下面主要是按照大家最熟悉也是最直观的RGB模型来说吧。</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/5137782234/"><img src="http://farm2.static.flickr.com/1427/5137782234_27ebf3e711.jpg" alt="CIE 1931 xy chromaticity diagram" /></a></p>
-
-<p>现实世界中的色彩是异常丰富的，但是由于技术的限制，每种设备所能辨别或者重现的色彩范围有限，并不能覆盖可见光域所有的颜色。在图像数字化的转换中，由于设计原因和物理特性的不同，不同设备的量化的效果也不同。例如同样是(203,45,73)这样的数值，一台显示器会显示成鲜红，另一台会显示成暗红。这相当于不同设备的坐标轴的标定是不一样的。因此，每台设备，都有它自己的色彩空间。</p>
-
-<p>这样，问题就来了，没有一个标准，颜色怎么可能准确？扫描仪的色彩空间与显示器的色彩空间不一致，将扫描出来的数据原封不动送给显示器，颜色就会改变了。我们必须有个标准的坐标系才行。现在就要引入一个新的概念—-设备无关的色彩空间（PCS）。上面提到的CIE XYZ就是一种常用的标准的设备无关色彩空间。图像数据在不同色彩空间之间转换时，要经过特定的算法进行换算，相当于几何中的坐标系变换。</p>
-
-<p>一个图像文件，里面保存的是一堆数据，怎么知道它是哪个色彩空间？我们需要给它贴一个”标签”，在标签里说明这些数据采用的是什么色彩空间，当支持色彩管理的图像处理软件读取这个文件时，先看看标签，就知道怎么去做色彩空间的转换了。ICC profile，就是这样的”标签”，它保存着一组数据，包含了这个色彩空间与PCS之间的换算关系。把ICC profile数据嵌入到图像文件里面，图像文件就能对数据的色彩空间作出自描述。但是，千万别把profile弄错了，如果一个文件，它的数据实际上是A色彩空间的，你把B色彩空间的profile指定给它，图象处理软件就会把它当成B色彩空间来转换，造成偏色。就像一个网页，明明是GB2312编码的，你把它当成big5来打开，就会出现乱码。</p>
-
-<p>CYE XYZ够标准了，但在实际的图像处理中并不使用，常用的标准色彩空间是sRGB、Adobe RGB等，为什么？首先，xyz这样的坐标系不直观，如果是RGB坐标系，R的数值大了，你就知道是偏红了，但x增大了，但你不知道它有什么实际意义。其次，CYE XYZ色彩空间的范围太大了，远远超出设备、材料能表现的色彩范围，如果用同样的精度来量化，就需要更大的数据长度，而多出来那部分其实是没有意义的，因为不可能用到，浪费了存储空间。反正已经知道了每个色彩空间与XYZ空间的换算关系了，就可以在任意两个空间进行转换。</p>
-
-<p>空间转换过程是可能会有损失的（引起色彩变化）。一个原因是换算引起的精度损失，不过这一般可以忽略。主要的损失是发生在大空间往小空间转换时，在源空间可以表示出来的颜色，不再目标空间的范围内，转换引擎只好用一种接近的颜色来代替，造成了色彩的失真。例如，九寨沟的水那种碧中带蓝的颜色就无法在sRGB空间中表现出来。下图表示常用的色彩空间的色域。</p>
-
-<p><img src="http://www.normankoren.com/Sachs_gamut_chart_2_640.jpg" alt="" /></p>
-
-<p>ICC profile描述的是色彩空间的特性。前面说过了，每个设备都有自己的色彩空间，因此也应该有一个相应的profile。准确的profile需要采用专业仪器测试得出，普通用户是没有这样的条件的，只能采用设备厂商给出的profile。如果质量控制得好，同一个型号的产品的特性会比较相似，基本上还是可以接受的。低档设备可能厂家不提供profile，这样的设备就无法进行准确的色彩管理了。对于没有profile的设备，可以当作它的色彩空间是sRGB来处理，因为sRGB是一个比较通用的标准，设备设计时往往都会尽量符合这个标准的。</p>
-
-<p>具有色彩管理功能的软件（例如photoshop），可以根据设备的profile，先将图像转换为设备所用的色彩空间，再送给设备输出，这样颜色就能保持一致。但是有些设备（或者驱动程序）已经内置了色彩管理功能，它能够接收标准色彩空间（例如sRGB）的数据，在内部转换成设备色彩空间再输出。这时候photoshop就不应该做预转换，否则重复转换也是造成失真。</p>
-
-<p>正因为有这么多不同的情况，色彩管理才变得很复杂和难以理解，输入、处理、输出各个环节都是相关的，一个环节的错误就会引起最终结果的错误，配置的时候要非常小心。</p>
-
-<p>See also:</p>
-
-<p><a href="/blog/2012/09/15/color-management-2">色彩管理(2)</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/11/12/Color-management-1/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/46/">&larr; Older</a>
@@ -420,7 +390,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a>
+        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
       </li>
     
       <li class="post">
@@ -435,10 +409,6 @@
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -451,7 +421,7 @@
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
@@ -466,10 +436,10 @@
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>

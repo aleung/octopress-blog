@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="虽然我不是处女座的，但在有些事情上会表现得比较处女座，例如对于文档格式，我常会跟各种细节纠缠不休，为的是看起来显得完美一些。 作为软件开发者，写文档是必备的技能，而且文档里常常会出现大量英文。这里介绍一些很基本的规则，使得文档的显得专业一些。这些规则在其他类型的文章里也是适用的。 规则 用段落， &hellip;">
+  <meta name="description" content="Swagger 是被广泛使用的用于 REST API 描述和文档化的框架。它制定了一个用于描述 REST API 的规范，提供了一组工具用于编辑 API 描述文件、生成测试客户端、生成文档等等。Swagger UI 是其中的用于生成文档的工具。 Jekyll 是深受程序员喜爱的静态网站生成工具， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,7 +78,70 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-03T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://swagger.io/">Swagger</a> 是被广泛使用的用于 REST API 描述和文档化的框架。它制定了一个用于描述 REST API 的规范，提供了一组工具用于编辑 API 描述文件、生成测试客户端、生成文档等等。<a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> 是其中的用于生成文档的工具。</p>
+
+<p><a href="http://jekyllrb.com/">Jekyll</a> 是深受程序员喜爱的静态网站生成工具，通常用来做 blog 站点，我们的工作团队也<a href="/blog/blog/2015/01/26/jekyll/">用它来做内部的技术文档库</a>。</p>
+
+<p>在 Jekyll 里描述我们产品的 REST API，编辑排版是比较繁琐的事情，不同的 API 描述也没有统一的风格，因此考虑到引入 Swagger 来规范化 API 定义。</p>
+
+<p>为此，写了一个简单的 <a href="https://github.com/aleung/jekyll-swagger-ui">Jekyll 插件</a>，只要在 markdown 中简单的插入 <code>swagger</code> tag，指定 API 描述文件，相应的 API 文档就会由 Swagger UI 生成并嵌入在页面中。</p>
+
+<pre><code>{% swagger /api/my-api.json %}
+</code></pre>
+
+<p>安装使用方法请参看 <a href="https://github.com/aleung/jekyll-swagger-ui">README</a>。另外，Swagger UI 没有考虑到在一个页面中显示多组 API，会有些显示问题，已经提交 pull request，下个版本有望修复，暂时可以先下载我的修改版本，详见 README。</p>
+
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2015/04/03/jekyll-swagger-ui/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a></h1>
     
     
       <p class="meta">
@@ -214,7 +277,7 @@
   
   
     <footer>
-        <a href="/blog/2015/02/05/typesetting-basic/#disqus_thread">Comments</a>
+        <a href="/blog/2015/02/05/typesetting-basic+copy/#disqus_thread">Comments</a>
     </footer>
   
 
@@ -760,87 +823,6 @@ it is possible to make a language “better” by removing features that are con
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-01-02T16:17:11+08:00" pubdate data-updated="true">2015-01-02</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Pacer数据丢了，没法分析心率和速度 :( </p>
-
-<p>净成绩 4:17:47，比广马要好些。之前训练很少，按照玩玩的心态去跑，没有设定时间目标，也没有预定配速，就按照舒服的速度跑。</p>
-
-<p>起跑后速度不快，大家的速度也平均，不像其他赛事一样起跑速度都很快，应该是因为只有全马，大家都是有经验的。开始几公里步速大概在5’50”上下，感觉跟平常训练很像，步伐轻快，心率也没有一下飙高。太阳没出来，有点风，罩着雨衣到8km 才脱下。</p>
-
-<p>十几公里那段跑得比较舒畅，步速也不知不觉加快到5分十几秒的样子。这段落偶有小上下坡，新柏油路面，很舒服。18km 吃能量胶，以免20km 后能量不足。这时我还挺乐观的以为能跑进410。</p>
-
-<p>过了半程 开始觉得膝关节不适，比以往出现得早太多了，而且二十多公里后开始变成水泥路面。心肺状态倒是很好，基本不喘气。</p>
-
-<p>25km 补给点吃了盐丸和香蕉，26km 经过水头，有些民众加油，气氛不错。27km 后有点疲累了，28km后一个陡坡，怕太耗体能，走了后半段。</p>
-
-<p>30km 那段很多人都在走路了，只要坚持跑就能不断超人，距离拉得很开，有些时候就是一个人在跑，前面很远都没人。这时跑得吃力了，速度在6分左右，但感觉很慢。不断的期待什么时候能到往大亚湾电站的路。小腿也有抽筋感觉，在医护站喷过云南白药。这段路上又吃了一个能量胶。</p>
-
-<p>31km 后转弯拐向大亚湾核电站方向，对面有折返的人，观众也多些，心理上很快就跑完了折返段这两公里。</p>
-
-<p>然后就一直惦记着38km 前那个大上坡，实际上上坡从33km 就开始了，这段路树荫茂密，看不到远方，我听别人说是连续两公里上坡，还以为没到。除了左小腿，右小腿和左大腿都有过要抽筋感觉，过医疗站必去喷一下。过了35km 大补给站，看到一眼到头都是上坡的大直路，但反倒跑起来不那么辛苦，小步的跑虽然慢但不是非常吃劲，没有撑不住要停下来走的感觉。过了37km 看到前面到顶了，才走了最后一段。</p>
-
-<p>38km 后急下坡，虽然轻松但脚肌肉已经太疲累跑不起来，6分步速。而且，左小腿抽筋感很强，膝关节和髋关节都劳累，右膝特别不适。虽然是最后几公里，但真有点崩溃的感觉了。40km 前后应该是感觉最差的一段。</p>
-
-<p>41km最后一个拐弯后，又开始上坡，这时咬牙也得坚持了，要抽筋也不管了，左四头肌和小腿的肌肉都在不断的抽搐着，其实它们还是有继续工作的能力的。但，怎么还看不到终点啊？终于在过42km牌子后看到终点拱门……这两百米也不短……</p>
-
-<p>冲线后除了挂上奖牌，组委会还很贴心的准备了披风给披上，真温暖。从马路下去会场有好多级台阶，也专设了一个斜坡供大家下去。虽然是斜坡，我都只能慢慢蹭下去，膝关节累得弯不了了，志愿者马上过了扶我到医疗点喷药。傍晚大巴回到广州，下车后走路都一拐一拐，右膝的旧患，在弯曲时痛，不能受力，特别是下不了楼梯。休息一晚后，感觉好很多。</p>
-
-<p>这次跑的心率一直很平稳，起跑几公里没有一下子飙升，十公里后一直维持在160以内，从头到尾都没有特别气喘吁吁的，没有那种肌肉糖原消耗尽突然有氧功能跟不上的感觉。早餐吃了三碗粥，一个鸡蛋，几个红薯，一瓶运动饮料直到起跑前喝完。跟往常一样，水站不喝水，饮料站都喝一些饮料。18km 能量胶，25km 半根香蕉，30km 左右能量胶，35km 半根香蕉，觉得能量补充足够了。带来3个能量胶剩了一个，补给站也没有多拿食物，感觉不需要。</p>
-
-<p>但是，依然困扰的是小腿后侧肌肉抽筋的问题，上次盐田半马在最后一公里也出现了。广马前的训练几次三十多公里没有出现过。广马天气热太阳晒，这次气温很适宜，还吃了盐丸，还是出现。应该问题还是训练得少，肌肉不能坚持长时间运动。</p>
-
-<p><img src="/blog/attachments/2015/1/route.jpg" /></p>
-
-<p><img src="/blog/attachments/2015/1/elevation.jpg" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2015/01/02/da-peng-new-year-marathon/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
@@ -860,7 +842,11 @@ it is possible to make a language “better” by removing features that are con
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic/">几条基础排版规则，让文档显得专业</a>
+        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
       </li>
     
       <li class="post">
@@ -875,10 +861,6 @@ it is possible to make a language “better” by removing features that are con
         <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/01/02/da-peng-new-year-marathon/">大鹏新年马拉松</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -891,7 +873,7 @@ it is possible to make a language “better” by removing features that are con
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 110%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
@@ -906,10 +888,10 @@ it is possible to make a language “better” by removing features that are con
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
 <a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
-<a style="font-size: 110%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
+<a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
-<a style="font-size: 110%" href="/blog/tags/life/">Life</a>
+<a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
 <a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>

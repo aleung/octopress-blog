@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: MyWork | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/mywork/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-02-06T00:11:47+08:00</updated>
+  <updated>2015-04-03T23:19:20+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -85,13 +85,13 @@
     <link href="http://aleung.github.io/blog/2009/10/31/Android-Wallpaper-Label/"/>
     <updated>2009-10-31T09:14:00+08:00</updated>
     <id>http://aleung.github.io/blog/2009/10/31/Android-Wallpaper-Label</id>
-    <content type="html"><![CDATA[<p><img class="right" src="/attachments/2009/10/wallpaperlabel1.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img right /attachments/2009/10/wallpaperlabel1.jpg %}</p>
 
 <p>Android与IPhone类似，都是有多个桌面屏幕，用手指划一下就可以左右切换屏幕。Android缺省设置只有3屏，但一些mod可以修改屏幕个数，例如设置为5屏。</p>
 
 <p>在IPhone上，屏幕的数量以及当前处于第几个屏幕是通过界面中下方的小圆点来指示的。但在Android上就没有类似的指示，有时候用户不知道现在正显示的是哪一屏，应该往左还是往右翻屏。</p>
 
-<p><img class="left" src="/attachments/2009/10/wallpaperlabel2.jpg"></p>
+<p>{% img left /attachments/2009/10/wallpaperlabel2.jpg %}</p>
 
 <p>我开发的这个软件 Wallpaper Label 可以为Android手机的桌面每个屏幕添加一个文字标签，这样就很清晰的知道当前打开的是哪一屏了。标签位于在屏幕下方的正中位置，并不会影响图标的显示。</p>
 
@@ -127,7 +127,7 @@
     <link href="http://aleung.github.io/blog/2009/04/19/Better-My-Location-/"/>
     <updated>2009-04-19T07:45:00+08:00</updated>
     <id>http://aleung.github.io/blog/2009/04/19/Better-My-Location-</id>
-    <content type="html"><![CDATA[<p><img class="right" src="/attachments/2009/4/HereIm.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img right /attachments/2009/4/HereIm.jpg %}</p>
 
 <p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>
 

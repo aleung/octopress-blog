@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-02-06T00:11:47+08:00</updated>
+  <updated>2015-04-03T23:19:20+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll 与 Swagger UI 集成]]></title>
+    <link href="http://aleung.github.io/blog/2015/04/03/jekyll-swagger-ui/"/>
+    <updated>2015-04-03T00:00:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/04/03/jekyll-swagger-ui</id>
+    <content type="html"><![CDATA[<p><a href="http://swagger.io/">Swagger</a> 是被广泛使用的用于 REST API 描述和文档化的框架。它制定了一个用于描述 REST API 的规范，提供了一组工具用于编辑 API 描述文件、生成测试客户端、生成文档等等。<a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> 是其中的用于生成文档的工具。</p>
+
+<p><a href="http://jekyllrb.com/">Jekyll</a> 是深受程序员喜爱的静态网站生成工具，通常用来做 blog 站点，我们的工作团队也<a href="/blog/2015/01/26/jekyll/">用它来做内部的技术文档库</a>。</p>
+
+<p>在 Jekyll 里描述我们产品的 REST API，编辑排版是比较繁琐的事情，不同的 API 描述也没有统一的风格，因此考虑到引入 Swagger 来规范化 API 定义。</p>
+
+<p>为此，写了一个简单的 <a href="https://github.com/aleung/jekyll-swagger-ui">Jekyll 插件</a>，只要像下面例子那样在 markdown 中简单的插入 <code>swagger</code> tag，指定 API 描述文件，相应的 API 文档就会由 Swagger UI 生成并嵌入在页面中。</p>
+
+<p>{% raw %}
+    {% swagger /api/my-api.json %}
+{% endraw %}</p>
+
+<p>安装使用方法请参看 <a href="https://github.com/aleung/jekyll-swagger-ui">README</a>。另外，Swagger UI 没有考虑到在一个页面中显示多组 API，会有些显示问题，已经提交 pull request，下个版本有望修复，暂时可以先下载我的修改版本，详见 README。</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ 同事们关于 FP 语言的讨论]]></title>
@@ -255,7 +277,17 @@ for ( int p = 1; p &lt;=67; d++) {
 
 <h2 id="section-3">诗一首</h2>
 
-<p><blockquote><p>孤独时</p></p><p><p>孤独时我不喜欢使用语言。<br/>一头熊和一只鹦鹉坐在<br/>跷跷板的两头<br/>跷跷板朝一头翘起。很多东西<br/>没办法称量，我是熊你们是鹦鹉。<br/>我是这头熊我不使用<br/>你们的语言。</p><footer><strong>余怒，2003.7.20</strong></footer></blockquote></p>
+<p>{% blockquote 余怒，2003.7.20 %}
+孤独时</p>
+
+<p>孤独时我不喜欢使用语言。
+一头熊和一只鹦鹉坐在
+跷跷板的两头
+跷跷板朝一头翘起。很多东西
+没办法称量，我是熊你们是鹦鹉。
+我是这头熊我不使用
+你们的语言。
+{% endblockquote %}</p>
 
 <hr />
 <div class="footnotes">
@@ -504,131 +536,6 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.7.0")
 <p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
 
 <p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[API metrics demo]]></title>
-    <link href="http://aleung.github.io/blog/2014/12/14/api-metrics-demo/"/>
-    <updated>2014-12-14T17:21:17+08:00</updated>
-    <id>http://aleung.github.io/blog/2014/12/14/api-metrics-demo</id>
-    <content type="html"><![CDATA[<p>This demo uses Graphite and Grafana to store and present API metrics. The demo environment is installed on Ubuntu.</p>
-
-<h2 id="graphite">Graphite</h2>
-
-<p>Graphite has two major components. </p>
-
-<p>The first is <code>carbon-cache</code>, which is a daemon process to receive metrics data from client through TCP connection and store into filesystem via <code>whisper</code> database library.</p>
-
-<p>Another one is a webapp. It provides HTTP API for generating graphs and retrieving raw data.</p>
-
-<p>Since Ubuntu 14.04, it’s easy to install graphite with <code>apt-get</code>:</p>
-
-<p><code>sh
-sudo apt-get update
-sudo apt-get install graphite-web graphite-carbon
-</code></p>
-
-<p>Both <code>carbon</code> and <code>graphite-web</code> are installed as python module. </p>
-
-<p>Start carbon:</p>
-
-<p><code>sh
-sudo service carbon-cache start
-</code></p>
-
-<p>Graphite-web is base on django framework. Read <code>/usr/share/doc/graphite-web/README</code> for how to setup graphite-web. A major steps is to create database and default data:</p>
-
-<p><code>sh
-sudo graphite-manage syncdb
-sudo chown _graphite:_graphite /var/lib/graphite/graphite.db
-</code></p>
-
-<p>For testing Graphite, you can start Graphite with the Django lightweight Web server for development:</p>
-
-<p><code>sh
-sudo -u _graphite /usr/bin/django-admin runserver --settings graphite.settings 0.0.0.0:8080
-</code></p>
-
-<p>To install on Apache, follow the guide in <code>/usr/share/doc/graphite-web/README</code>. </p>
-
-<p><code>sh
-sudo apt-get install libapache2-mod-wsgi
-sudo cp /usr/share/graphite-web/apache2-graphite.conf /etc/apache2/sites-available/graphite-web.conf
-sudo a2ensite graphite-web
-sudo service apache2 restart
-</code></p>
-
-<p>Graphite-web 0.9.12 only works under URL root path, it conflict with Apache default site setting. I modify <code>/etc/apache2/sites-enabled/graphite-web.conf</code> to make it work in a virtual host on port 81.</p>
-
-<p><code>apache
-Listen 81
-&lt;VirtualHost *:81&gt;
- ...
-&lt;/VirtualHost&gt;
-</code></p>
-
-<p>Reference:</p>
-
-<ul>
-  <li>https://www.digitalocean.com/community/tutorials/how-to-install-and-use-graphite-on-an-ubuntu-14-04-server</li>
-</ul>
-
-<h2 id="grafana">Grafana</h2>
-
-<p>Download grafana package and extract to a directory. Configure Apache web server to make the grafana directory accessable.</p>
-
-<p>Edit <code>config.js</code> (copy from <code>config.sample.js</code>) to enable graphite as datasource.</p>
-
-<p>Because graphite-web is hosting on virtual host on port 81, which is different than where grafana is hosting, there is cross site script access restriction. Have to enable CORS (cross origin resource sharing) on graphite-web side.</p>
-
-<p>Enable Apache mod_headers:</p>
-
-<p>~~~ sh
-sudo a2enmod headers
-~~~</p>
-
-<p>Add into <code>/etc/apache2/sites-enabled/graphite-web.conf</code>:</p>
-
-<p>~~~ apache
-Header set Access-Control-Allow-Origin “*”
-Header set Access-Control-Allow-Methods “GET, OPTIONS”
-Header set Access-Control-Allow-Headers “origin, authorization, accept”
-~~~</p>
-
-<h2 id="elasticsearch">Elasticsearch</h2>
-
-<p>Elasticsearch is used by Granfan as a database to persistent dashboard configuration. Search and analystics features of Elasticsearch isn’t used in this case. Without Elasticsearch Grafana still works, but unable to save any change to dashboard design. You have to export dashboard JSON and import next time you want to use it.</p>
-
-<p><code>sh
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.1.deb
-sudo dpkg -i elasticsearch-1.4.1.deb
-</code></p>
-
-<p>Elasticsearch is not starting on bootup by default. To setup as service, run:</p>
-
-<p><code>sh
-sudo update-rc.d elasticsearch defaults 95 10
-</code></p>
-
-<p>To start manually, run:</p>
-
-<p><code>sh
-sudo /etc/init.d/elasticsearch start
-</code></p>
-
-<p>To enable CORS (cross origin resource sharing), add below into <code>/etc/elasticsearch/elasticsearch.yml</code>:</p>
-
-<p><code>yml
-http.cors.enabled: true
-</code></p>
-
-<h2 id="demo">Demo</h2>
-
-<p>The scala script <code>feed_graphite.scala</code> generates mock API metrics data for demo. The Grafana portal is defined as <code>api.json</code>. Both files are stored in this <a href="https://gist.github.com/aleung/1ec7e56bfa9448af920b">gist</a>.</p>
-
-<p><img src="/attachments/2014/12/api-metrics-demo.png" alt="" /></p>
-
 ]]></content>
   </entry>
   
