@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-04-03T23:19:20+08:00</updated>
+  <updated>2015-06-10T00:02:34+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -26,9 +26,9 @@
 
 <p>为此，写了一个简单的 <a href="https://github.com/aleung/jekyll-swagger-ui">Jekyll 插件</a>，只要像下面例子那样在 markdown 中简单的插入 <code>swagger</code> tag，指定 API 描述文件，相应的 API 文档就会由 Swagger UI 生成并嵌入在页面中。</p>
 
-<p>{% raw %}
+<p>
     {% swagger /api/my-api.json %}
-{% endraw %}</p>
+</p>
 
 <p>安装使用方法请参看 <a href="https://github.com/aleung/jekyll-swagger-ui">README</a>。另外，Swagger UI 没有考虑到在一个页面中显示多组 API，会有些显示问题，已经提交 pull request，下个版本有望修复，暂时可以先下载我的修改版本，详见 README。</p>
 
@@ -277,17 +277,7 @@ for ( int p = 1; p &lt;=67; d++) {
 
 <h2 id="section-3">诗一首</h2>
 
-<p>{% blockquote 余怒，2003.7.20 %}
-孤独时</p>
-
-<p>孤独时我不喜欢使用语言。
-一头熊和一只鹦鹉坐在
-跷跷板的两头
-跷跷板朝一头翘起。很多东西
-没办法称量，我是熊你们是鹦鹉。
-我是这头熊我不使用
-你们的语言。
-{% endblockquote %}</p>
+<p><blockquote><p>孤独时</p></p><p><p>孤独时我不喜欢使用语言。<br/>一头熊和一只鹦鹉坐在<br/>跷跷板的两头<br/>跷跷板朝一头翘起。很多东西<br/>没办法称量，我是熊你们是鹦鹉。<br/>我是这头熊我不使用<br/>你们的语言。</p><footer><strong>余怒，2003.7.20</strong></footer></blockquote></p>
 
 <hr />
 <div class="footnotes">

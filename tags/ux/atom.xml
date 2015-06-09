@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: UX | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/ux/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-04-03T23:19:20+08:00</updated>
+  <updated>2015-06-10T00:02:34+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -38,7 +38,7 @@
 
 <h3 id="geometric-sans-">Geometric Sans 无衬线几何字体</h3>
 
-<p>{%img /attachments/2014/8/geometric.jpg %}</p>
+<p><img src="/attachments/2014/8/geometric.jpg"></p>
 
 <p>这个类别实际包括了几何风格（Geometric）、现实风格（Realist）和奇异风格（Grotesk）三类字体。它们基于精准几何形体，每个字母笔画的宽度都是一样的，这种设计生动体现了“少即是多”的极简派的设计思想。</p>
 
@@ -51,7 +51,7 @@
 
 <h3 id="humanist-sans-">Humanist Sans 无衬线人文字体</h3>
 
-<p>{%img /attachments/2014/8/humanist.jpg %}</p>
+<p><img src="/attachments/2014/8/humanist.jpg"></p>
 
 <p>由手写体衍化而来，它们中的一些可能看上去干净而现代，但仍旧保留了一些手写体的特点。一般具有更多细节、更少的一致性，而且字体较窄笔画偏粗。</p>
 
@@ -64,7 +64,7 @@
 
 <h3 id="old-style-">Old Style 古体字</h3>
 
-<p>{%img /attachments/2014/8/old-style.jpg %}</p>
+<p><img src="/attachments/2014/8/old-style.jpg"></p>
 
 <p>特点是粗细笔画间的对比微妙，还有字母的弧度朝左偏。</p>
 
@@ -77,7 +77,7 @@
 
 <h3 id="transitional-and-modern-">Transitional and Modern 过渡体和现代体</h3>
 
-<p>{%img /attachments/2014/8/trans.jpg %}{%img /attachments/2014/8/modern.jpg %}</p>
+<p><img src="/attachments/2014/8/trans.jpg"><img src="/attachments/2014/8/modern.jpg"></p>
 
 <p>这两类字体是启蒙思想的产物，字体设计师尝试改变平凡而低调的古体字的字形，使其变得更具几何特点、更锐利、更艺术。</p>
 
@@ -92,7 +92,7 @@
 
 <h3 id="slab-serifs-">Slab Serifs 带衬线的板式字体</h3>
 
-<p>{%img /attachments/2014/8/slab.jpg %}</p>
+<p><img src="/attachments/2014/8/slab.jpg"></p>
 
 <p>笔画与其他衬线字体很像（形式简洁，笔画粗细对比相对微弱），但较为特别的是笔画末端有又方又硬的衬线。</p>
 

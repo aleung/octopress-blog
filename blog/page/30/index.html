@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="看豆瓣的图书馆小组，有人抱怨乱架率太高，找书不容易。我去图书馆的时候也有这样的烦恼，当时就想过，图书馆的乱架问题和找书问题，能不能用科技手段来帮助解决呢？ 目前国内的图书馆藏书都是用条形码标识，如果改用RFID之类的无线标签，除了可以满足外借系统借书还书只用，还可以用来做书架管理，防盗。 防盗 ： &hellip;">
+  <meta name="description" content="办公室桌面不够大，总是感觉不够空间。看到instructable网站上的一个作品，将laptop竖起来摆放，受到启发，琢磨着怎么把自己的笔记本电脑也竖起来。不过，我是通过dock来外接显示器、键盘、鼠标的，这样才不需要经常拔插那一大堆电缆，因此dock要跟laptop一块竖起来才行。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/06/Will-laptops-to-stand-up/">将笔记本电脑竖起来</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2008-11-06T03:54:00+08:00" pubdate data-updated="true">2008-11-06</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/diy/'>DIY</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>办公室桌面不够大，总是感觉不够空间。看到instructable网站上的一个<a href="http://www.instructables.com/id/Ergonomic_Laptop_Stand_Made_From_a_Coat_Hanger/">作品</a>，将laptop竖起来摆放，受到启发，琢磨着怎么把自己的笔记本电脑也竖起来。不过，我是通过dock来外接显示器、键盘、鼠标的，这样才不需要经常拔插那一大堆电缆，因此dock要跟laptop一块竖起来才行。</p>
+
+<p>前两天把这个架子做好了，虽然很简单，但已经完全满足要求。主要的材料都是在无意中找到的：夹板是在公司楼下捡的，泡沫是公司新到机器的包装箱里的，恰好合用。</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/4896788613/"><img src="http://farm5.static.flickr.com/4075/4896788613_aae357206f_z.jpg" alt="laptop_stand" /></a></p>
+
+<p>竖起来后，laptop的显示屏恰好与外接显示器一样高，视线在屏幕间切换时比较连贯，看起来更加舒服。</p>
+
+<p>制作过程和更多图片放到<a href="http://www.instructables.com/id/Simple_Laptop_Stand_2/">instructables网站</a>上了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2008/11/06/Will-laptops-to-stand-up/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -322,74 +383,6 @@ lib/2.jar</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/">How to Allow Remote Application Setting Display to the SUSE Linux Desktop</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-17T20:59:00+08:00" pubdate data-updated="true">2008-06-17</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/software/'>Software</a>, <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ol>
-  <li>Allow remote TCP connection to the X server. You need root privilege to config it. </li>
-</ol>
-
-<p>Just run gdmsetup. This will open a window with multiple tabs. In the Security tab, disabled the line that says “Deny TCP connections to the X server”. Close the window and then log out of your current X session. You need to restart gdm for this to work.  The easiest way to do that is to go to a console login, login as root, change to run level 3 (just type “init 3”) and then return to run level 5 (“init 5”) to restart gdm. <br />
-Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.org/wp/?p=69</a></p>
-
-<ol>
-  <li>Add remote host into X server access control</li>
-</ol>
-
-<p>Run xhost <em>remote_host_ip</em></p>
-
-<ol>
-  <li>Set DISPLAY environment variable in remote host before execute the application</li>
-</ol>
-
-<p>setenv DISPLAY <em>display_host_ip</em>:0.0</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2008/06/17/How-to-allow-remote-application-setting-display-to-the-SUSE-linux-desktop/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/31/">&larr; Older</a>
@@ -411,6 +404,10 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
@@ -424,10 +421,6 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
     
       <li class="post">
         <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/06/haskell/">Haskell</a>
       </li>
     
   </ul>
@@ -467,7 +460,7 @@ Ref: <a href="http://www.graphics-muse.org/wp/?p=69">http://www.graphics-muse.or
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 119%" href="/blog/tags/reading/">Reading</a>
+<a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
