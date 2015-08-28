@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-06-10T00:02:34+08:00</updated>
+  <updated>2015-08-29T05:15:42+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTML presentation framework]]></title>
+    <link href="http://aleung.github.io/blog/2015/08/29/html-presentation-framework/"/>
+    <updated>2015-08-29T03:23:55+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/08/29/html-presentation-framework</id>
+    <content type="html"><![CDATA[<p>最近要做一个分享，需要做个有趣一些的 slides。工作上的 slides 都是用 PowerPoints 来做的，但 ppt 放网上分享不方便，而且也不 cool，因此琢磨着弄个什么来玩玩。开始打算想用 markdown 来写，一方面是习惯了，另外也够简便。几年前就曾试过用 markdown 写一个简单的 <a href="http://aleung.github.io/presentation/markdown/slides.html">slides</a>。</p>
+
+<p>上网搜索一圈，发现这种打着 “HTML presentation framework” 名号的工具还真多，近些年来 HTML5、CSS、JavaScript 的广泛应用，这些基于 HTML 的演示可以做得很炫，让人耳目一新，例如这个 <a href="http://vizzuality.github.io/rollingstonesmap/">50 Years of the Rolling Stones</a> 和 <a href="http://lightning.fm/massofplanets/#/">Mass of Planets</a> (要允许网页使用摄像头)。</p>
+
+<p>比较了一下，感觉 <a href="https://github.com/hakimel/reveal.js">reveal.js</a> 不错，也很受欢迎。后来又发现另外一个后起之秀 <a href="https://github.com/markdalgleish/bespoke.js">bespoke.js</a>，影响力不够 reveal.js 大，但它的插件式设计更胜一筹。对了，这些工具基本上都是用 JavaScript/Node.js 等一套工具链的，前端相关的技术 js 独霸天下了。</p>
+
+<p>先试了一下 bespoke.js。看到 reveal.js 能使用 <a href="https://www.leapmotion.com/">Leap Motion</a> Controller 来手势控制，演示起来会比较出彩，正好同事有一个 leap motion，可以借来玩，但是却找不到 bespoke.js 支持 leap motion 的插件。查了一下，原来 leap 有 JavaScript API，在浏览器里面能够通过事件监听获得双手各个手指的位置和手势动作的信息，API 暴露出来的已经是处理后的双手模型了，应用用起来相当方便。于是就简单的 port 了一个 <a href="https://www.npmjs.com/package/bespoke-leapmotion">bespoke-leapmotion</a> 插件出来。但说实在的，leap motion 这东西还是中看不中用，用手势切换页面根本就不如手指头按个按键快捷和省力，手势的辨别也不够精准（这方面应用在数据处理上是可以下些功夫的）。</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2015/8/leapmotion.jpg" /></p>
+
+<p>Bespoke.js 的 markdown 支持似乎还有些坑，总有这样那样的问题。而且在 markdown 在版面布局方面局限性也很大，做出来的 slides 显得单调了些，效果不够理想，于是又在看看直接用 HTML 来写会怎样。HTML 是足够灵活了，但是要设置排版布局又累死了，我对 HTML+CSS 也不是那么熟悉，有点想放弃用回 PowerPoint 了。 </p>
+
+<p>正好这个时候，发现了 <a href="http://slides.com">slides.com</a> 这个网站，它背后用的就是 reveal.js，但它的在线编辑器真心好用啊，鼠标拖放元素，功能简洁但又足够做出漂亮的效果了。就是它了！</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2015/8/slides-editor.png" /></p>
+
+<p>但是，我还是念念不忘 leap motion —— 演示的时候可以带来新奇的效果啊。Slides.com 自然不会有这偏门的功能，但它很良心的提供了 export to reveal.js，在上面编辑好的 slides 可以放回本地的 reveal.js 里面播放，免费用户都可以享受。嗯，看起来一切都好，可是，怎么在 slides.com 里面写好的 speaker notes 导出后都丢失了呢？查看导出文件的内容，似乎是 slides.com 内部处理 speaker notes 用的机制跟 reveal.js 不一样，存放的格式也不同了。还好，只要数据都在，还是有办法的，写个<a href="https://github.com/aleung/slides-export">程序</a>来转换就行了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[永恒的终结]]></title>
@@ -1661,38 +1686,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 </span><span class="line">RS--&gt;APP: result</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><img src="http://aleung.github.io/blog/images/plantuml/a73e1bc6787042a73befa2944361b18c.png" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[拦截Android应用HTTPS通讯内容]]></title>
-    <link href="http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic/"/>
-    <updated>2013-12-08T15:03:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2013/12/08/intercept-android-https-traffic</id>
-    <content type="html"><![CDATA[<p>昨天在捣弄 <a href="http://micoach.adidas.com/">miCoach</a> 到 <a href="http://nikeplus.nike.com/">Nike+</a> 的数据迁移，到了最后一步发现调用 Nike+ API 需要传送client_id和client_secret，这两个信息是用来认证客户端的，但Nike并没有公开开放API，因此无法申请到client_id。看 <a href="https://github.com/angusws/tcx2nikeplus">tcx2nikeplus</a> 的作者说他是通过查看iPhone应用发送的请求来拿到这两个信息的。但是 Nike+ API 都是走HTTPS的，普通方式的截包看不到加密传输的数据。</p>
-
-<p>要嗅探加密传输，必须通过<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB">中间人攻击</a>的方式才行。上网搜索一下看看有没有现成工具，果然一搜就找到了：<a href="http://portswigger.net/burp/">Burp Suite</a>。它是一个安全测试工具，功能好像有不少，我这里用它做代理，从中监控应用到服务器的通讯内容。</p>
-
-<p>下面记录大致操作过程。</p>
-
-<p>在PC上安装运行Burp，设置 Proxy - Options - Proxy Listeners，让它监听合适的地址和端口，并且选择 “Generate CA-signed per-host certificates”。</p>
-
-<p>将浏览器代理指向Burp proxy，访问任意一个https地址，Burp这时是中间人，它会用自己的根证书(PortSwiggerCA)签发一个目标服务器的证书，替换了真正服务器的证书。浏览器应该会有安全报警，因为系统并不信任签发这个证书的CA。查看证书详细信息，选择根证书并且信任这个根证书，就会把PortSwiggerCA的证书加入到系统的信任列表中。</p>
-
-<p>要将这个根证书装进Android，需要先从系统 key chain 里将它导出到文件（.pem格式），然后执行下面的命令将它转换为DER格式后缀为.crt的文件。</p>
-
-<pre><code>openssl x509 -in PortSwiggerCA.pem -inform PEM –out PortSwiggerCA.crt -outform DER
-</code></pre>
-
-<p>接下来，将 PortSwiggerCA.crt 放入Android的sdcard，在系统安全菜单中安装证书。证书安装后，Android系统就会信任所有Burp签发的证书了。</p>
-
-<p>在Android的WLAN设置代理指向Burp。但很多Android应用都不理会系统的代理设置，不使用系统指定代理，遇到这种情况就要用 <a href="https://play.google.com/store/apps/details?id=org.proxydroid">ProxyDroid</a> 来设置GlobalProxry（手机要root）。设置好了，在Burp里面就能够拦截到Android应用的HTTPS通信明文了。</p>
-
-<p><img src="http://aleung.github.io/blog/attachments/2013/12/burp.png" /></p>
-
-<p><em>注意：为确保安全，测试完之后要将 PortSwiggerCA 这个根证书从PC和Android系统信任列表中删除。如果不是临时使用，应该要用自己的证书代替Burp提供的证书。</em></p>
-
-<p>这个故事告诉我们，中间人攻击并不是那么复杂的事情。特别是终端应用开发者，不可寄望于通过加密传输来隐藏应用到服务器的协议细节，要逆向工程是很容易的。</p>
 ]]></content>
   </entry>
   

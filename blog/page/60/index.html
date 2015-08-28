@@ -9,7 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="现在广州某些线路的公交车已经开始使用GPS跟踪调度，并且在站牌上实时显示车辆位置、预计到站时间。不知道什么时候能够推广到所有线路。 根据网上的资料，城市公交GPS定位调度系统由车载终端分系统，信息传输分系统，中心及线路调度管理分系统，信息发布分系统及电子站牌分系统五大部分组成。 &hellip;">
+  <meta name="description" content="cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。注意：该命令必须以cyrus用户身份才能运行
+且此quota不同于/usr/bin/quota命令 /var/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/07/17/cyrus-imapd-/">Cyrus Imapd的邮件目录修复</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-07-17T23:02:00+08:00" pubdate data-updated="true">2003-07-17</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>cyrus imapd的邮件目录修复：/usr/cyrus/bin/reconstruct, 邮箱quota查看与修复：/usr/cyrus/bin/quota，修复时要加 -f 参数。<em>注意：该命令必须以cyrus用户身份才能运行<br />
+且此quota不同于/usr/bin/quota命令</em>  </p>
+
+<p>/var/imap/quota/[a-z]/user.* 文件是用户的quota信息，第一行是当前占用的quota，第二行是quota limit。  </p>
+
+<p>当用户有d权限时，才会在quota达到特定值时发送warrning信件。不过，正常使用的用户都是有d权限的。  </p>
+
+<p><a href="http://asg.web.cmu.edu/cyrus/cyrus-overview.html">http://asg.web.cmu.edu/cyrus/cyrus-overview.html</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/07/17/cyrus-imapd-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -322,64 +381,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/06/12/Version-control-software/">版本控制的软件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-06-12T00:05:00+08:00" pubdate data-updated="true">2003-06-12</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>网上找到一些版本控制的软件。</p>
-
-<p>一个是TortoiseCVS(<a href="http://www.tortoisecvs.org">http://www.tortoisecvs.org</a>)，是CVS client as windows shell extension，能够直接在explorer里面用右键菜单来操作。它是基于WinCVS代码开发的，与WinCVS各有千秋吧，WinCVS的功能更全面些。</p>
-
-<p>另外一个是TortoiseSVN(<a href="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</a>)，是for subversion的。这个更另我感兴趣，因为我看好subversion，它比CVS更有技术优势。安装试用了，使用local repository时不需要安装subversion server，看来可以用它来管理自己的代码、网页等等了。</p>
-
-<p>另一个是我也很关心的SVN-UP(<a href="http://svnup.tigris.org/">http://svnup.tigris.org/</a>): Java client gui for subversion and plugin for idea ide. 因为我喜欢用IDEA，不过这个软件还很不完善，要等以后的版本了。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/06/12/Version-control-software/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/61/">&larr; Older</a>
@@ -401,6 +402,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
@@ -414,10 +419,6 @@
     
       <li class="post">
         <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
   </ul>
@@ -457,6 +458,7 @@
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>

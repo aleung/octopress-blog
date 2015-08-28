@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="昨天终于拿到了Google赠送的Nexus One手机了，Google做事也够拖拖拉拉的，确认信说两个星期左右会寄到，实际上用了两个多月。不过还是得感谢Google，我去年开通Android Developer帐号的时候还埋怨，我只是发布免费软件，都要我交25美元才能开通。 &hellip;">
+  <meta name="description" content="目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,79 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/">在考虑怎样在Android手机上使用SSH Tunnel翻墙</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-02T14:53:00+08:00" pubdate data-updated="true">2010-06-02</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/anti-gfw/'>Anti-GFW</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>目前在PC上使用SSH tunnel翻墙是一个相当广泛使用的方案，国外SSH帐号的获取不是太难，购买起来价格也比VPN帐号要便宜。但是在智能手机上目前还不能使用SSH方案，只能用VPN。Android系统是基于Linux的，特别是root了之后，基本上要玩什么都随心所欲了。因此Android上是应该也可以使用SSH tunnel的。</p>
+
+<p>先看看Windows上是怎样设置SSH翻墙的：</p>
+
+<ul>
+  <li>首先需要有个支持dynamic port forwarding的SSH client，这个SSH client能开放出SOCKS服务</li>
+  <li>如果浏览器(或者其他程序)支持使用SOCKS proxy，设置使用SSH client开放出来的SOCKS端口，就可以使用了</li>
+  <li>如果浏览器(或者其他程序)不支持SOCKS proxy，只支持HTTP proxy，就需要再运行一个支持SOCKS的代理程序（例如Privoxy），将HTTP转成SOCKS</li>
+</ul>
+
+<p><img src="http://farm5.static.flickr.com/4046/4662779602_743c1c50c2_b.jpg" alt="" /></p>
+
+<p>在Android上就要麻烦一点了，因为需要网络通讯的不仅仅是浏览器，很多Android application都需要访问网络，但是它们并不支持proxy—-连HTTP proxy都不支持，更不用说SOCKS了。它们只会直接连接目标站点，如图中虚线所示，然后撞墙。</p>
+
+<p>但是Linux有iptables，可以设置iptables规则（需要root权限），将HTTP/HTTPS请求forward到一个transparent SOCKS proxy去。transparent SOCKS proxy的作用是将任意TCP连接转成SOCKS连接，这样就可以走SSH tunnel出去了。我分析过几乎所有的Android应用访问网络都是走HTTP/HTTPS协议的，所有仅仅处理HTTP/HTTPS就够了。</p>
+
+<p><img src="http://farm5.static.flickr.com/4023/4662779594_32dd9773cb_b.jpg" alt="" /></p>
+
+<p>Android上支持dynamic port forwarding的SSH client有<a href="http://code.google.com/p/connectbot/">ConnectBot</a>，不过ConnectBot是一个有界面的应用，似乎不能由其他程序来控制，这样就不好做到翻墙软件的傻瓜化了。应该还是弄一个命令行的ssh client更合适。</p>
+
+<p>在网上搜索了一下，开源的transparent SOCKS proxy有几个：<a href="http://oss.tiggerswelt.net/transocks_ev/">transocks_ev</a>，<a href="http://transocks.sourceforge.net/">TranSocks</a> 和 <a href="http://darkk.net.ru/redsocks/">redsocks</a>。从文档上看，似乎transocks_ev比较适合。</p>
+
+<p>但是，我现在面临的困难在于我不熟悉如何交叉编译Android平台程序（C语言），了解了一下如何搭建Android交叉编译环境，似乎挺麻烦（对我而言）。而且要让普通Linux上可运行的sshd和transocks port到Android上，也许还有一些代码要修改。不知道有没有Android系统高手能够帮忙？</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/06/02/Consider-how-in-the-Android-mobile-phones-in-use-SSH-tunnel-over-the-wall/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -377,102 +450,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/19/Grab-Android-system-on-network-communication/">抓取Android系统上的网络通信</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-19T13:33:00+08:00" pubdate data-updated="true">2010-03-19</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Android是基于Linux的系统，这是对开发者很方便的。今天手机上网不太正常，想到抓些包来看看，于是上网google一下，就找到教程了：<a href="http://pdk.android.com/online-pdk/guide/tcpdump.html">Debugging with Tcpdump</a>。我的ROM没有预装tcpdump（据说cm的rom有），自己编译也太麻烦了，网上也可以找到编译好的包，搜索”tcpdump-arm”可找到。</p>
-
-<p>有了tcpdump，要分析别人的应用干了些什么也方便多了。例如这是 Google Maps 获取network location的包：</p>
-
-<pre><code>POST /loc/m/api HTTP/1.1
-Connection: close
-Content-Type: application/binary
-Content-Length: 496
-Host: www.google.com
-User-Agent: GMM/3.0 (dream ERE27); gzip
-
-...."location,1.0,android,android,en_US... I.....g...........g:loc/ql......
-..
-.1.0.Iandroid/google/passion/passion/mahimahi:2.1/ERD72/22132:user/release-keys.#2:l-7Yxu1UHhuUZlb5:F_iqbZnw84bV2J0q*.zh_CN2
-....CMCC .(...
-.voicesearch..
-.com.diddo.diddo.diddo..
-.apps.maps..
-.com.lim.android.automemman"..
-..
-...I...... ..(.......$....I...... ..(.....I...... ..(.....I...... ..(.....I...... ..(.....I...... ..(."...I...... ..(.0..K"...I...... ..(.0..J"...I...... ..(.0..."...I...... ..(.0...(......
-
-
-HTTP/1.1 200 OK
-Content-Type: application/binary
-Content-Disposition: attachment
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Pragma: no-cache
-Expires: Fri, 01 Jan 1990 00:00:00 GMT
-Date: Fri, 19 Mar 2010 04:49:31 GMT
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-Content-Length: 188
-Server: GSE
-X-XSS-Protection: 0
-Connection: close
-
-..............g...)...........`.Z... $...k.......fg./,
-.....,.."....cZ
-....(.
-!'....S`..F...3..BP.n..j...`Q{..V..v...Z'yT;.j...]..Q+.U.d.Pm.,6..aj..j_....=..T...
-goB. .U....s7.......#
-)...
-</code></pre>
-
-<p>不过payload是binary的，没法直接看出里面是些什么东西。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2010/03/19/Grab-Android-system-on-network-communication/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/20/">&larr; Older</a>
@@ -494,6 +471,10 @@ goB. .U....s7.......#
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
@@ -507,10 +488,6 @@ goB. .U....s7.......#
     
       <li class="post">
         <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
   </ul>
@@ -550,6 +527,7 @@ goB. .U....s7.......#
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>

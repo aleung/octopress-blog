@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="This demo uses Graphite and Grafana to store and present API metrics. The demo environment is installed on Ubuntu. Graphite Graphite has two major &hellip;">
+  <meta name="description" content="由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。 共同点 Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/26/ivy-introduction-for-maven-user/">Ivy Introduction for Maven User</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T01:11:52+08:00" pubdate data-updated="true">2014-12-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。</p>
+
+<h2 id="section">共同点</h2>
+
+<p>Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、功能等方面都还是比较相似的。</p>
+
+<p>对于 artifact 的标识，都是使用 groupID, artifactID, version 三元组，不过 Ivy 叫它们为 organization, module name, revision。Ivy 兼容 Maven 2 metadata，可以直接使用 Maven 2 repository。</p>
+
+<h2 id="configuration--scope">Configuration / Scope</h2>
+
+<p>Ivy 有个重要的概念叫 configuration，在 Maven 里类似的对应是 scope，但是 Ivy 的 configuration 比 Maven 的 scope 要灵活得多。</p>
+
+<p>一个模块可以有多个 configuration，每个 configuration 包含一组外部模块依赖的声明（实际的配置是反过来的，每个依赖声明会标识自己在那种 configuration 中生效）。Configuration 可以是跟 Maven scope 类似的 compile, runtime 和 test，也可以任意定义。例如，某个模块既可以支持 Oracle 也可以支持 MySQL，当使用不同数据库时，需要依赖的模块是不同的，就可以分别在 oracle 和 mysql 两个 configuration 中定义各自需要的依赖。</p>
+
+<p>Ivy 的 configuration 在依赖传递管理方面，比 Maven 要强。除了可以定义在一个 configuation 中需要依赖某个模块，还可以定义依赖这个模块时，会使用它的哪个 configuration，只有指定的 configuration 中的依赖才会传递进来。这个机制称为 configuration mapping。</p>
+
+<p>下面的例子中，声明了在 default configuration 中需要依赖 hibernate，并且包含 hibernate 的 proxool 和 oscache 这两种 configuration 中的依赖。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;dependency</span> <span class="na">org=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">name=</span><span class="s">&quot;hibernate&quot;</span> <span class="na">rev=</span><span class="s">&quot;2.1.8&quot;</span> <span class="na">conf=</span><span class="s">&quot;default-&gt;proxool,oscache&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Configuration 可以扩展（继承）另一个 configuration，可以设置外部可见性。</p>
+
+<h2 id="repository">Repository</h2>
+
+<p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
+
+<p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2014/12/26/ivy-introduction-for-maven-user/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -509,152 +588,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/23/getting-the-hang-of-web-typography/">Getting the Hang of Web Typography</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-23T10:34:11+08:00" pubdate data-updated="true">2014-08-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/design/'>Design</a>, <a class='tag' href='/blog/tags/reading/'>Reading</a>, <a class='tag' href='/blog/tags/ux/'>UX</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>读书笔记摘抄：《<a href="http://book.douban.com/subject/25741532/">众妙之门——网页排版设计制胜秘诀</a>》</p>
-
-<h1 id="section">版式设计</h1>
-
-<p>正文字号常见为12~14px。</p>
-
-<p>标题与正文字号（font-size）的比例，比较流行的平均值是1.96。也就是将正文文字字号乘以2，就得到标题文字的字号。字号从传统值（6,7,8,9,10,11,12,14,16,18,21,24,36,48,60,72）或者斐波那契数列（8,13,21,34,55）中选择，可以得到更自然的版式效果。</p>
-
-<p>计算行宽的简单方法：行宽=字号*30。如果字号是10px，行宽就是300px，差不多等于一行65个字。</p>
-
-<p>行高（line-height）受多种因素的影响：字体、字号、粗细、样式、行宽、字距等。行宽越宽，行高就需越大；字号越大，行高就需要越小。比较流行的行高与字号的比例是1.5。</p>
-
-<p>段间距通常是行高的75%左右。</p>
-
-<h1 id="section-1">字体分类</h1>
-
-<p>网页设计中大多数字体可以分为五大类别：</p>
-
-<h3 id="geometric-sans-">Geometric Sans 无衬线几何字体</h3>
-
-<p><img src="/blog/attachments/2014/8/geometric.jpg" /></p>
-
-<p>这个类别实际包括了几何风格（Geometric）、现实风格（Realist）和奇异风格（Grotesk）三类字体。它们基于精准几何形体，每个字母笔画的宽度都是一样的，这种设计生动体现了“少即是多”的极简派的设计思想。</p>
-
-<ul>
-  <li>运用得当：干净、感性、现代而通用；</li>
-  <li>运用不当：冰冷、理性、枯燥。</li>
-</ul>
-
-<p><em>Examples of Geometric/Realist/Grotesk Sans:</em> Helvetica, Univers, Futura, Avant Garde, Akzidenz Grotesk, Franklin Gothic, Gotham.</p>
-
-<h3 id="humanist-sans-">Humanist Sans 无衬线人文字体</h3>
-
-<p><img src="/blog/attachments/2014/8/humanist.jpg" /></p>
-
-<p>由手写体衍化而来，它们中的一些可能看上去干净而现代，但仍旧保留了一些手写体的特点。一般具有更多细节、更少的一致性，而且字体较窄笔画偏粗。</p>
-
-<ul>
-  <li>运用得当：既现代又人文；</li>
-  <li>运用不当：缺乏力度，不够权威。</li>
-</ul>
-
-<p><em>Examples of Humanist Sans:</em> Gill Sans, Frutiger, Myriad, Optima, Verdana.</p>
-
-<h3 id="old-style-">Old Style 古体字</h3>
-
-<p><img src="/blog/attachments/2014/8/old-style.jpg" /></p>
-
-<p>特点是粗细笔画间的对比微妙，还有字母的弧度朝左偏。</p>
-
-<ul>
-  <li>运用得当：古典，传统而易读；</li>
-  <li>运用不当：依然是古典和传统（与其他不协调）。</li>
-</ul>
-
-<p><em>Examples of Old Style:</em> Jenson, Bembo, Palatino, Garamond(尤其显得传统)</p>
-
-<h3 id="transitional-and-modern-">Transitional and Modern 过渡体和现代体</h3>
-
-<p><img src="/blog/attachments/2014/8/trans.jpg" /><img src="/blog/attachments/2014/8/modern.jpg" /></p>
-
-<p>这两类字体是启蒙思想的产物，字体设计师尝试改变平凡而低调的古体字的字形，使其变得更具几何特点、更锐利、更艺术。</p>
-
-<ul>
-  <li>运用得当：展现出力量感、时尚感和活力；</li>
-  <li>运用不当：不伦不类——若说古典，又过于显眼和繁复；若说现代，又显得有点俗气。</li>
-</ul>
-
-<p><em>Examples of transitional typefaces:</em> Times New Roman, Baskerville.</p>
-
-<p><em>Examples of Modern serifs:</em> Bodoni, Didot.</p>
-
-<h3 id="slab-serifs-">Slab Serifs 带衬线的板式字体</h3>
-
-<p><img src="/blog/attachments/2014/8/slab.jpg" /></p>
-
-<p>笔画与其他衬线字体很像（形式简洁，笔画粗细对比相对微弱），但较为特别的是笔画末端有又方又硬的衬线。</p>
-
-<p>这类字体可以传达出一种权威感，如Rockwell字体的粗体；也可以展现出友好的感觉，如Archer。独特的块状衬线能为版面带来特别的气息，不过一旦用错也尤为显眼。</p>
-
-<p><em>Examples of Slab Serifs:</em> Clarendon, Rockwell, Courier, Lubalin Graph, Archer.</p>
-
-<h3 id="reference">Reference:</h3>
-
-<ul>
-  <li><a href="what-font">What Font Should I Use?</a></li>
-  <li>Making Sense of Type Classification (<a href="type-class-1">part 1</a>) (<a href="type-class-2">part 2</a>)</li>
-</ul>
-
-<h1 id="css-font-stack">CSS Font Stack</h1>
-
-<p>创建字体栈的基本公式：最佳字体 + 次佳字体 + 常见的相似字体 + 相似的网页安全字体 + 通用字体。</p>
-
-<p>在字体栈中要注意字体的字形比例。例如网页安全字体中，Verdana字形很宽，Arial/Helvetica相对较窄，它们不应该同时存在于版式中；Times和Georgia也是同理。</p>
-
-<p>常见的字体栈参看 <a href="http://www.smashingmagazine.com/2009/09/22/complete-guide-to-css-font-stacks/">Guide to CSS Font Stacks</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/08/23/getting-the-hang-of-web-typography/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/4/">&larr; Older</a>
@@ -676,6 +609,10 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
@@ -689,10 +626,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
     
       <li class="post">
         <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/25/fp/"> 同事们关于 FP 语言的讨论</a>
       </li>
     
   </ul>
@@ -732,6 +665,7 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
 <a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
