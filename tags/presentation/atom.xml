@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Presentation | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/presentation/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-08-29T05:15:42+08:00</updated>
+  <updated>2015-09-20T12:42:21+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[持续学习]]></title>
+    <link href="http://aleung.github.io/blog/2015/09/20/continuous-learning/"/>
+    <updated>2015-09-20T12:14:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/09/20/continuous-learning</id>
+    <content type="html"><![CDATA[<p>上次<a href="/blog/2015/08/29/html-presentation-framework/">提到</a>用 HTML 做的 presentation，是在公司里做的关于持续学习的一个分享。</p>
+
+<p><em>注意：看绿色导航箭头，是可以向下翻页的。有些背景图片可能需要翻墙才能看到，否则会变成空白。</em></p>
+
+<iframe src="//slides.com/aleung/goodgoodstudy/embed?style=light" width="800" height="600" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML presentation framework]]></title>

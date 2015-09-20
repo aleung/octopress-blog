@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="11月18日，廣州首屆馬拉松賽，也是我跑的第一次半馬拉松。過去大半個月了，還是記錄一下吧。 看回以前寫的blog，應該是在2005年底開始跑步的，也不記得當時爲什麼突然有了要經常性跑步的想法。那時傍晚下班後在天河公園跑，跑步是作爲鍛鍊和放鬆，一次跑半小時左右，最多5、6公里， &hellip;">
+  <meta name="description" content="小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,124 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-30T20:24:00+08:00" pubdate data-updated="true">2012-12-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
+
+<p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
+
+<p><img src="/blog/attachments/2012/12/osx_usb.jpg" /></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-23T14:03:00+08:00" pubdate data-updated="true">2012-12-23</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/blog/attachments/2012/12/mi2_focus_01s.jpg" /></p>
+
+<p>Xperia U 手機用了半年，<a href="/blog/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
+
+<p>對於國產手機，最關心的是能不能用Google服務，有沒有ROM可以刷。行貨的閹割系統對於我來說是根本不能用的。小米做得還不錯，保留了Google Service Framework，可以添加Google帳號同步，Google Play等應用自己裝上就可以了。小米手機不算開放，沒有找到任何第三方的ROM，但好在小米除了MIUI外還是提供了原生Android系統ROM，如果不喜歡MIUI還是可以用回native Android。小米2的操作系统已經超越了ICS，是Android 4.1 Jelly Bean，除了四儿子是4.2，小米2也算是版本最高的一款Android手机了吧。手機到手後，刷了個MIUI開發版，因為穩定版不提供root權限。個人感覺MIUI的定製的度把握得比較合適，把很多系統級的有用的功能集成進去了，例如來電短信攔截，LBE的權限管理，通知欄開關等等，而又沒有像其他廠商那樣內置一大堆用不著又刪不掉的應用。因此我試了一下還是決定保留MIUI。</p>
+
+<p>唯一不喜欢的是MIUI的launcher。仿照iOS将图标全平铺在桌面上，用起来不方便；它为第三方应用的图标都缩小并加上一块灰绿色背景，难看死了，本来应用精心设计的透明背景图标都被它搞成一块块牛粪。MIUI的设计风格不错的，真不知道为什么这个launcher会搭配得那么丑，即使自己创建主题将那个灰绿背景改成透明，图标还是被缩小了不好看。我另外找到了一個launcher：<a href="https://play.google.com/store/apps/details?id=com.dlto.atom.launcher">Atom Launcher</a>，界面風格簡潔，功能細節也很好，這下就完美了。</p>
+
+<p>小米2給我最大的感受是显示非常细腻，特别是低磅数的Roboto字体特别干净秀气。342ppi的屏幕达到视网膜屏的标准，其实现在新出的好多手机都是视网膜屏了，只不过现在已经不再新鲜，厂商也不会拿这来做特别宣传。Android从ICS起缺省的是Holo蓝色主题，MIUI换成了自己标志性的亮橙色，大片白色背景，黑色/灰色字体加上亮橙的点缀，整个风格很现代和清新。</p>
+
+<p>剛到手時，對尺寸不太適應，讓我覺得蘋果說的3.5寸是最適合的手機屏幕尺寸不無道理。現在慢慢有些習慣了，但是單手操作始終還是有些彆扭，比如用右手操作，左上角和右下角的按鈕都不容易按到，還是雙手會方便些。</p>
+
+<p>當然啦，新手機最爽的事情就是2G的RAM，運行的順暢程度跟舊手機比真是一個天一個地，看到什麼應用都想裝就裝啦。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/12/23/mi2/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -556,149 +674,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/15/color-management-2/">色彩管理 (2)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-15T00:56:00+08:00" pubdate data-updated="true">2012-09-15</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>色彩管理的<a href="/blog/2004/11/12/Color-management-1">第一篇</a>是在2004年写的，当时本来想连续写，可写了一篇就没有下文了。现在再来继续色彩的话题，不过这次的主题其实不算色彩管理，而是看看色彩的本质是什么。</p>
-
-<p>颜色是什么？学物理的时候说太阳光通过菱镜会分离成彩色的光带，不同颜色的光的波长是不一样的。这给我们一个印象：颜色就是可见光波长这个物理量的反映。但是问题来了，白色对应什么波长的光？为什么红光和绿光混合在一起变成了黄光，难道混合后波长产生变化了？原因在于，颜色并不是某一個物理量的直接反映，而是人对光线的心理反映，称之为色觉。</p>
-
-<p><img class="right" src="/blog/attachments/2012/9/eye.jpg" /> </p>
-
-<p>人眼有三种色彩感受器（视锥细胞），每种感受器可以感应不同波长范围的光，分别的感受峰值波长为：420nm，534nm，564nm，差不多相当于蓝、绿、红三色光的波长。对于某一种光谱，三种感受器得到三组信号送往大脑，大脑根据这三组信号值的不同组合感知到不同的色彩。</p>
-
-<p>现实世界中的光线通常都不会是单一波长的（只有激光光源产生的才是单一波长的光吧，要么是经过分光镜得到的），而是不同波长组合的混合光。视觉感受器并不能区分这些光谱，反正各种感受器只对自己能感应的波长范围内的光作出反应，最后大脑拿到的就是三组信号而已。不同的光谱组合的光线，可能对三种视觉感受器产生的刺激恰好是一样的，这样大脑就会将它们感受为同一种颜色，术语称为“异谱同色”。例如波长600nm左右的光线人感受是黄色，而波长540nm绿光和700nm红光一定强度比例的混合，人感觉到的也是黄色。</p>
-
-<p>我曾经在之乎问过一个问题：人眼若多一种新的视椎细胞可感应可见光范围内的另外一个波长的光，人看到的色彩会有什么变化吗？看到的颜色更多？ 后来我想明白了，是会看到更多的颜色的，准确的说，是能够分辨出更多不同的颜色。在只有三种感受器时，有些不同波长组合的混合光产生的刺激是一样的，大脑区分不出，将它们当作同样的颜色，但假若增加另一种波长的感受器后，这个感受器感应到的刺激不同，就能够分辨为不同色彩了。至于这个颜色是什么？我们不可能知道，因为颜色仅仅是一种心理反应。如此类推，不同动物看到的色彩也是不一样的，因为不同动物眼睛的视锥细胞的波长响应曲线不同，而且数量也不一定一样。假如有某种外星人有四种甚至更多的色彩感受器，那他们会认为地球人全是色盲，地球人到他们的世界里可能连分辨交通灯都有问题——如果他们还用交通灯。另外，所谓三原色，也是针对人而言的。</p>
-
-<p>既然色彩只是种心理反应（感觉），那为了准确描述色彩和进行分析，就需要建立色彩模型。根据关注的角度不同，不同的研究者拿出了不同的色彩模型，例如孟塞尔颜色立体模型、CIE L* a* b* 模型。其中 CIE XYZ 模型应该是最能反映人的颜色视觉的，因为它的制定就是通过大量实验来测定人对三种特定波长光线S、M、L（约对应于红绿蓝）的刺激值X，Y，Z。实验方式是让人同时观察目标色光线和SML三组标准光的混合光，调节S/M/L的光强，使得人眼感觉混合光和目标色光线的颜色完全一样，从而得出目标色的XYZ值。CIE XYZ色彩空间是色彩管理的基础。</p>
-
-<p>CIE XYZ定义了一个三维空间，展现起来不如二维图形直观。经常用来表示色彩空间大小的二维马蹄型图称为CIE xy色度图，如下图。它的纵横座标xy是根据XYZ推导出来的，x=X/(X+Y+Z), y=Y/(X+Y+Z), z=Z/(X+Y+Z), x+y+z=1。彩色的马蹄形范围表示人眼可见的全部色彩范围。在数码相机和电脑显示中使用的RGB色彩空间在CIE xy色度图中反映为三角形范围，三个顶点分别为R/G/B三原色。</p>
-
-<p><img src="/blog/attachments/2012/9/gamut.jpg" alt="" /></p>
-
-<p>不考虑印刷，摄影爱好者一般会接触到的色彩空间也就是AdobeRGB和sRGB。从图中可见，AdobeRGB的色域比sRGB广，特别是在蓝绿色系方面，AdobeRGB能够表现的色彩比sRGB丰富很多。我查找不到资料描述各种数码相机的感光元件能够记录下来的色域有多大，但一般的说法是一般数码单反所能记录的色彩范围都比sRGB广，接近或大于AdobeRGB。因此，专业的摄影都会选择AdobeRGB色彩空间来保存图像文档。但问题是，我们的显示器并不能展现这么广的色域，民用型号通常都只能再现sRGB色彩空间或更小一点（广色域显示器会比sRGB大，但一般还是达不到AdobeRGB），因此照片中记录的部分颜色是无法在显示器上原汁原味的再现出来的（这里先不考虑显示器没有校准导致偏色问题），超出设备色彩空间的颜色只能用接近的来替换，例如翠绿色的海水就没有那么漂亮了。另外一个问题是有些软件，例如不是最新版本的浏览器，是不支持色彩管理的，它不会将照片的色彩空间映射到显示器的色彩空间以保持在可显示范围内的颜色一致，而是将照片中的RGB值当作设备色彩空间的值来直接显示。如果照片用的是sRGB还好，因为显示器本身大致符合sRGB，颜色偏差不会太多，但若照片是用色域更广的AdobeRGB的，色彩偏差就严重了。所以数码相机的说明书上一般会建议如果照片仅在电脑上观看最好选择sRGB。</p>
-
-<p>不过，数码相机的色彩空间设置仅仅是针对JPG格式的，如果用RAW格式，保存的是传感器得到的原始值，实际上是数码相机设备色彩空间，而不是任何标准色彩空间。当在电脑中用RAW处理软件打开时，会将照片由设备色彩空间映射到软件设定的工作空间。我用Apple Aperture打开Nikon的RAW，看到它是被标识为AdobeRGB色彩空间。用数码单反的话，最好还是选择RAW格式，因为记录的信息多，后期处理的余地就大很多。</p>
-
-<p>See also:</p>
-
-<p><a href="/blog/2004/11/12/Color-management-1">色彩管理(1)</a></p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/09/15/color-management-2/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/10/running-route-ersha/">广州跑步路线：二沙岛</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-10T22:13:00+08:00" pubdate data-updated="true">2012-09-10</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/running/'>Running</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/blog/attachments/2012/9/ersha_sat.jpg" alt="" /></p>
-
-<p>环岛一周约4.4km，其实只能算环半岛，因为岛西面一大段的沿江堤岸是公众不能进入的。车道大部分是沥青路面，晴澜路段水泥路面，人行道是铺石路面。环岛道路汽车不多，在注意安全的前提下可以靠边跑车道。</p>
-
-<p>虽然算不上有什么景观，但二沙岛上的都是别墅和高级会所，环境幽静，江边视野开阔，跑起来挺舒服。</p>
-
-<p>晚上晴波路音乐厅美术馆一段江边比较热闹点，有游客、玩单车和玩音乐的，其他路段都比较僻静，特别的北面晴澜路段。但每隔一段距离就有保安坐在路旁，毕竟这里是富人区，治安有保障。</p>
-
-<p>岛中央是几个大草坪，上面有橡胶铺设的步道，跑步也不错，但就是拐弯多，断断续续，总长度也不够长。</p>
-
-<p>岛中央大通路/烟雨路有公交车途经。往东过广州大桥可以接着跑珠江新城临江大道，往西沿大通路过桥也可以接着沿江边跑，因此二沙岛可以作为沿珠江跑路线的一段。</p>
-
-<p>总体来说也是可以推荐的跑步路线。</p>
-
-<p><img src="/blog/attachments/2012/9/ersha_map.jpg" alt="" /></p>
-
-<p>其他跑步路线介绍：<a href="/blog/2012/09/09/running-route">广州跑步路线：索引</a></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/09/10/running-route-ersha/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/9/">&larr; Older</a>
@@ -720,6 +695,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/continuous-learning/">持续学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
       </li>
     
@@ -731,25 +714,17 @@
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -765,28 +740,28 @@
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 137%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 137%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
+<a style="font-size: 106%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 84%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
-<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 133%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 118%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 106%" href="/blog/tags/web/">Web</a>

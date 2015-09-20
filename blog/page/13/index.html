@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="To maintain the Spring application context in a large application is not an easy job. There may be dozens of beans, whenever you want to make changes &hellip;">
+  <meta name="description" content="java.lang.NoClassDefFoundError 是个很讨厌的错误，你会发现明明它报告的class已经打包进应用里，没可能在classpath中找不到，然后百思不得其解。其实这个exception跟 ClassNotFoundException 不同，后者报告的类是真的找不到， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,133 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/24/NoClassDefFoundError/">NoClassDefFoundError</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-24T17:35:00+08:00" pubdate data-updated="true">2011-11-24</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>java.lang.NoClassDefFoundError 是个很讨厌的错误，你会发现明明它报告的class已经打包进应用里，没可能在classpath中找不到，然后百思不得其解。其实这个exception跟 ClassNotFoundException 不同，后者报告的类是真的找不到，而这个NoClassDefFoundError 的错误原因是：class loader无法加载这个类，因为它依赖的另外某些类无法找到。到底是什么类找不到？它不告诉你。</p>
+
+<p>例如，看这个exception stack trace:</p>
+
+<pre><code>Caused By: java.lang.NoClassDefFoundError: net/sf/cglib/proxy/Enhancer
+        at org.springframework.aop.framework.Cglib2AopProxy.createEnhancer(Cglib2AopProxy.java:228)
+        at org.springframework.aop.framework.Cglib2AopProxy.getProxy(Cglib2AopProxy.java:170)
+        at org.springframework.aop.framework.ProxyFactory.getProxy(ProxyFactory.java:112)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.createProxy(AbstractAutoProxyCreator.java:476)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:362)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:322)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:407)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1426)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+</code></pre>
+
+<p>cglib.jar是在classpath里的，真正错误原因是CGLIB所依赖的asm.jar不存在。</p>
+
+<p>有什么好方法查出NoClassDefFoundError的root cause吗？我不知道。不用Maven管理依赖的后果啊。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/11/24/NoClassDefFoundError/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/15/Nike-Lunar-Run-10-/">Nike Lunar Run 10公里跑总结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-15T21:34:00+08:00" pubdate data-updated="true">2011-11-15</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/running/'>Running</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>11月12日，完成了Nike Lunar Run 10公里跑，这是我第二次参加计时的跑步活动。其实准确的说，只是9.5km跑，因为赛道长度不足10km，多人的GPS测量结果和在Google Maps上面量度距离都证明了这点，但是官方公布的成绩又比实际冲线时计时显示的时间多了大约两分钟，大概是换算出10km的时间。</p>
+
+<p>上一次参加10公里跑是2009年，成绩为58:30，当时定下了目标要提高到55:00（看<a href="http://good-good-study.appspot.com/blog/posts/4216">这篇博客</a>），也就是每公里5分30秒的步速。这次出来的成绩却是意想不到的好，官方公布的成绩是48:29，可能还需要减去过起跑线之前的10来秒，我自己的GPS只记录到8公里处就停止了（<a href="http://runkeeper.com/user/aleung/activity/59561069">RunKeeper</a>），总之步速大约是每公里4分50秒的样子。我之前从来没有想过步速可以迈进5分钟每公里大关的，对这个速度已经非常满意，下次再跑也没有速度目标了，保持这个水平并且不要受伤就好，希望能够尝试一下更长的距离。</p>
+
+<p>虽然名字叫做Lunar Run，比赛是在早上9点进行的。前半程自己感觉状态并不好，步频提不到每分钟170～180步的目标，还不如平常晚上训练的感觉好。也许是早上活动不开，应该热身多一些才行。但跟两年前比较，整个过程跑下来轻松很多，09年那次到最后2公里有点拖着腿熬下来的感觉，最后看着终点在前面都完全没有办法加速了。因为怕最后会跑不动，这次一路上都有点留力，跑到最后一两公里时感觉有余力，还想最后500米可以加速冲一下的，结果一个不留神发现终点已经到了。</p>
+
+<p>成绩提高首先是因为平常的训练增加了，最近一个多月基本保持每周跑两到三次。最重要的因素应该是提高步频的训练，以前习惯低步频大步幅，特别是跑到累的时候脚步沉了更是想靠增大步幅来弥补，最近知道这样不对后才有意识的提高步频，特别是前两个星期做了个Android应用来测量步频，按照180的目标来训练，速度明显提升，膝盖也基本不会怎么痛。我现在还是没办法达到180的步频，一般只能在160～170左右，但已经比以前好不少了。现在跑步的时候基本上就是默念着一件事情：保持步频。只要步频不降下去，速度就不会太慢，也能够压抑着增大步幅的欲望。另外还有些技巧性的因素：上次排在比较后的位置起跑，跑道上人太拥挤了，只能用比走路快不了太多的速度挪动，这次有经验就尽量往起跑区的前面靠，本来在第二区的，后来跟着人穿进了第一区，排在第一区的较前位置起跑，起跑跑出一两百米后就不会受人阻挡了。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/11/15/Nike-Lunar-Run-10-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -547,186 +674,6 @@ Beans without reference:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/27/Color-temperature-of-common-light-sources/">Color Temperature of Common Light Sources</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-27T19:28:00+08:00" pubdate data-updated="true">2011-09-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/imageprocessing/'>ImageProcessing</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p> </p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Temperature</th>
-      <th>Typical Sources</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1000K</td>
-      <td><strong>Candles</strong>, oil lamps</td>
-    </tr>
-    <tr>
-      <td>2000K</td>
-      <td><strong>Very early sunrise</strong>, low effect tungsten lamps</td>
-    </tr>
-    <tr>
-      <td>2500K</td>
-      <td><strong>Household light bulbs</strong>(2680K - 40 W incandescent lamp)</td>
-    </tr>
-    <tr>
-      <td>3000K</td>
-      <td>Studio lights (continuous), 200 W incandescent lamp, (<strong>3200K - Sunrise/sunset;</strong><strong>3400K - 1 hour from dusk/dawn</strong>, Tungsten lamp)</td>
-    </tr>
-    <tr>
-      <td>4000K</td>
-      <td>Clear flashbulbs (now obsolete),<strong>Fluorescent</strong></td>
-    </tr>
-    <tr>
-      <td>5000K</td>
-      <td><strong>Typical average daylight</strong>, electronic flash</td>
-    </tr>
-    <tr>
-      <td>5500K</td>
-      <td>The sun at noon, (<strong>5500~6000K - vertical daylight</strong>)</td>
-    </tr>
-    <tr>
-      <td>6000K</td>
-      <td><strong>Bright sunshine with clear sky</strong></td>
-    </tr>
-    <tr>
-      <td>7000K</td>
-      <td><strong>Slightly overcast sky</strong></td>
-    </tr>
-    <tr>
-      <td>8000K</td>
-      <td><strong>Hazy sky</strong></td>
-    </tr>
-    <tr>
-      <td>9000K</td>
-      <td><strong>Open shade on clear day</strong></td>
-    </tr>
-    <tr>
-      <td>10,000K</td>
-      <td><strong>Heavily overcast sky</strong></td>
-    </tr>
-    <tr>
-      <td>11,000K</td>
-      <td><strong>Sunless blue skies</strong></td>
-    </tr>
-    <tr>
-      <td>20,000+K</td>
-      <td>Open shade in mountains on a really clear day</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/09/27/Color-temperature-of-common-light-sources/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/26/Maven-Lifecycle-Concepts/">Maven Lifecycle Concepts</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-26T11:51:00+08:00" pubdate data-updated="true">2011-08-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/maven/'>Maven</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="https://lh5.googleusercontent.com/-d_OZsHIjLe8/TlcV3xzq-DI/AAAAAAAAATE/CGu8uwStu1k/s800/maven-concept.png" alt="" /></p>
-
-<p>(<a href="https://picasaweb.google.com/lh/photo/D_sskYHvn6CgEruCxN6lMdBJO7epb5AqjiUnD_coqoo?feat=directlink">大图链接</a>)</p>
-
-<p>一年前画的，把它电子化方便日后查看。看看有没有空补充些文字说明吧。</p>
-
-<p>Reference:</p>
-
-<ul>
-  <li>DZone Refcardz: <a href="http://refcardz.dzone.com/refcardz/apache-maven-2">Apache Maven 2</a></li>
-  <li><a href="http://gavin-chen.iteye.com/blog/336607">Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解</a></li>
-</ul>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/08/26/Maven-Lifecycle-Concepts/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/14/">&larr; Older</a>
@@ -748,6 +695,14 @@ Beans without reference:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/continuous-learning/">持续学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
       </li>
     
@@ -759,25 +714,17 @@ Beans without reference:
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -793,28 +740,28 @@ Beans without reference:
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 137%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 137%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
+<a style="font-size: 106%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 84%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
-<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 133%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 118%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 106%" href="/blog/tags/web/">Web</a>

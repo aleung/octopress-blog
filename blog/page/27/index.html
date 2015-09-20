@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="这两天用着G1的my location功能，发现真是很爽，即使不开GPS，单独依靠移动网络来定位在很多地方都已经相当准确，往往已经到了一个住宅小区的精度。但是地图模式的人为偏移就令人非常懊恼，在广州区域内偏差600多米，明明在天河公园东面它显示到西门那边。 &hellip;">
+  <meta name="description" content="春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为用得不爽一时兴起而写的校正中国地图偏移的软件不断添加新功能发布新版本。 今天把软件改了个名字，由 Better My Location 改为 Here I’m!，应该会更顺口和好记一些。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,139 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/20/Inserted-liu-had-no-intention-of/">无意插柳</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-20T08:05:00+08:00" pubdate data-updated="true">2009-04-20</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>春节后开始学习Android软件开发，断断续续搞了差不多两个月的一个程序在完成了一半之后暂停了下来，反而是因为<a href="http://aleung.blogbus.com/logs/37558170.html">用得不爽一时兴起而写</a>的校正中国地图偏移的软件不断添加新功能发布新版本。</p>
+
+<p>今天把软件改了个名字，由 Better My Location 改为 Here I’m!，应该会更顺口和好记一些。不过，这个名字不好的地方就是太常用了，肯定无法出现在搜索引擎的开头几页。另外也把软件介绍的文案更新了一部分，目的是要把软件的功能更清晰的表达出来（不知道是否达到效果了，欢迎提意见）。还花了几个小时弄了个漂亮一些的logo，不是搞设计的，真是赶鸭子上架啊。</p>
+
+<p>考虑到blog的形式不是太合适做软件的发布，到Google Sites上为它做个了site：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a>。HereIm这个名字不能注册，只好用HereImApp。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/04/20/Inserted-liu-had-no-intention-of/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/19/Better-My-Location-/">Better My Location, 准确定位当前位置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-19T07:45:00+08:00" pubdate data-updated="true">2009-04-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>, <a class='tag' href='/blog/tags/mywork/'>MyWork</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="right" src="/blog/attachments/2009/4/HereIm.jpg" /></p>
+
+<p><strong>Better My Location</strong> （现已改名为HereIm!）是适用于 Google Android 手机的工具软件，利用它可以方便准确的得知自己目前所处的位置，并在地图上标志出来。它可以解决Google中国地图偏移的问题，比系统自带的地图定位更加准确和方便。</p>
+
+<h2 id="section">下载 / 版本更新记录</h2>
+
+<p>安装：在Android Market搜索 “HereIm”</p>
+
+<p>软件网站：<a href="http://sites.google.com/site/hereimapp/">http://sites.google.com/site/hereimapp/</a> （需要翻墙）</p>
+
+<h2 id="section-1">使用说明</h2>
+
+<h3 id="section-2">地图校准</h3>
+
+<p>地图有多种校准模式：Manually Calibrate为手工校准模式，需要用户先自行校准地图再使用。其他为中国几大城市的预设校准数据，在它们附近的地域也大致适用，可以选择最接近的一个。<br />
+手 工校准，在菜单中选Calibrate，然后现在卫星图上找到一个你知道的标志性地点（路口是一个好的选择），拖动地图使这个地点位于十字光标正中下，接 下来切到地图模式，同样也找到这个地点，拖到光标中心。最好开始先将地图缩小一点来校准，初步找到位置后再放大地图微调位置，可能需要反复几次才能准确校 准。最后点Done。<br />
+目前软件只会保存最后一次校准的参数。<br />
+注意：模式切换或手工校准后，需要手机收到位置更新之后，新校准才会生效。如果打开了GPS，位置会更新得很快，但若没有打开GPS，也许要移动相当一段距离后才能看出效果。  </p>
+
+<h3 id="section-3">定位</h3>
+
+<p>菜单中选择 My Location，就会在地图中标记出当前所处位置，并且显示街道地址（不一定很准确，可作为参考）。<br />
+如 果定位不成功，请检查你是否已经打开了手机的定位功能。方法是：home按钮 - menu按钮 - settings - security &amp; location，将use wireless networks选上，enable GPS satellites按你自己需要决定选不选。<br />
+wirelessnetworks在任何地方只有有手机信号基本都能立即定位，但不够准确，有可能 差一两条街；GPS定位很准，能到几十米，但要在天空开阔的地方才能收到足够数量的卫星，而且也要等比较久才能锁定卫星信号，屏幕顶上的绿色卫星天线图标 长亮不闪烁时才表示GPS定位成功。  </p>
+
+<h3 id="section-4">用手机自带地图显示当前位置</h3>
+
+<p>菜单选择”open in map app”，会切换到手机自带的地图软件，这时屏幕正中间就是当前位置。要注意，它的蓝点位置还是偏的。校准仅仅在 Better My Location 中有效。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2009/04/19/Better-My-Location-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -423,182 +556,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/03/17/How-to-solve-the-conflict/">如何解决冲突</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-03-17T05:57:00+08:00" pubdate data-updated="true">2009-03-17</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/personaldevelopment/'>PersonalDevelopment</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天参加了一个名为《有效率的会议管理》的培训课程，其中关于如何解决冲突的问题，比较有意义，记录下来。</p>
-
-<p>面临冲突时，一般人有以下几种行为反应的模式：</p>
-
-<ul>
-  <li>回避型：回避问题，避免与对方发生冲突。但是这并不能解决问题，因为并不接受对方的观点，只是将问题拖延。</li>
-  <li>竞争型：竭力坚持自己的立场和观点，力图说服对方。</li>
-  <li>迁就型：放弃自己的立场，迁就对方的意见。与回避的区别在于，迁就是接受对方的观点。</li>
-  <li>妥协型：求同存异，力求寻找双方观点中一致之处，得到折中的解决方案，而对于不一致的地方双方共同让步。</li>
-  <li>协作型：开诚布公的阐述自己的观点和担忧的同时，也用心聆听对方的观点，同时考虑自己和对方关切的全部事情；力图通过共同探讨来解决双方的差异，通过合作得到满足各方意愿的解决方法。</li>
-</ul>
-
-<p>行为模式没有绝对的好坏之分，但在不同场合下选择不同的行为模式会更合适。将事情的重要性与冲突双方人际关系的重要性作为坐标轴，可以将这5种行为模式的适合情形放在不同的区域。例如，对于工作上的事情，往往重要性比较高，应该采取协作，妥协，竞争几种行为模式；对于家庭的问题，人际关系的保持更加重要，应该采取协作，妥协，迁就几种行为模式。从图中可以看出，协作是最理想的行为模式，如果能够通过协作而解决问题，结果往往可以达到双赢；而回避这种行为模式通常都是需要避免的，因为事情不重要人际关系也不重要的情况实际上不多。(我想到网上交流时，也许可以选择回避型的行为模式，看网上的骂架有多少是有意义的？)</p>
-
-<p><a href="http://www.flickr.com/photos/leoliang/4897373666/"><img src="http://farm5.static.flickr.com/4140/4897373666_2c531317eb_z.jpg" alt="conflict" /></a></p>
-
-<p>每个人通常会同时具备多种行为模式，但以其中的一种或几种占优势。例如有人遇到冲突总是很强势，一般会表现出竞争型模式，有些人面临冲突会倾向于妥协或迁就。虽然有上面的适合情形的分析，但冲突发生时，人们往往会以固有的优势模式来做出反应。</p>
-
-<p>对于领导人才，最理想的模式是”协作-妥协-竞争”，最长于通过协作方式来解决问题，如果协作不能生效，转而寻找妥协的解决方案，依然未果则采取竞争性行为模式，强势压倒对方。</p>
-
-<p>要以协作的方式解决冲突，在冲突发生时就需要停下来问问自己：</p>
-
-<ul>
-  <li>Why is he/she acting like this way?</li>
-  <li>What are our common interests?</li>
-  <li>What would be the consequences if we come to an agreement?</li>
-</ul>
-
-<p>其实关键就在于尽可能寻找一个满足双方interest的双赢的方案。</p>
-
-<p>另外，协作型的人在冲突发生时往往会充当一个有耐心的教育者。</p>
-
-<p>根据测试的结果，我最强的模式是竞争型，然后表现出一定的协作型和回避型，而迁就和妥协就很弱。有些同事对我是竞争型的感到有点奇怪，确实，我很多时候表现得都不强势。自己分析了一下，我如果在对自己的观点十分有把握的时候，我会非常的坚持自己的观点，丝毫都不让步。但是，我对自己的观点的把握不够大的时候，就不是这样了，我希望自己坚持的东西是100%正确的。特别是在我不熟悉的领域，会没有什么观点。采取竞争型的行为模式，虽然过去的经验中大多数最终都证明我是正确的，但这样会对人际关系带来一定的影响。</p>
-
-<p>分析下来，自己需要在这些方面做出改进：</p>
-
-<ol>
-  <li>多尝试使用协作的方式解决问题，提高这方面的能力。主要是要倾听对方的观点，了解对方观点背后所关切的东西，通过换位思考来寻找对双方都有利的解决方案。</li>
-  <li>在事情的重要性不是那么高的时候，可以妥协，得到折中的解决方法，而不一定非要对方完全接受自己的观点。</li>
-  <li>即使在没有十足把握的情况下，也应该积极的表达出自己的观点。自己不一定完全正确，但这时候对方往往也不见得就正确。这样才有助于共同找到最优的解决方案。</li>
-</ol>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/03/17/How-to-solve-the-conflict/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/03/07/The-subway-security-know-more-D/">地铁安全知多D</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-07T21:12:00+08:00" pubdate data-updated="true">2009-03-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天发现广州地铁在站内广告牌上宣传地铁安全知识，介绍了在危急情况下如何撤离。广州地铁通车这么多年了，我还是第一次看到这方面的信息。重视安全知识的宣传，是件好事。</p>
-
-<p>在地铁列车在隧道内发生事故，特别是火灾之类的，乘客如何快速撤离，是件非常重要的事情，因为火势很容易顺着隧道蔓延，高温和有毒气体无法向四周扩散，更是很快就会包围整个隧道。</p>
-
-<p>地铁一、二号线都是在列车两头司机室前端可以打开一个逃生门，乘客需要走到列车尽头通过司机室再由逃生门离开列车下到隧道地面。需要从两头下车，是因为车厢门打开后就是面向着隧道壁，并没有足够空间供乘客行走。列车车厢地板距离轨道有大概半个人的高差，因此一号线列车打开逃生门后会伸出一块板搭到地面上，形成一个斜坡，并且有扶手（如果我没有看错照片）。正常人应该可以跑下去，行动不便的人也应该还是勉强能够走下去。可是二号线列车的设计就有很大问题了，斜坡变成了一个梯子，从照片上看人还要反过身来面向梯子才能下去。在危急情况下时间就是一切，按照这样爬梯子一车乘客需要多少时间才能疏散完？一列车才两个逃生口啊，事故发生时往往只有一个能用（一头发生事故，当然只能从另外一头离开）。而且，行动不便的人很可能就无法自己下去了，正常的乘客也有可能在忙乱之间摔倒，那将是人踩人的惨剧。一号线列车是西门子的，二号线列车是长春客车厂与庞巴迪合作，都不知道是否国产化设计搞出来的问题。</p>
-
-<p>相比之下，三、四号线就好多了，隧道左侧设置了与车厢地板同高的疏散平台，打开侧面车门就可以沿平台行走。不过平台还是很窄的，一大车的人要沿着这窄窄的平台走到附近的地铁站，要保持好秩序也不容易。要注意的是，特别是四号线，不能跳下轨道。其他的几条已使用地铁线都是架空线供电，但四号线是<a href="http://zh.wikipedia.org/w/index.php?title=%E7%AC%AC%E4%B8%89%E8%BD%A8%E4%BE%9B%E7%94%B5">第三轨供电</a>，在轮轨的外侧有一条供电轨，可是1500V的电压。</p>
-
-<p>从<a href="http://news.dayoo.com/gov/200902/26/36198_5370659.htm">新闻</a>上看，即将开通的五号线也会安装疏散平台。一、二号线估计是因为隧道没有预留宽度，所以无法安装。</p>
-
-<p>顺便show几张照片，是前段时间去参观海瑞克隧道设备公司时拍的，广州地铁的大部分隧道盾构工程所用的盾构机都是由海瑞克提供的。</p>
-
-<p>盾构机前部盾体的结构图：  </p>
-
-<p><img src="/blog/attachments/2009/3/Herrenknecht1.jpg" alt="" /></p>
-
-<p>整个盾构机像火车一样很长，一节节台车组成。车间里这台盾构机才刚开始组装，提供给云南的一个水利工程用的，工程师介绍说共有三十多节：</p>
-
-<p><img src="/blog/attachments/2009/3/Herrenknecht2.jpg" alt="" /></p>
-
-<p>准备组装的刀盘驱动部分：</p>
-
-<p><img src="/blog/attachments/2009/3/Herrenknecht3.jpg" alt="" /></p>
-
-<p>左面是回收回来的旧滚刀，右面是展台上的滚刀，和适合不同地质条件的刀体。岩石就是靠这些滚刀压碎的：</p>
-
-<p><img src="/blog/attachments/2009/3/Herrenknecht4.jpg" alt="" /></p>
-
-<p>我参观的时候厂房里没有组装好的机器，从网上找来两张照片。上图看到的是盾构机的前部，红色的刀盘，上面镶嵌的黑色的就是刀具。从照片看似乎就是在我参观的那个车间。下图是一台硬岩掘进机的侧面。</p>
-
-<p><img src="/blog/attachments/2009/3/Herrenknecht5.jpg" alt="" />
-<img src="/blog/attachments/2009/3/Herrenknecht6.jpg" alt="" /></p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/03/07/The-subway-security-know-more-D/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/28/">&larr; Older</a>
@@ -620,6 +577,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/continuous-learning/">持续学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
       </li>
     
@@ -631,25 +596,17 @@
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -665,28 +622,28 @@
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 137%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 137%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
+<a style="font-size: 106%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 84%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
-<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 133%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 118%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 106%" href="/blog/tags/web/">Web</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SoftwareDev | Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/tags/softwaredev/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-08-29T05:15:42+08:00</updated>
+  <updated>2015-09-20T12:42:21+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自由软件质量不如软件企业自己开发的可靠？]]></title>
+    <link href="http://aleung.github.io/blog/2015/09/20/quality-of-free-software/"/>
+    <updated>2015-09-20T12:31:29+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/09/20/quality-of-free-software</id>
+    <content type="html"><![CDATA[<p>在软件企业中开发产品/项目，做技术选型时经常会听到的一个说法是：选择开源自由软件，会不会质量不够有保障？还是我们自己做好一些。</p>
+
+<p>自由软件遵循的是完全的市场经济，面对的是残酷的竞争。如果项目做得不好，满足不了需求，就会无人问津而最终被废弃掉，使用者才不心痛已经有多少人力物力已经投入到这个项目中。项目设计太差，代码太烂，同样也吸引不了贡献者，导致原有贡献者的离开或者另起炉灶。对比的看，软件企业中开发的软件项目就如受着国家保护的国企，虽然也面临外部竞争，但在内部怎么也还是自家孩子，再烂也很难让大家承认它的失败，要放弃更加是艰难的决定，往往意味影响好些人的仕途。因此，你会看到很多企业开发的软件项目很烂，因为它们本来应该死掉的，但被强制维持着生命。</p>
+
+<p>从软件开发者的平均水平这个角度来看，自由软件项目也优于企业开发的软件项目。当然，这里谈的自由软件项目是指有一组稳定贡献者有明确蓝图的，这样才能与企业项目相比较，个人练手的项目不算在内。试想一下，在一个软件企业里面，水平足矣为自由软件提交代码的开发者占了多少比例？但是那些尚不能为自由软件项目提交代码的开发者，在企业里面可是天天写代码的，甚至大部分代码是出自他们之手。</p>
+
+<p>泛泛的说，在某个领域，如果可选的自由软件有不少，那么排名前列的项目，质量基本上不需要太过担心。</p>
+
+<p>上面是我对自由软件质量担忧的看法，但这当然不代表就可以随意选择使用自由软件，技术选型中需要评估的东西还有很多。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jekyll 与 Swagger UI 集成]]></title>
@@ -489,43 +506,6 @@ lazy val core = project.dependsOn(util, api)
 <p><code>scala
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.7.0")
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ivy Introduction for Maven User]]></title>
-    <link href="http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user/"/>
-    <updated>2014-12-26T01:11:52+08:00</updated>
-    <id>http://aleung.github.io/blog/2014/12/26/ivy-introduction-for-maven-user</id>
-    <content type="html"><![CDATA[<p>由于 sbt 使用 Ivy 做依赖管理，必须了解一下 Ivy 的基础知识。这里从熟悉 Maven 的用户的角度简单描述一下 Ivy。</p>
-
-<h2 id="section">共同点</h2>
-
-<p>Maven的功能要比 Ivy 多很多，Maven 既管 build 也管依赖，而Ivy 仅仅是负责依赖管理。但就在依赖管理方面，两者在概念、模型、功能等方面都还是比较相似的。</p>
-
-<p>对于 artifact 的标识，都是使用 groupID, artifactID, version 三元组，不过 Ivy 叫它们为 organization, module name, revision。Ivy 兼容 Maven 2 metadata，可以直接使用 Maven 2 repository。</p>
-
-<h2 id="configuration--scope">Configuration / Scope</h2>
-
-<p>Ivy 有个重要的概念叫 configuration，在 Maven 里类似的对应是 scope，但是 Ivy 的 configuration 比 Maven 的 scope 要灵活得多。</p>
-
-<p>一个模块可以有多个 configuration，每个 configuration 包含一组外部模块依赖的声明（实际的配置是反过来的，每个依赖声明会标识自己在那种 configuration 中生效）。Configuration 可以是跟 Maven scope 类似的 compile, runtime 和 test，也可以任意定义。例如，某个模块既可以支持 Oracle 也可以支持 MySQL，当使用不同数据库时，需要依赖的模块是不同的，就可以分别在 oracle 和 mysql 两个 configuration 中定义各自需要的依赖。</p>
-
-<p>Ivy 的 configuration 在依赖传递管理方面，比 Maven 要强。除了可以定义在一个 configuation 中需要依赖某个模块，还可以定义依赖这个模块时，会使用它的哪个 configuration，只有指定的 configuration 中的依赖才会传递进来。这个机制称为 configuration mapping。</p>
-
-<p>下面的例子中，声明了在 default configuration 中需要依赖 hibernate，并且包含 hibernate 的 proxool 和 oscache 这两种 configuration 中的依赖。</p>
-
-<p><code>xml
-&lt;dependency org="hibernate" name="hibernate" rev="2.1.8" conf="default-&gt;proxool,oscache"/&gt;
-</code></p>
-
-<p>Configuration 可以扩展（继承）另一个 configuration，可以设置外部可见性。</p>
-
-<h2 id="repository">Repository</h2>
-
-<p>Maven 的 repository 必须是网络服务（local 除外，local repository 本质上相当于 cache），Ivy 除了支持Maven 2 repository，也支持指定文件系统路径作为repository，还有各种各样其他的存储方式。</p>
-
-<p>Maven 当配置了多个 repository 时，是按照配置的顺序一一查找，找到 artifact 为止。Ivy 的 artifact 查找是由 resolver 来负责，一个 resolver 对应一个 repository，有些特殊的 resolver 可以将多个 resolver 组合起来使用，例如 chain resolver 和 dual resolver。缺省的 resolver 就是一个 chain resolve，按照 local, shared, public的顺序去访问这些 repository。Ivy 的组织要比 Maven 更灵活一些。</p>
 ]]></content>
   </entry>
   

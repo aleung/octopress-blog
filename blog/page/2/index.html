@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="之前在公司里一来一往的邮件讨论，被江南白衣集成一篇收录到他的博客里，读下来还蛮有意思，转过来，以下为全文引用。其中的梁君就是我啦。 缘起 达夫君： 利用 GitHub 统计分析编程语言发展趋势 第一轮讨论 梁君： 增加的Java的项目里，不知道有多少是与Android相关的呢？ &hellip;">
+  <meta name="description" content="虽然我不是处女座的，但在有些事情上会表现得比较处女座，例如对于文档格式，我常会跟各种细节纠缠不休，为的是看起来显得完美一些。 作为软件开发者，写文档是必备的技能，而且文档里常常会出现大量英文。这里介绍一些很基本的规则，使得文档的显得专业一些。这些规则在其他类型的文章里也是适用的。 规则 用段落， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,318 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-05T00:00:00+08:00" pubdate data-updated="true">2015-02-05</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>虽然我不是处女座的，但在有些事情上会表现得比较处女座，例如对于文档格式，我常会跟各种细节纠缠不休，为的是看起来显得完美一些。</p>
+
+<p>作为软件开发者，写文档是必备的技能，而且文档里常常会出现大量英文。这里介绍一些很基本的规则，使得文档的显得专业一些。这些规则在其他类型的文章里也是适用的。</p>
+
+<h2 id="section">规则</h2>
+
+<h3 id="section-1">用段落，不要强制换行</h3>
+
+<p>在我看来，禁止使用强制换行，是没有特例的（我们不写诗歌）。在必须保留原始换行的地方，应该作为 preformatted text block（HTML 的 <code>PRE</code>，markdown 的 4 空格缩进段落）出现。</p>
+
+<h3 id="section-2">保持一致性</h3>
+
+<p>保持标点、字体等元素的一致性，整篇文档看起来清晰整齐，可读性高。</p>
+
+<p>在这方面常见问题有：</p>
+
+<dl>
+  <dt>中文英文标点混用</dt>
+  <dd>
+    <p>写技术文章，经常会出现中文英文（西文）混合的场景。原则应该是在中文句子中使用中文标点，西文句子中使用西文标点。至于中文句子中嵌入西文引文，那么嵌入的西文内容中应该遵循西文引文这个“亚环境”的规则，用西文标点，但用来包裹嵌入内容的引号或者括号还是属于中文句子的环境，因此用中文标点。</p>
+  </dd>
+  <dt>简体繁体中文混用</dt>
+  <dd>这个如果不考虑海外用户，问题也不算大，对大陆读者来说，混合简体繁体阅读起来基本上没有违和感。</dd>
+  <dt>全角半角混用</dt>
+  <dd>除了中文标点外，西文字母和数字这些字符是不应该出现全角的。</dd>
+  <dt>成对的符号没有对称</dt>
+  <dd>例如引号，是区分左引号和右引号的，一般输入法会正确识别方向，但在拷贝粘贴或者插入编辑的时候要小心方向不要弄错。</dd>
+</dl>
+
+<h3 id="section-3">空格的使用</h3>
+
+<p>中文标点不需要加空格。西文标点后需要加一个空格；成对的符号，开始的要在前面加空格，结束的在后面加空格。</p>
+
+<p>西文单词之间要用空格分隔，这个不容易错。但是单词与数字之间也要加空格，例如“iPhone 6”。</p>
+
+<p>中文与西文混排时，中文与西文之间可能要添加空格，以保证有一定间距，具体视乎显示效果而定。有人习惯一律加空格。<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<h3 id="section-4">西文大小写不要误用</h3>
+
+<p>强调以下的规则似乎有点小题大做，但确实还是经常会见到这样的错误。</p>
+
+<ul>
+  <li>句子首字母大写，句子内不应该用大写，除非下面的情况；</li>
+  <li>有些专有名词首字母大写的，即使用在句子中间也要保留大写；</li>
+  <li>全部大写的缩写，放在哪里都不能变成小写。</li>
+</ul>
+
+<h3 id="section-5">西文没有书名号</h3>
+
+<p>书名号是中文特有的。在西文中，书名用斜体表示，篇名用引号。</p>
+
+<h3 id="section-6">使用样式，不要在文字上添加格式</h3>
+
+<p>同样语义的文字，就应该有同样的显示效果，这也是一致性的体现。把文字变得五颜六色，再插一段超大字体，这种做法还是留在小毛孩的论坛里吧。</p>
+
+<h3 id="section-7">不要滥用强调</h3>
+
+<p>强调会吸引注意力，打破文档视觉结构，只应该用在真正需要的地方。满篇的强调等于没有强调。</p>
+
+<p>若要突出文档架构，应该使用标题（headings）。当文章中有些整行文字需要强调时，往往是应该将它们作为小标题。</p>
+
+<p>在西文中，按照强调的程度不同，一般强调用斜体，特别强调用加粗。但是，斜体只适合西文，中文不好看，在印刷中可以用楷体或者加着重号代替，不过在一般电子文档中不方便使用（在 web 上可以用 CSS 来控制），没有什么好方法，所以在中文中就没法区分一般强调和特别强调了。 <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+
+<p>改颜色改字体大小之类的奇淫技巧不可使用。</p>
+
+<h3 id="section-8">合理使用格式</h3>
+
+<p>通过合理使用语义化的格式，可以达到需要的显示效果，而不用去直接指定如何显示。HTML 和 markdown 都支持以下几种格式：</p>
+
+<dl>
+  <dt>引用 （blockquote）</dt>
+  <dd>整段文字引用自其他地方。</dd>
+  <dt>Preformatted text block</dt>
+  <dd>保留原始格式，包括换行，空格等。</dd>
+  <dt>代码格式</dt>
+  <dd>用等宽字体（monospaced font）显示。要做得漂亮一点就是加上自动语法高亮渲染了。</dd>
+  <dt>定义列表 (definition list)</dt>
+  <dd>适用于一个名词，后面一段解释的场合，就像现在这段文字。也就是 key-value map 在文本中的体现。在HTML 里是 <code>DL</code>, <code>DT</code> 和 <code>DD</code> 标签，不属于基本的 markdown 格式，有些引擎会支持。</dd>
+</dl>
+
+<h2 id="section-9">总结</h2>
+
+<p>保证各种元素的一致性。关注内容的层次结构，段落或文字的语义属性，而不是显示效果。显示效果由样式来控制。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://www.geekpark.net/topics/193278">空格杂谈</a>  <a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><a href="http://blog.acgtyrant.com/chinese-western-mixed-typesetting.html">中西文混排</a><a href="#fnref:2" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p><a href="http://blog.justfont.com/2014/01/popular-typography-4/">大眾字型學：理想的排版強調法</a><a href="#fnref:3" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2015/02/05/typesetting-basic+copy/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/26/jekyll/">Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-26T21:29:40+08:00" pubdate data-updated="true">2015-01-26</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="jekyll-">用 Jekyll 作为内部技术文档库</h2>
+
+<p><img class="right" src="/blog/attachments/2015/1/ecebook.png" /></p>
+
+<p>去年在公司的产品开发团队中推行了使用 <a href="http://jekyllrb.com/">Jekyll</a> 静态网站生成工具来写内部技术文档，大半年下来，效果还不错。</p>
+
+<p>内部技术资料的共享和维护以前一直是个问题。开始用 Office Word 正正规规的写设计文档，维护成本太高了，往往是代码已经翻天覆地变化，文档里都没有反映出来，大家不愿意更新。而且查找起来也不方便。后来推行敏捷方法，不想让文档工作那么 heavy 了，于是用 wiki 来记录。Wiki 的问题是信息非常碎片化，大家很随意的添加新页面，整个 wiki 就像一个草稿本，写得很没有系统。网状的超链接导航令读者很迷茫，不知道需要的信息入口在哪儿，有些隐藏得很深的页面没有几个人知道它们的存在。Wiki 的在线编辑体验也不是那么好。</p>
+
+<p>Jekyll 是个静态网站生成工具，采用 <a href="http://zh.m.wikipedia.org/wiki/Markdown">markdown</a> 语法来写内容，根据模板生成 HTML 页面，发布到一个 web 服务器上，就可以用浏览器在线查看内容。Jekyll 通常用来做  blog 系统，但它用来做有组织的内容发布系统也是完全胜任的。我基本上就是仿照 Jekyll <a href="http://jekyllrb.com/docs/home/">官方文档</a> 的风格和结构来组织我们产品的内部技术文档库。</p>
+
+<p>使用 Jekyll 优点首先是编写方便，markdown 是个轻量的标记语言，上手简单，语法易记，而且有不少编辑工具支持。即使没有渲染成 HTML，也是直接可以阅读的，比起奇奇怪怪还各自不同的 wiki 语法好写多了。</p>
+
+<p>在模板做得好以及安装合适的插件后，生成的文档显示效果相当漂亮，格式效果也很丰富。而且，我们使用了 <a href="https://github.com/aleung/jekyll-plantuml">plantuml</a> 插件，可以直接用文字的方式<strong>写</strong>UML<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，比起以前用其他工具画图，截图，再嵌入文档这种方式方便多了。</p>
+
+<p>技术文档库的原始文件是文本格式，用 git 来做版本管理，不用担心大家同时编辑保存时会相互覆盖的问题，修改历史也很清晰。大家都是程序员，本来代码就是用 git 来管理的，文档也用 git 管理自然是很顺手的事情。使用 <a href="https://github.com/aleung/jekyll-post-revision">jekyll-post-revision</a> 这个插件，能够在生成的页面上显示修改历史记录。</p>
+
+<p>通过 <a href="https://github.com/slashdotdash/jekyll-lunr-js-search">jekyll-lunr-js-search</a> 这个插件，能为站点提供全文搜索的能力，这也是相当方便的功能。</p>
+
+<h2 id="windows--jekyll">在 Windows 上安装 Jekyll</h2>
+
+<p>Jekyll 是用 Ruby 开发的，在 Linux 和 Mac OS X 上安装使用都很简单，在系统中有 Ruby 环境的前提下（Mac 是自带的，Linux 的各种发行版都会有安装包），照着官网上的<a href="http://jekyllrb.com/docs/quickstart/">介绍</a>，几个命令就搞定了。但是，在 Windows 下就不是那么简单了（顺便再黑一下 Windows，不使用 Microsoft 技术的开发者都应该离开它）。</p>
+
+<p>在 Windows 上装过几次 Jekyll，可以写点教程减少大家摸索的时间。大致参考这篇 <a href="http://jekyll-windows.juthilo.com/">Run Jekyll on Windows</a>。</p>
+
+<h3 id="ruby">安装 Ruby</h3>
+
+<p>首先需要安装 Ruby 环境。从 <a href="http://rubyinstaller.org/downloads">http://rubyinstaller.org/downloads</a> 下载 Ruby 2.0 和 DevKit，安装 Ruby，然后将 DevKit 解压到 <code>C:/RubyDevKit</code>，在命令行运行下面指令完成安装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line"><span class="k">cd</span> C:\RubyDevKit
+</span><span class="line">ruby dk.rb init
+</span><span class="line">ruby dk.rb install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="jekyll--gem">安装 Jekyll 相关的 gem</h3>
+
+<p>Gem 是 Ruby 的包管理工具。在命令行执行<code>gem install</code>可从互联网的仓库直接下载和安装需要的包。如果需要代理，需要先设置环境变量<code>http_proxy</code>，如不需要则忽略第一行。其中，<code>jekyll</code>这个 gem 是必须安装的，其他的视乎环境、配置和使用的插件，可能需要装，可能不需要装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line"><span class="k">set</span> <span class="nv">http_proxy</span><span class="o">=</span>http:<span class="n">//my-proxy:8080</span>
+</span><span class="line">
+</span><span class="line">gem install jekyll
+</span><span class="line">
+</span><span class="line">gem install kramdown
+</span><span class="line">gem install pygments
+</span><span class="line">gem install nokogiri
+</span><span class="line">gem install coderay
+</span><span class="line">gem install wdm
+</span><span class="line">gem install json
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果在安装过程中出现 SSL 错误，从<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">这里</a>可以找到解决方法。</p>
+
+<h3 id="jekyll">使用 Jekyll</h3>
+
+<p>Jekyll 的相关操作都是执行<code>jekyll</code>命令进行。后面的基本上就是看<a href="http://jekyllrb.com/docs/quickstart/">官方文档</a>慢慢折腾了。</p>
+
+<h2 id="jekyllexe">制作 jekyll.exe</h2>
+
+<p>上面的步骤还是有点繁琐。我们公司里的都是 Java 程序员，在电脑里装个 Ruby 环境也没有其他用处。为了推广使用，简化大家的操作，做一个 portable 的 Jekyll 可执行程序会更好。</p>
+
+<p>制作的步骤基本上参考这篇 <a href="http://www.nickw.it/jekyll-dot-exe/">Building Jekyll.exe for Windows</a>。</p>
+
+<p>首先要安装 OCRA。可能还需要安装 psych，bigdecimal 这些 gem。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">gem install ocra
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>解开 jekyll 到一个临时目录：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">gem unpack jekyll
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>修改<code>bin/jekyll</code>，在开头增加几个依赖声明：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;nokogiri&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;jekyll-watch&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;wdm&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>生成 exe 文件：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bat"><span class="line">ocra --add-all-core --gem-all bin<span class="n">/jekyll</span> lib<span class="n">/jekyll/mime.types</span> lib<span class="n">/site_template/**/*</span> lib<span class="n">/site_template/*</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>做出来的 jekyll.exe 需要测试一下，看看各种命令是否都能正常。视乎配置和使用插件的不同，可能需要增加更多的依赖声明。以上只是我的环境的例子，不一定适用于所有场景。</p>
+
+<p>最后，我知道大家都还是懒得衣来伸手饭来张口的，就提供一个编译好的 <a href="https://github.com/f5f6/f5f6.github.io/raw/master/_bin/jekyll.exe">jekyll.exe</a> 下载，支持 kramdown 和 coderay。但还是那句话：不一定符合你的环境。</p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>参考 <a href="/blog/blog/2014/08/23/plantuml/">PlantUML 简介</a>, <a href="/blog/blog/2014/01/20/text-to-uml-diagram/">Text to UML Diagram</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2015/01/26/jekyll/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -529,494 +841,6 @@ it is possible to make a language “better” by removing features that are con
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/30/windows-troubleshooting/">Trouble Shooting: Windows响应缓慢</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-30T16:24:15+08:00" pubdate data-updated="true">2014-12-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/sysadmin/'>SysAdmin</a>, <a class='tag' href='/blog/tags/windows/'>Windows</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近一个星期，电脑出现了缓慢的现象：打开任何应用，窗口都要等待上一段时间才能出现。</p>
-
-<p>在 <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a> 中看到进程已经出现，也没有什么CPU占用，但窗口就是不出来，好像是要等到什么操作超时。这里如果能够查看调用栈，应该就能知道程序卡在什么地方。</p>
-
-<p>上网搜索一下，看到一些文章提到 troubleshoot Windows 问题，都用到了 WinDbg 来分析进程调用栈。这篇<a href="http://www.codeproject.com/Articles/6084/Windows-Debuggers-Part-A-WinDbg-Tutorial">文章</a>简要介绍了 WinDbg 的使用方法（不过可能文章年代过于久远，有些细节已经对不上了）。于是安装相应软件，实操一下。</p>
-
-<p>只是用到 WinDbg 的一些皮毛功能，包括这些命令：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>~</td>
-      <td>列出所有线程</td>
-    </tr>
-    <tr>
-      <td>k <em>5</em></td>
-      <td>显示当前线程的stack trace，如果附带数字则限制打印条数</td>
-    </tr>
-    <tr>
-      <td>kb</td>
-      <td>显示stack trace，包含前三个调用参数</td>
-    </tr>
-    <tr>
-      <td>~n[cmd]</td>
-      <td>对n号线程执行 <em>cmd</em> 操作</td>
-    </tr>
-    <tr>
-      <td>~*[cmd]</td>
-      <td>对所有线程执行操作，如 <code>~*k 5</code></td>
-    </tr>
-    <tr>
-      <td>~ns</td>
-      <td>切换到n号线程</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>WinDbg 可以 attach 到一个执行中的进程。但我只是想看看某个时刻那个进程在干什么，用 Process Explorer 创建进程的 minidump 更加简单，在 GUI 中选择进程，右键菜单选择 dump 就能创建出 dump 文件，可以多 dump 几次，然后用WinDbg 打开 dump 文件查看。</p>
-
-<pre><code>Loading Dump File [C:\tmp\2014-12\notepad++.dmp]
-User Mini Dump File: Only registers, stack and portions of memory are available
-
-Symbol search path is: srv*c:\LocalSymbols* http://msdl.microsoft.com/download/symbols
-Executable search path is:
-Windows 7 Version 7601 (Service Pack 1) MP (4 procs) Free x86 compatible
-Product: WinNt, suite: SingleUserTS
-Machine Name:
-Debug session time: Tue Dec 30 15:53:27.000 2014 (UTC + 8:00)
-System Uptime: not available
-Process Uptime: 0 days 0:00:06.000
-</code></pre>
-
-<p>这是 notepad++ 启动6秒钟后的 dump，看看这时有些什么线程，分别在干什么：</p>
-
-<pre><code>0:000&gt; ~*k 6
-
-.  0  Id: 1894.d54 Suspend: 0 Teb: 7efdd000 Unfrozen
-ChildEBP RetAddr 
-00137980 74c314ab ntdll!NtWaitForSingleObject+0x15
-001379ec 764b1194 KERNELBASE!WaitForSingleObjectEx+0x98
-00137a04 764b1148 kernel32!WaitForSingleObjectExImplementation+0x75
-00137a18 74a5098c kernel32!WaitForSingleObject+0x12
-00137a28 74a4fcdc msctf!CCicEvent::Wait+0x15
-00137ca4 74a4fbd9 msctf!CAssemblyList::LoadFromCache+0x94
-
-   1  Id: 1894.107c Suspend: 0 Teb: 7efda000 Unfrozen
-ChildEBP RetAddr 
-WARNING: Frame IP not in any known module. Following frames may be wrong.
-00b4ff88 764b338a 0x1e02d1
-00b4ff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
-00b4ffd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
-00b4ffec 00000000 ntdll!_RtlUserThreadStart+0x1b
-
-   2  Id: 1894.4bc Suspend: 0 Teb: 7efd7000 Unfrozen
-ChildEBP RetAddr 
-02ecfe28 76ee1ad0 ntdll!NtWaitForWorkViaWorkerFactory+0x12
-02ecff88 764b338a ntdll!TppWorkerThread+0x216
-02ecff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
-02ecffd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
-02ecffec 00000000 ntdll!_RtlUserThreadStart+0x1b
-
-   3  Id: 1894.f30 Suspend: 0 Teb: 7ef9f000 Unfrozen
-ChildEBP RetAddr 
-033afe28 76ee1ad0 ntdll!NtWaitForWorkViaWorkerFactory+0x12
-033aff88 764b338a ntdll!TppWorkerThread+0x216
-033aff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
-033affd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
-033affec 00000000 ntdll!_RtlUserThreadStart+0x1b
-
-   4  Id: 1894.2034 Suspend: 0 Teb: 7ef9c000 Unfrozen
-ChildEBP RetAddr 
-04d1fdf4 76ecc6c5 ntdll!NtWaitForMultipleObjects+0x15
-04d1ff88 764b338a ntdll!TppWaiterpThread+0x33d
-04d1ff94 76ecbf32 kernel32!BaseThreadInitThunk+0xe
-04d1ffd4 76ecbf05 ntdll!__RtlUserThreadStart+0x70
-04d1ffec 00000000 ntdll!_RtlUserThreadStart+0x1b
-</code></pre>
-
-<p>共有5个线程，只有0号线程在干活。看0号线程的完整调用栈：</p>
-
-<pre><code>0:000&gt; k
-ChildEBP RetAddr 
-00137980 74c314ab ntdll!NtWaitForSingleObject+0x15
-001379ec 764b1194 KERNELBASE!WaitForSingleObjectEx+0x98
-00137a04 764b1148 kernel32!WaitForSingleObjectExImplementation+0x75
-00137a18 74a5098c kernel32!WaitForSingleObject+0x12
-00137a28 74a4fcdc msctf!CCicEvent::Wait+0x15
-00137ca4 74a4fbd9 msctf!CAssemblyList::LoadFromCache+0x94
-00137cd0 74a4e045 msctf!CAssemblyList::Load+0x39
-00137d00 74a4e863 msctf!EnsureAssemblyList+0xe9
-00137d28 74a4e30a msctf!CLangBarItemMgr::GetCurrentCategoryList+0x14
-00137d44 74a4e67d msctf!CLangBarItemMgr::_Init+0xea
-00137d58 74a7d0c4 msctf!CLangBarItemMgr::CreateInstance+0xea
-00137d78 74a57f99 msctf!CLangBarItemMgr_Ole::CreateInstance+0x6e
-00137d8c 76038ca6 msctf!CClassFactory::CreateInstance+0x14
-00137e14 76053170 ole32!CServerContextActivator::CreateInstance+0x172 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1000]
-00137e54 76038dca ole32!ActivationPropertiesIn::DelegateCreateInstance+0x108 [d:\w7rtm\com\ole32\actprops\actprops.cxx @ 1917]
-00137ea8 76038d3f ole32!CApartmentActivator::CreateInstance+0x112 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 2268]
-00137ec8 76038ac2 ole32!CProcessActivator::CCICallback+0x6d [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1737]
-00137ee8 76038a73 ole32!CProcessActivator::AttemptActivation+0x2c [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1630]
-00137f24 76038e2d ole32!CProcessActivator::ActivateByContext+0x4f [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1487]
-00137f4c 76053170 ole32!CProcessActivator::CreateInstance+0x49 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 1377]
-00137f8c 76052ef4 ole32!ActivationPropertiesIn::DelegateCreateInstance+0x108 [d:\w7rtm\com\ole32\actprops\actprops.cxx @ 1917]
-001381ec 76053170 ole32!CClientContextActivator::CreateInstance+0xb0 [d:\w7rtm\com\ole32\com\objact\actvator.cxx @ 685]
-0013822c 76053098 ole32!ActivationPropertiesIn::DelegateCreateInstance+0x108 [d:\w7rtm\com\ole32\actprops\actprops.cxx @ 1917]
-001389fc 76059e25 ole32!ICoCreateInstanceEx+0x404 [d:\w7rtm\com\ole32\com\objact\objact.cxx @ 1334]
-00138a5c 76059d86 ole32!CComActivator::DoCreateInstance+0xd9 [d:\w7rtm\com\ole32\com\objact\immact.hxx @ 343]
-00138a80 76059d3f ole32!CoCreateInstanceEx+0x38 [d:\w7rtm\com\ole32\com\objact\actapi.cxx @ 157]
-Unable to load image C:\Windows\System32\kunlun.ime, Win32 error 0n2
-*** WARNING: Unable to verify timestamp for kunlun.ime
-*** ERROR: Module load completed but symbols could not be loaded for kunlun.ime
-00138ab0 71a86801 ole32!CoCreateInstance+0x37 [d:\w7rtm\com\ole32\com\objact\actapi.cxx @ 110]
-WARNING: Stack unwind information not available. Following frames may be wrong.
-00138ad4 71a86722 kunlun+0xf6801
-00138b0c 71a8648c kunlun+0xf6722
-00138bf0 71a4fb9e kunlun+0xf648c
-00138c58 71a51e63 kunlun+0xbfb9e
-00138c8c 71a51efc kunlun+0xc1e63
-00138cc4 71a51b90 kunlun+0xc1efc
-00138d34 71a4fc81 kunlun+0xc1b90
-00138d74 762d459a kunlun+0xbfc81
-00138d90 762d2900 imm32!CreateInputContext+0x195
-00138db8 762d1e8c imm32!InternalImmLockIMC+0xca
-00138dc8 762d34ae imm32!ImmLockIMC+0xf
-00138dec 750cd9e7 imm32!ImmSetActiveContext+0x62
-00138e08 750cadf9 user32!FocusSetIMCContext+0x28
-0013905c 750c75b7 user32!ImeSystemHandler+0x31f
-00139084 750c75ed user32!ImeWndProcWorker+0x2c9
-001390a4 750c62fa user32!ImeWndProcW+0x29
-001390d0 750c6d3a user32!InternalCallWinProc+0x23
-00139148 750c6de8 user32!UserCallWinProcCheckWow+0x109
-001391a4 750c6e44 user32!DispatchClientMessage+0xe0
-001391e0 76ea010a user32!__fnDWORD+0x2b
-001391f4 00fe7ae0 ntdll!KiUserCallbackDispatcher+0x2e
-001392d8 750f10d3 0xfe7ae0
-001392fc 750f1125 user32!CreateDialogIndirectParamAorW+0x33
-*** ERROR: Module load completed but symbols could not be loaded for notepad++.exe
-00139328 00516a73 user32!CreateDialogParamW+0x49
-0013934c 750caa3c notepad__+0x116a73
-00139400 750c8a5c user32!_CreateWindowEx+0x210
-0013943c 0041ee1c user32!CreateWindowExW+0x33
-0013a7cc 00584fd4 notepad__+0x1ee1c
-0013a7e4 00584fa0 notepad__+0x184fd4
-0013a7e8 00400000 notepad__+0x184fa0
-0013a7ec 00040d60 notepad__
-0013a7f0 00110d3c 0x40d60
-0013a7f4 00000000 0x110d3c
-</code></pre>
-
-<p>最后的操作在msctf中等待某个事件，msctf 是 Microsoft Text Service；回溯调用栈，看见imm32（Input Method Manager）相关的调用，看来这个无响应的现象与输入法有关系。而 stack 中出现的 kunlun.ime 是必应输入法。</p>
-
-<p>试试把正在使用的必应输入法卸载后重启，系统就正常了。重新安装必应输入法，重启后系统又出现无响应现象。</p>
-
-<p>但比应输入法已经使用了一段时间了，为什么开始没有出现问题呢？回忆了一下，大概是在安装了 <a href="http://synergy-project.org/">Synergy</a> 之后出现的，Synergy共享鼠标键盘，也许有可能与输入法产生冲突。尝试一下，卸载synergy后，即使安装必应，系统也正常。看来可以确认是两者冲突，试了 Synergy 1.4.16/17/18 几个64bit版本都不能与 Bing IME 1.6.98.04 工作。</p>
-
-<p>Ok，对我来说问题解决了，进一步的不再深究。这次学会了使用 WinDbg 查看调用栈的简单操作。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/12/30/windows-troubleshooting/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/26/getting-start-with-sbt/">Getting Start With Sbt</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-26T17:17:50+08:00" pubdate data-updated="true">2014-12-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/scala/'>Scala</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A shortened sbt tutorial for beginner and quick reference.</p>
-
-<h2 id="directory-structure">Directory structure</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">lib/
-</span><span class="line">project/
-</span><span class="line">  Build.scala
-</span><span class="line">  plugins.sbt
-</span><span class="line">src/
-</span><span class="line">  main/
-</span><span class="line">    resources/
-</span><span class="line">    scala/
-</span><span class="line">    java/
-</span><span class="line">  test/
-</span><span class="line">built.sbt</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Source code can be placed in the project’s base directory. But usually people organize them into directory structure.</p>
-
-<p>sbt by default uses the same directory structure as Maven for source files, all under <code>src/</code>.</p>
-
-<p>sbt build definition files include <code>build.sbt</code> in project’s base drectory and other <code>.sbt</code> or <code>.scala</code> files in <code>project/</code> subdirectory.</p>
-
-<p>The <code>project</code> directory <em>is another project embedded</em> which knows how to build the outer project. So it may have its <code>build.sbt</code> and <code>project</code> directory structure, which is recursive. <em>The build definition is an sbt project.</em></p>
-
-<h2 id="running">Running</h2>
-
-<p>Common sbt commands:</p>
-
-<ul>
-  <li>clean</li>
-  <li>compile</li>
-  <li>test</li>
-  <li>testOnly &lt;testcase&gt;*</li>
-  <li>run &lt;argument&gt;*</li>
-  <li>package</li>
-  <li>reload</li>
-</ul>
-
-<p>sbt can ran in interactive mode or batch mode. In batch mode, specifying a space-seperated list of commands. For commands that take arguments, enclosing the command and arguments in quotes.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sbt clean compile <span class="s2">&quot;testOnly TestA TestB&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Prefixing a command with <code>~</code> will make the command run when any source files change. Press enter to stop watching for changes.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">&gt; ~ compile
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="build-definition">Build definition</h2>
-
-<h3 id="sbt-build-definition-basic">.sbt build definition basic</h3>
-
-<h4 id="project">Project</h4>
-
-<p><code>build.sbt</code> defines one or more <code>Project</code>s, which hold a list of Scala expressions called <code>settings</code>.</p>
-
-<p>Top-level objects and classes are not allowed in <code>build.sbt</code>. Those should go in the <code>project/</code> directory as full Scala source files.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">commonSettings</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
-</span><span class="line">  <span class="n">organization</span> <span class="o">:=</span> <span class="s">&quot;com.example&quot;</span><span class="o">,</span>
-</span><span class="line">  <span class="n">version</span> <span class="o">:=</span> <span class="s">&quot;0.1.0&quot;</span><span class="o">,</span>
-</span><span class="line">  <span class="n">scalaVersion</span> <span class="o">:=</span> <span class="s">&quot;2.11.4&quot;</span>
-</span><span class="line"><span class="o">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
-</span><span class="line">  <span class="n">settings</span><span class="o">(</span><span class="n">commonSettings</span><span class="k">:</span> <span class="k">_</span><span class="kt">*</span><span class="o">).</span>
-</span><span class="line">  <span class="n">settings</span><span class="o">(</span>
-</span><span class="line">    <span class="n">name</span> <span class="o">:=</span> <span class="s">&quot;hello&quot;</span>
-</span><span class="line">  <span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>On the left, <code>name</code>, <code>version</code> and <code>scalaVersion</code> are <em>keys</em>. Keys have a method called <code>:=</code>, which returns a <code>Setting[T]</code>, where <code>T</code> is the value type.</p>
-
-<h4 id="keys">Keys</h4>
-
-<p>There are three flavors of key: <code>SettingKey[T]</code>, <code>TaskKey[T]</code> and <code>InputKey[T]</code>.</p>
-
-<p>A <code>TaskKey[T]</code> is said to define a <em>task</em>. </p>
-
-<p>A <code>InputKey[T]</code> defines a <em>input task</em>, which parses user input and produce a task to run.</p>
-
-<p>For a setting, the value will be computed once at project load time. For a task, the computation will be re-run each time the task is executed.</p>
-
-<p>Built-in keys are fields in object <code>sbt.Keys</code>, which are implicitly imported so can be directly referred.</p>
-
-<p>Custom keys may be defined with their respective creation methods: <code>settingKey</code>, <code>taskKey</code>, and <code>inputKey</code>. </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">hello</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">&quot;An example task&quot;</span><span class="o">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
-</span><span class="line">  <span class="n">settings</span><span class="o">(</span>
-</span><span class="line">    <span class="n">hello</span> <span class="o">:=</span> <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello!&quot;</span><span class="o">)</span> <span class="o">}</span>
-</span><span class="line">  <span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="bare-sbt-build-definition">Bare .sbt build definition</h3>
-
-<p><em>Bare .sbt build definition</em> is an old style which is not recommended to use.</p>
-
-<p>Bare .sbt build definition doesn’t explicitly define a <code>Project</code>, it implicitly deines one based on the location of the <code>.sbt</code> file. The <code>.sbt</code> file consists of a list of <code>Setting[_]</code> expressions.</p>
-
-<p>Before sbt 0.13.7, settings must be separated by blank lines.</p>
-
-<h2 id="library-dependencies">Library dependencies</h2>
-
-<p>To add unmanaged dependencies, simplily drop jar files in <code>lib/</code>.</p>
-
-<p>Managed dependencies are specified by <code>libraryDependencies</code> key in <code>build.sbt</code>.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="n">groupID</span> <span class="o">%</span> <span class="n">artifactID</span> <span class="o">%</span> <span class="n">revision</span> <span class="o">%</span> <span class="n">configuration</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If you use double %% between the groupID and artifactID, sbt will add your project’s Scala version to the artifact name.</p>
-
-<p>Assuming the scalaVersion for your build is 2.11.1, the following adds <code>org.scala-tools:scala-stm_2.11.1:0.3</code>:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&quot;org.scala-tools&quot;</span> <span class="o">%%</span> <span class="s">&quot;scala-stm&quot;</span> <span class="o">%</span> <span class="s">&quot;0.3&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>By default, if omitted, configuration is “compile”. A common used value is “test”.</p>
-
-<p>sbt uses Apache Ivy to implement managed dependencies. Advanced usage of revision and configuration can follow Ivy document.</p>
-
-<p>sbt uses the standard Maven2 repository by default. To add additional repository, add a <code>resolver</code>:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">resolvers</span> <span class="o">+=</span> <span class="s">&quot;Local Maven Repository&quot;</span> <span class="n">at</span> <span class="s">&quot;file://&quot;</span><span class="o">+</span><span class="nc">Path</span><span class="o">.</span><span class="n">userHome</span><span class="o">.</span><span class="n">absolutePath</span><span class="o">+</span><span class="s">&quot;/.m2/repository&quot;</span>
-</span><span class="line">
-</span><span class="line"><span class="n">resolvers</span> <span class="o">+=</span> <span class="s">&quot;Sonatype OSS Snapshots&quot;</span> <span class="n">at</span> <span class="s">&quot;https://oss.sonatype.org/content/repositories/snapshots&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="multiple-projects">Multiple projects</h2>
-
-<p>Multiple projects can be grouped under one project. </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">root</span> <span class="k">=</span> <span class="o">(</span><span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">)).</span>
-</span><span class="line">  <span class="n">aggregate</span><span class="o">(</span><span class="n">util</span><span class="o">,</span> <span class="n">core</span><span class="o">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">util</span> <span class="k">=</span> <span class="n">project</span>
-</span><span class="line">
-</span><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Each sub-project has its own directory. In above example the directory name is same as the project’s ID. The following is a more explicit way: </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span> <span class="n">in</span> <span class="n">file</span><span class="o">(</span><span class="s">&quot;core&quot;</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If a project is not defined for the root directory in the build, sbt creates a default one that aggregates all other projects in the build. </p>
-
-<p>A project may depend on other projects:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">lazy</span> <span class="k">val</span> <span class="n">core</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">dependsOn</span><span class="o">(</span><span class="n">util</span><span class="o">,</span> <span class="n">api</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><code>foo dependsOn(bar)</code> means that the <code>compile</code> configuration in foo depends on the <code>compile</code> configuration in bar. You can declare other configuraiton dependency, for example, <code>dependsOn(bar % "test-&gt;test;compile-&gt;compile")</code>.</p>
-
-<h2 id="using-plugins">Using plugins</h2>
-
-<p>Declares the plugin dependency in <code>project/plugins.sbt</code>. The file name can be different, you may create one sbt file for one plugin.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&quot;com.typesafe.sbt&quot;</span> <span class="o">%</span> <span class="s">&quot;sbt-site&quot;</span> <span class="o">%</span> <span class="s">&quot;0.7.0&quot;</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2014/12/26/getting-start-with-sbt/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/3/">&larr; Older</a>
@@ -1038,6 +862,14 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/continuous-learning/">持续学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
       </li>
     
@@ -1049,25 +881,17 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -1083,28 +907,28 @@ WARNING: Stack unwind information not available. Following frames may be wrong.
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 137%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 137%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
+<a style="font-size: 106%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 84%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
-<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 133%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 118%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 106%" href="/blog/tags/web/">Web</a>

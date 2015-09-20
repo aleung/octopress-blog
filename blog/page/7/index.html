@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Android用户常常会被耗电问题困扰，明明手机没怎么使用，电量却不停的掉，半天就耗光了。有些人会寻求kill应用的方法——而Android系统的设计原则是用户不需要关心进程的启停的。其实大多数情况下，这都跟系统无关，而是安装的某些应用的问题。合理设计的应用，即使有后台进程， &hellip;">
+  <meta name="description" content="I need to migrate a Maven repository from Artifactory to Nexus. Nexus’s migration solution uses its migration plugin. But our Nexus service is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,145 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/19/maven-batch-deploy-artifacts/">Batch Deploy Artifacts to Maven Repository</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+<time datetime="2013-03-19T21:32:00+08:00" pubdate data-updated="true">2013-03-19</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/maven/'>Maven</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I need to migrate a Maven repository from <a href="http://www.jfrog.com/home/v_artifactory_opensource_overview">Artifactory</a> to <a href="http://www.sonatype.org/nexus/">Nexus</a>. Nexus’s migration <a href="http://www.sonatype.com/people/2009/03/migrating-from-artifactory-to-nexus/">solution</a> uses its migration plugin. But our Nexus service is managed by IT team and I don’t want to bother to ask them to install a plugin.</p>
+
+<p>Artifactory is able to export a whole repository into file system as local repository layout (like .m2/repository folder). So I looked for import feature in Nexus, but failed.</p>
+
+<p>Searched on Google then I found <a href="http://stackoverflow.com/a/3304212/94148">this answer</a> on StackOverflow. Sean provided a pom with embedded Groovy script to upload (deploy) a hierarchy of files to a Maven repository. However Sean’s solution handles groupId, artifactId and version in a way differ to what I want. It requires to specify groupId and version in pom as fixed value.</p>
+
+<p>I modify the Groovy script a bit to handle local repository folder layout. GroupId, artifactId and version are parsed from path of file. Here is my modified version:</p>
+
+<div><script src="https://gist.github.com/5194777.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<p>Before using it, modify the setting in &lt;deploy.basefolder&gt; and &lt;distributionManagement&gt;. Make sure you have removed all non-artifact files e.g. *.sha1, *.lastUpdated from your import directory. Or you may enhance the script to filter those files out.</p>
+
+<p>Suppose your import folder is ~/.m2/repository, put this pom.xml at ~/.m2. Run <code>cd ~/.m2; mvn install</code> then everything is done.</p>
+
+<p>Usually you should configure your repository to allow redeploy of an existing artifact. Otherwise you’ll get error if an artifact you want to import already exist in repository.</p>
+
+<p><strong>Update</strong> 2013-3-29:</p>
+
+<p>There is a more simple way to import artifacts into Nexus, if you have privilege to access its data folder. Just copy the files into the storage location of the repository (the path can be found in repository configuration tab on Nexus web UI), change owner and group of the copied directories and files. After that, on Nexus web UI right click the folder and choose rebuild metadata. After a while everything will be ready.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/03/19/maven-batch-deploy-artifacts/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/18/stand-up-desk/">站立工作环境</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-18T23:44:00+08:00" pubdate data-updated="true">2013-03-18</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/diy/'>DIY</a>, <a class='tag' href='/blog/tags/life/'>Life</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>坐姿，特别是不正确的坐姿，对腰椎间盘的压力是站姿的2到3倍，长期在电脑前工作的人很容易得腰椎间盘突出等腰椎疾病。因此现在IT工作者逐渐流行站立工作。但是，长期站立也会带来其他的问题，如下肢静脉曲张等。一个比较理想的方案是使用可升降的办公桌，坐姿站姿交替。</p>
+
+<p>2011年我花了不少时间寻找国内哪里可以买到可升降办公桌，但都没有找到。网上搜索倒是有不少信息，但都是厂家寻求批发订货的，电话问过几个本地厂商，基本都说不做，做的也没有现货不零售。唯一的是淘宝上有个泠泠岛，做个人客户，当时价格很高，外地购买也不方便，而且我对它的质量不是很放心。最终放弃了购买升降桌的念头，改为自行DIY站立工作桌。</p>
+
+<p>2012年初用IKEA的BRODER系统加一个VIKA桌面搭建了一个站立工作桌。BRODER归属在重型储物系列里，本来用途是储物架，钢柱杆和钢网搁板很牢固，最大的搁板深度基本足够做桌面了，在上面垫上一块木桌面刚刚好。用IKEA的东西好处是你有很大发挥的空间，这个<a href="http://www.wretch.cc/blog/ikeameatball/12392137">IKEA的居家生活部落格</a>里就有不少BRODER各种应用的照片。但刚刚查IKEA中国网站，已经找不到BRODER，不知是否不卖了。</p>
+
+<p><img src="/blog/attachments/2013/3/desk.jpg" /></p>
+
+<p>就这样用了一年，但长期站立工作也不好，于是想配一张高脚凳也许就差不多了。桌面高度是按站立工作而定的，按照我的身高桌面高度也偏高，一般市面上卖的高脚凳（酒吧凳）座高都不够。最后在淘宝上找到了一款，高度比较合适。今天到货刚刚装起来了。其实这凳子做工、质量都不算很好，组装也不够方便，如果IKEA有合适的我绝对不会选择它的（虽然说IKEA的东西质量也只算一般，但还是要比这淘宝货强）。</p>
+
+<p><img src="/blog/attachments/2013/3/desk_chair.jpg" /></p>
+
+<p>关于工作台面、座椅以及显示器的合适高度，在<a href="http://book.douban.com/subject/11652185/">Human Factors in Engineering and Design</a>一书的 chapter 13. Applied Anthropometry, Work-Space Design and Seating 中对站姿与坐姿工作环境有很好的描述。我在决定台面高度与椅子高度的时候参考了此书中给出的研究数据。</p>
+
+<p>顺便说说，上面提到那本书是<a href="http://zh.wikipedia.org/wiki/%E4%BA%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B%E5%AD%A6">人因学</a>的经典好书，国内有<a href="http://book.douban.com/subject/3746065/">中文翻译版</a>。</p>
+
+<p>另外再推荐阅读：美国职业健康和安全管理局(OSHA)工作区健康与安全指南<a href="http://www.youliv.com/ErgoStandard/WSGoodPositions.aspx">中文翻译</a>。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2013/03/18/stand-up-desk/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -564,124 +703,6 @@ parallel(data)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/30/mi2-usb-debug-on-osx/">怎样在OSX上adb连接小米2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-30T20:24:00+08:00" pubdate data-updated="true">2012-12-30</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>小米2手机在Mac OSX上，adb识别不到设备，Eclipse的DDMS也连不上设备，这样手机就不能用来开发了。实际上，只有在Windows上才需要安装USB驱动程序，在Linux、OSX上并不需要，设别不到小米2手机是因为adb不知道这手机的USB Vendor ID。Android SDK<a href="http://developer.android.com/tools/device.html">文档</a>里就列出了一些Android设备厂商的vendor ID，不过当然不包括小米，因此要自己找出小米的vendor ID。用IORegistryExplorer（据说是包含在Developer Tool里，反正我的机器上装了）可以查看连接上的USB设备的信息。选择IOUSB，可以看到名为“MI 2”的设备，idVendor是0x2717。</p>
-
-<p>将这个Vendor ID作为独立一行加进文件 ~/.android/adb_usb.ini 中。装了Android SDK这个目录和文件应该就存在的，如果不存在就自己创建。修改完adb_usb.ini后执行 adb kill-server 重启adb，再执行 adb devices，就能看到小米2手机了。再打开Eclipse，也能够正常设别到手机，一切OK。</p>
-
-<p><img src="/blog/attachments/2012/12/osx_usb.jpg" /></p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/12/30/mi2-usb-debug-on-osx/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/23/mi2/">四儿子无望，粗粮也好吧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-23T14:03:00+08:00" pubdate data-updated="true">2012-12-23</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/android/'>Android</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/blog/attachments/2012/12/mi2_focus_01s.jpg" /></p>
-
-<p>Xperia U 手機用了半年，<a href="/blog/2012/07/22/xperia-u/">開始感覺</a>還不錯，可是升級到ICS之後就慢得不行，歸咎下來應該還是因為RAM太小只有512M。於是動了換機的念頭。本來看中的是人稱Google四兒子的 Nexus 4，高配置白菜價，還有Google最新系統的保證，可是開賣以來奇貨可居，市場價炒到上三千。幾個月內都是沒什麼希望買到了。本來我是沒有關注小米2的，偶然的機會朋友可以買到現貨，問我要不要，上網查了一輪，發現小米2也不錯，於是就買了。用了10天，感覺挺滿意。</p>
-
-<p>對於國產手機，最關心的是能不能用Google服務，有沒有ROM可以刷。行貨的閹割系統對於我來說是根本不能用的。小米做得還不錯，保留了Google Service Framework，可以添加Google帳號同步，Google Play等應用自己裝上就可以了。小米手機不算開放，沒有找到任何第三方的ROM，但好在小米除了MIUI外還是提供了原生Android系統ROM，如果不喜歡MIUI還是可以用回native Android。小米2的操作系统已經超越了ICS，是Android 4.1 Jelly Bean，除了四儿子是4.2，小米2也算是版本最高的一款Android手机了吧。手機到手後，刷了個MIUI開發版，因為穩定版不提供root權限。個人感覺MIUI的定製的度把握得比較合適，把很多系統級的有用的功能集成進去了，例如來電短信攔截，LBE的權限管理，通知欄開關等等，而又沒有像其他廠商那樣內置一大堆用不著又刪不掉的應用。因此我試了一下還是決定保留MIUI。</p>
-
-<p>唯一不喜欢的是MIUI的launcher。仿照iOS将图标全平铺在桌面上，用起来不方便；它为第三方应用的图标都缩小并加上一块灰绿色背景，难看死了，本来应用精心设计的透明背景图标都被它搞成一块块牛粪。MIUI的设计风格不错的，真不知道为什么这个launcher会搭配得那么丑，即使自己创建主题将那个灰绿背景改成透明，图标还是被缩小了不好看。我另外找到了一個launcher：<a href="https://play.google.com/store/apps/details?id=com.dlto.atom.launcher">Atom Launcher</a>，界面風格簡潔，功能細節也很好，這下就完美了。</p>
-
-<p>小米2給我最大的感受是显示非常细腻，特别是低磅数的Roboto字体特别干净秀气。342ppi的屏幕达到视网膜屏的标准，其实现在新出的好多手机都是视网膜屏了，只不过现在已经不再新鲜，厂商也不会拿这来做特别宣传。Android从ICS起缺省的是Holo蓝色主题，MIUI换成了自己标志性的亮橙色，大片白色背景，黑色/灰色字体加上亮橙的点缀，整个风格很现代和清新。</p>
-
-<p>剛到手時，對尺寸不太適應，讓我覺得蘋果說的3.5寸是最適合的手機屏幕尺寸不無道理。現在慢慢有些習慣了，但是單手操作始終還是有些彆扭，比如用右手操作，左上角和右下角的按鈕都不容易按到，還是雙手會方便些。</p>
-
-<p>當然啦，新手機最爽的事情就是2G的RAM，運行的順暢程度跟舊手機比真是一個天一個地，看到什麼應用都想裝就裝啦。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/12/23/mi2/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/8/">&larr; Older</a>
@@ -703,6 +724,14 @@ parallel(data)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/continuous-learning/">持续学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
       </li>
     
@@ -714,25 +743,17 @@ parallel(data)
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -748,28 +769,28 @@ parallel(data)
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 137%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 137%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
+<a style="font-size: 106%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 84%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
-<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 133%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 118%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 106%" href="/blog/tags/web/">Web</a>

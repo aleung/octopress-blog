@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="图像格式介绍在网上有很多资料, 随便google一下都能找到. 这是我在论坛上回复别人的帖子, 顺手也帖到这儿. 这几种格式都是光栅图像格式(除了光栅格式还有一种是矢量格式), 描述的是图像点阵的色彩数据. BMP格式是最简单的格式，基本就是图像点阵的内存拷贝。没有任何压缩，也无法表示格外的数据。 &hellip;">
+  <meta name="description" content="Doxygen是一个很不错的文档生成程序，类似于JavaDoc的功能，但是能支持C++/C/Java和其他的好些语言。今天在使用的时候，发现doxygen不能处理带有中文的文件名或者路径，就把源代码下载回来，看看是什么问题。 问题很容易定位出来，又是unicode和字符集转换的问题， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,118 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/07/01/Doxygen-/">Doxygen不能支持中文文件名/路径:(</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-01T03:44:00+08:00" pubdate data-updated="true">2004-07-01</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.stack.nl/~dimitri/doxygen">Doxygen</a>是一个很不错的文档生成程序，类似于JavaDoc的功能，但是能支持C++/C/Java和其他的好些语言。今天在使用的时候，发现doxygen不能处理带有中文的文件名或者路径，就把源代码下载回来，看看是什么问题。</p>
+
+<p>问题很容易定位出来，又是unicode和字符集转换的问题，字符集真是让人头痛的东西:(。当在windows平台上运行时，它使用了WideCharToMultiByte来转换字符集，但没有判断当前locale，只是用了CP_ACP(ANSI)code page，故此对于中文就转换成为乱码了（其他multi-byte字符集也会有问题）。</p>
+
+<p>本来想改的，发现doxygen底层用的都是QT的代码，什么QString, QCString，完全是自己独立的一套东西，好些地方似乎都没有考虑mbs字符集的问题，实在跟不下去了，也不知道它的国际化是怎么做的，KDE也是基于QT函数库的呀，也许是windows版本的问题？放弃，给doxygen作者写了个bug report，看看他会不会去修改吧。</p>
+
+<p>ps.</p>
+
+<p>忍不住又再看了一下代码：不从根本上解决问题，只做个临时解决方案，把code page写死为936（简体中文），该可以吧？谁知还是不行:( 再跟踪一下，发现这个程序一点都不i18n friendly，虽然内部使用unicode，但是输入/输出转换都只是按照ascii/Latin1编码来做转换，在英文环境下就正常，一旦使用了非拉丁字符集就出问题了。这样用unicode跟不用有什么区别啊？！</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/07/01/Doxygen-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2004/06/30/MicroDEM-/">MicroDEM制图所需地理数据转换方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-30T01:23:00+08:00" pubdate data-updated="true">2004-06-30</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MicroDEM使用dbase来保存数据, 但一般通用的地理数据都是MIF格式较多。MicroDEM不支持import其他格式的数据。</p>
+
+<p>其实MicroDEM中的dbase就是shp格式。数据可以使用GlobalMapper来转换, 读取mif文件, export vector data为shapefile, 会生成3个文件, 其中一个是dbf, MicroDEM可读取的格式.</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2004/06/30/MicroDEM-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -262,116 +374,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/06/08/And-always-remember-not-directly-in-the-browser-writing/">千万要记住，不能直接在浏览器上写东西</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-06-08T08:26:00+08:00" pubdate data-updated="true">2004-06-08</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/misc/'>Misc</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>刚才写的东西一个误操作就没有了:(</p>
-
-<p>其实我一般都比较小心的，重要的东西通常都先写好再贴到web page上。刚才丢掉的东西虽然觉得不是很重要，但丢了还是觉得很可惜——浪费了时间和心情啊，肯定不会重新再写一次了。</p>
-
-<p>以后要记住，不能再直接在浏览器上写东西了。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/06/08/And-always-remember-not-directly-in-the-browser-writing/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2004/05/27/WordPress-/">WordPress越做越好了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-05-27T16:44:00+08:00" pubdate data-updated="true">2004-05-27</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨天晚上把我的<a href="http://sunnyday.cn2k.net/blog/">另外一个blog</a>的程序升级到<a href="http://wordpress.org">WordPress</a> 1.2, 升级本身是非常简单的, 正如wordpress网站上说的, installing WordPress and upgrading from previous versions and other software is a piece of cake, 它的安装升级脚本做的非常完善且友好, 访问一个URL点击几次next就做好了, 因为是全web化的配置, 保存在数据库中的, 一切都自动完成. 不过update我自己的页面template耗了些时间, 因为新版本提供的函数有些更改了, 必须手工修改, 如果用它的default template就不需要费这些功夫. </p>
-
-<p>我的blog从最早的b2, 到WordPress 0.5x, 到现在的WordPress 1.2, 几次升级, 感觉这个软件越做越好了. XML-RPC的支持, email-blogging, 可自定义字段, link manager, 层次化的category, 多作者, 图片上传和自动生成缩略图, 保存草稿… 还有好多细节方面的功能都不错.</p>
-
-<p>我还考虑过是不是该把blogbus上的这个blog也搬到自己的WordPress上边去, 不过暂时blogbus还是用得不错, 搬起来挺麻烦的, 而且它的HTML编辑挺方便, WYSIWYG, 还是等等再说吧.</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2004/05/27/WordPress-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/50/">&larr; Older</a>
@@ -393,6 +395,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/continuous-learning/">持续学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/29/html-presentation-framework/">HTML presentation framework</a>
       </li>
     
@@ -404,25 +414,17 @@
         <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/02/05/typesetting-basic+copy/">几条基础排版规则，让文档显得专业</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/jekyll/">Jekyll</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-<a style="font-size: 138%" href="/blog/tags/android/">Android</a>
+<a style="font-size: 137%" href="/blog/tags/android/">Android</a>
 <a style="font-size: 112%" href="/blog/tags/anti-gfw/">Anti-GFW</a>
 <a style="font-size: 92%" href="/blog/tags/appserver/">AppServer</a>
 <a style="font-size: 98%" href="/blog/tags/architecture/">Architecture</a>
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
-<a style="font-size: 119%" href="/blog/tags/blogging/">Blogging</a>
+<a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
 <a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
@@ -438,28 +440,28 @@
 <a style="font-size: 70%" href="/blog/tags/hardware/">Hardware</a>
 <a style="font-size: 84%" href="/blog/tags/haskell/">Haskell</a>
 <a style="font-size: 70%" href="/blog/tags/homeappliance/">HomeAppliance</a>
-<a style="font-size: 138%" href="/blog/tags/idea/">Idea</a>
+<a style="font-size: 137%" href="/blog/tags/idea/">Idea</a>
 <a style="font-size: 109%" href="/blog/tags/imageprocessing/">ImageProcessing</a>
 <a style="font-size: 92%" href="/blog/tags/java/">Java</a>
 <a style="font-size: 70%" href="/blog/tags/learning/">Learning</a>
 <a style="font-size: 109%" href="/blog/tags/life/">Life</a>
 <a style="font-size: 103%" href="/blog/tags/maven/">Maven</a>
-<a style="font-size: 138%" href="/blog/tags/misc/">Misc</a>
+<a style="font-size: 137%" href="/blog/tags/misc/">Misc</a>
 <a style="font-size: 106%" href="/blog/tags/mywork/">MyWork</a>
 <a style="font-size: 84%" href="/blog/tags/novel/">Novel</a>
 <a style="font-size: 84%" href="/blog/tags/outdoor/">Outdoor</a>
-<a style="font-size: 103%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
-<a style="font-size: 70%" href="/blog/tags/presentation/">Presentation</a>
+<a style="font-size: 106%" href="/blog/tags/personaldevelopment/">PersonalDevelopment</a>
+<a style="font-size: 84%" href="/blog/tags/presentation/">Presentation</a>
 <a style="font-size: 120%" href="/blog/tags/reading/">Reading</a>
 <a style="font-size: 126%" href="/blog/tags/running/">Running</a>
 <a style="font-size: 70%" href="/blog/tags/sip/">SIP</a>
 <a style="font-size: 84%" href="/blog/tags/scala/">Scala</a>
-<a style="font-size: 134%" href="/blog/tags/software/">Software</a>
+<a style="font-size: 133%" href="/blog/tags/software/">Software</a>
 <a style="font-size: 160%" href="/blog/tags/softwaredev/">SoftwareDev</a>
 <a style="font-size: 92%" href="/blog/tags/springframework/">SpringFramework</a>
 <a style="font-size: 84%" href="/blog/tags/statistics/">Statistics</a>
 <a style="font-size: 125%" href="/blog/tags/sysadmin/">SysAdmin</a>
-<a style="font-size: 119%" href="/blog/tags/timemanagement/">TimeManagement</a>
+<a style="font-size: 118%" href="/blog/tags/timemanagement/">TimeManagement</a>
 <a style="font-size: 84%" href="/blog/tags/uml/">UML</a>
 <a style="font-size: 98%" href="/blog/tags/ux/">UX</a>
 <a style="font-size: 106%" href="/blog/tags/web/">Web</a>

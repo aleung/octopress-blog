@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-08-29T05:15:42+08:00</updated>
+  <updated>2015-09-20T12:42:21+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自由软件质量不如软件企业自己开发的可靠？]]></title>
+    <link href="http://aleung.github.io/blog/2015/09/20/quality-of-free-software/"/>
+    <updated>2015-09-20T12:31:29+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/09/20/quality-of-free-software</id>
+    <content type="html"><![CDATA[<p>在软件企业中开发产品/项目，做技术选型时经常会听到的一个说法是：选择开源自由软件，会不会质量不够有保障？还是我们自己做好一些。</p>
+
+<p>自由软件遵循的是完全的市场经济，面对的是残酷的竞争。如果项目做得不好，满足不了需求，就会无人问津而最终被废弃掉，使用者才不心痛已经有多少人力物力已经投入到这个项目中。项目设计太差，代码太烂，同样也吸引不了贡献者，导致原有贡献者的离开或者另起炉灶。对比的看，软件企业中开发的软件项目就如受着国家保护的国企，虽然也面临外部竞争，但在内部怎么也还是自家孩子，再烂也很难让大家承认它的失败，要放弃更加是艰难的决定，往往意味影响好些人的仕途。因此，你会看到很多企业开发的软件项目很烂，因为它们本来应该死掉的，但被强制维持着生命。</p>
+
+<p>从软件开发者的平均水平这个角度来看，自由软件项目也优于企业开发的软件项目。当然，这里谈的自由软件项目是指有一组稳定贡献者有明确蓝图的，这样才能与企业项目相比较，个人练手的项目不算在内。试想一下，在一个软件企业里面，水平足矣为自由软件提交代码的开发者占了多少比例？但是那些尚不能为自由软件项目提交代码的开发者，在企业里面可是天天写代码的，甚至大部分代码是出自他们之手。</p>
+
+<p>泛泛的说，在某个领域，如果可选的自由软件有不少，那么排名前列的项目，质量基本上不需要太过担心。</p>
+
+<p>上面是我对自由软件质量担忧的看法，但这当然不代表就可以随意选择使用自由软件，技术选型中需要评估的东西还有很多。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[持续学习]]></title>
+    <link href="http://aleung.github.io/blog/2015/09/20/continuous-learning/"/>
+    <updated>2015-09-20T12:14:00+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/09/20/continuous-learning</id>
+    <content type="html"><![CDATA[<p>上次<a href="http://aleung.github.io/blog/blog/2015/08/29/html-presentation-framework/">提到</a>用 HTML 做的 presentation，是在公司里做的关于持续学习的一个分享。</p>
+
+<p><em>注意：看绿色导航箭头，是可以向下翻页的。有些背景图片可能需要翻墙才能看到，否则会变成空白。</em></p>
+
+<iframe src="//slides.com/aleung/goodgoodstudy/embed?style=light" width="800" height="600" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML presentation framework]]></title>
@@ -1519,173 +1549,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 </ul>
 
 <p>另外，github裏還有一個項目 <a href="https://github.com/fourcels/lbs">fourcels/lbs</a> 是用查表法來糾偏的，裏面的偏移數據（共9M）說不定就是早期從Google地圖服務上抓下來的。但現在有了算法，查表法的價值就不大了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pebble]]></title>
-    <link href="http://aleung.github.io/blog/2014/03/15/pebble/"/>
-    <updated>2014-03-15T21:52:22+08:00</updated>
-    <id>http://aleung.github.io/blog/2014/03/15/pebble</id>
-    <content type="html"><![CDATA[<p><a href="http://getpebble.com/">Pebble手錶</a>戴了兩個星期，如果用一句話來總結感受，那就是：基本滿意，但還沒到愛不釋手的程度，沒有帶來驚喜。</p>
-
-<p>首先，Pebble真的是一隻手錶，可以看時間。如果你有幸用過各種『智能手環』，就會明白為什麼這麽說了。我戴過<a href="https://jawbone.com/up">Jawbone UP</a>一段時間，試過好多次下意識的擡起手腕來看，然後才想起那貨是沒有任何顯示的。</p>
-
-<p><img class="right" src="http://aleung.github.io/blog/attachments/2014/3/pebbles.jpg" /></p>
-
-<p>佩戴舒適度上說，Pebble還過得去，塑料錶帶的柔軟度不錯，反正我已經習慣了24小時戴在手腕上的感覺。在這之前，我都有十幾年沒有戴過手錶了吧。</p>
-
-<p>外形應該是我最不在意的一項了，但不得不說 Pebble 外形上太普通。我的黑色版本，正面看弧形表面，與黑白顯示屏融為一體，還算有點現代感，但側面看就很『薯鈍』的樣子 —— 厚，按鈕粗曠，左邊還有很突兀的幾個充電觸點。</p>
-
-<p>手錶用的是 144x168 的低分辨率黑白e-paper屏幕，在現在手機電腦都視網膜屏的時代，這個分辨率真是超低了。E-paper的對比度很高，無論什麼光線條件下都非常清晰，雖然分辨率低，實際顯示文字的效果還是不差的。圖像？就算了吧，除了像素少，這個屏還連灰度都顯示不了。不知道這個e-paper跟Kindle之類閱讀器的屏是不是同樣的技術，但看起來還是有區別：Pebble屏的像素邊緣很銳利，顯示直接改變沒有殘影，不像Kindle要全屏反色刷一次。</p>
-
-<p>Pebble 可以安裝 app，當然了，否則就對不起 smart watch 這個名字。App 分為 watchface 和 watchapp 兩大類，無論是那種也不管大小，總共最多安裝8個，不知道它內部怎麼管理空間的。Watchface 只有一屏顯示信息，不能接受按鍵控制，最常見用途是顯示時間，當然也可以顯示其他信息，例如天氣、日曆之類。Watchapp就是可以與用戶交互的應用，可以有多屏，用戶通過菜單、控制按鈕來操作。</p>
-
-<p>Pebble 的方便之處是它作爲手機的一個延伸的信息終端，手機可以將實時的信息推送到手表上，或者是在手表上顯示濃縮的手機應用的某些信息。前者例如，我以前經常會漏接電話或者漏看短信，因爲手機放袋裏聽不到聲音，現在戴著 Pebble 就不會了，因爲手表會振動提醒。後者例如一些跑步應用，能在 Pebble 上顯示速度、距離等關鍵信息，就不用拿手機出來看。</p>
-
-<p>Pebble 最大的問題是操控不方便。表上有四個按鈕：上/下/Enter/ESC，沒有觸摸屏，任何操作都只能靠按鍵選擇菜單項，因此經常要按好多次按鈕才能完全想要的操作。而 Pebble 的按鈕按起來又不算是特別方便，總之我是不會想在手表上做按超過一兩次按鈕的操作的。這種操控的不方便限制了app可以做的事情，感覺這個比起屏幕和表的硬件處理能力的限制還要大。Pebble 也不支持 app 後台運行，要求在手錶上跑多任務，電池撐不住吧，但沒有多任務也造成一些類型的 app 沒法做了。</p>
-
-<p>至于耗電，目前還不至于很大問題。官方宣傳可以用5-7天，我實際用下來只有3天，也不知道是軟件問題還是硬件問題。但3天其實還是可以接受的。</p>
-
-<p>最後介紹一下我現在常用的app：</p>
-
-<h5 id="watchface">Watchface</h5>
-
-<p><img class="right" src="http://aleung.github.io/blog/attachments/2014/3/postage_watchface.png" />
-<img class="right" src="http://aleung.github.io/blog/attachments/2014/3/agenda_watchface.png" /></p>
-
-<dl>
-  <dt>Agenda Watchface</dt>
-  <dd>
-    <p>在辦公室或者需要按日程做事的時候會用這個watchface，一眼就能看到當前時間和接下來的日程安排。</p>
-  </dd>
-  <dt>Postage</dt>
-  <dd>
-    <p>當我不需要看日程安排的時候，喜歡用這個face，夠簡潔，外圍的黑色與黑色表身融為一體。實際看起來比截圖好看很多。</p>
-  </dd>
-</dl>
-
-<h5 id="watchapp">Watchapp</h5>
-
-<p><img class="right" src="http://aleung.github.io/blog/attachments/2014/3/pebbleauth.png" /></p>
-
-<dl>
-  <dt>PebbleAuth </dt>
-  <dd>
-    <p>二步認證的token生成器，相當於 Google Authenticator 運行在手錶上，這樣更加安全啦。現在除了 Google，LastPass 和 EverNote 都支持二步認證了。</p>
-  </dd>
-  <dt>Sleep as Android</dt>
-  <dd>
-    <p>我買 Pebble 就是因為看到 Sleep as Android 支持 Pebble 了，才動了心的。這個應用利用 Pebble 上的運動傳感器監控睡眠的深淺度，早上能夠在合適的淺睡眠週期通過振動叫醒。我以前就在用 Sleep as Android，但要用手機的運動傳感器，所以手機要放在床墊上，現在戴著手錶就行了，手機可以放遠一些。</p>
-  </dd>
-</dl>
-
-<p><img src="http://aleung.github.io/blog/attachments/2014/3/sleepaspebble.png" /></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Text to UML diagram]]></title>
-    <link href="http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram/"/>
-    <updated>2014-01-20T22:10:00+08:00</updated>
-    <id>http://aleung.github.io/blog/2014/01/20/text-to-uml-diagram</id>
-    <content type="html"><![CDATA[<p>Usually I used <a href="http://astah.net/">Astah</a> to draw UML diagram to put into design document in MS Word or PowerPoint format. The separation of the source and generated file making management of the UML model file a problem. And also it’s annoying to adjust a large amount of elements by dragging with mouse whenever you add something in the diagram. For a coder, typing on keyboard is faster than drawing with mouse.</p>
-
-<p>Now I switch to <a href="http://plantuml.com/">PlantUML</a>. Just write UML in its <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> and PlantUML generates the diagram. It supports most of the frequent used UML diagrams, which I use most are sequence diagram, class diagram and state diagram. Then I paste the generated diagram into slides (design document) and keep the “source” in note. No need to wonder where to find original UML model file when I need to update the diagram.</p>
-
-<p>The core of PlantUML is simply a jar file. It parses the text input and depends on <em>dot</em> tool from <a href="http://www.graphviz.org/">Graphviz</a> for graph generation (except sequence diagram). </p>
-
-<p>There are <a href="http://www.plantuml.com/running.html">a bunch of ways</a> to run PlantUML. I highlight some of them I prefer:</p>
-
-<ul>
-  <li>Online editor. Best choice if you’re too lazy to install anything on your computer.</li>
-  <li>Desktop (Windows): <a href="https://code.google.com/p/plant-uml-file-watcher/">PlantUML File Watcher</a></li>
-  <li>Embedded into Octopress blog platform. The below examples are using it.</li>
-  <li>IDE plugin. Easy way to keep UML together with source code.</li>
-</ul>
-
-<p>The syntax of PlantUML’s DSL is quite intuitional, you can start to use it by following example.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">package ConsentObject &lt;&lt;Rect&gt;&gt; {
-</span><span class="line">  Consent : id
-</span><span class="line">  Scope : key
-</span><span class="line">}
-</span><span class="line"> 
-</span><span class="line">Client - User
-</span><span class="line">(Client, User) . Consent
-</span><span class="line"> 
-</span><span class="line">Consent - "*" Scope
-</span><span class="line"> 
-</span><span class="line">Consent "1" -- "1..*" AccessToken</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The generated diagram:</p>
-
-<p><img src="http://aleung.github.io/blog/images/plantuml/ffe2231fbbf2c03843a63167a4e1057a.png" /> </p>
-
-<p>A sequence diagram example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">title OAuth 2.0 Authorization Code Grant
-</span><span class="line">
-</span><span class="line">actor    UserAgent       as UA
-</span><span class="line">participant Application     as APP
-</span><span class="line">participant OAuthServer     as OAuth
-</span><span class="line">participant ResourceServer  as RS
-</span><span class="line">
-</span><span class="line">== Application requests authorization from user ==
-</span><span class="line">UA-&gt;APP: 
-</span><span class="line">APP--&gt;UA:redirect to OAuth Server
-</span><span class="line">UA-&gt;OAuth: GET /authorize?response_type=code
-</span><span class="line">ref over UA, OAuth: user authentication\nuser confirms reqest
-</span><span class="line">OAuth--&gt;UA: redirect to App with authorization_code
-</span><span class="line">UA-&gt;APP: authorization_code
-</span><span class="line">
-</span><span class="line">== Application retrieve access token ==
-</span><span class="line">APP-&gt;OAuth: POST /token with authorization_code
-</span><span class="line">ref over APP, OAuth: client authentication
-</span><span class="line">APP&lt;--OAuth: access_token
-</span><span class="line">
-</span><span class="line">== Application access protected resource ==
-</span><span class="line">APP-&gt;RS: getResource with access_token
-</span><span class="line">RS-&gt;OAuth: validateToken(access_token)
-</span><span class="line">RS--&gt;APP: result</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><img src="http://aleung.github.io/blog/images/plantuml/a73e1bc6787042a73befa2944361b18c.png" /></p>
 ]]></content>
   </entry>
   
