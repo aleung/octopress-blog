@@ -4,7 +4,7 @@
   <title><![CDATA[Good good study, day day up]]></title>
   <link href="http://aleung.github.io/blog/atom.xml" rel="self"/>
   <link href="http://aleung.github.io/blog/"/>
-  <updated>2015-09-20T12:42:21+08:00</updated>
+  <updated>2015-10-06T01:05:58+08:00</updated>
   <id>http://aleung.github.io/blog/</id>
   <author>
     <name><![CDATA[Leo Liang]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Kossel Mini 3D打印机制作记录 (1)]]></title>
+    <link href="http://aleung.github.io/blog/2015/10/05/kossel-mini-3d-printer-making/"/>
+    <updated>2015-10-05T21:16:22+08:00</updated>
+    <id>http://aleung.github.io/blog/2015/10/05/kossel-mini-3d-printer-making</id>
+    <content type="html"><![CDATA[<h2 id="section">缘起及设计</h2>
+
+<p>一切都起源于 flyisland 转的这篇文章：<a href="http://post.smzdm.com/p/332896">从零开始，给自己设计一台3D打印机</a>，大量的图文细节和制作过程描述吸引了我，门槛似乎也不怎么高，于是产生了做一台的想法。看了 <a href="http://www.thingiverse.com/">Thingivers</a> 这个网站，更是发现了新的世界，打消了“有3d打印机不知道用来做什么”的疑虑，对喜欢搞制作的人来说3d打印机太有用了。</p>
+
+<p>于是开始网上查找资料，了解相关信息。一开始的想法是做像那篇文章中的 XYZ 结构，大一点的打印体积（开始都是贪心的），看了 <a href="http://forums.reprap.org/">RepRap 论坛</a>发现关于 delta 结构的讨论很热门，了解多一些后知道 delta 结构打印机的打印速度快，成本比较低，制作也不复杂，于是锁定了 <a href="http://reprap.org/wiki/Kossel">Kossel</a> 机型，心想先做一个出来练练手，小一点也够用了，以后真玩起来有需要再做大机器。</p>
+
+<p>接下来在寻找国内的资源的时候知道了 <a href="http://www.thingiverse.com/thing:388683">K800</a> 打印机，这是国内爱好者 maximscy 在 Kossel Mini 基础上改进的以降低成本为目标的机型，原本 K800 的意思就是人民币800元可以做出来的 Kossel，但实际上基本上也还是要上千元。</p>
+
+<p>K800 应该说对于推动3D打印机在国内普及有不少功劳，淘宝上有不少卖套件的。K800 降低了成本，但是毕竟还是以牺牲一点精度为代价，因此卖家也有不少“升级套餐”，例如将打印制作的元件换成铝合金元件，滑轮换回直线导轨等等。我对成本还不算很敏感，想做出来的机器质素好一点，但看下来发现套件的价格水分又太大了，而且配置不一定跟自己要求一致，于是决定自己采购元件。</p>
+
+<p>最后定下来的方案基本上是原版的 Kossel Mini 方案，高度增加50mm，框架连接件用铝合金的以增加牢固程度和精度，挤出机用铝合金的套件。斜杆的制作精度要求比较高，也直接买做好的算了。</p>
+
+<p>制作相关的资料信息，例如 BOM，记录在GitHub的 <a href="https://github.com/aleung/KosselPrinter">KosselPrinter</a> 项目里。</p>
+
+<h2 id="section-1">进展</h2>
+
+<h3 id="section-2">国庆节前</h3>
+
+<p>计划用国庆节7天假期来制作，所有材料应该要在节前采购完毕。开始没有考虑到淘宝店家在国庆节会放假，到27号了BOM还没有完全做好，订单还没下。淘宝上采购的难度比预计要困难得多，要比较不同店家的产品，而且搜索了才知道有些元件有好多选择，要弄清楚它们的区别，相互的配套，一个变了可能设计就要改变，配套的东西也不同了。在马云家奋战一个晚上直到凌晨3点，第二天又继续买买买，终于把订单全下完，总金额1400元出头。</p>
+
+<p>元件在29、30日陆续送到，其中挤出机发现配件不齐，找卖家补发。想着剩下的东西在1日都能够全部收齐了吧？</p>
+
+<h3 id="section-3">10-1</h3>
+
+<p>安装框架，发现买的铝合金连接件是按照国标铝型材设计的，竖杆孔里有几条棱，而我用的是欧标铝型材，配合使用T型螺母，因为棱的存在无法压紧，只好尝试用锉刀去锉掉那条棱。另外，我买的 M3*8 螺丝显得小和短了，有点勉强，出去转了一圈，没有找到卖铝型材用螺母的地方，都放假了。</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2015/10/1.jpg" /></p>
+
+<p>铝合金连接件有一件漏打一个孔，跟店家联系，他晚上直接开车给我送一个好的过来，超好人。跟他说起欧标型材的问题，他说可以送给我一些国标 M4 方螺母，也可以塞进欧标型材的槽里的，就不需要锉掉那条棱了。</p>
+
+<h3 id="section-4">10-2</h3>
+
+<p>把直线导轨装上，发现只有一根导轨的滑块能够在重力下自己下滑，另外两根摩擦力都好大，而且是不均匀，在某些地方特别卡，需要用一点力才能推过去。网上问人，说这是不正常的，要么是质量特别差，要么是旧零件翻新。只好退货了，然后就不知道应该买什么导轨，国产的似乎不可靠，台湾上银的又太贵，而且据说淘宝假货很多。</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2015/10/2.jpg" /></p>
+
+<p>快递国庆节都休息了，节前买的东西到了配送点就是没人送上门，停工待料。开始看软件、参数调整和建模方面的资料，发现入坑了，而且似乎是深不见底。</p>
+
+<p>试用 <a href="http://www.openscad.org/">OpenSCAD</a>，通过写代码的方式来建3D模型，很容易上手，做基于几何体的模型很简便（自由曲面用什么工具都不简单吧？）。</p>
+
+<h3 id="section-5">10-3</h3>
+
+<p>收到M4螺丝螺母，把原来用M3螺丝螺母已经装好的框架拆掉。发现步进电机、同步轮和连接件的安装位置不太吻合，看来又要动用钢锉。要等导轨和滑车到了后确定具体位置才好动手。于是所有东西又回到一堆零件的状态。</p>
+
+<p>将计划从国庆假期完成更新为10月底前完成。</p>
+
+<h3 id="section-6">10-5</h3>
+
+<p>快递终于上班了，所有淘宝买的东西都送齐了。但是直线导轨退货后还没有重新购买，没有这个关键零件还是什么都做不了。</p>
+
+<p>今天没有干什么东西，只是将送丝机和挤出头装配了起来。</p>
+
+<p><img src="http://aleung.github.io/blog/attachments/2015/10/3.jpg" /> <img src="http://aleung.github.io/blog/attachments/2015/10/4.jpg" /></p>
+
+<p><em>(To be contined…)</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[自由软件质量不如软件企业自己开发的可靠？]]></title>
@@ -1527,28 +1590,6 @@ Header set Access-Control-Allow-Headers “origin, authorization, accept”
 
 <p>另一方面，今天跑的狀態看來確實不是那麽好，跑完幾個小時的感覺比以往跑這個距離要累。
 回來看數據，感覺步頻似乎是反應體力狀態的一個直觀指標，從8.4km起步頻明顯下降了一個台階，而14.6km買水後步頻更是嚴重下降。另一方面，心率跟狀態有什麼關聯也還不是很清晰，每次跑步隨著疲勞累積，心率都是不斷升高的。但看以往的記錄，心率到160多速度依然保持的也有。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[中國電子地圖偏移]]></title>
-    <link href="http://aleung.github.io/blog/2014/04/03/zhong-guo-di-tu-pian-yi/"/>
-    <updated>2014-04-03T07:43:45+08:00</updated>
-    <id>http://aleung.github.io/blog/2014/04/03/zhong-guo-di-tu-pian-yi</id>
-    <content type="html"><![CDATA[<p>幾年前我寫過對Google中國地圖偏移規律的分析(<a href="http://aleung.github.io/blog/2009/12/26/Google-China-Map-offset-1/">1</a>)(<a href="http://aleung.github.io/blog/2009/12/27/Google-China-Map-offset-2/">2</a>)，根據抓取到的偏移量數據，大概看出呈現了<code>sin(a)+sin(3a)</code>這樣的函數曲線規律，並且這個函數以不同頻率和幅度疊加了兩次。當時我推導出函數及其係數，利用它去校正偏移，在百公里範圍的區域內已經非常理想，但是在全國大範圍的不同區域，係數需要有點不同，也就是擬合函數還是差了一些低頻率的細節。不過當時的分析細節我也不敢在博客裏面寫，後來我也沒有再搞地圖方面的應用開發了，就把這個放下。</p>
-
-<p>實際上這個地圖偏移並不是Google自己搞的算法，而是國家測繪局以立法的形式統一要求加的，稱為地形图非线性保密处理，所有從事國內電子地圖的廠商應該都得到了這個算法，實際上並起不到什麼所謂保護國家安全和國家利益的作用（保護行業壟斷者利益倒是真的），但是這個地圖偏移對地理信息處理和GPS技術的民用化起到了巨大的阻礙作用，近年各種與地理位置相關的應用如雨後春筍般湧現，但都為中國地圖的偏移而頭痛不已，後來由於下面提到的算法的流傳，問題得以解決，但增加很多不必要的複雜性和浪費開發、數據處理的人力。在我看來，這個地圖非線性加密處理在地理信息領域就像GFW在互聯網信息領域一樣，浪費了大量社會財富來對技術發展與應用進行封鎖。<a href="http://baike.baidu.com/view/2356807.htm#2_2">李成名</a>，你真的成名了。</p>
-
-<p>感謝Internet，感謝open source，現在這個偏移算法在網上已經可以輕松找到了。</p>
-
-<p>網上流傳的原始算法是<a href="http://emq.googlecode.com/svn/emq/src/Algorithm/Coords/Converter.java">這個Java文件</a>，然後有人整理過代碼，接力開發出多種語言版本。在『A Fork of Stuffs』博客裏，<a href="http://blog.csdn.net/coolypf/article/details/8686588">地球坐标系 (WGS-84) 到火星坐标系 (GCJ-02) 的转换算法</a>給出了C#實現，這個博客另外一篇<a href="http://blog.csdn.net/coolypf/article/details/8569813">火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的转换算法</a>也很有用。而使用比較方便應該是下面的github代碼庫：</p>
-
-<ul>
-  <li><a href="https://github.com/googollee/eviltransform">googollee/eviltransform</a>: C, go, JavaScript, php語言版本</li>
-  <li><a href="https://github.com/Leask/EvilTransform">Leask/EvilTransform</a>: Java和C#語言版本，似乎就是將前面介紹的代碼收集到github裏面，沒有改動。</li>
-</ul>
-
-<p>另外，github裏還有一個項目 <a href="https://github.com/fourcels/lbs">fourcels/lbs</a> 是用查表法來糾偏的，裏面的偏移數據（共9M）說不定就是早期從Google地圖服務上抓下來的。但現在有了算法，查表法的價值就不大了。</p>
 ]]></content>
   </entry>
   

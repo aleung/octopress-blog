@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="在上一篇blog里面列出了我个人对任务管理工具的需求以及对比较热门的工具的分析。由于现有工具没有那款能够满足我的几点主要需求，于是就产生了自己做一个的想法。前几天，功能性原型完成，已经正式用了起来，下一步要做的工作是界面设计和交互设计。 目前做的是Android手机应用，web端还没有考虑。 &hellip;">
+  <meta name="description" content="I didn’t expect that implementing a drag and drop list view on Android is so difficult. It took me more than one week to get it work. Android SDK &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,75 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/10/Drag-and-drop-list-view-on-Android/">Drag and Drop List View on Android</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-10T06:05:00+08:00" pubdate data-updated="true">2011-04-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I didn’t expect that implementing a drag and drop list view on Android is so difficult. It took me more than one week to get it work.</p>
+
+<p>Android SDK doesn’t provide too much support on drag and drop, at least there is no out of box API that can be used till Android 3.0 Honeycomb. It’s said that drag and drop support is improved in Android 3.0 SDK, I didn’t learn it yet because Android 3.0 hasn’t come to mobile device.</p>
+
+<p>At first I looked for open source implementation of drag and drop list view. After searching on Internet I did find some examples and library, e.g. <a href="https://github.com/commonsguy/cwac-touchlist">CWAC TouchListView</a> , they all derives from source code of Android music application. However they don’t fit for my application: First, they require to specify the height of item view in code or in layout file, that also implicitly force all item views in the same height. In my application the list view has two item view types, which differ in height. Even if item views are in same height, I don’t like the way that specifying exact value of height, I perfer to set <code>layout_height</code> to <code>wrap_content</code> and let it automatically calculates the value. Second, by those implementation, on each list item view there must be a “grabber” element. User moves an item by putting finger on the grabber then drag. I want to keep UI of my application as clean as it can, I would like to active item dragging by long press on an item, instead of drag a grabber. So I implement my version of drag and drop list view, the source code is at GitHub: <a href="https://github.com/aleung/tasks365/blob/master/tasks365/src/leoliang/tasks365/DraggableListView.java">DraggableListView</a>. It isn’t perfect yet, still has large room for improvement.</p>
+
+<p>A ListView shows items in a vertically scrolling list. The items can be refered by their position in the list. When there are a lot of items, only portion of them are visible. A visible item view can be retrieved by calling <code>ListView.getChildAt()</code>. Please be noticed that child view index is different to item position. In the code you will find these two values need to be converted between each other.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5603506949/"><img src="http://farm6.static.flickr.com/5267/5603506949_627d31073c.jpg" alt="listview" /></a></p>
+
+<p>Long press on an item is detected by<code>GestureDetector</code>, then a dragging object is created. The dragging object represents on UI by an ImageView, which is a copy of the view of the item to be moved. The dragging object moves on screen following user’s finger. Untill user’s finger leave touch screen, the list items do not change their order, they just expand or shrink to simulate item dragging.</p>
+
+<p>In below diagram, dragging object is in green. Item at position 3 is being dragged in this example. When dragging starts, the view of item 3 shrinks its height to 1 to make it invisible (I didn’t investigate why height should be 1 instead of 0). User sees item 3 is dragged, actually it’s the dragging object – clone of the item 3 view. When dragging object is hovering at a position, the item view at that position expands to make an empty space, so looks like that it is being pushed aside by the dragging object.</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5604090272/"><img src="http://farm6.static.flickr.com/5101/5604090272_641594fa57_m.jpg" alt="listview-dnp-1" /></a><a href="http://www.flickr.com/photos/leoliang/5603507715/"><img src="http://farm6.static.flickr.com/5188/5603507715_d47cb49532_m.jpg" alt="listview-dnp-2" /></a></p>
+
+<p>Here is a screenshot of demo:</p>
+
+<p><a href="http://www.flickr.com/photos/leoliang/5603811095/"><img src="http://farm5.static.flickr.com/4099/5603811095_f2f7c52c79.jpg" alt="DraggableListView" /></a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2011/04/10/Drag-and-drop-list-view-on-Android/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -394,181 +463,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/28/Task-management-tools/">任务管理工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2011-02-28T07:51:00+08:00" pubdate data-updated="true">2011-02-28</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/timemanagement/'>TimeManagement</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>首先，我得承认：我又在折腾了。</p>
-
-<p>这些年来，用过好多种任务管理（to-do）工具，包括low-tech的，电子化的，始终没有一个完全满意。最近一段时间又纠结于此，寻找、尝试各种工具，花了不少时间，真是有点本末倒置啊。</p>
-
-<p>经过多年的练习，已经逐渐明确了自己对任务管理工具的需求是什么：（优先级从高到低排列）</p>
-
-<ul>
-  <li><strong>Available on both PC and Android, data are synchonized between devices</strong><br />
-手机是随身携带的，因此要支持Android手机，并且在网络离线时也要可用；手机输入文字速度还是比电脑上慢，屏幕小有局限，输入、整理等工作在电脑上做更有效率。</li>
-  <li><strong>随时都可以快速将新的任务记录下来</strong><br />
-这是GTD中所强调的inbox的功能。创建新任务的界面必须尽可能简单，需要输入的信息和步骤越少越好。</li>
-  <li><strong>Be able to set start date of a task, hide future tasks</strong><br />
-这个功能很多工具都缺乏。Start date与due date是不同的：due date是dead line，大部分任务没有due date；start date是自己对任务的安排。对于不需要马上做的任务，安排好开始的时间，就从当前任务列表里隐藏了，可以更专注于当前任务。</li>
-  <li><strong>区分不同任务：new（inbox），scheduled，someday；方便的改变任务类型</strong><br />
-新任务的记录是清空大脑的过程，需要review后安排具体处理时间；someday是那种还没有想到该什么时候做的任务（也有可能是其实不需要做的）</li>
-  <li><strong>Easily schedule / reschedule tasks</strong><br />
-用简便的操作就可以安排任务执行的时间</li>
-  <li><strong>Recurrent task</strong></li>
-  <li><strong>Integrate with calendar</strong><br />
-日程表跟任务列表整合起来，相互可以转换。以前写过<a href="http://good-good-study.appspot.com/blog/posts/3184">一些想法</a>。</li>
-  <li><strong>Set due date to a task</strong></li>
-  <li><strong>Sort tasks in list by drag’n’drop</strong><br />
-相比起为任务设置priority，我更喜欢直接将任务拖放改变顺序。有时候说不清一个任务到底属于哪个priority，但会知道几个任务中哪个应该先做。</li>
-  <li><strong>Apply tag to a task</strong></li>
-  <li><strong>Batch operation</strong></li>
-</ul>
-
-<p>最近将网上找到比较出名的工具都试用过了，记录下简单的评价（针对我的需求的）：</p>
-
-<ul>
-  <li>Remember The Milk 
-    <ul>
-      <li>功能完善，使用方便</li>
-      <li>Web及Android均可离线使用</li>
-      <li>不支持 start date</li>
-    </ul>
-  </li>
-  <li>Toodledo 
-    <ul>
-      <li>Very rich feature set, too heavy</li>
-      <li>Complex, unfriendly UI</li>
-      <li>
-        <strike>不支持 start date</strike>
-      </li>
-    </ul>
-  </li>
-  <li>Todoist 
-    <ul>
-      <li>不支持 start date</li>
-    </ul>
-  </li>
-  <li>Todo.ly 
-    <ul>
-      <li>不支持 start date</li>
-    </ul>
-  </li>
-  <li>Stay Useful 
-    <ul>
-      <li>Simple and neat, nice user experience</li>
-      <li>没有someday任务，最远只能安排到next week</li>
-      <li>支持浏览器离线使用，但在Android上显示没有适应屏幕大小</li>
-      <li>免费试用30天，购买$4</li>
-    </ul>
-  </li>
-  <li>Google Tasks 
-    <ul>
-      <li>不支持 start date</li>
-      <li>将任务移到另外一个列表的操作不够简便</li>
-    </ul>
-  </li>
-  <li>Hiveminder 
-    <ul>
-      <li>No offline access on Android</li>
-    </ul>
-  </li>
-  <li>Nozbe 
-    <ul>
-      <li>功能完善</li>
-      <li>Too expensive: $9.95/month</li>
-    </ul>
-  </li>
-  <li>Tadalist 
-    <ul>
-      <li>It’s only list of items with checkbox, nothing more</li>
-    </ul>
-  </li>
-  <li>itumz 
-    <ul>
-      <li>It’s only list of items with checkbox, nothing more</li>
-    </ul>
-  </li>
-  <li>zirr.us 
-    <ul>
-      <li>Show tasks in tag cloud style</li>
-      <li>No start date, only due date</li>
-    </ul>
-  </li>
-  <li>TeuxDeux 
-    <ul>
-      <li>Day (5 days shown in one screen) + someday, drag’n’drop</li>
-      <li>Good user experience</li>
-      <li>Can not show all tasks, have to scroll to the date</li>
-      <li>No due date</li>
-      <li>No recurrent task</li>
-      <li>Doesn’t work on Android (native app is underway?)</li>
-    </ul>
-  </li>
-  <li>TaskWarrior 
-    <ul>
-      <li>CLI</li>
-      <li>Good enough feature set</li>
-      <li>No Android client</li>
-    </ul>
-  </li>
-  <li>GQueues 
-    <ul>
-      <li>No start date</li>
-      <li>No Android client, 支持浏览器离线访问，但体验不够好</li>
-    </ul>
-  </li>
-</ul>
-
-<p>总结下来，就是没有一个能够同时满足我的需求的前几项的。故此我又有了自己做一个的想法，大概的思路已经有了，下次再写。</p>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2011/02/28/Task-management-tools/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/16/">&larr; Older</a>
@@ -590,6 +484,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/05/kossel-mini-3d-printer-making/">Kossel Mini 3D打印机制作记录 (1)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
       </li>
     
@@ -605,10 +503,6 @@
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -621,7 +515,7 @@
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 112%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>

@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="一个blog所需要的功能的最小集合已经完备了，可以投入使用，再边用边改进了： 发文章 文章分页显示 Tag 评论 用户认证通过Google account进行 Google Application Engine 提供了强大的平台，Play Framework使得Java web开发变得很简便。 &hellip;">
+  <meta name="description" content="支持atom比我想象中简单很多，根本用不着什么library，多加一个xml template就行了。 如果你的浏览器支持，就能在地址栏右边看到feed的图标，点击就可以选择阅读器进行订阅。或者在阅读器（例如Google Reader）里面输入这个网站的地址，也可以订阅。 PS. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/14/This-blog-now-support-feed-output/">这个blog现在支持feed输出了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-14T18:16:00+08:00" pubdate data-updated="true">2010-02-14</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blogging/'>Blogging</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>支持atom比我想象中简单很多，根本用不着什么library，多加一个xml template就行了。</p>
+
+<p>如果你的浏览器支持，就能在地址栏右边看到feed的图标，点击就可以选择阅读器进行订阅。或者在阅读器（例如Google Reader）里面输入这个网站的地址，也可以订阅。</p>
+
+<p><img src="http://farm5.static.flickr.com/4058/4353315450_7d1914e9ab_o.png" alt="" /></p>
+
+<p>PS. 这个blog的页面使用了一些HTML5标签，因此需要使用新的浏览器才能正常浏览，例如使用 Firefox 3, Chrome。如果你看到的页面不是上图的样子，说明你的浏览器 out date 啦。</p>
+
+<p>PPS. 我会一如既往的使用flickr来存放照片，如果你看不到照片，或者有一天你连这个blog的页面都看不到，那说明你上的只是局域网，根本不是Internet。</p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2010/02/14/This-blog-now-support-feed-output/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -321,103 +380,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/26/Google-China-Map-offset-1/">Google中国地图偏移</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-<time datetime="2009-12-26T21:37:00+08:00" pubdate data-updated="true">2009-12-26</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/gps-gis/'>GPS_GIS</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前我一直以为Google手机地图是在客户端程序内置有矫偏算法的，看了dongmeng110的blog（已被关闭）才知道Google地图偏移其实是有接口可以取到的。给定经纬度坐标，返回地图tile的偏移像素值。
-<code>http://ditu.google.cn/maps/vp?spn=0.0,0.0&amp;amp;z=18&amp;amp;vp=39.111195,117.148067</code> （已失效）。</p>
-
-<p>没想到居然就是直接从服务器取，这样所有的偏移量其实都是公开的了。</p>
-
-<p>接下来，我对偏移数据做了一些分析。纵坐标是18级地图的偏移量。</p>
-
-<p>首先是较小尺度，在经纬度1度的范围内每0.01度取得一个偏移值。</p>
-
-<p>图一：纬度不变，经度1度变化范围内，偏移量的变化（横坐标数字为经度0.01度）</p>
-
-<p><img src="/blog/attachments/2009/12/4382500790_05a7a3af13_o.jpg" alt="" /></p>
-
-<p>图二，与图一相同的数据，可以看出偏移在平面上的变化</p>
-
-<p><img src="/blog/attachments/2009/12/4382501234_2a060a3355_o.jpg" alt="" /></p>
-
-<p>图三，经度不变，纬度1度变化范围内，偏移量的变化（横坐标数字为纬度0.01度）。可见偏移量变化不如经度变化时大。</p>
-
-<p><img src="/blog/attachments/2009/12/4382501616_0902aeee3e_o.jpg" alt="" /></p>
-
-<p>图四，与图三相同的数据，可以看出偏移在平面上的变化</p>
-
-<p><img src="/blog/attachments/2009/12/4382501968_d960178154_o.jpg" alt="" /></p>
-
-<p>图五，经度纬度均1度范围内，偏移在平面上的变化。其实是图二与图四“相乘”的结果。</p>
-
-<p><img src="/blog/attachments/2009/12/4381741057_b10a5de8ca_o.jpg" alt="" /></p>
-
-<p>接下来从大尺度上看看。</p>
-
-<p>图六，北纬40度的纬线上偏移值变化图，横坐标为经度。看得出以经度1度为周期呈现出一定的规律性，在y向偏移量上特别明显。</p>
-
-<p><img src="/blog/attachments/2009/12/4382499286_a837b8022d_o.jpg" alt="" /></p>
-
-<p>图七，东经116度的经线上偏移值变化图，横坐标为纬度。这个就没有奇怪的小波动了，而且x向偏移似乎可以非常理想的用二次曲线来拟合。</p>
-
-<p><img src="/blog/attachments/2009/12/4381742115_a15b5e01c5_o.jpg" alt="" /></p>
-
-<p>图八，刚才在图六中发现纬线上的偏移值呈现出规律性，这里放大来看看。很明显是以1度为周期的。</p>
-
-<p><img src="/blog/attachments/2009/12/4382498276_2952ffa74c_o.jpg" alt="" /></p>
-
-<p>暂无结论。请看<a href="/blog/2009/12/27/Google-China-Map-offset-2/">续篇</a>。</p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2009/12/26/Google-China-Map-offset-1/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/23/">&larr; Older</a>
@@ -439,6 +401,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/05/kossel-mini-3d-printer-making/">Kossel Mini 3D打印机制作记录 (1)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
       </li>
     
@@ -454,10 +420,6 @@
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -470,7 +432,7 @@
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 112%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>

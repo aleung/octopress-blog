@@ -9,9 +9,8 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Java swing编程，更改了一个JPanel的内部components后，需要改变一下窗口大小，新内容才能显示出来。
-解决方法：调用panel.validate()。
-对于container，添加或者改变了对象后，需要调用validate()才能重新布局并显示。
+  <meta name="description" content="《诊断 Java 代码》这组文章提到了很多种“错误模式”，有时间值得看看。
+http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml
 ">
   
 
@@ -75,6 +74,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2003/08/20/Java-/">Java“错误模式”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-08-20T19:01:00+08:00" pubdate data-updated="true">2003-08-20</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/java/'>Java</a>, <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>《诊断 Java 代码》这组文章提到了很多种“错误模式”，有时间值得看看。<br />
+<a href="http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml">http://www.ibm.com/developerWorks/cn/java/j-diag/index.shtml</a></p>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2003/08/20/Java-/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -412,64 +463,6 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2003/08/05/Robocode-/">Robocode的线程与执行次序</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2003-08-05T22:59:00+08:00" pubdate data-updated="true">2003-08-05</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Robocode的每个机器人都是一个线程，线程调度为非强占式，由战斗管理线程依次调度运行。每个线程执行到一个阻塞函数的时候，交出cpu占用权。对于AdvancedRobot，阻塞函数是excute()。  </p>
-
-<p>从这个角度而言，可以把robocode看作是回合制的游戏，每个回合各个robot设定要做些什么操作，即调用setXXX()，调用excute()完成本回合的操作设定。各个robot都设定完后，战斗模拟模块模拟执行各个robot的动作，并且在屏幕显示结果。下个回合，robot线程在excute()下面继续执行，直到再次调用excute()为止。  </p>
-
-<p>不过，setXXX()设定的操作，往往是在一个回合中执行不完的。在robocode中，一个回合是游戏中的一个时间单位，各个元素的运动都有一定的速度，需要一定单位的时间才能完成。如果上回合中设置的动作还没有完成，本回合又重新设定了，就会把新动作覆盖旧动作。  </p>
-
-<p>事件处理函数onXXX()，看起来是在事件发生的时候立即执行的，其实不然，还是要在回合中轮到这个robot的时候才能执行。而且若在队列中有多个事件，而某个事件处理函数调用了excute()结束了本回合的动作，那么剩下的事件就要等到下个回合才能处理了。因此，onXXX()改变的只是某个线程内部的执行次序，并不改变robot线程之间的执行次序。  </p>
-
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2003/08/05/Robocode-/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/60/">&larr; Older</a>
@@ -491,6 +484,10 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/05/kossel-mini-3d-printer-making/">Kossel Mini 3D打印机制作记录 (1)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
       </li>
     
@@ -506,10 +503,6 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -522,7 +515,7 @@ MySQL原来不支持UTF8，直到目前的最新版本4.1才加入unicode支持�
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 112%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>

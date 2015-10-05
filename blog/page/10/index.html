@@ -9,7 +9,7 @@
   <meta name="author" content="Leo Liang">
 
   
-  <meta name="description" content="Apigee is hot recently. It has raised $20 million in its fifth round of funding. What magic it has? I spent some time today to have a look at it. &hellip;">
+  <meta name="description" content="Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases. All &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,119 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/understanding-weblogic-workmanager/">Understanding WebLogic WorkManager</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T22:54:00+08:00" pubdate data-updated="true">2012-08-10</time>
+        
+         | 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/appserver/'>AppServer</a>, <a class='tag' href='/blog/tags/weblogic/'>WebLogic</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Since WebLogic Server 9.0, new concepts for workload management is introduced. WorkManager replaces execute queue as defined in earlier releases.</p>
+
+<p>All WorkManagers share a common thread pool and a priority-based queue. The size of the thread pool is determined automatically by the kernel and resized as needed.  Priority of the requests is dynamic and computed internally to meet the stated goals. </p>
+
+<p>The thread pool is so-called self-tunning. It monitors the overall throughput every two seconds and uses the collected data to determine if thread count needs to change. Present thread count, the measured throughput, and the past history is taken into account by the algorithm to determine if the thread count needs to increase or decrease, and new threads are automatically added to the pool or removed, as needed.</p>
+
+<p>It’s no longer have to (and is unable to) configure thread counts on a WorkManager nor the common thread pool. However, it’s possible to affect how server prioritizes work and allocates threads by parameters defined in WorkManager. Each WorkManager can contain following types of components:</p>
+
+<ul>
+  <li>Request class 
+    <ul>
+      <li>Fair-share</li>
+      <li>Response-time goal</li>
+      <li>Context based</li>
+    </ul>
+  </li>
+  <li>Constraints
+    <ul>
+      <li>Minimum threads constraint</li>
+      <li>Maximum threads constraint</li>
+      <li>Capacity</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Request class affects how requests are prioritized. Fair-share request class changes thread usage weight of a WorkManage, which is by default 50. Response-time goal request class specifies the response-time goal in milliseconds. Context-based request class is a compound request class that provides a mapping between the request context and the above two request classes. With context-based request class, it’s possible to specify different request classes for the same servlet invocation depending on the user associated with the invocation.</p>
+
+<p>A constraint defines minimum and maximum numbers of threads allocated to execute requests and the total number of requests that can be queued or executing before WebLogic Server begins rejecting requests. Constraint is referenced in WorkManager by constraint name. So a constraint can be shared by several WorkManagers and set the common limit.</p>
+
+<p>Minimum threads constraint makes sure that during periods of high workloads, there would still be a certain number of threads from the self-tuning thread pool available to process work requests for all work managers that reference the minimum threads constraint. Using the minimum threads constraint could result in some side-effects. Users should consider adding a minimum threads constraint to a work manager configuration when it is critical that progress must be made for an application even when the WLS server is under very heavy load, such as work that would have resulted in server-to-server deadlock if not being processed promptly. It is not to be used as a mean of prioritizing workload among different work managers. </p>
+
+<p>The maximum threads constraint limits the number of threads in the self-tuning thread pool that can be used for executing work for all work managers that references the same constraint. The maximum threads constraint is not designed as a mean to prioritize workloads among different work managers. It is most useful when there are other known limitations where a hard upper limit should be put on the number of threads that should be assigned for processing work requests, and that allocating more threads for processing the workload would not increase the overall throughput.</p>
+
+<p>A typical use case of maximum threads constraint is to take a data source connection pool size as the max constraint.</p>
+
+<pre><code>&lt;max-threads-constraint&gt;
+  &lt;name&gt;MyConstraint&lt;/name&gt;
+  &lt;pool-name&gt;MyDataSource&lt;/pool-name&gt;
+&lt;/max-threads-constraint&gt;
+</code></pre>
+
+<p>The capacity constraint defines the maximum number of requests that can be queued (waiting for thread) or are executing. Overload action, e.g. refuse with HTTP response code 503, is taken after the capacity is reached. </p>
+
+<p>I draw a picture to show the threadpool and queue. Requests dispatched with different WorkManager are in different color.</p>
+
+<p><img src="/blog/attachments/2012/8/workmanager.jpg" alt="" /></p>
+
+<ul>
+  <li>Self-tuning thread pool thread allocation ratio amoung WorkManagers is affected by request class. </li>
+  <li>Minimum threads constraint limits: never queue request, unless <code>executing &gt;= min-threads-constraint.count</code></li>
+  <li>Maximum threads constraint limits: <code>executing &lt;= max-threads-constraint.count</code></li>
+  <li>capacity contraint limits: <code>executing + queued &lt;= capacity.count</code></li>
+</ul>
+
+<p>WorkManager can be created for a specific application or module (ejb/war), which is called application-scoped WorkManager. If there is no special requirement on individual application or module, you can create global Work Managers that are available to all applications and modules. An application uses a globally-defined Work Manager as a template. Each application creates its own instance, this means that each application has its own default WorkManager that is not shared with other applications. WebLogic Server provides a built-in default Work Manager which may be sufficient for most application requirements.</p>
+
+<p>Reference:</p>
+
+<ul>
+  <li><a href="http://www.oracle.com/technetwork/articles/entarch/workload-management-088692.html">Workload Management in WebLogic Server 9.0</a></li>
+  <li><a href="https://blogs.oracle.com/WebLogicServer/entry/threads_constraints_in_work_ma">Threads Constraints in Work Managers</a></li>
+  <li><a href="http://docs.oracle.com/cd/E15051_01/wls/docs103/config_wls/self_tuned.html">Using Work Managers to Optimize Scheduled Work</a></li>
+</ul>
+</div>
+  
+  
+  
+    <footer>
+        <a href="/blog/2012/08/10/understanding-weblogic-workmanager/#disqus_thread">Comments</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -413,87 +526,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/">Spring Bean Reference Injection Definition by External Configuration</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-07T21:38:00+08:00" pubdate data-updated="true">2012-07-07</time>
-        
-         | 
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/softwaredev/'>SoftwareDev</a>, <a class='tag' href='/blog/tags/springframework/'>SpringFramework</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>当使用 Spring 作为 IoC framework 的时候，有时会利用 property placeholder 来将bean的注入属性做成可配置化。但是，一般很少会将 reference bean id 也用 property placeholder 代替，有人甚至以为这是不允许的。</p>
-
-<p>利用Spring Framework的property placeholder，将bean依赖关系配置抽离Spring XML文件，就能在产品发布部署后，通过配置选项来选定不同的实现，可用于集成接口、特定业务逻辑打开关闭等。</p>
-
-<p><a href="http://www.oodesign.com/adapter-pattern.html">Adaptor pattern</a> is widely used at the point where our product integrates with external system. Product will provide several adapters to adapt to different external system interface.
-We deliver our product in uniform installation package for all customers. A mechanism is required to configure which adapter to be used after system is installed.</p>
-
-<p><a href="http://www.oodesign.com/factory-pattern.html">Factory pattern</a> can be used to create the specific adapter by configuration property. But by this way we need to create factory for each kind of adapters.</p>
-
-<p>Actually Spring Framework already supports it. With property placeholder, it is able to use placeholder in bean reference and resolve the bean name from properties. The bean definition XML file is not allowed to be modified when product is released, because it’s packaged in war/ear. But properties can be modified as long as it’s store outside of the package, e.g. on file system or in configuration management (extend the PropertyPlaceholderConfigurer class).</p>
-
-<p>Here is a sample code snippet:</p>
-<div><script src="https://gist.github.com/2934603.js"></script>
-<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; 
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;
-    default-autowire=&quot;byType&quot;&gt;
-
-    &lt;context:property-placeholder location=&quot;file:bin/leoliang/spring/test1/bean.properties&quot;/&gt;
-
-    &lt;bean id=&quot;fooA&quot; class=&quot;leoliang.spring.test1.FooImplA&quot; /&gt;
-    &lt;bean id=&quot;fooB&quot; class=&quot;leoliang.spring.test1.FooImplB&quot; /&gt;
-    
-    &lt;bean id=&quot;bar&quot; class=&quot;leoliang.spring.test1.Bar&quot;&gt;
-        &lt;property name=&quot;foo&quot; ref=&quot;${foo_bean_id}&quot;/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre></noscript></div>
-</div>
-  
-  
-  
-    <footer>
-        <a href="/blog/2012/07/07/spring-bean-reference-injection-definition-by-external-configuration/#disqus_thread">Comments</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/blog/page/11/">&larr; Older</a>
@@ -515,6 +547,10 @@ We deliver our product in uniform installation package for all customers. A mech
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/05/kossel-mini-3d-printer-making/">Kossel Mini 3D打印机制作记录 (1)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/20/quality-of-free-software/">自由软件质量不如软件企业自己开发的可靠？</a>
       </li>
     
@@ -530,10 +566,6 @@ We deliver our product in uniform installation package for all customers. A mech
         <a href="/blog/2015/06/09/the-end-of-eternity/">永恒的终结</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/04/03/jekyll-swagger-ui/">Jekyll 与 Swagger UI 集成</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -546,7 +578,7 @@ We deliver our product in uniform installation package for all customers. A mech
 <a style="font-size: 70%" href="/blog/tags/artculture/">ArtCulture</a>
 <a style="font-size: 118%" href="/blog/tags/blogging/">Blogging</a>
 <a style="font-size: 112%" href="/blog/tags/civilsociety/">CivilSociety</a>
-<a style="font-size: 109%" href="/blog/tags/diy/">DIY</a>
+<a style="font-size: 112%" href="/blog/tags/diy/">DIY</a>
 <a style="font-size: 84%" href="/blog/tags/datavisualization/">DataVisualization</a>
 <a style="font-size: 70%" href="/blog/tags/database/">Database</a>
 <a style="font-size: 84%" href="/blog/tags/design/">Design</a>
